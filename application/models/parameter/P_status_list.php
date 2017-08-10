@@ -1,21 +1,20 @@
 <?php
 
 /**
- * Icons Model
+ * p_status_list Model
  *
  */
-class P_vat_type extends Abstract_model {
+class P_status_list extends Abstract_model {
 
-    public $table           = "p_vat_type";
-    public $pkey            = "p_vat_type_id";
-    public $alias           = "pr";
+    public $table           = "p_status_list";
+    public $pkey            = "p_status_list_id";
+    public $alias           = "ps";
 
     public $fields          = array(
-                                'p_vat_type_id'            => array('pkey' => true, 'type' => 'int', 'nullable' => true, 'unique' => true, 'display' => 'ID Pajak'),
-                                'vat_code'           => array('nullable' => false, 'type' => 'str', 'unique' => true, 'display' => 'Jenis Pajak'),
-                                'code'           => array('nullable' => false, 'type' => 'str', 'unique' => true, 'display' => 'Kode'),
-                                'description'    => array('nullable' => true, 'type' => 'str', 'unique' => false, 'display' => 'Deskripsi'),
-                                'penalty_code'    => array('nullable' => true, 'type' => 'str', 'unique' => false, 'display' => 'Penalty Code'),
+                                'p_status_list_id'             => array('pkey' => true, 'type' => 'int', 'nullable' => true, 'unique' => true, 'display' => 'ID Status'),
+                                'code'           => array('nullable' => false, 'type' => 'str', 'unique' => true, 'display' => 'Icon Code'),
+                                'description'    => array('nullable' => false, 'type' => 'str', 'unique' => false, 'display' => 'Icon Description'),
+
                                 'creation_date'          => array('nullable' => true, 'type' => 'date', 'unique' => false, 'display' => 'Created Date'),
                                 'created_by'            => array('nullable' => true, 'type' => 'str', 'unique' => false, 'display' => 'Created By'),
                                 'updated_date'          => array('nullable' => true, 'type' => 'date', 'unique' => false, 'display' => 'Updated Date'),
@@ -23,8 +22,8 @@ class P_vat_type extends Abstract_model {
 
                             );
 
-    public $selectClause    = "pr.*, to_char(pr.updated_date, 'dd-Mon-yyyy') as update_date_str";
-    public $fromClause      = "p_vat_type pr";
+    public $selectClause    = "ps.*";
+    public $fromClause      = "p_status_list ps";
 
     public $refs            = array();
 
@@ -59,4 +58,4 @@ class P_vat_type extends Abstract_model {
 
 }
 
-/* End of file Icons.php */
+/* End of file p_status_list.php */
