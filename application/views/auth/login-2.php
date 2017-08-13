@@ -40,14 +40,14 @@
         <!-- BEGIN LOGO -->
         <div class="logo">
             <a href="<?php echo base_url(); ?>">
-                <img src="<?php echo base_url(); ?>assets/image/telkom2.png" width="300px" height="" alt="" /> </a>
+                <img src="<?php echo base_url(); ?>assets/image/logo-2.png" width="300px" height="" alt="" /> </a>
         </div>
         <!-- END LOGO -->
         <!-- BEGIN LOGIN -->
         <div class="content">
             <!-- BEGIN LOGIN FORM -->
             <form class="login-form" name="login_form" action="<?php echo $login_url;?>" method="post">
-                <h4 class="form-title">TOS - Telkom Indonesia</h4>
+                <h4 class="form-title">MPD - Lombok Utara</h4>
                 <?php if($this->session->flashdata('error_message') != ""): ?>
                     <div class="alert alert-danger alert-dismissible" role="alert">
                         <button aria-label="Close" data-dismiss="alert" class="close" type="button"><span aria-hidden="true">×</span></button>
@@ -77,7 +77,7 @@
         </div>
         <!-- END LOGIN -->
         <!-- BEGIN COPYRIGHT -->
-        <div class="copyright"> Copyright &copy; 2017 Telkom Indonesia. </div>
+        <div class="copyright"> Copyright &copy; 2017 Lombok Utara. </div>
         <!-- END COPYRIGHT -->
         <!--[if lt IE 9]>
 <script src="<?php echo base_url(); ?>assets/global/plugins/respond.min.js"></script>

@@ -19,7 +19,7 @@
     <body class="page-header-fixed page-sidebar-closed-hide-logo page-content-white page-md page-header-fixed page-sidebar-fixed">
         <!-- BEGIN HEADER -->
         <div class="logo-cam">
-            <img src="<?php echo base_url().'assets/image/logo_tos.png'; ?>" height="25px">
+            <img src="<?php echo base_url().'assets/image/logo-mpd.png'; ?>" height="25px">
         </div>
         <div class="page-header navbar navbar-fixed-top">
             <!-- BEGIN HEADER INNER -->
@@ -27,7 +27,7 @@
                 <!-- BEGIN LOGO -->
                 <div class="page-logo">
                     <a href="<?php base_url();?>">
-                        <img src="<?php echo base_url().'assets/image/telkom_small2.jpg'; ?>">
+                        <img src="<?php echo base_url().'assets/image/logo-2.png'; ?>" height="50" width="50">
                     </a>
                     <div class="menu-toggler sidebar-toggler">
                         <span></span>
