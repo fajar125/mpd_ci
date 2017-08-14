@@ -1,19 +1,24 @@
 <?php
 
 /**
- * p_vat_type Model
+ * Global Param Model
  *
  */
-class p_vat_type extends Abstract_model {
+class p_global_param extends Abstract_model {
 
-    public $table           = "p_vat_type";
-    public $pkey            = "p_vat_type_id";
-    public $alias           = "vt";
+    public $table           = "p_global_param";
+    public $pkey            = "p_global_param_id";
+    public $alias           = "gb";
 
     public $fields          = array(
-                                'p_vat_type_id'       => array('pkey' => true, 'type' => 'int', 'nullable' => true, 'unique' => true, 'display' => 'Account Status ID'),
-                                'vat_code'    => array('nullable' => true, 'type' => 'str', 'unique' => true, 'display' => 'Jenis Pajak'),
-                                'description'     => array('nullable' => true, 'type' => 'str', 'unique' => false, 'display' => 'Deskripsi'),
+                                'p_global_param_id'       => array('pkey' => true, 'type' => 'int', 'nullable' => true, 'unique' => true, 'display' => 'Parameter ID'),
+
+                                'code'    => array('nullable' => true, 'type' => 'str', 'unique' => true, 'display' => 'Code'),
+                                'value'      => array('nullable' => true, 'type' => 'str', 'unique' => false, 'display' => 'Nilai 1'),
+                                'type_1'    => array('nullable' => false, 'type' => 'str', 'unique' => false, 'display' => 'Type'),
+                                'is_range'    => array('nullable' => false, 'type' => 'str', 'unique' => false, 'display' => 'Range'),
+                                'value_2'      => array('nullable' => false, 'type' => 'str', 'unique' => false, 'display' => 'Nilai 2'),
+                                'description'     => array('nullable' => true, 'type' => 'str', 'unique' => false, 'display' => 'Keterangan'),
 
                                 'creation_date'  => array('nullable' => true, 'type' => 'date', 'unique' => false, 'display' => 'Created Date'),
                                 'created_by'    => array('nullable' => true, 'type' => 'str', 'unique' => false, 'display' => 'Created By'),
@@ -22,8 +27,8 @@ class p_vat_type extends Abstract_model {
 
                             );
 
-    public $selectClause    = "vt.*";
-    public $fromClause      = "p_vat_type vt";
+    public $selectClause    = "gb.*";
+    public $fromClause      = "p_global_param gb";
 
     public $refs            = array();
 
@@ -58,4 +63,4 @@ class p_vat_type extends Abstract_model {
 
 }
 
-/* End of file p_vat_type.php */
+/* End of file p_global_param.php */

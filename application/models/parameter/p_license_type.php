@@ -1,18 +1,18 @@
 <?php
 
 /**
- * p_vat_type Model
+ * License Type Model
  *
  */
-class p_vat_type extends Abstract_model {
+class p_license_type extends Abstract_model {
 
-    public $table           = "p_vat_type";
-    public $pkey            = "p_vat_type_id";
-    public $alias           = "vt";
+    public $table           = "p_license_type";
+    public $pkey            = "p_license_type_id";
+    public $alias           = "lt";
 
     public $fields          = array(
-                                'p_vat_type_id'       => array('pkey' => true, 'type' => 'int', 'nullable' => true, 'unique' => true, 'display' => 'Account Status ID'),
-                                'vat_code'    => array('nullable' => true, 'type' => 'str', 'unique' => true, 'display' => 'Jenis Pajak'),
+                                'p_license_type_id'       => array('pkey' => true, 'type' => 'int', 'nullable' => true, 'unique' => true, 'display' => 'License Type ID'),
+                                'code'    => array('nullable' => true, 'type' => 'str', 'unique' => true, 'display' => 'Jenis Perizinan'),
                                 'description'     => array('nullable' => true, 'type' => 'str', 'unique' => false, 'display' => 'Deskripsi'),
 
                                 'creation_date'  => array('nullable' => true, 'type' => 'date', 'unique' => false, 'display' => 'Created Date'),
@@ -22,8 +22,8 @@ class p_vat_type extends Abstract_model {
 
                             );
 
-    public $selectClause    = "vt.*";
-    public $fromClause      = "p_vat_type vt";
+    public $selectClause    = "lt.*,to_char(updated_date, 'dd-Mon-yyyy') as updated_date_str";
+    public $fromClause      = "p_license_type lt";
 
     public $refs            = array();
 
@@ -58,4 +58,4 @@ class p_vat_type extends Abstract_model {
 
 }
 
-/* End of file p_vat_type.php */
+/* End of file p_license_type.php */

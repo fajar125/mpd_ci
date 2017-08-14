@@ -1,25 +1,26 @@
 <?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 /**
 * Json library
-* @class p_vat_type_controller
+* @class p_bank_branch_controller
 * @version 07/05/2015 12:18:00
 */
-class p_vat_type_controller {
+class p_bank_branch_controller {
 
     function read() {
 
         $page = getVarClean('page','int',1);
         $limit = getVarClean('rows','int',5);
-        $sidx = getVarClean('sidx','str','p_vat_type_id');
+        $sidx = getVarClean('sidx','str','p_bank_branch_id');
         $sord = getVarClean('sord','str','desc');
 
         $data = array('rows' => array(), 'page' => 1, 'records' => 0, 'total' => 1, 'success' => false, 'message' => '');
+        $p_bank_id = getVarClean('p_bank_id','int',0);
 
         try {
 
             $ci = & get_instance();
-            $ci->load->model('parameter/p_vat_type');
-            $table = $ci->p_vat_type;
+            $ci->load->model('parameter/p_bank_branch');
+            $table = $ci->p_bank_branch;
 
             $req_param = array(
                 "sort_by" => $sidx,
@@ -38,6 +39,11 @@ class p_vat_type_controller {
             // Filter Table
             $req_param['where'] = array();
 
+            if(!empty($p_bank_id)) {
+                $req_param['where'][] = 'p_bank_id = '.$p_bank_id;
+            }
+
+            
             $table->setJQGridParam($req_param);
             $count = $table->countAll();
 
@@ -62,11 +68,10 @@ class p_vat_type_controller {
 
             $data['rows'] = $table->getAll();
             $data['success'] = true;
-            logging('view data status akun');
+            logging('view data vat');
         }catch (Exception $e) {
             $data['message'] = $e->getMessage();
         }
-
         return $data;
     }
 
@@ -75,7 +80,7 @@ class p_vat_type_controller {
         $start = getVarClean('current','int',0);
         $limit = getVarClean('rowCount','int',5);
 
-        $sort = getVarClean('sort','str','p_vat_type_id');
+        $sort = getVarClean('sort','str','p_bank_id');
         $dir  = getVarClean('dir','str','asc');
 
         $searchPhrase = getVarClean('searchPhrase', 'str', '');
@@ -85,11 +90,11 @@ class p_vat_type_controller {
         try {
 
             $ci = & get_instance();
-            $ci->load->model('parameter/p_vat_type');
-            $table = $ci->p_vat_type;
+            $ci->load->model('parameter/p_bank_branch');
+            $table = $ci->p_bank_branch;
 
             if(!empty($searchPhrase)) {
-                $table->setCriteria("upper(vat_code) like upper('%".$searchPhrase."%')");
+                $table->setCriteria("upper(code) like upper('%".$searchPhrase."%')");
             }
 
             $start = ($start-1) * $limit;
@@ -114,22 +119,22 @@ class p_vat_type_controller {
         $oper = getVarClean('oper', 'str', '');
         switch ($oper) {
             case 'add' :
-                permission_check('can-add-vat-type');
+                permission_check('can-add-bank-branch');
                 $data = $this->create();
             break;
 
             case 'edit' :
-                permission_check('can-edit-vat-type');
+                permission_check('can-edit-bank-branch');
                 $data = $this->update();
             break;
 
             case 'del' :
-                permission_check('can-delete-vat-type');
+                permission_check('can-delete-bank-branch');
                 $data = $this->destroy();
             break;
 
             default :
-                permission_check('can-view-vat-type');
+                permission_check('can-view-bank-branch');
                 $data = $this->read();
             break;
         }
@@ -141,8 +146,8 @@ class p_vat_type_controller {
     function create() {
 
         $ci = & get_instance();
-        $ci->load->model('parameter/p_vat_type');
-        $table = $ci->p_vat_type;
+        $ci->load->model('parameter/p_bank_branch');
+        $table = $ci->p_bank_branch;
 
         $data = array('rows' => array(), 'page' => 1, 'records' => 0, 'total' => 1, 'success' => false, 'message' => '');
 
@@ -196,7 +201,7 @@ class p_vat_type_controller {
 
                 $data['success'] = true;
                 $data['message'] = 'Data added successfully';
-                logging('create data jenis pajak');
+                logging('create data bank branch');
 
             }catch (Exception $e) {
                 $table->db->trans_rollback(); //Rollback Trans
@@ -213,8 +218,8 @@ class p_vat_type_controller {
     function update() {
 
         $ci = & get_instance();
-        $ci->load->model('parameter/p_vat_type');
-        $table = $ci->p_vat_type;
+        $ci->load->model('parameter/p_bank_branch');
+        $table = $ci->p_bank_branch;
 
         $data = array('rows' => array(), 'page' => 1, 'records' => 0, 'total' => 1, 'success' => false, 'message' => '');
 
@@ -268,7 +273,7 @@ class p_vat_type_controller {
 
                 $data['success'] = true;
                 $data['message'] = 'Data update successfully';
-                logging('update data jenis pajak');
+                logging('update data bank branch');
                 $data['rows'] = $table->get($items[$table->pkey]);
             }catch (Exception $e) {
                 $table->db->trans_rollback(); //Rollback Trans
@@ -284,8 +289,8 @@ class p_vat_type_controller {
 
     function destroy() {
         $ci = & get_instance();
-        $ci->load->model('parameter/p_vat_type');
-        $table = $ci->p_vat_type;
+        $ci->load->model('parameter/p_bank_branch');
+        $table = $ci->p_bank_branch;
 
         $data = array('rows' => array(), 'page' => 1, 'records' => 0, 'total' => 1, 'success' => false, 'message' => '');
 
@@ -315,7 +320,7 @@ class p_vat_type_controller {
 
             $data['success'] = true;
             $data['message'] = $total.' Data deleted successfully';
-            logging('delete data jenis pajak');
+            logging('delete data bank branch');
             $table->db->trans_commit(); //Commit Trans
 
         }catch (Exception $e) {
@@ -328,4 +333,4 @@ class p_vat_type_controller {
     }
 }
 
-/* End of file p_vat_type_controller.php */
+/* End of file vats_controller.php */
