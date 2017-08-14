@@ -6,7 +6,7 @@
             <i class="fa fa-circle"></i>
         </li>
         <li>
-            <span>Periode Pelaporan Pajak</span>
+            <span>Detail Bidang Pajak</span>
         </li>
     </ul>
 </div>
@@ -19,13 +19,13 @@
                 <li class="">
                     <a href="javascript:;" data-toggle="tab" aria-expanded="true" id="tab-1">
                         <i class="blue"></i>
-                        <strong> Tahun Pelaporan Pajak </strong>
+                        <strong> Bidang Pajak </strong>
                     </a>
                 </li>
                 <li class="active">
                     <a href="javascript:;" data-toggle="tab" aria-expanded="true" id="tab-2">
                         <i class="blue"></i>
-                        <strong> Periode Pelaporan Pajak </strong>
+                        <strong> Detail Bidang Pajak </strong>
                     </a>
                 </li>
             </ul>
@@ -45,11 +45,11 @@
 <script>
 $("#tab-1").on("click", function(event) {
     event.stopPropagation();
-    loadContentWithParams("parameter.p_year_period",{});
+    loadContentWithParams("parameter.p_vat_group",{});
 });
 </script>
 
-<?php $this->load->view('lov/lov_status_list'); ?>
+<?php $this->load->view('lov/lov_vat_type'); ?>
 
 <script>
 
@@ -58,23 +58,15 @@ $("#tab-1").on("click", function(event) {
         var pager_selector = "#grid-pager";
 
         jQuery("#grid-table").jqGrid({
-            url: '<?php echo WS_JQGRID."parameter.p_finance_period_controller/crud"; ?>',
-            postData: { p_year_period_id : <?php echo $this->input->post('p_year_period_id'); ?>},
+            url: '<?php echo WS_JQGRID."parameter.p_vat_type_group_controller/crud"; ?>',
+            postData: { p_vat_group_id : <?php echo $this->input->post('p_vat_group_id'); ?>},
             datatype: "json",
             mtype: "POST",
             colModel: [
-                {label: 'ID Bulan', name: 'p_finance_period_id', key: true, width: 5, sorttype: 'number', editable: true, hidden: true},
-                {label: 'ID Tahun', name: 'p_year_period_id',width: 5, sorttype: 'number', editable: true, hidden: true},
-                {label: 'Bulan',name: 'code',width: 75, align: "left",editable: true,
-                    editoptions: {
-                        size: 30,
-                        maxlength:32
-                    },
-                    editrules: {required: true}
-                },
-                {label: 'Status',name: 'status_code',width: 150, align: "left",editable: false},
-                {label: 'Status',
-                    name: 'p_status_list_id',
+                {label: 'ID Detail', name: 'p_vat_type_group_id', key: true, width: 5, sorttype: 'number', editable: true, hidden: true},
+                 {label: 'Jenis Pajak',name: 'vat_code',width: 150, align: "left",editable: false},
+                {label: 'Jenis Pajak',
+                    name: 'p_vat_type_id',
                     width: 200,
                     sortable: true,
                     editable: true,
@@ -87,12 +79,12 @@ $("#tab-1").on("click", function(event) {
 
                             // give the editor time to initialize
                             setTimeout( function() {
-                                elm.append('<input id="form_status_id" type="text" style="display:none;" >'+
-                                        '<input id="form_status_code" readonly type="text" class="FormElement form-control" placeholder="Pilih Status" required=true>'+
-                                        '<button class="btn btn-success" type="button" onclick="showLOVStatus(\'form_status_id\',\'form_status_code\')">'+
+                                elm.append('<input id="form_vat_type_id" type="text" style="display:none;" >'+
+                                        '<input id="form_vat_type_code" readonly type="text" class="FormElement form-control" placeholder="Pilih Jenis Pajak" required=true>'+
+                                        '<button class="btn btn-success" type="button" onclick="showLOVVatType(\'form_vat_type_id\',\'form_vat_type_code\')">'+
                                         '   <span class="fa fa-search bigger-110"></span>'+
                                         '</button>');
-                                $("#form_status_id").val(value);
+                                $("#form_vat_type_id").val(value);
                                 elm.parent().removeClass('jqgrid-required');
                             }, 100);
 
@@ -101,84 +93,36 @@ $("#tab-1").on("click", function(event) {
                         "custom_value":function( element, oper, gridval) {
 
                             if(oper === 'get') {
-                                return $("#form_status_id").val();
+                                return $("#form_vat_type_id").val();
                             } else if( oper === 'set') {
-                                $("#form_status_id").val(gridval);
+                                $("#form_vat_type_id").val(gridval);
                                 var gridId = this.id;
                                 // give the editor time to set display
                                 setTimeout(function(){
                                     var selectedRowId = $("#"+gridId).jqGrid ('getGridParam', 'selrow');
                                     if(selectedRowId != null) {
-                                        var code_display = $("#"+gridId).jqGrid('getCell', selectedRowId, 'status_code');
-                                        $("#form_status_code").val( code_display );
+                                        var code_display = $("#"+gridId).jqGrid('getCell', selectedRowId, 'vat_code');
+                                        $("#form_vat_type_code").val( code_display );
                                     }
                                 },100);
                             }
                         }
                     }
                 },
-                {label: 'Start Date',name: 'start_date_str',width: 150, align: "left", editable: false
-                },
-                {label: 'Start Date',name: 'start_date',width: 200, align: "left",editable: true, edittype : 'text', hidden : true, 
-                    editrules : {edithidden : true, required: true},
-                    editoptions: {
-                         dataInit: function (element) {
-                                $(element).datepicker({
-                                    id: 'start_datePicker',
-                                    autoclose: true,
-                                    format: 'yyyy-mm-dd',
-                                    orientation : 'top',
-                                    todayHighlight : true,
-                                    //minDate :0
-                                    
-                                });
-                            }
-                    }
-                },
-                {label: 'End Date',name: 'end_date_str',width: 150, align: "left", editable: false
-                },
-                {label: 'End Date',name: 'end_date',width: 200, align: "left",editable: true, edittype : 'text',  hidden : true, 
-                    editrules : {edithidden : true, required : false},
-                    editoptions: {
-                         dataInit: function (element) {
-                                $(element).datepicker({
-                                    id: 'end_datePicker',
-                                    autoclose: true,
-                                    format: 'yyyy-mm-dd',
-                                    orientation : 'top',
-                                    todayHighlight : true,
-                                    //minDate :0
-                                    
-                                });
-                            }
-                    }
-                },
-                {label: 'Jatuh Tempo',name: 'due_in_day',width: 75, align: "left",editable: true,
-                    editoptions: {
-                        size: 30,
-                        maxlength:32
-                    }
-                },
-                {label: 'Teguran 1',name: 'debt_letter_1',width: 75, align: "left",editable: true,
-                    editoptions: {
-                        size: 30,
-                        maxlength:32
-                    }
-                },
-                {label: 'Teguran 2',name: 'debt_letter_2',width: 75, align: "left",editable: true,
-                    editoptions: {
-                        size: 30,
-                        maxlength:32
-                    }
-                },
-                {label: 'Teguran 3',name: 'debt_letter_3',width: 75, align: "left",editable: true,
-                    editoptions: {
-                        size: 30,
-                        maxlength:32
-                    }
-                },
                 {label: 'Deskripsi',name: 'description',width: 200, align: "left",editable: true,
                     edittype:'textarea',
+                    editoptions: {
+                        rows: 2,
+                        cols:50
+                    }
+                },
+                {label: 'Pengubah',name: 'updated_by',width: 100, align: "left",editable: false,
+                    editoptions: {
+                        rows: 2,
+                        cols:50
+                    }
+                },
+                {label: 'Tanggal Ubah',name: 'update_date_str',width: 150, align: "left",editable: false,
                     editoptions: {
                         rows: 2,
                         cols:50
@@ -217,8 +161,8 @@ $("#tab-1").on("click", function(event) {
 
             },
             //memanggil controller jqgrid yang ada di controller crud
-            editurl: '<?php echo WS_JQGRID."parameter.p_finance_period_controller/crud"; ?>',
-            caption: "Periode Pelaporan Pajak"
+            editurl: '<?php echo WS_JQGRID."parameter.p_vat_type_group_controller/crud"; ?>',
+            caption: "Detail Bidang Pajak"
 
         });
 
@@ -256,6 +200,7 @@ $("#tab-1").on("click", function(event) {
                 beforeShowForm: function (e, form) {
                     var form = $(e[0]);
                     style_edit_form(form);
+                   // clearInputVatType();
 
                 },
                 afterShowForm: function(form) {
@@ -267,12 +212,13 @@ $("#tab-1").on("click", function(event) {
                         return [false,response.message,response.responseText];
                     }
                     return [true,"",response.responseText];
+                    //clearInputVatType();
                 }
             },
             {
                 editData : {
-                    p_year_period_id: function() {
-                        return <?php echo $this->input->post('p_year_period_id'); ?>;
+                    p_vat_group_id: function() {
+                        return <?php echo $this->input->post('p_vat_group_id'); ?>;
                     }
                 },
                 //new record form
@@ -289,9 +235,8 @@ $("#tab-1").on("click", function(event) {
                 beforeShowForm: function (e, form) {
                     var form = $(e[0]);
                     style_edit_form(form);
-
                     setTimeout(function() {
-                        clearInputStatus();
+                        clearInputVatType();
                     },100);
                 },
                 afterShowForm: function(form) {
@@ -306,8 +251,8 @@ $("#tab-1").on("click", function(event) {
                     $(".tinfo").html('<div class="ui-state-success">' + response.message + '</div>');
                     var tinfoel = $(".tinfo").show();
                     tinfoel.delay(3000).fadeOut();
+                    clearInputVatType();
 
-                    clearInputStatus();
                     return [true,"",response.responseText];
                 }
             },
@@ -318,6 +263,7 @@ $("#tab-1").on("click", function(event) {
                 beforeShowForm: function (e) {
                     var form = $(e[0]);
                     style_delete_form(form);
+                    //clearInputVatType();
 
                 },
                 afterShowForm: function(form) {
@@ -366,9 +312,9 @@ $("#tab-1").on("click", function(event) {
 
     }
 
-    function clearInputStatus() {
-        $('#form_status_id').val('');
-        $('#form_status_code').val('');
+    function clearInputVatType() {
+        $('#form_vat_type_id').val('');
+        $('#form_vat_type_code').val('');
     }
 
 </script>

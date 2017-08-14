@@ -6,7 +6,7 @@
             <i class="fa fa-circle"></i>
         </li>
         <li>
-            <span>Periode Pelaporan Pajak</span>
+            <span>Bidang Pajak</span>
         </li>
     </ul>
 </div>
@@ -16,16 +16,16 @@
     <div class="col-xs-12">
         <div class="tabbable">
             <ul class="nav nav-tabs">
-                <li class="">
+                <li class="active">
                     <a href="javascript:;" data-toggle="tab" aria-expanded="true" id="tab-1">
                         <i class="blue"></i>
-                        <strong> Tahun Pelaporan Pajak </strong>
+                        <strong> Bidang Pajak </strong>
                     </a>
                 </li>
-                <li class="active">
+                <li class="">
                     <a href="javascript:;" data-toggle="tab" aria-expanded="true" id="tab-2">
                         <i class="blue"></i>
-                        <strong> Periode Pelaporan Pajak </strong>
+                        <strong> Detail Bidang Pajak </strong>
                     </a>
                 </li>
             </ul>
@@ -43,13 +43,24 @@
 </div>
 
 <script>
-$("#tab-1").on("click", function(event) {
+$("#tab-2").on("click", function(event) {
+
     event.stopPropagation();
-    loadContentWithParams("parameter.p_year_period",{});
+    var grid = $('#grid-table');
+    p_vat_group_id = grid.jqGrid ('getGridParam', 'selrow');
+    code = grid.jqGrid ('getCell', p_vat_group_id, 'group_code');
+
+    if(p_vat_group_id == null) {
+        swal('Informasi','Silahkan pilih salah satu Bidang pajak','info');
+        return false;
+    }
+
+    loadContentWithParams("parameter.p_vat_type_group", {
+        p_vat_group_id: p_vat_group_id,
+        code : code
+    });
 });
 </script>
-
-<?php $this->load->view('lov/lov_status_list'); ?>
 
 <script>
 
@@ -58,135 +69,38 @@ $("#tab-1").on("click", function(event) {
         var pager_selector = "#grid-pager";
 
         jQuery("#grid-table").jqGrid({
-            url: '<?php echo WS_JQGRID."parameter.p_finance_period_controller/crud"; ?>',
-            postData: { p_year_period_id : <?php echo $this->input->post('p_year_period_id'); ?>},
+            url: '<?php echo WS_JQGRID."parameter.p_vat_group_controller/crud"; ?>',
             datatype: "json",
             mtype: "POST",
             colModel: [
-                {label: 'ID Bulan', name: 'p_finance_period_id', key: true, width: 5, sorttype: 'number', editable: true, hidden: true},
-                {label: 'ID Tahun', name: 'p_year_period_id',width: 5, sorttype: 'number', editable: true, hidden: true},
-                {label: 'Bulan',name: 'code',width: 75, align: "left",editable: true,
+                {label: 'ID', name: 'p_vat_group_id', key: true, width: 5, sorttype: 'number', editable: true, hidden: true},
+                {label: 'Bidang Pajak',name: 'group_code',width: 150, align: "left",editable: true,
                     editoptions: {
                         size: 30,
                         maxlength:32
                     },
                     editrules: {required: true}
                 },
-                {label: 'Status',name: 'status_code',width: 150, align: "left",editable: false},
-                {label: 'Status',
-                    name: 'p_status_list_id',
-                    width: 200,
-                    sortable: true,
-                    editable: true,
-                    hidden: true,
-                    editrules: {edithidden: true, required:true},
-                    edittype: 'custom',
-                    editoptions: {
-                        "custom_element":function( value  , options) {
-                            var elm = $('<span></span>');
-
-                            // give the editor time to initialize
-                            setTimeout( function() {
-                                elm.append('<input id="form_status_id" type="text" style="display:none;" >'+
-                                        '<input id="form_status_code" readonly type="text" class="FormElement form-control" placeholder="Pilih Status" required=true>'+
-                                        '<button class="btn btn-success" type="button" onclick="showLOVStatus(\'form_status_id\',\'form_status_code\')">'+
-                                        '   <span class="fa fa-search bigger-110"></span>'+
-                                        '</button>');
-                                $("#form_status_id").val(value);
-                                elm.parent().removeClass('jqgrid-required');
-                            }, 100);
-
-                            return elm;
-                        },
-                        "custom_value":function( element, oper, gridval) {
-
-                            if(oper === 'get') {
-                                return $("#form_status_id").val();
-                            } else if( oper === 'set') {
-                                $("#form_status_id").val(gridval);
-                                var gridId = this.id;
-                                // give the editor time to set display
-                                setTimeout(function(){
-                                    var selectedRowId = $("#"+gridId).jqGrid ('getGridParam', 'selrow');
-                                    if(selectedRowId != null) {
-                                        var code_display = $("#"+gridId).jqGrid('getCell', selectedRowId, 'status_code');
-                                        $("#form_status_code").val( code_display );
-                                    }
-                                },100);
-                            }
-                        }
-                    }
-                },
-                {label: 'Start Date',name: 'start_date_str',width: 150, align: "left", editable: false
-                },
-                {label: 'Start Date',name: 'start_date',width: 200, align: "left",editable: true, edittype : 'text', hidden : true, 
-                    editrules : {edithidden : true, required: true},
-                    editoptions: {
-                         dataInit: function (element) {
-                                $(element).datepicker({
-                                    id: 'start_datePicker',
-                                    autoclose: true,
-                                    format: 'yyyy-mm-dd',
-                                    orientation : 'top',
-                                    todayHighlight : true,
-                                    //minDate :0
-                                    
-                                });
-                            }
-                    }
-                },
-                {label: 'End Date',name: 'end_date_str',width: 150, align: "left", editable: false
-                },
-                {label: 'End Date',name: 'end_date',width: 200, align: "left",editable: true, edittype : 'text',  hidden : true, 
-                    editrules : {edithidden : true, required : false},
-                    editoptions: {
-                         dataInit: function (element) {
-                                $(element).datepicker({
-                                    id: 'end_datePicker',
-                                    autoclose: true,
-                                    format: 'yyyy-mm-dd',
-                                    orientation : 'top',
-                                    todayHighlight : true,
-                                    //minDate :0
-                                    
-                                });
-                            }
-                    }
-                },
-                {label: 'Jatuh Tempo',name: 'due_in_day',width: 75, align: "left",editable: true,
-                    editoptions: {
-                        size: 30,
-                        maxlength:32
-                    }
-                },
-                {label: 'Teguran 1',name: 'debt_letter_1',width: 75, align: "left",editable: true,
-                    editoptions: {
-                        size: 30,
-                        maxlength:32
-                    }
-                },
-                {label: 'Teguran 2',name: 'debt_letter_2',width: 75, align: "left",editable: true,
-                    editoptions: {
-                        size: 30,
-                        maxlength:32
-                    }
-                },
-                {label: 'Teguran 3',name: 'debt_letter_3',width: 75, align: "left",editable: true,
-                    editoptions: {
-                        size: 30,
-                        maxlength:32
-                    }
-                },
+                
                 {label: 'Deskripsi',name: 'description',width: 200, align: "left",editable: true,
                     edittype:'textarea',
                     editoptions: {
                         rows: 2,
                         cols:50
                     }
+                },
+                {label: 'Pengubah',name: 'updated_by',width: 200, align: "left",editable: false,
+                    editoptions: {
+                        rows: 2,
+                        cols:50
+                    }
+                },
+                {label: 'Tanggal Ubah',name: 'update_date_str',width: 200, align: "left",editable: false,
+                    editoptions: {
+                        rows: 2,
+                        cols:50
+                    }
                 }
-
-
-                
             ],
             height: '100%',
             autowidth: true,
@@ -199,9 +113,9 @@ $("#tab-1").on("click", function(event) {
             shrinkToFit: true,
             multiboxonly: true,
             onSelectRow: function (rowid) {
-                /*do something when selected*/
-                 
-
+                /*do something when selected*/  
+                var celValue = $('#grid-table').jqGrid('getCell', rowid, 'p_vat_group_id');
+                var celCode = $('#grid-table').jqGrid('getCell', rowid, 'group_code');
             },
             sortorder:'',
             pager: '#grid-pager',
@@ -217,8 +131,8 @@ $("#tab-1").on("click", function(event) {
 
             },
             //memanggil controller jqgrid yang ada di controller crud
-            editurl: '<?php echo WS_JQGRID."parameter.p_finance_period_controller/crud"; ?>',
-            caption: "Periode Pelaporan Pajak"
+            editurl: '<?php echo WS_JQGRID."parameter.p_vat_group_controller/crud"; ?>',
+            caption: "Bidang Pajak"
 
         });
 
@@ -270,11 +184,6 @@ $("#tab-1").on("click", function(event) {
                 }
             },
             {
-                editData : {
-                    p_year_period_id: function() {
-                        return <?php echo $this->input->post('p_year_period_id'); ?>;
-                    }
-                },
                 //new record form
                 closeAfterAdd: false,
                 clearAfterAdd : true,
@@ -289,10 +198,6 @@ $("#tab-1").on("click", function(event) {
                 beforeShowForm: function (e, form) {
                     var form = $(e[0]);
                     style_edit_form(form);
-
-                    setTimeout(function() {
-                        clearInputStatus();
-                    },100);
                 },
                 afterShowForm: function(form) {
                     form.closest('.ui-jqdialog').center();
@@ -307,7 +212,7 @@ $("#tab-1").on("click", function(event) {
                     var tinfoel = $(".tinfo").show();
                     tinfoel.delay(3000).fadeOut();
 
-                    clearInputStatus();
+
                     return [true,"",response.responseText];
                 }
             },
@@ -366,9 +271,8 @@ $("#tab-1").on("click", function(event) {
 
     }
 
-    function clearInputStatus() {
-        $('#form_status_id').val('');
-        $('#form_status_code').val('');
+        function showLOVVatType(id, code) {
+        modal_lov_vat_show(id, code);
     }
 
 </script>

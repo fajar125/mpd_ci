@@ -265,6 +265,10 @@ $("#tab-2").on("click", function(event) {
                 beforeShowForm: function (e, form) {
                     var form = $(e[0]);
                     style_edit_form(form);
+
+                     setTimeout(function() {
+                        clearInputStatus();
+                    },100);
                 },
                 afterShowForm: function(form) {
                     form.closest('.ui-jqdialog').center();
@@ -278,7 +282,7 @@ $("#tab-2").on("click", function(event) {
                     $(".tinfo").html('<div class="ui-state-success">' + response.message + '</div>');
                     var tinfoel = $(".tinfo").show();
                     tinfoel.delay(3000).fadeOut();
-
+                    clearInputStatus();
 
                     return [true,"",response.responseText];
                 }
@@ -340,5 +344,10 @@ $("#tab-2").on("click", function(event) {
 
     function showLOVStatus(id, code) {
         modal_lov_status_show(id, code);
+    }
+
+    function clearInputStatus() {
+        $('#form_status_id').val('');
+        $('#form_status_code').val('');
     }
 </script>
