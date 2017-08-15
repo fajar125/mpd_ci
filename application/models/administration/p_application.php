@@ -66,7 +66,8 @@ class p_application extends Abstract_model {
                         from p_application m
                         where m.p_application_id in (
                         select rm.p_application_id from p_application_role rm
-                        where rm.p_app_role_id in (select c.p_app_role_id
+                        where m.is_active = 'Y' and
+                            rm.p_app_role_id in (select c.p_app_role_id
                                     from p_app_user_role c
                                     left join p_app_role d on c.p_app_role_id = d.p_app_role_id
                                     where c.p_app_user_id = ?)) order by listing_no";
