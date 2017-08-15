@@ -6,7 +6,7 @@
             <i class="fa fa-circle"></i>
         </li>
         <li>
-            <span>Detail Jenis Pajak</span>
+            <span>Target VS Realisasi</span>
         </li>
     </ul>
 </div>
@@ -16,16 +16,28 @@
     <div class="col-xs-12">
         <div class="tabbable">
             <ul class="nav nav-tabs">
-                <li class="">
+                <li class="active">
                     <a href="javascript:;" data-toggle="tab" aria-expanded="true" id="tab-1">
                         <i class="blue"></i>
-                        <strong> Jenis Pajak </strong>
+                        <strong> Target VS Realisasi </strong>
                     </a>
                 </li>
-                <li class="active">
+                <li class="">
                     <a href="javascript:;" data-toggle="tab" aria-expanded="true" id="tab-2">
                         <i class="blue"></i>
-                        <strong> Detail Jenis Pajak </strong>
+                        <strong> Per Bidang Pajak </strong>
+                    </a>
+                </li>
+                <li class="">
+                    <a href="javascript:;" data-toggle="tab" aria-expanded="true" id="tab-2">
+                        <i class="blue"></i>
+                        <strong> Per Jenis Pajak </strong>
+                    </a>
+                </li>
+                <li class="">
+                    <a href="javascript:;" data-toggle="tab" aria-expanded="true" id="tab-2">
+                        <i class="blue"></i>
+                        <strong> Bulanan Per Jenis Pajak </strong>
                     </a>
                 </li>
             </ul>
@@ -43,9 +55,22 @@
 </div>
 
 <script>
-$("#tab-1").on("click", function(event) {
+$("#tab-2").on("click", function(event) {
+
     event.stopPropagation();
-    loadContentWithParams("parameter.p_vat_type",{});
+    var grid = $('#grid-table');
+    p_year_period_id = grid.jqGrid ('getGridParam', 'selrow');
+    code = grid.jqGrid ('getCell', p_year_period_id, 'year_code');
+
+    if(p_year_period_id == null) {
+        swal('Informasi','Silahkan pilih salah satu jenis pajak','info');
+        return false;
+    }
+
+    loadContentWithParams("parameter.p_year_period", {
+        p_year_period_id: p_year_period_id,
+        code : code
+    });
 });
 </script>
 <script>
@@ -55,87 +80,52 @@ $("#tab-1").on("click", function(event) {
         var pager_selector = "#grid-pager";
 
         jQuery("#grid-table").jqGrid({
-            url: '<?php echo WS_JQGRID."parameter.p_vat_type_dtl_controller/crud"; ?>',
-            postData: { p_vat_type_id : <?php echo $this->input->post('p_vat_type_id'); ?>},
+            url: '<?php echo WS_JQGRID."pelaporan.t_target_realisasi_controller/crud"; ?>',
             datatype: "json",
             mtype: "POST",
             colModel: [
-                {label: 'ID Detail', name: 'p_vat_type_dtl_id', key: true, width: 5, sorttype: 'number', editable: true, hidden: true},
-                {label: 'ID', name: 'p_vat_type_id',width: 5, sorttype: 'number', editable: true, hidden: true},
-                {label: 'Kode',name: 'code',width: 75, align: "left",editable: true,
+                {label: 'ID Year', name: 'p_year_period_id', key: true, width: 5, sorttype: 'number', editable: true, hidden: true},
+                {label: 'Tahun',name: 'year_code',width: 75, align: "left",editable: true,
                     editoptions: {
                         size: 30,
                         maxlength:32
                     },
                     editrules: {required: true}
                 },
-                {label: 'Detail Jenis Pajak',name: 'vat_code',width: 150, align: "left",editable: true,
+                {label: 'Target',name: 'target_amt',width: 150, align: "right",editable: true,
+                    formatter: 'number', formatoptions: { decimalPlaces: 2 },
                     editoptions: {
                         size: 30,
                         maxlength:32
                     },
                     editrules: {required: true}
                 },
-                {label: 'Persentase Pajak',name: 'vat_pct',width: 150, align: "left",editable: true,
+                {label: 'Realisasi',name: 'realisasi_amt',width: 150, align: "right",editable: true,
+                    formatter: 'number', formatoptions: { decimalPlaces: 2 },
                     editoptions: {
                         size: 30,
                         maxlength:32
                     },
                     editrules: {required: true}
                 },
-                {label: 'Deskripsi',name: 'description',width: 200, align: "left",editable: true,
-                    edittype:'textarea',
+                {label: 'Persentase',name: 'persentase',width: 200, align: "right",editable: true,
                     editoptions: {
                         rows: 2,
                         cols:50
                     }
                 },
-                {label: 'Pengubah',name: 'updated_by',width: 100, align: "left",editable: false,
+                {label: 'Selisih',name: 'selisih',width: 150, align: "right",editable: true,
+                    formatter: 'number', formatoptions: { decimalPlaces: 2 },
+                    editoptions: {
+                        size: 30,
+                        maxlength:32
+                    },
+                    editrules: {required: true}
+                },
+                {label: 'Persentase Selisih',name: 'persen_selisih',width: 200, align: "right",editable: true,
                     editoptions: {
                         rows: 2,
                         cols:50
-                    }
-                },
-                {label: 'Tanggal Ubah',name: 'update_date_str',width: 150, align: "left",editable: false,
-                    editoptions: {
-                        rows: 2,
-                        cols:50
-                    }
-                },
-                {label: 'Berlaku dari',name: 'valid_from_str',width: 150, align: "left", editable: false
-                },
-                {label: 'Berlaku dari',name: 'valid_from',width: 200, align: "left",editable: true, edittype : 'text', hidden : true, 
-                    editrules : {edithidden : true, required: true},
-                    editoptions: {
-                         dataInit: function (element) {
-                                $(element).datepicker({
-                                    id: 'vfrom_datePicker',
-                                    autoclose: true,
-                                    format: 'yyyy-mm-dd',
-                                    orientation : 'top',
-                                    todayHighlight : true,
-                                    //minDate :0
-                                    
-                                });
-                            }
-                    }
-                },
-                {label: 'Berlaku sampai',name: 'valid_to_str',width: 150, align: "left", editable: false
-                },
-                {label: 'Berlaku sampai',name: 'valid_to',width: 200, align: "left",editable: true, edittype : 'text',  hidden : true, 
-                    editrules : {edithidden : true, required : false},
-                    editoptions: {
-                         dataInit: function (element) {
-                                $(element).datepicker({
-                                    id: 'vto_datePicker',
-                                    autoclose: true,
-                                    format: 'yyyy-mm-dd',
-                                    orientation : 'top',
-                                    todayHighlight : true,
-                                    //minDate :0
-                                    
-                                });
-                            }
                     }
                 }
 
@@ -171,18 +161,18 @@ $("#tab-1").on("click", function(event) {
 
             },
             //memanggil controller jqgrid yang ada di controller crud
-            editurl: '<?php echo WS_JQGRID."parameter.p_vat_type_dtl_controller/crud"; ?>',
-            caption: "Detail Jenis Pajak"
+            editurl: '<?php echo WS_JQGRID."pelaporan.t_target_realisasi_controller/crud"; ?>',
+            caption: "Daftar Target VS Realisasi"
 
         });
 
         jQuery('#grid-table').jqGrid('navGrid', '#grid-pager',
             {   //navbar options
-                edit: true,
+                edit: false,
                 editicon: 'fa fa-pencil blue bigger-120',
-                add: true,
+                add: false,
                 addicon: 'fa fa-plus-circle purple bigger-120',
-                del: true,
+                del: false,
                 delicon: 'fa fa-trash-o red bigger-120',
                 search: true,
                 searchicon: 'fa fa-search orange bigger-120',
@@ -223,12 +213,8 @@ $("#tab-1").on("click", function(event) {
                     return [true,"",response.responseText];
                 }
             },
+            
             {
-                editData : {
-                    p_vat_type_id: function() {
-                        return <?php echo $this->input->post('p_vat_type_id'); ?>;
-                    }
-                },
                 //new record form
                 closeAfterAdd: false,
                 clearAfterAdd : true,
@@ -261,7 +247,6 @@ $("#tab-1").on("click", function(event) {
                     return [true,"",response.responseText];
                 }
             },
-            
             {
                 //delete record form
                 serializeDelData: serializeJSON,
@@ -316,5 +301,7 @@ $("#tab-1").on("click", function(event) {
         $(pager_selector).jqGrid( 'setGridWidth', parent_column.width() );
 
     }
+
+    
 
 </script>
