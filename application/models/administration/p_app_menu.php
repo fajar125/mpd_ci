@@ -96,6 +96,7 @@ class p_app_menu extends Abstract_model {
                 left join p_app_user_role c on a.p_app_role_id = c.p_app_role_id
                 where c.p_app_user_id = ?
                 and b.p_application_id = ?
+                and b.is_active = 'Y'
                 order by b.listing_no asc";
 
         $query = $this->db->query($sql, array($userdata['p_app_user_id'], $p_application_id));
