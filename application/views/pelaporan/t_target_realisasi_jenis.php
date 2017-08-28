@@ -6,7 +6,7 @@
             <i class="fa fa-circle"></i>
         </li>
         <li>
-            <span>Target VS Realisasi</span>
+            <span>Per Bidang Pajak</span>
         </li>
     </ul>
 </div>
@@ -16,7 +16,7 @@
     <div class="col-xs-12">
         <div class="tabbable">
             <ul class="nav nav-tabs">
-                <li class="active">
+               <li class="">
                     <a href="javascript:;" data-toggle="tab" aria-expanded="true" id="tab-1">
                         <i class="blue"></i>
                         <strong> Target VS Realisasi </strong>
@@ -28,7 +28,7 @@
                         <strong> Per Bidang Pajak </strong>
                     </a>
                 </li>
-                <li class="">
+                <li class="active">
                     <a href="javascript:;" data-toggle="tab" aria-expanded="true" id="tab-3">
                         <i class="blue"></i>
                         <strong> Per Jenis Pajak </strong>
@@ -50,6 +50,12 @@
                    <div id="grid-pager"></div>
                 </div>
             </div>
+             <div class="row">
+                <div class="col-xs-12">
+                   <table id="grid-table-detail"></table>
+                   <div id="grid-pager-detail"></div>
+                </div>
+            </div>
             <hr>
             <div class="row">  
                 <div class="col-xs-6">
@@ -64,26 +70,44 @@
 </div>
 
 
-<script src="<?php echo base_url(); ?>assets/js/highcharts.js"></script>
-
 
 <script>
+$("#tab-1").on("click", function(event) {
+    event.stopPropagation();
+    loadContentWithParams("pelaporan.t_target_realisasi",{});
+});
 $("#tab-2").on("click", function(event) {
-
     event.stopPropagation();
     var grid = $('#grid-table');
-    p_year_period_id = grid.jqGrid ('getGridParam', 'selrow');
-    code = grid.jqGrid ('getCell', p_year_period_id, 'year_code');
-
-    if(p_year_period_id == null) {
-        swal('Informasi','Silahkan pilih salah satu tahun target','info');
-        return false;
-    }
-
-    loadContentWithParams("pelaporan.t_target_realisasi_bidang", {
+    p_vat_group_id = grid.jqGrid ('getGridParam', 'selrow');
+    vcode = grid.jqGrid ('getCell', p_vat_group_id, 'group_code');
+    p_year_period_id = grid.jqGrid ('getCell', p_vat_group_id, 'p_year_period_id');
+    code = grid.jqGrid ('getCell', p_vat_group_id, 'year_code');
+    loadContentWithParams("pelaporan.t_target_realisasi_bidang",{
         p_year_period_id: p_year_period_id,
         code : code
     });
+    
+});
+$("#tab-4").on("click", function(event) {
+    event.stopPropagation();
+    var grid = $('#grid-table');
+    p_vat_group_id = grid.jqGrid ('getGridParam', 'selrow');
+    vcode = grid.jqGrid ('getCell', p_vat_group_id, 'group_code');
+    p_year_period_id = grid.jqGrid ('getCell', p_vat_group_id, 'p_year_period_id');
+    p_vat_type_id = grid.jqGrid ('getGridParam', 'selrow');
+    p_finance_period_id = grid.jqGrid ('getGridParam', 'selrow');
+    code = grid.jqGrid ('getCell', p_vat_group_id, 'year_code');
+    t_revenue_target_id = grid.jqGrid ('getCell', p_vat_group_id, 't_revenue_target_id');
+    loadContentWithParams("pelaporan.t_target_realisasi_jenis_bulan",{
+        p_year_period_id: p_year_period_id,
+        p_vat_type_id: p_vat_type_id,
+        p_vat_group_id : p_vat_group_id,
+        p_finance_period_id : p_finance_period_id,
+        t_revenue_target_id : t_revenue_target_id,
+        code : code
+    });
+    
 });
 </script>
 <script>
@@ -93,19 +117,25 @@ $("#tab-2").on("click", function(event) {
         var pager_selector = "#grid-pager";
 
         jQuery("#grid-table").jqGrid({
-            url: '<?php echo WS_JQGRID."pelaporan.t_target_realisasi_controller/read"; ?>',
+            url: '<?php echo WS_JQGRID."pelaporan.t_target_realisasi_controller/readPerJenis"; ?>',
+            postData: { 
+                p_year_period_id : <?php echo $this->input->post('p_year_period_id'); ?>,
+                p_vat_group_id : <?php echo $this->input->post('p_vat_group_id'); ?>},
             datatype: "json",
             mtype: "POST",
             colModel: [
-                {label: 'ID Year', name: 'p_year_period_id', key: true, width: 5, sorttype: 'number', editable: true, hidden: true},
-                {label: 'Tahun',name: 'year_code',width: 75, align: "left",editable: true,
+                {label: 'ID Tahun', name: 'p_year_period_id',  width: 5, sorttype: 'number', editable: true, hidden: true},
+                {label: 'ID Pajak', name: 'p_vat_group_id', width: 5, sorttype: 'number', editable: true, hidden: true},
+                {label: 'ID Type', name: 'p_vat_type_id', width: 5, sorttype: 'number', editable: true, hidden: true},
+                {label: 'ID Tahun', name: 't_revenue_target_id',  width: 5, sorttype: 'number', editable: true, hidden: true},
+                {label: 'Jenis Pajak',name: 'vat_code',width: 200, align: "left",editable: true,
                     editoptions: {
                         size: 30,
                         maxlength:32
                     },
                     editrules: {required: true}
                 },
-                {label: 'Target',name: 'target_amt',width: 150, align: "right",editable: true,
+                {label: 'Target',name: 'target_amount',width: 150, align: "right",editable: true,
                     formatter: 'number', formatoptions: { decimalPlaces: 2 },
                     editoptions: {
                         size: 30,
@@ -121,7 +151,7 @@ $("#tab-2").on("click", function(event) {
                     },
                     editrules: {required: true}
                 },
-                {label: 'Persentase',name: 'persentase',width: 100, align: "right",editable: true,
+                {label: 'Persentase',name: 'persentase',width: 200, align: "right",editable: true,
                     editoptions: {
                         rows: 2,
                         cols:50
@@ -135,7 +165,7 @@ $("#tab-2").on("click", function(event) {
                     },
                     editrules: {required: true}
                 },
-                {label: 'Persentase Selisih',name: 'persen_selisih',width: 150, align: "right",editable: true,
+                {label: 'Persentase Selisih',name: 'persen_selisih',width: 200, align: "right",editable: true,
                     editoptions: {
                         rows: 2,
                         cols:50
@@ -157,9 +187,10 @@ $("#tab-2").on("click", function(event) {
             multiboxonly: true,
             onSelectRow: function (rowid) {
                 /*do something when selected*/
-                var celValue = $('#grid-table').jqGrid('getCell', rowid, 'p_year_period_id'); 
-                reloadChart(celValue);
-                reloadChart2(celValue);
+                  var yearId = $('#grid-table').jqGrid('getCell', rowid, 'p_year_period_id'); 
+                  var targetId = $('#grid-table').jqGrid('getCell', rowid, 't_revenue_target_id'); 
+                reloadChart(targetId);
+                reloadChart2(yearId);
 
             },
             sortorder:'',
@@ -179,9 +210,9 @@ $("#tab-2").on("click", function(event) {
                 },500);
 
             },
-            //memanggil controller jqgrid yang ada di controller read
-            editurl: '<?php echo WS_JQGRID."pelaporan.t_target_realisasi_controller/read"; ?>',
-            caption: "Daftar Target VS Realisasi"
+            //memanggil controller jqgrid yang ada di controller readPerBidang
+            editurl: '<?php echo WS_JQGRID."pelaporan.t_target_realisasi_controller/readPerJenis"; ?>',
+            caption: "Daftar Target VS Realisasi Per Bidang Pajak"
 
         });
 
@@ -232,8 +263,15 @@ $("#tab-2").on("click", function(event) {
                     return [true,"",response.responseText];
                 }
             },
-            
             {
+                editData : {
+                    p_year_period_id: function() {
+                        return <?php echo $this->input->post('p_year_period_id'); ?>;
+                    },
+                    p_vat_group_id: function() {
+                        return <?php echo $this->input->post('p_vat_group_id'); ?>;
+                    }
+                },
                 //new record form
                 closeAfterAdd: false,
                 clearAfterAdd : true,
@@ -266,6 +304,7 @@ $("#tab-2").on("click", function(event) {
                     return [true,"",response.responseText];
                 }
             },
+            
             {
                 //delete record form
                 serializeDelData: serializeJSON,
@@ -321,38 +360,27 @@ $("#tab-2").on("click", function(event) {
 
     }
 
-    function reloadChart(p_year_period_id) {
-        $.getJSON( "<?php echo base_url('Target_realisasi/target_realisasi_tahun?p_year_period_id=')?>"+p_year_period_id, function( items ) {
-                var target_amt = items[0][0];
-                var realisasi_amt = items[0][1];
-                var tahun = items[0][2];
-                                Highcharts.setOptions({
-                                        lang:{
-                                                numericSymbols: [" Ribu"," Juta"," Milyar"," Triliun"," Biliun"," Seliun"]
-                                        }
-                                });
-                $("#container").highcharts({
-                                                chart: {
-                                type: "column"
-                        },
-                        title: {
-                                text: "Target vs Realisasi " + tahun
-                        },
-                        subtitle: {
-                                text: "Disyanjak Kota Bandung"
-                        },
-                        tooltip: {
-                                
-                        },
-                        xAxis: {
-                                categories: [tahun]
-                        },
-                        yAxis: {
-                                title: {
-                    text: ""
-                }
-                        },
-                        plotOptions: {
+    function reloadChart(revenue_target_id){
+         $.getJSON("<?php echo base_url('Target_realisasi/target_realisasi_per_tahun?t_revenue_target_id=');?>" + revenue_target_id, function(items) {
+        var target_amount, realisasi_amt, vat_code, year_code;
+
+        target_amount = items[0][0];
+        realisasi_amt = items[0][1];
+        vat_code = items[0][2];
+        year_code = items[0][3];
+                Highcharts.setOptions({
+                        lang:{
+                                numericSymbols: [" Ribu"," Juta"," Milyar"," Triliun"," Biliun"," Seliun"]
+                        }
+                });
+        $("#container").highcharts({
+            chart: {
+                type: "column"
+            },
+            title: {
+                text: "Target vs Realisasi " + vat_code + " " + year_code
+            },
+            tooltip: {
                                 headerFormat: '<span style="font-size:10px">{point.key}</span><table>',
                                 pointFormat: '<tr><td style="color:{series.color};padding:0">{series.name}: </td>' +
                                         '<td style="padding:0"><b>{point.y}</b></td></tr>',
@@ -360,17 +388,32 @@ $("#tab-2").on("click", function(event) {
                                 shared: true,
                                 useHTML: true
                         },
-                        series: [
-                        {showInLegend: true, name: "Target " + tahun, data: [target_amt]},
-                        {showInLegend: true, name: "Realisasi " + tahun, data: [realisasi_amt]}
-                        ]
-                });
+            xAxis: {
+                categories: [year_code]
+            },
+            yAxis: {
+                title: {
+                    text: ""
+                }
+            },
+            plotOptions: {
+                headerFormat: '<span style="font-size:10px">{point.key}</span><table>',
+                pointFormat: '<tr><td style="color:{series.color};padding:0">{series.name}: </td>' +
+                        '<td style="padding:0"><b>{point.y}</b></td></tr>',
+                footerFormat: '</table>',
+                shared: true,
+                useHTML: true
+            },
+            series: [
+                {showInLegend: true, name: "Target " + year_code, data: [target_amount]},
+                {showInLegend: true, name: "Realisasi " + year_code, data: [realisasi_amt]}
+            ]
         });
+    });
     }
 
-    function reloadChart2(p_year_period_id) {
-        $.getJSON( "<?php echo base_url('Target_realisasi/t_target_realisasi_bulan_all?p_year_period_id=')?>"+p_year_period_id, function( items ) {
-        //$.getJSON( "http://localhost/mpd/services/t_target_realisasi_bulan_all.php?p_year_period_id=28", function( items ) {
+    function reloadChart2(p_year_period_id){
+        $.getJSON( "<?php echo base_url('Target_realisasi/target_realisasi_tahun_per_jenis?p_year_period_id=');?>"+p_year_period_id, function( items ) {
                 var target_amount = [];
                 var realisasi_amt = [];
                 var vat_code = [];
@@ -378,10 +421,15 @@ $("#tab-2").on("click", function(event) {
                 var jumlah = items.length;
                 
                 for(i = 0; i < jumlah; i++){
-                        target_amount[i] = parseFloat(items[i][1]);
-                        realisasi_amt[i] = parseFloat(items[i][2])+parseFloat(items[i][3])+parseFloat(items[i][4]);
-                        vat_code[i] = items[i][0];
+                        target_amount[i] = items[i][0];
+                        realisasi_amt[i] = items[i][1];
+                        vat_code[i] = items[i][2];
                 }
+                Highcharts.setOptions({
+                                        lang:{
+                                                numericSymbols: [" Ribu"," Juta"," Milyar"," Triliun"," Biliun"," Seliun"]
+                                        }
+                                });
                 $("#container2").highcharts({
                         chart: {
                                 type: "column"
@@ -422,7 +470,5 @@ $("#tab-2").on("click", function(event) {
                 });
         });
     }
-
-    
 
 </script>
