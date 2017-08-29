@@ -146,6 +146,7 @@ $("#tab-2").on("click", function(event) {
                                     format: 'yyyy-mm-dd',
                                     orientation : 'top',
                                     todayHighlight : true,
+                                    showOn: 'focus'
                                     //minDate :0
                                     
                                 });
@@ -162,6 +163,7 @@ $("#tab-2").on("click", function(event) {
                                     format: 'yyyy-mm-dd',
                                     orientation : 'top',
                                     todayHighlight : true,
+                                     showOn: 'focus'
                                     //minDate :0
                                     
                                 });
