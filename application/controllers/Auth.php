@@ -11,8 +11,8 @@ class Auth extends CI_Controller
 
         if($this->session->userdata('logged_in')) {
             //go to default page
-            //redirect(base_url().'home');
-			redirect(base_url().'panel?p_application_id=1');
+            redirect(base_url().'home');
+			//redirect(base_url().'panel?p_application_id=1');
         }
 
         $data = array();
@@ -76,8 +76,8 @@ class Auth extends CI_Controller
                       );
 
         $this->session->set_userdata($userdata);
-        //redirect(base_url().'home');
-		redirect(base_url().'panel?p_application_id=1');
+        redirect(base_url().'home');
+		//redirect(base_url().'panel?p_application_id=1');
     }
 
     public function logout() {
