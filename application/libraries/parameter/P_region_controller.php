@@ -355,7 +355,7 @@ class P_region_controller {
 
 
        // $table->setCriteria('parent_id = ');
-        $items = $table->getAll(0,-1);
+        $items = $table->getAll(0, 200, 'new_parent');
         $data = array();
         $data[] = array('id' => 0,
                   'parentid' => -1,
