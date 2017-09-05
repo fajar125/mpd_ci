@@ -25,7 +25,7 @@ class P_region extends Abstract_model {
 
                             );
 
-    public $selectClause    = "a.* ,business_area_name";
+    public $selectClause    = "a.* ,business_area_name, nvl(parent_id,0) as new_parent";
     public $fromClause      = "p_region a left join p_business_area b on a.p_business_area_id = b.p_business_area_id";
 
     public $refs            = array();

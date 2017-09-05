@@ -81,12 +81,7 @@ class P_region_controller {
 
 
 
-    function readLevel(){
-        $ci = & get_instance();
-        $ci->load->model('parameter/p_region');
-        $table = $ci->p_region;
-        $table->getLevel();
-    }
+   
 
     function readLov() {
 
@@ -123,48 +118,6 @@ class P_region_controller {
         }
 
         return $data;
-    }
-
-    public function tree_json() {
-
-        $ci = & get_instance();
-        $ci->load->model('parameter/p_region');
-        $table = $ci->p_region;
-
-        $items = $table->getAll();
-        $data = array();
-        $data[] = array('id' => 0,
-                  'parentid' => -1,
-                  'text' => 'Regional',
-                  'expanded' => true,
-                  'selected' => true,
-                  'icon' => base_url('images/home.png'));
-
-        foreach($items as $item) {
-
-            if( $table->emptyChildren($item['p_region_id']) ) {
-                $data[] = array(
-                            'id' => $item['p_region_id'],
-                            'parentid' => empty($item['parent_id']) ? 0 : $item['parent_id'],
-                            'text' => $item['region_name'],
-                            'expanded' => false,
-                            'selected' => false,
-                            'icon' => base_url('images/file-icon.png')
-                          );
-            }else {
-                $data[] = array(
-                            'id' => $item['p_region_id'],
-                            'parentid' => empty($item['parent_id']) ? 0 : $item['parent_id'],
-                            'text' => $item['region_name'],
-                            'expanded' => false,
-                            'selected' => false,
-                            'icon' => base_url('images/folder-close.png')
-                          );
-            }
-        }
-
-        echo json_encode($data);
-        exit;
     }
 
 
@@ -385,6 +338,57 @@ class P_region_controller {
             $data['total'] = 0;
         }
         return $data;
+    }
+
+    function readLevel(){
+        $ci = & get_instance();
+        $ci->load->model('parameter/p_region');
+        $table = $ci->p_region;
+        $table->getLevel();
+    }
+
+    public function tree_json() {
+
+        $ci = & get_instance();
+        $ci->load->model('parameter/p_region');
+        $table = $ci->p_region;
+
+
+       // $table->setCriteria('parent_id = ');
+        $items = $table->getAll(0,-1);
+        $data = array();
+        $data[] = array('id' => 0,
+                  'parentid' => -1,
+                  'text' => 'Regional',
+                  'expanded' => true,
+                  'selected' => true,
+                  'icon' => base_url('images/home.png'));
+
+        foreach($items as $item) {
+
+            if( $table->emptyChildren($item['p_region_id']) ) {
+                $data[] = array(
+                            'id' => $item['p_region_id'],
+                            'parentid' => empty($item['parent_id']) ? 0 : $item['parent_id'],
+                            'text' => $item['region_name'],
+                            'expanded' => false,
+                            'selected' => false,
+                            'icon' => base_url('images/file-icon.png')
+                          );
+            }else {
+                $data[] = array(
+                            'id' => $item['p_region_id'],
+                            'parentid' => empty($item['parent_id']) ? 0 : $item['parent_id'],
+                            'text' => $item['region_name'],
+                            'expanded' => false,
+                            'selected' => false,
+                            'icon' => base_url('images/folder-close.png')
+                          );
+            }
+        }
+
+        echo json_encode($data);
+        exit;
     }
 }
 
