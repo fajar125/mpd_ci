@@ -1,4 +1,3 @@
-<!-- breadcrumb -->
 <div class="page-bar">
     <ul class="page-breadcrumb">
         <li>
@@ -7,99 +6,94 @@
         </li>
         <li>
             <span>BPPS</span>
-             <i class="fa fa-circle"></i>
         </li>
     </ul> 
 </div>
-<!-- end breadcrumb -->
 <div class="space-4"></div>
 <div class="row">
-
-  <div class="col-md-12">
+    <div class="col-xs-12">
         <div class="portlet light bordered">
-            
-            <!-- CONTENT PORTLET -->
             <div class="form-body">
-            <div class="row">
-                <div class="col-md-12 green">
-                    <div class="form-group col-md-12" style="text-align: left;">
-                        <label class="control-label col-md-2">Jenis Pajak</label>
-                        <div class="col-md-3">
-                            <div class="input-group">
-                                <input id="form_vat_id" type="text"  style="display:none;">
-                                <input id="kode_ayat" name="kode_ayat" type="text"  style="display:none;">
-                                <input id="form_vat_code" readonly type="text" class="FormElement form-control" placeholder="Pilih Jenis Pajak">
-                                <span class="input-group-btn">
-                                    <button class="btn btn-success" type="button" onclick="showLOVVat_type('form_vat_id','form_vat_code')">
-                                        <span class="fa fa-search bigger-110"></span>
-                                    </button>
-                                </span>
-                            </div>
+                <div class="row">
+                    <label class="control-label col-md-2">Jenis Pajak</label>
+                    <div class="col-md-3">
+                        <div class="input-group">
+                            <input id="form_vat_id" type="text"  style="display:none;">
+                            <input id="kode_ayat" name="kode_ayat" type="text"  style="display:none;">
+                            <input id="form_vat_code" readonly type="text" class="FormElement form-control" placeholder="Pilih Jenis Pajak">
+                            <span class="input-group-btn">
+                                <button class="btn btn-success" type="button" onclick="showLOVVat_type('form_vat_id','form_vat_code')">
+                                    <span class="fa fa-search bigger-110"></span>
+                                </button>
+                            </span>
                         </div>
-                        <label class="control-label col-md-2">Tanggal Penerimaan</label>
-                        <div class="col-md-3">
-                            <div class="input-group">
-                                <input type="text" class="form-control" name="tgl_penerimaan" id="tgl_penerimaan">                 
-                            </div>
-                        </div>
-                        
                     </div>
-
-                    <div class="form-group col-md-12" style="text-align: left;">
-                        <label class="control-label col-md-2">Bank Penerimaan</label>
-                        <div class="col-md-3">
-                            <div class="input-group">
-                                <select id="kode_bank" name="kode_bank" class="FormElement form-control" >
-                                    <option selected="" value="">Semua</option>
-                                    <option value="0000">BENDAHARA PENERIMA</option>
-                                    <option value="110">BJB</option>
-                                </select>
-                            </div>
+                    <label class="control-label col-md-2">Tanggal Penerimaan</label>
+                    <div class="col-md-3">
+                        <div class="input-group">
+                            <input type="text" class="form-control" name="tgl_penerimaan" id="tgl_penerimaan">                 
                         </div>
-
-                        <label class="control-label col-md-2">Status</label>
-                        <div class="col-md-3">
-                            <div class="input-group">
-                                <select id="status" name="status" class="FormElement form-control" >
-                                    <option selected="" value="">Semua</option>
-                                    <option value="1">ACTIVE</option>
-                                    <option value="2">NON-ACTIVE</option>
-                                </select>
-                            </div>
-                        </div>
-                    </div>                    
-
-                    <div class="form-group col-md-12" style="text-align: left;">
-                        <label class="control-label col-md-2">Jenis Setoran</label>
-                        <div class="col-md-3">
-                            <div class="input-group">
-                                <select id="i_flag_setoran" name="i_flag_setoran" class="FormElement form-control" >
-                                    <option value="1" selected="">Pokok</option>
-                                    <option value="2">Denda</option>
-                                </select>
-                            </div>
-                        </div>
-                        
                     </div>
-                    <div class="form-group col-md-12 col-md-offset-4" style="text-align: left;">
-                        <button class="btn btn-success" type="button" id="btn-search">Tampilkan Data</button>
-                        <button class="btn btn-success" type="button" onclick="toExcelBpps2()" id="excel">Tampilkan Excel</button>
+                </div>
+                <div class="space-2"></div>
+                <div class="row">
+                    <label class="control-label col-md-2">Bank Penerimaan</label>
+                    <div class="col-md-3">
+                        <div class="input-group">
+                            <select id="kode_bank" name="kode_bank" class="FormElement form-control" >
+                                <option selected="" value="">Semua</option>
+                                <option value="0000">BENDAHARA PENERIMA</option>
+                                <option value="110">BJB</option>
+                            </select>
+                        </div>
                     </div>
-
-                    <br>
-                    
+                    <label class="control-label col-md-2">Status</label>
+                    <div class="col-md-3">
+                        <div class="input-group">
+                            <select id="status" name="status" class="FormElement form-control" >
+                                <option selected="" value="">Semua</option>
+                                <option value="1">ACTIVE</option>
+                                <option value="2">NON-ACTIVE</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+                <div class="space-2"></div>
+                <div class="row">
+                    <label class="control-label col-md-2">Jenis Setoran</label>
+                    <div class="col-md-3">
+                        <div class="input-group">
+                            <select id="i_flag_setoran" name="i_flag_setoran" class="FormElement form-control" >
+                                <option value="1" selected="">Pokok</option>
+                                <option value="2">Denda</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+                <div class="space-2"></div>
+                <div class="row col-md-offset-4">
+                    <button class="btn btn-success" type="button" id="btn-search">Tampilkan Data</button>
+                    <button class="btn btn-success" type="button" onclick="toExcelBpps2()" id="excel">Tampilkan Excel</button>
                 </div>
             </div>
-            </div>
-            <!-- END CONTENT PORTLET -->
         </div>
+        
+        
     </div>
     <?php $this->load->view('lov/lov_vat_type'); ?>
+    
 </div>
-<table id="grid-table-bpps2"></table>
-<!--<div id="grid-pager-bpps2"></div> -->
-
-
+<div class="tab-content no-border">
+    <div class="row">
+        <div class="col-xs-12">
+            <div id="gbox_grid-table" class="ui-jqgrid">
+                <div id="gview_grid-table" class="ui-jqgrid-view table-responsive" role="grid">
+                    <table id="grid-table-bpps2"></table>
+                </div>
+            </div>            
+        </div>
+    </div>
+</div>
 
 <script type="text/javascript">
     
@@ -117,8 +111,7 @@
                 {label: 'Nama WP',name: 'wp_name',width: 180, align: "left"},
                 {label: 'Merk Dagang',name: 'brand_name',width: 180, align: "left"},
                 {label: 'NPWPD',name: 'npwpd',width: 180, align: "left"},
-                {label: 'Jumlah',name: 'jumlah_terima',width: 150, formatter:'currency',
-formatoptions: {prefix:"", thousandsSeparator:','},align: "right"},
+                {label: 'Jumlah',name: 'jumlah_terima',width: 150,summaryTpl:"Jumlah: {0}",summaryType:"sum", formatter:'currency', formatoptions: {prefix:"", thousandsSeparator:','},align: "right"},
                 {label: 'Masa Pajak',name: 'masa_pajak',width: 150, align: "left"},
                 {label: 'TGL TAP',name: 'kd_tap',width: 150, align: "left"},
                 {label: 'Ket.',name: 'keterangan',width: 80, align: "left"},
@@ -135,6 +128,17 @@ formatoptions: {prefix:"", thousandsSeparator:','},align: "right"},
             shrinkToFit: false,
             multiboxonly: true,
             footerrow: true,
+            grouping:true,
+            groupingView: 
+                    {
+                        groupField: ["nama_ayat"],
+                        groupColumnShow: [true],
+                        groupText: ["<b>{0}</b>"],
+                        groupOrder: ["asc"],
+                        groupSummary: [true], // will use the "summaryTpl" property of the respective column
+                        groupCollapse: false,
+                        groupDataSorted: true
+                    },
             gridComplete: function() {
                 var $grid = $('#grid-table-bpps2');
                 var colSum = $grid.jqGrid('getCol', 'jumlah_terima', false, 'sum');
@@ -189,7 +193,7 @@ formatoptions: {prefix:"", thousandsSeparator:','},align: "right"},
 
             });
 
-            $('#grid-table-bpps2').jqGrid('setCaption', 'BPPS');
+            $("#grid-table-bpps2").jqGrid("setCaption", "BPPS");
             $("#grid-table-bpps2").trigger("reloadGrid");
         });
     });
