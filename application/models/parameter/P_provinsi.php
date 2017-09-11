@@ -4,7 +4,7 @@
  * Icons Model
  *
  */
-class P_region extends Abstract_model {
+class P_provinsi extends Abstract_model {
 
     public $table           = "p_region";
     public $pkey            = "p_region_id";
@@ -12,7 +12,7 @@ class P_region extends Abstract_model {
 
     public $fields          = array(
                                 'p_region_id'            => array('pkey' => true, 'type' => 'int', 'nullable' => true, 'unique' => true, 'display' => 'ID Region'),
-                                'region_name'           => array('nullable' => true, 'type' => 'str', 'unique' => true, 'display' => 'Regional'),
+                                'region_name'           => array('nullable' => true, 'type' => 'str', 'unique' => false, 'display' => 'Regional'),
                                 'p_region_level_id'    => array('nullable' => true, 'type' => 'int', 'unique' => false, 'display' => 'ID Regional level'),
                                 'p_business_area_id'    => array('nullable' => true, 'type' => 'int', 'unique' => false, 'display' => 'ID Bisnis'),
                                 'parent_id'    => array('nullable' => true, 'type' => 'int', 'unique' => false, 'display' => 'ID Parent'),
@@ -25,7 +25,7 @@ class P_region extends Abstract_model {
 
                             );
 
-    public $selectClause    = "a.*";
+    public $selectClause    = "a.* ";
     public $fromClause      = "p_region a";
 
     public $refs            = array();
@@ -43,7 +43,7 @@ class P_region extends Abstract_model {
             $items = $query->result_array();
             echo '<select>';
             foreach($items  as $item ){
-                echo '<option value="'.$item['p_region_level_id'].'">'.$item['level_name'].'</option>';
+                echo "<option value=".$item['p_region_level_id'].">".$item['level_name']."</option>";
             }
             echo '</select>';
             exit;
@@ -81,16 +81,24 @@ class P_region extends Abstract_model {
             // example :
             /*$this->record['creation_date'] = date('Y-m-d');
             $this->record['created_by'] = $userdata['app_user_name'];*/
+            $this->record['p_region_level_id'] = 2;
+            $this->record['parent_id'] = 1;
+            if (empty($this->record['p_business_area_id'])){
+                $this->record['p_business_area_id'] = null;
+            }
             $this->record['updated_date'] = date('Y-m-d');
             $this->record['updated_by'] = $userdata['app_user_name'];
-            $this->record['p_region_level_id'] = (int)$this->record['p_region_level_id'];
-            $this->record['p_business_area_id'] = (int)$this->record['p_business_area_id'];
-            
+
             $this->record[$this->pkey] = $this->generate_id($this->table, $this->pkey);
 
         }else {
             //do something
             //example:
+            $this->record['parent_id'] = 1;
+            $this->record['p_region_level_id'] = 2;
+            if (empty($this->record['p_business_area_id'])){
+                $this->record['p_business_area_id'] = null;
+            }
             $this->record['updated_date'] = date('Y-m-d');
             $this->record['updated_by'] = $userdata['app_user_name'];
             //if false please throw new Exception

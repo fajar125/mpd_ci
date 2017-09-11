@@ -6,7 +6,7 @@
             <i class="fa fa-circle"></i>
         </li>
         <li>
-            <span>Regional</span>
+            <span>Target VS Realisasi</span>
         </li>
     </ul>
 </div>
@@ -16,7 +16,7 @@
     <div class="col-xs-12">
         <div class="tabbable">
             <ul class="nav nav-tabs">
-                 <li class="">
+                 <li class="active">
                     <a href="javascript:;" data-toggle="tab" aria-expanded="true" id="tab-1">
                         <i class="blue"></i>
                         <strong> Provinsi </strong>
@@ -28,7 +28,7 @@
                         <strong> Kota/Kabupaten </strong>
                     </a>
                 </li>
-                <li class="active">
+                <li class="">
                     <a href="javascript:;" data-toggle="tab" aria-expanded="true" id="tab-3">
                         <i class="blue"></i>
                         <strong> Kecamatan&Kelurahan </strong>
@@ -39,35 +39,26 @@
 
         <div class="tab-content no-border">
             <div class="row">
-                <div class="col-md-4">
-                    <div class="portlet red box menu-panel">
-                        <div class="portlet-title">
-                            <div class="caption">Regional</div>
-                            <div class="tools">
-                                <a class="collapse" href="javascript:;" data-original-title="" title=""> </a>
-                            </div>
-                        </div>
-                        <div class="portlet-body">
-                            <div id="tree-menu">
-                                <!-- tree menu here -->
-                            </div>
-                        </div>
-                    </div>
+                <div class="col-xs-12">
+                   <table id="grid-table"></table>
+                   <div id="grid-pager"></div>
                 </div>
-                <div class="col-md-8">
-                    <table id="grid-table"></table>
-                    <div id="grid-pager"></div>
-                </div>
+            </div>
+            <hr>
+            <div class="row">  
+                <div class="col-xs-6">
+                    <div DISPLAY: inline-block" id="container"></div>
+                </div>  
+                <div class="col-xs-6">
+                    <div DISPLAY: inline-block" id="container2"></div>
+                </div>  
             </div>
         </div>
     </div>
 </div>
 
+
 <script>
-$("#tab-1").on("click", function(event) {
-    event.stopPropagation();
-    loadContentWithParams("parameter.p_provinsi",{});
-});
 $("#tab-2").on("click", function(event) {
 
     event.stopPropagation();
@@ -75,15 +66,17 @@ $("#tab-2").on("click", function(event) {
     p_region_id = grid.jqGrid ('getGridParam', 'selrow');
     region_name = grid.jqGrid ('getCell', p_region_id, 'region_name');
 
+    if(p_region_id == null) {
+        swal('Informasi','Silahkan pilih salah satu provinsi','info');
+        return false;
+    }
 
     loadContentWithParams("parameter.p_kota", {
-        p_region_id: p_region_id
+        p_region_id: p_region_id,
+        region_name : region_name
     });
 });
 </script>
-
-
-
 <?php $this->load->view('lov/lov_business_area'); ?>
 
 <script>
@@ -92,15 +85,12 @@ $("#tab-2").on("click", function(event) {
         var pager_selector = "#grid-pager";
 
         $("#grid-table").jqGrid({
-            url: '<?php echo WS_JQGRID."parameter.p_region_controller/crud"; ?>',
+            url: '<?php echo WS_JQGRID."parameter.p_provinsi_controller/crud"; ?>',
             datatype: "json",
-            postData: { 
-                p_region_id : <?php echo $this->input->post('p_region_id'); ?>
-            },
             mtype: "POST",
             colModel: [
                 {label: 'ID', name: 'p_region_id', key: true, width: 5, sorttype: 'number', editable: true, hidden: true},
-                {label: 'Parent ID', name: 'parent_id', width: 5, sorttype: 'number', editable: true, hidden: true},
+                {label: 'Parent ID', name: 'parent_id', width: 5, sorttype: 'number', editable: false, hidden: true},
                 {label: 'Kode Regional',name: 'region_code',width: 150, align: "left",editable: true,
                     editoptions: {
                         size: 30,
@@ -112,8 +102,7 @@ $("#tab-2").on("click", function(event) {
                     editoptions: {
                         size: 30,
                         maxlength:255
-                    },
-                    editrules: {required: false}
+                    }
                 },
                 {label: 'Kode Wilayah',name: 'business_area_name',width: 150, align: "left",editable: false},
                 {label: 'Kode Wilayah',
@@ -152,7 +141,7 @@ $("#tab-2").on("click", function(event) {
                                 setTimeout(function(){
                                     var selectedRowId = $("#"+gridId).jqGrid ('getGridParam', 'selrow');
                                     if(selectedRowId != null) {
-                                        var code_display = $("#"+gridId).jqGrid('getCell', selectedRowId, 'business_area_name');
+                                        var code_display = $("#"+gridId).jqGrid('getCell', selectedRowId, 'code');
                                         $("#form_business_area_code").val( code_display );
                                     }
                                 },100);
@@ -160,11 +149,7 @@ $("#tab-2").on("click", function(event) {
                         }
                     }
                 },
-                {label: 'Level',name: 'p_region_level_id',width: 120, align: "left",editable: true, edittype: 'select', hidden:true,
-                    editrules: {edithidden: true, required: false},
-                    editoptions: {
-                        dataUrl: '<?php echo WS_JQGRID."parameter.p_region_controller/readLevel"; ?>'
-                    }
+                {label: 'Level',name: 'p_region_level_id',width: 200, align: "left",editable: false, hidden:true
                 },
                 {label: 'Kode Pos',name: 'postal_code',width: 150, align: "left",editable: true,
                     editoptions: {
@@ -173,7 +158,7 @@ $("#tab-2").on("click", function(event) {
                     },
                     editrules: {required: false}
                 },
-				{label: 'Kode Wilayah Nasional',name: 'nasional_code',width: 150, align: "left",editable: true,
+                {label: 'Kode Wilayah Nasional',name: 'nasional_code',width: 150, align: "left",editable: true,
                     editoptions: {
                         size: 30,
                         maxlength:255
@@ -216,7 +201,7 @@ $("#tab-2").on("click", function(event) {
 
             },
             //memanggil controller jqgrid yang ada di controller crud
-            editurl: '<?php echo WS_JQGRID."parameter.p_region_controller/crud"; ?>',
+            editurl: '<?php echo WS_JQGRID."parameter.p_provinsi_controller/crud"; ?>',
             caption: "Daftar Regional"
 
         });
@@ -255,9 +240,7 @@ $("#tab-2").on("click", function(event) {
                 beforeShowForm: function (e, form) {
                     var form = $(e[0]);
                     style_edit_form(form);
-                    
-                    
-                    
+
 
                 },
                 afterShowForm: function(form) {
@@ -268,22 +251,10 @@ $("#tab-2").on("click", function(event) {
                     if(response.success == false) {
                         return [false,response.message,response.responseText];
                     }
-                    reloadTreeMenu();
                     return [true,"",response.responseText];
                 }
             },
             {
-                editData : {
-                    parent_id: function() {
-                        var item = $('#tree-menu').jqxTree('getSelectedItem');
-                        var id = $(item).attr('id');
-                        return id;
-                    }
-
-                
-                
-                   
-                },
                 //new record form
                 closeAfterAdd: false,
                 clearAfterAdd : true,
@@ -314,8 +285,6 @@ $("#tab-2").on("click", function(event) {
                     $(".tinfo").html('<div class="ui-state-success">' + response.message + '</div>');
                     var tinfoel = $(".tinfo").show();
                     tinfoel.delay(3000).fadeOut();
-                    clearInputBusinessArea();
-                    reloadTreeMenu();
 
 
                     return [true,"",response.responseText];
@@ -367,57 +336,7 @@ $("#tab-2").on("click", function(event) {
         );
 
     });
-</script>
 
-<script>
-    function reloadTreeMenu() {
-        var source =
-        {
-            datatype: "json",
-            datafields: [
-                { name: 'id' },
-                { name: 'parentid' },
-                { name: 'text' },
-                { name: 'expanded' },
-                { name: 'selected' },
-                { name: 'icon' }
-            ],
-            id: 'id',
-            url: '<?php echo WS_JQGRID."parameter.p_region_controller/tree_json?p_region_id=".$this->input->post('p_region_id');?>',
-            async: false
-        };
-
-        $('#tree-menu').jqxTree('clear');
-
-        // create data adapter.
-        var dataAdapter = new $.jqx.dataAdapter(source);
-        dataAdapter.dataBind();
-        var records = dataAdapter.getRecordsHierarchy('id', 'parentid', 'items', [{ name: 'text', map: 'label'}]);
-        $('#tree-menu').jqxTree({
-            source: records
-        });
-
-    }
-
-    $(function($) {
-        reloadTreeMenu();
-        
-
-        $('#tree-menu').on('select', function (event) {
-            var item = $('#tree-menu').jqxTree('getItem', event.args.element);
-            $('#grid-table').jqGrid('setGridParam', {
-                url: '<?php echo WS_JQGRID."parameter.p_region_controller/crud"; ?>',
-                postData: {parent_id_tree: item.id, p_region_id :item.id}
-            });
-
-            $('#grid-table').jqGrid('setCaption', 'Daftar Regional :: ' + item.label);
-            $("#grid-table").trigger("reloadGrid");
-        });
-    });
-</script>
-
-
-<script>
 /**
  * [showLOVBusinessArea called by input menu_icon to show List Of Value (LOV) of icon]
  * @param  {[type]} id   [description]
@@ -436,5 +355,4 @@ function clearInputBusinessArea() {
     $('#form_business_area_id').val('');
     $('#form_business_area_code').val('');
 }
-
 </script>

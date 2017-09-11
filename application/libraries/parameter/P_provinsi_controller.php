@@ -4,7 +4,7 @@
 * @class region levels_controller
 * @version 07/05/2015 12:18:00
 */
-class P_region_controller {
+class P_provinsi_controller {
 
     function read() {
 
@@ -20,8 +20,8 @@ class P_region_controller {
         try {
 
             $ci = & get_instance();
-            $ci->load->model('parameter/p_region');
-            $table = $ci->p_region;
+            $ci->load->model('parameter/p_provinsi');
+            $table = $ci->p_provinsi;
 
             $req_param = array(
                 "sort_by" => $sidx,
@@ -39,11 +39,9 @@ class P_region_controller {
 
             // Filter Table
             $req_param['where'] = array();
-
-
-            if(!empty($p_region_id)) {
-                $req_param['where'][] = 'parent_id = '.$p_region_id;
-            }
+        
+            $req_param['where'][] = 'parent_id = 1';
+            
 
             $table->setJQGridParam($req_param);
             $count = $table->countAll();
@@ -75,7 +73,7 @@ class P_region_controller {
         }
 
         return $data;
-    }   
+    } 
 
     function readLov() {
 
@@ -92,8 +90,8 @@ class P_region_controller {
         try {
 
             $ci = & get_instance();
-            $ci->load->model('parameter/p_region');
-            $table = $ci->p_region;
+            $ci->load->model('parameter/p_provinsi');
+            $table = $ci->p_provinsi;
 
             if(!empty($searchPhrase)) {
                 $table->setCriteria("upper(business_area_name) like upper('%".$searchPhrase."%')");
@@ -138,8 +136,6 @@ class P_region_controller {
             default :
                 permission_check('can-view-region level');
                 $data = $this->read();
-                
-                
             break;
         }
 
@@ -150,8 +146,8 @@ class P_region_controller {
     function create() {
 
         $ci = & get_instance();
-        $ci->load->model('parameter/p_region');
-        $table = $ci->p_region;
+        $ci->load->model('parameter/p_provinsi');
+        $table = $ci->p_provinsi;
 
         $data = array('rows' => array(), 'page' => 1, 'records' => 0, 'total' => 1, 'success' => false, 'message' => '');
 
@@ -222,8 +218,8 @@ class P_region_controller {
     function update() {
 
         $ci = & get_instance();
-        $ci->load->model('parameter/p_region');
-        $table = $ci->p_region;
+        $ci->load->model('parameter/p_provinsi');
+        $table = $ci->p_provinsi;
 
         $data = array('rows' => array(), 'page' => 1, 'records' => 0, 'total' => 1, 'success' => false, 'message' => '');
 
@@ -293,8 +289,8 @@ class P_region_controller {
 
     function destroy() {
         $ci = & get_instance();
-        $ci->load->model('parameter/p_region');
-        $table = $ci->p_region;
+        $ci->load->model('parameter/p_provinsi');
+        $table = $ci->p_provinsi;
 
         $data = array('rows' => array(), 'page' => 1, 'records' => 0, 'total' => 1, 'success' => false, 'message' => '');
 
@@ -338,62 +334,11 @@ class P_region_controller {
 
     function readLevel(){
         $ci = & get_instance();
-        $ci->load->model('parameter/p_region');
-        $table = $ci->p_region;
+        $ci->load->model('parameter/p_provinsi');
+        $table = $ci->p_provinsi;
         $table->getLevel();
     }
 
-    public function tree_json() {
-
-        $p_region_id = getVarClean('p_region_id','int',0);
-        $ci = & get_instance();
-        $ci->load->model('parameter/p_region');
-        $table = $ci->p_region;
-
-
-       $table->setCriteria('parent_id ='.$p_region_id.' OR p_region_id = '.$p_region_id);
-        $items = $table->getAll(0,-1,'region_name','asc');
-        $data = array();
-        
-
-        foreach($items as $item) {
-
-            if ($item['p_region_id']==$p_region_id) {
-                $data[] = array(
-                            'id' => $p_region_id,
-                            'parentid' => -1,
-                            'text' => $item['region_name'],
-                            'expanded' => true,
-                            'selected' => true,
-                            'icon' => base_url('images/home.png')
-                          );
-            }
-            else{
-                if( $table->emptyChildren($item['p_region_id']) ) {
-                    $data[] = array(
-                                'id' => $item['p_region_id'],
-                                'parentid' => empty($item['parent_id']) ? 0 : $item['parent_id'],
-                                'text' => $item['region_name'],
-                                'expanded' => false,
-                                'selected' => false,
-                                'icon' => base_url('images/file-icon.png')
-                              );
-                }else {
-                    $data[] = array(
-                                'id' => $item['p_region_id'],
-                                'parentid' => empty($item['parent_id']) ? 0 : $item['parent_id'],
-                                'text' => $item['region_name'],
-                                'expanded' => false,
-                                'selected' => false,
-                                'icon' => base_url('images/folder-close.png')
-                              );
-                }
-            }
-        }
-
-        echo json_encode($data);
-        exit;
-    }
 }
 
 /* End of file region levels_controller.php */
