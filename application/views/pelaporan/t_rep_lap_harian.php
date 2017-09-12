@@ -18,7 +18,7 @@
                     <label class="control-label col-md-2">Tanggal Penerimaan</label>
                     <div class="col-md-3">
                         <div class="input-group">
-                            <input type="text" class="form-control" name="tgl_penerimaan" id="tgl_penerimaan">                 
+                            <input type="text" class="form-control" name="tgl_penerimaan" id="tgl_penerimaan" required="">                 
                         </div>
                     </div>
                     <label class="control-label col-md-2">Bank Penerimaan</label>
@@ -35,7 +35,7 @@
                 <div class="space-2"></div>
                 <div class="row col-md-offset-4">
                     <button class="btn btn-success" type="button" id="btn-search">Tampilkan Data</button>
-                    <button class="btn btn-success" type="button" onclick="" id="excel">Donwload PDF</button>
+                    <button class="btn btn-success" type="button" onclick="print_pdf()" id="excel">Donwload PDF</button>
                 </div>
             </div>
         </div>       
@@ -130,7 +130,7 @@
         });
         $("#grid-table-lap").jqGrid('setLabel','nomor_ayat','',{'text-align':'center'});
         jQuery("#grid-table-lap").jqGrid('setGroupHeaders', {
-  			useColSpanStyle: false, 
+  			useColSpanStyle: true, 
   			groupHeaders:[
 				{startColumnName: 'jml_hari_ini', numberOfColumns: 2, titleText: 'Jumlah Hari Ini'},
 				{startColumnName: 'jml_sd_hari_lalu', numberOfColumns: 2, titleText: 'Jumlah S/D Hari Yang Lalu'},
@@ -174,10 +174,6 @@
         });
     });
 
-    function toPDF() {
-       
-    }
-
 </script>
 
 <script>
@@ -188,5 +184,21 @@ function responsive_jqgrid(grid_selector) {
         //$(pager_selector).jqGrid('setGridWidth', parent_column.width());
 
     }
+
+
+function print_pdf(){
+        var tgl_penerimaan = $('#tgl_penerimaan').val();        
+        var kode_bank = $('#kode_bank').val();
+
+        url = '<?php echo base_url(); ?>'+'pdf/save_pdf_t_rep_lap_harian/'+tgl_penerimaan+'/'+kode_bank;
+        openInNewTab(url);
+        //http://127.0.0.1/telpro/pdf/invoice/ACC0001/201701/0
+    }
+    
+function openInNewTab(url) {
+    // window.open("../report/cetak_rep_lap_harian_bdhr.php?tgl_penerimaan='" + tgl_penerimaan + "'&kabid=T"+ "&kode_bank="+kode_bank, '_blank', 'location=yes,height=570,width=520,scrollbars=yes,status=yes');
+  window.open(url, '_blank', 'location=yes,height=570,width=820,scrollbars=yes,status=yes');
+  // win.focus();
+}
 
 </script>

@@ -936,7 +936,7 @@ function newLine(){
             }
     }
     
-    function SetWidths($w)
+    public function SetWidths($w)
     {
         //Set the array of column widths
         $this->widths=$w;
