@@ -155,7 +155,10 @@
     $("#btn-search").on('click', function() {       
         var tgl_penerimaan = $('#tgl_penerimaan').val();        
         var kode_bank = $('#kode_bank').val();
-       
+        
+        if(tgl_penerimaan == ""){
+            alert("Kolom Tanggal Tidak Boleh Kosong!");
+        }
         jQuery(function($) {
         var grid_selector = "#grid-table-lap";
         //var pager_selector = "#grid-pager-bpps2";
@@ -189,10 +192,16 @@ function responsive_jqgrid(grid_selector) {
 function print_pdf(){
         var tgl_penerimaan = $('#tgl_penerimaan').val();        
         var kode_bank = $('#kode_bank').val();
+        if(tgl_penerimaan == ""){
+            alert("Kolom Tanggal Tidak Boleh Kosong!");            
+        }else{
+            url = '<?php echo base_url(); ?>'+'pdf/save_pdf_t_rep_lap_harian/'+tgl_penerimaan+'/'+kode_bank;
+            openInNewTab(url);
 
-        url = '<?php echo base_url(); ?>'+'pdf/save_pdf_t_rep_lap_harian/'+tgl_penerimaan+'/'+kode_bank;
-        openInNewTab(url);
-        //http://127.0.0.1/telpro/pdf/invoice/ACC0001/201701/0
+        }
+
+
+        
     }
     
 function openInNewTab(url) {
