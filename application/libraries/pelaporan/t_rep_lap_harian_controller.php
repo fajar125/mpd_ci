@@ -51,12 +51,7 @@ class t_rep_lap_harian_controller {
         return $data;
     }
 
-    function pdf()
-    {
-        
-
-
-    }
+    
 }
 
 /* End of file t_rep_lap_harian_controller.php */

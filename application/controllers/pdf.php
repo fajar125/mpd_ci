@@ -32,14 +32,17 @@ class pdf extends CI_Controller{
     }
 
 
-    function save_pdf_t_rep_lap_harian($tgl_penerimaan='01-01-2001', $kode_bank='') {
+    function save_pdf_t_rep_lap_harian($flag_bdhr='',$tgl_penerimaan, $kode_bank='') {
         $data = array();
         $sql = "select * from f_rep_lap_harian_bdhr_mod_2(?,?) order by nomor_ayat";        
         $output = $this->db->query($sql, array($tgl_penerimaan, $kode_bank));
         $items = $output->result_array();
 
-        //print_r($items);        exit;
+        /*print_r($tgl_penerimaan); 
+        print_r($kode_bank);*/
+        //print_r($flag_bdhr);       exit;
 
+        //print_r($items); exit;
 
         $pdf = new FPDF();
         //$pdf->AddPage();
@@ -48,7 +51,7 @@ class pdf extends CI_Controller{
         $pdf->AliasNbPages();
         $pdf->AddPage("L");
         $pdf->SetFont('Arial', '', 10);
-        $pdf->Image('images/logo_pemda.png',15,13,25,25);
+        $pdf->Image('images/logo_lombok.png',15,13,25,25);
 
         $pdf->startY = $pdf->GetY();
         $pdf->startX = $this->paperWSize-72;
@@ -65,7 +68,7 @@ class pdf extends CI_Controller{
         $pdf->Cell($lheader1, $this->height, "", "TR", 0, 'L');
         $pdf->Ln();
         $pdf->Cell($lheader1, $this->height, "", "L", 0, 'L');
-        $pdf->Cell($lheader3, $this->height, "PEMERINTAH KOTA BANDUNG", "R", 0, 'C');
+        $pdf->Cell($lheader3, $this->height, "PEMERINTAH KABUPATEN LOMBOK UTARA", "R", 0, 'C');
         $pdf->Cell($lheader4, $this->height, "LAMPIRAN LAPORAN HARIAN", "R", 0, 'C');
         $pdf->Ln();
         $pdf->Cell($lheader1, $this->height, "", "L", 0, 'L');
@@ -270,42 +273,46 @@ class pdf extends CI_Controller{
             }
             $pdf->SetFont('Arial', '', 10);
         }
-        
-        $pdf->Ln();
-        $this->newLine();
-        $this->newLine();
-        
-        $lbody = $this->lengthCell / 4;
-        $lbody1 = $lbody * 1;
-        $lbody2 = $lbody * 2;
-        $lbody3 = $lbody * 3;
-        
-        $pdf->Cell($this->lengthCell, $this->height, "", "", 0, 'L');
-        $pdf->Ln();
-        
-        $pdf->Cell($lbody3 - 10, $this->height, "", "", 0, 'L');
-        $pdf->Cell($lbody1 + 10, $this->height, "Bandung, " . date("d F Y") /*. $data["tanggal"]*/, "", 0, 'C');
-        $pdf->Ln();
-        $pdf->Cell($lbody3 - 10, $this->height, "", "", 0, 'L');
-        $pdf->Cell($lbody1 + 10, $this->height, "BENDAHARA PENERIMAAN, ", "", 0, 'C');
-        $pdf->Ln();
-        $pdf->Cell($lbody3 - 10, $this->height, "", "", 0, 'L');
-        //$this->Cell($lbody1 + 10, $this->height, "KOTA BANDUNG", "", 0, 'C');
-        $pdf->Ln();
-        $this->newLine();
-        $this->newLine();
-        $this->newLine();
-        $pdf->Ln();
-        $pdf->Ln();
-        $pdf->Ln();
-        $pdf->Ln();
-        $pdf->Cell($lbody3 - 10, $this->height, "", "", 0, 'L');
-        $pdf->Cell($lbody1 + 10, $this->height, "(                ABDURACHIM                )", "", 0, 'C');
-        $pdf->Ln();
 
-        $pdf->Cell($lbody3 - 10, $this->height, "", "", 0, 'L');
-        $pdf->Cell($lbody1 + 10, $this->height, "NIP. 19590622 198503 1 008", "", 0, 'C');
-        $pdf->Ln();   
+        if($flag_bdhr == 'BDHR'){
+            $pdf->Ln();
+            $this->newLine();
+            $this->newLine();
+            
+            $lbody = $this->lengthCell / 4;
+            $lbody1 = $lbody * 1;
+            $lbody2 = $lbody * 2;
+            $lbody3 = $lbody * 3;
+            
+            $pdf->Cell($this->lengthCell, $this->height, "", "", 0, 'L');
+            $pdf->Ln();
+            
+            $pdf->Cell($lbody3 - 10, $this->height, "", "", 0, 'L');
+            $pdf->Cell($lbody1 + 10, $this->height, "Bandung, " . date("d F Y") /*. $data["tanggal"]*/, "", 0, 'C');
+            $pdf->Ln();
+            $pdf->Cell($lbody3 - 10, $this->height, "", "", 0, 'L');
+            $pdf->Cell($lbody1 + 10, $this->height, "BENDAHARA PENERIMAAN, ", "", 0, 'C');
+            $pdf->Ln();
+            $pdf->Cell($lbody3 - 10, $this->height, "", "", 0, 'L');
+            //$this->Cell($lbody1 + 10, $this->height, "KOTA BANDUNG", "", 0, 'C');
+            $pdf->Ln();
+            $this->newLine();
+            $this->newLine();
+            $this->newLine();
+            $pdf->Ln();
+            $pdf->Ln();
+            $pdf->Ln();
+            $pdf->Ln();
+            $pdf->Cell($lbody3 - 10, $this->height, "", "", 0, 'L');
+            $pdf->Cell($lbody1 + 10, $this->height, "(                ABDURACHIM                )", "", 0, 'C');
+            $pdf->Ln();
+
+            $pdf->Cell($lbody3 - 10, $this->height, "", "", 0, 'L');
+            $pdf->Cell($lbody1 + 10, $this->height, "NIP. 19590622 198503 1 008", "", 0, 'C');
+            $pdf->Ln();
+        }  
+        
+
 
         $pdf->Output();
     }   

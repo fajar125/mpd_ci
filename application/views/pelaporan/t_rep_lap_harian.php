@@ -5,7 +5,7 @@
             <i class="fa fa-circle"></i>
         </li>
         <li>
-            <span>Laporan Harian BDHR</span>
+            <span>Laporan Harian</span>
         </li>
     </ul> 
 </div>
@@ -35,7 +35,7 @@
                 <div class="space-2"></div>
                 <div class="row col-md-offset-4">
                     <button class="btn btn-success" type="button" id="btn-search">Tampilkan Data</button>
-                    <button class="btn btn-success" type="button" onclick="print_pdf()" id="excel">Donwload PDF</button>
+                    <button class="btn btn-success" type="button" onclick="print_pdf()" id="pdf">Donwload PDF</button>
                 </div>
             </div>
         </div>       
@@ -67,17 +67,17 @@
 
 				{label: 'Jenis Pajak',name: 'nama_jns_pajak', width: 110, align: "left"},
 
-				{label: 'Jumlah (Rp.)',name: 'jml_hari_ini',width: 130, summaryTpl:"{0}",summaryType:"sum", formatter:'currency', formatoptions: {prefix:"", thousandsSeparator:','},align: "right"},
+				{label: 'Jumlah (Rp.)',name: 'jml_hari_ini',width: 130, summaryTpl:"{0}",summaryType:"sum", formatter:'integer', formatoptions: {prefix:"", thousandsSeparator:',', defaultValue:'0'},align: "right"},
 
-				{label: 'Jumlah SSPD',name: 'jml_transaksi',width: 120, summaryTpl:"{0}",summaryType:"sum", align: "right"},
+				{label: 'Jumlah SSPD',name: 'jml_transaksi',width: 120, summaryTpl:"{0}",summaryType:"sum", formatter:'integer', formatoptions: {prefix:"", thousandsSeparator:',', defaultValue:'0'},align: "right"},
 
-				{label: 'Jumlah (Rp.)',name: 'jml_sd_hari_lalu',width: 130, summaryTpl:"{0}",summaryType:"sum", formatter:'currency', formatoptions: {prefix:"", thousandsSeparator:','},align: "right"},
+				{label: 'Jumlah (Rp.)',name: 'jml_sd_hari_lalu',width: 130, summaryTpl:"{0}",summaryType:"sum", formatter:'integer', formatoptions: {prefix:"", thousandsSeparator:',', defaultValue:'0'},align: "right"},
 
-				{label: 'Jumlah SSPD',name: 'jml_transaksi_sampai_kemarin',width: 120, summaryTpl:"{0}",summaryType:"sum", align: "right"},
+				{label: 'Jumlah SSPD',name: 'jml_transaksi_sampai_kemarin',width: 120, summaryTpl:"{0}",summaryType:"sum",formatter:'integer', formatoptions: {prefix:"", thousandsSeparator:',', defaultValue:'0'}, align: "right"},
 
-				{label: 'Jumlah (Rp.)',name: 'jml_sd_hari_ini',width: 130, summaryTpl:"{0}",summaryType:"sum", formatter:'currency', formatoptions: {prefix:"", thousandsSeparator:','},align: "right"},
+				{label: 'Jumlah (Rp.)',name: 'jml_sd_hari_ini',width: 130, summaryTpl:"{0}",summaryType:"sum", formatter:'integer', formatoptions: {prefix:"", thousandsSeparator:',', defaultValue:'0'},align: "right"},
 
-				{label: 'Jumlah SSPD',name: 'jml_transaksi_sampai_hari_ini',width: 120,summaryTpl:"{0}",summaryType:"sum", align: "right"}
+				{label: 'Jumlah SSPD',name: 'jml_transaksi_sampai_hari_ini',width: 120,summaryTpl:"{0}",summaryType:"sum",formatter:'integer', formatoptions: {prefix:"", thousandsSeparator:',', defaultValue:'0'}, align: "right"}
             ],
             height: '100%',
             autowidth: false,
@@ -156,8 +156,8 @@
         var tgl_penerimaan = $('#tgl_penerimaan').val();        
         var kode_bank = $('#kode_bank').val();
         
-        if(tgl_penerimaan == ""){
-            alert("Kolom Tanggal Tidak Boleh Kosong!");
+        if(tgl_penerimaan == ""){            
+            swal ( "Oopss" ,  "Kolom Tanggal Tidak Boleh Kosong!" ,  "error" );
         }
         jQuery(function($) {
         var grid_selector = "#grid-table-lap";
@@ -180,7 +180,7 @@
 </script>
 
 <script>
-function responsive_jqgrid(grid_selector) {
+    function responsive_jqgrid(grid_selector) {
 
         var parent_column = $(grid_selector).closest('[class*="col-"]');
         $(grid_selector).jqGrid('setGridWidth', $(".form-body").width());
@@ -189,13 +189,13 @@ function responsive_jqgrid(grid_selector) {
     }
 
 
-function print_pdf(){
+    function print_pdf(){
         var tgl_penerimaan = $('#tgl_penerimaan').val();        
         var kode_bank = $('#kode_bank').val();
         if(tgl_penerimaan == ""){
-            alert("Kolom Tanggal Tidak Boleh Kosong!");            
+            swal ( "Oopss" ,  "Kolom Tanggal Tidak Boleh Kosong!" ,  "error" );           
         }else{
-            url = '<?php echo base_url(); ?>'+'pdf/save_pdf_t_rep_lap_harian/'+tgl_penerimaan+'/'+kode_bank;
+            url = '<?php echo base_url(); ?>'+'pdf/save_pdf_t_rep_lap_harian/'+'harian'+'/'+tgl_penerimaan+'/'+kode_bank;
             openInNewTab(url);
 
         }
