@@ -4,7 +4,7 @@
             <!-- modal title -->
             <div class="modal-header no-padding">
                 <div class="table-header">
-                    <span class="form-add-edit-title"> Data Kode Wilayah</span>
+                    <span class="form-add-edit-title"> Data Kelas</span>
                 </div>
             </div>
             <input type="hidden" id="modal_lov_p_vat_type_dtl_cls_id_val" value="" />
@@ -23,7 +23,7 @@
                      <th data-column-id="p_vat_type_dtl_cls_id" data-sortable="false" data-visible="false">ID Kelas</th>
                      <th data-column-id="p_vat_type_dtl_id" data-sortable="false" data-visible="false" style="display: none;">ID Tipe</th>
                      <th data-header-align="center" data-align="center" data-formatter="opt-edit" data-sortable="false" data-width="100">Options</th>
-                     <th data-column-id="description">Keterangan</th>
+                     <th data-column-id="vat_code">Keterangan</th>
                      <th data-column-id="vat_pct">Persentase</th>
                   </tr>
                 </thead>
@@ -54,10 +54,10 @@
         });
     });
 
-    function modal_vat_type_dtl_cls_show(the_id_field, the_code_field) {
+    function modal_vat_type_dtl_cls_show(the_id_field, the_code_field, id_parent) {
         modal_vat_type_dtl_cls_set_field_value(the_id_field, the_code_field);
         $("#modal_vat_type_dtl_cls").modal({backdrop: 'static'});
-        modal_vat_type_dtl_cls_prepare_table();
+        modal_vat_type_dtl_cls_prepare_table(id_parent);
     }
 
 
@@ -75,14 +75,15 @@
          $("#"+ $("#modal_lov_p_vat_type_dtl_cls_code_val").val()).change();
     }
 
-    function modal_vat_type_dtl_cls_prepare_table() {
+    function modal_vat_type_dtl_cls_prepare_table(id_parent) {
+        $("#modal_finance_period_grid_selection").bootgrid("destroy");
         $("#modal_vat_type_dtl_cls_grid_selection").bootgrid({
              formatters: {
                 "opt-edit" : function(col, row) {
-                    return '<a href="javascript:;" title="Set Value" onclick="modal_vat_type_dtl_cls_set_value(\''+ row.p_business_area_id +'\', \''+ row.business_area_name +'\')" class="blue"><i class="fa fa-pencil-square-o bigger-130"></i></a>';
+                    return '<a href="javascript:;" title="Set Value" onclick="modal_vat_type_dtl_cls_set_value(\''+ row.p_vat_type_dtl_cls_id +'\', \''+ row.vat_code +'\')" class="blue"><i class="fa fa-pencil-square-o bigger-130"></i></a>';
                 },
                 "status_display" : function(col, row) {
-                    return '<i class="'+row.business_area_name+' bigger-140"></i>';
+                    return '<i class="'+row.vat_pct+' bigger-140"></i>';
                 }
              },
              rowCount:[5,10],
@@ -103,7 +104,8 @@
                 }
                 return response;
              },
-             url: '<?php echo WS_BOOTGRID."parameter.p_region_controller/readLov"; ?>',
+             post:{p_vat_type_dtl_id:id_parent},
+             url: '<?php echo WS_BOOTGRID."parameter.p_vat_type_dtl_controller/readLovClass"; ?>',
              selection: true,
              sorting:true
         });

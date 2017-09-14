@@ -120,6 +120,43 @@ class P_vat_type_dtl_controller {
         return $data;
     }
 
+    function readLovClass() {
+
+        $start = getVarClean('current','int',0);
+        $limit = getVarClean('rowCount','int',5);
+
+        $sort = getVarClean('sort','str','p_vat_type_dtl_id');
+        $dir  = getVarClean('dir','str','asc');
+
+        $searchPhrase = getVarClean('searchPhrase', 'str', '');
+
+        $p_vat_type_dtl_id = getVarClean('p_vat_type_dtl_id', 'int', 0);
+
+        $data = array('rows' => array(), 'success' => false, 'message' => '', 'current' => $start, 'rowCount' => $limit, 'total' => 0);
+
+        try {
+
+            $ci = & get_instance();
+            $ci->load->model('parameter/p_vat_type_dtl');
+            $table = $ci->p_vat_type_dtl;
+
+            
+
+            $start = ($start-1) * $limit;
+            $items = $table->getLOVClass($p_vat_type_dtl_id,$searchPhrase);
+            $totalcount = count($items);
+
+            $data['rows'] = $items;
+            $data['success'] = true;
+            $data['total'] = $totalcount;
+
+        }catch (Exception $e) {
+            $data['message'] = $e->getMessage();
+        }
+
+        return $data;
+    }
+
 
     function crud() {
 

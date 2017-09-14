@@ -91,5 +91,16 @@ class P_vat_type_dtl extends Abstract_model {
         return true;
     }
 
+    function getLOVClass($type_dtl_id, $keyword) {
+        $sql = "select * from p_vat_type_dtl_cls
+                where p_vat_type_dtl_id = ?
+                and upper(vat_code) like '%".$keyword."%' ";
+
+        $query = $this->db->query($sql, array($type_dtl_id));
+        $items = $query->result_array();
+        return $items;
+
+    }
+
 }
 /* End of file Icons.php */

@@ -13,7 +13,7 @@
 <div class="row">
     <div class="col-md-8">
         <div class="portlet light bordered">
-            <div class="form-body">
+            <div class="form-body" id="grid-pager">
                 <div class="row">
                     <label class="control-label col-md-3">NPWPD</label>
                     <div class="col-md-5">
@@ -143,7 +143,7 @@
                 </div>
                 <div class="space-2"></div>
                 <div class="row col-md-offset-3">
-                    <button class="btn btn-success" type="button" id="btn-search">Simpan</button>
+                    <button class="btn btn-success" type="submit" id="btn-submit" onclick="save()">Simpan</button>
                 </div>
             </div>
         </div>
@@ -161,7 +161,7 @@
         <div class="col-md-4">
             <div id="gbox_grid-table" class="ui-jqgrid">
                 <div id="gview_grid-table" class="ui-jqgrid-view table-responsive" role="grid">
-                    <table id="grid-table-piutang"></table>
+                    <table id="grid-table-piutang" border="1"></table>
                 </div>
             </div>            
         </div>
@@ -171,7 +171,7 @@
 </div>
 
 
-<script type="text/javascript">
+<!-- <script type="text/javascript">
     
     jQuery(function ($) {
         var grid_selector = "#grid-table-piutang";
@@ -195,7 +195,7 @@
         });
         
     });    
-</script>
+</script> -->
 
 <script> 
     $('#valid_from').datepicker({ // mengambil dari class datepicker
@@ -216,7 +216,7 @@
 
     
 
-    $("#btn-search").on('click', function() {
+    function save(){
 
         var cust_acc_id = $('#form_cust_account_id').val();
         var npwpd = $('#form_npwpd').val();
@@ -231,52 +231,77 @@
         var start_period = $('#valid_from').val();
         var end_period = $('#valid_to').val();
 
-        jQuery(function($) {
-        var grid_selector = "#grid-table-piutang";
-        //var pager_selector = "#grid-pager-bpps2";
-        /*
 
-        */
+        var url = "<?php echo WS_JQGRID . "transaksi.t_vat_setlement_manual_controller/insertUpdate/?"; ?>";
+        url += "<?php echo $this->security->get_csrf_token_name(); ?>=<?php echo $this->security->get_csrf_hash(); ?>";
+        url += "&t_cust_account_id=" + $("#grid-pager").getGridParam("postData").cust_acc_id;
+        url += "&p_finance_period_id=" + $("#grid-pager").getGridParam("postData").finance_period;
+        url += "&npwd=" + $("#grid-pager").getGridParam("postData").npwpd;
+        url += "&start_date=" + $("#grid-pager").getGridParam("postData").start_period;
+        url += "&end_date=" + $("#grid-pager").getGridParam("postData").end_period;
+        url += "&qty_room_sold=" + $("#grid-pager").getGridParam("postData").jml_kamar;
+        url += "&trans_amount=" + $("#grid-pager").getGridParam("postData").jml_omset;
+        url += "&p_vat_type_dtl_id=" + $("#grid-pager").getGridParam("postData").tipe_ayat;
+        url += "&p_vat_type_dtl_cls_id=" + $("#grid-pager").getGridParam("postData").kelas;
 
-            jQuery("#grid-table-piutang").jqGrid('setGridParam',{
-                url: '<?php echo WS_JQGRID."transaksi.t_vat_setlement_manual_controller/insertUpdate"; ?>',
-                postData: {t_cust_account_id :cust_acc_id,
-                            p_finance_period_id: finance_period,
-                            npwd: npwpd,
-                            start_date: start_period,
-                            end_date: end_period,
-                            qty_room_sold:jml_kamar,
-                            trans_amount:jml_omset,
-                            p_vat_type_dtl_id:tipe_ayat,
-                            p_vat_type_dtl_cls_id:kelas
-                        }
+        window.location = url;
+    }
 
-            });
+        
 
-            $("#grid-table-piutang").jqGrid("setCaption", "BPPS");
-            $("#grid-table-piutang").trigger("reloadGrid");
-        });
-    });
+    //     jQuery(function($) {
+    //    // var grid_selector = "#grid-table-piutang";
+    //     //var pager_selector = "#grid-pager-bpps2";
+    //     /*
+
+    //     */
+
+    //         // jQuery("#grid-pager").jqGrid('setGridParam',{
+    //         //     url: '<?php //echo WS_JQGRID."transaksi.t_vat_setlement_manual_controller/insertUpdate"; ?>',
+    //         //     postData: {t_cust_account_id :cust_acc_id,
+                            // p_finance_period_id: finance_period,
+                            // npwd: npwpd,
+                            // start_date: start_period,
+                            // end_date: end_period,
+                            // qty_room_sold:jml_kamar,
+                            // trans_amount:jml_omset,
+                            // p_vat_type_dtl_id:tipe_ayat,
+                            // p_vat_type_dtl_cls_id:kelas
+    //         //             }
+
+    //         // });
+    //     });
+    // });
 
 </script>
 
 <script type="text/javascript">
     function showPiutang(cust_acc_id, finance_period_id){
         $('#grid-table-piutang').show(1000,function(){
-                $('#grid-table-piutang .Grid').css('display','table')      
+                $('#grid-table-piutang').css('display','table')      
         });
                 var no_block = [15,17,21,27,30,41,42,43];
                 var type_id= parseFloat($('#form_vat_dtl_id').val());
                                 if(type_id == null || type_id==0 || type_id =='')return;
                 if( $.inArray( type_id, no_block ) > -1 ){ 
-                                        $('#grid-table-piutang').fadeOut(1000);
-                                        $('#grid-table-piutang').empty();
-                                        return;
-                                }
+                    $('#grid-table-piutang').fadeOut(1000);
+                    $('#grid-table-piutang').empty();
+                    return;
+                }
         $.getJSON("Transaksi/getPiutang?t_cust_account_id="+cust_acc_id+"&p_finance_period_id="+finance_period_id, function( items ) {
                 jumlah = items.length;
                 if(jumlah < 1) {
                     $('#grid-table-piutang').empty();
+                    $('#grid-table-piutang').append(
+                                                        '<tr>'+
+                                                                '<th>'+
+                                                                        'PERIODE'+
+                                                                '</th>'+
+                                                                '<th>'+
+                                                                        'STATUS'+
+                                                                '</th>'+
+                                                        '</tr>'
+                    );
 
             
                     return;
@@ -284,6 +309,16 @@
                 
                 }
                 $('#grid-table-piutang').empty();
+                $('#grid-table-piutang').append(
+                                                        '<tr>'+
+                                                                '<th>'+
+                                                                        'PERIODE'+
+                                                                '</th>'+
+                                                                '<th>'+
+                                                                        'STATUS'+
+                                                                '</th>'+
+                                                        '</tr>'
+                );
                 for(i = 0; i < jumlah; i++){
                     $('#grid-table-piutang').append(
                                                     '<tr>'+
@@ -342,8 +377,15 @@ function showLOVTypeDtl(id, code) {
     }
     
 }
-function showLOVClass(id, code) {
-    modal_vat_type_dtl_cls_show(id, code);
+function showLOVClass(id, code, parent) {
+    if ($('#form_vat_dtl_id').val()=='' || $('#form_vat_dtl_id').val()==0 ) {
+        swal('Informasi','Tipe Pajak Harus Diisi','info');
+        return false;
+    } else {
+        //swal('Informasi', $('#form_year_period_id').val(),'info');
+
+        modal_vat_type_dtl_cls_show(id, code,$('#form_vat_dtl_id').val());
+    }
 }
 
 </script>
