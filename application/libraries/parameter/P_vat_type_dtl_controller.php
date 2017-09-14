@@ -85,6 +85,8 @@ class P_vat_type_dtl_controller {
 
         $searchPhrase = getVarClean('searchPhrase', 'str', '');
 
+        $p_vat_type_id = getVarClean('p_vat_type_id', 'int', 0);
+
         $data = array('rows' => array(), 'success' => false, 'message' => '', 'current' => $start, 'rowCount' => $limit, 'total' => 0);
 
         try {
@@ -94,8 +96,14 @@ class P_vat_type_dtl_controller {
             $table = $ci->p_vat_type_dtl;
 
             if(!empty($searchPhrase)) {
-                $table->setCriteria("upper(code) like upper('%".$searchPhrase."%')");
+                $table->setCriteria(" upper(code) like upper('%".$searchPhrase."%')");
             }
+
+            if(!empty($p_vat_type_id)) {
+                $table->setCriteria(" p_vat_type_id = ".$p_vat_type_id);
+            }
+
+            
 
             $start = ($start-1) * $limit;
             $items = $table->getAll($start, $limit, $sort, $dir);

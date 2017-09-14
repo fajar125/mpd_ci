@@ -4,13 +4,13 @@
 * @class vats_controller
 * @version 07/05/2015 12:18:00
 */
-class P_year_period_controller {
+class T_vat_setlement_manual_controller {
 
     function read() {
 
         $page = getVarClean('page','int',1);
         $limit = getVarClean('rows','int',5);
-        $sidx = getVarClean('sidx','str','p_year_period_id');
+        $sidx = getVarClean('sidx','str','p_rqst_type_id');
         $sord = getVarClean('sord','str','desc');
 
         $data = array('rows' => array(), 'page' => 1, 'records' => 0, 'total' => 1, 'success' => false, 'message' => '');
@@ -18,8 +18,8 @@ class P_year_period_controller {
         try {
 
             $ci = & get_instance();
-            $ci->load->model('parameter/p_year_period');
-            $table = $ci->p_year_period;
+            $ci->load->model('transaksi/t_vat_setlement_manual');
+            $table = $ci->t_vat_setlement_manual
 
             $req_param = array(
                 "sort_by" => $sidx,
@@ -75,7 +75,7 @@ class P_year_period_controller {
         $start = getVarClean('current','int',0);
         $limit = getVarClean('rowCount','int',5);
 
-        $sort = getVarClean('sort','str','p_year_period_id');
+        $sort = getVarClean('sort','str','t_vat_setlement_manual_id');
         $dir  = getVarClean('dir','str','asc');
 
         $searchPhrase = getVarClean('searchPhrase', 'str', '');
@@ -85,15 +85,15 @@ class P_year_period_controller {
         try {
 
             $ci = & get_instance();
-            $ci->load->model('parameter/p_year_period');
-            $table = $ci->p_year_period;
+            $ci->load->model('transaksi/t_vat_setlement_manual');
+            $table = $ci->t_vat_setlement_manual
 
             if(!empty($searchPhrase)) {
-                $table->setCriteria("upper(code) like upper('%".$searchPhrase."%')");
+                $table->setCriteria("upper(npwd) like upper('%".$searchPhrase."%')");
             }
 
             $start = ($start-1) * $limit;
-            $items = $table->getAll($start, $limit, 'start_date', 'desc');
+            $items = $table->getAll($start, $limit, $sort, $dir);
             $totalcount = $table->countAll();
 
             $data['rows'] = $items;
@@ -141,8 +141,8 @@ class P_year_period_controller {
     function create() {
 
         $ci = & get_instance();
-        $ci->load->model('parameter/p_year_period');
-        $table = $ci->p_year_period;
+        $ci->load->model('transaksi/t_vat_setlement_manual');
+        $table = $ci->t_vat_setlement_manual
 
         $data = array('rows' => array(), 'page' => 1, 'records' => 0, 'total' => 1, 'success' => false, 'message' => '');
 
@@ -213,8 +213,8 @@ class P_year_period_controller {
     function update() {
 
         $ci = & get_instance();
-        $ci->load->model('parameter/p_year_period');
-        $table = $ci->p_year_period;
+        $ci->load->model('transaksi/t_vat_setlement_manual');
+        $table = $ci->t_vat_setlement_manual
 
         $data = array('rows' => array(), 'page' => 1, 'records' => 0, 'total' => 1, 'success' => false, 'message' => '');
 
@@ -284,8 +284,8 @@ class P_year_period_controller {
 
     function destroy() {
         $ci = & get_instance();
-        $ci->load->model('parameter/p_year_period');
-        $table = $ci->p_year_period;
+        $ci->load->model('transaksi/t_vat_setlement_manual');
+        $table = $ci->t_vat_setlement_manual
 
         $data = array('rows' => array(), 'page' => 1, 'records' => 0, 'total' => 1, 'success' => false, 'message' => '');
 
@@ -325,6 +325,60 @@ class P_year_period_controller {
             $data['total'] = 0;
         }
         return $data;
+    }
+
+    function insertUpdate(){
+        $page = getVarClean('page','int',1);
+        $limit = getVarClean('rows','int',5);
+        $sidx = getVarClean('sidx','str','t_cust_account_id');
+        $sord = getVarClean('sord','str','desc');
+
+        $t_cust_account_id = getVarClean('t_cust_account_id','int',0);
+        $p_finance_period_id = getVarClean('p_finance_period_id','int',0); 
+        $npwd = getVarClean('npwd','int',0);
+        $start_date = getVarClean('start_date','int',0);
+        $end_date = getVarClean('end_date','int',0); 
+        $qty_room_sold = getVarClean('qty_room_sold','int',0);
+        $trans_amount = getVarClean('trans_amount','int',0);
+        $p_vat_type_dtl_id = getVarClean('p_vat_type_dtl_id','int',0); 
+        $p_vat_type_dtl_cls_id = getVarClean('p_vat_type_dtl_cls_id','int',0);
+
+
+        
+
+        $data = array('rows' => array(), 'page' => 1, 'records' => 0, 'total' => 1, 'success' => false, 'message' => '');
+        
+        try {
+
+            $ci = & get_instance();
+            $ci->load->model('transaksi/t_vat_setlement_manual');
+            $table = $ci->t_vat_setlement_manual;
+
+            $result = $table->insertUpdate($t_cust_account_id,$p_finance_period_id,$npwd,$start_date,$end_date,$qty_room_sold,$trans_amount,$p_vat_type_dtl_id,$p_vat_type_dtl_cls_id ) ;
+            $count = count($result);
+
+            if ($count > 0) $total_pages = ceil($count / $limit);
+            else $total_pages = 1;
+
+
+            if ($page > $total_pages) $page = $total_pages;
+            $start = $limit * $page - ($limit); // do not put $limit*($page - 1)
+
+            if ($page == 0) $data['page'] = 1;
+            else $data['page'] = $page;
+
+            $data['total'] = $total_pages;
+            $data['records'] = $count;
+
+            $data['rows'] = $result;
+            $data['success'] = true;
+
+        }catch (Exception $e) {
+            $data['message'] = $e->getMessage();
+        }
+
+        return $data;
+
     }
 }
 

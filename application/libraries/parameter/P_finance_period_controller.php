@@ -81,9 +81,11 @@ class P_finance_period_controller {
         $limit = getVarClean('rowCount','int',5);
 
         $sort = getVarClean('sort','str','p_year_period_id');
-        $dir  = getVarClean('dir','str','asc');
+        $dir  = getVarClean('dir','str','desc');
 
         $searchPhrase = getVarClean('searchPhrase', 'str', '');
+
+        $p_year_period_id = getVarClean('p_year_period_id','int',0);
 
         $data = array('rows' => array(), 'success' => false, 'message' => '', 'current' => $start, 'rowCount' => $limit, 'total' => 0);
 
@@ -93,12 +95,17 @@ class P_finance_period_controller {
             $ci->load->model('parameter/p_finance_period');
             $table = $ci->p_finance_period;
 
+            if(!empty($p_year_period_id)) {
+                $table->setCriteria("p_year_period_id = ".$p_year_period_id);
+            }
+
+
             if(!empty($searchPhrase)) {
-                $table->setCriteria("upper(code) like upper('%".$searchPhrase."%')");
+                $table->setCriteria("upper(pf.code) like upper('%".$searchPhrase."%')");
             }
 
             $start = ($start-1) * $limit;
-            $items = $table->getAll($start, $limit, $sort, $dir);
+            $items = $table->getAll($start, $limit, 'start_date', 'asc');
             $totalcount = $table->countAll();
 
             $data['rows'] = $items;

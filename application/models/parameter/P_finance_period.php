@@ -28,8 +28,8 @@ class P_finance_period extends Abstract_model {
                                 'debt_letter_3' => array('type' => 'int', 'nullable' => true, 'unique' => false, 'display' => 'Surat Teguran 3')
                             );
 
-    public $selectClause    = "pf.*, ps.code as status_code, to_char(pf.start_date, 'dd-Mon-yyyy') as start_date_str,
-                                to_char(pf.end_date, 'dd-Mon-yyyy') as end_date_str";
+    public $selectClause    = "pf.*, ps.code as status_code, to_char(pf.start_date, 'dd-mm-yyyy') as start_date_str,
+                                to_char(pf.end_date, 'dd-mm-yyyy') as end_date_str";
     public $fromClause      = "p_finance_period pf left join p_status_list ps on pf.p_status_list_id = ps.p_status_list_id";
 
     public $refs            = array();

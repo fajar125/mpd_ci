@@ -4,7 +4,7 @@
 * @class vats_controller
 * @version 07/05/2015 12:18:00
 */
-class P_year_period_controller {
+class T_cust_account_controller {
 
     function read() {
 
@@ -18,8 +18,8 @@ class P_year_period_controller {
         try {
 
             $ci = & get_instance();
-            $ci->load->model('parameter/p_year_period');
-            $table = $ci->p_year_period;
+            $ci->load->model('transaksi/t_cust_account');
+            $table = $ci->t_cust_account;
 
             $req_param = array(
                 "sort_by" => $sidx,
@@ -75,7 +75,7 @@ class P_year_period_controller {
         $start = getVarClean('current','int',0);
         $limit = getVarClean('rowCount','int',5);
 
-        $sort = getVarClean('sort','str','p_year_period_id');
+        $sort = getVarClean('sort','str','t_cust_account_id');
         $dir  = getVarClean('dir','str','asc');
 
         $searchPhrase = getVarClean('searchPhrase', 'str', '');
@@ -85,15 +85,16 @@ class P_year_period_controller {
         try {
 
             $ci = & get_instance();
-            $ci->load->model('parameter/p_year_period');
-            $table = $ci->p_year_period;
+            $ci->load->model('transaksi/t_cust_account');
+            $table = $ci->t_cust_account;
 
             if(!empty($searchPhrase)) {
-                $table->setCriteria("upper(code) like upper('%".$searchPhrase."%')");
+                $table->setCriteria("upper(npwd) like upper('%".$searchPhrase."%') OR 
+                                      upper(company_brand) like upper('%".$searchPhrase."%') OR upper(brand_address_name) like upper('%".$searchPhrase."%')");
             }
 
             $start = ($start-1) * $limit;
-            $items = $table->getAll($start, $limit, 'start_date', 'desc');
+            $items = $table->getAll($start, $limit, $sort, $dir);
             $totalcount = $table->countAll();
 
             $data['rows'] = $items;
@@ -141,8 +142,8 @@ class P_year_period_controller {
     function create() {
 
         $ci = & get_instance();
-        $ci->load->model('parameter/p_year_period');
-        $table = $ci->p_year_period;
+        $ci->load->model('transaksi/t_cust_account');
+        $table = $ci->t_cust_account;
 
         $data = array('rows' => array(), 'page' => 1, 'records' => 0, 'total' => 1, 'success' => false, 'message' => '');
 
@@ -213,8 +214,8 @@ class P_year_period_controller {
     function update() {
 
         $ci = & get_instance();
-        $ci->load->model('parameter/p_year_period');
-        $table = $ci->p_year_period;
+        $ci->load->model('transaksi/t_cust_account');
+        $table = $ci->t_cust_account;
 
         $data = array('rows' => array(), 'page' => 1, 'records' => 0, 'total' => 1, 'success' => false, 'message' => '');
 
@@ -284,8 +285,8 @@ class P_year_period_controller {
 
     function destroy() {
         $ci = & get_instance();
-        $ci->load->model('parameter/p_year_period');
-        $table = $ci->p_year_period;
+        $ci->load->model('transaksi/t_cust_account');
+        $table = $ci->t_cust_account;
 
         $data = array('rows' => array(), 'page' => 1, 'records' => 0, 'total' => 1, 'success' => false, 'message' => '');
 
