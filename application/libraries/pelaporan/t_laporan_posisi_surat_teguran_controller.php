@@ -21,13 +21,15 @@ class t_laporan_posisi_surat_teguran_controller {
             $ci = & get_instance();
             $ci->load->model('pelaporan/t_laporan_posisi_surat_teguran');
             $table = $ci->t_laporan_posisi_surat_teguran;
+            //echo "tanggal=".$tanggal;
              
             $result = $table->getLaporanPosisi($p_vat_type_id,$p_finance_period_id,$tanggal);
             //$items = $result;
             //print_r($result);exit;
             $temp = $result[0];
             $result_final=null;
-
+            $sebelum = 'Belum Bayar';
+            $sesudah = 'Belum Bayar';
             for ($i = 1; $i < count($result); $i++) {
                 if($temp['npwpd']==$result[$i]['npwpd']){
                     $temp = $result[$i];
@@ -43,7 +45,10 @@ class t_laporan_posisi_surat_teguran_controller {
                         $debt_amount =$temp['debt_amount'];
                         $temp['surat_teguran3'] = 'Terbit ('.$temp['tgl_teg_3'].') (Rp. '.number_format($debt_amount, 2, ',', '.').')';
                         $debt_amount =0;
+                        
                     }
+                        
+
                 }else{
                     $result_final [] = $temp;
                     $temp = $result[$i];
@@ -59,7 +64,9 @@ class t_laporan_posisi_surat_teguran_controller {
                         $debt_amount =$temp['debt_amount'];
                         $temp['surat_teguran3'] = 'Terbit ('.$temp['tgl_teg_3'].') (Rp. '.number_format($debt_amount, 2, ',', '.').')';
                         $debt_amount =0;
+                        
                     }
+                    
                 }
             }
             if (count($result_final) > 0){
@@ -115,7 +122,8 @@ class t_laporan_posisi_surat_teguran_controller {
             //print_r($result);exit;
             $temp = $result[0];
             $result_final=null;
-
+            $sebelum = 'Belum Bayar';
+            $sesudah = 'Belum Bayar';
             for ($i = 1; $i < count($result); $i++) {
                 if($temp['npwpd']==$result[$i]['npwpd']){
                     $temp = $result[$i];
