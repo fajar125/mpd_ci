@@ -153,7 +153,7 @@
         var p_finance_period_id = $('#form_finance_period_id').val();
         var form_finance_code = $('#form_finance_code').val();
         var vat_code = $('#form_vat_code').val();
-        alert(tanggal);
+        //alert(tanggal);
 
         if(p_vat_type_id == "" || p_year_period_id == "" || p_finance_period_id == ""){
             swal ( "Oopss" ,  "Kolom Filter Tidak Boleh Kosong!" ,  "error" );
