@@ -177,38 +177,53 @@
         var kode_bank = $('#kode_bank').val();
         var status = $('#status').val();
         var i_flag_setoran = $('#i_flag_setoran').val();
+        if(tgl_penerimaan == ""){
+            swal ( "Oopss" ,  "Kolom Tanggal Tidak Boleh Kosong!" ,  "error" );  
+        }else if(p_vat_type_id ==  ""){
+            swal ( "Oopss" ,  "Filter Harus Dipilih!" ,  "error" );         
+        }else{
+            jQuery(function($) {
+                var grid_selector = "#grid-table-bpps2";
+                //var pager_selector = "#grid-pager-bpps2";
 
-        jQuery(function($) {
-        var grid_selector = "#grid-table-bpps2";
-        //var pager_selector = "#grid-pager-bpps2";
+                jQuery("#grid-table-bpps2").jqGrid('setGridParam',{
+                    url: '<?php echo WS_JQGRID."pelaporan.t_rep_bpps2_controller/read"; ?>',
+                    postData: {p_vat_type_id: p_vat_type_id,
+                                tgl_penerimaan: tgl_penerimaan,
+                                i_flag_setoran: i_flag_setoran,
+                                kode_bank: kode_bank,
+                                status: status
+                            }
 
-            jQuery("#grid-table-bpps2").jqGrid('setGridParam',{
-                url: '<?php echo WS_JQGRID."pelaporan.t_rep_bpps2_controller/read"; ?>',
-                postData: {p_vat_type_id: p_vat_type_id,
-                            tgl_penerimaan: tgl_penerimaan,
-                            i_flag_setoran: i_flag_setoran,
-                            kode_bank: kode_bank,
-                            status: status
-                        }
+                });
 
+                $("#grid-table-bpps2").jqGrid("setCaption", "BPPS");
+                $("#grid-table-bpps2").trigger("reloadGrid");
             });
+        }
 
-            $("#grid-table-bpps2").jqGrid("setCaption", "BPPS");
-            $("#grid-table-bpps2").trigger("reloadGrid");
-        });
     });
 
     function toExcelBpps2() {
         // alert("Convert to Excel");
-        var url = "<?php echo WS_JQGRID . "pelaporan.t_rep_bpps2_controller/excel/?"; ?>";
-        url += "<?php echo $this->security->get_csrf_token_name(); ?>=<?php echo $this->security->get_csrf_hash(); ?>";
-        url += "&p_vat_type_id=" + $("#grid-table-bpps2").getGridParam("postData").p_vat_type_id;
-        url += "&tgl_penerimaan=" + $("#grid-table-bpps2").getGridParam("postData").tgl_penerimaan;
-        url += "&i_flag_setoran=" + $("#grid-table-bpps2").getGridParam("postData").i_flag_setoran;
-        url += "&kode_bank=" + $("#grid-table-bpps2").getGridParam("postData").kode_bank;
-        url += "&status=" + $("#grid-table-bpps2").getGridParam("postData").status;
+        var p_vat_type_id = $('#form_vat_id').val();
+        var tgl_penerimaan = $('#tgl_penerimaan').val();
 
-        window.location = url;
+        if(tgl_penerimaan == ""){
+            swal ( "Oopss" ,  "Kolom Tanggal Tidak Boleh Kosong!" ,  "error" );
+        }else if(p_vat_type_id ==  ""){
+            swal ( "Oopss" ,  "Filter Harus Dipilih!" ,  "error" );                
+        }else{
+            var url = "<?php echo WS_JQGRID . "pelaporan.t_rep_bpps2_controller/excel/?"; ?>";
+            url += "<?php echo $this->security->get_csrf_token_name(); ?>=<?php echo $this->security->get_csrf_hash(); ?>";
+            url += "&p_vat_type_id=" + $("#grid-table-bpps2").getGridParam("postData").p_vat_type_id;
+            url += "&tgl_penerimaan=" + $("#grid-table-bpps2").getGridParam("postData").tgl_penerimaan;
+            url += "&i_flag_setoran=" + $("#grid-table-bpps2").getGridParam("postData").i_flag_setoran;
+            url += "&kode_bank=" + $("#grid-table-bpps2").getGridParam("postData").kode_bank;
+            url += "&status=" + $("#grid-table-bpps2").getGridParam("postData").status;
+
+            window.location = url;
+        }
     }
 
 </script>

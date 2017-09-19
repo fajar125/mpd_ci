@@ -37,6 +37,7 @@ class pdf extends CI_Controller{
         $sql = "select * from f_rep_lap_harian_bdhr_mod_2(?,?) order by nomor_ayat";        
         $output = $this->db->query($sql, array($tgl_penerimaan, $kode_bank));
         $items = $output->result_array();
+        
 
         /*print_r($tgl_penerimaan); 
         print_r($kode_bank);*/
