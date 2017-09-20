@@ -230,48 +230,40 @@
         var jml_kamar = $('#qty_room_sold').val();
         var start_period = $('#valid_from').val();
         var end_period = $('#valid_to').val();
+        //alert(tipe_ayat);return;
+        if (cust_acc_id == "" || cust_acc_id == 0 || cust_acc_id == false || cust_acc_id == undefined ||  cust_acc_id == null){
+            swal('Informasi',"NPWPD harus diisi",'info'); 
+            return;
+        }
+        if (finance_period == "" || finance_period == 0 || finance_period == false || finance_period == undefined ||  finance_period == null){
+            swal('Informasi',"Periode Pelaporan Pajak harus diisi",'info'); 
+            return;
+        }
+        if (tipe_ayat == "" || tipe_ayat == 0 || tipe_ayat == false || tipe_ayat == undefined ||  tipe_ayat == null){
+            swal('Informasi',"Tipe Ayat harus diisi",'info'); 
+            return;
+        }
 
 
-        var url = "<?php echo WS_JQGRID . "transaksi.t_vat_setlement_manual_controller/insertUpdate/?"; ?>";
-        url += "<?php echo $this->security->get_csrf_token_name(); ?>=<?php echo $this->security->get_csrf_hash(); ?>";
-        url += "&t_cust_account_id=" + $("#grid-pager").getGridParam("postData").cust_acc_id;
-        url += "&p_finance_period_id=" + $("#grid-pager").getGridParam("postData").finance_period;
-        url += "&npwd=" + $("#grid-pager").getGridParam("postData").npwpd;
-        url += "&start_date=" + $("#grid-pager").getGridParam("postData").start_period;
-        url += "&end_date=" + $("#grid-pager").getGridParam("postData").end_period;
-        url += "&qty_room_sold=" + $("#grid-pager").getGridParam("postData").jml_kamar;
-        url += "&trans_amount=" + $("#grid-pager").getGridParam("postData").jml_omset;
-        url += "&p_vat_type_dtl_id=" + $("#grid-pager").getGridParam("postData").tipe_ayat;
-        url += "&p_vat_type_dtl_cls_id=" + $("#grid-pager").getGridParam("postData").kelas;
+        var var_url = "<?php echo WS_JQGRID . "transaksi.t_vat_setlement_manual_controller/insertUpdate/?"; ?>";
+        var_url += "<?php echo $this->security->get_csrf_token_name(); ?>=<?php echo $this->security->get_csrf_hash(); ?>";
+        var_url += "&t_cust_account_id=" + cust_acc_id;
+        var_url += "&p_finance_period_id=" + finance_period;
+        var_url += "&npwd=" + npwpd;
+        var_url += "&start_date=" + start_period;
+        var_url += "&end_date=" + end_period;
+        var_url += "&qty_room_sold=" + jml_kamar;
+        var_url += "&trans_amount=" + jml_omset;
+        var_url += "&p_vat_type_dtl_id=" + tipe_ayat;
+        var_url += "&p_vat_type_dtl_cls_id=" + kelas;
 
-        window.location = url;
-    }
-
+        //window.location = var_url;
         
-
-    //     jQuery(function($) {
-    //    // var grid_selector = "#grid-table-piutang";
-    //     //var pager_selector = "#grid-pager-bpps2";
-    //     /*
-
-    //     */
-
-    //         // jQuery("#grid-pager").jqGrid('setGridParam',{
-    //         //     url: '<?php //echo WS_JQGRID."transaksi.t_vat_setlement_manual_controller/insertUpdate"; ?>',
-    //         //     postData: {t_cust_account_id :cust_acc_id,
-                            // p_finance_period_id: finance_period,
-                            // npwd: npwpd,
-                            // start_date: start_period,
-                            // end_date: end_period,
-                            // qty_room_sold:jml_kamar,
-                            // trans_amount:jml_omset,
-                            // p_vat_type_dtl_id:tipe_ayat,
-                            // p_vat_type_dtl_cls_id:kelas
-    //         //             }
-
-    //         // });
-    //     });
-    // });
+        $.getJSON(var_url, function( items ) {
+            swal('Informasi',items.rows.o_mess,'info');                
+        })
+        
+    }
 
 </script>
 
