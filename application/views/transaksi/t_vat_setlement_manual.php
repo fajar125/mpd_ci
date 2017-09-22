@@ -128,7 +128,7 @@
                     <label class="control-label col-md-3">Jumlah Omset</label>
                     <div class="col-md-5">
                         <div class="input-group">
-                            <input type="text" class="form-control" name="total_trans_amount" id="total_trans_amount">                 
+                            <input type="number" class="form-control" name="total_trans_amount" id="total_trans_amount">                 
                         </div>
                     </div>
                 </div>
@@ -137,7 +137,7 @@
                     <label class="control-label col-md-3">Jumlah Kamar/Kursi Terjual</label>
                     <div class="col-md-5">
                         <div class="input-group">
-                            <input type="text" class="form-control" name="qty_room_sold" id="qty_room_sold">                 
+                            <input type="number" class="form-control" name="qty_room_sold" id="qty_room_sold">                 
                         </div>
                     </div>
                 </div>

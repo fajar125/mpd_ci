@@ -5,7 +5,7 @@
             <i class="fa fa-circle"></i>
         </li>
         <li>
-            <span>Pelaporan Pajak Manual SKPDN</span>
+            <span>SKPDKB JABATAN MANUAL</span>
         </li>
     </ul> 
 </div>
@@ -124,6 +124,24 @@
                     </div>
                 </div>
                 <div class="space-2"></div>
+                <div class="row">
+                    <label class="control-label col-md-3">Jumlah Omset</label>
+                    <div class="col-md-5">
+                        <div class="input-group">
+                            <input type="number" class="form-control" name="total_trans_amount" id="total_trans_amount">                 
+                        </div>
+                    </div>
+                </div>
+                <div class="space-2"></div>
+                <div class="row">
+                    <label class="control-label col-md-3">Jumlah Kamar/Kursi Terjual</label>
+                    <div class="col-md-5">
+                        <div class="input-group">
+                            <input type="number" class="form-control" name="qty_room_sold" id="qty_room_sold">                 
+                        </div>
+                    </div>
+                </div>
+                <div class="space-2"></div>
                 <div class="row col-md-offset-3">
                     <button class="btn btn-success" type="submit" id="btn-submit" onclick="save()">Simpan</button>
                 </div>
@@ -196,7 +214,9 @@
         var finance_period = $('#form_finance_period_id').val();
         var ayat = $('#form_vat_id').val();
         var tipe_ayat = $('#form_vat_dtl_id').val();
-        var kelas = $('#form_class_id').val();        
+        var kelas = $('#form_class_id').val();    
+        var jml_omset = $('#total_trans_amount').val();
+        var jml_kamar = $('#qty_room_sold').val();    
         var start_period = $('#valid_from').val();
         var end_period = $('#valid_to').val();
         //alert(tipe_ayat);return;
@@ -214,13 +234,15 @@
         }
 
 
-        var var_url = "<?php echo WS_JQGRID . "transaksi.t_vat_setllement_manual_skpd_nihil_controller/insertUpdate/?"; ?>";
+        var var_url = "<?php echo WS_JQGRID . "transaksi.t_vat_setllement_manual_skpdkb_jabatan_controller/insertUpdate/?"; ?>";
         var_url += "<?php echo $this->security->get_csrf_token_name(); ?>=<?php echo $this->security->get_csrf_hash(); ?>";
         var_url += "&t_cust_account_id=" + cust_acc_id;
         var_url += "&p_finance_period_id=" + finance_period;
         var_url += "&npwd=" + npwpd;
         var_url += "&start_date=" + start_period;
         var_url += "&end_date=" + end_period;
+        var_url += "&qty_room_sold=" + jml_kamar;
+        var_url += "&trans_amount=" + jml_omset;
         var_url += "&p_vat_type_dtl_id=" + tipe_ayat;
         var_url += "&p_vat_type_dtl_cls_id=" + kelas;
 
@@ -234,7 +256,7 @@
                       
            }else{
                 swal('Informasi',items.rows.o_mess,'info'); 
-                url = '<?php echo base_url(); ?>'+'cetak_formulir_skpd_nihil/pageCetak?t_cust_order_id='+items.rows.o_cust_order_id;
+                url = '<?php echo base_url(); ?>'+'cetak_formulir_skpdkb_jabatan/pageCetak?t_cust_order_id='+items.rows.o_cust_order_id;
                 openInNewTab(url);
 
            }

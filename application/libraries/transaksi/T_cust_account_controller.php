@@ -60,7 +60,7 @@ class T_cust_account_controller {
             $data['total'] = $total_pages;
             $data['records'] = $count;
 
-            $data['rows'] = $table->getAll();
+            $data['rows'] = $table->getAll(0, -1, 'company_brand_name', 'desc');
             $data['success'] = true;
             logging('view data vat');
         }catch (Exception $e) {
