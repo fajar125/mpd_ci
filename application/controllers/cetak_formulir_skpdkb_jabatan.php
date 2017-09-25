@@ -281,9 +281,9 @@ class cetak_formulir_skpdkb_jabatan extends CI_Controller{
 		$pdf->Cell($lbody3, $this->height, "", "BR", 0, 'L');*/
 		
 		$pdf->Ln();
-		//$this->tulis("I. Berdasarkan Pasal 65 ayat (2) dan (3) Peraturan Daerah KABUPATEN LOMBOK UTARA Nomor 20 Tahun 2011 tentang Pajak Daerah, telah dilakukan", "L");
+		//$this->tulis("I. Berdasarkan Pasal 65 ayat (2) dan (3) Peraturan Daerah Kota LOMBOK UTARA Nomor 20 Tahun 2011 tentang Pajak Daerah, telah dilakukan", "L");
 		$pdf->Cell(5, $this->height+2, "", "L", 0, 'C');
-		$pdf->Cell($this->lengthCell - 10, $this->height+2, "I. Berdasarkan Pasal 65 ayat (2) dan (3) Peraturan Daerah KABUPATEN LOMBOK UTARA Nomor 20 Tahun 2011 tentang Pajak Daerah, telah dilakukan", "", 0, "L");
+		$pdf->Cell($this->lengthCell - 10, $this->height+2, "I. Berdasarkan Pasal 65 ayat (2) dan (3) Peraturan Daerah Kota LOMBOK UTARA Nomor 20 Tahun 2011 tentang Pajak Daerah, telah dilakukan", "", 0, "L");
 		$pdf->Cell(5, $this->height+2, "", "R", 0, 'C');
 		$pdf->Ln();
 		
@@ -479,7 +479,7 @@ class cetak_formulir_skpdkb_jabatan extends CI_Controller{
 		$pdf->Ln();
 		
 		$pdf->Cell($lbody3 - 10, $this->height, "", "L", 0, 'L');
-		$pdf->Cell($lbody1 + 10, $this->height, "KABUPATEN LOMBOK UTARA", "R", 0, 'C');
+		$pdf->Cell($lbody1 + 10, $this->height, "KOTA LOMBOK UTARA", "R", 0, 'C');
 		$this->newLine();
 		$pdf->Cell($this->lengthCell, $this->height, "", "LR", 0, 'L');
 		$pdf->Ln();
@@ -509,7 +509,7 @@ class cetak_formulir_skpdkb_jabatan extends CI_Controller{
 		
 		
 		$pdf->SetFont('Arial', '', 8);
-		$pdf->Image('images/logo_lombok.png',12,15,20,20);
+		$pdf->Image('images/logo_lombok.png',16,230,12,12);
 		$pdf->Cell($lheader1,$this->height-1, "", "LT", 0, 'C');			
 		$pdf->Cell($lheader2, $this->height-1, "PEMERINTAH KABUPATEN", "RT", 0, 'C');
 		$pdf->SetFont('Arial', '', 10);
@@ -528,7 +528,7 @@ class cetak_formulir_skpdkb_jabatan extends CI_Controller{
 		
 		$pdf->Cell($lheader1, $this->height-2, "", "L", 0, 'C');	
 		$pdf->Cell($lheader2, $this->height-2, "DINAS PELAYANAN PAJAK", "R", 0, 'C');
-		$pdf->Cell($lheader3, $this->height-2, "     Masa Pajak    : ".$data["finance_period_code"], "R", 0, 'L');
+		$pdf->Cell($lheader3, $this->height-2, "     Masa Pajak    : ".$data["fin_code"], "R", 0, 'L');
 		$pdf->Cell($lheader2, $this->height-2, "", "R", 0, 'C');
 		$pdf->Ln($this->height -2);
 		
@@ -536,14 +536,14 @@ class cetak_formulir_skpdkb_jabatan extends CI_Controller{
 		// No Urut
 		$pdf->Cell($lheader2 + $lheader4 + 1, $this->height-2, "", "R", 0, 'C');
 		$no_urut = str_split($data["order_no"]);
-		$this->kotak(1, 34, 1, $no_urut[0],$pdf);
-		$this->kotak(1, 34, 1, $no_urut[1],$pdf);
-		$this->kotak(1, 34, 1, $no_urut[2],$pdf);
-		$this->kotak(1, 34, 1, $no_urut[3],$pdf);
-		$this->kotak(1, 34, 1, $no_urut[4],$pdf);
-		$this->kotak(1, 34, 1, $no_urut[5],$pdf);
-		$this->kotak(1, 34, 1, $no_urut[6],$pdf);
-		$this->kotak(1, 34, 1, $no_urut[7],$pdf);
+		$this->kotak(1, 34, 1, $no_urut[0], $pdf);
+		$this->kotak(1, 34, 1, $no_urut[1], $pdf);
+		$this->kotak(1, 34, 1, $no_urut[2], $pdf);
+		$this->kotak(1, 34, 1, $no_urut[3], $pdf);
+		$this->kotak(1, 34, 1, $no_urut[4], $pdf);
+		$this->kotak(1, 34, 1, $no_urut[5], $pdf);
+		$this->kotak(1, 34, 1, $no_urut[6], $pdf);
+		$this->kotak(1, 34, 1, $no_urut[7], $pdf);
 		$pdf->Ln($this->height-5);
 		
 		$pdf->Cell($lheader1, $this->height-1, "", "L", 0, 'C');	
@@ -579,13 +579,18 @@ class cetak_formulir_skpdkb_jabatan extends CI_Controller{
 		
 		$pdf->Cell(5, $this->height, "", "L", 0, 'L');
 		$pdf->Cell($lbody1 - 5, $this->height, "NPWPD", "", 0, 'L');
-		$pdf->Cell($lbody3, $this->height, ": " . $data["npwd"], "R", 0, 'L');
+		$pdf->Cell($lbody3, $this->height, ": " . $data["npwd_2"], "R", 0, 'L');
 		$pdf->Ln($this->height-2);
 		
 		$pdf->Cell(5, $this->height, "", "L", 0, 'L');
 		$pdf->Cell($lbody1 - 5, $this->height, "Tanggal jatuh tempo", "", 0, 'L');
-		$pdf->Cell($lbody3-$lbody1 - 10, $this->height, ": ".$data["due_date"], "", 0, 'L');
-		$pdf->Cell($lbody1 + 10, $this->height, "LOMBOK UTARA, " . $data["tgl_setllement"], "R", 0, 'C');
+		$pdf->Cell($lbody3-$lbody1 - 10, $this->height, ": ".$data["due_date_2"], "", 0, 'L');
+		$tgl = getVarClean('start_date','str','');
+		if ($tgl == ''){
+			$pdf->Cell($lbody1 + 10, $this->height, "LOMBOK UTARA, " . $data["tgl_setllement"], "R", 0, 'C');
+		}else{
+			$pdf->Cell($lbody1 + 10, $this->height, "LOMBOK UTARA, " . $tgl, "R", 0, 'C');
+		}
 		$pdf->Ln($this->height-2);
 		$pdf->Cell($lbody3 - 10, $this->height, "", "L", 0, 'L');
 		$pdf->Cell($lbody1 + 10, $this->height, "Yang Menerima, ", "R", 0, 'C');
@@ -605,16 +610,16 @@ class cetak_formulir_skpdkb_jabatan extends CI_Controller{
 		$pdf->Ln();
 	}
 	
-	function kotakKosong($pembilang, $penyebut, $jumlahkotak, $pdf){
+	function kotakKosong($pembilang, $penyebut, $jumlahKotak, $pdf){
 		$lkotak = $pembilang / $penyebut * $this->lengthCell;
-		for($i = 0; $i < $jumlahkotak; $i++){
+		for($i = 0; $i < $jumlahKotak; $i++){
 			$pdf->Cell($lkotak, $this->height, "", "LR", 0, 'L');
 		}
 	}
 	
-	function kotak($pembilang, $penyebut, $jumlahkotak, $isi, $pdf){
+	function kotak($pembilang, $penyebut, $jumlahKotak, $isi, $pdf){
 		$lkotak = $pembilang / $penyebut * $this->lengthCell;
-		for($i = 0; $i < $jumlahkotak; $i++){
+		for($i = 0; $i < $jumlahKotak; $i++){
 			$pdf->Cell($lkotak, $this->height, $isi, "TBLR", 0, 'C');
 		}
 	}
