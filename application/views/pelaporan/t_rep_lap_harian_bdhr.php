@@ -71,7 +71,7 @@
         if(tgl_penerimaan == ""){
             swal ( "Oopss" ,  "Kolom Tanggal Tidak Boleh Kosong!" ,  "error" );           
         }else{
-            url = '<?php echo base_url(); ?>'+'pdf/save_pdf_t_rep_lap_harian/'+'BDHR'+'/'+tgl_penerimaan+'/'+kode_bank;
+            url = '<?php echo base_url(); ?>'+'pdf_lap_bdhr/save_pdf_t_rep_lap_bdhr/'+tgl_penerimaan+'/'+kode_bank;
             openInNewTab(url);
 
         }
