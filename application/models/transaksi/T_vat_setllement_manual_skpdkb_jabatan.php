@@ -64,7 +64,7 @@ class T_vat_setllement_manual_skpdkb_jabatan extends Abstract_model {
 
         $sql = "SELECT * FROM f_vat_settlement_manual_skpdkb_jabatan(?,?,?,?,?,?,?,?,?,?)";
 
-        $query = $this->db->query($sql, array($cust_acc_id,$period,$npwd,$ms_start,$ms_end,$p_vat_type_dtl_id,$p_vat_type_dtl_cls_id,$userdata['app_user_name']));
+        $query = $this->db->query($sql, array($cust_acc_id,$period,$npwd,$ms_start,$ms_end,$kamar,$tot,$p_vat_type_dtl_id,$p_vat_type_dtl_cls_id,$userdata['app_user_name']));
         $item = $query->row_array();
         if(!$item['o_cust_order_id'] == 0 && !$item['o_cust_order_id'] == ""){
             $sql2 = "select * from f_first_submit_engine_2step( 501, ".$item['o_cust_order_id'].", '".$userdata['app_user_name']."')";

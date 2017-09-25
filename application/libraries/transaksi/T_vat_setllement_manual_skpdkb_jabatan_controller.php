@@ -15,6 +15,8 @@ class T_vat_setllement_manual_skpdkb_jabatan_controller {
         $npwd = getVarClean('npwd','str','');
         $start_date = getVarClean('start_date','str','');
         $end_date = getVarClean('end_date','str',''); 
+        $qty_room_sold = getVarClean('qty_room_sold','int',0);
+        $trans_amount = getVarClean('trans_amount','int',0);
         $p_vat_type_dtl_id = getVarClean('p_vat_type_dtl_id','int',0); 
         $p_vat_type_dtl_cls_id = getVarClean('p_vat_type_dtl_cls_id','int',0);        
 
@@ -26,7 +28,7 @@ class T_vat_setllement_manual_skpdkb_jabatan_controller {
             $ci->load->model('transaksi/t_vat_setllement_manual_skpdkb_jabatan');
             $table = $ci->t_vat_setllement_manual_skpdkb_jabatan;
 
-            $result = $table->insertUpdate($t_cust_account_id,$p_finance_period_id,$npwd,$start_date,$end_date,$p_vat_type_dtl_id,$p_vat_type_dtl_cls_id ) ;
+            $result = $table->insertUpdate($t_cust_account_id,$p_finance_period_id,$npwd,$start_date,$end_date,$qty_room_sold,$trans_amount,$p_vat_type_dtl_id,$p_vat_type_dtl_cls_id) ;
             $count = count($result);
 
             $data['rows'] = $result;
