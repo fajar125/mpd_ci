@@ -4,7 +4,7 @@
 * @class vats_controller
 * @version 07/05/2015 12:18:00
 */
-class T_piutang_skpdkb_nihil_controller {
+class T_piutang_skpdkb_controller {
 
     function read() {
 
@@ -18,8 +18,8 @@ class T_piutang_skpdkb_nihil_controller {
         try {
 
             $ci = & get_instance();
-            $ci->load->model('transaksi/t_piutang_skpdkb_nihil');
-            $table = $ci->t_piutang_skpdkb_nihil;
+            $ci->load->model('transaksi/t_piutang_skpdkb');
+            $table = $ci->t_piutang_skpdkb;
 
 
             
@@ -41,6 +41,8 @@ class T_piutang_skpdkb_nihil_controller {
                 }
             }
 
+            
+
             $req_param = array(
                 "sort_by" => $sidx,
                 "sord" => $sord,
@@ -58,7 +60,7 @@ class T_piutang_skpdkb_nihil_controller {
             // Filter Table
 
             $req_param['where'] = array();
-            $req_param['where'][] = "x.p_settlement_type_id = 3";
+            $req_param['where'][] = "x.p_settlement_type_id = 2";
 
             $table->setJQGridParam($req_param);
             $count = $table->countAll();

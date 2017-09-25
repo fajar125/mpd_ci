@@ -6,7 +6,7 @@
             <i class="fa fa-circle"></i>
         </li>
         <li>
-            <span>Piutang SKPDKB Nihil</span>
+            <span>Piutang SKPDKB Pemeriksaan</span>
         </li>
     </ul>
 </div>
@@ -26,7 +26,7 @@
         var pager_selector = "#grid-pager";
 
         jQuery("#grid-table").jqGrid({
-            url: '<?php echo WS_JQGRID."transaksi.t_piutang_skpdkb_nihil_controller/read"; ?>',
+            url: '<?php echo WS_JQGRID."transaksi.t_piutang_skpdkb_controller/read"; ?>',
             datatype: "json",
             mtype: "POST",
             colModel: [
@@ -42,8 +42,8 @@
                 {name: 'Options',width: 200, align: "center",
                     formatter:function(cellvalue, options, rowObject) {
                         var val = rowObject['t_customer_order_id'];
-                        var url = '<?php echo base_url(); ?>'+'cetak_formulir_skpd_nihil/pageCetak?t_cust_order_id='+val;
-                        return '<a class="btn btn-danger btn-xs" href="#" onclick="PopupCenter(\''+url+'\',\'SKPDKB Nihil\',500,500);"><i class="fa fa-print"></i>Print</a>';
+                        var url = '<?php echo base_url(); ?>'+'cetak_formulir_sptpd/pageCetak?t_cust_order_id='+val;
+                        return '<a class="btn btn-danger btn-xs" href="#" onclick="PopupCenter(\''+url+'\',\'SKPDKB Jabatan\',500,500);"><i class="fa fa-print"></i>Print</a>';
 
                     }
                 }
@@ -78,8 +78,8 @@
 
             },
             //memanggil controller jqgrid yang ada di controller crud
-            editurl: '<?php echo WS_JQGRID."transaksi.t_piutang_skpdkb_nihil_controller/read"; ?>',
-            caption: "Piutang SKPDKB Nihil"
+            editurl: '<?php echo WS_JQGRID."transaksi.t_piutang_skpdkb_controller/read"; ?>',
+            caption: "Piutang SKPDKB Pemeriksaan"
 
         });
 

@@ -33,7 +33,7 @@
                     <label class="control-label col-md-3">Nama</label>
                     <div class="col-md-5">
                         <div class="input-group">
-                            <input type="text" class="form-control" name="company_brand" id="company_brand" readonly style="width: 260px">                 
+                            <input type="text" class="form-control" name="company_brand" id="company_brand" readonly style="width: 410px">                 
                         </div>
                     </div>
                 </div>
@@ -232,6 +232,15 @@
             swal('Informasi',"Tipe Ayat harus diisi",'info'); 
             return;
         }
+        if (jml_omset == "" || jml_omset == 0 || jml_omset == false || jml_omset == undefined ||  jml_omset == null){
+            swal('Informasi',"Jumlah Omset harus diisi",'info'); 
+            return;
+        }
+        if (jml_kamar == "" || jml_kamar == 0 || jml_kamar == false || jml_kamar == undefined ||  jml_kamar == null){
+            swal('Informasi',"Jumlah Kamar/Kursi Terjual harus diisi",'info'); 
+            return;
+        }
+
 
 
         var var_url = "<?php echo WS_JQGRID . "transaksi.t_vat_setllement_manual_skpdkb_jabatan_controller/insertUpdate/?"; ?>";

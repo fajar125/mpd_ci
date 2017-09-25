@@ -33,7 +33,7 @@
                     <label class="control-label col-md-3">Nama</label>
                     <div class="col-md-5">
                         <div class="input-group">
-                            <input type="text" class="form-control" name="company_brand" id="company_brand" readonly style="width: 260px">                 
+                            <input type="text" class="form-control" name="company_brand" id="company_brand" readonly style="width: 410px">                 
                         </div>
                     </div>
                 </div>
