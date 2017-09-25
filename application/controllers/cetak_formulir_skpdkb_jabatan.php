@@ -303,8 +303,8 @@ class cetak_formulir_skpdkb_jabatan extends CI_Controller{
 		
 		// Ayat Pajak
 		$pdf->Cell($lbody1 + 3, $this->height, ":", "L", 0, 'R');
-		if(!empty($data["vat_code1"])) {
-			$arr_ayat = str_split($data["vat_code1"]);
+		if(!empty($data["vat_code"])) {
+			$arr_ayat = str_split($data["vat_code"]);
 		} else {
 			$arr_ayat = array();
 			$this->kotak(1, 45, 1," - ", $pdf);
