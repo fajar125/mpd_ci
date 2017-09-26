@@ -61,4 +61,24 @@ class Home extends CI_Controller
         }
     }
 
+    function load_combo_dok_pendukung (){
+        $sql = "select p_bphtb_legal_doc_type_id,code
+                    from p_bphtb_legal_doc_type bphtb_legal
+                 left join p_legal_doc_type legal 
+                  on legal.p_legal_doc_type_id = bphtb_legal.p_legal_doc_type_id
+                ";
+        $query = $this->db->query($sql);
+        $items = $query->result_array();
+        $html = "";
+        $html.="<select name='in_dok_pendukung_objek' id='in_dok_pendukung_objek' class='form-control'>";
+        $html.="<option value='' >Select Value</option>";
+        foreach ($items as $data) {
+          $html .=" <option value='" . $data['p_bphtb_legal_doc_type_id'] . "'>" . $data['code'] . "</option>";
+        }
+        $html .= "</select>";
+
+        echo $html;
+        exit;
+    }
+
 }

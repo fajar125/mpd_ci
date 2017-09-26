@@ -17,7 +17,7 @@
             <div class="portlet-title">
                 <div class="caption">
                     <i class=" icon-list font-blue"></i>
-                    <span class="caption-subject font-blue bold uppercase"> List BPHTB
+                    <span class="caption-subject font-blue bold uppercase"> Daftar BPHTB
                     </span>
                 </div>
             </div>
@@ -41,7 +41,7 @@
 <script>
 
     $('#add-bphtb').on('click', function(event){
-        alert ('tes');
+        loadContentWithParams('trans.t_bphtb_registration', {});
 
     });
 
@@ -126,7 +126,7 @@
             },
             //memanggil controller jqgrid yang ada di controller crud
             editurl: '<?php echo WS_JQGRID."trans.t_bphtb_registration_list_controller/read"; ?>',
-            caption: "List BPHTB"
+            caption: "Daftar BPHTB"
 
         });
 
