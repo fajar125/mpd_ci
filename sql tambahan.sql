@@ -60,3 +60,17 @@ UPDATE sikp.p_app_user SET p_user_status_id =1 where p_app_user_id=1;
 UPDATE "sikp"."p_app_menu" SET "file_name"='administration.p_application' WHERE ("p_app_menu_id"='7');
 UPDATE "sikp"."p_app_menu" SET "file_name"='administration.p_app_user' WHERE ("p_app_menu_id"='8');
 UPDATE "sikp"."p_app_menu" SET "file_name"='administration.p_app_role' WHERE ("p_app_menu_id"='6');
+
+--tambahan di global param untuk logo, nama dan alamat instansi
+
+INSERT INTO "sikp"."p_global_param" ("p_global_param_id", "code", "value", "type_1", "is_range", "description", "creation_date", "created_by", "updated_date", "updated_by") VALUES (generate_id('sikp', 'p_global_param', 'p_global_param_id'), 'ALAMAT_1', 'Jalan Wastukancana No.2', 'N', 'N', 'ALAMAT PEMKOT LOMBOK', '2017-09-25 16:39:29', 'ADMIN', '2017-09-25 16:39:36', 'ADMIN');
+
+INSERT INTO "sikp"."p_global_param" ("p_global_param_id", "code", "value", "type_1", "is_range", "description", "creation_date", "created_by", "updated_date", "updated_by") VALUES (generate_id('sikp', 'p_global_param', 'p_global_param_id'), 'ALAMAT_2', 'Telp. 022-4235052 - Lombok Utara', 'N', 'N', 'ALAMAT PEMKOT LOMBOK', '2017-09-25 16:39:29', 'ADMIN', '2017-09-25 16:39:36', 'ADMIN');
+
+INSERT INTO "sikp"."p_global_param" ("p_global_param_id", "code", "value", "type_1", "is_range", "description", "creation_date", "created_by", "updated_date", "updated_by") VALUES (generate_id('sikp', 'p_global_param', 'p_global_param_id'), 'ALAMAT_3', 'Lombok Utara', 'N', 'N', 'ALAMAT PEMKOT LOMBOK', '2017-09-25 16:39:29', 'ADMIN', '2017-09-25 16:39:36', 'ADMIN');
+
+INSERT INTO "sikp"."p_global_param" ("p_global_param_id", "code", "value", "type_1", "is_range", "description", "creation_date", "created_by", "updated_date", "updated_by") VALUES (generate_id('sikp', 'p_global_param', 'p_global_param_id'), 'LOGO', 'images/logo_lombok.png', 'N', 'N', 'LOGO PEMKOT LOMBOK', '2017-09-25 16:39:29', 'ADMIN', '2017-09-25 16:39:36', 'ADMIN');
+
+INSERT INTO "sikp"."p_global_param" ("p_global_param_id", "code", "value", "type_1", "is_range", "description", "creation_date", "created_by", "updated_date", "updated_by") VALUES (generate_id('sikp', 'p_global_param', 'p_global_param_id'), 'INSTANSI_1', 'PEMERINTAH KABUPATEN LOMBOK UTARA', 'N', 'N', 'NAMA PEMKOT LOMBOK', '2017-09-25 16:39:29', 'ADMIN', '2017-09-25 16:39:36', 'ADMIN');
+
+INSERT INTO "sikp"."p_global_param" ("p_global_param_id", "code", "value", "type_1", "is_range", "description", "creation_date", "created_by", "updated_date", "updated_by") VALUES (generate_id('sikp', 'p_global_param', 'p_global_param_id'), 'INSTANSI_2', 'BADAN PENGELOLAAN PENDAPATAN DAERAH', 'N', 'N', 'NAMA PEMKOT LOMBOK', '2017-09-25 16:39:29', 'ADMIN', '2017-09-25 16:39:36', 'ADMIN');
