@@ -59,6 +59,27 @@ class Transaksi extends CI_Controller
 
 
     }
+
+    function payment_type_combo(){
+        try {
+            $sql = "SELECT * 
+                        FROM p_payment_type
+                        ORDER BY p_payment_type_id ASC";
+            $query = $this->db->query($sql);
+
+            $items = $query->result_array();
+            echo '<select id="payment_type" name="payment_type" class="FormElement form-control"> <option value="0" selected>--Pilih Jenis Pembayaran--</option>';
+            foreach($items  as $item ){
+                echo '<option value="'.$item['p_payment_type_id'].'">'.$item['code'].'</option>';
+            }
+            echo '</select>';
+            exit;
+        } catch (Exception $e) {
+            echo $e->getMessage();
+            exit;
+        }
+        
+    }
     
 
 }

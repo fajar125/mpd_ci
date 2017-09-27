@@ -5,7 +5,7 @@
             <i class="fa fa-circle"></i>
         </li>
         <li>
-            <span>BPPS</span>
+            <span>LAPORAN HISTORY POTENSI PIUTANG JENIS-JENIS KETETAPAN TGL TAP</span>
         </li>
     </ul> 
 </div>

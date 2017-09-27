@@ -74,3 +74,190 @@ INSERT INTO "sikp"."p_global_param" ("p_global_param_id", "code", "value", "type
 INSERT INTO "sikp"."p_global_param" ("p_global_param_id", "code", "value", "type_1", "is_range", "description", "creation_date", "created_by", "updated_date", "updated_by") VALUES (generate_id('sikp', 'p_global_param', 'p_global_param_id'), 'INSTANSI_1', 'PEMERINTAH KABUPATEN LOMBOK UTARA', 'N', 'N', 'NAMA PEMKOT LOMBOK', '2017-09-25 16:39:29', 'ADMIN', '2017-09-25 16:39:36', 'ADMIN');
 
 INSERT INTO "sikp"."p_global_param" ("p_global_param_id", "code", "value", "type_1", "is_range", "description", "creation_date", "created_by", "updated_date", "updated_by") VALUES (generate_id('sikp', 'p_global_param', 'p_global_param_id'), 'INSTANSI_2', 'BADAN PENGELOLAAN PENDAPATAN DAERAH', 'N', 'N', 'NAMA PEMKOT LOMBOK', '2017-09-25 16:39:29', 'ADMIN', '2017-09-25 16:39:36', 'ADMIN');
+
+CREATE OR REPLACE FUNCTION sikp.f_payment_manual_paymentkey_v3(
+    i_customer_order_id numeric,
+    i_user_name character varying,
+    i_payment_type_id numeric,
+    OUT o_cust_order_id numeric,
+    OUT o_mess character varying)
+  RETURNS record AS
+$BODY$
+
+declare
+    ln_x  numeric(5);
+    ln_month numeric(2);
+    ln_fin_period_id numeric(8);
+    ln_cust_acc_id   numeric(10);
+    ls_vat_code varchar(64);
+    ls_period_code  varchar(1000);
+    ls_company_name varchar(128);
+    ls_company_brand varchar(128);
+    ln_pay_rec_id   numeric(12);
+    ls_receipt_no   varchar(128);
+    ln_vat_setlement_id numeric(10);
+    ls_bit_48       Varchar2(3000);
+    ls_receipt_print Varchar2(3000);
+    ls_coa_code      Varchar2(32);
+    ls_vat_setlement_id Varchar2(32);
+    ls_sms_return    Varchar2(4000);
+    ls_no_hp         varchar2(80);
+    ldt_start_date   date;
+    ln_count         Number(10);
+    ldt_payment_date date;
+    ln_p_vat_type_dtl_id number(5);
+    ln_penalty_amt   Number(16,2);
+    lnx_p_vat_type_dtl_id number(5);
+    ls_npwd          Varchar2(32);
+    ln_vat_amt   Number(16,2);
+    ln_payment_amount Number(16,2);
+    ls_payment_amount Varchar2(64);
+    o_ret_code        Varchar2(500);
+    ls_no_kohir       Varchar2(32);
+BEGIN
+	o_cust_order_id :=0;
+    Select a.t_vat_setllement_id  , 
+           nvl(x.penalty_amt,0) , 
+           a.p_vat_type_dtl_id ,
+           a.npwd ,
+           a.payment_key,
+           nvl(b.kode_jns_pjk||'.'||b.type_ayat,'-'),
+           a.t_cust_account_id,
+           nvl(a.total_vat_amount,0) , 
+           a.p_finance_period_id
+    Into ln_vat_setlement_id , 
+         ln_penalty_amt, 
+         lnx_p_vat_type_dtl_id ,
+         ls_npwd,
+         ls_no_kohir,
+         ls_coa_code,
+         ln_cust_acc_id,
+         ln_vat_amt,
+         ln_fin_period_id
+    From t_vat_setllement a, v_p_vat_type_dtl_rep  b, t_vat_penalty x
+    Where t_customer_order_id = i_customer_order_id 
+          and a.p_vat_type_dtl_id = b.p_vat_type_dtl_id (+)  
+          and a.t_vat_setllement_id =  x.t_vat_setllement_id (+) 
+          ; 
+
+    select count(*) into ln_count
+    from t_payment_receipt
+    where t_vat_setllement_id = ln_vat_setlement_id ;
+
+    if ln_count > 0 then
+       o_mess := 'Proses dibatalkan. Flag Pembayaran sudah pernah dilakukan.';
+       o_cust_order_id:=0;
+       return;
+    end if;
+
+    begin
+       select code into ls_period_code
+       from p_finance_period
+       where p_finance_period_id = ln_fin_period_id ;
+       exception
+          when others then
+             ls_period_code := '-';
+    end;
+
+    ln_payment_amount := ln_vat_amt + ln_penalty_amt;
+    ls_payment_amount := trim(to_char(ln_payment_amount,'999,999,999,999,999.99'));
+    --start payment 
+    Begin
+             select t_payment_receipt_seq.nextval into ln_pay_rec_id from dual; 
+             ldt_payment_date := sysdate; 
+             --ls_receipt_no := to_char(ldt_payment_date,'yyyymmdd-hh24:mi:ss')||'-'||ls_payment_amount||'-'||ls_coa_code ||'-'||ls_npwd||'-'||ls_no_kohir;--lpad(to_char(ln_pay_rec_id),12,'0');
+             ls_receipt_no := 'M-'||lpad(to_char(ln_pay_rec_id),9,'0')||'-'||to_char(ldt_payment_date,'yyyymmdd');
+             --o_ret_code := ls_receipt_no ;
+             --return;
+             ldt_payment_date := sysdate;
+	     insert into t_payment_receipt 
+	         (t_payment_receipt_id,
+                  receipt_no          ,
+                  payment_date        ,
+                  t_cust_account_id   ,
+                  p_cg_terminal_id    ,
+                  product_code        ,
+                  npwd                ,
+                  payment_amount      ,
+                  payment_vat_amount  ,
+                  t_vat_setllement_id ,
+                  p_finance_period_id ,
+                  finance_period_code ,
+                  trace_no ,
+                  penalty_amount,
+                  p_vat_type_dtl_id,
+                  p_payment_type_id,
+                  kode_cabang,
+                  kode_bank                  
+	         )
+	      values
+	         (ln_pay_rec_id ,
+                  ls_receipt_no,
+                  ldt_payment_date,
+                  ln_cust_acc_id,
+                  substr(i_user_name,1,32),
+                  ls_coa_code,
+                  ls_npwd,
+                  ln_payment_amount,
+                  ln_vat_amt,
+                  ln_vat_setlement_id, 
+                  ln_fin_period_id,
+                  ls_period_code,
+                  to_char(ln_pay_rec_id) ,
+                  ln_penalty_amt,
+                  lnx_p_vat_type_dtl_id,
+                  i_payment_type_id,
+                  '0000',
+                  '0000'
+	         );
+	         
+	     update t_vat_setllement
+	     set is_settled = 'Y'
+	     where t_vat_setllement_id = ln_vat_setlement_id;
+	     
+	     --commit;
+		BEGIN
+				select trim(t_cust_account.mobile_no) into ls_no_hp from t_cust_account where t_cust_account_id = ln_cust_acc_id;
+		EXCEPTION
+				when OTHERS then
+				ls_no_hp = null;
+		end;
+	  if length(ls_no_hp) > 6 then
+	     --Disyanjak Kota Bandung Terimakasih atas pembayaran pajak hotel sebesar Rp xxxx pada dd-mm-yyyy hh24:mi:ss dengan nomer ref: xxxxxxx www.disyanjak.bandung.go.id
+	     --select f_send_sms(ls_no_hp,'Disyanjak Kota Bandung : Terimakasih atas pembayaran '||||' sebesar Rp '||to_char(i_payment_amount)||' pada '||to_char(ldt_payment_date,'dd-mm-yyyy hh24:mi:ss') ||' dengan nomor ref '||  ls_receipt_no||'.  www.disyanjak.bandung.go.id')   into ls_sms_return;
+	     --select f_send_sms(ls_no_hp,'Terikasih atas pembayaran pajak anda sebesar Rp. '||to_char(i_payment_amount))   into ls_sms_return;
+				--select f_send_sms_new(ls_npwd,ls_no_hp,'Disyanjak Kota Bandung : Terimakasih atas pembayaran '||||' sebesar Rp '||to_char(i_payment_amount)||' pada '||to_char(ldt_payment_date,'dd-mm-yyyy hh24:mi:ss') ||' dengan nomor ref '||  ls_receipt_no||'.  www.disyanjak.bandung.go.id')into ls_sms_return;
+			INSERT INTO t_sms_outbox(
+							npwpd, 
+							mobile_no, 
+							message, 
+							is_sent, 
+							date_added,
+							message_type)
+			VALUES (ls_npwd, 
+							ls_no_hp, 
+							'Terimakasih atas pembayaran Pajak Daerah Anda'||' sebesar Rp '||to_char(ls_payment_amount)||' pada '||to_char(ldt_payment_date,'dd-mm-yyyy hh24:mi:ss') ||' dengan nomor bayar '||  ls_no_kohir||'. BANDUNG JUARA', 
+							'N', 
+							sysdate,
+							'IMMIDIATEDLY');
+			--NULL;
+		end if;
+	  exception
+	    when no_data_found then
+	        o_mess :='Flag Pembayaran Gagal dengan pesan :'||sqlerrm;
+	        o_cust_order_id := 0;
+                Return ;--o_ret_code;
+     End ;
+      
+      o_mess := 'Flag Pembayaran Berhasil.';
+      o_cust_order_id := i_customer_order_id;
+      exception
+        when OTHERS then
+           o_mess  :='Pembayaran Gagal dengan pesan -:'||sqlerrm;
+           o_cust_order_id := 0;
+           --o_ret_code;
+           Return ; 
+   End;
+$BODY$
+  LANGUAGE plpgsql VOLATILE
+  COST 100;
