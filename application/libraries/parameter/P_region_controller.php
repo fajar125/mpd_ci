@@ -394,6 +394,129 @@ class P_region_controller {
         echo json_encode($data);
         exit;
     }
+
+
+    function readLovKota() {
+
+        $start = getVarClean('current','int',0);
+        $limit = getVarClean('rowCount','int',5);
+
+        $sort = getVarClean('sort','str','p_region_id');
+        $dir  = getVarClean('dir','str','asc');
+
+        $searchPhrase = getVarClean('searchPhrase', 'str', '');
+
+        $data = array('rows' => array(), 'success' => false, 'message' => '', 'current' => $start, 'rowCount' => $limit, 'total' => 0);
+
+        try {
+
+            $ci = & get_instance();
+            $ci->load->model('parameter/p_region');
+            $table = $ci->p_region;
+
+            if(!empty($searchPhrase)) {
+                $table->setCriteria("(upper(region_name) ".$table->likeOperator." upper('%".$searchPhrase."%')
+                                    OR upper(a.description) ".$table->likeOperator." upper('%".$searchPhrase."%'))");
+            }
+            $table->setCriteria("(p_region_level_id = 3
+                                    OR p_region_level_id = 4)");
+
+            $start = ($start-1) * $limit;
+            $items = $table->getAll($start, $limit, $sort, $dir);
+            $totalcount = $table->countAll();
+
+            $data['rows'] = $items;
+            $data['success'] = true;
+            $data['total'] = $totalcount;
+
+        }catch (Exception $e) {
+            $data['message'] = $e->getMessage();
+        }
+
+        return $data;
+    }
+
+    function readLovkecamatan() {
+
+        $start = getVarClean('current','int',0);
+        $limit = getVarClean('rowCount','int',5);
+
+        $sort = getVarClean('sort','str','p_region_id');
+        $dir  = getVarClean('dir','str','asc');
+        $parent_region_id = getVarClean('the_parent_field', 'int', null);
+
+        $searchPhrase = getVarClean('searchPhrase', 'str', '');
+
+        $data = array('rows' => array(), 'success' => false, 'message' => '', 'current' => $start, 'rowCount' => $limit, 'total' => 0);
+
+        try {
+
+            $ci = & get_instance();
+            $ci->load->model('parameter/p_region');
+            $table = $ci->p_region;
+
+            if(!empty($searchPhrase)) {
+                $table->setCriteria("(upper(region_name) ".$table->likeOperator." upper('%".$searchPhrase."%')
+                                    OR upper(a.description) ".$table->likeOperator." upper('%".$searchPhrase."%'))");
+            }
+            $table->setCriteria("p_region_level_id = 5");
+            $table->setCriteria("parent_id = ".$parent_region_id);
+
+            $start = ($start-1) * $limit;
+            $items = $table->getAll($start, $limit, $sort, $dir);
+            $totalcount = $table->countAll();
+
+            $data['rows'] = $items;
+            $data['success'] = true;
+            $data['total'] = $totalcount;
+
+        }catch (Exception $e) {
+            $data['message'] = $e->getMessage();
+        }
+
+        return $data;
+    }
+
+    function readLovkelurahan() {
+
+        $start = getVarClean('current','int',0);
+        $limit = getVarClean('rowCount','int',5);
+
+        $sort = getVarClean('sort','str','p_region_id');
+        $dir  = getVarClean('dir','str','asc');
+        $parent_region_id = getVarClean('the_parent_field', 'int', null);
+
+        $searchPhrase = getVarClean('searchPhrase', 'str', '');
+
+        $data = array('rows' => array(), 'success' => false, 'message' => '', 'current' => $start, 'rowCount' => $limit, 'total' => 0);
+
+        try {
+
+            $ci = & get_instance();
+            $ci->load->model('parameter/p_region');
+            $table = $ci->p_region;
+
+            if(!empty($searchPhrase)) {
+                $table->setCriteria("(upper(region_name) ".$table->likeOperator." upper('%".$searchPhrase."%')
+                                    OR upper(a.description) ".$table->likeOperator." upper('%".$searchPhrase."%'))");
+            }
+            $table->setCriteria("p_region_level_id = 6");
+            $table->setCriteria("parent_id = ".$parent_region_id);
+
+            $start = ($start-1) * $limit;
+            $items = $table->getAll($start, $limit, $sort, $dir);
+            $totalcount = $table->countAll();
+
+            $data['rows'] = $items;
+            $data['success'] = true;
+            $data['total'] = $totalcount;
+
+        }catch (Exception $e) {
+            $data['message'] = $e->getMessage();
+        }
+
+        return $data;
+    }
 }
 
 /* End of file region levels_controller.php */
