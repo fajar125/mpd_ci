@@ -197,7 +197,7 @@
 
     function save(){
         /*loadContentWithParams("transaksi.t_vat_setllement_ro_otobuk_v2", {
-            CURR_DOC_ID: 720589
+            CURR_DOC_ID: 720589 
         });
         return;*/
         var cust_acc_id = $('#form_cust_account_id').val();
