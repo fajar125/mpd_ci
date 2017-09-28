@@ -73,7 +73,7 @@
                     <div class="col-md-5">
                         <div class="input-group">
                             <input type="text" class="form-control" id="valid_from">  
-                            <label class="control-label col-md-3">s/d</label>    
+                            <span class="input-group-addon"> s/d </span>
                             <input type="text" class="form-control" id="valid_to">             
                         </div>
                     </div>
@@ -127,8 +127,8 @@
                 <div class="row">
                     <label class="control-label col-md-3">Jumlah Omset</label>
                     <div class="col-md-5">
-                        <div class="input-group">
-                            <input type="number" class="form-control" name="total_trans_amount" id="total_trans_amount">                 
+                        <div class="input-group" >
+                            <input style="text-align: right;" type="text" class="form-control" name="total_trans_amount" id="total_trans_amount">                 
                         </div>
                     </div>
                 </div>
@@ -137,7 +137,7 @@
                     <label class="control-label col-md-3">Jumlah Kamar/Kursi Terjual</label>
                     <div class="col-md-5">
                         <div class="input-group">
-                            <input type="number" class="form-control" name="qty_room_sold" id="qty_room_sold">                 
+                            <input style="text-align: right;" type="text" class="form-control" name="qty_room_sold" id="qty_room_sold">                 
                         </div>
                     </div>
                 </div>
@@ -170,32 +170,11 @@
     
 </div>
 
+<script>
+    $("#total_trans_amount").number(true,0,'.',',');
+    $("#qty_room_sold").number(true,0,'.',',');
+</script>
 
-<!-- <script type="text/javascript">
-    
-    jQuery(function ($) {
-        var grid_selector = "#grid-table-piutang";
-        jQuery("#grid-table-piutang").jqGrid({
-            colModel: [
-                {label: 'Periode',name: 'period',width: 150, align: "left"},
-                {label: 'Status',name: 'vat_code',width: 150, align: "left"},
-
-            ],
-            height: '100%',
-            autowidth: true,
-            viewrecords: true,
-            rowNum: -1,
-            rowList: [10, 20, 50],
-            rownumbers: true, // show row numbers
-            rownumWidth: 35, // the width of the row numbers columns
-            altRows: true,
-            shrinkToFit: true,
-            multiboxonly: true,
-            caption: "Informasi Pajak Belum Bayar"
-        });
-        
-    });    
-</script> -->
 
 <script> 
     $('#valid_from').datepicker({ // mengambil dari class datepicker
@@ -217,7 +196,10 @@
     
 
     function save(){
-
+        /*loadContentWithParams("transaksi.t_vat_setllement_ro_otobuk_v2", {
+            CURR_DOC_ID: 720589
+        });
+        return;*/
         var cust_acc_id = $('#form_cust_account_id').val();
         var npwpd = $('#form_npwpd').val();
         var nama = $('#company_brand').val();        
@@ -243,6 +225,10 @@
             swal('Informasi',"Tipe Ayat harus diisi",'info'); 
             return;
         }
+        if (jml_omset == "" || jml_omset == 0 || jml_omset == false || jml_omset == undefined ||  jml_omset == null){
+            swal('Informasi',"Jumlah Omset harus diisi",'info'); 
+            return;
+        }
 
 
         var var_url = "<?php echo WS_JQGRID . "transaksi.t_vat_setlement_manual_controller/insertUpdate/?"; ?>";
@@ -260,7 +246,13 @@
         //window.location = var_url;
         
         $.getJSON(var_url, function( items ) {
-            swal('Informasi',items.rows.o_mess,'info');                
+            swal('Informasi',items.rows.o_mess,'info');     
+
+            if(items.rows.o_cust_order_id != 0){
+                loadContentWithParams("transaksi.t_vat_setllement_ro_otobuk_v2", {
+                    CURR_DOC_ID: items.rows.o_cust_order_id
+                });
+            }
         })
         
     }
