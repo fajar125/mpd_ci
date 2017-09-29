@@ -41,26 +41,15 @@
 <script>
 
     $('#add-bphtb').on('click', function(event){
-        loadContentWithParams('transaksi.t_bphtb_registration', {});
-
+        loadContentWithParams('transaksi.t_bphtb_registration', {FLAG:'ADD'});
     });
 
     $('#detail-bphtb').on('click', function(event){
-        /*event.stopPropagation();
-        var grid = $('#grid-table-account');
+        var grid = $('#grid-table');
         var rowid = grid.jqGrid ('getGridParam', 'selrow');
-        var custRef = grid.jqGrid ('getCell', rowid, 'customer_ref');
-        var prodSeq = grid.jqGrid ('getCell', rowid, 'product_seq');
+        var id = grid.jqGrid ('getCell', rowid, 't_bphtb_registration_id');
 
-        if(rowid == null) {
-            swal('Informasi','Silahkan pilih salah satu BPHTB','info');
-            return false;
-        }
-
-        loadContentWithParams("transaksi.detail_bphtb", {
-            customer_ref: custRef,
-            product_seq : prodSeq
-        });*/
+        loadContentWithParams('transaksi.t_bphtb_registration', {FLAG:'DETAIL',id:id});
 
     });
 
@@ -68,7 +57,8 @@
         var grid = $('#grid-table');
         var rowid = grid.jqGrid ('getGridParam', 'selrow');
         var id = grid.jqGrid ('getCell', rowid, 't_bphtb_registration_id');
-        alert(id);
+        //alert(id);
+        loadContentWithParams('transaksi.t_bphtb_registration', {FLAG:'EDIT',id:id});
 
     });
 

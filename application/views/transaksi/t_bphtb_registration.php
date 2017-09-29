@@ -51,6 +51,10 @@
                                 <div class="row">
                                     <!-- start subject -->
                                     <div class="form-group">
+                                        <label class="control-label col-md-2" id="keterangan-kurang-bayar">  </label>
+                                    </div>
+
+                                    <div class="form-group">
                                         <label class="control-label col-md-2"> A. Subjek Pajak </label>
                                         <label class="control-label col-md-4" style="text-align: left !important;" id="subject_pajak" name="subject_pajak"></label>
                                     </div>
@@ -58,8 +62,11 @@
                                         <label class="control-label col-md-2">Nama
                                         </label>
                                         <div class="col-md-3">
+                                            <input type="hidden" class="form-control" name="t_bphtb_registration_id" id="t_bphtb_registration_id">
                                             <input type="text" class="form-control" name="wp_name" id="wp_name">
+                                            <input type="hidden" class="form-control" name="p_bphtb_type_id" id="p_bphtb_type_id">
                                         </div>
+
                                     </div>
                                     <div class="form-group">
                                         <label class="control-label col-md-2">NPWP
@@ -215,8 +222,8 @@
                                         </label>
                                         <div class="col-md-3">
                                             <div class="input-group">
-                                                <input type="hidden" class="form-control required" name="in_kelurahan_id_objek" id="in_kelurahan_id_objek" readonly>
-                                                <input type="text" class="form-control required" name="in_kelurahan_name_objek" id="in_kelurahan_name_objek" readonly>
+                                                <input type="hidden" class="form-control required" name="object_p_region_id_kel" id="object_p_region_id_kel" readonly>
+                                                <input type="text" class="form-control required" name="object_kelurahan" id="object_kelurahan" readonly>
                                                 <span class="input-group-btn">
                                                     <button class="btn btn-success" type="button" id="btn-lov-kelurahan-objek">
                                                     <i class="fa fa-search"></i>
@@ -234,7 +241,10 @@
                                         <div class="col-md-3">
                                             <input type="text" class="form-control" name="bphtb_legal_doc_description" id="bphtb_legal_doc_description">
                                         </div>
-                                        <input type="text" class="form-control" name="nilai_doc" id="nilai_doc">
+                                        <div class="col-md-3">
+                                            <input type="hidden" class="form-control" name="nilai_doc" id="nilai_doc">
+                                        </div>
+                                        
                                     </div>
                                     <div class="form-group">
                                         <label class="control-label col-md-3">Pendukung
@@ -430,7 +440,7 @@
                                         </div>
                                     </div>
 
-                                    <div class="form-group">
+                                    <div class="form-group" >
                                         <label class="control-label col-md-2 ">  Potongan
                                         </label>
                                         <div class="col-md-3">
@@ -452,10 +462,28 @@
                                         </div>
                                         <label class="control-label col-md-5 col-md-offset-6">(Silahkan cheklis utk pembayaran yg ada potongan)
                                         </label>
+
+                                        
+
+                                        
+                                    </div>
+
+                                    <div id="tr-harus-bayar" class="form-group" style="display: none">
+                                        <label class="control-label col-md-2 " class="control-label col-md-2 ">Bea Perolehan Hak atas Tanah dan Bangunan yang harus dibayar </label>
+                                        <div class="col-md-3">
+                                            <input type="text" class="form-control" name="bphtb_amt_final_old" id="bphtb_amt_final_old">
+                                        </div>
+                                    </div>
+
+                                    <div id="tr-pembayaran-sebelumnya" class="form-group" style="display: none">
+                                        <label class="control-label col-md-2 " class="control-label col-md-2 ">Nilai Pajak yang sudah dibayar </label>
+                                        <div class="col-md-3">
+                                            <input type="text" class="form-control" name="prev_payment_amount" id="prev_payment_amount">
+                                        </div>
                                     </div>
 
                                     <div class="form-group">
-                                        <h7 class="control-label col-md-2 ">Bea Perolehan Hak atas Tanah dan Bangunan yang harus dibayar </h7>
+                                        <label class="control-label col-md-2 " id="total-bayar-text" class="control-label col-md-2 ">Bea Perolehan Hak atas Tanah dan Bangunan yang harus dibayar </label>
                                         <div class="col-md-3">
                                             <div class="input-group ">
                                                 <span class="input-group-addon">Rp.</span>
@@ -470,11 +498,19 @@
                                             <div class="col-md-offset-3 col-md-9">
                                                 <a href="javascript:;" class="btn default button-previous back" id="back">
                                                     <i class="fa fa-angle-left"></i> Back </a>
-                                                <a href="javascript:;" class="btn btn-outline green button-next"> CETAK NOTA VERIFIKASI (INDRA WISNU)                                                    
+                                                <a href="javascript:;" class="btn btn-outline green button-next" id="printWisnu"> CETAK NOTA VERIFIKASI (INDRA WISNU)                                                    
                                                 </a>
-                                                <button type="submit" class="btn green button-submit"> Submit
+                                                <a href="javascript:;" class="btn btn-outline green button-next" id="print"  > CETAK NOTA VERIFIKASI                                                    
+                                                </a>
+                                                <!-- <button type="submit" class="btn green button-submit"> Simpan
                                                     <i class="fa fa-check"></i>
-                                                </button>
+                                                </button> -->
+                                                <a href="javascript:;" class="btn  green " id="update"> Simpan                                                   
+                                                </a>
+                                                <a href="javascript:;" class="btn  green " id="insert"> Simpan                                                   
+                                                </a>
+                                                <a href="javascript:;" class="btn  green " id="delete"> Hapus                                                   
+                                                </a>
                                             </div>
                                         </div>
                                     </div>
@@ -491,8 +527,20 @@
 <?php $this->load->view('lov/lov_kota'); ?>
 <?php $this->load->view('lov/lov_kec'); ?>
 <?php $this->load->view('lov/lov_kel'); ?>
-<script >
-    
+<script>
+    $.ajax({
+            url: "<?php echo base_url().'bphtb_registration/load_combo_dok_pendukung/'; ?>" ,
+            type: "POST",            
+            data: {},
+            success: function (data) {
+                $( "#comboDocPendukung" ).html( data );
+            },
+            error: function (xhr, status, error) {
+                swal({title: "Error!", text: xhr.responseText, html: true, type: "error"});
+            }
+        });
+
+
     $(".priceformat").number( true, 0 , '.',','); /* price number format */
     $(".priceformat").css("text-align", "right");
 
@@ -542,6 +590,265 @@
         modal_lov_kelurahan_show('wp_p_region_id_kel','wp_kelurahan',kec);
     });
 
+
+
+    $("#btn-lov-kota-objek").on('click', function() {   
+        modal_lov_kota_show('object_p_region_id','object_kota');
+    });
+
+    $('#object_p_region_id').on('change', function() {
+        $('#object_p_region_id_kec').val('');
+        $('#object_kecamatan').val('');
+        $('#object_p_region_id_kel').val('');
+        $('#object_kelurahan').val('');
+    });
+
+    $("#btn-lov-kecamatan-objek").on('click', function() { 
+        var kota = $('#object_p_region_id').val(); 
+        //alert(kota);
+        if( kota == null || kota == ''){
+            swal({title: "Error!", text: "Isi Kota/Kabupaten Terlebih Dahulu", html: true, type: "error"});
+            return;
+        }
+         modal_lov_kecamatan_show('object_p_region_id_kec','object_kecamatan',kota);
+        
+    });
+
+    $('#object_p_region_id_kec').on('change', function() {
+        $('#object_p_region_id_kel').val('');
+        $('#object_kelurahan').val('');
+    });
+
+    $("#btn-lov-kelurahan-objek").on('click', function() { 
+        var kec = $('#object_p_region_id_kec').val();
+        if( kec == null || kec == ''){
+            swal({title: "Error!", text: "Isi Kecamatan Terlebih Dahulu", html: true, type: "error"});
+             return;
+        }
+        modal_lov_kelurahan_show('object_p_region_id_kel','object_kelurahan',kec);
+    });
+
+    
+    
+</script>
+
+<script>
+    var FLAG = '<?php echo $_POST['FLAG']; ?>';
+    //alert (FLAG);
+
+    if(FLAG == 'ADD'){
+        $('#print').css('display', 'none');
+        $('#update').css('display', 'none');
+        $('#delete').css('display', 'none');
+        $('#insert').css('display', '');
+    }else if(FLAG == 'EDIT'){
+        $('#print').css('display', '');
+        $('#update').css('display', '');
+        $('#delete').css('display', 'none');
+        $('#insert').css('display', 'none');
+    }else if(FLAG == 'DETAIL'){
+        $('#print').css('display', 'none');
+        $('#update').css('display', '');
+        $('#delete').css('display', '');
+        $('#insert').css('display', 'none');
+    }
+
+
+    var p_bphtb_type_id = document.getElementById('p_bphtb_type_id').value;
+    if(p_bphtb_type_id == 3) {
+                    
+      document.getElementById('keterangan-kurang-bayar').setAttribute('style','color:#008000;font-weight:bold;font-size:15px;');
+      document.getElementById('keterangan-kurang-bayar').innerHTML ="DATA DIBAWAH INI MERUPAKAN DATA BPHTB KURANG BAYAR:";
+
+      document.getElementById('total-bayar-text').setAttribute('style','color:#FF0000;font-weight:bold;');
+      document.getElementById('total-bayar-text').innerHTML ="Total Kekurangan Pembayaran";
+      document.getElementById('bphtb_amt_final').setAttribute('style','text-align:right;background:#FFD345;');
+
+      document.getElementById('tr-harus-bayar').style.display="";
+      document.getElementById('tr-pembayaran-sebelumnya').style.display="";
+
+      document.getElementById('njop_pbb').disabled = true;
+      document.getElementById('jenis_harga_bphtb').disabled = true;
+      document.getElementById('add_disc_percent').disabled = true;
+
+    }
+</script>
+
+<!-- PERHITUNGAN -->
+
+<script>
+    function ReplaceNumberWithCommas(yourNumber) {
+        var n = yourNumber.toString().split(".");
+        n[0] = n[0].replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+        return n.join(".");
+    }
+
+    function hitungNPOPKP(){ 
+        var npop_tkp     = $('#npop_tkp').val().replace(/,/g ,''); 
+        var npop         = $('#npop').val().replace(/,/g ,''); 
+        var add_discount = $('#add_discount').val().replace(/,/g ,''); 
+        var npop_kp      = $('#npop_kp').val().replace(/,/g ,''); 
+        var result       = 0;
+
+        if(npop_tkp == '' || npop_tkp == 'undefined'){
+            npop_tkp = 0;
+        }
+
+        if(npop == '' || npop == 'undefined'){
+            npop = 0;
+        }
+ 
+        if(add_discount == '' || add_discount == 'undefined'){
+            add_discount = 0;
+        }
+
+        result = parseFloat(npokp)-parseFloat(npotkp)-parseFloat(add_discount);
+
+        if(result < 0){
+            $('#npop_kp').val(ReplaceNumberWithCommas(0));
+        }else{
+            $('#npop_kp').val(ReplaceNumberWithCommas(result));
+        }
+
+        hitungTerutang(npop_kp);
+    }
+
+    function hitungTerutang(nilai){ 
+      var terutang = Math.ceil(nilai/100*5);
+      $('#bphtb_amt').val(ReplaceNumberWithCommas(terutang));
+      hitungPembayaran();
+    }
+
+    function hitungPembayaran(){
+        var bphtb_amt           = $('#bphtb_amt').val().replace(/,/g ,'');
+        var bphtb_discount      = $('#bphtb_discount').val().replace(/,/g ,''); 
+        var prev_payment_amount = $('#prev_payment_amount').val().replace(/,/g ,'');
+        var bphtb_amt_final_old = $('#bphtb_amt_final_old').val().replace(/,/g ,''); 
+        var p_bphtb_type_id     = $('#p_bphtb_type_id').val(); 
+        var bphtb_amt_final     = $('#bphtb_amt_final').val(); 
+        var result              = ReplaceNumberWithCommas(parseInt(jumlah)-parseInt(diskon));
+        var result_amt_final    = 0;
+
+        if(bphtb_amt == '' || bphtb_amt == 'undefined'){
+            bphtb_amt = 0;
+        }
+
+        if(bphtb_discount == '' || bphtb_discount == 'undefined'){
+            bphtb_discount = 0;
+        }
+
+        if(p_bphtb_type_id != 3) {
+            if(bphtb_amt_final < 0){
+                $('#bphtb_amt_final').val(0); 
+            }else{
+                
+                $('#bphtb_amt_final').val(result); 
+            }
+        }else {
+            if(bphtb_amt_final_old < 0){
+                $('#bphtb_amt_final_old').val(0);
+            }else{
+                $('#bphtb_amt_final_old').val(result);
+            }
+
+            result_amt_final = ReplaceNumberWithCommas(parseInt(bphtb_amt_final_old)-parseInt(prev_payment_amount));
+            $('#bphtb_amt_final').val(result_amt_final);
+        }
+    }
+
+    function getNPOP(){
+        var waris               = $('#potongan_waris').val(); 
+        var total_price         = $('#total_price').val().replace(/,/g ,''); 
+        var market_price        = $('#market_price').val().replace(/,/g ,''); 
+        var nilai_doc           = $('#nilai_doc').val();
+        var npop                = $('#npop').val().replace(/,/g ,''); 
+        var add_disc_percent    = $('#add_disc_percent').val()/100;
+
+        var res        = waris.split("/"); 
+        var components = array();
+        var result     = 0 ;
+
+
+        var total_p  = ReplaceNumberWithCommas(total_price*(res[0]/res[1]));
+        var market_p = ReplaceNumberWithCommas(market_price*(res[0]/res[1]));
+
+
+
+        if(parseFloat(total_price)> parseFloat(market_price)){
+          components = total_p.toString().split(".");
+        }else{
+          components = market_p.toString().split(".");
+        }
+
+        $('#npop').val(components[0]);
+
+        if(nilai_doc==''){
+            nilai_doc=0;
+        }
+
+        if(nilai_doc >= 0 && nilai_doc != ''){
+            result = ReplaceNumberWithCommas(Math.ceil(npop*nilai_doc*res[0]/res[1]));
+            $('#npop').val(result);       
+        }
+        if(add_disc_percent==''){
+            add_disc_percent=0;
+        }
+        result = ReplaceNumberWithCommas(Math.ceil(npop*add_disc_percent));
+        $('#add_discount').val(result);
+
+        hitungNPOPKP();
+        
+    }
+
+    function hitungTotalTanah(){
+      var hasil                 = 0;
+      var r_tot_p               = 0;
+      var r_l_tot_p             = 0;
+      var land_area             = $('#land_area').val(); 
+      var land_price_per_m      = $('#land_price_per_m').val();
+      var land_total_price      = $('#land_total_price').val().replace(/,/g ,''); 
+      var building_total_price  = $('#building_total_price').val().replace(/,/g ,''); 
+
+      if(land_area!=0||land_price_per_m!=0){
+        hasil = parseFloat(land_area.replace(/,/g ,''))*parseFloat(land_price_per_m.replace(/,/g ,''));
+      }
+      
+      r_l_tot_p =  ReplaceNumberWithCommas(hasil);
+      $('#land_total_price').val(r_l_tot_p);
+
+      r_tot_p = ReplaceNumberWithCommas(parseFloat(land_total_price)+parseFloat(building_total_price));
+      $('#total_price').val(r_tot_p);
+
+      getNPOP();
+      hitungNPOPKP();
+    }
+
+    function hitungTotalBangunan(){
+        var hasil                = 0;
+        var result               = 0;
+        var building_area        = $('#building_area').val();   
+        var building_price_per_m = $('#building_price_per_m').val(); 
+        var building_total_price = $('#building_total_price').val();
+        var land_total_price     = $('#land_total_price').val(); 
+
+        if (building_area != 0 || building_price_per_m != 0){
+            hasil = parseFloat(building_area.replace(/,/g ,'')) * parseFloat(building_price_per_m.replace(/,/g ,''));
+        }
+        result = ReplaceNumberWithCommas(hasil);
+        $('#building_total_price').val(result);
+
+        result = parseFloat(land_total_price.replace(/,/g ,'')) + parseFloat(building_total_price.replace(/,/g ,''));
+        $('#total_price').val(result); 
+
+        getNPOP();   
+    }
+
+</script>
+
+<!-- /PERHITUNGAN -->
+
+<script>
+
     function getdok(dok){
         //alert(dok.value);
         var id = dok.value;
@@ -553,15 +860,35 @@
             },
             dataType: "json",
             success: function (data) {
-                console.log(data[0].p_bphtb_legal_doc_type_id);
-                if(data[0].doc_cons > 0 && data[0].doc_cons != '' ){
-                    $('#npop_tkp').val(data[0].doc_cons*document.getElementById(npop));
-                    $('#nilai_doc').val(data[0].doc_cons);
+                //console.log(data[0].p_bphtb_legal_doc_type_id);
+                var npop = $('#npop').val().replace(/,/g ,'');
+                var total_price = $('#total_price').val().replace(/,/g ,'');
+                var market_price = $('#market_price').val().replace(/,/g ,'');
+
+                var doc_cons = data[0].doc_cons;
+                var npoptkp = data[0].npoptkp;
+                
+                if(doc_cons > 0 && doc_cons != '' ){
+                    
+                    //$('#npop_tkp').val(ReplaceNumberWithCommas(doc_cons * npop));
+
+                    $('#nilai_doc').val(doc_cons);
+
+                    if (parseFloat(total_price) > parseFloat(market_price)) {
+                        $('#npop').val(ReplaceNumberWithCommas(Math.ceil(total_price*doc_cons)));
+                    }else{
+                        $('#npop').val(ReplaceNumberWithCommas(Math.ceil(market_price*doc_cons)));
+                    }
+
                 }else{
-                    $('#npop_tkp').val("15");
+                    if (parseFloat(total_price) > parseFloat(market_price)) {
+                        $('#npop').val(ReplaceNumberWithCommas(total_price));
+                    }else{
+                        $('#npop').val(ReplaceNumberWithCommas(market_price));
+                    }
                 }
                 
-                $('#bphtb_discount').val("0");
+                $('#npop_tkp').val(ReplaceNumberWithCommas(npoptkp));
             },
             error: function (xhr, status, error) {
                 swal({title: "Error!", text: xhr.responseText, html: true, type: "error"});
@@ -570,19 +897,6 @@
         });
     }
 
-    $.ajax({
-            url: "<?php echo base_url().'bphtb_registration/load_combo_dok_pendukung/'; ?>" ,
-            type: "POST",            
-            data: {},
-            success: function (data) {
-                $( "#comboDocPendukung" ).html( data );
-            },
-            error: function (xhr, status, error) {
-                swal({title: "Error!", text: xhr.responseText, html: true, type: "error"});
-            }
-        });
-
 
     
-
 </script>
