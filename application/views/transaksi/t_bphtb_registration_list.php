@@ -41,7 +41,7 @@
 <script>
 
     $('#add-bphtb').on('click', function(event){
-        loadContentWithParams('transaksi.t_bphtb_registration', {FLAG:'ADD'});
+        loadContentWithParams('transaksi.t_bphtb_registration', {FLAG:'Add'});
     });
 
     $('#detail-bphtb').on('click', function(event){
@@ -49,7 +49,7 @@
         var rowid = grid.jqGrid ('getGridParam', 'selrow');
         var id = grid.jqGrid ('getCell', rowid, 't_bphtb_registration_id');
 
-        loadContentWithParams('transaksi.t_bphtb_registration', {FLAG:'DETAIL',id:id});
+        loadContentWithParams('transaksi.t_bphtb_registration', {FLAG:'Detail',id:id});
 
     });
 
@@ -58,7 +58,7 @@
         var rowid = grid.jqGrid ('getGridParam', 'selrow');
         var id = grid.jqGrid ('getCell', rowid, 't_bphtb_registration_id');
         //alert(id);
-        loadContentWithParams('transaksi.t_bphtb_registration', {FLAG:'EDIT',id:id});
+        loadContentWithParams('transaksi.t_bphtb_registration', {FLAG:'Edit',id:id});
 
     });
 

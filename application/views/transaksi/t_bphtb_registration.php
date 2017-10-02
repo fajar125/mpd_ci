@@ -1,4 +1,4 @@
-<!-- breadcrumb -->
+breadcrumb -->
 <div class="page-bar">
     <ul class="page-breadcrumb">
         <li>
@@ -10,7 +10,7 @@
             <i class="fa fa-circle"></i>
         </li>
         <li>
-            <span>Add BPHTB</span>
+            <span><?php echo $_POST['FLAG'] ?> BPHTB</span>
             <i class="fa fa-circle"></i>
         </li>
     </ul>
@@ -30,7 +30,7 @@
                 <li class="active">
                     <a href="javascript:;" data-toggle="tab" aria-expanded="true" id="tab-1">
                         <i class="blue"></i>
-                        <strong> Add BPHTB </strong>
+                        <strong><?php echo $_POST['FLAG'] ?> BPHTB </strong>
                     </a>
                 </li>
             </ul>
@@ -41,7 +41,7 @@
                 <div class="col-md-12">
                     <div class="portlet blue box menu-panel">
                         <div class="portlet-title">
-                            <div class="caption">Add BPHTB</div>
+                            <div class="caption"><?php echo $_POST['FLAG'] ?> BPHTB</div>
                             <div class="tools">
                                 <a class="collapse" href="javascript:;" data-original-title="" title=""> </a>
                             </div>
@@ -251,7 +251,7 @@
                                         </label>
                                         <div class="col-md-2">
                                             <div class="input-group ">
-                                                <input type="text" class="form-control formatRight" name="add_disc_percent" id="add_disc_percent">
+                                                <input type="text" class="form-control formatRight" name="add_disc_percent" onkeyup="hitungTotalTanah();return 1;" id="add_disc_percent">
                                                 <span class="input-group-addon">% </span>
                                             </div> 
                                         </div>
@@ -263,14 +263,14 @@
                                         </label>
                                         <div class="col-md-3">
                                             <div class="input-group ">
-                                                <input type="text" class="form-control formatRight"  readonly="true" name="land_area_real" id="land_area_real">
+                                                <input type="text" onkeyup="hitungTotalTanah();return 1;" class="form-control formatRight"  readonly="true" name="land_area_real" id="land_area_real">
                                                 <span class="input-group-addon">m2</span>
                                             </div> 
                                         </div>
                                         <div class="col-md-3">
                                             <div class="input-group ">
                                                 <span class="input-group-addon">Rp.</span>
-                                                <input type="text" class="form-control priceformat" readonly="true" name="land_price_real" id="land_price_real">
+                                                <input type="text" onkeyup="hitungTotalTanah();" class="form-control priceformat" readonly="true" name="land_price_real" id="land_price_real">
                                             </div> 
                                         </div>
                                     </div>
@@ -280,14 +280,14 @@
                                         </label>
                                         <div class="col-md-3">
                                             <div class="input-group ">
-                                                <input type="text" class="form-control formatRight"  readonly="true" name="building_area_real" id="building_area_real">
+                                                <input type="text" onkeyup="hitungTotalBangunan();" class="form-control formatRight"  readonly="true" name="building_area_real" id="building_area_real">
                                                 <span class="input-group-addon">m2</span>
                                             </div> 
                                         </div>
                                         <div class="col-md-3">
                                             <div class="input-group ">
                                                 <span class="input-group-addon">Rp.</span>
-                                                <input type="text" class="form-control priceformat" readonly="true" name="building_price_real" id="building_price_real">
+                                                <input type="text" onkeyup="hitungTotalBangunan();" class="form-control priceformat" readonly="true" name="building_price_real" id="building_price_real">
                                             </div> 
                                         </div>
                                     </div>
@@ -297,14 +297,14 @@
                                         </label>
                                         <div class="col-md-3">
                                             <div class="input-group ">
-                                                <input type="text" class="form-control formatRight"   name="land_area" id="land_area">
+                                                <input type="text" onkeyup="hitungTotalTanah();return 1;" class="form-control formatRight"   name="land_area" id="land_area">
                                                 <span class="input-group-addon">m2</span>
                                             </div> 
                                         </div>
                                         <div class="col-md-3">
                                             <div class="input-group ">
                                                 <span class="input-group-addon">Rp.</span>
-                                                <input type="text" class="form-control priceformat"  name="land_price_per_m" id="land_price_per_m">
+                                                <input type="text" onkeyup="hitungTotalTanah();" class="form-control priceformat"  name="land_price_per_m" id="land_price_per_m">
                                             </div> 
                                         </div>
                                         <div class="col-md-3">
@@ -322,14 +322,14 @@
                                         </label>
                                         <div class="col-md-3">
                                             <div class="input-group ">
-                                                <input type="text" class="form-control formatRight"   name="building_area" id="building_area">
+                                                <input type="text" onkeyup="hitungTotalBangunan();" class="form-control formatRight"   name="building_area" id="building_area">
                                                 <span class="input-group-addon">m2</span>
                                             </div> 
                                         </div>
                                         <div class="col-md-3">
                                             <div class="input-group ">
                                                 <span class="input-group-addon">Rp.</span>
-                                                <input type="text" class="form-control priceformat"  name="building_price_per_m" id="building_price_per_m">
+                                                <input type="text" onkeyup=" hitungTotalBangunan();" class="form-control priceformat"  name="building_price_per_m" id="building_price_per_m">
                                             </div> 
                                         </div>
                                         <div class="col-md-3">
@@ -364,7 +364,7 @@
                                         <div class="col-md-3 col-md-offset-3 ">
                                             <div class="input-group ">
                                                 <span class="input-group-addon">Rp</span>
-                                                <input type="text" class="form-control priceformat"   name="market_price" id="market_price">
+                                                <input type="text" onkeyup=" getNPOP();" class="form-control priceformat"   name="market_price" id="market_price">
                                             </div> 
                                         </div>
                                     </div>
@@ -391,7 +391,7 @@
                                         <div class="col-md-3">
                                             <div class="input-group ">
                                                 <span class="input-group-addon">Rp.</span>
-                                                <input type="text" class="form-control priceformat"  name="npop" id="npop">
+                                                <input type="text" class="form-control priceformat" readonly  name="npop" id="npop">
                                             </div> 
                                         </div>
                                     </div>
@@ -468,14 +468,14 @@
                                         
                                     </div>
 
-                                    <div id="tr-harus-bayar" class="form-group" style="display: none">
+                                    <div id="div-harus-bayar" class="form-group" style="display: none">
                                         <label class="control-label col-md-2 " class="control-label col-md-2 ">Bea Perolehan Hak atas Tanah dan Bangunan yang harus dibayar </label>
                                         <div class="col-md-3">
                                             <input type="text" class="form-control" name="bphtb_amt_final_old" id="bphtb_amt_final_old">
                                         </div>
                                     </div>
 
-                                    <div id="tr-pembayaran-sebelumnya" class="form-group" style="display: none">
+                                    <div id="div-pembayaran-sebelumnya" class="form-group" style="display: none">
                                         <label class="control-label col-md-2 " class="control-label col-md-2 ">Nilai Pajak yang sudah dibayar </label>
                                         <div class="col-md-3">
                                             <input type="text" class="form-control" name="prev_payment_amount" id="prev_payment_amount">
@@ -527,7 +527,12 @@
 <?php $this->load->view('lov/lov_kota'); ?>
 <?php $this->load->view('lov/lov_kec'); ?>
 <?php $this->load->view('lov/lov_kel'); ?>
+<!-- First Load -->
 <script>
+
+    var FLAG            = '<?php echo $_POST['FLAG']; ?>';
+    var p_bphtb_type_id = $('#p_bphtb_type_id').val();
+
     $.ajax({
             url: "<?php echo base_url().'bphtb_registration/load_combo_dok_pendukung/'; ?>" ,
             type: "POST",            
@@ -548,12 +553,51 @@
     $(".numberformat").css("text-align", "right");
     $(".formatRight").css("text-align", "right");
 
+    if(FLAG == 'Add'){
+        $('#print').css('display', 'none');
+        $('#update').css('display', 'none');
+        $('#delete').css('display', 'none');
+        $('#insert').css('display', '');
+    }else if(FLAG == 'Edit'){
+        $('#print').css('display', '');
+        $('#update').css('display', '');
+        $('#delete').css('display', 'none');
+        $('#insert').css('display', 'none');
+    }else if(FLAG == 'Detail'){
+        $('#print').css('display', 'none');
+        $('#update').css('display', '');
+        $('#delete').css('display', '');
+        $('#insert').css('display', 'none');
+    }
+    
 
-    $('.back').on('click', function(event){
-        event.stopPropagation();
-        loadContentWithParams("transaksi.t_bphtb_registration_list", {});
-    });
+    if(p_bphtb_type_id == 3) {
+      $('#keterangan-kurang-bayar').css('color', '#008000');
+      $('#keterangan-kurang-bayar').css('font-weight', 'bold');
+      $('#keterangan-kurang-bayar').css('font-size', '15px');
+      $('#keterangan-kurang-bayar').html('DATA DIBAWAH INI MERUPAKAN DATA BPHTB KURANG BAYAR:');
 
+      $('#total-bayar-text').css('color', '#FF0000');
+      $('#total-bayar-text').css('font-weight', 'bold');
+      $('#total-bayar-text').html('Total Kekurangan Pembayaran');
+
+      $('#bphtb_amt_finale').css('text-align', 'right');
+      $('#bphtb_amt_final').css('background', '#FFD345');
+
+      $('#div-harus-bayar').css('display', '');
+      $('#div-pembayaran-sebelumnya').css('display', '');
+
+      $("#njop_pbb").prop('disabled', true);
+      $("#jenis_harga_bphtb").prop('disabled', true);
+      $("#add_disc_percent").prop('disabled', true);
+
+
+    }
+</script>
+<!-- /First Load -->
+
+<!-- LOV -->
+<script>
     $("#btn-lov-kota-subjek").on('click', function() {   
         modal_lov_kota_show('wp_p_region_id','wp_kota');
     });
@@ -627,52 +671,8 @@
         }
         modal_lov_kelurahan_show('object_p_region_id_kel','object_kelurahan',kec);
     });
-
-    
-    
 </script>
-
-<script>
-    var FLAG = '<?php echo $_POST['FLAG']; ?>';
-    //alert (FLAG);
-
-    if(FLAG == 'ADD'){
-        $('#print').css('display', 'none');
-        $('#update').css('display', 'none');
-        $('#delete').css('display', 'none');
-        $('#insert').css('display', '');
-    }else if(FLAG == 'EDIT'){
-        $('#print').css('display', '');
-        $('#update').css('display', '');
-        $('#delete').css('display', 'none');
-        $('#insert').css('display', 'none');
-    }else if(FLAG == 'DETAIL'){
-        $('#print').css('display', 'none');
-        $('#update').css('display', '');
-        $('#delete').css('display', '');
-        $('#insert').css('display', 'none');
-    }
-
-
-    var p_bphtb_type_id = document.getElementById('p_bphtb_type_id').value;
-    if(p_bphtb_type_id == 3) {
-                    
-      document.getElementById('keterangan-kurang-bayar').setAttribute('style','color:#008000;font-weight:bold;font-size:15px;');
-      document.getElementById('keterangan-kurang-bayar').innerHTML ="DATA DIBAWAH INI MERUPAKAN DATA BPHTB KURANG BAYAR:";
-
-      document.getElementById('total-bayar-text').setAttribute('style','color:#FF0000;font-weight:bold;');
-      document.getElementById('total-bayar-text').innerHTML ="Total Kekurangan Pembayaran";
-      document.getElementById('bphtb_amt_final').setAttribute('style','text-align:right;background:#FFD345;');
-
-      document.getElementById('tr-harus-bayar').style.display="";
-      document.getElementById('tr-pembayaran-sebelumnya').style.display="";
-
-      document.getElementById('njop_pbb').disabled = true;
-      document.getElementById('jenis_harga_bphtb').disabled = true;
-      document.getElementById('add_disc_percent').disabled = true;
-
-    }
-</script>
+<!-- /LOV -->
 
 <!-- PERHITUNGAN -->
 
@@ -765,8 +765,16 @@
         var add_disc_percent    = $('#add_disc_percent').val()/100;
 
         var res        = waris.split("/"); 
-        var components = array();
+        var components = [];
         var result     = 0 ;
+
+        if(total_price==''){
+            total_price=0;
+        }
+
+        if(market_price==''){
+            market_price=0;
+        }
 
 
         var total_p  = ReplaceNumberWithCommas(total_price*(res[0]/res[1]));
@@ -779,6 +787,7 @@
         }else{
           components = market_p.toString().split(".");
         }
+        //alert(components);
 
         $('#npop').val(components[0]);
 
@@ -834,8 +843,8 @@
         if (building_area != 0 || building_price_per_m != 0){
             hasil = parseFloat(building_area.replace(/,/g ,'')) * parseFloat(building_price_per_m.replace(/,/g ,''));
         }
-        result = ReplaceNumberWithCommas(hasil);
-        $('#building_total_price').val(result);
+        hasil = ReplaceNumberWithCommas(hasil);
+        $('#building_total_price').val(hasil);
 
         result = parseFloat(land_total_price.replace(/,/g ,'')) + parseFloat(building_total_price.replace(/,/g ,''));
         $('#total_price').val(result); 
@@ -846,6 +855,8 @@
 </script>
 
 <!-- /PERHITUNGAN -->
+
+<!-- Function Pendukung -->
 
 <script>
 
@@ -897,6 +908,94 @@
         });
     }
 
+    function printLaporan(pejabat){
+        //alert(pejabat);
+        var params          = $('#t_bphtb_registration_id').val();
+        var p_bphtb_type_id = $('#p_bphtb_type_id').val();
+        params              = params +"&pejabat="+pejabat;
 
+        if(p_bphtb_type_id == 3) {
+            window.open("../report/cetak_rep_bphtb_kb.php?t_bphtb_registration_id="+params, "_blank", "toolbar=0,location=0,menubar=0");
+        }else {
+            window.open("../report/cetak_rep_bphtb.php?t_bphtb_registration_id="+params, "_blank", "toolbar=0,location=0,menubar=0");
+        }
+    }
+
+    function setNormalValue(){
+
+        $(".priceformat").each(function(){
+            var thisVal = $(this).val();
+            if(thisVal!=0){
+                $(this).val(thisVal.replace(/,/g ,''))
+            }
+        });
+    }
     
 </script>
+
+<!-- /Function Pendukung -->
+
+<!-- Action -->
+
+<script>
+
+    $('#njop_pbb').on('change', function() {
+        var njop_pbb = $('#njop_pbb').val();
+        if(njop_pbb != "") {
+            var result = njop_pbb.replace(/[^0-9]/g,'');
+            $('#njop_pbb').val(result);
+        }
+    });
+
+    $('#potongan_waris').on('change', function() {  
+        getNPOP();
+    });
+
+    $('#bphtb_discount').on('change', function() {
+        hitungPembayaran();
+    });
+
+    $('.back').on('click', function(event){
+        event.stopPropagation();
+        loadContentWithParams("transaksi.t_bphtb_registration_list", {});
+    });
+
+    $('#printWisnu').on('click', function(event){
+        printLaporan(2);
+    });
+
+    $('#print').on('click', function(event){
+        printLaporan(1);
+    });
+
+    $('#insert').on('click', function(event){
+        setNormalValue();
+        save();
+        //alert('insert');
+    });
+    
+    $('#update').on('click', function(event){
+        setNormalValue();
+        alert('update');
+    });
+
+    $('#delete').on('click', function(event){
+        alert('delete');
+    });
+
+    function save(){
+
+        var var_url = "<?php echo WS_JQGRID . "transaksi.t_bphtb_registration_list_controller/insert_tes/?"; ?>";
+        var_url += "<?php echo $this->security->get_csrf_token_name(); ?>=<?php echo $this->security->get_csrf_hash(); ?>";
+        
+        $.getJSON(var_url, function( items ) {
+            
+        })
+        
+
+        
+    }
+    
+</script>
+
+<!-- Action -->

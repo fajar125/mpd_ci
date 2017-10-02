@@ -28,7 +28,7 @@ class T_bphtb_registration_list extends Abstract_model {
 
     public $refs            = array();
 
-    function __construct($periode = "") {
+    function __construct() {
         parent::__construct();
     }
 
@@ -41,6 +41,21 @@ class T_bphtb_registration_list extends Abstract_model {
 
         }
         return true;
+    }
+
+    function insert(){
+
+
+        $ci =& get_instance();
+        $userdata = $ci->session->userdata;
+
+        $sql = "SELECT * FROM (?,?,?)";
+
+        $query = $this->db->query($sql, array($cust_order_id,$userdata['app_user_name'],$p_payment_type_id));
+        $item = $query->row_array();
+        
+            
+        return $item;
     }
 
 }
