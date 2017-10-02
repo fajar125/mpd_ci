@@ -83,7 +83,7 @@ class T_bphtb_registration_list extends Abstract_model {
                         $land_area_real             ,
                         $land_price_real            ,
                         $building_area_real         ,
-                        $building_price_real        ,    
+                        $building_price_real            
                     ){
 
 

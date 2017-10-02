@@ -122,13 +122,13 @@ class T_bphtb_registration_list_controller {
 
         $data = array('rows' => array(), 'page' => 1, 'records' => 0, 'total' => 1, 'success' => false, 'message' => '');
         
-        try {
+        /*try {
 
             $ci = & get_instance();
             $ci->load->model('transaksi/t_bphtb_registration_list');
             $table = $ci->t_bphtb_registration_list;
-            /*$item = $table->getCustOrder($payment_key);
-            $cust_order_id = $item['t_customer_order_id'];*/
+            //$item = $table->getCustOrder($payment_key);
+            //$cust_order_id = $item['t_customer_order_id'];
 
             $result = $table->insert(
                                         $wp_name                    ,
@@ -179,7 +179,7 @@ class T_bphtb_registration_list_controller {
 
         }catch (Exception $e) {
             $data['message'] = $e->getMessage();
-        }
+        }*/
 
         return $data;
 
