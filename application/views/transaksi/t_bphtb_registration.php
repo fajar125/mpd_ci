@@ -581,7 +581,7 @@ breadcrumb -->
                     $('#object_kelurahan').val(dt.object_kelurahan);
                     $('#p_bphtb_legal_doc_type_id').val(dt.p_bphtb_legal_doc_type_id);
                     $('#land_area').val(dt.land_area);
-                    $('#total_price').val(dt.total_price);
+                    $('#total_price').val(dt.market_price);
                     $('#land_price_per_m').val(dt.land_price_per_m);
                     $('#land_total_price').val(dt.land_total_price);
                     $('#building_area').val(dt.building_area);
