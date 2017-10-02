@@ -48,7 +48,7 @@
         var grid = $('#grid-table');
         var rowid = grid.jqGrid ('getGridParam', 'selrow');
         var id = grid.jqGrid ('getCell', rowid, 't_bphtb_registration_id');
-
+        //alert(id);
         loadContentWithParams('transaksi.t_bphtb_registration', {FLAG:'Detail',id:id});
 
     });

@@ -43,6 +43,43 @@ class T_bphtb_registration_list extends Abstract_model {
         return true;
     }
 
+    public function getDetailBphtb($id = 0){
+        $sql = "select a.add_disc_percent*100 as add_disc_percent_2,a.*,
+                b.region_name as wp_kota,
+                c.region_name as wp_kecamatan,
+                d.region_name as wp_kelurahan,
+                e.region_name as object_region,
+                f.region_name as object_kecamatan,
+                g.region_name as object_kelurahan,
+                h.description as doc_name,
+                (a.bphtb_amt - a.bphtb_discount) AS bphtb_amt_final_old,
+                j.payment_vat_amount AS prev_payment_amount
+
+                from t_bphtb_registration as a 
+                left join p_region as b
+                    on a.wp_p_region_id = b.p_region_id
+                left join p_region as c
+                    on a.wp_p_region_id_kec = c.p_region_id
+                left join p_region as d
+                    on a.wp_p_region_id_kel = d.p_region_id
+                left join p_region as e
+                    on a.object_p_region_id = e.p_region_id
+                left join p_region as f
+                    on a.object_p_region_id_kec = f.p_region_id
+                left join p_region as g
+                    on a.object_p_region_id_kel = g.p_region_id
+                left join p_bphtb_legal_doc_type as h
+                    on a.p_bphtb_legal_doc_type_id = h.p_bphtb_legal_doc_type_id
+                left join t_bphtb_registration as i
+                    on a.registration_no_ref = i.registration_no
+                left join t_payment_receipt_bphtb as j
+                    on i.t_bphtb_registration_id = j.t_bphtb_registration_id
+                where a.t_bphtb_registration_id = ".$id;
+        $query = $this->db->query($sql);
+        //exit;
+        return $query->row_array();
+    }
+
     function insert(
                         $wp_name                    ,
                         $npwp                       ,

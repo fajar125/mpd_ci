@@ -72,6 +72,33 @@ class T_bphtb_registration_list_controller {
         return $data;
     }
 
+    function read_detail_bphtb() {
+
+        $id = getVarClean('id', 'int', 0);
+
+        //exit;
+
+        $data = array('rows' => array(), 'success' => false, 'message' => '', 'records' => 0, 'total' => 0);
+
+        try {
+
+            $ci = & get_instance();
+            $ci->load->model('transaksi/t_bphtb_registration_list');
+            $table = $ci->t_bphtb_registration_list;
+
+            $items = $table->getDetailBphtb($id);
+
+            $data['items'] = $items;
+            $data['success'] = true;
+        }catch (Exception $e) {
+            $data['message'] = $e->getMessage();
+        }
+
+        echo json_encode($data);
+        exit;
+
+    }
+
     function insert(){
         $page = getVarClean('page','int',1);
         $limit = getVarClean('rows','int',5);

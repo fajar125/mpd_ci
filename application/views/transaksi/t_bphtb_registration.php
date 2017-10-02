@@ -543,7 +543,80 @@ breadcrumb -->
             error: function (xhr, status, error) {
                 swal({title: "Error!", text: xhr.responseText, html: true, type: "error"});
             }
+    });
+
+    if(FLAG == 'Edit' || FLAG == 'Detail'){
+        $.ajax({
+            url: '<?php echo WS_JQGRID."transaksi.t_bphtb_registration_list_controller/read_detail_bphtb"; ?>',
+            type: "POST",
+            dataType: "json",
+            data: {
+                id: "<?php echo $_POST['id']; ?>"
+            },
+            success: function (data) {
+                if(data.success){
+                    var dt = data.items;
+                    $('#wp_name').val(dt.wp_name);
+                    $('#npwp').val(dt.npwp);
+                    $('#wp_address_name').val(dt.wp_address_name);
+                    $('#wp_rt').val(dt.wp_rt);
+                    $('#wp_rw').val(dt.wp_rw);
+                    $('#wp_p_region_id').val(dt.wp_p_region_id);
+                    $('#wp_kota').val(dt.wp_kota);
+                    $('#wp_p_region_id_kec').val(dt.wp_p_region_id_kec);
+                    $('#wp_kecamatan').val(dt.wp_kecamatan);
+                    $('#wp_p_region_id_kel').val(dt.wp_p_region_id_kel);
+                    $('#wp_kelurahan').val(dt.wp_kelurahan);
+                    $('#phone_no').val(dt.phone_no);
+                    $('#mobile_phone_no').val(dt.mobile_phone_no);
+                    $('#njop_pbb').val(dt.njop_pbb);
+                    $('#object_letak_tanah').val(dt.object_address_name);
+                    $('#object_rt').val(dt.object_rt);
+                    $('#object_rw').val(dt.object_rw);
+                    $('#object_p_region_id').val(dt.object_p_region_id);
+                    $('#object_kota').val(dt.object_region);
+                    $('#object_p_region_id_kec').val(dt.object_p_region_id_kec);
+                    $('#object_kecamatan').val(dt.object_kecamatan);
+                    $('#object_p_region_id_kel').val(dt.object_p_region_id_kel);
+                    $('#object_kelurahan').val(dt.object_kelurahan);
+                    $('#p_bphtb_legal_doc_type_id').val(dt.p_bphtb_legal_doc_type_id);
+                    $('#land_area').val(dt.land_area);
+                    $('#total_price').val(dt.total_price);
+                    $('#land_price_per_m').val(dt.land_price_per_m);
+                    $('#land_total_price').val(dt.land_total_price);
+                    $('#building_area').val(dt.building_area);
+                    $('#building_price_per_m').val(dt.building_price_per_m);
+                    $('#building_total_price').val(dt.building_total_price);
+                    $('#market_price').val(dt.market_price);
+                    $('#npop').val(dt.npop);
+                    $('#npop_tkp').val(dt.npop_tkp);
+                    $('#npop_kp').val(dt.npop_kp);
+                    $('#bphtb_amt').val(dt.bphtb_amt);
+                    $('#bphtb_discount').val(dt.bphtb_discount);
+                    $('#bphtb_amt_final').val(dt.bphtb_amt_final);
+                    $('#description').val(dt.description);
+                    $('#jenis_harga_bphtb').val(dt.jenis_harga_bphtb);
+                    $('#bphtb_legal_doc_description').val(dt.bphtb_legal_doc_description);
+                    $('#add_disc_percent').val(dt.add_disc_percent);
+                    $('#add_discount').val(dt.add_discount);
+                    if(dt.check_potongan == 'Y'){
+                        $('#check_potongan').attr('checked', true);
+                    };
+                    $('#land_area_real').val(dt.land_area_real);
+                    $('#land_price_real').val(dt.land_price_real);
+                    $('#building_area_real').val(dt.building_area_real);
+                    $('#building_price_real').val(dt.building_price_real);
+
+                   
+                }
+                // console.log(dt.product_name);
+            },
+            error: function (xhr, status, error) {
+                swal({title: "Error!", text: xhr.responseText, html: true, type: "error"});
+            }
         });
+
+    }
 
 
     $(".priceformat").number( true, 0 , '.',','); /* price number format */
@@ -553,6 +626,7 @@ breadcrumb -->
     $(".numberformat").css("text-align", "right");
     $(".formatRight").css("text-align", "right");
 
+    
     if(FLAG == 'Add'){
         $('#print').css('display', 'none');
         $('#update').css('display', 'none');
