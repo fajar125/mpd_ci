@@ -985,7 +985,7 @@ breadcrumb -->
 
     function save(){
 
-        var var_url = "<?php echo WS_JQGRID . "transaksi.t_bphtb_registration_list_controller/insert_tes/?"; ?>";
+        var var_url = "<?php echo WS_JQGRID . "transaksi.t_bphtb_registration_list_controller/insert/?"; ?>";
         var_url += "<?php echo $this->security->get_csrf_token_name(); ?>=<?php echo $this->security->get_csrf_hash(); ?>";
         
         $.getJSON(var_url, function( items ) {

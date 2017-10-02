@@ -72,20 +72,6 @@ class T_bphtb_registration_list_controller {
         return $data;
     }
 
-    function insert_tes(){
-        $page = getVarClean('page','int','');
-        /*$data = array('rows' => array(), 'page' => 1, 'records' => 0, 'total' => 1, 'success' => false, 'message' => '');*/
-        print_r( $this->db); exit;
-
-        $sql = "SELECT * 
-                    FROM p_bphtb_legal_doc_type 
-                  ";
-        $query = $this->db->query($sql);
-        $items = $query->result_array();
-        $output=json_encode($items);
-        return $output;
-    }
-
     function insert(){
         $page = getVarClean('page','int',1);
         $limit = getVarClean('rows','int',5);
@@ -95,9 +81,9 @@ class T_bphtb_registration_list_controller {
         $wp_address_name                = getVarClean('wp_address_name','str',''); 
         $wp_rt                          = getVarClean('wp_rt','str',''); 
         $wp_rw                          = getVarClean('wp_rw','str',''); 
-        $wp_p_region_id                 = getVarClean('wp_p_region_id','str',''); 
-        $wp_p_region_id_kec             = getVarClean('wp_p_region_id_kec','str',''); 
-        $wp_p_region_id_kel             = getVarClean('wp_p_region_id_kel','str',''); 
+        $wp_p_region_id                 = getVarClean('wp_p_region_id','int',0); 
+        $wp_p_region_id_kec             = getVarClean('wp_p_region_id_kec','int',0); 
+        $wp_p_region_id_kel             = getVarClean('wp_p_region_id_kel','int',0); 
         $phone_no                       = getVarClean('phone_no','str',''); 
         $mobile_phone_no                = getVarClean('mobile_phone_no','str',''); 
         $njop_pbb                       = getVarClean('njop_pbb','str',''); 
@@ -108,31 +94,29 @@ class T_bphtb_registration_list_controller {
         $object_p_region_id_kec         = getVarClean('object_p_region_id_kec','str',''); 
         $object_p_region_id_kel         = getVarClean('object_p_region_id_kel','str',''); 
         $p_bphtb_legal_doc_type_id      = getVarClean('p_bphtb_legal_doc_type_id','str',''); 
-        $land_area                      = getVarClean('land_area','str',''); 
-        $land_price_per_m               = getVarClean('land_price_per_m','str',''); 
-        $land_total_price               = getVarClean('land_total_price','str',''); 
-        $building_area                  = getVarClean('building_area','str',''); 
-        $building_price_per_m           = getVarClean('land_total_price','str',''); 
-        $building_total_price           = getVarClean('land_total_price','str',''); 
-        $market_price                   = getVarClean('land_total_price','str',''); 
-        $npop                           = getVarClean('land_total_price','str',''); 
-        $npop_tkp                       = getVarClean('land_total_price','str',''); 
-        $npop_kp                        = getVarClean('land_total_price','str',''); 
-        $bphtb_amt                      = getVarClean('land_total_price','str',''); 
-        $bphtb_discount                 = getVarClean('land_total_price','str',''); 
-        $bphtb_amt_final                = getVarClean('land_total_price','str',''); 
-        $description                    = getVarClean('land_total_price','str',''); 
-        $i_user                         = getVarClean('land_total_price','str',''); 
-        $jenis_harga_bphtb              = getVarClean('land_total_price','str',''); 
-        $bphtb_legal_doc_description    = getVarClean('land_total_price','str',''); 
-        $add_disc_percent               = getVarClean('land_total_price','str',''); 
-        $check_potongan                 = getVarClean('land_total_price','str',''); 
-        $i_land_area_real               = getVarClean('land_total_price','str',''); 
-        $i_land_price_real              = getVarClean('land_total_price','str',''); 
-        $i_building_area_real           = getVarClean('land_total_price','str',''); 
-        $i_building_price_real          = getVarClean('land_total_price','str',''); 
-        $o_t_bphtb_registration_id      = getVarClean('land_total_price','str',''); 
-        $o_mess                         = getVarClean('land_total_price','str',''); 
+        $land_area                      = getVarClean('land_area','int',0); 
+        $land_price_per_m               = getVarClean('land_price_per_m','int',0); 
+        $land_total_price               = getVarClean('land_total_price','int',0); 
+        $building_area                  = getVarClean('building_area','int',0); 
+        $building_price_per_m           = getVarClean('building_price_per_m','int',0); 
+        $building_total_price           = getVarClean('building_total_price','int',0); 
+        $market_price                   = getVarClean('market_price','int',0); 
+        $npop                           = getVarClean('npop','int',0); 
+        $npop_tkp                       = getVarClean('npop_tkp','int',0); 
+        $npop_kp                        = getVarClean('npop_kp','int',0); 
+        $bphtb_amt                      = getVarClean('bphtb_amt','int',0); 
+        $bphtb_discount                 = getVarClean('bphtb_discount','int',0); 
+        $bphtb_amt_final                = getVarClean('bphtb_amt_final','int',0); 
+        $description                    = getVarClean('description','str',''); 
+        $jenis_harga_bphtb              = getVarClean('jenis_harga_bphtb','int',0); 
+        $bphtb_legal_doc_description    = getVarClean('bphtb_legal_doc_description','str',''); 
+        $add_disc_percent               = getVarClean('add_disc_percent','str',''); 
+        $check_potongan                 = getVarClean('check_potongan','str',''); 
+        $land_area_real                 = getVarClean('land_area_real','int',0); 
+        $land_price_real                = getVarClean('land_price_real','int',0); 
+        $building_area_real             = getVarClean('building_area_real','int',0); 
+        $building_price_real            = getVarClean('building_price_real','int',0); 
+        
         
                
 
@@ -146,7 +130,48 @@ class T_bphtb_registration_list_controller {
             /*$item = $table->getCustOrder($payment_key);
             $cust_order_id = $item['t_customer_order_id'];*/
 
-            $result = $table->insertUpdate($cust_order_id, $p_payment_type_id) ;
+            $result = $table->insert(
+                                        $wp_name                    ,
+                                        $npwp                       ,
+                                        $wp_address_name            ,
+                                        $wp_rt                      ,
+                                        $wp_rw                      ,
+                                        $wp_p_region_id             ,
+                                        $wp_p_region_id_kec         ,
+                                        $wp_p_region_id_kel         ,
+                                        $phone_no                   ,
+                                        $mobile_phone_no            ,
+                                        $njop_pbb                   ,
+                                        $object_address_name        ,
+                                        $object_rt                  ,
+                                        $object_rw                  ,   
+                                        $object_p_region_id         ,
+                                        $object_p_region_id_kec     ,
+                                        $object_p_region_id_kel     ,
+                                        $p_bphtb_legal_doc_type_id  ,
+                                        $land_area                  ,
+                                        $land_price_per_m           ,
+                                        $land_total_price           ,
+                                        $building_area              ,
+                                        $building_price_per_m       ,
+                                        $building_total_price       ,
+                                        $market_price               ,
+                                        $npop                       ,
+                                        $npop_tkp                   ,
+                                        $npop_kp                    ,
+                                        $bphtb_amt                  ,
+                                        $bphtb_discount             ,
+                                        $bphtb_amt_final            ,
+                                        $description                ,
+                                        $jenis_harga_bphtb          ,
+                                        $bphtb_legal_doc_description,
+                                        $add_disc_percent           ,
+                                        $check_potongan             ,
+                                        $land_area_real           ,
+                                        $land_price_real          ,
+                                        $building_area_real       ,
+                                        $building_price_real       
+                                    ) ;
             $count = count($result);
 
             $data['rows'] = $result;
