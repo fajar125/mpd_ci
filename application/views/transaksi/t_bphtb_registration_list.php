@@ -41,7 +41,7 @@
 <script>
 
     $('#add-bphtb').on('click', function(event){
-        loadContentWithParams('transaksi.t_bphtb_registration', {FLAG:'Add'});
+        loadContentWithParams('transaksi.t_bphtb_registration', {FLAG:'Add',id:0});
     });
 
     $('#detail-bphtb').on('click', function(event){

@@ -545,7 +545,28 @@ breadcrumb -->
             }
     });
 
+
+    $(".priceformat").number( true, 0 , '.',','); /* price number format */
+    $(".priceformat").css("text-align", "right");
+
+    $(".numberformat").number( true, 0 , '.','.');
+    $(".numberformat").css("text-align", "right");
+    $(".formatRight").css("text-align", "right");
+
     if(FLAG == 'Edit' || FLAG == 'Detail'){
+        /*if(FLAG == 'Edit'){
+            $('#print').css('display', '');
+            $('#update').css('display', '');
+            $('#delete').css('display', 'none');
+            $('#insert').css('display', 'none');
+        }else if(FLAG == 'Detail'){
+            $('#print').css('display', 'none');
+            $('#update').css('display', '');
+            $('#delete').css('display', '');
+            $('#insert').css('display', 'none');
+        }*/
+
+        
         $.ajax({
             url: '<?php echo WS_JQGRID."transaksi.t_bphtb_registration_list_controller/read_detail_bphtb"; ?>',
             type: "POST",
@@ -615,18 +636,8 @@ breadcrumb -->
                 swal({title: "Error!", text: xhr.responseText, html: true, type: "error"});
             }
         });
-
     }
 
-
-    $(".priceformat").number( true, 0 , '.',','); /* price number format */
-    $(".priceformat").css("text-align", "right");
-
-    $(".numberformat").number( true, 0 , '.','.');
-    $(".numberformat").css("text-align", "right");
-    $(".formatRight").css("text-align", "right");
-
-    
     if(FLAG == 'Add'){
         $('#print').css('display', 'none');
         $('#update').css('display', 'none');
@@ -1050,7 +1061,7 @@ breadcrumb -->
     
     $('#update').on('click', function(event){
         setNormalValue();
-        alert('update');
+        //alert('update');
     });
 
     $('#delete').on('click', function(event){
@@ -1150,9 +1161,6 @@ breadcrumb -->
         $.getJSON(var_url, function( items ) {
             
         })
-        
-
-        
     }
     
 </script>
