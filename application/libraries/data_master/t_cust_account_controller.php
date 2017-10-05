@@ -12,9 +12,10 @@ class t_cust_account_controller {
         $limit = getVarClean('rows','int',5);
         $sidx = getVarClean('sidx','str','t_cust_account_id');
         $sord = getVarClean('sord','str','desc');
+        $t_customer_id = getVarClean('t_customer_id','int',0);
 
         $data = array('rows' => array(), 'page' => 1, 'records' => 0, 'total' => 1, 'success' => false, 'message' => '');
-        $t_customer_id = getVarClean('t_customer_id','int',0);
+        
 
         try {
 

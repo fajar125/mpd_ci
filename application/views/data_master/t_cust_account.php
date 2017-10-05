@@ -36,7 +36,8 @@
                 </li>
             </ul>
         </div>
-
+        t_customer id = <input type="text" name="t_customer_id" id="t_customer_id">
+        t_cust_account_id = <input type="text" name="t_cust_account_id" id="t_cust_account_id">
         <div class="tab-content no-border">
             <div class="row">
                 <div class="col-xs-12">
@@ -61,6 +62,9 @@ $("#tab-3").on("click", function(event) {
     t_cust_account_id = grid.jqGrid ('getGridParam', 'selrow');
     id_cust_account = grid.jqGrid ('getCell', t_cust_account_id, 't_cust_account_id');
 
+    t_customer_id = grid.jqGrid ('getGridParam', 'selrow');
+    id_customer = grid.jqGrid ('getCell', t_customer_id, 't_customer_id');
+    //alert(t_customer_id+ " " +t_cust_account_id);
     if(t_cust_account_id == null) {
         swal('Informasi','Silahkan pilih salah satu Daftar Customer','info');
         return false;
@@ -68,6 +72,7 @@ $("#tab-3").on("click", function(event) {
 
     loadContentWithParams("data_master.t_trans_histories", { //model yang ketiga
         t_cust_account_id: t_cust_account_id,
+        t_customer_id: t_customer_id, 
         
     });
 });
@@ -81,7 +86,7 @@ $("#tab-3").on("click", function(event) {
 
         jQuery("#grid-table").jqGrid({
             url: '<?php echo WS_JQGRID."data_master.t_cust_account_controller/read"; ?>',
-            postData: { t_customer_id : <?php echo $this->input->post('t_customer_id'); ?>},
+            postData: { t_cust_account_id : <?php echo $this->input->post('t_cust_account_id'); ?>, t_customer_id : <?php echo $this->input->post('t_customer_id'); ?>},
             datatype: "json",
             mtype: "POST",
             colModel: [
@@ -318,7 +323,8 @@ $("#tab-3").on("click", function(event) {
     }
 
     function setCustomer_account(rowid){
-
+        $('#t_customer_id').val($('#grid-table').jqGrid('getCell', rowid, 't_customer_id'));
+        $('#t_cust_account_id').val($('#grid-table').jqGrid('getCell', rowid, 't_cust_account_id'));
         $('#npwd').val($('#grid-table').jqGrid('getCell', rowid, 'npwd'));
         $('#vat_code').val($('#grid-table').jqGrid('getCell', rowid, 'vat_code'));
         $('#nama_ayat').val($('#grid-table').jqGrid('getCell', rowid, 'nama_ayat'));

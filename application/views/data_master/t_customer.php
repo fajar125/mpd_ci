@@ -30,7 +30,8 @@
                 </li>
             </ul>
         </div>
-
+        t_customer_id = <input type="text" name="t_customer_id" id="t_customer_id">
+        t_cust_account_id id = <input type="text" name="t_cust_account_id" id="t_cust_account_id">
         <div class="tab-content no-border">
             <div class="row">
                 <div class="col-md-12">
@@ -55,13 +56,16 @@ $("#tab-2").on("click", function(event) {
     t_cust_account_id = grid.jqGrid ('getGridParam', 'selrow');
     id_cust_account = grid.jqGrid ('getCell', t_cust_account_id, 't_cust_account_id');
 
+    //t_customer_id = $('#t_customer_id').val();
+    alert("t_customer_id = "+id_customer+" t_cust_account_id = "+id_cust_account);
+
     if(t_customer_id == null && t_cust_account_id == null) {
         swal('Informasi','Silahkan pilih salah satu Customer','info');
         return false;
     }
 
     loadContentWithParams("data_master.t_cust_account", {
-        t_customer_id: t_customer_id,        
+        t_customer_id: id_customer,
         t_cust_account_id: t_cust_account_id,
         
     });
@@ -337,6 +341,8 @@ $("#tab-2").on("click", function(event) {
     }
 
     function setDaftar_customer(rowid){
+        var t_customer_id = $('#grid-table').jqGrid('getCell', rowid, 't_customer_id');
+        var t_cust_account_id = $('#grid-table').jqGrid('getCell', rowid, 't_cust_account_id');
         var company_owner = $('#grid-table').jqGrid('getCell', rowid, 'company_owner');
         var code = $('#grid-table').jqGrid('getCell', rowid, 'code');
         var address_name_owner = $('#grid-table').jqGrid('getCell', rowid, 'address_name_owner');
@@ -352,7 +358,8 @@ $("#tab-2").on("click", function(event) {
         var email_address = $('#grid-table').jqGrid('getCell', rowid, 'email_address');
         var zip_code_owner = $('#grid-table').jqGrid('getCell', rowid, 'zip_code_owner');
 
-
+        $('#t_customer_id').val(t_customer_id);
+        $('#t_cust_account_id').val(t_cust_account_id);
         $('#company_owner').val(company_owner);
         $('#code').val(code);
         $('#address_name_owner').val(address_name_owner);
