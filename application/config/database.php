@@ -75,10 +75,10 @@ $query_builder = TRUE;
 $active_group = 'default';
 $active_record = TRUE;
 
-$db['default']['hostname'] ='192.168.0.18';
+$db['default']['hostname'] ='localhost';
 
 $db['default']['username'] = 'sikp';
-$db['default']['password'] = 'sikp';
+$db['default']['password'] = 'bkm';
 $db['default']['database'] = 'sikp_db';
 $db['default']['schema'] = 'sikp';
 $db['default']['port']     = 5444;
