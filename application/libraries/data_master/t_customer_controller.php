@@ -103,7 +103,7 @@ class t_customer_controller {
         return $data;
     }
 
-    function crud() {
+    /*function crud() {
 
         $data = array();
         $oper = getVarClean('oper', 'str', '');
@@ -274,7 +274,7 @@ class t_customer_controller {
         }
         return $data;
 
-    }
+    }*/
 
     function destroy() {
         $ci = & get_instance();

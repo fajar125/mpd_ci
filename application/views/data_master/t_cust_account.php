@@ -55,10 +55,13 @@ $("#tab-1").on("click", function(event) {
     loadContentWithParams("data_master.t_customer",{});
 });
 
+$('#t_customer_id').val("<?php echo $_POST['t_customer_id'] ?>");
+$('#t_cust_account_id').val("<?php echo $_POST['t_cust_account_id'] ?>");
+
 $("#tab-3").on("click", function(event) {
 
     event.stopPropagation();
-    var grid = $('#grid-table');
+    /*var grid = $('#grid-table');
     t_cust_account_id = grid.jqGrid ('getGridParam', 'selrow');
     id_cust_account = grid.jqGrid ('getCell', t_cust_account_id, 't_cust_account_id');
 
@@ -68,11 +71,14 @@ $("#tab-3").on("click", function(event) {
     if(t_cust_account_id == null) {
         swal('Informasi','Silahkan pilih salah satu Daftar Customer','info');
         return false;
-    }
+    }*/
 
     loadContentWithParams("data_master.t_trans_histories", { //model yang ketiga
-        t_cust_account_id: t_cust_account_id,
-        t_customer_id: t_customer_id, 
+        /*t_cust_account_id: t_cust_account_id,
+        t_customer_id: t_customer_id, */
+        t_cust_account_id: $('#t_cust_account_id').val(),
+        t_customer_id: $('#t_customer_id').val(),
+
         
     });
 });
@@ -323,8 +329,8 @@ $("#tab-3").on("click", function(event) {
     }
 
     function setCustomer_account(rowid){
-        $('#t_customer_id').val($('#grid-table').jqGrid('getCell', rowid, 't_customer_id'));
-        $('#t_cust_account_id').val($('#grid-table').jqGrid('getCell', rowid, 't_cust_account_id'));
+        /*$('#t_customer_id').val($('#grid-table').jqGrid('getCell', rowid, 't_customer_id'));
+        $('#t_cust_account_id').val($('#grid-table').jqGrid('getCell', rowid, 't_cust_account_id'));*/
         $('#npwd').val($('#grid-table').jqGrid('getCell', rowid, 'npwd'));
         $('#vat_code').val($('#grid-table').jqGrid('getCell', rowid, 'vat_code'));
         $('#nama_ayat').val($('#grid-table').jqGrid('getCell', rowid, 'nama_ayat'));

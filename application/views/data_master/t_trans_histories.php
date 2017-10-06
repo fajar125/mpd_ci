@@ -55,16 +55,24 @@
 </div>
 <?php $this->load->view('lov/lov_v_cust_acc_dtl_trans'); ?>
 <script type="text/javascript">
+    $('#t_customer_id').val("<?php echo $_POST['t_customer_id'] ?>");
+    $('#t_cust_account_id').val("<?php echo $_POST['t_cust_account_id'] ?>");
+
     $("#tab-2").on("click", function(event) {
         event.stopPropagation();
-        t_customer_id = $("#t_customer_id").val();
+        /*t_customer_id = $("#t_customer_id").val();
         t_cust_account_id = $("#t_cust_account_id").val();
-        //alert(t_customer_id+ " " +t_cust_account_id);
+        //alert(t_customer_id+ " " +t_cust_account_id);*/
         loadContentWithParams("data_master.t_cust_account", { //model yang ketiga
-            t_cust_account_id: t_cust_account_id,
-            t_customer_id: t_customer_id, 
+            t_cust_account_id: $('#t_cust_account_id').val(),
+            t_customer_id: $('#t_customer_id').val(), 
             
         });
+    });
+
+    $("#tab-1").on("click", function(event) {
+        event.stopPropagation();
+        loadContentWithParams("data_master.t_customer",{});
     });
 </script>
 
@@ -133,8 +141,8 @@
             },
             onSelectRow: function (rowid) {
                 /*do something when selected*/
-                $('#t_customer_id').val($('#grid-table-trans').jqGrid('getCell', rowid, 't_customer_id'));
-                $('#t_cust_account_id').val($('#grid-table-trans').jqGrid('getCell', rowid, 't_cust_account_id'));
+                /*$('#t_customer_id').val($('#grid-table-trans').jqGrid('getCell', rowid, 't_customer_id'));
+                $('#t_cust_account_id').val($('#grid-table-trans').jqGrid('getCell', rowid, 't_cust_account_id'));*/
                 $('#t_vat_setllement_id').val($('#grid-table-trans').jqGrid('getCell', rowid, 't_vat_setllement_id'));
 
 

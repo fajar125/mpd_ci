@@ -73,12 +73,12 @@
              
              url: '<?php echo WS_BOOTGRID."data_master.v_cust_acc_dtl_trans_controller/readLov"; ?>',
              post:{t_vat_setllement_id:t_vat_setllement_id,t_cust_account_id:t_cust_account_id},
-             //postData: { t_vat_setllement_id : <?php //echo $this->input->post('t_vat_setllement_id'); ?>, t_cust_account_id : <?php //echo $this->input->post('t_cust_account_id'); ?>},
+             
              selection: true,
              sorting:true
         });
 
-        /*$('.bootgrid-header span.glyphicon-search').removeClass('glyphicon-search')
-        .html('<i class="fa fa-search"></i>');*/
+        $('.bootgrid-header span.glyphicon-search').removeClass('glyphicon-search')
+        .html('<i class="fa fa-search"></i>');
     }
 </script>

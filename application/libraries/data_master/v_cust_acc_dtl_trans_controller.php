@@ -22,32 +22,13 @@ class v_cust_acc_dtl_trans_controller {
 
             $ci = & get_instance();
             $ci->load->model('data_master/v_cust_acc_dtl_trans');
-            //$table = new History_transaksi($t_vat_setllement_id,$t_cust_account_id);
             $table = $ci->v_cust_acc_dtl_trans;
-
-            $req_param = array(
-                "sort_by" => $sidx,
-                "sord" => $sord,
-                "limit" => null,
-                "field" => null,
-                "where" => null,
-                "where_in" => null,
-                "where_not_in" => null,
-                "search" => $_REQUEST['_search'],
-                "search_field" => isset($_REQUEST['searchField']) ? $_REQUEST['searchField'] : null,
-                "search_operator" => isset($_REQUEST['searchOper']) ? $_REQUEST['searchOper'] : null,
-                "search_str" => isset($_REQUEST['searchString']) ? $_REQUEST['searchString'] : null
-            );
+             
+            $result = $table->get_v_cust_acc_dtl_trans($t_vat_setllement_id, $t_cust_account_id);
             
-           // Filter Table
-            $req_param['where'] = array();
-            $req_param['where'][] = "a.t_vat_setllement_id = b.t_vat_setllement_id";
-            $req_param['where'][] = "a.t_vat_setllement_id = ".$t_vat_setllement_id;
-            $req_param['where'][] = "b.t_cust_acc_dtl_trans_id = c.t_cust_acc_dtl_trans_id";
-            $req_param['where'][] = "b.t_cust_account_id = ".$t_cust_account_id;
+            $count = count($result);
 
-            $table->setJQGridParam($req_param);
-            $count = $table->countAll();
+            
 
             if ($count > 0) $total_pages = ceil($count / $limit);
             else $total_pages = 1;
@@ -55,12 +36,12 @@ class v_cust_acc_dtl_trans_controller {
             if ($page > $total_pages) $page = $total_pages;
             $start = $limit * $page - ($limit); // do not put $limit*($page - 1)
 
-            $req_param['limit'] = array(
+           /* $req_param['limit'] = array(
                 'start' => $start,
                 'end' => $limit
-            );
+            );*/
 
-            $table->setJQGridParam($req_param);
+            //$table->setJQGridParam($req_param);
 
             if ($page == 0) $data['page'] = 1;
             else $data['page'] = $page;
@@ -68,7 +49,7 @@ class v_cust_acc_dtl_trans_controller {
             $data['total'] = $total_pages;
             $data['records'] = $count;
 
-            $data['rows'] = $table->getAll();
+            $data['rows'] = $result;
             $data['success'] = true;
             
         }catch (Exception $e) {
@@ -84,8 +65,9 @@ class v_cust_acc_dtl_trans_controller {
 
         $sort = getVarClean('sort','str','t_vat_setllement_id');
         $dir  = getVarClean('dir','str','asc');
-        $t_vat_setllement_id = getVarClean('t_vat_setllement_id', 'int', null);
-        $t_cust_account_id = getVarClean('t_cust_account_id', 'int', null);
+
+        $t_vat_setllement_id = getVarClean('t_vat_setllement_id', 'int', 0);
+        $t_cust_account_id = getVarClean('t_cust_account_id', 'int', 0);
 
         $searchPhrase = getVarClean('searchPhrase', 'str', '');
 
@@ -98,9 +80,11 @@ class v_cust_acc_dtl_trans_controller {
             $table = $ci->v_cust_acc_dtl_trans;
 
             if(!empty($searchPhrase)) {
-                $table->setCriteria("");
+                $table->setCriteria("(upper(nama_transaksi) ".$table->likeOperator." upper('%".$searchPhrase."%'))");
             }
+            $table->setCriteria("a.t_vat_setllement_id = b.t_vat_setllement_id");
             $table->setCriteria("a.t_vat_setllement_id =".$t_vat_setllement_id);
+            $table->setCriteria("b.t_cust_acc_dtl_trans_id = c.t_cust_acc_dtl_trans_id");
             $table->setCriteria("b.t_cust_account_id = ".$t_cust_account_id);
 
             $start = ($start-1) * $limit;

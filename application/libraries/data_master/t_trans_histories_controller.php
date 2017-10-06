@@ -81,6 +81,8 @@ class t_trans_histories_controller {
             $result = $table->get_t_trans_histories($t_cust_account_id);  
             
             $items = $result;
+            /*print_r($items);
+            exit;*/
 
             startExcel("HISTORY_TRANSAKSI_WAJIB_PAJAK_".date('Y-m-d'));
             echo '<div align="center"><h3> DAFTAR WAJIB PAJAK</h3></div>';  
@@ -109,7 +111,7 @@ class t_trans_histories_controller {
             foreach ($items as $item) {
                 echo '<tr>';
                 echo '<td>' . ($no+1) . '</td>';
-                echo '<td>' . $item['npwd'] . '</td>';
+                echo '<td>' . $item["npwd"] . '</td>';
                 echo '<td>' . $item['company_name'] . '</td>';
                 echo '<td>' . $item['type_code'] . '</td>';
                 echo '<td>' . $item['vat_code'] . '</td>';
