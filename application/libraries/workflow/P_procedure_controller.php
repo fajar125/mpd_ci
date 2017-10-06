@@ -1,16 +1,16 @@
 <?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 /**
 * Json library
-* @class p_app_role_controller
+* @class Groups_controller
 * @version 07/05/2015 12:18:00
 */
-class p_app_role_controller {
+class P_procedure_controller {
 
     function read() {
 
         $page = getVarClean('page','int',1);
         $limit = getVarClean('rows','int',5);
-        $sidx = getVarClean('sidx','str','p_app_role_id');
+        $sidx = getVarClean('sidx','str','p_procedure_id');
         $sord = getVarClean('sord','str','desc');
 
         $data = array('rows' => array(), 'page' => 1, 'records' => 0, 'total' => 1, 'success' => false, 'message' => '');
@@ -18,8 +18,8 @@ class p_app_role_controller {
         try {
 
             $ci = & get_instance();
-            $ci->load->model('administration/p_app_role');
-            $table = $ci->p_app_role;
+            $ci->load->model('workflow/p_procedure');
+            $table = $ci->p_procedure;
 
             $req_param = array(
                 "sort_by" => $sidx,
@@ -62,7 +62,6 @@ class p_app_role_controller {
 
             $data['rows'] = $table->getAll();
             $data['success'] = true;
-            logging('view data role');
 
         }catch (Exception $e) {
             $data['message'] = $e->getMessage();
@@ -77,22 +76,22 @@ class p_app_role_controller {
         $oper = getVarClean('oper', 'str', '');
         switch ($oper) {
             case 'add' :
-                permission_check('can-add-role');
+                // permission_check('add-wf');
                 $data = $this->create();
             break;
 
             case 'edit' :
-                permission_check('can-edit-role');
+                // permission_check('edit-wf');
                 $data = $this->update();
             break;
 
             case 'del' :
-                permission_check('can-delete-role');
+                // permission_check('delete-wf');
                 $data = $this->destroy();
             break;
 
             default :
-                permission_check('can-view-role');
+                // permission_check('view-wf');
                 $data = $this->read();
             break;
         }
@@ -104,8 +103,8 @@ class p_app_role_controller {
     function create() {
 
         $ci = & get_instance();
-        $ci->load->model('administration/p_app_role');
-        $table = $ci->p_app_role;
+        $ci->load->model('workflow/p_procedure');
+        $table = $ci->p_procedure;
 
         $data = array('rows' => array(), 'page' => 1, 'records' => 0, 'total' => 1, 'success' => false, 'message' => '');
 
@@ -159,7 +158,6 @@ class p_app_role_controller {
 
                 $data['success'] = true;
                 $data['message'] = 'Data added successfully';
-                logging('create data role');
 
             }catch (Exception $e) {
                 $table->db->trans_rollback(); //Rollback Trans
@@ -176,8 +174,8 @@ class p_app_role_controller {
     function update() {
 
         $ci = & get_instance();
-        $ci->load->model('administration/p_app_role');
-        $table = $ci->p_app_role;
+        $ci->load->model('workflow/p_procedure');
+        $table = $ci->p_procedure;
 
         $data = array('rows' => array(), 'page' => 1, 'records' => 0, 'total' => 1, 'success' => false, 'message' => '');
 
@@ -231,7 +229,6 @@ class p_app_role_controller {
 
                 $data['success'] = true;
                 $data['message'] = 'Data update successfully';
-                logging('update data role');
 
                 $data['rows'] = $table->get($items[$table->pkey]);
             }catch (Exception $e) {
@@ -248,8 +245,8 @@ class p_app_role_controller {
 
     function destroy() {
         $ci = & get_instance();
-        $ci->load->model('administration/p_app_role');
-        $table = $ci->p_app_role;
+        $ci->load->model('workflow/p_procedure');
+        $table = $ci->p_procedure;
 
         $data = array('rows' => array(), 'page' => 1, 'records' => 0, 'total' => 1, 'success' => false, 'message' => '');
 
@@ -272,7 +269,7 @@ class p_app_role_controller {
                 $items = (int) $items;
                 if (empty($items)){
                     throw new Exception('Empty parameter');
-                }
+                };
 
                 $table->remove($items);
                 $data['rows'][] = array($table->pkey => $items);
@@ -281,7 +278,6 @@ class p_app_role_controller {
 
             $data['success'] = true;
             $data['message'] = $total.' Data deleted successfully';
-            logging('delete data role');
 
             $table->db->trans_commit(); //Commit Trans
 
@@ -294,24 +290,37 @@ class p_app_role_controller {
         return $data;
     }
 
-    function readLov() {
-
+    function readLov(){
         $start = getVarClean('current','int',0);
         $limit = getVarClean('rowCount','int',5);
 
-        $sort = getVarClean('sort','str','code');
+        $sort = getVarClean('sort','str','proc.p_procedure_id');
         $dir  = getVarClean('dir','str','asc');
 
         $searchPhrase = getVarClean('searchPhrase', 'str', '');
-        $customer_ref = getVarClean('customer_ref','str','');
 
         $data = array('rows' => array(), 'success' => false, 'message' => '', 'current' => $start, 'rowCount' => $limit, 'total' => 0);
 
         try {
 
             $ci = & get_instance();
-            $ci->load->model('administration/p_app_role');
-            $table = $ci->p_app_role;
+            $ci->load->model('workflow/p_procedure');
+            $table = $ci->p_procedure;
+
+            //Set default criteria. You can override this if you want
+            foreach ($table->fields as $key => $field){
+                if (!empty($$key)){ // <-- Perhatikan simbol $$
+                    if ($field['type'] == 'str'){
+                        $table->setCriteria($table->getAlias().$key.$table->likeOperator." '".$$key."' ");
+                    }else{
+                        $table->setCriteria($table->getAlias().$key." = ".$$key);
+                    }
+                }
+            }
+
+            if(!empty($searchPhrase)) {
+                $table->setCriteria("(upper(proc.proc_name) ".$table->likeOperator." upper('%".$searchPhrase."%') OR upper(proc.display_name) ".$table->likeOperator." upper('%".$searchPhrase."%'))");
+            }
 
             $start = ($start-1) * $limit;
             $items = $table->getAll($start, $limit, $sort, $dir);
@@ -327,6 +336,7 @@ class p_app_role_controller {
 
         return $data;
     }
+
 }
 
-/* End of file p_app_role_controller.php */
+/* End of file Groups_controller.php */

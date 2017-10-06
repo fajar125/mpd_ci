@@ -78,7 +78,7 @@ $active_record = TRUE;
 $db['default']['hostname'] ='localhost';
 
 $db['default']['username'] = 'sikp';
-$db['default']['password'] = 'bkm';
+$db['default']['password'] = 'sikp';
 $db['default']['database'] = 'sikp_db';
 $db['default']['schema'] = 'sikp';
 $db['default']['port']     = 5444;
