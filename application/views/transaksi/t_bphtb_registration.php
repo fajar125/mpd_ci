@@ -577,6 +577,8 @@ breadcrumb -->
             success: function (data) {
                 if(data.success){
                     var dt = data.items;
+
+                    $('#t_bphtb_registration_id').val(dt.t_bphtb_registration_id);
                     $('#wp_name').val(dt.wp_name);
                     $('#npwp').val(dt.npwp);
                     $('#wp_address_name').val(dt.wp_address_name);
@@ -602,7 +604,6 @@ breadcrumb -->
                     $('#object_kelurahan').val(dt.object_kelurahan);
                     $('#p_bphtb_legal_doc_type_id').val(dt.p_bphtb_legal_doc_type_id);
                     $('#land_area').val(dt.land_area);
-                    $('#total_price').val(dt.market_price);
                     $('#land_price_per_m').val(dt.land_price_per_m);
                     $('#land_total_price').val(dt.land_total_price);
                     $('#building_area').val(dt.building_area);
@@ -620,6 +621,7 @@ breadcrumb -->
                     $('#bphtb_legal_doc_description').val(dt.bphtb_legal_doc_description);
                     $('#add_disc_percent').val(dt.add_disc_percent);
                     $('#add_discount').val(dt.add_discount);
+                    $('#total_price').val(Number($('#land_total_price').val())+Number($('#building_total_price').val()));
                     if(dt.check_potongan == 'Y'){
                         $('#check_potongan').attr('checked', true);
                     };
@@ -1061,6 +1063,7 @@ breadcrumb -->
     
     $('#update').on('click', function(event){
         setNormalValue();
+        update();
         //alert('update');
     });
 
@@ -1148,7 +1151,7 @@ breadcrumb -->
          var_url += "&bphtb_amt_final=" + bphtb_amt_final;
          var_url += "&description=" + description;
          var_url += "&jenis_harga_bphtb=" + jenis_harga_bphtb;
-         var_url += "&bphtb_legal_doc_description=" + bphtb_legal_doc_descripti;
+         var_url += "&bphtb_legal_doc_description=" + bphtb_legal_doc_description;
          var_url += "&add_disc_percent=" + add_disc_percent;
          var_url += "&check_potongan=" + check_potongan;
          var_url += "&land_area_real=" + land_area_real;
@@ -1157,6 +1160,101 @@ breadcrumb -->
          var_url += "&building_price_real=" + building_price_real;
             
             alert(var_url);
+            
+        $.getJSON(var_url, function( items ) {
+            
+        })
+    }
+
+    function update(){
+        //alert('masuk');
+        var t_bphtb_registration_id     = $('#t_bphtb_registration_id').val();
+        var wp_name                     = $('#wp_name').val();
+        var npwp                        = $('#npwp').val();
+        var wp_address_name             = $('#wp_address_name').val();
+        var wp_rt                       = $('#wp_rt').val();
+        var wp_rw                       = $('#wp_rw').val();
+        var wp_p_region_id              = $('#wp_p_region_id').val();
+        var wp_p_region_id_kec          = $('#wp_p_region_id_kec').val();
+        var wp_p_region_id_kel          = $('#wp_p_region_id_kel').val();
+        var mobile_phone_no             = $('#mobile_phone_no').val();
+        var njop_pbb                    = $('#njop_pbb').val();
+        var object_address_name         = $('#object_letak_tanah').val();
+        var object_rt                   = $('#object_rt').val();
+        var object_rw                   = $('#object_rw').val();
+        var object_p_region_id          = $('#object_p_region_id').val();
+        var object_p_region_id_kec      = $('#object_p_region_id_kec').val();
+        var object_p_region_id_kel      = $('#object_p_region_id_kel').val();
+        var p_bphtb_legal_doc_type_id   = $('#p_bphtb_legal_doc_type_id').val();
+        var land_area                   = $('#land_area').val();        
+        var land_price_per_m            = $('#land_price_per_m').val();
+        var land_total_price            = $('#land_total_price').val();
+        var building_area               = $('#building_area').val();
+        var building_price_per_m        = $('#building_price_per_m').val();
+        var building_total_price        = $('#building_total_price').val();
+        var market_price                = $('#market_price').val();
+        var npop                        = $('#npop').val();
+        var npop_tkp                    = $('#npop_tkp').val();
+        var npop_kp                     = $('#npop_kp').val();
+        var bphtb_amt                   = $('#bphtb_amt').val();
+        var bphtb_discount              = $('#bphtb_discount').val();
+        var bphtb_amt_final             = $('#bphtb_amt_final').val();
+        var description                 = $('#description').val();
+        var jenis_harga_bphtb           = $('#jenis_harga_bphtb').val();
+        var bphtb_legal_doc_description = $('#bphtb_legal_doc_description').val();
+        var add_disc_percent            = $('#add_disc_percent').val();
+        var land_area_real              = $('#land_area_real').val();
+        var land_price_real             = $('#land_price_real').val();
+        var building_area_real          = $('#building_area_real').val();
+        var building_price_real         = $('#building_price_real').val();
+
+
+        var var_url = "<?php echo WS_JQGRID . "transaksi.t_bphtb_registration_list_controller/update/?"; ?>";
+        var_url += "<?php echo $this->security->get_csrf_token_name(); ?>=<?php echo $this->security->get_csrf_hash(); ?>";
+
+         var_url += "&wp_name=" + wp_name;
+         var_url += "&npwp=" + npwp;
+         var_url += "&wp_address_name=" + wp_address_name;
+         var_url += "&wp_rt=" + wp_rt;
+         var_url += "&wp_rw=" + wp_rw;
+         var_url += "&wp_p_region_id=" + wp_p_region_id;
+         var_url += "&wp_p_region_id_kec=" + wp_p_region_id_kec;
+         var_url += "&wp_p_region_id_kel=" + wp_p_region_id_kel;
+         var_url += "&mobile_phone_no=" + mobile_phone_no;
+         var_url += "&njop_pbb=" + njop_pbb;
+         var_url += "&object_address_name=" + object_address_name;
+         var_url += "&object_rt=" + object_rt;
+         var_url += "&object_rw=" + object_rw;
+         var_url += "&object_p_region_id=" + object_p_region_id;
+         var_url += "&object_p_region_id_kec=" + object_p_region_id_kec
+         var_url += "&object_p_region_id_kel=" + object_p_region_id_kel;
+         var_url += "&p_bphtb_legal_doc_type_id=" + p_bphtb_legal_doc_type_id;
+         var_url += "&land_area=" + land_area;
+         var_url += "&land_price_per_m=" + land_price_per_m;
+         var_url += "&land_total_price=" + land_total_price;
+         var_url += "&building_area=" + building_area;
+         var_url += "&building_price_per_m=" + building_price_per_m;
+         var_url += "&building_total_price=" + building_total_price;
+         var_url += "&market_price=" + market_price;
+         var_url += "&npop=" + npop;
+         var_url += "&npop_tkp=" + npop_tkp;
+         var_url += "&npop_kp=" + npop_kp;
+         var_url += "&bphtb_amt=" + bphtb_amt;
+         var_url += "&bphtb_discount=" + bphtb_discount;
+         var_url += "&bphtb_amt_final=" + bphtb_amt_final;
+         var_url += "&description=" + description;
+         var_url += "&jenis_harga_bphtb=" + jenis_harga_bphtb;
+         var_url += "&bphtb_legal_doc_description=" + bphtb_legal_doc_description;
+         var_url += "&add_disc_percent=" + add_disc_percent;
+         var_url += "&land_area_real=" + land_area_real;
+         var_url += "&land_price_real=" + land_price_real; 
+         var_url += "&building_area_real=" + building_area_real;
+         var_url += "&building_price_real=" + building_price_real;
+         var_url += "&t_bphtb_registration_id=" + t_bphtb_registration_id;
+            
+         
+        alert(var_url);
+         
             
         $.getJSON(var_url, function( items ) {
             
