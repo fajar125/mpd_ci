@@ -655,7 +655,7 @@
             editicon: 'fa fa-pencil blue bigger-120',
             add: true,
             addicon: 'fa fa-plus-circle purple bigger-120',
-            del: true,
+            del: false,
             delicon: 'fa fa-trash-o red bigger-120',
             search: true,
             searchicon: 'fa fa-search orange bigger-120',
@@ -1131,7 +1131,7 @@
             editicon: 'fa fa-pencil blue bigger-120',
             add: false,
             addicon: 'fa fa-plus-circle purple bigger-120',
-            del: false,
+            del: true,
             delicon: 'fa fa-trash-o red bigger-120',
             search: true,
             searchicon: 'fa fa-search orange bigger-120',
@@ -1276,6 +1276,9 @@
             },
             afterSubmit:function(response,postdata) {
                 var response = jQuery.parseJSON(response.responseText);
+
+                //code
+                jQuery("#jqGridDetailPrev").trigger("reloadGrid");
                 if(response.success == false) {
                     return [false,response.message,response.responseText];
                 }

@@ -39,7 +39,7 @@ class Chart_proc_prev extends Abstract_model {
             //do something
             // example :
 
-            $this->record[$this->pkey] = $this->generate_id($this->table);
+            $this->record[$this->pkey] = $this->generate_id($this->table, $this->pkey);
             $this->db->set('update_date',"to_date('".date('Y-m-d')."','yyyy-mm-dd')",false);
             $this->db->set('create_date',"to_date('".date('Y-m-d')."','yyyy-mm-dd')",false);
             $this->record['update_by'] = $userdata['app_user_name'];
@@ -52,6 +52,24 @@ class Chart_proc_prev extends Abstract_model {
             }
 
             $this->db->set('valid_from',"to_date('".$this->record['valid_from']."','yyyy-mm-dd')",false);
+
+            if(empty($this->record['sequence_no'])) {
+                $this->record['sequence_no'] = null;
+            }else {
+                $this->record['sequence_no'] = (integer)$this->record['sequence_no'];
+            }
+            
+            if(empty($this->record['p_procedure_id_alt'])) {
+                $this->record['p_procedure_id_alt'] = null;
+            }else {
+                $this->record['p_procedure_id_alt'] = (integer)$this->record['p_procedure_id_alt'];
+            }
+
+            if(empty($this->record['p_procedure_id_next'])) {
+                $this->record['p_procedure_id_next'] = null;
+            }else {
+                $this->record['p_procedure_id_next'] = (integer)$this->record['p_procedure_id_next'];
+            }
 
             unset($this->record['valid_from']);
             unset($this->record['valid_to']);
@@ -70,6 +88,24 @@ class Chart_proc_prev extends Abstract_model {
             }
 
             $this->db->set('valid_from',"to_date('".$this->record['valid_from']."','yyyy-mm-dd')",false);
+
+            if(empty($this->record['sequence_no'])) {
+                $this->record['sequence_no'] = null;
+            }else {
+                $this->record['sequence_no'] = (integer)$this->record['sequence_no'];
+            }
+
+            if(empty($this->record['p_procedure_id_alt'])) {
+                $this->record['p_procedure_id_alt'] = null;
+            }else {
+                $this->record['p_procedure_id_alt'] = (integer)$this->record['p_procedure_id_alt'];
+            }
+            
+            if(empty($this->record['p_procedure_id_next'])) {
+                $this->record['p_procedure_id_next'] = null;
+            }else {
+                $this->record['p_procedure_id_next'] = (integer)$this->record['p_procedure_id_next'];
+            }
 
             unset($this->record['valid_from']);
             unset($this->record['valid_to']);
