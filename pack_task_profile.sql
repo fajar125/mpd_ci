@@ -187,7 +187,7 @@ IS
                             '10' || d.p_document_type_id || '0' || nvl(w1.p_w_proc_id,wf.p_procedure_id_start) ||'0' || nvl(max(w1.p_app_user_id),puser_id) ||
                             ',P_W_DOC_TYPE_ID:' || d.p_document_type_id ||
                             ',P_W_PROC_ID:' || nvl(w1.p_w_proc_id,wf.p_procedure_id_start)  ||
-                            ',PROFILE_TYPE:"INBOX"'||
+                            ',PROFILE_TYPE:''INBOX'''||
                             ',P_APP_USER_ID:' || nvl(max(w1.p_app_user_id),puser_id) || '}' as url,
                        nvl(sum(w1.jumlah),0) as jumlah
                 from sikp.p_workflow wf,
@@ -427,7 +427,7 @@ IS
                             '10' || d.p_document_type_id || '0' || nvl(w1.p_w_proc_id,wf.p_procedure_id_start) ||'0' || nvl(max(w1.p_app_user_id),puser_id) ||
                             ',P_W_DOC_TYPE_ID:' || d.p_document_type_id ||
                             ',P_W_PROC_ID:' || nvl(w1.p_w_proc_id,wf.p_procedure_id_start)  ||
-                            ',PROFILE_TYPE:"INBOX"'||
+                            ',PROFILE_TYPE:''INBOX'''||
                             ',P_APP_USER_ID:' || nvl(max(w1.p_app_user_id),puser_id) || '}' as url,
                        nvl(sum(w1.jumlah),0) as jumlah
                 from sikp.p_workflow wf,
