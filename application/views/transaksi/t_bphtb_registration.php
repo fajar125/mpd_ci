@@ -63,7 +63,7 @@ breadcrumb -->
                                         </label>
                                         <div class="col-md-3">
                                             <input type="hidden" class="form-control" name="t_bphtb_registration_id" id="t_bphtb_registration_id">
-                                            <input type="text" class="form-control" name="wp_name" id="wp_name">
+                                            <input type="text" class="form-control" maxlength="64" name="wp_name" id="wp_name">
                                             <input type="hidden" class="form-control" name="p_bphtb_type_id" id="p_bphtb_type_id">
                                         </div>
 
@@ -72,28 +72,28 @@ breadcrumb -->
                                         <label class="control-label col-md-2">NPWP
                                         </label>
                                         <div class="col-md-3">
-                                            <input type="text" class="form-control" name="npwp" id="npwp">
+                                            <input type="text" class="form-control" maxlength="32" name="npwp" id="npwp">
                                         </div>
                                     </div>
                                     <div class="form-group">
                                         <label class="control-label col-md-2">Alamat
                                         </label>
                                         <div class="col-md-4">
-                                            <textarea rows="4" cols="50" class="form-control"  name="wp_address_name" id="wp_address_name"></textarea>
+                                            <textarea rows="4" cols="50" class="form-control" maxlength="256"  name="wp_address_name" id="wp_address_name"></textarea>
                                         </div>
                                     </div>
                                     <div class="form-group">
                                         <label class="control-label col-md-2">No Telp
                                         </label>
                                         <div class="col-md-3">
-                                            <input type="text" class="form-control" name="phone_no" id="phone_no">
+                                            <input type="text" class="form-control" maxlength="32" name="phone_no" id="phone_no">
                                         </div>
                                     </div>
                                     <div class="form-group">
                                         <label class="control-label col-md-2">No Hp
                                         </label>
                                         <div class="col-md-3">
-                                            <input type="text" class="form-control formatRight" name="mobile_phone_no" id="mobile_phone_no">
+                                            <input type="text" class="form-control formatRight" maxlength="32" name="mobile_phone_no" id="mobile_phone_no">
                                         </div>
                                     </div>
                                     <div class="form-group">
@@ -101,9 +101,9 @@ breadcrumb -->
                                         </label>
                                         <div class="col-md-3">
                                             <div class="input-group ">
-                                                <input type="text" class="form-control" name="wp_rt" id="wp_rt">
+                                                <input type="text" class="form-control" maxlength="10" name="wp_rt" id="wp_rt">
                                                 <span class="input-group-addon"> / </span>
-                                                <input type="text" class="form-control" name="wp_rw" id="wp_rw">
+                                                <input type="text" class="form-control" maxlength="10" name="wp_rw" id="wp_rw">
                                             </div>
                                         </div>
                                     </div>
@@ -112,7 +112,7 @@ breadcrumb -->
                                         </label>
                                         <div class="col-md-3">
                                             <div class="input-group">
-                                                <input type="hidden" class="form-control required" name="wp_p_region_id" id="wp_p_region_id" readonly>
+                                                <input type="hidden" class="form-control required" maxlength="8" name="wp_p_region_id" id="wp_p_region_id" readonly>
                                                 <input type="text" class="form-control required" name="wp_kota" id="wp_kota" readonly>
                                                 <span class="input-group-btn">
                                                     <button class="btn btn-success" type="button" id="btn-lov-kota-subjek">
@@ -127,7 +127,7 @@ breadcrumb -->
                                         </label>
                                         <div class="col-md-3">
                                             <div class="input-group">
-                                                <input type="hidden" class="form-control required" name="wp_p_region_id_kec" id="wp_p_region_id_kec" readonly>
+                                                <input type="hidden" class="form-control required" name="wp_p_region_id_kec" maxlength="8" id="wp_p_region_id_kec" readonly>
                                                 <input type="text" class="form-control required" name="wp_kecamatan" id="wp_kecamatan" readonly>
                                                 <span class="input-group-btn">
                                                     <button class="btn btn-success" type="button" id="btn-lov-kecamatan-subjek">
@@ -142,7 +142,7 @@ breadcrumb -->
                                         </label>
                                         <div class="col-md-3">
                                             <div class="input-group">
-                                                <input type="hidden" class="form-control required" name="wp_p_region_id_kel" id="wp_p_region_id_kel" readonly>
+                                                <input type="hidden" class="form-control required" name="wp_p_region_id_kel" maxlength="8" id="wp_p_region_id_kel" readonly>
                                                 <input type="text" class="form-control required" name="wp_kelurahan" id="wp_kelurahan" readonly>
                                                 <span class="input-group-btn">
                                                     <button class="btn btn-success" type="button" id="btn-lov-kelurahan-subjek">
@@ -163,7 +163,7 @@ breadcrumb -->
                                         <label class="control-label col-md-2">No Objek Pajak
                                         </label>
                                         <div class="col-md-3">
-                                            <input type="text" class="form-control" name="njop_pbb" id="njop_pbb">
+                                            <input type="text" class="form-control" maxlength="48" name="njop_pbb" id="njop_pbb">
                                         </div>
                                     </div>
 
@@ -171,7 +171,7 @@ breadcrumb -->
                                         <label class="control-label col-md-2">Letak Tanah dan atau Bangunan
                                         </label>
                                         <div class="col-md-3">
-                                            <input type="text" class="form-control" name="object_letak_tanah" id="object_letak_tanah">
+                                            <input type="text" class="form-control" maxlength="128" name="object_letak_tanah" id="object_letak_tanah">
                                         </div>
                                     </div>
                                     
@@ -180,9 +180,9 @@ breadcrumb -->
                                         </label>
                                         <div class="col-md-3">
                                             <div class="input-group ">
-                                                <input type="text" class="form-control" name="object_rt" id="object_rt">
+                                                <input type="text" class="form-control" maxlength="10" name="object_rt" id="object_rt">
                                                 <span class="input-group-addon"> / </span>
-                                                <input type="text" class="form-control" name="object_rw" id="object_rw">
+                                                <input type="text" class="form-control" maxlength="10" name="object_rw" id="object_rw">
                                             </div>
                                         </div>
                                     </div>
@@ -192,7 +192,7 @@ breadcrumb -->
                                         </label>
                                         <div class="col-md-3">
                                             <div class="input-group">
-                                                <input type="hidden" class="form-control required" name="object_p_region_id" id="object_p_region_id" readonly>
+                                                <input type="hidden" class="form-control required" maxlength="10" name="object_p_region_id" id="object_p_region_id" readonly>
                                                 <input type="text" class="form-control required" name="object_kota" id="object_kota" readonly>
                                                 <span class="input-group-btn">
                                                     <button class="btn btn-success" type="button" id="btn-lov-kota-objek">
@@ -207,7 +207,7 @@ breadcrumb -->
                                         </label>
                                         <div class="col-md-3">
                                             <div class="input-group">
-                                                <input type="hidden" class="form-control required" name="object_p_region_id_kec" id="object_p_region_id_kec" readonly>
+                                                <input type="hidden" class="form-control required" maxlength="10" name="object_p_region_id_kec" id="object_p_region_id_kec" readonly>
                                                 <input type="text" class="form-control required" name="object_kecamatan" id="object_kecamatan" readonly>
                                                 <span class="input-group-btn">
                                                     <button class="btn btn-success" type="button" id="btn-lov-kecamatan-objek">
@@ -222,7 +222,7 @@ breadcrumb -->
                                         </label>
                                         <div class="col-md-3">
                                             <div class="input-group">
-                                                <input type="hidden" class="form-control required" name="object_p_region_id_kel" id="object_p_region_id_kel" readonly>
+                                                <input type="hidden" class="form-control required" maxlength="10" name="object_p_region_id_kel" id="object_p_region_id_kel" readonly>
                                                 <input type="text" class="form-control required" name="object_kelurahan" id="object_kelurahan" readonly>
                                                 <span class="input-group-btn">
                                                     <button class="btn btn-success" type="button" id="btn-lov-kelurahan-objek">
@@ -239,7 +239,7 @@ breadcrumb -->
                                            <div id="comboDocPendukung"></div>
                                         </div>
                                         <div class="col-md-3">
-                                            <input type="text" class="form-control" name="bphtb_legal_doc_description" id="bphtb_legal_doc_description">
+                                            <input type="text" class="form-control" maxlength="100" name="bphtb_legal_doc_description" id="bphtb_legal_doc_description">
                                         </div>
                                         <div class="col-md-3">
                                             <input type="hidden" class="form-control" name="nilai_doc" id="nilai_doc">
@@ -263,14 +263,14 @@ breadcrumb -->
                                         </label>
                                         <div class="col-md-3">
                                             <div class="input-group ">
-                                                <input type="text" onkeyup="hitungTotalTanah();return 1;" class="form-control formatRight"  readonly="true" name="land_area_real" id="land_area_real">
+                                                <input type="text" onkeyup="hitungTotalTanah();return 1;" class="form-control formatRight"  readonly="true" maxlength="16" name="land_area_real" id="land_area_real">
                                                 <span class="input-group-addon">m2</span>
                                             </div> 
                                         </div>
                                         <div class="col-md-3">
                                             <div class="input-group ">
                                                 <span class="input-group-addon">Rp.</span>
-                                                <input type="text" onkeyup="hitungTotalTanah();" class="form-control priceformat" readonly="true" name="land_price_real" id="land_price_real">
+                                                <input type="text" onkeyup="hitungTotalTanah();" maxlength="16" class="form-control priceformat" readonly="true" name="land_price_real" id="land_price_real">
                                             </div> 
                                         </div>
                                     </div>
@@ -280,14 +280,14 @@ breadcrumb -->
                                         </label>
                                         <div class="col-md-3">
                                             <div class="input-group ">
-                                                <input type="text" onkeyup="hitungTotalBangunan();" class="form-control formatRight"  readonly="true" name="building_area_real" id="building_area_real">
+                                                <input type="text" onkeyup="hitungTotalBangunan();" maxlength="16" class="form-control formatRight"  readonly="true" name="building_area_real" id="building_area_real">
                                                 <span class="input-group-addon">m2</span>
                                             </div> 
                                         </div>
                                         <div class="col-md-3">
                                             <div class="input-group ">
                                                 <span class="input-group-addon">Rp.</span>
-                                                <input type="text" onkeyup="hitungTotalBangunan();" class="form-control priceformat" readonly="true" name="building_price_real" id="building_price_real">
+                                                <input type="text" onkeyup="hitungTotalBangunan();" maxlength="16" class="form-control priceformat" readonly="true" name="building_price_real" id="building_price_real">
                                             </div> 
                                         </div>
                                     </div>
@@ -297,20 +297,20 @@ breadcrumb -->
                                         </label>
                                         <div class="col-md-3">
                                             <div class="input-group ">
-                                                <input type="text" onkeyup="hitungTotalTanah();return 1;" class="form-control formatRight"   name="land_area" id="land_area">
+                                                <input type="text" onkeyup="hitungTotalTanah();return 1;" maxlength="10"  class="form-control formatRight"   name="land_area" id="land_area">
                                                 <span class="input-group-addon">m2</span>
                                             </div> 
                                         </div>
                                         <div class="col-md-3">
                                             <div class="input-group ">
                                                 <span class="input-group-addon">Rp.</span>
-                                                <input type="text" onkeyup="hitungTotalTanah();" class="form-control priceformat"  name="land_price_per_m" id="land_price_per_m">
+                                                <input type="text" onkeyup="hitungTotalTanah();" maxlength="10" class="form-control priceformat"  name="land_price_per_m" id="land_price_per_m">
                                             </div> 
                                         </div>
                                         <div class="col-md-3">
                                             <div class="input-group ">
                                                 <span class="input-group-addon">Rp.</span>
-                                                <input type="text" class="form-control priceformat"  name="land_total_price" id="land_total_price">
+                                                <input type="text" class="form-control  priceformat"  maxlength="16" name="land_total_price" id="land_total_price">
                                             </div> 
                                         </div>
                                         <label class="control-label col-md-5 col-md-offset-2">(Gunakan tanda "."(titik) untuk luas dengan bilangan pecahan)
@@ -322,20 +322,20 @@ breadcrumb -->
                                         </label>
                                         <div class="col-md-3">
                                             <div class="input-group ">
-                                                <input type="text" onkeyup="hitungTotalBangunan();" class="form-control formatRight"   name="building_area" id="building_area">
+                                                <input type="text" onkeyup="hitungTotalBangunan();"  maxlength="10" class="form-control formatRight"   name="building_area" id="building_area">
                                                 <span class="input-group-addon">m2</span>
                                             </div> 
                                         </div>
                                         <div class="col-md-3">
                                             <div class="input-group ">
                                                 <span class="input-group-addon">Rp.</span>
-                                                <input type="text" onkeyup=" hitungTotalBangunan();" class="form-control priceformat"  name="building_price_per_m" id="building_price_per_m">
+                                                <input type="text" onkeyup=" hitungTotalBangunan();"  maxlength="10" class="form-control priceformat"  name="building_price_per_m" id="building_price_per_m">
                                             </div> 
                                         </div>
                                         <div class="col-md-3">
                                             <div class="input-group ">
                                                 <span class="input-group-addon">Rp.</span>
-                                                <input type="text" class="form-control priceformat"  name="building_total_price" id="building_total_price">
+                                                <input type="text" class="form-control priceformat"  maxlength="16"  name="building_total_price" id="building_total_price">
                                             </div> 
                                         </div>
                                         <label class="control-label col-md-5 col-md-offset-2">(Gunakan tanda "."(titik) untuk luas dengan bilangan pecahan)
@@ -364,7 +364,7 @@ breadcrumb -->
                                         <div class="col-md-3 col-md-offset-3 ">
                                             <div class="input-group ">
                                                 <span class="input-group-addon">Rp</span>
-                                                <input type="text" onkeyup=" getNPOP();" class="form-control priceformat"   name="market_price" id="market_price">
+                                                <input type="text" onkeyup=" getNPOP();" maxlength="16"  class="form-control priceformat"   name="market_price" id="market_price">
                                             </div> 
                                         </div>
                                     </div>
@@ -391,7 +391,7 @@ breadcrumb -->
                                         <div class="col-md-3">
                                             <div class="input-group ">
                                                 <span class="input-group-addon">Rp.</span>
-                                                <input type="text" class="form-control priceformat" readonly  name="npop" id="npop">
+                                                <input type="text" class="form-control priceformat" maxlength="16" readonly  name="npop" id="npop">
                                             </div> 
                                         </div>
                                     </div>
@@ -413,7 +413,7 @@ breadcrumb -->
                                         <div class="col-md-3">
                                             <div class="input-group ">
                                                 <span class="input-group-addon">Rp.</span>
-                                                <input type="text" class="form-control priceformat"  name="npop_tkp" id="npop_tkp">
+                                                <input type="text" class="form-control priceformat" maxlength="16"  name="npop_tkp" id="npop_tkp">
                                             </div> 
                                         </div>
                                     </div>
@@ -424,7 +424,7 @@ breadcrumb -->
                                         <div class="col-md-3">
                                             <div class="input-group ">
                                                 <span class="input-group-addon">Rp.</span>
-                                                <input type="text" class="form-control priceformat"  name="npop_kp" id="npop_kp">
+                                                <input type="text" class="form-control priceformat" maxlength="16" name="npop_kp" id="npop_kp">
                                             </div> 
                                         </div>
                                     </div>
@@ -435,7 +435,7 @@ breadcrumb -->
                                         <div class="col-md-3">
                                             <div class="input-group ">
                                                 <span class="input-group-addon">Rp.</span>
-                                                <input type="text" class="form-control priceformat"  name="bphtb_amt" id="bphtb_amt">
+                                                <input type="text" class="form-control priceformat" maxlength="16"  name="bphtb_amt" id="bphtb_amt">
                                             </div> 
                                         </div>
                                     </div>
@@ -446,7 +446,7 @@ breadcrumb -->
                                         <div class="col-md-3">
                                             <div class="input-group ">
                                                 <span class="input-group-addon">Rp.</span>
-                                                <input type="text" class="form-control priceformat"  name="bphtb_discount" id="bphtb_discount">
+                                                <input type="text" class="form-control priceformat" maxlength="16"  name="bphtb_discount" id="bphtb_discount">
                                             </div> 
                                         </div>
                                         <div class="col-md-3">
@@ -462,10 +462,6 @@ breadcrumb -->
                                         </div>
                                         <label class="control-label col-md-5 col-md-offset-6">(Silahkan cheklis utk pembayaran yg ada potongan)
                                         </label>
-
-                                        
-
-                                        
                                     </div>
 
                                     <div id="div-harus-bayar" class="form-group" style="display: none">
@@ -487,7 +483,7 @@ breadcrumb -->
                                         <div class="col-md-3">
                                             <div class="input-group ">
                                                 <span class="input-group-addon">Rp.</span>
-                                                <input type="text" class="form-control priceformat"  name="bphtb_amt_final" id="bphtb_amt_final">
+                                                <input type="text" class="form-control priceformat" maxlength="16" name="bphtb_amt_final" id="bphtb_amt_final">
                                             </div> 
                                         </div>
                                         
@@ -1068,7 +1064,18 @@ breadcrumb -->
     });
 
     $('#delete').on('click', function(event){
-        alert('delete');
+        swal({
+          title: "Are you sure?",
+          text: "Your will not be able to recover this imaginary file!",
+          type: "warning",
+          showCancelButton: true,
+          confirmButtonClass: "btn-danger",
+          confirmButtonText: "Yes, delete it!",
+          closeOnConfirm: false
+        },
+        function(){
+          swal("Deleted!", "Your imaginary file has been deleted.", "success");
+        });
     });
 
     function save(){
@@ -1168,7 +1175,10 @@ breadcrumb -->
             
             
         $.getJSON(var_url, function( items ) {
-            
+            if(items.rows.o_mess=="Data Berhasil Disimpan"){
+                swal('Informasi',items.rows.o_mess,'info');
+                loadContentWithParams("transaksi.t_bphtb_registration_list", {});
+            }
         })
     }
 

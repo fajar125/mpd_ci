@@ -90,16 +90,37 @@ class T_bphtb_registration_list extends Abstract_model {
         $o_mess                         = '\'Message\'';
 
         foreach ($param as $key => $value) {
-            ${"$key"} = (string) $value;
+            //${"$key"} = (string) $value;
 
-            if(is_numeric(${"$key"})){
+            /*if(is_numeric(${"$key"})){
                 ${"$key"} = (($value == ''|| $value == null)&& $value != 0) ? 'null' : $value;
             }else{
                 ${"$key"} = ($value == ''|| $value == null) ? 'null' : '\''.$value.'\'';
-            }
+            }*/
 
-            if ($key == 'npwp'||$key == 'wp_rt'||$key == 'wp_rw'||$key == 'phone_no'||$key == 'mobile_phone_no'||$key == 'njop_pbb'||$key == 'object_rt'||$key == 'object_rw'||$key == 'object_p_region_id'||$key == 'object_p_region_id_kec'||$key == 'object_p_region_id_kel')
+            if ($key == 'wp_name'||
+                $key == 'npwp'||
+                $key == 'wp_address_name'||
+                $key == 'wp_rt'||
+                $key == 'wp_rw'||
+                $key == 'phone_no'||
+                $key == 'mobile_phone_no'||
+                $key == 'njop_pbb'||
+                $key == 'object_letak_tanah'||
+                $key == 'object_rt'||
+                $key == 'object_rw'||
+                $key == 'object_p_region_id'||
+                $key == 'object_p_region_id_kec'||
+                $key == 'object_p_region_id_kel'||
+                $key == 'description'||
+                $key == 'bphtb_legal_doc_description'||
+                $key == 'check_potongan')
+            {
                 ${"$key"} = ($value == ''|| $value == null) ? 'null' : '\''.$value.'\'';
+            }
+            else{
+                ${"$key"} = (($value == ''|| $value == null)&& $value != 0) ? 'null' : $value;
+            }
             
         }
 
@@ -149,12 +170,13 @@ class T_bphtb_registration_list extends Abstract_model {
                                                             $o_t_bphtb_registration_id,
                                                             $o_mess
                                                     )";
-        #return $sql;                                            
+        //return $sql;                                            
         $query = $this->db->query($sql);
         $item = $query->row_array();
         
             
         return $item;
+            
     }
 
     function update(){
