@@ -52,7 +52,7 @@
                         <li class="dropdown">
                         <a href="<?php echo base_url('panel?p_application_id=999');?>" class="inbox">
                             <i class="fa fa-envelope-o font-white"></i>
-                            <span class="font-white">Task</span>
+                            <span class="font-white">Inbox</span>
                         </a>
                         </li>
                         <li class="dropdown dropdown-extended dropdown-inbox" id="header_inbox_bar">

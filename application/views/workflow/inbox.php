@@ -1,8 +1,10 @@
-<div class="space-4"></div>
-<h3 class="page-title">Task List</h3>
-<div id="inbox-panel">
-
+<!-- breadcrumb -->
+<div class="page-bar">
+<h3 class="page-title">Job List</h3>
 </div>
+<div class="space-4"></div>
+
+<div id="inbox-panel"></div>
 <script>
 
     $(function() {

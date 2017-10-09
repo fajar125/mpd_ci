@@ -24,7 +24,7 @@ class Wf_controller {
                                 <tr>
                                     <th class="red">Nama Pekerjaan</th>
                                     <th class="red">Jumlah</th>
-                                    <th class="red">Lihat Inbox</th>
+                                    <th class="red">Lihat Detail</th>
                                 </tr>';
 
         foreach($items as $item) {
@@ -40,7 +40,7 @@ class Wf_controller {
             if($item['jumlah'] == 0)
                 $btnOpenInbox = '&nbsp;';
             else
-                $btnOpenInbox = '<button type="button" onClick="'.$onClickEvent.'" class="btn btn-xs btn-success"> Lihat Inbox </button>';
+                $btnOpenInbox = '<button type="button" onClick="'.$onClickEvent.'" class="btn btn-xs btn-success"> Lihat Detail </button>';
 
             $strOutput .= '<tr class="green">';
             $strOutput .= '<td>'.$item['profile_type'].'</td>';
