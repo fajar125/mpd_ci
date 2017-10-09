@@ -5,7 +5,7 @@
     }
 </style>
 <div class="row">
-    <div class="col-md-10 col-md-offset-1">
+    <div class="col-md-12">
         <?php
                 $ci = & get_instance();
                 $ci->load->model('administration/p_application');
@@ -16,11 +16,11 @@
 
         <div class="rows">
         <?php foreach($p_application as $module): ?>
-            <div class="col-xs-6 col-md-3">
+            <div class="col-xs-6 col-md-2">
                 <div class="portlet box blue-hoki">
                     <div class="portlet-title">
                         <div class="caption">
-                            <?php echo $module['code']; ?>
+                            <span style="font-size:13px;"><?php echo ucwords(strtolower($module['code'])); ?></span>
                         </div>
                     </div>
                     <div class="portlet-body">
