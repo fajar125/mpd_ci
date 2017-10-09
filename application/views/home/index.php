@@ -17,7 +17,7 @@
         <div class="rows">
         <?php foreach($p_application as $module): ?>
             <div class="col-xs-6 col-md-2">
-                <div class="portlet box blue-hoki">
+                <div class="portlet box green">
                     <div class="portlet-title">
                         <div class="caption">
                             <span style="font-size:13px;"><?php echo ucwords(strtolower($module['code'])); ?></span>
