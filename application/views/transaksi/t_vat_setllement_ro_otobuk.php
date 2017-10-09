@@ -213,6 +213,7 @@
 
 <script>
 
+    /* Copy Workflow JS Action from Here */
     /* parameter kembali ke workflow summary */
     params_back_summary = {};
     params_back_summary.ELEMENT_ID = $('#TEMP_ELEMENT_ID').val();
@@ -227,12 +228,6 @@
     $(".back-workflow").on('click', function(e) {
        loadContentWithParams( $('#TEMP_FSUMMARY').val() , params_back_summary );
     });
-
-    /* cek jika tipe view */
-    if (  $('#ACTION_STATUS').val() == 'VIEW' ) {
-        $('.btn-submit-workflow').remove();
-    }
-
 
     function submitWorkflow() {
         var params_submit = {};
@@ -268,6 +263,8 @@
             loadContentWithParams( $('#TEMP_FSUMMARY').val() , params_back_summary );
         }
     }
+
+    /* End Copy Workflow JS Action from Here */
 </script>
 
 <script>
@@ -346,9 +343,8 @@
                 },
                 {name: 'Submit',width: 200, align: "center",
                     formatter:function(cellvalue, options, rowObject) {
-                        var val = rowObject['t_vat_setllement_id'];
-                        return '<a class="btn btn-success btn-xs btn-submit-workflow" href="#" onclick="submitWorkflow();">Submit</a>';
-
+                        var submitTitle = $('#ACTION_STATUS').val() != 'VIEW' ? 'Submit' : 'Kembali';
+                        return '<a class="btn btn-success btn-xs" href="#" onclick="submitWorkflow();">'+submitTitle+'</a>';
                     }
                 }
             ],
