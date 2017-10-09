@@ -159,7 +159,7 @@ class p_app_menu extends Abstract_model {
                               $tab,                                          // %1$s = tabulation
                               $option['value']['code'],                     // %2$s = title
                               $icon_parent,                                  // %3$s = icon
-                              $option['value']['code']   // %4$s = menu
+                              ucwords(strtolower($option['value']['code']))   // %4$s = menu
                       );
                       $html[] = $tab . "\t" . '<ul class="sub-menu">';
 
@@ -186,7 +186,7 @@ class p_app_menu extends Abstract_model {
                               $option['value']['file_name'],
                               $option['value']['p_app_menu_id'],                          // %3$s = url,
                               $icon_leaf,                                           // %4$s = icon,
-                              $option['value']['code']                        // %5$s = menu
+                              ucwords(strtolower($option['value']['code']))                        // %5$s = menu
                       );
               }
         }
