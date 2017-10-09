@@ -322,5 +322,32 @@ class T_bphtb_registration_list_controller {
 
         return $data;
 
-    }  
+    } 
+
+    function delete(){
+        $page = getVarClean('page','int',1);
+        $limit = getVarClean('rows','int',5);
+
+        $id= getVarClean('id','int',0);  
+
+        $data = array('rows' => array(), 'page' => 1, 'records' => 0, 'total' => 1, 'success' => false, 'message' => '');
+        
+        try {
+
+            $ci = & get_instance();
+            $ci->load->model('transaksi/t_bphtb_registration_list');
+            $table = $ci->t_bphtb_registration_list;
+            $result = $table->delete($id) ;
+            $count = count($result);
+
+            $data['rows'] = $result;
+            $data['success'] = true;
+
+        }catch (Exception $e) {
+            $data['message'] = $e->getMessage();
+        }
+
+        return $data;
+
+    } 
 }

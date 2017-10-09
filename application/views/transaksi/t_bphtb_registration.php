@@ -1064,6 +1064,9 @@ breadcrumb -->
     });
 
     $('#delete').on('click', function(event){
+        var var_url = "<?php echo WS_JQGRID . "transaksi.t_bphtb_registration_list_controller/delete/?"; ?>";
+        var_url += "id="+"<?php echo $_POST['id']; ?>";
+
         swal({
           title: "Are you sure?",
           text: "Your will not be able to recover this imaginary file!",
@@ -1074,7 +1077,13 @@ breadcrumb -->
           closeOnConfirm: false
         },
         function(){
-          swal("Deleted!", "Your imaginary file has been deleted.", "success");
+            setTimeout(function(){
+            $.getJSON(var_url, function( items ) {
+                swal("Delete finished!");
+                loadContentWithParams("transaksi.t_bphtb_registration_list", {});
+            });
+        }, 3000);
+           
         });
     });
 

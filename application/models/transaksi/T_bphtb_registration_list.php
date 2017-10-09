@@ -90,14 +90,6 @@ class T_bphtb_registration_list extends Abstract_model {
         $o_mess                         = '\'Message\'';
 
         foreach ($param as $key => $value) {
-            //${"$key"} = (string) $value;
-
-            /*if(is_numeric(${"$key"})){
-                ${"$key"} = (($value == ''|| $value == null)&& $value != 0) ? 'null' : $value;
-            }else{
-                ${"$key"} = ($value == ''|| $value == null) ? 'null' : '\''.$value.'\'';
-            }*/
-
             if ($key == 'wp_name'||
                 $key == 'npwp'||
                 $key == 'wp_address_name'||
@@ -123,8 +115,6 @@ class T_bphtb_registration_list extends Abstract_model {
             }
             
         }
-
-         
 
         $sql = "SELECT * FROM sikp.f_bphtb_registration (   $wp_name,
                                                             $npwp,
@@ -175,8 +165,7 @@ class T_bphtb_registration_list extends Abstract_model {
         $item = $query->row_array();
         
             
-        return $item;
-            
+        return $item;      
     }
 
     function update(){
@@ -317,6 +306,24 @@ class T_bphtb_registration_list extends Abstract_model {
             
         return $item;
         return 'masuk';
+    }
+
+    function delete($id ){
+
+        $ci =& get_instance();
+
+        $userdata = $ci->session->userdata;
+        $sql = "select t_customer_order_id from sikp.t_bphtb_registration where t_bphtb_registration_id = ".$id;
+        $query = $this->db->query($sql);
+        $item = $query->row_array();
+
+        //return $item['t_customer_order_id'];
+
+        $this->db->delete('sikp.t_bphtb_registration', array('t_bphtb_registration_id' => $id));
+        $this->db->delete('sikp.t_customer_order', array('t_customer_order_id' => $item['t_customer_order_id']));
+        
+            
+        return $item;      
     }
 
     
