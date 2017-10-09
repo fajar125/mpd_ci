@@ -162,8 +162,6 @@
                     <label class="control-label col-md-3"></label>
                     <div class="col-md-5" align="right">
                         <a class="btn btn-danger btn-xs" href="#" onclick="print_no_bayar();"><i class="fa fa-print"></i>Print No. Bayar</a>
-
-                        <button class="btn btn-success btn-xs" type="button" id="btn-close" onclick="tutup()">Tutup</button>
                     </div>    
                 </div>
             </div>
@@ -244,10 +242,15 @@
                         return '<a class="btn btn-danger btn-xs" href="#" onclick="PopupCenter(\''+url+'\',\'SKPDKB Jabatan\',500,500);"><i class="fa fa-print"></i>Print</a>';
 
                     }
-                }
+                },
+                {name: 'Submit',width: 200, align: "center",
+                    formatter:function(cellvalue, options, rowObject) {
+                        var val = rowObject['t_vat_setllement_id'];
+                        var url = '<?php echo base_url(); ?>'+'cetak_formulir_stpd_pdf/pageCetak?t_vat_setllement_id='+val;
+                        return '<a class="btn btn-success btn-xs" href="#" onclick="PopupCenter(\''+url+'\',\'SKPDKB Jabatan\',500,500);"><i class="fa fa-print"></i>Print</a>';
 
-
-                
+                    }
+                }                
             ],
             height: '100%',
             autowidth: true,
@@ -456,10 +459,5 @@
         var url = '<?php echo base_url(); ?>'+'cetak_no_bayar/pageCetak?no_bayar='+val;
         PopupCenter(url,'SKPDKB Nihil',500,500);
     }
-
-    function tutup() {
-        loadContentWithParams("transaksi.t_vat_setlement_manual", {});
-    }
-    
 
 </script>
