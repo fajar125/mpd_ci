@@ -37,6 +37,48 @@ from sikp.p_app_role
 order by p_app_role_id;
 
 
+update sikp.p_application
+set module_icon = 'images/md_02_on.png'
+where code = 'PARAMETER';
+
+update sikp.p_application
+set module_icon = 'images/md_03_on.png'
+where code = 'DATA MASTER';
+
+
+update sikp.p_application
+set module_icon = 'images/md_04_on.png'
+where code = 'REKONSILIASI';
+
+update sikp.p_application
+set module_icon = 'images/md_05_on.png'
+where code = 'TRANSAKSI';
+
+update sikp.p_application
+set module_icon = 'images/md_06_on.png'
+where code = 'PELAPORAN';
+
+update sikp.p_application
+set module_icon = 'images/md_07_on.png'
+where code = 'BPHTB';
+
+update sikp.p_application
+set module_icon = 'images/md_08_on.png'
+where code = 'PPAT';
+
+update sikp.p_application
+set module_icon = 'images/md_09_on.png'
+where code = 'EXECUTIVE SUMMARY REPORT';
+
+update sikp.p_application
+set module_icon = 'images/md_10_on.png'
+where code = 'ISO';
+
+update sikp.p_application
+set module_icon = 'images/md_11_on.png'
+where code = 'CHATTING';
+
+
 CREATE OR REPLACE VIEW sikp.v_workflow AS
 select   a.p_workflow_id,
             a.doc_name,
