@@ -35,6 +35,10 @@
     color:#ffffff;
 }
 
+.inbox {
+    background: #F5C032 !important;
+}
+
 .inbox:hover {
     background: #7AFF83 !important;
 }

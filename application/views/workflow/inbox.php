@@ -1,22 +1,5 @@
-<!-- breadcrumb -->
-<div class="page-bar">
-    <ul class="page-breadcrumb">
-        <li>
-            <a href="<?php base_url();?>">Home</a>
-            <i class="fa fa-circle"></i>
-        </li>
-        <li>
-            <a href="#">Workflow</a>
-            <i class="fa fa-circle"></i>
-        </li>
-        <li>
-            <span>Inbox</span>
-        </li>
-    </ul>
-</div>
-
-<!-- end breadcrumb -->
 <div class="space-4"></div>
+<h3 class="page-title">Task List</h3>
 <div id="inbox-panel">
 
 </div>

@@ -70,7 +70,9 @@ class p_application extends Abstract_model {
                             rm.p_app_role_id in (select c.p_app_role_id
                                     from p_app_user_role c
                                     left join p_app_role d on c.p_app_role_id = d.p_app_role_id
-                                    where c.p_app_user_id = ?)) order by listing_no";
+                                    where c.p_app_user_id = ?))
+                            and m.p_application_id != 999
+                            order by listing_no";
 
 
         $query = $this->db->query($sql, array($p_app_user_id));

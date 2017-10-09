@@ -28,6 +28,15 @@ update sikp.p_document_type
 set profile_source = 'workflow.workflow_summary';
 
 
+INSERT INTO sikp.p_application(p_application_id, code, listing_no, description, creation_date, created_by, updated_date, updated_by, module_icon, is_active)
+VALUES(999, 'INBOX', 99, '', sysdate, 'ADMIN', sysdate, 'ADMIN', 'images/md_01_on.png', 'Y');
+
+INSERT INTO sikp.p_application_role(p_application_role_id, p_app_role_id, p_application_id, valid_from, valid_to, description, creation_date, created_by, updated_date, updated_by)
+SELECT (sikp.generate_id('sikp','p_application_role','p_application_role_id') + p_app_role_id - 1), p_app_role_id, 999, sysdate, null, '', sysdate, 'ADMIN', sysdate, 'ADMIN'
+from sikp.p_app_role
+order by p_app_role_id;
+
+
 CREATE OR REPLACE VIEW sikp.v_workflow AS
 select   a.p_workflow_id,
             a.doc_name,

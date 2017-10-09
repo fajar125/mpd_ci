@@ -13,6 +13,7 @@
         <meta content="" name="description" />
         <meta content="" name="author" />
         <?php $this->load->view('template/styles.php'); ?>
+
         <style>
             .page-content-wrapper .page-content {
                 margin-left:0px !important;
@@ -47,6 +48,16 @@
                                 <i class="fa fa-home bigger-120"></i> Home
                             </a>
                         </li>
+
+                        <li class="dropdown">
+                        <a href="<?php echo base_url('panel?p_application_id=999');?>" class="inbox">
+                            <i class="fa fa-envelope-o font-white"></i>
+                            <span class="font-white">Task</span>
+                        </a>
+                        </li>
+                        <li class="dropdown dropdown-extended dropdown-inbox" id="header_inbox_bar">
+
+
                         <!-- BEGIN USER LOGIN DROPDOWN -->
                         <!-- DOC: Apply "dropdown-dark" class after below "dropdown-extended" to change the dropdown styte -->
                         <li class="dropdown dropdown-user">
