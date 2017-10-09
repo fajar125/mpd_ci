@@ -81,108 +81,76 @@ class T_bphtb_registration_list extends Abstract_model {
         return $query->row_array();
     }
 
-    function insert(
-                        $wp_name                    ,
-                        $npwp                       ,
-                        $wp_address_name            ,
-                        $wp_rt                      ,
-                        $wp_rw                      ,
-                        $wp_p_region_id             ,
-                        $wp_p_region_id_kec         ,
-                        $wp_p_region_id_kel         ,
-                        $phone_no                   ,
-                        $mobile_phone_no            ,
-                        $njop_pbb                   ,
-                        $object_address_name        ,
-                        $object_rt                  ,
-                        $object_rw                  ,   
-                        $object_p_region_id         ,
-                        $object_p_region_id_kec     ,
-                        $object_p_region_id_kel     ,
-                        $p_bphtb_legal_doc_type_id  ,
-                        $land_area                  ,
-                        $land_price_per_m           ,
-                        $land_total_price           ,
-                        $building_area              ,
-                        $building_price_per_m       ,
-                        $building_total_price       ,
-                        $market_price               ,
-                        $npop                       ,
-                        $npop_tkp                   ,
-                        $npop_kp                    ,
-                        $bphtb_amt                  ,
-                        $bphtb_discount             ,
-                        $bphtb_amt_final            ,
-                        $description                ,
-                        $jenis_harga_bphtb          ,
-                        $bphtb_legal_doc_description,
-                        $add_disc_percent           ,
-                        $check_potongan             ,
-                        $land_area_real             ,
-                        $land_price_real            ,
-                        $building_area_real         ,
-                        $building_price_real            
-                    ){
-
+    function insert($param = array()){
 
         $ci =& get_instance();
         $userdata = $ci->session->userdata;
+        $userdata = '\''.$userdata['app_user_name'].'\'';
         $o_t_bphtb_registration_id      = 0; 
-        $o_mess                         = 'Message'; 
+        $o_mess                         = '\'Message\'';
 
-        $sql = "SELECT * FROM sikp.f_bphtb_registration (?,?,?,?,?,?,?,?,?,?,
-                                                        ?,?,?,?,?,?,?,?,?,?,
-                                                        ?,?,?,?,?,?,?,?,?,?,
-                                                        ?,?,?,?,?,?,?,?,?,?,
-                                                        ?,?,?)";
+        foreach ($param as $key => $value) {
+            ${"$key"} = (string) $value;
 
-        $data = array(
-                        $wp_name                    ,
-                        $npwp                       ,
-                        $wp_address_name            ,
-                        $wp_rt                      ,
-                        $wp_rw                      ,
-                        $wp_p_region_id             ,
-                        $wp_p_region_id_kec         ,
-                        $wp_p_region_id_kel         ,
-                        $phone_no                   ,
-                        $mobile_phone_no            ,
-                        $njop_pbb                   ,
-                        $object_address_name        ,
-                        $object_rt                  ,
-                        $object_rw                  ,   
-                        $object_p_region_id         ,
-                        $object_p_region_id_kec     ,
-                        $object_p_region_id_kel     ,
-                        $p_bphtb_legal_doc_type_id  ,
-                        $land_area                  ,
-                        $land_price_per_m           ,
-                        $land_total_price           ,
-                        $building_area              ,
-                        $building_price_per_m       ,
-                        $building_total_price       ,
-                        $market_price               ,
-                        $npop                       ,
-                        $npop_tkp                   ,
-                        $npop_kp                    ,
-                        $bphtb_amt                  ,
-                        $bphtb_discount             ,
-                        $bphtb_amt_final            ,
-                        $description                ,
-                        $userdata  ,
-                        $jenis_harga_bphtb          ,
-                        $bphtb_legal_doc_description,
-                        $add_disc_percent           ,
-                        $check_potongan             ,
-                        $land_area_real             ,
-                        $land_price_real            ,
-                        $building_area_real         ,
-                        $building_price_real        ,
-                        $o_t_bphtb_registration_id  ,
-                        $o_mess                     
-                    );
+            if(is_numeric(${"$key"})){
+                ${"$key"} = (($value == ''|| $value == null)&& $value != 0) ? 'null' : $value;
+            }else{
+                ${"$key"} = ($value == ''|| $value == null) ? 'null' : '\''.$value.'\'';
+            }
 
-        $query = $this->db->query($sql, $data);
+            if ($key == 'npwp'||$key == 'wp_rt'||$key == 'wp_rw'||$key == 'phone_no'||$key == 'mobile_phone_no'||$key == 'njop_pbb'||$key == 'object_rt'||$key == 'object_rw'||$key == 'object_p_region_id'||$key == 'object_p_region_id_kec'||$key == 'object_p_region_id_kel')
+                ${"$key"} = ($value == ''|| $value == null) ? 'null' : '\''.$value.'\'';
+            
+        }
+
+         
+
+        $sql = "SELECT * FROM sikp.f_bphtb_registration (   $wp_name,
+                                                            $npwp,
+                                                            $wp_address_name,
+                                                            $wp_rt,
+                                                            $wp_rw,
+                                                            $wp_p_region_id,
+                                                            $wp_p_region_id_kec,
+                                                            $wp_p_region_id_kel,
+                                                            $phone_no,
+                                                            $mobile_phone_no,
+                                                            $njop_pbb,
+                                                            $object_letak_tanah,
+                                                            $object_rt,
+                                                            $object_rw,   
+                                                            $object_p_region_id,
+                                                            $object_p_region_id_kec,
+                                                            $object_p_region_id_kel,
+                                                            $p_bphtb_legal_doc_type_id,
+                                                            $land_area,
+                                                            $land_price_per_m,
+                                                            $land_total_price,
+                                                            $building_area,
+                                                            $building_price_per_m,
+                                                            $building_total_price,
+                                                            $market_price,
+                                                            $npop,
+                                                            $npop_tkp,
+                                                            $npop_kp,
+                                                            $bphtb_amt,
+                                                            $bphtb_discount,
+                                                            $bphtb_amt_final,
+                                                            $description,
+                                                            $userdata,
+                                                            $jenis_harga_bphtb,
+                                                            $bphtb_legal_doc_description,
+                                                            $add_disc_percent,
+                                                            $check_potongan,
+                                                            $land_area_real,
+                                                            $land_price_real,
+                                                            $building_area_real,
+                                                            $building_price_real,
+                                                            $o_t_bphtb_registration_id,
+                                                            $o_mess
+                                                    )";
+        #return $sql;                                            
+        $query = $this->db->query($sql);
         $item = $query->row_array();
         
             

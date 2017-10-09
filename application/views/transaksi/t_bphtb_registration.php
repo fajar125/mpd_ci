@@ -79,7 +79,7 @@ breadcrumb -->
                                         <label class="control-label col-md-2">Alamat
                                         </label>
                                         <div class="col-md-4">
-                                            <textarea rows="4" cols="50" class="form-control"  name="wp_address_name" id="wp_address_name"> </textarea>
+                                            <textarea rows="4" cols="50" class="form-control"  name="wp_address_name" id="wp_address_name"></textarea>
                                         </div>
                                     </div>
                                     <div class="form-group">
@@ -1083,7 +1083,7 @@ breadcrumb -->
         var phone_no                    = $('#phone_no').val();
         var mobile_phone_no             = $('#mobile_phone_no').val();
         var njop_pbb                    = $('#njop_pbb').val();
-        var object_address_name         = $('#object_address_name').val();
+        var object_letak_tanah          = $('#object_letak_tanah').val();
         var object_rt                   = $('#object_rt').val();
         var object_rw                   = $('#object_rw').val();
         var object_p_region_id          = $('#object_p_region_id').val();
@@ -1113,7 +1113,12 @@ breadcrumb -->
         var building_area_real          = $('#building_area_real').val();
         var building_price_real         = $('#building_price_real').val();
 
-
+        var ischeck = $('#check_potongan').is(":checked");
+        if(ischeck){
+            check_potongan = 'Y';
+        }else{
+            check_potongan = 'N';
+        }
 
         var var_url = "<?php echo WS_JQGRID . "transaksi.t_bphtb_registration_list_controller/insert/?"; ?>";
         var_url += "<?php echo $this->security->get_csrf_token_name(); ?>=<?php echo $this->security->get_csrf_hash(); ?>";
@@ -1158,8 +1163,9 @@ breadcrumb -->
          var_url += "&land_price_real=" + land_price_real;
          var_url += "&building_area_real=" + building_area_real;
          var_url += "&building_price_real=" + building_price_real;
+         //alert(var_url);
             
-            alert(var_url);
+            
             
         $.getJSON(var_url, function( items ) {
             
