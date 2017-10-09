@@ -9,19 +9,19 @@
             </div>
 
             <!-- modal body -->
-            <div class="modal-body" style="overflow-y:scroll;height:400px;">
+            <div class="modal-body" style="overflow-y:scroll;height:420px;">
                 <form class="form-horizontal" application="form" id="form_submitter">
                     <input type="hidden" id="form_submitter_params">
                     <input type="hidden" id="form_submitter_back_summary">
                     <div class="form-group">
                         <label class="col-sm-3 control-label no-padding-right"> Tanggal :</label>
                         <div class="col-sm-3">
-                            <input id="form_submitter_date" name="submitter_date" class="col-xs-12 blue" type="text" style="border:none;font-size:14px;font-weight:bold;padding:0px !important;">
+                            <input id="form_submitter_date" name="submitter_date" class="col-xs-12 blue" type="text" value="<?php echo date('d-m-Y');?>" style="border:none;font-size:14px;font-weight:bold;padding:0px !important;" readonly="">
                         </div>
 
                         <label class="col-sm-3 control-label no-padding-right"> Submit Oleh :</label>
                         <div class="col-sm-3">
-                            <label class="control-label blue" id="form_submitter_by" style="font-weight:bold;"> <?php echo $this->ion_auth->user()->row()->username; ?> </label>
+                            <label class="control-label blue" id="form_submitter_by" style="font-weight:bold;"> <?php echo $this->session->userdata('app_user_name'); ?> </label>
                         </div>
 
                     </div>
@@ -234,16 +234,7 @@
         $('#form_submitter_params').val( JSON.stringify(params_submit) );
         $('#form_submitter_back_summary').val( JSON.stringify(params_back_summary) );
         $('#form_submitter_interactive_message').val("");
-        /*init date*/
-        $("#form_submitter_date").datepicker({
-                                format: 'dd-mm-yyyy',
-                                enabled:false,
-                                beforeShowDay: function (date) {
-                                    var day = date.getDay();
-                                    return [(day != 0 && day != 6)];
-                                }
-                            });
-        $("#form_submitter_date").datepicker('setDate', new Date());
+
 
         /*init pekerjaan tersedia*/
         $.ajax({
@@ -285,7 +276,8 @@
         $('#btn-submitter-close').remove();
 
         setTimeout(function(){
-            $("#modal_lov_submitter").modal('hide');
+            $('body').removeClass('modal-open');
+            $('.modal-backdrop').remove();
             loadContentWithParams( file_name , obj_summary_params );
         },3000);
     }

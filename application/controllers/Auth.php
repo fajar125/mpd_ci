@@ -37,39 +37,22 @@ class Auth extends CI_Controller
 
         $md5pass = md5(trim($password));
 
-
         if($row['p_user_status_id'] != 1) {
             $this->session->set_flashdata('error_message','Maaf, User yang bersangkutan sudah tidak aktif. Silahkan hubungi administrator.');
             redirect(base_url().'auth/index');
         }
 
-        $ldap_status = 'NO';
-
-        if(trim($row['user_pwd']) == "") { /* Cek LDAP Login */
-            $this->load->model('administration/ldap_connection');
-            /* Open LDAP Connection */
-            $auth = $this->ldap_connection->Open($username, $password);
-            if ($auth == 1) { /* authentifikasi LDAP Telkom berhasil */
-                //do nothing
-                $ldap_status = 'YES';
-            }else {
-                $this->session->set_flashdata('error_message','Username atau password LDAP Anda salah');
-                redirect(base_url().'auth/index');
-            }
-        }else {
-            if( strcmp($md5pass, trim($row['user_pwd'])) != 0 ) {
-                $this->session->set_flashdata('error_message','Username atau password Anda salah');
-                redirect(base_url().'auth/index');
-            }
+        if( strcmp($md5pass, trim($row['user_pwd'])) != 0 ) {
+            $this->session->set_flashdata('error_message','Username atau password Anda salah');
+            redirect(base_url().'auth/index');
         }
 
-
         $userdata = array(
-                        'p_app_user_id'           => $row['p_app_user_id'],
-                        'app_user_name'         => $row['app_user_name'],
-                        'email_address'        => $row['email_address'],
-                        'full_name'    => $row['full_name'],
-                        'is_ldap'           => $ldap_status,
+                        'p_app_user_id'     => $row['p_app_user_id'],
+                        'app_user_name'     => $row['app_user_name'],
+                        'email_address'     => $row['email_address'],
+                        'full_name'         => $row['full_name'],
+                        'is_ldap'           => 'NO',
                         'logged_in'         => true,
                         'location_name'     => null,
                         'location_code'     => null

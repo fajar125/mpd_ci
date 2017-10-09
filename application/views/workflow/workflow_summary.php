@@ -134,7 +134,7 @@
             todayHighlight : true
         });
 
-        $('#btn_filter_task_list').on('click', function() {
+        $('#btn_filter_task_list').on('click', function(event) {
             var element_id = $('input[name=pilih_summary]:checked').val();
             openUserTaskList(element_id);
         });
@@ -156,6 +156,7 @@
 
 
     function loadUserTaskList(choosen_radio, event) {
+        event.stopPropagation();
         $('#filter_date_task_list').datepicker('setDate', null);
         $('#filter_search_task_list').val("");
         $('#TEMP_ELEMENT_ID').val( choosen_radio.value );

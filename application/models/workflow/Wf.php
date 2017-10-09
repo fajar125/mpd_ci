@@ -41,7 +41,7 @@ class Wf extends Abstract_model {
     }
 
     public function getListInbox($user_name) {
-        $sql = "select * from table(pack_task_profile.workflow_name('".$user_name."'))";
+        $sql = "select * from sikp.pack_task_profile.workflow_name('".$user_name."') as tbl (ty_task_profile)";
         $query = $this->db->query($sql);
         $rows = $query->result_array();
 
@@ -49,8 +49,8 @@ class Wf extends Abstract_model {
     }
 
     public function getSummaryList($pdoc_type_id, $user_name) {
-        $sql = "select * from table(pack_task_profile.workflow_summary_list (".$pdoc_type_id.",'".$user_name."'))
-                    where p_w_doc_type_id = ".$pdoc_type_id;
+        $sql = "select *,ty_workflow_summary as element_id from sikp.pack_task_profile.workflow_summary_list(".$pdoc_type_id.",'".$user_name."') as tbl (ty_workflow_summary)
+                where p_w_doc_type_id = ".$pdoc_type_id;
 
         $query = $this->db->query($sql);
         $rows = $query->result_array();

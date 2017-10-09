@@ -35,6 +35,7 @@
 <link rel="stylesheet" href="<?php echo base_url(); ?>assets/swal/sweetalert.css"/>
 
 <link href="<?php echo base_url(); ?>jqwidgets/styles/jqx.base.css" rel="stylesheet" type="text/css"/>
+<link href="<?php echo base_url(); ?>assets/css/simplePagination.css" rel="stylesheet" type="text/css"/>
 
 <style>
     .jqx-tree {border:none !important;}

@@ -35,12 +35,24 @@
     color:#ffffff;
 }
 
+.inbox:hover {
+    background: #7AFF83 !important;
+}
+
 .green {
     color:#237119;
 }
 
 .red {
     color:#DC1515;
+}
+
+.dark-blue {
+    color:#3A4892;
+}
+
+.cursor-pointer {
+    cursor:pointer;
 }
 
 .jqx-fill-state-normal {

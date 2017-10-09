@@ -33,12 +33,12 @@
                 </div>
             </div>
             <hr>
-            <div class="col-xs-12">  
+            <div class="col-xs-12">
                 <div class="row">
                     <label class="control-label col-md-3">No. Order</label>
                     <div class="col-md-5">
                         <input id="order_no" readonly type="text" class="FormElement form-control ">
-                    </div>  
+                    </div>
                 </div>
                 <div class="space-2"></div>
 
@@ -46,7 +46,7 @@
                     <label class="control-label col-md-3">No. Bayar</label>
                     <div class="col-md-5">
                         <input id="payment_key" readonly type="text" class="FormElement form-control ">
-                    </div>  
+                    </div>
                 </div>
                 <div class="space-2"></div>
 
@@ -55,14 +55,14 @@
                     <div class="col-md-5">
                         <input id="jenis_pajak" readonly type="text" class="FormElement form-control ">
                     </div>
-                </div>  
+                </div>
                 <div class="space-2"></div>
 
                 <div class="row">
                     <label class="control-label col-md-3">NPWPD</label>
                     <div class="col-md-5">
                         <input id="npwd" readonly type="text" class="FormElement form-control ">
-                    </div>  
+                    </div>
                 </div>
                 <div class="space-2"></div>
 
@@ -70,7 +70,7 @@
                     <label class="control-label col-md-3">Nama Merk Dagang</label>
                     <div class="col-md-5">
                         <input id="company_brand" readonly type="text" class="FormElement form-control ">
-                    </div>  
+                    </div>
                 </div>
                 <div class="space-2"></div>
 
@@ -78,7 +78,7 @@
                     <label class="control-label col-md-3">Alamat</label>
                     <div class="col-md-9">
                         <input id="brand_address_name" readonly type="text" class="FormElement form-control ">
-                    </div>  
+                    </div>
                 </div>
                 <div class="space-2"></div>
 
@@ -86,7 +86,7 @@
                     <label class="control-label col-md-3">Periode</label>
                     <div class="col-md-5">
                         <input id="finance_period_code" readonly type="text" class="FormElement form-control ">
-                    </div>  
+                    </div>
                 </div>
                 <div class="space-2"></div>
 
@@ -94,7 +94,7 @@
                     <label class="control-label col-md-3">Masa Pajak</label>
                     <div class="col-md-3">
                         <input id="start_date_txt" readonly type="text" class="FormElement form-control ">
-                    </div>  
+                    </div>
                     <div class="col-md-3">
                         <input id="end_date_txt" readonly type="text" class="FormElement form-control ">
                     </div>
@@ -105,7 +105,7 @@
                     <label class="control-label col-md-3">Total Transaksi</label>
                     <div class="col-md-5">
                         <input style="text-align: right;" id="total_trans_amount" readonly type="text" class="FormElement form-control ">
-                    </div>  
+                    </div>
                 </div>
                 <div class="space-2"></div>
 
@@ -113,7 +113,7 @@
                     <label class="control-label col-md-3">Total Pajak</label>
                     <div class="col-md-5">
                         <input style="text-align: right;" id="total_vat_amount" readonly type="text" class="FormElement form-control ">
-                    </div> 
+                    </div>
                 </div>
                 <div class="space-2"></div>
 
@@ -121,7 +121,7 @@
                     <label class="control-label col-md-3">Tanggal Jatuh Tempo</label>
                     <div class="col-md-5">
                         <input id="due_date" readonly type="text" class="FormElement form-control ">
-                    </div> 
+                    </div>
                 </div>
                 <div class="space-2"></div>
 
@@ -129,7 +129,7 @@
                     <label class="control-label col-md-3">Denda</label>
                     <div class="col-md-5">
                         <input style="text-align: right;" id="total_penalty_amount" readonly type="text" class="FormElement form-control ">
-                    </div> 
+                    </div>
                 </div>
                 <div class="space-2"></div>
 
@@ -137,7 +137,7 @@
                     <label class="control-label col-md-3">Dasar Pengenaan</label>
                     <div class="col-md-5">
                         <input style="text-align: right;" id="debt_vat_amt" readonly type="text" class="FormElement form-control ">
-                    </div> 
+                    </div>
                 </div>
                 <div class="space-2"></div>
 
@@ -145,7 +145,7 @@
                     <label class="control-label col-md-3">Bunga (Pasal 65 ayat(2)) </label>
                     <div class="col-md-5">
                         <input style="text-align: right;" id="db_interest_charge" readonly type="text" class="FormElement form-control ">
-                    </div> 
+                    </div>
                 </div>
                 <div class="space-2"></div>
 
@@ -153,7 +153,7 @@
                     <label class="control-label col-md-3">Kenaikan (Pasal 65 ayat (3)) </label>
                     <div class="col-md-5">
                         <input style="text-align: right;" id="db_increasing_charge" readonly type="text" class="FormElement form-control ">
-                    </div>    
+                    </div>
                 </div>
 
                 <div class="space-2"></div>
@@ -162,12 +162,113 @@
                     <label class="control-label col-md-3"></label>
                     <div class="col-md-5" align="right">
                         <a class="btn btn-danger btn-xs" href="#" onclick="print_no_bayar();"><i class="fa fa-print"></i>Print No. Bayar</a>
-                    </div>    
+                        <a class="btn btn-primary btn-xs back-workflow" href="#"><i class="fa fa-arrow-left"></i>Kembali</a>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
 </div>
+
+<div>
+    <!-- parameter untuk kembali ke workflow summary -->
+    <input type="hidden" id="TEMP_ELEMENT_ID" value="<?php echo $this->input->post('ELEMENT_ID'); ?>" />
+    <input type="hidden" id="TEMP_PROFILE_TYPE" value="<?php echo $this->input->post('PROFILE_TYPE'); ?>" />
+    <input type="hidden" id="TEMP_P_W_DOC_TYPE_ID" value="<?php echo $this->input->post('P_W_DOC_TYPE_ID'); ?>" />
+    <input type="hidden" id="TEMP_P_W_PROC_ID" value="<?php echo $this->input->post('P_W_PROC_ID'); ?>" />
+    <input type="hidden" id="TEMP_USER_ID" value="<?php echo $this->input->post('USER_ID'); ?>" />
+    <input type="hidden" id="TEMP_FSUMMARY" value="<?php echo $this->input->post('FSUMMARY'); ?>" />
+    <!-- end type hidden -->
+
+    <!-- paramater untuk kebutuhan submit dan status -->
+    <input type="hidden" id="CURR_DOC_ID" value="<?php echo $this->input->post('CURR_DOC_ID'); ?>">
+    <input type="hidden" id="CURR_DOC_TYPE_ID" value="<?php echo $this->input->post('CURR_DOC_TYPE_ID'); ?>">
+    <input type="hidden" id="CURR_PROC_ID" value="<?php echo $this->input->post('CURR_PROC_ID'); ?>">
+    <input type="hidden" id="CURR_CTL_ID" value="<?php echo $this->input->post('CURR_CTL_ID'); ?>">
+    <input type="hidden" id="USER_ID_DOC" value="<?php echo $this->input->post('USER_ID_DOC'); ?>">
+    <input type="hidden" id="USER_ID_DONOR" value="<?php echo $this->input->post('USER_ID_DONOR'); ?>">
+    <input type="hidden" id="USER_ID_LOGIN" value="<?php echo $this->input->post('USER_ID_LOGIN'); ?>">
+    <input type="hidden" id="USER_ID_TAKEN" value="<?php echo $this->input->post('USER_ID_TAKEN'); ?>">
+    <input type="hidden" id="IS_CREATE_DOC" value="<?php echo $this->input->post('IS_CREATE_DOC'); ?>">
+    <input type="hidden" id="IS_MANUAL" value="<?php echo $this->input->post('IS_MANUAL'); ?>">
+    <input type="hidden" id="CURR_PROC_STATUS" value="<?php echo $this->input->post('CURR_PROC_STATUS'); ?>">
+    <input type="hidden" id="CURR_DOC_STATUS" value="<?php echo $this->input->post('CURR_DOC_STATUS'); ?>">
+    <input type="hidden" id="PREV_DOC_ID" value="<?php echo $this->input->post('PREV_DOC_ID'); ?>">
+    <input type="hidden" id="PREV_DOC_TYPE_ID" value="<?php echo $this->input->post('PREV_DOC_TYPE_ID'); ?>">
+    <input type="hidden" id="PREV_PROC_ID" value="<?php echo $this->input->post('PREV_PROC_ID'); ?>">
+    <input type="hidden" id="PREV_CTL_ID" value="<?php echo $this->input->post('PREV_CTL_ID'); ?>">
+    <input type="hidden" id="SLOT_1" value="<?php echo $this->input->post('SLOT_1'); ?>">
+    <input type="hidden" id="SLOT_2" value="<?php echo $this->input->post('SLOT_2'); ?>">
+    <input type="hidden" id="SLOT_3" value="<?php echo $this->input->post('SLOT_3'); ?>">
+    <input type="hidden" id="SLOT_4" value="<?php echo $this->input->post('SLOT_4'); ?>">
+    <input type="hidden" id="SLOT_5" value="<?php echo $this->input->post('SLOT_5'); ?>">
+    <input type="hidden" id="MESSAGE" value="<?php echo $this->input->post('MESSAGE'); ?>">
+    <input type="hidden" id="PROFILE_TYPE" value="<?php echo $this->input->post('PROFILE_TYPE'); ?>">
+    <input type="hidden" id="ACTION_STATUS" value="<?php echo $this->input->post('ACTION_STATUS'); ?>">
+    <!-- end type hidden -->
+</div>
+<?php
+    $this->load->view('workflow/lov_submitter.php');
+?>
+
+<script>
+
+    /* parameter kembali ke workflow summary */
+    params_back_summary = {};
+    params_back_summary.ELEMENT_ID = $('#TEMP_ELEMENT_ID').val();
+    params_back_summary.PROFILE_TYPE = $('#TEMP_PROFILE_TYPE').val();
+    params_back_summary.P_W_DOC_TYPE_ID = $('#TEMP_P_W_DOC_TYPE_ID').val();
+    params_back_summary.P_W_PROC_ID = $('#TEMP_P_W_PROC_ID').val();
+    params_back_summary.USER_ID = $('#TEMP_USER_ID').val();
+    params_back_summary.FSUMMARY = $('#TEMP_FSUMMARY').val();
+    /* end parameter */
+
+    /*ketika link 'workflow summary' diklik, maka kembali ke summary */
+    $(".back-workflow").on('click', function(e) {
+       loadContentWithParams( $('#TEMP_FSUMMARY').val() , params_back_summary );
+    });
+
+    /* cek jika tipe view */
+    if (  $('#ACTION_STATUS').val() == 'VIEW' ) {
+        $('.btn-submit-workflow').remove();
+    }
+
+
+    function submitWorkflow() {
+        var params_submit = {};
+
+        params_submit.CURR_DOC_ID         = $('#CURR_DOC_ID').val();
+        params_submit.CURR_DOC_TYPE_ID    = $('#CURR_DOC_TYPE_ID').val();
+        params_submit.CURR_PROC_ID        = $('#CURR_PROC_ID').val();
+        params_submit.CURR_CTL_ID         = $('#CURR_CTL_ID').val();
+        params_submit.USER_ID_DOC         = $('#USER_ID_DOC').val();
+        params_submit.USER_ID_DONOR       = $('#USER_ID_DONOR').val();
+        params_submit.USER_ID_LOGIN       = $('#USER_ID_LOGIN').val();
+        params_submit.USER_ID_TAKEN       = $('#USER_ID_TAKEN').val();
+        params_submit.IS_CREATE_DOC       = $('#IS_CREATE_DOC').val();
+        params_submit.IS_MANUAL           = $('#IS_MANUAL').val();
+        params_submit.CURR_PROC_STATUS    = $('#CURR_PROC_STATUS').val();
+        params_submit.CURR_DOC_STATUS     = $('#CURR_DOC_STATUS').val();
+        params_submit.PREV_DOC_ID         = $('#PREV_DOC_ID').val();
+        params_submit.PREV_DOC_TYPE_ID    = $('#PREV_DOC_TYPE_ID').val();
+        params_submit.PREV_PROC_ID        = $('#PREV_PROC_ID').val();
+        params_submit.PREV_CTL_ID         = $('#PREV_CTL_ID').val();
+        params_submit.SLOT_1              = $('#SLOT_1').val();
+        params_submit.SLOT_2              = $('#SLOT_2').val();
+        params_submit.SLOT_3              = $('#SLOT_3').val();
+        params_submit.SLOT_4              = $('#SLOT_4').val();
+        params_submit.SLOT_5              = $('#SLOT_5').val();
+        params_submit.MESSAGE             = $('#MESSAGE').val();
+        params_submit.PROFILE_TYPE        = $('#PROFILE_TYPE').val();
+        params_submit.ACTION_STATUS       = $('#ACTION_STATUS').val();
+
+        if (  $('#ACTION_STATUS').val() != 'VIEW' ) {
+            modal_lov_submitter_show(params_submit, params_back_summary);
+        } else {
+            loadContentWithParams( $('#TEMP_FSUMMARY').val() , params_back_summary );
+        }
+    }
+</script>
 
 <script>
     $("#total_trans_amount").number(true,2,'.',',');
@@ -186,7 +287,7 @@
 
         jQuery("#grid-table").jqGrid({
             url: '<?php echo WS_JQGRID."transaksi.t_vat_setllement_ro_otobuk_v2_controller/getData"; ?>',
-            postData: { 
+            postData: {
                 CURR_DOC_ID : <?php echo $this->input->post('CURR_DOC_ID'); ?>
             },
             datatype: "json",
@@ -217,7 +318,7 @@
                         var val = rowObject['t_vat_setllement_id'];
                         var p_vat_type_id = rowObject['p_vat_type_id'];
                         var url = '<?php echo base_url(); ?>'+'cetak_sptpd_hotel_pdf/pageCetak?t_vat_setllement_id='+val;
-                        
+
                         if(p_vat_type_id==2) {
                             url = '<?php echo base_url(); ?>'+'cetak_sptpd_restoran_pdf/pageCetak?t_vat_setllement_id='+val;
                         }
@@ -230,7 +331,7 @@
                         if(p_vat_type_id==5) {
                             url = '<?php echo base_url(); ?>'+'cetak_sptpd_restoran_pdf/pageCetak?t_vat_setllement_id='+val;
                         }
-                        
+
                         return '<a class="btn btn-danger btn-xs" href="#" onclick="PopupCenter(\''+url+'\',\'SPTPD\',500,500);"><i class="fa fa-print"></i>Print</a>';
 
                     }
@@ -246,11 +347,10 @@
                 {name: 'Submit',width: 200, align: "center",
                     formatter:function(cellvalue, options, rowObject) {
                         var val = rowObject['t_vat_setllement_id'];
-                        var url = '<?php echo base_url(); ?>'+'cetak_formulir_stpd_pdf/pageCetak?t_vat_setllement_id='+val;
-                        return '<a class="btn btn-success btn-xs" href="#" onclick="PopupCenter(\''+url+'\',\'SKPDKB Jabatan\',500,500);"><i class="fa fa-print"></i>Print</a>';
+                        return '<a class="btn btn-success btn-xs btn-submit-workflow" href="#" onclick="submitWorkflow();">Submit</a>';
 
                     }
-                }                
+                }
             ],
             height: '100%',
             autowidth: true,
@@ -264,7 +364,7 @@
             multiboxonly: true,
             onSelectRow: function (rowid) {
                 /*do something when selected*/
-                var celValue = $('#grid-table').jqGrid('getCell', rowid, 't_vat_setllement_id'); 
+                var celValue = $('#grid-table').jqGrid('getCell', rowid, 't_vat_setllement_id');
                 reloadDetail(celValue);
             },
             sortorder:'',
@@ -336,7 +436,7 @@
                     return [true,"",response.responseText];
                 }
             },
-            
+
             {
                 //new record form
                 closeAfterAdd: false,
@@ -429,7 +529,7 @@
         var var_url = "<?php echo WS_JQGRID . "transaksi.t_vat_setllement_ro_otobuk_v2_controller/getDetail/?"; ?>";
         var_url += "<?php echo $this->security->get_csrf_token_name(); ?>=<?php echo $this->security->get_csrf_hash(); ?>";
         var_url += "&t_vat_setllement_id=" + t_vat_setllement_id;
-        
+
         $.getJSON(var_url, function( items ) {
             $('#order_no').val(items.rows.order_no);
             $('#payment_key').val(items.rows.payment_key);

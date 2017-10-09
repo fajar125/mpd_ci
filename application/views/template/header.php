@@ -7,7 +7,7 @@
     <!-- BEGIN HEAD -->
     <head>
         <meta charset="utf-8" />
-        <title>TOS</title>
+        <title>Sistem Manajemen Pajak Daerah</title>
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta content="width=device-width, initial-scale=1" name="viewport" />
         <meta content="" name="description" />
@@ -47,6 +47,15 @@
                                 <i class="fa fa-home bigger-120"></i> Home
                             </a>
                         </li>
+
+                        <li class="dropdown" id="wf-inbox">
+                        <a href="javascript:;" class="inbox">
+                            <i class="fa fa-envelope-o font-white"></i>
+                            <span class="font-white">Task</span>
+                        </a>
+                        </li>
+                        <li class="dropdown dropdown-extended dropdown-inbox" id="header_inbox_bar">
+
                         <!-- BEGIN USER LOGIN DROPDOWN -->
                         <!-- DOC: Apply "dropdown-dark" class after below "dropdown-extended" to change the dropdown styte -->
                         <li class="dropdown dropdown-user">
