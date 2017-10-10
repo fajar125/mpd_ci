@@ -27,6 +27,7 @@
         </div>
         <!-- END RESPONSIVE QUICK SEARCH FORM -->
     </li>
+    <li class="separator hide"> </li>
     <?php
         $ci = & get_instance();
         $ci->load->model('administration/p_app_menu');

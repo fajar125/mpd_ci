@@ -268,8 +268,25 @@ VALUES (generate_id('sikp', 'p_global_param', 'p_global_param_id'), 'LIMIT_NIHIL
 
 update p_app_menu
 set file_name = replace('parameter.' || substr(file_name,7),'.php','')
-where file_name like 'param/%'
+where file_name like 'param/%';
 
 update p_app_menu
 set file_name = replace('transaksi.' || substr(file_name,7),'.php','')
-where file_name like 'trans/%'
+where file_name like 'trans/%';
+
+update  p_app_menu
+set file_name = 'data_master.t_customer'
+where file_name like 'parameter.t_customer';
+
+update p_app_menu
+set file_name = 'pelaporan.' || substr(file_name,11)
+where file_name in(
+'transaksi.t_laporan_history_potensi_piutang_tgl_tap',
+'transaksi.t_laporan_posisi_surat_teguran',
+'transaksi.t_rep_bpps2',
+'transaksi.t_rep_lap_harian',
+'transaksi.t_rep_lap_harian_bdhr',
+'transaksi.t_target_realisasi',
+'transaksi.t_target_realisasi_bidang',
+'transaksi.t_target_realisasi_jenis',
+'transaksi.t_target_realisasi_jenis_bulan');
