@@ -1,7 +1,7 @@
 <h3 class="page-title">Page Request</h3>
 <div class="alert alert-default" role="alert">
     <strong class="red">Maaf, Informasi yang Anda minta belum tersedia.</strong>
-    <button class="btn btn-success btn-xs back-workflow"><i class="fa fa-arrow-left"></i>Kembali</button>
+    <button class="btn btn-danger btn-xs back-workflow"><i class="fa fa-arrow-left"></i>Kembali</button>
 </div>
 <div>
     <!-- parameter untuk kembali ke workflow summary -->
