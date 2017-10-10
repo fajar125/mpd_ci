@@ -122,7 +122,7 @@ $("#tab-3").on("click", function(event) {
                 {label: 'Brand Kelurahan', name: 'brand_kelurahan',width: 5, hidden: true},
                 {label: 'Brand Kecamatan', name: 'brand_kecamatan',width: 5, hidden: true},
                 {label: 'WP Phone Number', name: 'wp_phone_no',width: 5, hidden: true},
-                {label: 'WP Mobile Number', name: 'wp_mobile_number',width: 5, hidden: true},
+                {label: 'WP Mobile Number', name: 'wp_mobile_no',width: 5, hidden: true},
                 {label: 'WP Fax Number', name: 'wp_fax_no',width: 5, hidden: true},
                 {label: 'WP Zip Code', name: 'wp_zip_code',width: 5, hidden: true},
                 {label: 'WP Email', name: 'wp_email',width: 5, hidden: true},
