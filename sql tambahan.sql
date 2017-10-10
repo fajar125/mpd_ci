@@ -265,3 +265,11 @@ $BODY$
 
 INSERT INTO "sikp"."p_global_param" ("p_global_param_id", "code", "value", "type_1", "is_range", "value_2", "description", "creation_date", "created_by", "updated_date", "updated_by")
 VALUES (generate_id('sikp', 'p_global_param', 'p_global_param_id'), 'LIMIT_NIHIL_RESTORAN', '10000000', 'V', 'N', 'Y', 'pengecekkan di fungsi f_vat_settlement_manual_wp', '2017-09-12 00:00:00', 'ADMIN', '2017-09-12 00:00:00', 'ADMIN');
+
+update p_app_menu
+set file_name = replace('parameter.' || substr(file_name,7),'.php','')
+where file_name like 'param/%'
+
+update p_app_menu
+set file_name = replace('transaksi.' || substr(file_name,7),'.php','')
+where file_name like 'trans/%'
