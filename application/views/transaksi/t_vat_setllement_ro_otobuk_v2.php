@@ -458,7 +458,7 @@
     }
 
     function tutup() {
-        loadContentWithParams("transaksi.t_vat_setlement_manual", {});
+        loadContentWithParams("transaksi.t_vat_setllement_manual", {});
     }
     
 
