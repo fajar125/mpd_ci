@@ -30,8 +30,8 @@
                 </li>
             </ul>
         </div>
-        t_customer_id = <input type="text" name="t_customer_id" id="t_customer_id">
-        t_cust_account_id id = <input type="text" name="t_cust_account_id" id="t_cust_account_id">
+        <input type="hidden" name="t_customer_id" id="t_customer_id">
+        <input type="hidden" name="t_cust_account_id" id="t_cust_account_id">
         <div class="tab-content no-border">
             <div class="row">
                 <div class="col-md-12">
@@ -57,7 +57,7 @@ $("#tab-2").on("click", function(event) {
     id_cust_account = grid.jqGrid ('getCell', t_cust_account_id, 't_cust_account_id');
 
     //t_customer_id = $('#t_customer_id').val();
-    alert("t_customer_id = "+id_customer+" t_cust_account_id = "+id_cust_account);
+    //alert("t_customer_id = "+id_customer+" t_cust_account_id = "+id_cust_account);
 
     if(t_customer_id == null && t_cust_account_id == null) {
         swal('Informasi','Silahkan pilih salah satu Customer','info');
@@ -72,6 +72,12 @@ $("#tab-2").on("click", function(event) {
 });
 </script>
 
+
+<script>
+    
+    
+</script>
+
 <script>
 
     jQuery(function($) {
@@ -80,6 +86,7 @@ $("#tab-2").on("click", function(event) {
 
         jQuery("#grid-table").jqGrid({
             url: '<?php echo WS_JQGRID."data_master.t_customer_controller/read"; ?>',
+            //postData: { t_customer_id : $('#t_customer_id').val() },
             datatype: "json",
             mtype: "POST",
             colModel: [
@@ -176,25 +183,47 @@ $("#tab-2").on("click", function(event) {
                 if(response.success == false) {
                     swal({title: 'Attention', text: response.message, html: true, type: "warning"});
                 }
-                /*rowid = 1;
+                /*tadinya untuk mengambil page agar pas kembali ke tab satu tetep select data yang dipilih di awal*/
 
-                $('#company_owner').val($('#grid-table').jqGrid('getCell', rowid, 'company_owner'));
-                $('#code').val($('#grid-table').jqGrid('getCell', rowid, 'code'));
-                $('#address_name_owner').val($('#grid-table').jqGrid('getCell', rowid, 'address_name_owner'));
-                $('#address_no_owner').val($('#grid-table').jqGrid('getCell', rowid, 'address_no_owner'));
-                $('#address_rt_owner').val($('#grid-table').jqGrid('getCell', rowid, 'address_rt_owner'));
-                $('#address_rw_owner').val($('#grid-table').jqGrid('getCell', rowid, 'address_rw_owner'));
-                $('#kota').val($('#grid-table').jqGrid('getCell', rowid, 'kota'));
-                $('#kelurahan').val($('#grid-table').jqGrid('getCell', rowid, 'kelurahan'));
-                $('#kecamatan').val($('#grid-table').jqGrid('getCell', rowid, 'kecamatan'));
-                $('#phone_no_owner').val(phone_no_owner = $('#grid-table').jqGrid('getCell', rowid, 'phone_no_owner'));
-                $('#fax_no_owner').val(fax_no_owner = $('#grid-table').jqGrid('getCell', rowid, 'fax_no_owner'));
-                $('#mobile_no_owner').val($('#grid-table').jqGrid('getCell', rowid, 'mobile_no_owner'));
-                $('#email_address').val($('#grid-table').jqGrid('getCell', rowid, 'email_address'));
-                $('#zip_code_owner').val($('#grid-table').jqGrid('getCell', rowid, 'zip_code_owner'));*/
-                setTimeout(function(){
-                  $("#grid-table").setSelection($("#grid-table").getDataIDs()[0],true);
-                },500);
+                var t_customer_id = "<?php //echo $this->input->post('t_customer_id'); ?>";
+                var rowIds = $(this).jqGrid('getDataIDs');
+                /*var pagenumber = $('#grid-table').getGridParam('page');;
+                var pagenumber2 = $(this).trigger("reloadGrid",[{page: pagenumber}]);
+                alert(rowIds+" - "+pagenumber+" - "+pagenumber2);
+
+                if (/*some condition) {
+                    setTimeout(function () {
+                        $(this).trigger("reloadGrid",[{page: pagenum}]);
+                    }, 50);
+                }*/
+               
+
+                for (i = 1; i <= rowIds.length; i++) {
+                    rowData = $(this).jqGrid('getRowData', i);                    
+
+                    if (rowData['t_customer_id'] == t_customer_id ) {
+                        
+                       $(this).jqGrid('setSelection',i);
+                       //alert("test");
+                       
+                        return;
+
+                    }else{
+                        $(this).jqGrid('setSelection',1);
+                    } //if
+
+                } //for
+
+                //var t_customer_id = "<?php //echo $this->input->post('t_customer_id'); ?>";
+                /*if (t_customer_id != ""){
+                    setTimeout(function(){
+                      $("#grid-table").setSelection($("#grid-table").getDataIDs()[t_customer_id],true);
+                    },500);
+                }else{
+                    setTimeout(function(){
+                      $("#grid-table").setSelection($("#grid-table").getDataIDs()[0],true);
+                    },500);
+                }*/
 
                 //alert(rowid);
 
@@ -253,6 +282,12 @@ $("#tab-2").on("click", function(event) {
                 }
             },
             {
+                
+                editData : {
+                    t_customer_id: function() {
+                        return <?php echo $this->input->post('t_customer_id'); ?>;
+                    }
+                },
                 //new record form
                 closeAfterAdd: false,
                 clearAfterAdd : true,

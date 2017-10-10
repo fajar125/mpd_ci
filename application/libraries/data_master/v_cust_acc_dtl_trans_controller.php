@@ -80,7 +80,7 @@ class v_cust_acc_dtl_trans_controller {
             $table = $ci->v_cust_acc_dtl_trans;
 
             if(!empty($searchPhrase)) {
-                $table->setCriteria("(upper(nama_transaksi) ".$table->likeOperator." upper('%".$searchPhrase."%'))");
+                $table->setCriteria("(upper(service_desc) ".$table->likeOperator." upper('%".$searchPhrase."%'))");
             }
             $table->setCriteria("a.t_vat_setllement_id = b.t_vat_setllement_id");
             $table->setCriteria("a.t_vat_setllement_id =".$t_vat_setllement_id);

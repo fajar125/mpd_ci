@@ -9,6 +9,8 @@ class t_customer_controller {
         $sidx = getVarClean('sidx','str','t_customer_id');
         $sord = getVarClean('sord','str','t_customer_id');
 
+        $t_customer_id = getVarClean('t_customer_id','int',0);
+
         $data = array('rows' => array(), 'page' => 1, 'records' => 0, 'total' => 1, 'success' => false, 'message' => '');
 
         try {
@@ -33,6 +35,10 @@ class t_customer_controller {
 
             // Filter Table
             $req_param['where'] = array();
+
+            if(!empty($t_customer_id)) {
+                $req_param['where'][] = 't_customer_id = '.$t_customer_id;
+            }
 
             $table->setJQGridParam($req_param);
             $count = $table->countAll();

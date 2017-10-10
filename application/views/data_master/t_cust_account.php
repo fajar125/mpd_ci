@@ -36,8 +36,8 @@
                 </li>
             </ul>
         </div>
-        t_customer id = <input type="text" name="t_customer_id" id="t_customer_id">
-        t_cust_account_id = <input type="text" name="t_cust_account_id" id="t_cust_account_id">
+        <input type="hidden" name="t_customer_id" id="t_customer_id">
+        <input type="hidden" name="t_cust_account_id" id="t_cust_account_id">
         <div class="tab-content no-border">
             <div class="row">
                 <div class="col-xs-12">
@@ -52,7 +52,12 @@
 <script>
 $("#tab-1").on("click", function(event) {
     event.stopPropagation();
-    loadContentWithParams("data_master.t_customer",{});
+    
+    loadContentWithParams("data_master.t_customer",{
+        t_customer_id: $('#t_customer_id').val(),
+    });
+
+    //alert("t_customer_id = "+$('#t_customer_id').val());
 });
 
 $('#t_customer_id').val("<?php echo $_POST['t_customer_id'] ?>");
@@ -61,21 +66,8 @@ $('#t_cust_account_id').val("<?php echo $_POST['t_cust_account_id'] ?>");
 $("#tab-3").on("click", function(event) {
 
     event.stopPropagation();
-    /*var grid = $('#grid-table');
-    t_cust_account_id = grid.jqGrid ('getGridParam', 'selrow');
-    id_cust_account = grid.jqGrid ('getCell', t_cust_account_id, 't_cust_account_id');
-
-    t_customer_id = grid.jqGrid ('getGridParam', 'selrow');
-    id_customer = grid.jqGrid ('getCell', t_customer_id, 't_customer_id');
-    //alert(t_customer_id+ " " +t_cust_account_id);
-    if(t_cust_account_id == null) {
-        swal('Informasi','Silahkan pilih salah satu Daftar Customer','info');
-        return false;
-    }*/
-
+    
     loadContentWithParams("data_master.t_trans_histories", { //model yang ketiga
-        /*t_cust_account_id: t_cust_account_id,
-        t_customer_id: t_customer_id, */
         t_cust_account_id: $('#t_cust_account_id').val(),
         t_customer_id: $('#t_customer_id').val(),
 
@@ -237,9 +229,9 @@ $("#tab-3").on("click", function(event) {
             },
             {
                 editData : {
-                    t_customer_id: function() {
-                        return <?php echo $this->input->post('t_customer_id'); ?>;
-                    }
+                    /*t_customer_id: function() {
+                        return <?php //echo $this->input->post('t_customer_id'); ?>;
+                    }*/
                 },
                 //new record form
                 closeAfterAdd: false,

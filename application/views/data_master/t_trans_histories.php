@@ -41,9 +41,9 @@
                 <div class="col-xs-12">
                     <div id="gbox_grid-table" class="ui-jqgrid">
                         <div id="gview_grid-table" class="ui-jqgrid-view table-responsive" role="grid">
-                            <input type="text" name="t_customer_id" id="t_customer_id">
-                            <input type="text" name="t_cust_account_id" id="t_cust_account_id">
-                            <input type="text" name="t_vat_setllement_id" id="t_vat_setllement_id">
+                            <input type="hidden" name="t_customer_id" id="t_customer_id">
+                            <input type="hidden" name="t_cust_account_id" id="t_cust_account_id">
+                            <input type="hidden" name="t_vat_setllement_id" id="t_vat_setllement_id">
                             <table id="grid-table-trans"></table>
                             <div id="grid-pager"></div>
                         </div>
@@ -72,7 +72,11 @@
 
     $("#tab-1").on("click", function(event) {
         event.stopPropagation();
-        loadContentWithParams("data_master.t_customer",{});
+        loadContentWithParams("data_master.t_customer",{
+        t_customer_id: $('#t_customer_id').val(),
+    });
+
+    //alert("t_customer_id = "+$('#t_customer_id').val());
     });
 </script>
 
@@ -95,19 +99,19 @@
                 {label: 'NPWPD',name: 'npwd',width: 120, align: "left"},
                 {label: 'Nama Badan',name: 'company_name',width: 150, align: "left"},
                 {label: 'Jenis Ketetapan',name: 'type_code',width: 150, align: "left"},
-                {label: 'Ayat Pajak',name: 'vat_code',width: 170, align: "left"},
+                {label: 'Ayat Pajak',name: 'vat_code',width: 250, align: "left"},
                 {label: 'Periode Pelaporan',name: 'periode_pelaporan',width: 180, align: "left"},
-                {label: 'Periode Transaksi',name: 'periode_transaksi',width: 180, align: "left"},
+                {label: 'Periode Transaksi',name: 'periode_transaksi',width: 250, align: "left"},
                 {label: 'Tgl. Pelaporan',name: 'tgl_pelaporan',width: 180, align: "left"},
                 {label: 'Tgl. Jatuh tempo',name: 'jatuh_tempo',width: 150,align: "left"},
                 {label: 'No Kohir',name: 'no_kohir',width: 150, align: "left"},
                 {label: 'Total Transaksi',name: 'total_transaksi',width: 150, formatter:'currency', formatoptions: {prefix:"", thousandsSeparator:','},align: "right"},
-                {label: 'Total Pajak',name: 'total_pajak',width: 80, formatter:'currency', formatoptions: {prefix:"", thousandsSeparator:','},align: "right"},
-                {label: 'Pajak Terhutang',name: 'debt_vat_amt',width: 100, formatter:'currency', formatoptions: {prefix:"", thousandsSeparator:','},align: "right"},
-                {label: '25%',name: 'kenaikan',width: 100, formatter:'currency', formatoptions: {prefix:"", thousandsSeparator:','},align: "right"},
-                {label: '20%',name: 'kenaikan1',width: 100, formatter:'currency', formatoptions: {prefix:"", thousandsSeparator:','},align: "right"},
-                {label: 'Total Denda',name: 'total_denda',width: 100, formatter:'currency', formatoptions: {prefix:"", thousandsSeparator:','},align: "right"},
-                {label: 'Total Harus Bayar',name: 'total_hrs_bayar',width: 100, formatter:'currency', formatoptions: {prefix:"", thousandsSeparator:','},align: "right"},
+                {label: 'Total Pajak',name: 'total_pajak',width: 150, formatter:'currency', formatoptions: {prefix:"", thousandsSeparator:','},align: "right"},
+                {label: 'Pajak Terhutang',name: 'debt_vat_amt',width: 150, formatter:'currency', formatoptions: {prefix:"", thousandsSeparator:','},align: "right"},
+                {label: '25%',name: 'kenaikan',width: 150, formatter:'currency', formatoptions: {prefix:"", thousandsSeparator:','},align: "right"},
+                {label: '20%',name: 'kenaikan1',width: 150, formatter:'currency', formatoptions: {prefix:"", thousandsSeparator:','},align: "right"},
+                {label: 'Total Denda',name: 'total_denda',width: 150, formatter:'currency', formatoptions: {prefix:"", thousandsSeparator:','},align: "right"},
+                {label: 'Total Harus Bayar',name: 'total_hrs_bayar',width: 150, formatter:'currency', formatoptions: {prefix:"", thousandsSeparator:','},align: "right"},
                 {name: 'Pilihan',width: 200, align: "center",
                     formatter:function(cellvalue, options, rowObject) {
 
@@ -120,9 +124,9 @@
 
                     }
                 },
-                {label: 'No. Kwitansi',name: 'kuitansi_pembayaran',width: 100, align: "left"},
-                {label: 'Tgl. Pembayaran',name: 'tgl_pembayaran',width: 100, align: "left"},
-                {label: 'Nilai Pembayaran',name: 'payment_amount',width: 100, formatter:'currency', formatoptions: {prefix:"", thousandsSeparator:','},align: "right"}
+                {label: 'No. Kwitansi',name: 'kuitansi_pembayaran',width: 200, align: "left"},
+                {label: 'Tgl. Pembayaran',name: 'tgl_pembayaran',width: 200, align: "left"},
+                {label: 'Nilai Pembayaran',name: 'payment_amount',width: 150, formatter:'currency', formatoptions: {prefix:"", thousandsSeparator:','},align: "right"}
             ],
             height: '100%',
             autowidth: false,
@@ -141,8 +145,7 @@
             },
             onSelectRow: function (rowid) {
                 /*do something when selected*/
-                /*$('#t_customer_id').val($('#grid-table-trans').jqGrid('getCell', rowid, 't_customer_id'));
-                $('#t_cust_account_id').val($('#grid-table-trans').jqGrid('getCell', rowid, 't_cust_account_id'));*/
+                
                 $('#t_vat_setllement_id').val($('#grid-table-trans').jqGrid('getCell', rowid, 't_vat_setllement_id'));
 
 
@@ -335,10 +338,8 @@
     }
 
     function show_v_cust_acc_dtl_trans(t_vat_setllement_id, t_cust_account_id) {
-        //alert("t_vat_setllement_id = "+t_vat_setllement_id+", t_cust_account_id = "+t_cust_account_id);
-        //modal_v_cust_show(t_vat_setllement_id,t_cust_account_id);
         modal_v_cust_dtl_show(t_vat_setllement_id,t_cust_account_id);
-        //alert("t_vat_setllement_id = "+t_vat_setllement_id+", t_cust_account_id = "+t_cust_account_id);
+        
     }
 </script>
 
