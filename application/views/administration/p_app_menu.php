@@ -34,7 +34,7 @@
         <div class="tab-content no-border">
             <div class="row">
                 <div class="col-md-4">
-                    <div class="portlet red box menu-panel">
+                    <div class="portlet green-jungle box menu-panel">
                         <div class="portlet-title">
                             <div class="caption">Menu</div>
                             <div class="tools">

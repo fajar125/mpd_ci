@@ -10,7 +10,7 @@
 <div class="space-4"></div>
 <div class="row">
     <div class="col-md-12">
-        <div class="portlet box blue-hoki">
+        <div class="portlet box green-jungle">
             <div class="portlet-title">
                 <div class="caption">Form Profile</div>
             </div>
