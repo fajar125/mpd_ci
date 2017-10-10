@@ -42,7 +42,7 @@ class Wf_controller {
             else
                 $btnOpenInbox = '<button type="button" onClick="'.$onClickEvent.'" class="btn btn-xs btn-danger"> Lihat Detail </button>';
 
-            $strOutput .= '<tr class="green">';
+            $strOutput .= '<tr>';
             $strOutput .= '<td>'.$item['profile_type'].'</td>';
             $strOutput .= '<td align="right"><strong>'.$item['jumlah'].'</strong></td>';
             $strOutput .= '<td>'.$btnOpenInbox.'</td>';
