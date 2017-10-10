@@ -23,10 +23,7 @@
             </div>
             <!-- CONTENT PORTLET -->
             <div class="form-body">
-                <button class="btn btn-danger" id="add-bphtb"> <i class="fa fa-plus"></i>Tambah</button>
-                <button class="btn btn-success" id="detail-bphtb" disabled=""> <i class="fa fa-newspaper-o"></i>Detail BPHTB</button>
-                
-
+                <button class="btn btn-warning" id="modify-bphtb" disabled=""> <i class="fa fa-pencil-square-o"></i>Modify BPHTB</button>
                 <div class="row">
                     <div class="col-md-12 ">
                         <table id="grid-table"></table>
@@ -39,43 +36,28 @@
 </div>
 <script>
 
-    $('#add-bphtb').on('click', function(event){
-        loadContentWithParams('transaksi.t_bphtb_registration', {FLAG:'Add',id:0});
-    });
 
-    $('#detail-bphtb').on('click', function(event){
+    $('#modify-bphtb').on('click', function(event){
         var grid = $('#grid-table');
         var rowid = grid.jqGrid ('getGridParam', 'selrow');
         var id = grid.jqGrid ('getCell', rowid, 't_bphtb_registration_id');
         //alert(id);
-        loadContentWithParams('transaksi.t_bphtb_registration', {FLAG:'Detail',id:id});
+        loadContentWithParams('transaksi.t_bphtb_registration', {FLAG:'Edit',id:id});
 
     });
-
 
     jQuery(function($) {
         var grid_selector = "#grid-table";
         var pager_selector = "#grid-pager";
 
         jQuery("#grid-table").jqGrid({
-            url: '<?php echo WS_JQGRID."transaksi.t_bphtb_registration_list_controller/read"; ?>',
+            url: '<?php echo WS_JQGRID."transaksi.t_bphtb_registration_list_controller/read_update"; ?>',
             datatype: "json",
             mtype: "POST",
             colModel: [
                 {label: 'ID', name: 't_bphtb_registration_id',  width: 5, sorttype: 'number', hidden: false},
                 {label: 'Nama Wajib Pajak', name: 'wp_name',  width: 15, sorttype: 'text', hidden: false},
-                {label: 'No Order', name: 'order_no',  width: 7, sorttype: 'text', hidden: false},
-                {label: 'Via Online ?', name: 't_ppat_id',  width: 5, sorttype: 'text', hidden: false},
-                {name: 'Options',width: 20, align: "center",
-                    formatter:function(cellvalue, options, rowObject) {
-                        var val = rowObject['t_bphtb_registration_id'];
-                        //var url = '<?php echo base_url(); ?>'+'cetak_formulir_skpd_nihil/pageCetak?t_cust_order_id='+val;
-                        return '<a class="btn btn-danger btn-xs" href="#" onclick="PopupCenter('+val+');">Submit</a>';
-
-                    }
-                }
-
-
+                {label: 'No Order', name: 'order_no',  width: 7, sorttype: 'text', hidden: false}
             ],
             height: '100%',
             autowidth: true,
@@ -88,8 +70,7 @@
             shrinkToFit: true,
             multiboxonly: true,
             onSelectRow: function (rowid) {
-                $('#detail-bphtb').prop( "disabled", false );
-                
+                $('#modify-bphtb').prop( "disabled", false );
 
             },
             sortorder:'',
@@ -104,9 +85,13 @@
                     swal({title: 'Attention', text: response.message, html: true, type: "warning"});
                 }
 
+                setTimeout(function(){
+                      $("#grid-table").setSelection($("#grid-table").getDataIDs()[0],true);
+                    },500);
+
             },
             //memanggil controller jqgrid yang ada di controller crud
-            editurl: '<?php echo WS_JQGRID."transaksi.t_bphtb_registration_list_controller/read"; ?>',
+            editurl: '<?php echo WS_JQGRID."transaksi.t_bphtb_registration_list_controller/read_update"; ?>',
             caption: "Daftar BPHTB"
 
         });
@@ -244,10 +229,6 @@
         $(grid_selector).jqGrid( 'setGridWidth', $(".page-content").width() );
         $(pager_selector).jqGrid( 'setGridWidth', parent_column.width() );
 
-    }
-
-    function PopupCenter(id){
-        alert(id);
     }
 
 </script>

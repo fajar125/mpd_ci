@@ -13,6 +13,7 @@ class T_bphtb_registration_list_controller {
         $sidx = getVarClean('sidx','str','t_bphtb_registration_id');
         $sord = getVarClean('sord','str','desc');
         $periode = getVarClean('periode','str','');
+        $p_app_menu_id = getVarClean('p_app_menu_id','str','');
 
         $data = array('rows' => array(), 'page' => 1, 'records' => 0, 'total' => 1, 'success' => false, 'message' => '');
 
@@ -39,6 +40,79 @@ class T_bphtb_registration_list_controller {
 
             // Filter Table
             $req_param['where'] = array();
+
+            $table->setCriteria("cust_order.p_order_status_id =1");
+            $table->setCriteria("(regis.p_bphtb_type_id is null or regis.p_bphtb_type_id = 1)");                     
+
+            $table->setJQGridParam($req_param);
+            $count = $table->countAll();
+
+            if ($count > 0) $total_pages = ceil($count / $limit);
+            else $total_pages = 1;
+
+            if ($page > $total_pages) $page = $total_pages;
+            $start = $limit * $page - ($limit); // do not put $limit*($page - 1)
+
+            $req_param['limit'] = array(
+                'start' => $start,
+                'end' => $limit
+            );
+
+            $table->setJQGridParam($req_param);
+
+            if ($page == 0) $data['page'] = 1;
+            else $data['page'] = $page;
+
+            $data['total'] = $total_pages;
+            $data['records'] = $count;
+
+            $data['rows'] = $table->getAll();
+            $data['success'] = true;
+
+        }catch (Exception $e) {
+            $data['message'] = $e->getMessage();
+        }
+
+        return $data;
+    }
+
+    function read_update() {
+        //exit;
+        $page = getVarClean('page','int',1);
+        $limit = getVarClean('rows','int',5);
+        $sidx = getVarClean('sidx','str','t_bphtb_registration_id');
+        $sord = getVarClean('sord','str','desc');
+        $periode = getVarClean('periode','str','');
+        $p_app_menu_id = getVarClean('p_app_menu_id','str','');
+
+        $data = array('rows' => array(), 'page' => 1, 'records' => 0, 'total' => 1, 'success' => false, 'message' => '');
+
+        try {
+
+            $ci = & get_instance(); 
+            $ci->load->model('transaksi/t_bphtb_registration_list');
+            $table = $ci->t_bphtb_registration_list;
+             //$periode='201712';;
+
+            $req_param = array(
+                "sort_by" => $sidx,
+                "sord" => $sord,
+                "limit" => null,
+                "field" => null,
+                "where" => null,
+                "where_in" => null,
+                "where_not_in" => null,
+                "search" => $_REQUEST['_search'],
+                "search_field" => isset($_REQUEST['searchField']) ? $_REQUEST['searchField'] : null,
+                "search_operator" => isset($_REQUEST['searchOper']) ? $_REQUEST['searchOper'] : null,
+                "search_str" => isset($_REQUEST['searchString']) ? $_REQUEST['searchString'] : null
+            );
+
+            // Filter Table
+            $req_param['where'] = array();
+
+            $table->setCriteria("(cust_order.p_order_status_id = 2 OR cust_order.p_order_status_id = 3)");
+            $table->setCriteria("NOT EXISTS (SELECT 1 FROM t_payment_receipt_bphtb as x WHERE x.t_bphtb_registration_id = regis.t_bphtb_registration_id)");                     
 
             $table->setJQGridParam($req_param);
             $count = $table->countAll();
