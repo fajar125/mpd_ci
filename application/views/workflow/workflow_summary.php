@@ -19,7 +19,7 @@
     </div>
 
     <div class="col-xs-12 col-sm-8" id="user-task-list-panel">
-        <div class="portlet box blue-hoki">
+        <div class="portlet box green-jungle">
             <div class="portlet-title">
                 <div class="caption"> Daftar Pekerjaan </div>
                 <div class="tools">
@@ -45,7 +45,7 @@
                             <div class="input-group">
                                 <input class="form-control" type="text" placeholder="Pencarian teks" id="filter_search_task_list"/>
                                 <span class="input-group-btn">
-                                    <button id="btn_filter_task_list" type="button" class="btn btn-success">
+                                    <button id="btn_filter_task_list" type="button" class="btn btn-danger">
                                         <i class="fa fa-search bigger-130">  </i>
                                         Filter
                                     </button>

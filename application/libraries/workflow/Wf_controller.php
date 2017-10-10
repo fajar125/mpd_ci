@@ -40,7 +40,7 @@ class Wf_controller {
             if($item['jumlah'] == 0)
                 $btnOpenInbox = '&nbsp;';
             else
-                $btnOpenInbox = '<button type="button" onClick="'.$onClickEvent.'" class="btn btn-xs btn-success"> Lihat Detail </button>';
+                $btnOpenInbox = '<button type="button" onClick="'.$onClickEvent.'" class="btn btn-xs btn-danger"> Lihat Detail </button>';
 
             $strOutput .= '<tr class="green">';
             $strOutput .= '<td>'.$item['profile_type'].'</td>';
@@ -72,7 +72,7 @@ class Wf_controller {
         $ELEMENT_ID = $ci->input->post('ELEMENT_ID');
 
         $items = $table->getSummaryList($P_W_DOC_TYPE_ID, $user_name);
-        $strOutput = '<div class="portlet box blue-hoki">
+        $strOutput = '<div class="portlet box green-jungle">
                         <div class="portlet-title">
                             <div class="caption">Summary</div>
                             <div class="tools">
@@ -122,7 +122,7 @@ class Wf_controller {
                 }
 
                 $strOutput .= '<tr>
-                                    <td style="padding-left:35px;"><strong class="font-blue">'.$item['display_name'].'</strong></td>
+                                    <td style="padding-left:35px;"><strong>'.$item['display_name'].'</strong></td>
                                     <td style="text-align:right;">'.$item['scount'].'</td>
                                     <td class="center"><input class="pointer radio-bigger" type="radio" '.$selected.' name="pilih_summary" value="'.$item['element_id'].'" onclick="loadUserTaskList(this, event);"></td>
                                     <td style="display:none;">
@@ -239,7 +239,7 @@ class Wf_controller {
         $result  = '';
         foreach($items as $item) {
             $result .= '<tr>
-                            <td colspan="4"> <span class="font-blue"><strong>'.$item['cust_info'].'</strong></span></td>
+                            <td colspan="4"> <span class="font-green"><strong>'.$item['cust_info'].'</strong></span></td>
                         </tr>';
 
             $result .= '<tr>';
@@ -272,16 +272,16 @@ class Wf_controller {
             if($item['profile_type'] != 'INBOX') {
                 $params['ACTION_STATUS'] = "VIEW";
                 $json_param = str_replace('"', "'", json_encode($params));
-                $result .= '<td><button type="button" class="btn btn-sm btn-primary" onClick="loadWFForm(\''.$file_name.'\','.$json_param.')">View</button></td>';
+                $result .= '<td><button type="button" class="btn btn-sm btn-danger" onClick="loadWFForm(\''.$file_name.'\','.$json_param.')">View</button></td>';
             }else {
                 if($item['is_read'] == 'N') {
                     $params['ACTION_STATUS'] = "TERIMA";
                     $json_param = str_replace('"', "'", json_encode($params));
-                    $result .= '<td><button type="button" class="btn btn-sm btn-primary" onClick="loadWFForm(\''.$file_name.'\','.$json_param.')">Terima</button></td>';
+                    $result .= '<td><button type="button" class="btn btn-sm btn-danger" onClick="loadWFForm(\''.$file_name.'\','.$json_param.')">Terima</button></td>';
                 }else {
                     $params['ACTION_STATUS'] = "BUKA";
                     $json_param = str_replace('"', "'", json_encode($params));
-                    $result .= '<td><button type="button" class="btn btn-sm btn-primary" onClick="loadWFForm(\''.$file_name.'\','.$json_param.')">Buka</button></td>';
+                    $result .= '<td><button type="button" class="btn btn-sm btn-danger" onClick="loadWFForm(\''.$file_name.'\','.$json_param.')">Buka</button></td>';
                 }
             }
 
