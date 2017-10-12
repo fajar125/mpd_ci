@@ -550,18 +550,6 @@ breadcrumb -->
     $(".formatRight").css("text-align", "right");
 
     if(FLAG == 'Edit' || FLAG == 'Detail'){
-        /*if(FLAG == 'Edit'){
-            $('#print').css('display', '');
-            $('#update').css('display', '');
-            $('#delete').css('display', 'none');
-            $('#insert').css('display', 'none');
-        }else if(FLAG == 'Detail'){
-            $('#print').css('display', 'none');
-            $('#update').css('display', '');
-            $('#delete').css('display', '');
-            $('#insert').css('display', 'none');
-        }*/
-
         
         $.ajax({
             url: '<?php echo WS_JQGRID."transaksi.t_bphtb_registration_list_controller/read_detail_bphtb"; ?>',
@@ -1278,11 +1266,12 @@ breadcrumb -->
          var_url += "&t_bphtb_registration_id=" + t_bphtb_registration_id;
             
          
-        alert(var_url);
+        //alert(var_url);
          
             
         $.getJSON(var_url, function( items ) {
-            
+            swal('Informasi',items.rows,'info');
+            loadContentWithParams("transaksi.t_bphtb_registration_list", {});
         })
     }
     

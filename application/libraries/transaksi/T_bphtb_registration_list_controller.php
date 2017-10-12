@@ -333,58 +333,54 @@ class T_bphtb_registration_list_controller {
 
         $data = array('rows' => array(), 'page' => 1, 'records' => 0, 'total' => 1, 'success' => false, 'message' => '');
 
-        
         try {
 
             $ci = & get_instance();
             $ci->load->model('transaksi/t_bphtb_registration_list');
             $table = $ci->t_bphtb_registration_list;
-            //$item = $table->getCustOrder($payment_key);
-            //$cust_order_id = $item['t_customer_order_id'];
-            //$result = $table->update();
 
+            $param =  array('wp_name' =>$wp_name,
+                            'npwp'=>$npwp,
+                            'wp_address_name'=>$wp_address_name,
+                            'wp_rt'=>$wp_rt,
+                            'wp_rw'=>$wp_rw,
+                            'wp_p_region_id'=>$wp_p_region_id,
+                            'wp_p_region_id_kec'=>$wp_p_region_id_kec,
+                            'wp_p_region_id_kel'=>$wp_p_region_id_kel,
+                            'mobile_phone_no'=>$mobile_phone_no,
+                            'njop_pbb'=>$njop_pbb,
+                            'object_address_name'=>$object_address_name,
+                            'object_rt'=>$object_rt,
+                            'object_rw'=>$object_rw,   
+                            'object_p_region_id'=>$object_p_region_id,
+                            'object_p_region_id_kec'=>$object_p_region_id_kec,
+                            'object_p_region_id_kel'=>$object_p_region_id_kel,
+                            'p_bphtb_legal_doc_type_id'=>$p_bphtb_legal_doc_type_id,
+                            'land_area'=>$land_area,
+                            'land_price_per_m'=>$land_price_per_m,
+                            'land_total_price'=>$land_total_price,
+                            'building_area'=>$building_area,
+                            'building_price_per_m'=>$building_price_per_m,
+                            'building_total_price'=>$building_total_price,
+                            'market_price'=>$market_price,
+                            'npop'=>$npop,
+                            'npop_tkp'=>$npop_tkp,
+                            'npop_kp'=>$npop_kp,
+                            'bphtb_amt'=>$bphtb_amt,
+                            'bphtb_discount'=>$bphtb_discount,
+                            'bphtb_amt_final'=>$bphtb_amt_final,
+                            'description'=>$description,
+                            'jenis_harga_bphtb'=>$jenis_harga_bphtb,
+                            'bphtb_legal_doc_description'=>$bphtb_legal_doc_description,
+                            'add_disc_percent'=>$add_disc_percent,
+                            'land_area_real'=>$land_area_real,
+                            'land_price_real'=>$land_price_real,
+                            'building_area_real'=>$building_area_real,
+                            'building_price_real'=>$building_price_real,
+                            't_bphtb_registration_id'=>$t_bphtb_registration_id);
 
-            $result = $table->update(
-                                        /*$wp_name                    ,
-                                        $npwp                       ,
-                                        $wp_address_name            ,
-                                        $wp_rt                      ,
-                                        $wp_rw                      ,
-                                        $wp_p_region_id             ,
-                                        $wp_p_region_id_kec         ,
-                                        $wp_p_region_id_kel         ,
-                                        $mobile_phone_no            ,
-                                        $njop_pbb                   ,
-                                        $object_address_name        ,
-                                        $object_rt                  ,
-                                        $object_rw                  ,   
-                                        $object_p_region_id         ,
-                                        $object_p_region_id_kec     ,
-                                        $object_p_region_id_kel     ,
-                                        $p_bphtb_legal_doc_type_id  ,
-                                        $land_area                  ,
-                                        $land_price_per_m           ,
-                                        $land_total_price           ,
-                                        $building_area              ,
-                                        $building_price_per_m       ,
-                                        $building_total_price       ,
-                                        $market_price               ,
-                                        $npop                       ,
-                                        $npop_tkp                   ,
-                                        $npop_kp                    ,
-                                        $bphtb_amt                  ,
-                                        $bphtb_discount             ,
-                                        $bphtb_amt_final            ,
-                                        $description                ,
-                                        $jenis_harga_bphtb          ,
-                                        $bphtb_legal_doc_description,
-                                        $add_disc_percent           ,
-                                        $land_area_real             ,
-                                        $land_price_real            ,
-                                        $building_area_real         ,
-                                        $building_price_real        ,*/
-                                        $t_bphtb_registration_id
-                                    ) ;
+            
+            $result = $table->update($param) ;
             $count = count($result);
 
             $data['rows'] = $result;
@@ -396,7 +392,7 @@ class T_bphtb_registration_list_controller {
 
         return $data;
 
-    } 
+    }
 
     function delete(){
         $page = getVarClean('page','int',1);

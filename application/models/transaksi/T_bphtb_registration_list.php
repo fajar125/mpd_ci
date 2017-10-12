@@ -163,144 +163,58 @@ class T_bphtb_registration_list extends Abstract_model {
         return $item;      
     }
 
-    function update(){
-        $wp_name                        = getVarClean('wp_name','str',''); 
-        $npwp                           = getVarClean('npwp','str',''); 
-        $wp_address_name                = getVarClean('wp_address_name','str',''); 
-        $wp_rt                          = getVarClean('wp_rt','str',''); 
-        $wp_rw                          = getVarClean('wp_rw','str',''); 
-        $wp_p_region_id                 = getVarClean('wp_p_region_id','int',0); 
-        $wp_p_region_id_kec             = getVarClean('wp_p_region_id_kec','int',0); 
-        $wp_p_region_id_kel             = getVarClean('wp_p_region_id_kel','int',0); 
-        $mobile_phone_no                = getVarClean('mobile_phone_no','str',''); 
-        $njop_pbb                       = getVarClean('njop_pbb','str',''); 
-        $object_address_name            = getVarClean('object_address_name','str',''); 
-        $object_rt                      = getVarClean('object_rt','str',''); 
-        $object_rw                      = getVarClean('object_rw','str',''); 
-        $object_p_region_id             = getVarClean('object_p_region_id','str',''); 
-        $object_p_region_id_kec         = getVarClean('object_p_region_id_kec','str',''); 
-        $object_p_region_id_kel         = getVarClean('object_p_region_id_kel','str',''); 
-        $p_bphtb_legal_doc_type_id      = getVarClean('p_bphtb_legal_doc_type_id','str',''); 
-        $land_area                      = getVarClean('land_area','int',0); 
-        $land_price_per_m               = getVarClean('land_price_per_m','int',0); 
-        $land_total_price               = getVarClean('land_total_price','int',0); 
-        $building_area                  = getVarClean('building_area','int',0); 
-        $building_price_per_m           = getVarClean('building_price_per_m','int',0); 
-        $building_total_price           = getVarClean('building_total_price','int',0); 
-        $market_price                   = getVarClean('market_price','int',0); 
-        $npop                           = getVarClean('npop','int',0); 
-        $npop_tkp                       = getVarClean('npop_tkp','int',0); 
-        $npop_kp                        = getVarClean('npop_kp','int',0); 
-        $bphtb_amt                      = getVarClean('bphtb_amt','int',0); 
-        $bphtb_discount                 = getVarClean('bphtb_discount','int',0); 
-        $bphtb_amt_final                = getVarClean('bphtb_amt_final','int',0); 
-        $description                    = getVarClean('description','str',''); 
-        $jenis_harga_bphtb              = getVarClean('jenis_harga_bphtb','int',0); 
-        $bphtb_legal_doc_description    = getVarClean('bphtb_legal_doc_description','str',''); 
-        $add_disc_percent               = getVarClean('add_disc_percent','str',''); 
-        $land_area_real                 = getVarClean('land_area_real','int',0); 
-        $land_price_real                = getVarClean('land_price_real','int',0); 
-        $building_area_real             = getVarClean('building_area_real','int',0); 
-        $building_price_real            = getVarClean('building_price_real','int',0); 
-        $t_bphtb_registration_id        = getVarClean('t_bphtb_registration_id','int',0); 
-
+    function update($param = array()){
         $ci =& get_instance();
         $userdata = $ci->session->userdata;
+        $userdata = '\''.$userdata['app_user_name'].'\'';
         $updated_date = date('Y-m-d');
-        //$this->db->set('updated_date',"to_date('".date('Y-m-d')."','yyyy-mm-dd')",false);
 
-        $sql = "UPDATE t_bphtb_registration SET 
-                        wp_name=?,
-                        npwp=?,
-                        wp_address_name=?,
-                        wp_rt=?,
-                        wp_rw=?,
-                        wp_p_region_id=?,
-                        wp_p_region_id_kec=?,
-                        wp_p_region_id_kel=?,
-                        mobile_phone_no=?,
-                        njop_pbb=?,
-                        object_address_name=?,
-                        object_rt=?,
-                        object_rw=?,
-                        object_p_region_id=?,
-                        object_p_region_id_kec=?,
-                        object_p_region_id_kel=?,
-                        p_bphtb_legal_doc_type_id=?,
-                        land_area=?,
-                        land_price_per_m=?,
-                        land_total_price=?,
-                        building_area=?,
-                        building_price_per_m=?,
-                        building_total_price=?,
-                        market_price=?,
-                        npop=?,  
-                        npop_tkp=?, 
-                        npop_kp=?, 
-                        bphtb_amt=?, 
-                        bphtb_discount=?, 
-                        bphtb_amt_final=?, 
-                        description=?, 
-                        jenis_harga_bphtb=?, 
-                        bphtb_legal_doc_description=?, 
-                        add_disc_percent=?, 
-                        land_area_real=?, 
-                        land_price_real=?, 
-                        building_area_real=?, 
-                        building_price_real=?,
-                        updated_by=?, 
-                        updated_date=?
-                    WHERE t_bphtb_registration_id = ?";
-
-        $data = array(
-                        $wp_name                    ,
-                        $npwp                       ,
-                        $wp_address_name            ,
-                        $wp_rt                      ,
-                        $wp_rw                      ,
-                        $wp_p_region_id             ,
-                        $wp_p_region_id_kec         ,
-                        $wp_p_region_id_kel         ,
-                        $mobile_phone_no            ,
-                        $njop_pbb                   ,
-                        $object_address_name        ,
-                        $object_rt                  ,
-                        $object_rw                  ,   
-                        $object_p_region_id         ,
-                        $object_p_region_id_kec     ,
-                        $object_p_region_id_kel     ,
-                        $p_bphtb_legal_doc_type_id  ,
-                        $land_area                  ,
-                        $land_price_per_m           ,
-                        $land_total_price           ,
-                        $building_area              ,
-                        $building_price_per_m       ,
-                        $building_total_price       ,
-                        $market_price               ,
-                        $npop                       ,
-                        $npop_tkp                   ,
-                        $npop_kp                    ,
-                        $bphtb_amt                  ,
-                        $bphtb_discount             ,
-                        $bphtb_amt_final            ,
-                        $description                ,
-                        $jenis_harga_bphtb          ,
-                        $bphtb_legal_doc_description,
-                        $add_disc_percent/100       ,
-                        $land_area_real             ,
-                        $land_price_real            ,
-                        $building_area_real         ,
-                        $building_price_real        ,
-                        $userdata['app_user_name']                  ,
-                        $updated_date               ,
-                        $t_bphtb_registration_id                         
-                    );
-
-        $query = $this->db->query($sql, $data);
-        $item = $query->row_array();
+        $data =  array('wp_name' =>$param['wp_name'],
+                            'npwp'=>$param['npwp'],
+                            'wp_address_name'=>$param['wp_address_name'],
+                            'wp_rt'=>$param['wp_rt'],
+                            'wp_rw'=>$param['wp_rw'],
+                            'wp_p_region_id'=>$param['wp_p_region_id'],
+                            'wp_p_region_id_kec'=>$param['wp_p_region_id_kec'],
+                            'wp_p_region_id_kel'=>$param['wp_p_region_id_kel'],
+                            'mobile_phone_no'=>$param['mobile_phone_no'],
+                            'njop_pbb'=>$param['njop_pbb'],
+                            'object_address_name'=>$param['object_address_name'],
+                            'object_rt'=>$param['object_rt'],
+                            'object_rw'=>$param['object_rw'],   
+                            'object_p_region_id'=>$param['object_p_region_id'],
+                            'object_p_region_id_kec'=>$param['object_p_region_id_kec'],
+                            'object_p_region_id_kel'=>$param['object_p_region_id_kel'],
+                            'p_bphtb_legal_doc_type_id'=>$param['p_bphtb_legal_doc_type_id'],
+                            'land_area'=>$param['land_area'],
+                            'land_price_per_m'=>$param['land_price_per_m'],
+                            'land_total_price'=>$param['land_total_price'],
+                            'building_area'=>$param['building_area'],
+                            'building_price_per_m'=>$param['building_price_per_m'],
+                            'building_total_price'=>$param['building_total_price'],
+                            'market_price'=>$param['market_price'],
+                            'npop'=>$param['npop'],
+                            'npop_tkp'=>$param['npop_tkp'],
+                            'npop_kp'=>$param['npop_kp'],
+                            'bphtb_amt'=>$param['bphtb_amt'],
+                            'bphtb_discount'=>$param['bphtb_discount'],
+                            'bphtb_amt_final'=>$param['bphtb_amt_final'],
+                            'description'=>$param['description'],
+                            'jenis_harga_bphtb'=>$param['jenis_harga_bphtb'],
+                            'bphtb_legal_doc_description'=>$param['bphtb_legal_doc_description'],
+                            'add_disc_percent'=>$param['add_disc_percent'],
+                            'land_area_real'=>$param['land_area_real'],
+                            'land_price_real'=>$param['land_price_real'],
+                            'building_area_real'=>$param['building_area_real'],
+                            'building_price_real'=>$param['building_price_real'],
+                            'updated_by'=>$userdata,
+                            'updated_date'=>$updated_date);
+        
+        $this->db->where('t_bphtb_registration_id', $param['t_bphtb_registration_id']);
+        $this->db->update('sikp.t_bphtb_registration', $data);
+        $item = 'Sukses Update Data';
             
         return $item;
-        return 'masuk';
     }
 
     function delete($id ){
