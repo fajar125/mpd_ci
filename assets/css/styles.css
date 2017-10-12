@@ -37,10 +37,16 @@
 
 .inbox {
     background: #F5C032 !important;
+    color:#ffffff;
 }
 
 .inbox:hover {
-    background: #7AFF83 !important;
+    background: #EEEEEE !important;
+    color:#71BD59 !important;
+}
+
+.dropdown-user:hover {
+    color:#71BD59 !important;
 }
 
 .green {

@@ -50,8 +50,7 @@
 
                         <li class="dropdown" id="wf-inbox">
                         <a href="javascript:;" class="inbox">
-                            <i class="fa fa-envelope-o font-white"></i>
-                            <span class="font-white">Inbox</span>
+                            <i class="fa fa-envelope"></i> Inbox
                         </a>
                         </li>
                         <li class="dropdown dropdown-extended dropdown-inbox" id="header_inbox_bar">

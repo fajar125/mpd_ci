@@ -21,7 +21,7 @@
         //update buttons classes
         var buttons = form.next().find('.EditButton .fm-button');
         buttons.addClass('btn btn-sm').find('[class*="-icon"]').hide();//ui-icon, s-icon
-        buttons.eq(0).addClass('btn-primary');
+        buttons.eq(0).addClass('green-jungle');
         buttons.eq(1).addClass('btn-danger');
 
     }
@@ -35,7 +35,7 @@
 
     function style_search_filters(form) {
         form.find('.delete-rule').val('X');
-        form.find('.add-rule').addClass('btn btn-xs btn-primary');
+        form.find('.add-rule').addClass('btn btn-xs green-jungle');
         form.find('.add-group').addClass('btn btn-xs btn-success');
         form.find('.delete-group').addClass('btn btn-xs btn-danger');
     }
@@ -43,8 +43,8 @@
     function style_search_form(form) {
         var dialog = form.closest('.ui-jqdialog');
         var buttons = dialog.find('.EditTable')
-        buttons.find('.EditButton a[id*="_reset"]').addClass('btn btn-sm btn-info').find('.ui-icon').attr('class', 'fa fa-retweet');
+        buttons.find('.EditButton a[id*="_reset"]').addClass('btn btn-sm btn-warning').find('.ui-icon').attr('class', 'fa fa-retweet');
         buttons.find('.EditButton a[id*="_query"]').addClass('btn btn-sm btn-inverse').find('.ui-icon').attr('class', 'fa fa-comment-o');
-        buttons.find('.EditButton a[id*="_search"]').addClass('btn btn-sm btn-success').find('.ui-icon').attr('class', 'fa fa-search');
+        buttons.find('.EditButton a[id*="_search"]').addClass('btn btn-sm green-jungle').find('.ui-icon').attr('class', 'fa fa-search');
     }
 
