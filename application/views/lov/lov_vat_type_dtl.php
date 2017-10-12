@@ -80,7 +80,7 @@
         $("#modal_lov_vat_dtl_grid_selection").bootgrid({
              formatters: {
                 "opt-edit" : function(col, row) {
-                    return '<a href="javascript:;" title="Set Value" onclick="modal_lov_vat_dtl_set_value(\''+ row.p_vat_type_dtl_id +'\', \''+ row.vat_dtl_code +'\')" class="blue"><i class="fa fa-pencil-square-o bigger-130"></i></a>';
+                    return '<a href="javascript:;" title="Set Value" onclick="modal_lov_vat_dtl_set_value(\''+ row.p_vat_type_dtl_id +'\', \''+ row.vat_code +'\')" class="blue"><i class="fa fa-pencil-square-o bigger-130"></i></a>';
                 }
                 
              },
