@@ -166,7 +166,7 @@ class T_bphtb_registration_list extends Abstract_model {
     function update($param = array()){
         $ci =& get_instance();
         $userdata = $ci->session->userdata;
-        $userdata = '\''.$userdata['app_user_name'].'\'';
+        $userdata = $userdata['app_user_name'];
         $updated_date = date('Y-m-d');
 
         $data =  array('wp_name' =>$param['wp_name'],
