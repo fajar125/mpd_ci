@@ -290,3 +290,15 @@ where file_name in(
 'transaksi.t_target_realisasi_bidang',
 'transaksi.t_target_realisasi_jenis',
 'transaksi.t_target_realisasi_jenis_bulan');
+
+update p_app_menu
+set file_name = 'workflow.p_document_type'
+where p_app_menu_id = 40;
+
+update p_app_menu
+set file_name = 'workflow.p_workflow'
+where p_app_menu_id = 41;
+
+update p_app_menu
+set file_name = 'workflow.p_procedure'
+where p_app_menu_id = 39;
