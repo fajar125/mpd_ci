@@ -70,3 +70,11 @@
 .btn {
     vertical-align:top !important;
 }
+
+div.portlet-body a img.img-app {
+    transform:scale(.7);
+}
+
+div.portlet-body a img.img-app:hover {
+    transform:scale(1);
+}
