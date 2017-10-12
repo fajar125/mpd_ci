@@ -1,4 +1,4 @@
-<?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
+ <?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 /**
 * Json library
 * @class t_laporan_history_potensi_piutang_tgl_tap_controller

@@ -107,7 +107,7 @@ class cetak_formulir_sptpd extends CI_Controller{
 		$pdf->Cell($lheader1, $this->height-2, "", "L", 0, 'C');			
 		$pdf->Cell($lheader2, $this->height-2, "LOMBOK UTARA", "R", 0, 'C');
 		$pdf->SetFont('Arial', '', 9);
-		$pdf->Cell($lheader3, $this->height-2, "(Surat Ketetapan Pajak Daerah Kurang Bayar)", "R", 0, 'C');
+		$pdf->Cell($lheader3, $this->height-2, "(Surat Ketetapan Pajak Daerah)", "R", 0, 'C');
 		$pdf->SetFont('Arial', '', 10);
 		$pdf->Cell($lheader2, $this->height-2, "No. Urut", "R", 0, 'C');
 		$pdf->Ln();

@@ -21,7 +21,7 @@
                             <input id="form_cust_account_id" type="text"  style="display:none;">
                             <input id="form_npwpd" readonly type="text" class="FormElement form-control" placeholder="Pilih NPWPD">
                             <span class="input-group-btn">
-                                <button class="btn btn-success" type="button" onclick="showLOVCustAcc('form_cust_account_id','form_npwpd', 'company_brand', 'form_vat_type_id','form_vat_code', 'form_vat_dtl_id','form_vat_dtl_code')">
+                                <button class="btn btn-success" type="button" onclick="showLOVCustAcc('form_cust_account_id','form_npwpd', 'company_brand', 'form_vat_type_id','form_vat_code', 'form_vat_dtl_id','form_vat_dtl_code')" >
                                     <span class="fa fa-search bigger-110"></span>
                                 </button>
                             </span>

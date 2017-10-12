@@ -160,7 +160,7 @@ class T_target_realisasi_controller {
     function readPerBidang(){
         $page = getVarClean('page','int',1);
         $limit = getVarClean('rows','int',5);
-        $sidx = getVarClean('sidx','str','p_year_period_id');
+        $sidx = getVarClean('sidx','str','t_revenue_target_id');
         $sord = getVarClean('sord','str','desc');
 
         $p_year_period_id = getVarClean('p_year_period_id','int',0);

@@ -80,6 +80,48 @@ class Transaksi extends CI_Controller
         }
         
     }
+
+    function private_question_combo(){
+        try {
+            $sql = "SELECT * 
+                        FROM p_private_question
+                        ORDER BY p_private_question_id ASC";
+            $query = $this->db->query($sql);
+
+            $items = $query->result_array();
+            echo '<select id="p_private_question_id" name="p_private_question_id" class="FormElement form-control"> <option value="0">--Pilih Pertanyaan--</option>';
+            foreach($items  as $item ){
+                echo '<option value="'.$item['p_private_question_id'].'">'.$item['question_pwd'].'</option>';
+            }
+            echo '</select>';
+            exit;
+        } catch (Exception $e) {
+            echo $e->getMessage();
+            exit;
+        }
+        
+    }
+
+    function nama_ayat_combo(){
+        $p_rqst_type_id = getVarClean('p_rqst_type_id', 'int',0);
+        try {
+            $sql = "select * from v_p_vat_type_dtl_rqst_type
+                    where p_rqst_type_id = ".$p_rqst_type_id;
+            $query = $this->db->query($sql);
+
+            $items = $query->result_array();
+            echo '<select id="p_vat_type_dtl" name="p_vat_type_dtl" class="FormElement form-control"> <option value="0">--Pilih Ayat--</option>';
+            foreach($items  as $item ){
+                echo '<option value="'.$item['p_vat_type_dtl_id'].'">'.$item['nama_ayat'].'</option>';
+            }
+            echo '</select>';
+            exit;
+        } catch (Exception $e) {
+            echo $e->getMessage();
+            exit;
+        }
+        
+    }
     
 
 }
