@@ -42,7 +42,7 @@
                     "skeyword": "<?php echo $skeyword?>"
                 };
             },
-            url: "<?php echo site_url('admin/getMonProcess');?>",
+            url: "<?php echo site_url('transaksi/getMonProcess');?>",
             selection: true,
             sorting:true,
             templates: {

@@ -83,7 +83,7 @@
             }
 
             $.ajax({
-                url: '<?php echo site_url('admin/processMonitoring');?>',
+                url: '<?php echo site_url('transaksi/processMonitoring');?>',
                 data: {p_workflow_id : workflow, skeyword: skeyword},
                 type: 'POST',
                 success: function (data) {
