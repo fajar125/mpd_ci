@@ -4,7 +4,7 @@
 * @class rooms_controller
 * @version 07/05/2015 12:18:00
 */
-class p_job_position_controller {
+class P_job_position_controller {
 
     function read() {
 

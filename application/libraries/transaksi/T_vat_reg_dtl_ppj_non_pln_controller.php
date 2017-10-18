@@ -15,7 +15,7 @@ class T_vat_reg_dtl_ppj_non_pln_controller {
 
         $data = array('rows' => array(), 'page' => 1, 'records' => 0, 'total' => 1, 'success' => false, 'message' => '');
 
-        $t_vat_reg_dtl_ppj_npl_id = getVarClean('t_vat_reg_dtl_ppj_npl_id','int',0);
+        $t_vat_reg_dtl_ppj_id = getVarClean('t_vat_reg_dtl_ppj_id','int',0);
         $t_vat_registration_id = getVarClean('t_vat_registration_id','int',0);
 
         try {

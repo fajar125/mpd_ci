@@ -38,13 +38,13 @@ class T_cust_order_legal_doc extends Abstract_model {
         $ci =& get_instance();
         $userdata = $ci->session->userdata;
         // $target_folder = "../uploads/";
-        // $target_file = $target_folder.$_FILES['origin_file_name']['name'];
-        // $nama_file = $_FILES['origin_file_name']['name'];
+        // $target_file = $target_folder.$_FILES['file_name']['name'];
+        // $nama_file = $_FILES['file_name']['name'];
 
         // $typefile = pathinfo($target_file, PATHINFO_EXTENSION);
 
-        // $result_upload = move_uploaded_file($_FILES['origin_file_name']['tmp_name'], $target_file);
-        // $cover_image = str_replace("../", "", $target_file);
+        // $result_upload = move_uploaded_file($_FILES['file_name']['tmp_name'], $target_file);
+        // $file = str_replace("../", "", $target_file);
 
         if($this->actionType == 'CREATE') {
             //do something
@@ -54,10 +54,9 @@ class T_cust_order_legal_doc extends Abstract_model {
             $this->record['updated_date'] = date('Y-m-d');
             $this->record['updated_by'] = $userdata['app_user_name'];
             
-            $this->record['updated_by'] = $userdata['app_user_name'];
-
-
-
+            // $this->record['origin_file_name'] =  $file;
+            // $this->record['file_name'] = date('Y-m-d'). $file;
+            $this->record['file_folder'] = "upload";
 
             $this->record[$this->pkey] = $this->generate_id($this->table, $this->pkey);
 

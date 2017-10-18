@@ -6,7 +6,7 @@
             <i class="fa fa-circle"></i>
         </li>
         <li>
-            <span>Regional</span>
+            <span>Pendaftaran Pajak</span>
         </li>
     </ul>
 </div>
@@ -62,6 +62,7 @@ $("#tab-2").on("click", function(event) {
     t_customer_order_id = grid.jqGrid ('getGridParam', 'selrow');
     p_rqst_type_id = grid.jqGrid ('getCell', t_customer_order_id, 'p_rqst_type_id');
     order_no = grid.jqGrid ('getCell', t_customer_order_id, 'order_no');
+    order_date = grid.jqGrid ('getCell', t_customer_order_id, 'order_date');
     t_vat_registration_id = grid.jqGrid ('getCell', t_customer_order_id, 't_vat_registration_id');
    
     if(t_customer_order_id == null) {
@@ -69,12 +70,14 @@ $("#tab-2").on("click", function(event) {
         return false;
     }
 
-
     loadContentWithParams("transaksi.t_vat_registration", {
+
         t_customer_order_id: t_customer_order_id,
         order_no:order_no,
+        order_date:order_date,
         p_rqst_type_id:p_rqst_type_id,
         t_vat_registration_id:t_vat_registration_id
+
     });
 });
 
@@ -85,6 +88,7 @@ $("#tab-3").on("click", function(event) {
     t_customer_order_id = grid.jqGrid ('getGridParam', 'selrow');
     p_rqst_type_id = grid.jqGrid ('getCell', t_customer_order_id, 'p_rqst_type_id');
     order_no = grid.jqGrid ('getCell', t_customer_order_id, 'order_no');
+    order_date = grid.jqGrid ('getCell', t_customer_order_id, 'order_date');
     t_vat_registration_id = grid.jqGrid ('getCell', t_customer_order_id, 't_vat_registration_id');
     
     
@@ -97,6 +101,7 @@ $("#tab-3").on("click", function(event) {
     loadContentWithParams("transaksi.t_vat_reg_dtl", {
         t_customer_order_id: t_customer_order_id,
         order_no:order_no,
+        order_date:order_date,
         p_rqst_type_id:p_rqst_type_id,
         t_vat_registration_id:t_vat_registration_id
     });

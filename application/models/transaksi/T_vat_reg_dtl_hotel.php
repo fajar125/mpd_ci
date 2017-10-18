@@ -12,20 +12,21 @@ class T_vat_reg_dtl_hotel extends Abstract_model {
 
     public $fields          = array(
                                 't_vat_reg_dtl_hotel_id'            => array('pkey' => true, 'type' => 'int', 'nullable' => true, 'unique' => true, 'display' => 'ID Cust Order'),
-                                't_vat_registration_id'  => array('type' => 'int', 'nullable' => true, 'unique' => true, 'display' => 'ID Cust Order'),
-                                'p_license_type_id'           => array('nullable' => true, 'type' => 'int', 'unique' => true, 'display' => 'No Urut'),
-                                'license_no'    => array('nullable' => true, 'type' => 'str', 'unique' => false, 'display' => 'Nomor Surat'),
-                                'valid_from'          => array('nullable' => true, 'type' => 'date', 'unique' => false, 'display' => 'Berlaku Dari'),
-                                'valid_to'          => array('nullable' => true, 'type' => 'date', 'unique' => false, 'display' => 'Berlaku Sampai'),
+                                't_vat_registration_id'  => array('type' => 'int', 'nullable' => true, 'unique' => false, 'display' => 'ID Cust Order'),
+                                'p_room_type_id'           => array('nullable' => true, 'type' => 'int', 'unique' => false, 'display' => 'No Urut'),
+                                'room_qty'    => array('nullable' => true, 'type' => 'int', 'unique' => false, 'display' => 'Jumlah Kamar'),
+                                'service_qty'          => array('nullable' => true, 'type' => 'int', 'unique' => false, 'display' => 'Okupansi'),
+                                'service_charge_wd'          => array('nullable' => true, 'type' => 'int', 'unique' => false, 'display' => 'Tarif Weekend'),
+                                'service_charge_we'          => array('nullable' => true, 'type' => 'int', 'unique' => false, 'display' => 'Tarif Non Weekend'),
                                 'description'            => array('nullable' => true, 'type' => 'str', 'unique' => false, 'display' => 'Deskripsi'),
                                  'creation_date'         => array('nullable' => true, 'type' => 'date', 'unique' => false, 'display' => 'Created Date'),
                                 'created_by'            => array('nullable' => true, 'type' => 'str', 'unique' => false, 'display' => 'Created By'),
                                 'updated_date'          => array('nullable' => true, 'type' => 'date', 'unique' => false, 'display' => 'Updated Date'),
-                                'updated_by'            => array('nullable' => true, 'type' => 'str', 'unique' => false, 'display' => 'Updated By'),
+                                'updated_by'            => array('nullable' => true, 'type' => 'str', 'unique' => false, 'display' => 'Updated By')
 
                             );
 
-    public $selectClause    = "a.*";
+    public $selectClause    = "a.*, round(service_charge_wd, 0) as service_charge_we";
     public $fromClause      = "v_vat_reg_dtl_hotel a";
     public $refs            = array();
 
@@ -34,7 +35,8 @@ class T_vat_reg_dtl_hotel extends Abstract_model {
     }
 
     function validate() {
-        
+        $ci =& get_instance();
+        $userdata = $ci->session->userdata;
 
         if($this->actionType == 'CREATE') {
             //do something

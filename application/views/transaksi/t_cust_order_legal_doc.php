@@ -6,7 +6,7 @@
             <i class="fa fa-circle"></i>
         </li>
         <li>
-            <span>Regional</span>
+            <span>Dokumen Pendukung</span>
         </li>
     </ul>
 </div>
@@ -46,29 +46,101 @@
         <div class="tab-content no-border">
             <div class="row">
                 <div class="col-md-12">
+                    <button class="btn btn-danger" type="submit" id="btn-submit" onclick="showLOVUpload()"><i class="fa fa-plus"></i> Tambah Data</button>
+                    <button class="btn btn-success" type="submit" id="btn-submit" onclick="cetak()"><i class="fa fa-pencil"></i> Edit Data</button>
+                </div>
+            </div>
+
+            <div class="space-2"></div>
+            <div class="row">
+                <div class="col-md-12">
                     <table id="grid-table"></table>
                     <div id="grid-pager"></div>
                 </div>
             </div>
             
-<div class="space-2"></div>
+            <div class="space-2"></div>
             <div class="row">
                 <div class="col-md-offset-5">
-                    <button class="btn btn-danger" type="submit" id="btn-submit" onclick="save()"><i class="fa fa-print"></i>Cetak</button>
+                    <button class="btn btn-danger" type="submit" id="btn-submit" onclick="cetak()"><i class="fa fa-print"></i>Cetak Tanda Terima</button>
                 </div>
             </div>
         </div>
     </div>
 </div>
 
+<script type="text/javascript">
+    function cetak(){
+
+        var t_customer_order_id = <?php echo $_POST['t_customer_order_id'];?>;
+
+        var url = "<?php echo base_url(); ?>"+"cetak_formulir_tanda_terima_pdf/pageCetak?t_customer_order_id="+t_customer_order_id;
+
+        PopupCenter(url,"Kartu Tanda Terima",500,500);
+    } 
+</script>
+
 <script>
 $("#tab-1").on("click", function(event) {
     event.stopPropagation();
     loadContentWithParams("transaksi.t_customer_order",{});
 });
+
+$("#tab-3").on("click", function(event) {
+    event.stopPropagation();
+    t_vat_registration_id = <?php echo $_POST['t_vat_registration_id'];?> ;
+    p_rqst_type_id = <?php echo $_POST['p_rqst_type_id'];?> ;
+    t_customer_order_id = <?php echo $_POST['t_customer_order_id'];?> ;
+    order_no = <?php echo $_POST['order_no'];?> ;
+    order_date = order_date = '<?php echo $this->input->post('order_date'); ?>' ;
+    //alert(p_rqst_type_id);
+    // t_vat_reg_employee_id = $('#t_vat_reg_employee_id').val() ;
+    // t_vat_reg_dtl_restaurant_id = $('#t_vat_reg_dtl_restaurant_id').val() ;
+    // t_license_letter_id = $('#t_license_letter_id').val() ;
+    if(t_vat_registration_id == null || t_vat_registration_id == 0 || t_vat_registration_id == ""){
+        swal('Peringatan','Isi Formulir Pendaftaran Terlebih Dahulu!','error');
+        return false;
+    }
+
+    loadContentWithParams("transaksi.t_vat_reg_dtl", { //model yang ketiga
+        t_customer_order_id: t_customer_order_id,
+        order_no:order_no,
+        order_date:order_date,
+        p_rqst_type_id: p_rqst_type_id,
+        t_vat_registration_id: t_vat_registration_id
+        
+    });
+});
+
+$("#tab-2").on("click", function(event) {
+
+    event.stopPropagation();
+    var grid = $('#grid-table');
+    t_customer_order_id = <?php echo $_POST['t_customer_order_id'];?>;
+    t_vat_registration_id = <?php echo $_POST['t_vat_registration_id'];?> ;
+    p_rqst_type_id = <?php echo $_POST['p_rqst_type_id'];?> ;
+    order_no = <?php echo $_POST['order_no'];?> ;
+    order_date = <?php echo $_POST['order_date'];?> ;
+    
+    if(t_customer_order_id == null) {
+        swal('Informasi','Silahkan pilih salah satu Permintaan Pelanggan','info');
+        return false;
+    }
+
+
+    loadContentWithParams("transaksi.t_vat_registration", {
+        t_customer_order_id: t_customer_order_id,
+        order_no:order_no,
+        order_date:order_date,
+        p_rqst_type_id:p_rqst_type_id,
+        t_vat_registration_id:t_vat_registration_id
+    });
+});
+</script>
 </script>
 
 <?php $this->load->view('lov/lov_p_legal_doc_type'); ?>
+<?php $this->load->view('lov/lov_upload_file'); ?>
 
 <script>
     $(function($) {
@@ -99,7 +171,7 @@ $("#tab-1").on("click", function(event) {
                             // give the editor time to initialize
                             setTimeout( function() {
                                 elm.append('<input id="form_p_legal_doc_type_id" type="text" style="display:none;" >'+
-                                        '<input id="form_p_legal_doc_type_code" readonly type="text" class="FormElement form-control" placeholder="Pilih Jenis Dokumen" required=true>'+
+                                        '<input id="form_p_legal_doc_type_code" name="legal_doc_desc" readonly type="text" class="FormElement form-control" placeholder="Pilih Jenis Dokumen" required=true>'+
                                         '<button class="btn btn-success" type="button" onclick="showLOVLegalDocType(\'form_p_legal_doc_type_id\',\'form_p_legal_doc_type_code\')">'+
                                         '   <span class="fa fa-search bigger-110"></span>'+
                                         '</button>');
@@ -128,17 +200,10 @@ $("#tab-1").on("click", function(event) {
                         }
                     }
                 },
-                {label: 'Nama File',name: 'origin_file_name',width: 150, align: "left",editable: true, edittype:'file',
-                    editoptions: {
-                        size: 50,
-                        maxlength:255
-                    },
-                    editrules: {required: false}
-                },
-                {label: 'Nama File',name: 'file_name',width: 150, align: "left",editable: true,
-                    hidden:true},
-                {label: 'Nama Folder',name: 'file_folder',width: 150, align: "left",editable: true,
-                    hidden:true},
+                {label: 'Nama File',name: 'file_name', index:'file_name',width: 150, align: "left",editable: true, edittype:'file',
+                 editoptions:{
+                    enctype:'multipart/form-data'
+                 }},
                 {label: 'Deskripsi',name: 'description',width: 150, align: "left",editable: true, edittype: 'textarea',
                     editoptions: {
                         size: 50,
@@ -207,16 +272,16 @@ $("#tab-1").on("click", function(event) {
                 closeAfterEdit: true,
                 closeOnEscape:true,
                 recreateForm: true,
-                serializeEditData: serializeJSON,
+                //serializeEditData: serializeJSON,
                 width: 'auto',
                 errorTextFormat: function (data) {
                     return 'Error: ' + data.responseText
                 },
                 beforeShowForm: function (e, form) {
                     var form = $(e[0]);
+                    console.log(form);
+                    form.attr('enctype','multipart/form-data');
                     style_edit_form(form);
-                    
-                    
                     
 
                 },
@@ -225,6 +290,7 @@ $("#tab-1").on("click", function(event) {
                 },
                 afterSubmit:function(response,postdata) {
                     var response = jQuery.parseJSON(response.responseText);
+
                     if(response.success == false) {
                         return [false,response.message,response.responseText];
                     }
@@ -250,9 +316,18 @@ $("#tab-1").on("click", function(event) {
                 },
                 serializeEditData: serializeJSON,
                 viewPagerButtons: false,
+                onInitializeForm: function(e, form) {
+                    var form = $(e[0]);
+                    form.attr('enctype','multipart/form-data');
+                    form.attr('method','POST');
+                    form.attr('action','');
+                },
                 beforeShowForm: function (e, form) {
                     var form = $(e[0]);
+                    // var formData = new FormData($(this)[0]);
+                    // console.log(formData);
                     style_edit_form(form);
+
                     setTimeout(function() {
                     clearInputLegalDocType();
                      },100);
@@ -261,7 +336,9 @@ $("#tab-1").on("click", function(event) {
                     form.closest('.ui-jqdialog').center();
                 },
                 afterSubmit:function(response,postdata) {
+                    var formData = new FormData($(this)[0]);
                     var response = jQuery.parseJSON(response.responseText);
+                    console.log(formData);
                     if(response.success == false) {
                         return [false,response.message,response.responseText];
                     }
@@ -270,6 +347,7 @@ $("#tab-1").on("click", function(event) {
                     var tinfoel = $(".tinfo").show();
                     tinfoel.delay(3000).fadeOut();
                     clearInputLegalDocType();
+                    uploadFile(response,postdata);
                     //reloadTreeMenu();
 
 
@@ -293,6 +371,7 @@ $("#tab-1").on("click", function(event) {
                 },
                 afterSubmit:function(response,postdata) {
                     var response = jQuery.parseJSON(response.responseText);
+                    //console.log(response.rows);
                     if(response.success == false) {
                         return [false,response.message,response.responseText];
                     }
@@ -346,8 +425,59 @@ function clearInputLegalDocType() {
     $('#form_p_legal_doc_type_code').val('');
 }
 
-function uploadFile(){
+function uploadFile(response, postdata) {
+    // alert($.parseJSON(response.responseText));
+    // return;
+    //alert(response.success);
+    if (response.success == true) {
+        alert($("#file_name").val());
+        if ($("#file_name").val() != "") {
+            //alert(response.success);
+            ajaxFileUpload(response);
+
+        }
+    }
 
 }
 
+function ajaxFileUpload(data) {
+    
+    $("#loading").ajaxStart(function () {
+        $(this).show();
+    }).ajaxComplete(function () {
+        $(this).hide();
+    });
+    //alert(data.success);
+
+    $.ajax({
+            url: "<?php echo WS_JQGRID.'transaksi.t_cust_order_legal_doc_controller/uploadFiles'; ?>",
+            type:"POST",
+            secureuri: false,
+            dataType: "json",
+            data: data,
+            success: function (data, status) {
+
+                if (typeof (data.success) != 'undefined') {
+                    if (data.success == true) {
+                        return;
+                    } else {
+                        alert(data.message);
+                    }
+                }
+                else {
+                    return alert('Failed to upload!');
+                }
+            },
+            error: function (data, status, e) {
+                return alert('Failed to upload!');
+            }
+        }
+    )          
+}  
+</script>
+
+<script type="text/javascript">
+    function showLOVUpload() {
+        modal_upload_file_show();
+    }
 </script>

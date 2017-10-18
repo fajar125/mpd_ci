@@ -1,28 +1,25 @@
 <?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 /**
 * Json library
-* @class vats_controller
+* @class rooms_controller
 * @version 07/05/2015 12:18:00
 */
-class T_vat_reg_dtl_entertaintment_controller {
+class P_pwr_classification_controller {
 
     function read() {
 
         $page = getVarClean('page','int',1);
         $limit = getVarClean('rows','int',5);
-        $sidx = getVarClean('sidx','str','t_vat_reg_dtl_entertaintment_id');
+        $sidx = getVarClean('sidx','str','p_pwr_classification_id');
         $sord = getVarClean('sord','str','desc');
 
         $data = array('rows' => array(), 'page' => 1, 'records' => 0, 'total' => 1, 'success' => false, 'message' => '');
 
-        $t_vat_reg_dtl_entertaintment_id = getVarClean('t_vat_reg_dtl_entertaintment_id','int',0);
-        $t_vat_registration_id = getVarClean('t_vat_registration_id','int',0);
-        
         try {
 
             $ci = & get_instance();
-            $ci->load->model('transaksi/t_vat_reg_dtl_entertaintment');
-            $table = $ci->t_vat_reg_dtl_entertaintment;
+            $ci->load->model('parameter/p_pwr_classification');
+            $table = $ci->p_pwr_classification;
 
             $req_param = array(
                 "sort_by" => $sidx,
@@ -32,7 +29,7 @@ class T_vat_reg_dtl_entertaintment_controller {
                 "where" => null,
                 "where_in" => null,
                 "where_not_in" => null,
-                "search" => isset($_REQUEST['_search']) ? $_REQUEST['_search'] : null,
+                "search" => $_REQUEST['_search'],
                 "search_field" => isset($_REQUEST['searchField']) ? $_REQUEST['searchField'] : null,
                 "search_operator" => isset($_REQUEST['searchOper']) ? $_REQUEST['searchOper'] : null,
                 "search_str" => isset($_REQUEST['searchString']) ? $_REQUEST['searchString'] : null
@@ -40,8 +37,7 @@ class T_vat_reg_dtl_entertaintment_controller {
 
             // Filter Table
             $req_param['where'] = array();
-            $req_param['where'][] = 't_vat_registration_id = '.$t_vat_registration_id;
-              
+
             $table->setJQGridParam($req_param);
             $count = $table->countAll();
 
@@ -64,9 +60,9 @@ class T_vat_reg_dtl_entertaintment_controller {
             $data['total'] = $total_pages;
             $data['records'] = $count;
 
-            $data['rows'] = $table->getAll(0, -1, 't_vat_reg_dtl_entertaintment_id', 'asc');
+            $data['rows'] = $table->getAll();
             $data['success'] = true;
-            logging('view data vat');
+            logging('view data room');
         }catch (Exception $e) {
             $data['message'] = $e->getMessage();
         }
@@ -74,28 +70,66 @@ class T_vat_reg_dtl_entertaintment_controller {
         return $data;
     }
 
+    function readLov() {
+
+        $start = getVarClean('current','int',0);
+        $limit = getVarClean('rowCount','int',5);
+
+        $sort = getVarClean('sort','str','p_pwr_classification_id');
+        $dir  = getVarClean('dir','str','asc');
+
+        $searchPhrase = getVarClean('searchPhrase', 'str', '');
+
+        $data = array('rows' => array(), 'success' => false, 'message' => '', 'current' => $start, 'rowCount' => $limit, 'total' => 0);
+
+        try {
+
+            $ci = & get_instance();
+            $ci->load->model('parameter/p_pwr_classification');
+            $table = $ci->p_pwr_classification;
+
+            if(!empty($searchPhrase)) {
+                $table->setCriteria("upper(code) like upper('%".$searchPhrase."%')");
+            }
+
+            $start = ($start-1) * $limit;
+            $items = $table->getAll($start, $limit, $sort, $dir);
+            $totalcount = $table->countAll();
+
+            $data['rows'] = $items;
+            $data['success'] = true;
+            $data['total'] = $totalcount;
+
+        }catch (Exception $e) {
+            $data['message'] = $e->getMessage();
+        }
+
+        return $data;
+    }
+
+
     function crud() {
 
         $data = array();
         $oper = getVarClean('oper', 'str', '');
         switch ($oper) {
             case 'add' :
-                permission_check('can-add-vat');
+                permission_check('can-add-room');
                 $data = $this->create();
             break;
 
             case 'edit' :
-                permission_check('can-edit-vat');
+                permission_check('can-edit-room');
                 $data = $this->update();
             break;
 
             case 'del' :
-                permission_check('can-delete-vat');
+                permission_check('can-delete-room');
                 $data = $this->destroy();
             break;
 
             default :
-                permission_check('can-view-vat');
+                permission_check('can-view-room');
                 $data = $this->read();
             break;
         }
@@ -107,8 +141,8 @@ class T_vat_reg_dtl_entertaintment_controller {
     function create() {
 
         $ci = & get_instance();
-        $ci->load->model('transaksi/t_vat_reg_dtl_entertaintment');
-        $table = $ci->t_vat_reg_dtl_entertaintment;
+        $ci->load->model('parameter/p_pwr_classification');
+        $table = $ci->p_pwr_classification;
 
         $data = array('rows' => array(), 'page' => 1, 'records' => 0, 'total' => 1, 'success' => false, 'message' => '');
 
@@ -162,7 +196,7 @@ class T_vat_reg_dtl_entertaintment_controller {
 
                 $data['success'] = true;
                 $data['message'] = 'Data added successfully';
-                logging('create data rest service');
+                logging('create data room');
 
             }catch (Exception $e) {
                 $table->db->trans_rollback(); //Rollback Trans
@@ -179,8 +213,8 @@ class T_vat_reg_dtl_entertaintment_controller {
     function update() {
 
         $ci = & get_instance();
-        $ci->load->model('transaksi/t_vat_reg_dtl_entertaintment');
-        $table = $ci->t_vat_reg_dtl_entertaintment;
+        $ci->load->model('parameter/p_pwr_classification');
+        $table = $ci->p_pwr_classification;
 
         $data = array('rows' => array(), 'page' => 1, 'records' => 0, 'total' => 1, 'success' => false, 'message' => '');
 
@@ -234,7 +268,7 @@ class T_vat_reg_dtl_entertaintment_controller {
 
                 $data['success'] = true;
                 $data['message'] = 'Data update successfully';
-                logging('update data rest service');
+                logging('update data room');
                 $data['rows'] = $table->get($items[$table->pkey]);
             }catch (Exception $e) {
                 $table->db->trans_rollback(); //Rollback Trans
@@ -250,8 +284,8 @@ class T_vat_reg_dtl_entertaintment_controller {
 
     function destroy() {
         $ci = & get_instance();
-        $ci->load->model('transaksi/t_vat_reg_dtl_entertaintment');
-        $table = $ci->t_vat_reg_dtl_entertaintment;
+        $ci->load->model('parameter/p_pwr_classification');
+        $table = $ci->p_pwr_classification;
 
         $data = array('rows' => array(), 'page' => 1, 'records' => 0, 'total' => 1, 'success' => false, 'message' => '');
 
@@ -265,7 +299,7 @@ class T_vat_reg_dtl_entertaintment_controller {
             if (is_array($items)){
                 foreach ($items as $key => $value){
                     if (empty($value)) throw new Exception('Empty parameter');
-                    $table->remove($value);
+					$table->remove($value);
                     $data['rows'][] = array($table->pkey => $value);
                     $total++;
                 }
@@ -274,14 +308,14 @@ class T_vat_reg_dtl_entertaintment_controller {
                 if (empty($items)){
                     throw new Exception('Empty parameter');
                 }
-                $table->remove($items);
+				$table->remove($items);
                 $data['rows'][] = array($table->pkey => $items);
                 $data['total'] = $total = 1;
             }
 
             $data['success'] = true;
             $data['message'] = $total.' Data deleted successfully';
-            logging('delete data rest service');
+            logging('delete data room');
             $table->db->trans_commit(); //Commit Trans
 
         }catch (Exception $e) {
@@ -292,34 +326,6 @@ class T_vat_reg_dtl_entertaintment_controller {
         }
         return $data;
     }
-
-    function readEnterDesc(){
-        $t_vat_registration_id = getVarClean('t_vat_registration_id','int',0);
-        
-
-        $data = array('rows' => array(), 'page' => 1, 'records' => 0, 'total' => 1, 'success' => false, 'message' => '');
-        
-        try {
-
-            $ci = & get_instance();
-            $ci->load->model('transaksi/t_vat_reg_dtl_entertaintment');
-            $table = $ci->t_vat_reg_dtl_entertaintment;
-
-            $result = $table->getEnterDesc($t_vat_registration_id) ;
-            
-            $data['rows'] = $result;
-            $data['success'] = true;
-
-        }catch (Exception $e) {
-            $data['message'] = $e->getMessage();
-        }
-
-        return $data;
-
-    }
-
-
-    
 }
 
-/* End of file vats_controller.php */
+/* End of file rooms_controller.php */

@@ -114,7 +114,7 @@ class T_cust_order_legal_doc_controller {
 
         $jsonItems = getVarClean('items', 'str', '');
         $items = jsonDecode($jsonItems);
-
+        // exit();
         if (!is_array($items)){
             $data['message'] = 'Invalid items parameter';
             return $data;
@@ -159,7 +159,7 @@ class T_cust_order_legal_doc_controller {
                     $table->create();
 
                 $table->db->trans_commit(); //Commit Trans
-
+                $data['rows'] =$items;
                 $data['success'] = true;
                 $data['message'] = 'Data added successfully';
                 logging('create data rest service');
@@ -291,6 +291,37 @@ class T_cust_order_legal_doc_controller {
             $data['total'] = 0;
         }
         return $data;
+    }
+
+    function uploadFiles($args = array()){
+        $data = array('success' => false, 'message' => '');
+        //global $_FILES;
+        try {
+            if (isset($_GET['files'])) {
+                # code...
+            }else{
+
+            }
+            if(empty($_FILES['file_name']['name'])){
+                throw new Exception('File tidak boleh kosong');
+            }
+            
+            $file_name = $_FILES['file_name']['name']; // <-- File Name
+            $file_location = 'upload/'.$file_name; // <-- LOKASI Upload File
+        
+            if (!move_uploaded_file($_FILES['file_name']['tmp_name'], $file_location)){
+                throw new Exception("Upload file gagal");
+            }
+            
+            $data['success'] = true;
+            $data['message'] = 'Upload file transaksi berhasil dilakukan';
+        }catch(Exception $e) {
+            $data['success'] = false;
+            $data['message'] = $e->getMessage();
+        }
+           
+        echo json_encode($data);
+        exit;
     }
 
 

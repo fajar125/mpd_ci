@@ -21,7 +21,7 @@ class T_vat_reg_dtl extends Abstract_model {
                                  'creation_date'         => array('nullable' => true, 'type' => 'date', 'unique' => false, 'display' => 'Created Date'),
                                 'created_by'            => array('nullable' => true, 'type' => 'str', 'unique' => false, 'display' => 'Created By'),
                                 'updated_date'          => array('nullable' => true, 'type' => 'date', 'unique' => false, 'display' => 'Updated Date'),
-                                'updated_by'            => array('nullable' => true, 'type' => 'str', 'unique' => false, 'display' => 'Updated By'),
+                                'updated_by'            => array('nullable' => true, 'type' => 'str', 'unique' => false, 'display' => 'Updated By')
 
                             );
 
@@ -34,11 +34,15 @@ class T_vat_reg_dtl extends Abstract_model {
     }
 
     function validate() {
-        
+        $ci =& get_instance();
+        $userdata = $ci->session->userdata;
 
         if($this->actionType == 'CREATE') {
             //do something
             // example :
+            if ($this->record['valid_to'] == '' || $this->record['valid_to'] == null || $this->record['valid_to'] = 0){
+                $this->record['valid_to'] = null;
+            }
             $this->record['creation_date'] = date('Y-m-d');
             $this->record['created_by'] = $userdata['app_user_name'];
             $this->record['updated_date'] = date('Y-m-d');

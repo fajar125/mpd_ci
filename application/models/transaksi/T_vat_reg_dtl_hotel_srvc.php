@@ -12,11 +12,8 @@ class T_vat_reg_dtl_hotel_srvc extends Abstract_model {
 
     public $fields          = array(
                                 't_vat_reg_dtl_hotel_srvc_id'            => array('pkey' => true, 'type' => 'int', 'nullable' => true, 'unique' => true, 'display' => 'ID Cust Order'),
-                                't_vat_registration_id'  => array('type' => 'int', 'nullable' => true, 'unique' => true, 'display' => 'ID Cust Order'),
-                                'p_license_type_id'           => array('nullable' => true, 'type' => 'int', 'unique' => true, 'display' => 'No Urut'),
-                                'license_no'    => array('nullable' => true, 'type' => 'str', 'unique' => false, 'display' => 'Nomor Surat'),
-                                'valid_from'          => array('nullable' => true, 'type' => 'date', 'unique' => false, 'display' => 'Berlaku Dari'),
-                                'valid_to'          => array('nullable' => true, 'type' => 'date', 'unique' => false, 'display' => 'Berlaku Sampai'),
+                                't_vat_registration_id'  => array('type' => 'int', 'nullable' => true, 'unique' => false, 'display' => 'ID Cust Order'),
+                                'services'          => array('nullable' => true, 'type' => 'str', 'unique' => false, 'display' => 'Fasilitas'),
                                 'description'            => array('nullable' => true, 'type' => 'str', 'unique' => false, 'display' => 'Deskripsi'),
                                  'creation_date'         => array('nullable' => true, 'type' => 'date', 'unique' => false, 'display' => 'Created Date'),
                                 'created_by'            => array('nullable' => true, 'type' => 'str', 'unique' => false, 'display' => 'Created By'),
@@ -34,7 +31,8 @@ class T_vat_reg_dtl_hotel_srvc extends Abstract_model {
     }
 
     function validate() {
-        
+        $ci =& get_instance();
+        $userdata = $ci->session->userdata;
 
         if($this->actionType == 'CREATE') {
             //do something

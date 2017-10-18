@@ -6,7 +6,7 @@
             <i class="fa fa-circle"></i>
         </li>
         <li>
-            <span>Regional</span>
+            <span>Data Izin dan Potensi</span>
         </li>
     </ul>
 </div>
@@ -98,8 +98,50 @@
     </div>
 </div>
 
+<div>
+    <input type="hidden" id="entertainment_desc_temp">
+    <input type="hidden" id="service_type_desc_temp">
+</div>
 
-<script type="text/javascript">
+<script>
+    //ketika semua halaman sudah diload
+
+    /**
+        Mengambil data Jenis Pajak (vat_code)
+    **/
+    $(function() {
+        var t_vat_registration_id = <?php echo $this->input->post('t_vat_registration_id'); ?>;
+        var p_rqst_type_id = <?php echo $this->input->post('p_rqst_type_id'); ?>;
+        $.ajax({
+            url: '<?php echo WS_JQGRID."transaksi.t_vat_reg_dtl_entertaintment_controller/readEnterDesc"; ?>',
+            type: "POST",
+            dataType: 'json',
+            data: {t_vat_registration_id: t_vat_registration_id},
+            success: function (data) {
+
+                if(p_rqst_type_id == 1) {
+
+                }else if(p_rqst_type_id == 2) {
+                    $('#service_type_desc_temp').val(data.rows.vat_code);
+                }else if(p_rqst_type_id == 3) { //hiburan
+                    $('#entertainment_desc_temp').val(data.rows.vat_code);
+                }else if(p_rqst_type_id == 4) {
+                    
+                }else if(p_rqst_type_id == 5) {
+                    
+                }
+                
+            },
+            error: function (xhr, status, error) {
+                swal({title: "Error!", text: xhr.responseText, html: true, type: "error"});
+            }
+        });
+
+    });
+</script>
+
+
+<script>
     var reqId =<?php echo $_POST['p_rqst_type_id'];?>;
     //alert(reqId);
     $("#grid-tbl-letter").show();
@@ -165,6 +207,8 @@
         $("#grid-tbl-hotel-srvc").hide();
         $("#grid-tbl-restaurant").hide();
     }
+
+
 </script>
 
 <script>
@@ -175,36 +219,34 @@ $("#tab-1").on("click", function(event) {
 
 $("#tab-2").on("click", function(event) {
 
-    event.stopPropagation();
-    var grid = $('#grid-table');
     t_customer_order_id = <?php echo $_POST['t_customer_order_id'];?>;
     t_vat_registration_id = <?php echo $_POST['t_vat_registration_id'];?> ;
     p_rqst_type_id = <?php echo $_POST['p_rqst_type_id'];?> ;
     order_no = <?php echo $_POST['order_no'];?> ;
-    
-    if(t_customer_order_id == null) {
-        swal('Informasi','Silahkan pilih salah satu Permintaan Pelanggan','info');
-        return false;
-    }
+
+    order_date = '<?php echo $this->input->post('order_date'); ?>' ;
 
 
     loadContentWithParams("transaksi.t_vat_registration", {
         t_customer_order_id: t_customer_order_id,
         order_no:order_no,
+        order_date:order_date,
         p_rqst_type_id:p_rqst_type_id,
         t_vat_registration_id:t_vat_registration_id
     });
 });
 
-function cetak(){
-    var t_customer_order_id = <?php echo $_POST['t_customer_order_id'];?>;
-} 
-
-
-
-
 </script>
 
+<?php $this->load->view('lov/lov_p_license_type'); ?>
+
+<?php $this->load->view('lov/lov_p_pwr_classification'); ?>
+
+<?php $this->load->view('lov/lov_p_room_type'); ?>
+
+<?php $this->load->view('lov/lov_job_position'); ?>
+
+<!--- GRID TABEL SURAT IZIN-->
 <script>
     $(function($) {
         var grid_selector = "#grid-table";
@@ -217,19 +259,85 @@ function cetak(){
             mtype: "POST",
             colModel: [
                 {label: 'ID', name: 't_license_letter_id', key: true, width: 5, sorttype: 'number', editable: true, hidden: true},
-                {label: 'ID', name: 't_vat_registration_id',  width: 5, sorttype: 'number', hidden: true},
-                {label: 'ID', name: 'p_license_type_id', width: 5, sorttype: 'number', editable: true, hidden: true},
-                {label: 'Jenis Surat',name: 'license_type_code',width: 150, align: "left",editable: true,
+                {label: 'ID', name: 't_vat_registration_id',  width: 5, sorttype: 'number', hidden: true, editable:true},
+                {label: 'No. Surat',name: 'license_no',width: 250, align: "left",editable: true, editrules:{required:true}},
+                {label: 'Jenis Surat',name: 'license_type_code',width: 150, align: "left",editable: false},
+                {label: 'Jenis Surat',
+                    name: 'p_license_type_id',
+                    width: 100,
+                    sortable: true,
+                    editable: true,
+                    hidden: true,
+                    editrules: {edithidden: true, required:false},
+                    edittype: 'custom',
                     editoptions: {
-                        size: 30,
-                        maxlength:255,
-                        readonly:true
-                    },
-                    editrules: {required: false}
+                        "custom_element":function( value  , options) {
+                            var elm = $('<span></span>');
+
+                            // give the editor time to initialize
+                            setTimeout( function() {
+                                elm.append('<input id="form_p_license_type_id" type="text" style="display:none;" >'+
+                                        '<input id="form_license_type_code" name="license_type_code" readonly type="text" class="FormElement form-control" placeholder="Pilih Jenis Surat" required=true>'+
+                                        '<button class="btn btn-success" type="button" onclick="showLOVLicenseType(\'form_p_license_type_id\',\'form_license_type_code\')">'+
+                                        '   <span class="fa fa-search bigger-110"></span>'+
+                                        '</button>');
+                                $("#form_p_license_type_id").val(value);
+                                elm.parent().removeClass('jqgrid-required');
+                            }, 100);
+
+                            return elm;
+                        },
+                        "custom_value":function( element, oper, gridval) {
+
+                            if(oper === 'get') {
+                                return $("#form_p_license_type_id").val();
+                            } else if( oper === 'set') {
+                                $("#form_p_license_type_id").val(gridval);
+                                var gridId = this.id;
+                                // give the editor time to set display
+                                setTimeout(function(){
+                                    var selectedRowId = $("#"+gridId).jqGrid ('getGridParam', 'selrow');
+                                    if(selectedRowId != null) {
+                                        var code_display = $("#"+gridId).jqGrid('getCell', selectedRowId, 'license_type_code');
+                                        $("#form_license_type_code").val( code_display );
+                                    }
+                                },100);
+                            }
+                        }
+                    }
                 },
-                {label: 'No. Surat',name: 'license_no',width: 250, align: "left",editable: false},
-                {label: 'Berlaku Dari ',name: 'valid_from',width: 150, align: "left",editable: false},
-                {label: 'Berlaku Sampai',name: 'valid_to',width: 250, align: "left",editable: false},
+                {label: 'Berlaku Dari ',name: 'valid_from',width: 150, align: "left",editable: true,
+                    editoptions: {
+                         dataInit: function (element) {
+                                $(element).datepicker({
+                                    id: 'valid_fromPicker',
+                                    autoclose: true,
+                                    format: 'yyyy-mm-dd',
+                                    orientation : 'top',
+                                    todayHighlight : true,
+                                    showOn: 'focus'
+                                    //minDate :0
+                                    
+                                });
+                            }
+                    }
+                },
+                {label: 'Berlaku Sampai',name: 'valid_to',width: 250, align: "left",editable: true,
+                    editoptions: {
+                         dataInit: function (element) {
+                                $(element).datepicker({
+                                    id: 'valid_toPicker',
+                                    autoclose: true,
+                                    format: 'yyyy-mm-dd',
+                                    orientation : 'top',
+                                    todayHighlight : true,
+                                    showOn: 'focus'
+                                    //minDate :0
+                                    
+                                });
+                            }
+                    }
+                },
                 {label: 'Deskripsi',name: 'description',width: 150, align: "left",editable: true, edittype: 'textarea',
                     editoptions: {
                         size: 50,
@@ -323,7 +431,11 @@ function cetak(){
                 }
             },
             {
-               
+                editData : {
+                    t_vat_registration_id: function() {
+                        return <?php echo $this->input->post('t_vat_registration_id'); ?>;
+                    }
+                },
                 //new record form
                 closeAfterAdd: false,
                 clearAfterAdd : true,
@@ -409,6 +521,7 @@ function cetak(){
     });
 </script>
 
+<!--- GRID TABEL POTENSI PEGAWAI-->
 <script>
     $(function($) {
         var grid_selector = "#grid-table1";
@@ -421,17 +534,76 @@ function cetak(){
             mtype: "POST",
             colModel: [
                 {label: 'ID', name: 't_vat_reg_employee_id', key: true, width: 5, sorttype: 'number', editable: true, hidden: true},
-                {label: 'ID', name: 't_vat_registration_id',  width: 5, sorttype: 'number', hidden: true},
-                {label: 'Jabatan',name: 'jabatan',width: 150, align: "left",editable: true,
+                {label: 'ID', name: 't_vat_registration_id',  width: 5, sorttype: 'number', hidden: true, editable:true},
+                {label: 'Jabatan',name: 'jabatan',width: 150, align: "left",editable: false},
+                {label: 'Jabatan',
+                    name: 'p_job_position_id',
+                    width: 100,
+                    sortable: true,
+                    editable: true,
+                    hidden: true,
+                    editrules: {edithidden: true, required:false},
+                    edittype: 'custom',
                     editoptions: {
-                        size: 30,
-                        maxlength:255,
-                        readonly:true
-                    },
-                    editrules: {required: false}
+                        "custom_element":function( value  , options) {
+                            var elm = $('<span></span>');
+
+                            // give the editor time to initialize
+                            setTimeout( function() {
+                                elm.append('<input id="form_p_job_position_id" type="text" style="display:none;" >'+
+                                        '<input id="form_jabatan_code" readonly type="text" class="FormElement form-control" placeholder="Pilih Jenis Jabatan" required=true>'+
+                                        '<button class="btn btn-success" type="button" onclick="showLOVJobPosition(\'form_p_job_position_id\',\'form_jabatan_code\')">'+
+                                        '   <span class="fa fa-search bigger-110"></span>'+
+                                        '</button>');
+                                $("#form_p_job_position_id").val(value);
+                                elm.parent().removeClass('jqgrid-required');
+                            }, 100);
+
+                            return elm;
+                        },
+                        "custom_value":function( element, oper, gridval) {
+
+                            if(oper === 'get') {
+                                return $("#form_p_job_position_id").val();
+                            } else if( oper === 'set') {
+                                $("#form_p_job_position_id").val(gridval);
+                                var gridId = this.id;
+                                // give the editor time to set display
+                                setTimeout(function(){
+                                    var selectedRowId = $("#"+gridId).jqGrid ('getGridParam', 'selrow');
+                                    if(selectedRowId != null) {
+                                        var code_display = $("#"+gridId).jqGrid('getCell', selectedRowId, 'jabatan');
+                                        $("#form_jabatan_code").val( code_display );
+                                    }
+                                },100);
+                            }
+                        }
+                    }
                 },
-                {label: 'Jumlah Pegawai',name: 'employee_qty',width: 250, align: "left",editable: false},
-                {label: 'Gaji Pegawai ',name: 'employee_salary',width: 150, align: "left",editable: false},
+                {label: 'Jumlah Pegawai',name: 'employee_qty',width: 250, align: "right",editable: true,
+                    editrules: {required: true},
+                    editoptions:{
+                        dataInit: function(element) {
+                            $(element).keypress(function(e){
+                                 if (e.which != 8 && e.which != 0 && (e.which < 48 || e.which > 57)) {
+                                    return false;
+                                 }
+                            });
+                        }
+                    },formatter:'integer', formatoptions: {prefix:"", thousandsSeparator:'.'}
+                },
+                {label: 'Gaji Pegawai ',name: 'employee_salery',width: 150, align: "right",editable: true,
+                    editrules: {required: true},
+                    editoptions:{
+                        dataInit: function(element) {
+                            $(element).keypress(function(e){
+                                 if (e.which != 8 && e.which != 0 && (e.which < 48 || e.which > 57)) {
+                                    return false;
+                                 }
+                            });
+                        }
+                    },formatter:'integer', formatoptions: {prefix:"", thousandsSeparator:'.'}
+                },
                 {label: 'Deskripsi',name: 'description',width: 150, align: "left",editable: true, edittype: 'textarea',
                     editoptions: {
                         size: 50,
@@ -525,6 +697,11 @@ function cetak(){
                 }
             },
             {
+                editData : {
+                    t_vat_registration_id: function() {
+                        return <?php echo $this->input->post('t_vat_registration_id'); ?>;
+                    }
+                },
                
                 //new record form
                 closeAfterAdd: false,
@@ -611,6 +788,7 @@ function cetak(){
     });
 </script>
 
+<!--- GRID TABEL POTENSI RESTORAN-->
 <script>
     $(function($) {
         var grid_selector = "#grid-table2";
@@ -623,19 +801,64 @@ function cetak(){
             mtype: "POST",
             colModel: [
                 {label: 'ID', name: 't_vat_reg_dtl_restaurant_id', key: true, width: 5, sorttype: 'number', editable: true, hidden: true},
-                {label: 'ID', name: 't_vat_registration_id',  width: 5, sorttype: 'number', hidden: true},
+                {label: 'ID', name: 't_vat_registration_id',  width: 5, sorttype: 'number', hidden: true, editable:true},
                 {label: 'Jenis Pelayanan',name: 'service_type_desc',width: 150, align: "left",editable: true,
                     editoptions: {
-                        size: 30,
-                        maxlength:255,
                         readonly:true
                     },
                     editrules: {required: false}
                 },
-                {label: 'Jumlah Kursi',name: 'seat_qty',width: 250, align: "left",editable: false},
-                {label: 'Jumlah Meja ',name: 'table_qty',width: 150, align: "left",editable: false},
-                {label: 'Daya Tampung ',name: 'max_service_qty',width: 150, align: "left",editable: false},
-                {label: 'Jumlah pengunjung rata-rata per Bulan',name: 'avg_subscription',width: 150, align: "left",editable: true, edittype: 'textarea',
+                {label: 'Jumlah Kursi',name: 'seat_qty',width: 150, align: "left",editable: true,
+                    editoptions:{
+                        dataInit: function(element) {
+                            $(element).keypress(function(e){
+                                 if (e.which != 8 && e.which != 0 && (e.which < 48 || e.which > 57)) {
+                                    return false;
+                                 }
+                            });
+                        }
+                    },formatter:'integer', formatoptions: {prefix:"", thousandsSeparator:'.'},
+                    editrules: {required: true}
+                },
+                {label: 'Jumlah Meja ',name: 'table_qty',width: 150, align: "left",editable: true,
+                    editoptions:{
+                        dataInit: function(element) {
+                            $(element).keypress(function(e){
+                                 if (e.which != 8 && e.which != 0 && (e.which < 48 || e.which > 57)) {
+                                    return false;
+                                 }
+                            });
+                        }
+                    },formatter:'integer', formatoptions: {prefix:"", thousandsSeparator:'.'},
+                    editrules: {required: true}
+                },
+                {label: 'Daya Tampung ',name: 'max_service_qty',width: 150, align: "left",editable: true,
+                    editoptions:{
+                        dataInit: function(element) {
+                            $(element).keypress(function(e){
+                                 if (e.which != 8 && e.which != 0 && (e.which < 48 || e.which > 57)) {
+                                    return false;
+                                 }
+                            });
+                        }
+                    },formatter:'integer', formatoptions: {prefix:"", thousandsSeparator:'.'},
+                    editrules: {required: true}
+                },
+                {label: 'Jumlah pengunjung rata-rata per Bulan',name: 'avg_subscription',width: 250, align: "left",editable: true,
+                    editoptions: {
+                        dataInit: function(element) {
+                            $(element).keypress(function(e){
+                                 if (e.which != 8 && e.which != 0 && (e.which < 48 || e.which > 57)) {
+                                    return false;
+                                 }
+                            });
+                        }
+                    },
+                    editrules: {required: true},
+                    formatter:'integer', formatoptions: {prefix:"", thousandsSeparator:'.'}
+                    
+                },
+                {label: 'Deskripsi',name: 'description',width: 150, align: "left",editable: true, edittype: 'textarea',
                     editoptions: {
                         size: 50,
                         maxlength:255
@@ -728,7 +951,11 @@ function cetak(){
                 }
             },
             {
-               
+                editData : {
+                    t_vat_registration_id: function() {
+                        return <?php echo $this->input->post('t_vat_registration_id'); ?>;
+                    }
+                },
                 //new record form
                 closeAfterAdd: false,
                 clearAfterAdd : true,
@@ -743,9 +970,7 @@ function cetak(){
                 beforeShowForm: function (e, form) {
                     var form = $(e[0]);
                     style_edit_form(form);
-                    setTimeout(function() {
-                    clearInputRqstType();
-                     },100);
+                    $('#service_type_desc').val($('#service_type_desc_temp').val());
                 },
                 afterShowForm: function(form) {
                     form.closest('.ui-jqdialog').center();
@@ -814,6 +1039,7 @@ function cetak(){
     });
 </script>
 
+<!--- GRID TABEL POTENSI HOTEL-->
 <script>
     $(function($) {
         var grid_selector = "#grid-table3";
@@ -826,19 +1052,97 @@ function cetak(){
             mtype: "POST",
             colModel: [
                 {label: 'ID', name: 't_vat_reg_dtl_hotel_id', key: true, width: 5, sorttype: 'number', editable: true, hidden: true},
-                {label: 'ID', name: 't_vat_registration_id',  width: 5, sorttype: 'number', hidden: true},
-                {label: 'Golongan Kamar',name: 'room_type_code',width: 150, align: "left",editable: true,
+                {label: 'ID', name: 't_vat_registration_id',  width: 5, sorttype: 'number', hidden: true, editable:true},
+                {label: 'Golongan Kamar',name: 'room_type_code',width: 150, align: "left",editable: false},
+                {label: 'Golongan Kamar',
+                    name: 'p_room_type_id',
+                    width: 100,
+                    sortable: true,
+                    editable: true,
+                    hidden: true,
+                    editrules: {edithidden: true, required:true},
+                    edittype: 'custom',
                     editoptions: {
-                        size: 30,
-                        maxlength:255,
-                        readonly:true
-                    },
-                    editrules: {required: false}
+                        "custom_element":function( value  , options) {
+                            var elm = $('<span></span>');
+
+                            // give the editor time to initialize
+                            setTimeout( function() {
+                                elm.append('<input id="form_p_room_type_id" type="text" style="display:none;" >'+
+                                        '<input id="form_room_type_code" readonly type="text" class="FormElement form-control" placeholder="Pilih Golongan Kamar" required=true>'+
+                                        '<button class="btn btn-success" type="button" onclick="showLOVRoomType(\'form_p_room_type_id\',\'form_room_type_code\')">'+
+                                        '   <span class="fa fa-search bigger-110"></span>'+
+                                        '</button>');
+                                $("#form_p_room_type_id").val(value);
+                                elm.parent().removeClass('jqgrid-required');
+                            }, 100);
+
+                            return elm;
+                        },
+                        "custom_value":function( element, oper, gridval) {
+
+                            if(oper === 'get') {
+                                return $("#form_p_room_type_id").val();
+                            } else if( oper === 'set') {
+                                $("#form_p_room_type_id").val(gridval);
+                                var gridId = this.id;
+                                // give the editor time to set display
+                                setTimeout(function(){
+                                    var selectedRowId = $("#"+gridId).jqGrid ('getGridParam', 'selrow');
+                                    if(selectedRowId != null) {
+                                        var code_display = $("#"+gridId).jqGrid('getCell', selectedRowId, 'room_type_code');
+                                        $("#form_room_type_code").val( code_display );
+                                    }
+                                },100);
+                            }
+                        }
+                    }
                 },
-                {label: 'Jumlah Kamar',name: 'room_qty',width: 250, align: "left",editable: false},
-                {label: 'Okupansi',name: 'service_qty',width: 150, align: "left",editable: false},
-                {label: 'Tarif Weekend',name: 'service_charge_wd',width: 150, align: "left",editable: false},
-                {label: 'Tarif non Weekend',name: 'service_charge_we',width: 150, align: "left",editable: true,
+                {label: 'Jumlah Kamar',name: 'room_qty',width: 250, align: "left",editable: true,editrules: {required: true},
+                    editoptions:{
+                        dataInit: function(element) {
+                            $(element).keypress(function(e){
+                                 if (e.which != 8 && e.which != 0 && (e.which < 48 || e.which > 57)) {
+                                    return false;
+                                 }
+                            });
+                        }
+                    },formatter:'integer', formatoptions: {prefix:"", thousandsSeparator:'.'}
+                },
+                {label: 'Frekwensi Penggunaan Layanan',name: 'service_qty',width: 150, align: "left",editable: true,editrules: {required: true},
+                    editoptions:{
+                        dataInit: function(element) {
+                            $(element).keypress(function(e){
+                                 if (e.which != 8 && e.which != 0 && (e.which < 48 || e.which > 57)) {
+                                    return false;
+                                 }
+                            });
+                        }
+                    },formatter:'integer', formatoptions: {prefix:"", thousandsSeparator:'.'}
+                },
+                {label: 'Tarif Kamar Weekend',name: 'service_charge_wd',width: 150, align: "left",editable: true,editrules: {required: true},
+                    editoptions: {
+                        dataInit: function(element) {
+                            $(element).keypress(function(e){
+                                 if (e.which != 8 && e.which != 0 && (e.which < 48 || e.which > 57)) {
+                                    return false;
+                                 }
+                            });
+                        }
+                    },formatter:'integer', formatoptions: {prefix:"", thousandsSeparator:'.'}
+                },
+                {label: 'Tarif non Weekend',name: 'service_charge_we',width: 150, align: "left",editable: true,editrules: {required: true},
+                    editoptions: {
+                        dataInit: function(element) {
+                            $(element).keypress(function(e){
+                                 if (e.which != 8 && e.which != 0 && (e.which < 48 || e.which > 57)) {
+                                    return false;
+                                 }
+                            });
+                        }
+                    },formatter:'integer', formatoptions: {prefix:"", thousandsSeparator:'.'}
+                },
+                {label: 'Deskripsi',name: 'description',width: 150, align: "left",editable: true, edittype: 'textarea',
                     editoptions: {
                         size: 50,
                         maxlength:255
@@ -931,7 +1235,11 @@ function cetak(){
                 }
             },
             {
-               
+                editData : {
+                    t_vat_registration_id: function() {
+                        return <?php echo $this->input->post('t_vat_registration_id'); ?>;
+                    }
+                },
                 //new record form
                 closeAfterAdd: false,
                 clearAfterAdd : true,
@@ -1017,6 +1325,7 @@ function cetak(){
     });
 </script>
 
+<!--- GRID TABEL POTENSI HIBURAN-->
 <script>
     $(function($) {
         var grid_selector = "#grid-table4";
@@ -1029,29 +1338,90 @@ function cetak(){
             mtype: "POST",
             colModel: [
                 {label: 'ID', name: 't_vat_reg_dtl_entertaintment_id', key: true, width: 5, sorttype: 'number', editable: true, hidden: true},
-                {label: 'ID', name: 't_vat_registration_id',  width: 5, sorttype: 'number', hidden: true},
+                {label: 'ID', name: 't_vat_registration_id',  width: 5, sorttype: 'number', hidden: true, editable:true},
                 {label: 'Jenis Hiburan',name: 'entertainment_desc',width: 150, align: "left",editable: true,
                     editoptions: {
-                        size: 30,
-                        maxlength:255,
                         readonly:true
-                    },
-                    editrules: {required: false}
+                    }
                 },
-                {label: 'Tarif Weekend',name: 'service_charge_wd',width: 250, align: "left",editable: false},
-                {label: 'Tarif Non Weekend ',name: 'service_charge_we',width: 150, align: "left",editable: false},
-                {label: 'Jumlah Meja / Kursi',name: 'seat_qty',width: 250, align: "left",editable: false},
-                {label: 'Jumlah Ruangan',name: 'room_qty',width: 150, align: "left",editable: true, edittype: 'textarea',
-                    editoptions: {
-                        size: 50,
-                        maxlength:255
-                    },
-                    editrules: {required: false}
+                {label: 'Tarif Weekend',name: 'service_charge_wd',width: 250, align: "left",editable: true,editrules: {required: true},
+                    editoptions:{
+                        dataInit: function(element) {
+                            $(element).keypress(function(e){
+                                 if (e.which != 8 && e.which != 0 && (e.which < 48 || e.which > 57)) {
+                                    return false;
+                                 }
+                            });
+                        }
+                    },formatter:'integer', formatoptions: {prefix:"", thousandsSeparator:'.'}
                 },
-                {label: 'Jumlah PL',name: 'clerk_qty',width: 250, align: "left",editable: false},
-                {label: 'Booking Jam',name: 'booking_hour',width: 150, align: "left",editable: false},
-                {label: 'F & B',name: 'f_and_b',width: 250, align: "left",editable: false},
-                {label: 'Porsi/Orang',name: 'portion_person',width: 250, align: "left",editable: false}
+                {label: 'Tarif Non Weekend ',name: 'service_charge_we',width: 150, align: "left",editable: true,editrules: {required: true},
+                    editoptions:{
+                        dataInit: function(element) {
+                            $(element).keypress(function(e){
+                                 if (e.which != 8 && e.which != 0 && (e.which < 48 || e.which > 57)) {
+                                    return false;
+                                 }
+                            });
+                        }
+                    },formatter:'integer', formatoptions: {prefix:"", thousandsSeparator:'.'}
+                },
+                {label: 'Jumlah Meja / Kursi',name: 'seat_qty',width: 250, align: "left",editable: true,editrules: {required: true},
+                    editoptions:{
+                        dataInit: function(element) {
+                            $(element).keypress(function(e){
+                                 if (e.which != 8 && e.which != 0 && (e.which < 48 || e.which > 57)) {
+                                    return false;
+                                 }
+                            });
+                        }
+                    },formatter:'integer', formatoptions: {prefix:"", thousandsSeparator:'.'}
+                },
+                {label: 'Jumlah Ruangan',name: 'room_qty',width: 150, align: "left",editable: true,editrules: {required: true}
+                },
+                {label: 'Jumlah PL',name: 'clerk_qty',width: 250, align: "left",editable: true,editrules: {required: true},
+                    editoptions:{
+                        dataInit: function(element) {
+                            $(element).keypress(function(e){
+                                 if (e.which != 8 && e.which != 0 && (e.which < 48 || e.which > 57)) {
+                                    return false;
+                                 }
+                            });
+                        }
+                    },formatter:'integer', formatoptions: {prefix:"", thousandsSeparator:'.'}
+                },
+                {label: 'Booking Jam',name: 'booking_hour',width: 150, align: "left",editable: true,
+                    editoptions:{
+                        dataInit: function(element) {
+                            $(element).keypress(function(e){
+                                 if (e.which != 8 && e.which != 0 && (e.which < 48 || e.which > 57)) {
+                                    return false;
+                                 }
+                            });
+                        }
+                    },formatter:'integer', formatoptions: {prefix:"", thousandsSeparator:'.'}},
+                {label: 'F & B',name: 'f_and_b',width: 250, align: "left",editable: true,
+                    editoptions:{
+                        dataInit: function(element) {
+                            $(element).keypress(function(e){
+                                 if (e.which != 8 && e.which != 0 && (e.which < 48 || e.which > 57)) {
+                                    return false;
+                                 }
+                            });
+                        }
+                    },formatter:'integer', formatoptions: {prefix:"", thousandsSeparator:'.'}
+                },
+                {label: 'Porsi/Orang',name: 'portion_person',width: 250, align: "left",editable: true,
+                    editoptions:{
+                        dataInit: function(element) {
+                            $(element).keypress(function(e){
+                                 if (e.which != 8 && e.which != 0 && (e.which < 48 || e.which > 57)) {
+                                    return false;
+                                 }
+                            });
+                        }
+                    },formatter:'integer', formatoptions: {prefix:"", thousandsSeparator:'.'}
+                }
             ],
             height: '100%',
             autowidth: true,
@@ -1061,7 +1431,7 @@ function cetak(){
             rownumbers: true, // show row numbers
             rownumWidth: 35, // the width of the row numbers columns
             altRows: true,
-            shrinkToFit: true,
+            shrinkToFit: false,
             multiboxonly: true,
             onSelectRow: function (rowid) {
                 /*do something when selected*/
@@ -1081,12 +1451,12 @@ function cetak(){
 
             },
             //memanggil controller jqgrid yang ada di controller read
-            editurl: '<?php echo WS_JQGRID."transaksi.t_vat_reg_dtl_entertaintment_controller/read"; ?>',
+            editurl: '<?php echo WS_JQGRID."transaksi.t_vat_reg_dtl_entertaintment_controller/crud"; ?>',
             caption: "Daftar Potensi Pajak Hiburan"
 
         });
 
-        jQuery('#grid-table4').jqGrid('navGrid', '#grid-pager',
+        jQuery('#grid-table4').jqGrid('navGrid', '#grid-pager4',
             {   //navbar options
                 edit: true,
                 editicon: 'fa fa-pencil blue bigger-120',
@@ -1138,7 +1508,11 @@ function cetak(){
                 }
             },
             {
-               
+                editData : {
+                    t_vat_registration_id: function() {
+                        return <?php echo $this->input->post('t_vat_registration_id'); ?>;
+                    }
+                },
                 //new record form
                 closeAfterAdd: false,
                 clearAfterAdd : true,
@@ -1153,9 +1527,8 @@ function cetak(){
                 beforeShowForm: function (e, form) {
                     var form = $(e[0]);
                     style_edit_form(form);
-                    setTimeout(function() {
-                    clearInputRqstType();
-                     },100);
+                    
+                    $('#entertainment_desc').val($('#entertainment_desc_temp').val());
                 },
                 afterShowForm: function(form) {
                     form.closest('.ui-jqdialog').center();
@@ -1224,6 +1597,7 @@ function cetak(){
     });
 </script>
 
+<!--- GRID TABEL POTENSI PARKIR-->
 <script>
     $(function($) {
         var grid_selector = "#grid-table5";
@@ -1236,18 +1610,69 @@ function cetak(){
             mtype: "POST",
             colModel: [
                 {label: 'ID', name: 't_vat_reg_dtl_parking_id', key: true, width: 5, sorttype: 'number', editable: true, hidden: true},
-                {label: 'ID', name: 't_vat_registration_id',  width: 5, sorttype: 'number', hidden: true},
-                {label: 'Klasifikasi Tempat Parkir',name: 'classification_desc',width: 150, align: "left",editable: true,
-                    editoptions: {
-                        size: 30,
-                        maxlength:255,
-                        readonly:true
-                    },
-                    editrules: {required: false}
+                {label: 'ID', name: 't_vat_registration_id',  width: 5, sorttype: 'number', hidden: true, editable:true},
+                {label: 'Klasifikasi Tempat Parkir',name: 'classification_desc',width: 150, align: "left",editable: false},
+                {label: 'Luas Lahan Parkir',name: 'parking_size',width: 250, align: "left",editable: true,editoptions:{
+                        dataInit: function(element) {
+                            $(element).keypress(function(e){
+                                 if (e.which != 8 && e.which != 0 && (e.which < 48 || e.which > 57)) {
+                                    return false;
+                                 }
+                            });
+                        }
+                    },editrules: {required: true}},
+                {label: 'Daya Tampung',name: 'max_load_qty',width: 150, align: "left",editable: true,editrules: {required: true},
+                    editoptions:{
+                        dataInit: function(element) {
+                            $(element).keypress(function(e){
+                                 if (e.which != 8 && e.which != 0 && (e.which < 48 || e.which > 57)) {
+                                    return false;
+                                 }
+                            });
+                        }
+                    }
                 },
-                {label: 'Luas Lahan Parkir',name: 'parking_size',width: 250, align: "left",editable: false},
-                {label: 'Daya Tampung Kendaraan Bermotor',name: 'max_load_qty',width: 150, align: "left",editable: false},
-                {label: 'Frekuensi Kendaraan Bermotor',name: 'avg_subscription_qty',width: 150, align: "left",editable: true}
+                {label: 'Frekuensi Kendaraan Bermotor',name: 'avg_subscription_qty',width: 150, align: "left",editable: true,editrules: {required: true},
+                    editoptions:{
+                        dataInit: function(element) {
+                            $(element).keypress(function(e){
+                                 if (e.which != 8 && e.which != 0 && (e.which < 48 || e.which > 57)) {
+                                    return false;
+                                 }
+                            });
+                        }
+                    }
+                },
+                {label: 'Tarif Jam Pertama',name: 'first_service_charge',width: 150, align: "left",editable: true, hidden:true, editrules:{edithidden: true},
+                    editoptions:{
+                        dataInit: function(element) {
+                            $(element).keypress(function(e){
+                                 if (e.which != 8 && e.which != 0 && (e.which < 48 || e.which > 57)) {
+                                    return false;
+                                 }
+                            });
+                        }
+                    }
+                },
+                {label: 'Tarif Jam Pertama',name: 'next_service_charge',width: 150, align: "left",editable: true, hidden:true , editrules:{edithidden: true},
+                    editoptions:{
+                        dataInit: function(element) {
+                            $(element).keypress(function(e){
+                                 if (e.which != 8 && e.which != 0 && (e.which < 48 || e.which > 57)) {
+                                    return false;
+                                 }
+                            });
+                        }
+                    }
+                },
+                {label: 'Deskripsi',name: 'description',width: 150, align: "left",editable: true, hidden:true,edittype: 'textarea', 
+                    editoptions: {
+                        size: 50,
+                        maxlength:255
+                    },
+                    editrules: {edithidden: true, required: false}
+                }
+
             ],
             height: '100%',
             autowidth: true,
@@ -1277,7 +1702,7 @@ function cetak(){
 
             },
             //memanggil controller jqgrid yang ada di controller read
-            editurl: '<?php echo WS_JQGRID."transaksi.t_vat_reg_dtl_parking_controller/read"; ?>',
+            editurl: '<?php echo WS_JQGRID."transaksi.t_vat_reg_dtl_parking_controller/crud"; ?>',
             caption: "Daftar Potensi Pajak Parkir"
 
         });
@@ -1334,7 +1759,11 @@ function cetak(){
                 }
             },
             {
-               
+               editData : {
+                    t_vat_registration_id: function() {
+                        return <?php echo $this->input->post('t_vat_registration_id'); ?>;
+                    }
+                },
                 //new record form
                 closeAfterAdd: false,
                 clearAfterAdd : true,
@@ -1420,6 +1849,7 @@ function cetak(){
     });
 </script>
 
+<!--- GRID TABEL POTENSI PPJ PLN-->
 <script>
     $(function($) {
         var grid_selector = "#grid-table6";
@@ -1432,18 +1862,85 @@ function cetak(){
             mtype: "POST",
             colModel: [
                 {label: 'ID', name: 't_vat_reg_dtl_ppj_id', key: true, width: 5, sorttype: 'number', editable: true, hidden: true},
-                {label: 'ID', name: 't_vat_registration_id',  width: 5, sorttype: 'number', hidden: true},
-                {label: 'Golongan',name: 'pwr_classification_desc',width: 150, align: "left",editable: true,
+                {label: 'ID', name: 't_vat_registration_id',  width: 5, sorttype: 'number', hidden: true, editable:true},
+                {label: 'Golongan',name: 'pwr_classification_desc',width: 150, align: "left",editable: false},
+                {label: 'Golongan',
+                    name: 'p_pwr_classification_id',
+                    width: 100,
+                    sortable: true,
+                    editable: true,
+                    hidden: true,
+                    editrules: {edithidden: true, required:false},
+                    edittype: 'custom',
                     editoptions: {
-                        size: 30,
-                        maxlength:255,
-                        readonly:true
-                    },
-                    editrules: {required: false}
+                        "custom_element":function( value  , options) {
+                            var elm = $('<span></span>');
+
+                            // give the editor time to initialize
+                            setTimeout( function() {
+                                elm.append('<input id="form_p_pwr_classification_id" type="text" style="display:none;" >'+
+                                        '<input id="form_pwr_classification_desc" name="pwr_classification_desc" readonly type="text" class="FormElement form-control" placeholder="Pilih Golongan" required=true>'+
+                                        '<button class="btn btn-success" type="button" onclick="showLOVPwrClassification(\'form_p_pwr_classification_id\',\'form_pwr_classification_desc\')">'+
+                                        '   <span class="fa fa-search bigger-110"></span>'+
+                                        '</button>');
+                                $("#form_p_pwr_classification_id").val(value);
+                                elm.parent().removeClass('jqgrid-required');
+                            }, 100);
+
+                            return elm;
+                        },
+                        "custom_value":function( element, oper, gridval) {
+
+                            if(oper === 'get') {
+                                return $("#form_p_pwr_classification_id").val();
+                            } else if( oper === 'set') {
+                                $("#form_p_pwr_classification_id").val(gridval);
+                                var gridId = this.id;
+                                // give the editor time to set display
+                                setTimeout(function(){
+                                    var selectedRowId = $("#"+gridId).jqGrid ('getGridParam', 'selrow');
+                                    if(selectedRowId != null) {
+                                        var code_display = $("#"+gridId).jqGrid('getCell', selectedRowId, 'pwr_classification_desc');
+                                        $("#form_pwr_classification_desc").val( code_display );
+                                    }
+                                },100);
+                            }
+                        }
+                    }
                 },
-                {label: 'Kapasitas Daya',name: 'power_capacity',width: 250, align: "left",editable: false},
-                {label: 'Harga Satuan',name: 'service_charge',width: 150, align: "left",editable: false},
-                {label: 'Faktor Daya',name: 'power_factor',width: 250, align: "left",editable: false},
+                {label: 'Kapasitas Daya',name: 'power_capacity',width: 250, align: "left",editable: true,
+                    editoptions:{
+                        dataInit: function(element) {
+                            $(element).keypress(function(e){
+                                 if (e.which != 8 && e.which != 0 && (e.which < 48 || e.which > 57)) {
+                                    return false;
+                                 }
+                            });
+                        }
+                    },formatter:'integer', formatoptions: {prefix:"", thousandsSeparator:'.'},editrules: {required: true}
+                },
+                {label: 'Harga Satuan',name: 'service_charge',width: 150, align: "left",editable: true,
+                    editoptions:{
+                        dataInit: function(element) {
+                            $(element).keypress(function(e){
+                                 if (e.which != 8 && e.which != 0 && (e.which < 48 || e.which > 57)) {
+                                    return false;
+                                 }
+                            });
+                        }
+                    },formatter:'integer', formatoptions: {prefix:"", thousandsSeparator:'.'},editrules: {required: true}
+                },
+                {label: 'Faktor Daya',name: 'power_factor',width: 250, align: "left",editable: true,
+                    editoptions:{
+                        dataInit: function(element) {
+                            $(element).keypress(function(e){
+                                 if (e.which != 8 && e.which != 0 && (e.which < 48 || e.which > 57)) {
+                                    return false;
+                                 }
+                            });
+                        }
+                    },formatter:'integer', formatoptions: {prefix:"", thousandsSeparator:'.'},editrules: {required: true}
+                },
                 {label: 'Deskripsi',name: 'description',width: 150, align: "left",editable: true, edittype: 'textarea',
                     editoptions: {
                         size: 50,
@@ -1481,7 +1978,7 @@ function cetak(){
             },
             //memanggil controller jqgrid yang ada di controller read
             editurl: '<?php echo WS_JQGRID."transaksi.t_vat_reg_dtl_ppj_controller/crud"; ?>',
-            caption: "Daftar Potensi Pajak Non PPJ PLN"
+            caption: "Daftar Potensi Pajak PPJ PLN"
 
         });
 
@@ -1537,7 +2034,11 @@ function cetak(){
                 }
             },
             {
-               
+               editData : {
+                    t_vat_registration_id: function() {
+                        return <?php echo $this->input->post('t_vat_registration_id'); ?>;
+                    }
+                },
                 //new record form
                 closeAfterAdd: false,
                 clearAfterAdd : true,
@@ -1623,6 +2124,7 @@ function cetak(){
     });
 </script>
 
+<!--- GRID TABEL POTENSI PPJ NON PLN-->
 <script>
     $(function($) {
         var grid_selector = "#grid-table7";
@@ -1634,10 +2136,30 @@ function cetak(){
             postData:{t_vat_registration_id:<?php echo $this->input->post('t_vat_registration_id'); ?>},
             mtype: "POST",
             colModel: [
-                {label: 'ID', name: 't_vat_reg_dtl_ppj_npl_id', key: true, width: 5, sorttype: 'number', editable: true, hidden: true},
-                {label: 'ID', name: 't_vat_registration_id',  width: 5, sorttype: 'number', hidden: true},
-                {label: 'Kapasitas Daya',name: 'power_capacity',width: 250, align: "left",editable: false},
-                {label: 'Jumlah Pelanggan',name: 'owner_qty',width: 150, align: "left",editable: false},
+                {label: 'ID', name: 't_vat_reg_dtl_ppj_id', key: true, width: 5, sorttype: 'number', editable: true, hidden: true},
+                {label: 'ID', name: 't_vat_registration_id',  width: 5, sorttype: 'number', hidden: true, editable:true},
+                {label: 'Kapasitas Daya',name: 'power_capacity',width: 250, align: "left",editable: true,
+                    editoptions:{
+                        dataInit: function(element) {
+                            $(element).keypress(function(e){
+                                 if (e.which != 8 && e.which != 0 && (e.which < 48 || e.which > 57)) {
+                                    return false;
+                                 }
+                            });
+                        }
+                    },formatter:'integer', formatoptions: {prefix:"", thousandsSeparator:'.'},editrules: {required: true}
+                },
+                {label: 'Jumlah Pelanggan',name: 'owner_qty',width: 150, align: "left",editable: true,
+                    editoptions:{
+                        dataInit: function(element) {
+                            $(element).keypress(function(e){
+                                 if (e.which != 8 && e.which != 0 && (e.which < 48 || e.which > 57)) {
+                                    return false;
+                                 }
+                            });
+                        }
+                    },formatter:'integer', formatoptions: {prefix:"", thousandsSeparator:'.'},editrules: {required: true}
+                },
                 {label: 'Deskripsi',name: 'description',width: 150, align: "left",editable: true, edittype: 'textarea',
                     editoptions: {
                         size: 50,
@@ -1675,7 +2197,7 @@ function cetak(){
             },
             //memanggil controller jqgrid yang ada di controller read
             editurl: '<?php echo WS_JQGRID."transaksi.t_vat_reg_dtl_ppj_non_pln_controller/crud"; ?>',
-            caption: "Daftar Potensi Pajak PPJ PLN"
+            caption: "Daftar Potensi Pajak PPJ NON PLN"
 
         });
 
@@ -1731,7 +2253,11 @@ function cetak(){
                 }
             },
             {
-               
+                editData : {
+                    t_vat_registration_id: function() {
+                        return <?php echo $this->input->post('t_vat_registration_id'); ?>;
+                    }
+                },
                 //new record form
                 closeAfterAdd: false,
                 clearAfterAdd : true,
@@ -1746,9 +2272,7 @@ function cetak(){
                 beforeShowForm: function (e, form) {
                     var form = $(e[0]);
                     style_edit_form(form);
-                    setTimeout(function() {
-                    clearInputRqstType();
-                     },100);
+                    
                 },
                 afterShowForm: function(form) {
                     form.closest('.ui-jqdialog').center();
@@ -1817,6 +2341,7 @@ function cetak(){
     });
 </script>
 
+<!--- GRID TABEL POTENSI FASILITAS HOTEL-->
 <script>
     $(function($) {
         var grid_selector = "#grid-table8";
@@ -1829,8 +2354,9 @@ function cetak(){
             mtype: "POST",
             colModel: [
                 {label: 'ID', name: 't_vat_reg_dtl_hotel_srvc_id', key: true, width: 5, sorttype: 'number', editable: true, hidden: true},
-                {label: 'ID', name: 't_vat_registration_id',  width: 5, sorttype: 'number', hidden: true},
-                {label: 'Fasilitas',name: 'services',width: 250, align: "left",editable: false},
+                {label: 'ID', name: 't_vat_registration_id',  width: 5, sorttype: 'number', hidden: true, editable:true},
+                {label: 'Fasilitas',name: 'services',width: 150, align: "left",editable: true,
+                    editrules: {required: true}},
                 {label: 'Deskripsi',name: 'description',width: 150, align: "left",editable: true, edittype: 'textarea',
                     editoptions: {
                         size: 50,
@@ -1924,7 +2450,11 @@ function cetak(){
                 }
             },
             {
-               
+                editData : {
+                    t_vat_registration_id: function() {
+                        return <?php echo $this->input->post('t_vat_registration_id'); ?>;
+                    }
+                },
                 //new record form
                 closeAfterAdd: false,
                 clearAfterAdd : true,
@@ -2010,6 +2540,21 @@ function cetak(){
     });
 </script>
 
+
+<script type="text/javascript">
+    function showLOVPwrClassification(id, code) {
+        modal_p_pwr_classification_show(id, code);
+    }
+    function showLOVLicenseType(id, code) {
+        modal_p_license_type_show(id, code);
+    }
+    function showLOVRoomType(id, code) {
+        modal_p_room_type_show(id, code);
+    }
+    function showLOVJobPosition(id, code) {
+        modal_job_position_show(id, code);
+    }
+</script>
 
 
 

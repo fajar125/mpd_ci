@@ -11,11 +11,13 @@ class T_vat_reg_employee extends Abstract_model {
     public $alias           = "a";
 
     public $fields          = array(
-                                't_vat_reg_employee_id'            => array('pkey' => true, 'type' => 'int', 'nullable' => true, 'unique' => true, 'display' => 'ID Room'),
-                                'p_vat_type_id'           => array('nullable' => false, 'type' => 'str', 'unique' => true, 'display' => 'Klasifikasi tempat parkir'),
-                                'company_brand'    => array('nullable' => true, 'type' => 'str', 'unique' => false, 'display' => 'Deskripsi'),
+                                't_vat_reg_employee_id'            => array('pkey' => true, 'type' => 'int', 'nullable' => true, 'unique' => true, 'display' => 'ID Emp'),
+                                't_vat_registration_id'           => array('nullable' => false, 'type' => 'str', 'unique' => false, 'display' => 'ID Reg'),
+                                'p_job_position_id'           => array('nullable' => false, 'type' => 'str', 'unique' => false, 'display' => 'ID Jabatan'),
+                                'employee_qty'    => array('nullable' => true, 'type' => 'int', 'unique' => false, 'display' => 'Jumlah Pegawai'),
 
-                                'brand_address_name'    => array('nullable' => true, 'type' => 'str', 'unique' => false, 'display' => 'Deskripsi'),
+                                'employee_salery'    => array('nullable' => true, 'type' => 'int', 'unique' => false, 'display' => 'Gaji Pegawai'),
+                                'description'    => array('nullable' => true, 'type' => 'str', 'unique' => false, 'display' => 'Deskripsi'),
                                 'creation_date'          => array('nullable' => true, 'type' => 'date', 'unique' => false, 'display' => 'Created Date'),
                                 'created_by'            => array('nullable' => true, 'type' => 'str', 'unique' => false, 'display' => 'Created By'),
                                 'updated_date'          => array('nullable' => true, 'type' => 'date', 'unique' => false, 'display' => 'Updated Date'),
@@ -23,7 +25,7 @@ class T_vat_reg_employee extends Abstract_model {
 
                             );
 
-    public $selectClause    = "a.*";
+    public $selectClause    = "a.*, round(employee_salery, 0) as employee_salery";
     public $fromClause      = "v_vat_reg_employee a";
 
     public $refs            = array();
