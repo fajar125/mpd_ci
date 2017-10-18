@@ -880,6 +880,7 @@ breadcrumb -->
         
     }
 
+
     function hitungTotalTanah(){
       var hasil                 = 0;
       var r_tot_p               = 0;
@@ -896,7 +897,8 @@ breadcrumb -->
       r_l_tot_p =  ReplaceNumberWithCommas(hasil);
       $('#land_total_price').val(r_l_tot_p);
 
-      r_tot_p = ReplaceNumberWithCommas(parseFloat(land_total_price)+parseFloat(building_total_price));
+      // r_tot_p = ReplaceNumberWithCommas(parseFloat(land_total_price)+parseFloat(building_total_price));
+      r_tot_p = ReplaceNumberWithCommas(parseFloat(r_l_tot_p.replace(/,/g ,''))+parseFloat(building_total_price));
       $('#total_price').val(r_tot_p);
 
       getNPOP();
@@ -917,7 +919,8 @@ breadcrumb -->
         hasil = ReplaceNumberWithCommas(hasil);
         $('#building_total_price').val(hasil);
 
-        result = parseFloat(land_total_price.replace(/,/g ,'')) + parseFloat(building_total_price.replace(/,/g ,''));
+        // result = parseFloat(land_total_price.replace(/,/g ,'')) + parseFloat(building_total_price.replace(/,/g ,''));
+        result = ReplaceNumberWithCommas(parseFloat(land_total_price.replace(/,/g ,'')) + parseFloat(hasil.replace(/,/g ,'')));
         $('#total_price').val(result); 
 
         getNPOP();   
