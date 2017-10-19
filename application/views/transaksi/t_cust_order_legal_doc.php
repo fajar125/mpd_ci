@@ -120,7 +120,7 @@ $("#tab-2").on("click", function(event) {
     t_vat_registration_id = <?php echo $_POST['t_vat_registration_id'];?> ;
     p_rqst_type_id = <?php echo $_POST['p_rqst_type_id'];?> ;
     order_no = <?php echo $_POST['order_no'];?> ;
-    order_date = <?php echo $_POST['order_date'];?> ;
+    order_date = '<?php echo $_POST['order_date'];?>' ;
     
     if(t_customer_order_id == null) {
         swal('Informasi','Silahkan pilih salah satu Permintaan Pelanggan','info');
@@ -200,10 +200,11 @@ $("#tab-2").on("click", function(event) {
                         }
                     }
                 },
-                {label: 'Nama File',name: 'file_name', index:'file_name',width: 150, align: "left",editable: true, edittype:'file',
-                 editoptions:{
-                    enctype:'multipart/form-data'
-                 }},
+                {label: 'Nama File',name: 'file_name',width: 150, align: "left",editable: true, edittype:'file',
+                    editoptions:{
+                        enctype:'multipart/form-data'
+                    }
+                },
                 {label: 'Deskripsi',name: 'description',width: 150, align: "left",editable: true, edittype: 'textarea',
                     editoptions: {
                         size: 50,
@@ -319,13 +320,11 @@ $("#tab-2").on("click", function(event) {
                 onInitializeForm: function(e, form) {
                     var form = $(e[0]);
                     form.attr('enctype','multipart/form-data');
-                    form.attr('method','POST');
-                    form.attr('action','');
                 },
                 beforeShowForm: function (e, form) {
                     var form = $(e[0]);
-                    // var formData = new FormData($(this)[0]);
-                    // console.log(formData);
+                    form.attr('enctype','multipart/form-data');
+                    console.log(form);
                     style_edit_form(form);
 
                     setTimeout(function() {
