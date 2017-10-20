@@ -93,7 +93,7 @@ class T_bphtb_registration_list_controller {
             $ci->load->model('transaksi/t_bphtb_registration_list');
             $table = $ci->t_bphtb_registration_list;
              //$periode='201712';;
-
+ 
             $req_param = array(
                 "sort_by" => $sidx,
                 "sord" => $sord,

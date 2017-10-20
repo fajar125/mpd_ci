@@ -1030,8 +1030,14 @@ breadcrumb -->
     });
 
     $('.back').on('click', function(event){
+        var FLAG            = '<?php echo $_POST['FLAG']; ?>';
         event.stopPropagation();
-        loadContentWithParams("transaksi.t_bphtb_registration_list", {});
+
+        if(FLAG == 'Detail' || FLAG == 'Add'){
+            loadContentWithParams("transaksi.t_bphtb_registration_list", {});
+        }else if(FLAG == 'Edit' ){
+            loadContentWithParams("transaksi.t_bphtb_registration_list_update", {});
+        }
     });
 
     $('#printWisnu').on('click', function(event){
