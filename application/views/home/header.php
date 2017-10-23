@@ -19,6 +19,8 @@
                 margin-left:0px !important;
             }
         </style>
+		<!-- for electron.io shakes -->
+		<script>if (typeof module === 'object') {window.module = module; module = undefined;}</script>
     </head>
     <!-- END HEAD -->
 

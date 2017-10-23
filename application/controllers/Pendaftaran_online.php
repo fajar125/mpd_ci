@@ -9,6 +9,11 @@ class Pendaftaran_online extends CI_Controller
         $this->load->model('pendaftaran_online/register', 'm_po');
     }
 
+    function index(){
+        $this->load->view('pendaftaran_online/pendaftaran_online');
+    }
+
+
     function check_user(){
 
         $username = $this->input->post('user_name');
@@ -25,7 +30,7 @@ class Pendaftaran_online extends CI_Controller
 
         if($submit_reg[0]->o_result_msg == 'OK'){
             $sub = $this->m_po->f_first_submit_engine($submit_reg[0]->o_cust_order_id);
-            
+
             $return['message']= '['.$sub[0]->msg.'] Regitrasi berhasil dengan No. Order : '.$submit_reg[0]->o_cust_order_id;
             $return['success']= true;
             echo json_encode($return);

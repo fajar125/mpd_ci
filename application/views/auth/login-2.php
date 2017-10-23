@@ -33,7 +33,10 @@
         <!-- END PAGE LEVEL STYLES -->
         <!-- BEGIN THEME LAYOUT STYLES -->
         <!-- END THEME LAYOUT STYLES -->
-        <link rel="shortcut icon" href="favicon.ico" /> </head>
+        <link rel="shortcut icon" href="favicon.ico" /> 
+		<!-- for electron.io shakes -->
+		<script>if (typeof module === 'object') {window.module = module; module = undefined;}</script>
+		</head>
     <!-- END HEAD -->
 
     <body class=" login">
@@ -106,6 +109,8 @@
         <!-- END PAGE LEVEL SCRIPTS -->
         <!-- BEGIN THEME LAYOUT SCRIPTS -->
         <!-- END THEME LAYOUT SCRIPTS -->
+		<!-- for electron.io shakes -->
+		<script>if (window.module) module = window.module;</script>
     </body>
 
 </html>

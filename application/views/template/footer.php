@@ -13,6 +13,9 @@
         </div>
         <!-- END FOOTER -->
         <?php $this->load->view('template/scripts.php'); ?>
+		<!-- for electron.io shakes -->
+		<script>if (window.module) module = window.module;</script>
+
     </body>
 
 </html>

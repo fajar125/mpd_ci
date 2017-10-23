@@ -61,10 +61,4 @@ class Home extends CI_Controller
         }
     }
 
-    function pendaftaran_online(){
-        $this->load->view('pendaftaran_online/pendaftaran_online');
-    }
-
-    
-
 }

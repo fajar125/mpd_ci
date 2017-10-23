@@ -13,6 +13,8 @@
         <meta content="" name="description" />
         <meta content="" name="author" />
         <?php $this->load->view('template/styles.php'); ?>
+		<!-- for electron.io shakes -->
+		<script>if (typeof module === 'object') {window.module = module; module = undefined;}</script>
     </head>
     <!-- END HEAD -->
 
