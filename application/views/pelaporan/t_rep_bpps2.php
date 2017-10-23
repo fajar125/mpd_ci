@@ -208,6 +208,9 @@
         // alert("Convert to Excel");
         var p_vat_type_id = $('#form_vat_id').val();
         var tgl_penerimaan = $('#tgl_penerimaan').val();
+        var kode_bank = $('#kode_bank').val();
+        var status = $('#status').val();
+        var i_flag_setoran = $('#i_flag_setoran').val();
 
         if(tgl_penerimaan == ""){
             swal ( "Oopss" ,  "Kolom Tanggal Tidak Boleh Kosong!" ,  "error" );
@@ -216,12 +219,12 @@
         }else{
             var url = "<?php echo WS_JQGRID . "pelaporan.t_rep_bpps2_controller/excel/?"; ?>";
             url += "<?php echo $this->security->get_csrf_token_name(); ?>=<?php echo $this->security->get_csrf_hash(); ?>";
-            url += "&p_vat_type_id=" + $("#grid-table-bpps2").getGridParam("postData").p_vat_type_id;
-            url += "&tgl_penerimaan=" + $("#grid-table-bpps2").getGridParam("postData").tgl_penerimaan;
-            url += "&i_flag_setoran=" + $("#grid-table-bpps2").getGridParam("postData").i_flag_setoran;
-            url += "&kode_bank=" + $("#grid-table-bpps2").getGridParam("postData").kode_bank;
-            url += "&status=" + $("#grid-table-bpps2").getGridParam("postData").status;
-
+            url += "&p_vat_type_id=" + p_vat_type_id;
+            url += "&tgl_penerimaan=" + tgl_penerimaan;
+            url += "&i_flag_setoran=" + i_flag_setoran;
+            url += "&kode_bank=" + kode_bank;
+            url += "&status=" + status;
+            //alert(url);
             window.location = url;
         }
     }

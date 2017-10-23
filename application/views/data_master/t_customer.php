@@ -183,7 +183,7 @@ $("#tab-2").on("click", function(event) {
                 if(response.success == false) {
                     swal({title: 'Attention', text: response.message, html: true, type: "warning"});
                 }
-                /*tadinya untuk mengambil page agar pas kembali ke tab satu tetep select data yang dipilih di awal*/
+                /*tadinya untuk mengambil page agar pas kembali ke tab satu tetep select data yang dipilih di awal
 
                 var t_customer_id = "<?php //echo $this->input->post('t_customer_id'); ?>";
                 var rowIds = $(this).jqGrid('getDataIDs');
@@ -195,7 +195,7 @@ $("#tab-2").on("click", function(event) {
                     setTimeout(function () {
                         $(this).trigger("reloadGrid",[{page: pagenum}]);
                     }, 50);
-                }*/
+                }
                
 
                 for (i = 1; i <= rowIds.length; i++) {
@@ -212,7 +212,7 @@ $("#tab-2").on("click", function(event) {
                         $(this).jqGrid('setSelection',1);
                     } //if
 
-                } //for
+                }*/ //for
 
                 //var t_customer_id = "<?php //echo $this->input->post('t_customer_id'); ?>";
                 /*if (t_customer_id != ""){
@@ -226,6 +226,9 @@ $("#tab-2").on("click", function(event) {
                 }*/
 
                 //alert(rowid);
+                setTimeout(function(){
+                      $("#grid-table").setSelection($("#grid-table").getDataIDs()[0],true);
+                    },500);
 
             },
             //memanggil controller jqgrid yang ada di controller crud
