@@ -6,7 +6,7 @@
             <i class="fa fa-circle"></i>
         </li>
         <li>
-            <span>MASTER UBAH SPTPD / SSPD</span>
+            <span>Master Ubah Register</span>
         </li>
     </ul>
 </div>
@@ -43,6 +43,7 @@
 </div>
 
 <script type="text/javascript">
+
     var s_keyword = $('#s_keyword').val();
     if (s_keyword == "" || s_keyword == 0 || s_keyword == false || s_keyword == undefined ||  s_keyword == null){
         $ ("#tabel_id").hide();
@@ -52,7 +53,7 @@
     
 </script>
  
-<?php $this->load->view('lov/lov_ubah_data'); ?> 
+<?php $this->load->view('lov/lov_ubah_register'); ?> 
 
 <script>
 
@@ -61,16 +62,15 @@
         var pager_selector = "#grid-pager";
 
         jQuery("#grid-table").jqGrid({
-            url: '<?php echo WS_JQGRID."transaksi.t_vat_setllement_ro_modifikasi_controller/read"; ?>',
+            url: '<?php echo WS_JQGRID."transaksi.t_vat_setllement_ro_modifikasi_ubah_register_controller/read"; ?>',
             postData: { s_keyword : $('#s_keyword').val()},
             datatype: "json",
             mtype: "POST",
             colModel: [
                 {label: 'ID', name: 't_vat_setllement_id', key: true, width: 5, sorttype: 'number', editable: true, hidden: true},
                 {label: 'ID CUST', name: 't_customer_order_id',  width: 5, sorttype: 'number', hidden: true},
-                {label: 'Merk Dagang',name: 'company_brand',width: 200, align: "left"},
+                {label: 'Nama Wajib Pajak',name: 'wp_name',width: 200, align: "left"},
                 {label: 'NPWPD',name: 'npwd',width: 110, align: "left"},
-                {label: 'No Order',name: 'order_no',width: 80, align: "left"},
                 {label: 'Periode',name: 'finance_period_code',width: 150, align: "left"},
                 {label: 'Jenis Ketetapan',name: 'sett_code',width: 120, align: "left",editable: false},
                 {label: 'Total Transaksi',name: 'total_trans_amount',width: 120, align: "right",formatter:'currency', formatoptions: {prefix:"", thousandsSeparator:'.'}},
@@ -78,60 +78,10 @@
                 {label: 'Denda',name:'total_penalty_amount',width: 120, align: "right",formatter:'currency', formatoptions: {prefix:"", thousandsSeparator:'.'}},
                 {label: 'No. Kohir',name: 'no_kohir',width: 100, align: "left",editable: false},
                 {label: 'No. Bayar',name: 'payment_key',width: 100, align: "left",editable: false},
-                {label: 'Dibuat Oleh',name: 'created_by',width: 100, align: "left",editable: false},
-                {name: 'Hapus Transaksi',width: 160, align: "center",
+                {name: 'Ubah Data',width: 150, align: "center",
                     formatter:function(cellvalue, options, rowObject) {
                         var val = rowObject['t_vat_setllement_id'];
-                        return '<a class="btn btn-danger btn-xs" href="#" onclick="showLOVUbahData('+val+',6)"><i class="fa fa-trash-o"></i>Hapus Transaksi</a>';
-
-                    }
-                },
-
-                {name: 'Ubah Ayat',width: 150, align: "center",
-                    formatter:function(cellvalue, options, rowObject) {
-                        var val = rowObject['t_vat_setllement_id'];
-                        return '<a class="btn btn-danger btn-xs" href="#" onclick="showLOVUbahData('+val+',1)"><i class="fa fa-pencil"></i>Ubah Ayat</a>';
-
-                    }
-                },
-
-                {name: 'Ubah Tanggal',width: 150, align: "center",
-                    formatter:function(cellvalue, options, rowObject) {
-                        var val = rowObject['t_vat_setllement_id'];
-                        return '<a class="btn btn-danger btn-xs" href="#" onclick="showLOVUbahData('+val+',2)"><i class="fa fa-pencil"></i>Ubah Tanggal</a>';
-
-                    }
-                },
-
-                {name: 'Ubah Total Trans.',width: 190, align: "center",
-                    formatter:function(cellvalue, options, rowObject) {
-                        var val = rowObject['t_vat_setllement_id'];
-                        return '<a class="btn btn-danger btn-xs" href="#" onclick="showLOVUbahData('+val+',3)"><i class="fa fa-pencil"></i>Ubah Total Transaksi</a>';
-
-                    }
-                },
-
-                {name: 'Cetak No. Bayar',width: 180, align: "center",
-                    formatter:function(cellvalue, options, rowObject) {
-                        var val = rowObject['payment_key'];
-                        var url = '<?php echo base_url(); ?>'+'cetak_no_bayar/pageCetak?no_bayar='+val;
-                        return '<a class="btn btn-danger btn-xs" href="#" onclick="PopupCenter(\''+url+'\',\'No. Bayar\',500,500);"><i class="fa fa-print"></i>Catak No. Bayar</a>';
-
-                    }
-                },
-
-                {name: 'Ubah Ketetapan',width: 160, align: "center",
-                    formatter:function(cellvalue, options, rowObject) {
-                        var val = rowObject['t_vat_setllement_id'];
-                        return '<a class="btn btn-danger btn-xs" href="#" onclick="showLOVUbahData('+val+',4)"><i class="fa fa-pencil"></i>Ubah Ketetapan</a>';
-
-                    }
-                },
-
-                {name: 'Ubah Denda',width: 150, align: "center",
-                    formatter:function(cellvalue, options, rowObject) {
-                        var val = rowObject['t_vat_setllement_id'];
-                        return '<a class="btn btn-danger btn-xs" href="#" onclick="showLOVUbahData('+val+',5)"><i class="fa fa-pencil"></i>Ubah Denda</a>';
+                        return '<a class="btn btn-danger btn-xs" href="#" onclick="showLOVUbahData('+val+')"><i class="fa fa-pencil"></i>Ubah Register</a>';
 
                     }
                 }
@@ -165,7 +115,7 @@
             },
             //memanggil controller jqgrid yang ada di controller crud
             editurl: '<?php echo WS_JQGRID."transaksi.t_piutang_skpdkb_controller/read"; ?>',
-            caption: "MASTER UBAH SPTPD / SSPD"
+            caption: "MASTER UBAH REGISTER"
 
         });
 
@@ -318,7 +268,7 @@
         jQuery(function($) {
             var grid_selector = "#grid-table-history";
             jQuery("#grid-table").jqGrid('setGridParam',{
-                url: '<?php echo WS_JQGRID."transaksi.t_vat_setllement_ro_modifikasi_controller/read"; ?>',
+                url: '<?php echo WS_JQGRID."transaksi.t_vat_setllement_ro_modifikasi_ubah_register_controller/read"; ?>',
                 postData: { s_keyword : $('#s_keyword').val()}
             });
             $("#grid-table").trigger("reloadGrid");
@@ -327,7 +277,7 @@
 
 </script>
 <script>
-    function showLOVUbahData(id,i_mode) {
-        modal_ubah_data_show(id,i_mode);
+    function showLOVUbahData(id) {
+        modal_ubah_register_show(id);
     }
 </script>

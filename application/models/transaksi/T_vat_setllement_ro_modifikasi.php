@@ -41,4 +41,99 @@ class T_vat_setllement_ro_modifikasi extends Abstract_model {
         }
         return true;
     }
+
+    function getData($t_vat_setllement_id, $i_mode){
+        $sql = "";
+        if ($i_mode == 1){  //Data Ayat
+            $sql = "SELECT a.*, b.p_vat_type_id, b.nomor_ayat, b.nama_ayat, b.nama_jns_pajak 
+                FROM  t_vat_setllement AS a
+                LEFT JOIN v_p_vat_type_dtl_rep AS b ON a.p_vat_type_dtl_id = b.p_vat_type_dtl_id
+                WHERE a.t_vat_setllement_id = ".$t_vat_setllement_id;
+        } else if($i_mode == 2){  //Data Tanggal
+            $sql = "SELECT t_vat_setllement_id, t_customer_order_id,
+                    to_char(settlement_date,'YYYY-MM-DD') AS settlement_date, p_finance_period_id, t_cust_account_id,
+                    npwd, total_trans_amount, total_vat_amount, creation_date,
+                    created_by, updated_date, updated_by, is_anomali,
+                    is_authorized, no_kohir, p_settlement_type_id,
+                    debt_vat_amt, cr_adjustment, cr_payment, cr_others,
+                    cr_stp, db_interest_charge, db_increasing_charge,
+                    db_admin_penalty, due_date, is_settled, start_period,
+                    end_period, qty_room_sold, total_penalty_amount, doc_no,
+                    p_vat_type_dtl_id, old_id
+                    FROM t_vat_setllement
+                    WHERE t_vat_setllement_id = ".$t_vat_setllement_id;
+        } else if($i_mode == 3){ // Data Total
+            $sql = "SELECT * FROM  t_vat_setllement WHERE t_vat_setllement_id = ".$t_vat_setllement_id;
+
+        } else if($i_mode == 4){ // Data Ketetapan 
+            $sql = "SELECT * FROM t_vat_setllement where t_vat_setllement_id = ".$t_vat_setllement_id;
+
+        } else if($i_mode == 5){   // Data Denda
+            $sql = "SELECT * FROM t_vat_setllement where t_vat_setllement_id = ".$t_vat_setllement_id;
+        } else if($i_mode == 6){   // Data Denda
+            $sql = "SELECT * FROM t_vat_setllement where t_vat_setllement_id = ".$t_vat_setllement_id;
+        }
+        
+        $query = $this->db->query($sql);
+        $item =$query->row_array();
+        return $item;
+    }
+
+    function ubahData($t_vat_setllement_id, $keyword, $alasan, $flag_piutang, $i_mode){
+        $ci =& get_instance();
+        $userdata = $ci->session->userdata;
+        $uname = $userdata['app_user_name'];
+        $sql = "";
+
+        if ($i_mode == 1){  //Ubah Data Ayat
+            $sql = "SELECT f_update_type_ayat($t_vat_setllement_id,$keyword,'$alasan','$uname') AS msg";
+        } else if($i_mode == 2){    //Ubah Data Tanggal
+            $sql = "SELECT f_update_tgl_trans($t_vat_setllement_id,'$keyword','$alasan','$uname') AS msg";
+        } else if($i_mode == 3){//Ubah Data Total
+            $sql = "SELECT f_update_nilai_total_transaksi($t_vat_setllement_id,$keyword,'$alasan','$uname') AS msg";
+        } else if($i_mode == 4){  //Ubah Data Ketetapan
+            $sql = "SELECT f_update_ketetapan($t_vat_setllement_id,$keyword,'$alasan','$uname') AS msg";
+        } else if($i_mode == 5){  //Ubah Data Denda
+            $sql = "SELECT f_update_penalty_new($t_vat_setllement_id,$flag_piutang,$keyword,'$alasan','$uname') AS msg";
+        } else if($i_mode == 6){ // Hapus Data Transaksi
+            $sql = "SELECT f_del_payment_trans($t_vat_setllement_id,'$uname','$alasan', 0, '') AS msg";
+            
+        }
+
+        $query = $this->db->query($sql);
+
+        $item =$query->row_array();
+        return $item;
+    }
+
+    // function getDataTgl($t_vat_setllement_id){
+    //     $sql = "SELECT t_vat_setllement_id, t_customer_order_id,
+    //                 to_char(settlement_date,'YYYY-MM-DD') AS settlement_date, p_finance_period_id, t_cust_account_id,
+    //                 npwd, total_trans_amount, total_vat_amount, creation_date,
+    //                 created_by, updated_date, updated_by, is_anomali,
+    //                 is_authorized, no_kohir, p_settlement_type_id,
+    //                 debt_vat_amt, cr_adjustment, cr_payment, cr_others,
+    //                 cr_stp, db_interest_charge, db_increasing_charge,
+    //                 db_admin_penalty, due_date, is_settled, start_period,
+    //                 end_period, qty_room_sold, total_penalty_amount, doc_no,
+    //                 p_vat_type_dtl_id, old_id
+    //                 FROM t_vat_setllement
+    //                 WHERE t_vat_setllement_id = ".$t_vat_setllement_id;
+    //     $query = $this->db->query($sql);
+    //     $item =$query->row_array();
+    //     return $item;
+    // }
+
+    // function ubahTgl($t_vat_setllement_id, $settlement_date_new, $alasan){
+    //     $ci =& get_instance();
+    //     $userdata = $ci->session->userdata;
+    //     $uname = $userdata['app_user_name'];
+
+    //     $sql = "SELECT f_update_tgl_trans($t_vat_setllement_id,'$settlement_date_new','$alasan','$uname') AS msg";
+    //     $query = $this->db->query($sql);
+
+    //     $item =$query->row_array();
+    //     return $item;
+    // }
+    
 }

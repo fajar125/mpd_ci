@@ -5,56 +5,6 @@
 * @version 07/05/2015 12:18:00
 */
 class T_laporan_history_potensi_piutang_tgl_tap_controller {
- 
-    function read() {
-
-        $page = getVarClean('page','int',1);
-        $limit = getVarClean('rows','int',5);
-        $sidx = getVarClean('p_vat_type_id', 'int', 0);
-        $sord = getVarClean('sord', 'str', 'asc');
-        $tgl_penerimaan = getVarClean('tgl_penerimaan','str','');
-        $i_flag_setoran = getVarClean('i_flag_setoran','int',0);
-        $kode_bank = getVarClean('kode_bank','str','');
-        $status = getVarClean('status','str','');
-
-        $data = array('rows' => array(), 'page' => 1, 'records' => 0, 'total' => 1, 'success' => false, 'message' => '');
-
-        try {
-
-            $ci = & get_instance();
-            $ci->load->model('pelaporan/t_laporan_history_potensi_piutang_tgl_tap');
-            $table = $ci->t_laporan_history_potensi_piutang_tgl_tap;
-             
-            $result = $table->getBpps2($sidx, $tgl_penerimaan, $i_flag_setoran, $kode_bank, $status);
-
-
-            
-            //$table->setJQGridParam($req_param);
-            $count = count($result);
-            //count($result)
-
-            if ($count > 0) $total_pages = ceil($count / $limit);
-            else $total_pages = 1;
-
-            if ($page > $total_pages) $page = $total_pages;
-            $start = $limit * $page - 1; // do not put $limit*($page - 1)
-
-           
-            if ($page == 0) $data['page'] = 1;
-            else $data['page'] = $page;
-
-            $data['total'] = $total_pages;
-            $data['records'] = $count;
-
-            $data['rows'] = $result;
-            $data['success'] = true;
-
-        }catch (Exception $e) {
-            $data['message'] = $e->getMessage();
-        }
-
-        return $data;
-    }
 
     function readData(){
         $page = getVarClean('page','int',1);
@@ -198,9 +148,7 @@ class T_laporan_history_potensi_piutang_tgl_tap_controller {
             
 
             for ($i = 0; $i < $count; $i++) {
-                $jumlah +=$result[$i]['ketetapan'];
-                $jumlah_realisasi += $result[$i]['realisasi'];
-                $jumlah_sisa += ($result[$i]['ketetapan']-$result[$i]['realisasi']);
+                $jumlah +=$result[$i]['denda'];
 
             }
 

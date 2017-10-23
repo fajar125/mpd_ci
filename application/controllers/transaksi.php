@@ -122,6 +122,25 @@ class Transaksi extends CI_Controller
         }
         
     }
+
+    function jenis_ketetapan_combo(){
+        try {
+            $sql = "select * from p_settlement_type";
+            $query = $this->db->query($sql);
+
+            $items = $query->result_array();
+            echo '<select id="p_settlement_type_id" name="p_settlement_type_id" class="FormElement form-control"> <option value="0">--Pilih Jenis Ketetapan--</option>';
+            foreach($items  as $item ){
+                echo '<option value="'.$item['p_settlement_type_id'].'">'.$item['code'].'</option>';
+            }
+            echo '</select>';
+            exit;
+        } catch (Exception $e) {
+            echo $e->getMessage();
+            exit;
+        }
+        
+    }
     
 
     public function getMonitoring($id, $search, $tmp){

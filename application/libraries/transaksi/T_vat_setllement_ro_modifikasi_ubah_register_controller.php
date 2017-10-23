@@ -4,7 +4,7 @@
 * @class vats_controller
 * @version 07/05/2015 12:18:00
 */
-class T_vat_setllement_ro_modifikasi_controller {
+class t_vat_setllement_ro_modifikasi_ubah_register_controller {
 
     function read() {
 
@@ -21,8 +21,8 @@ class T_vat_setllement_ro_modifikasi_controller {
             try {
 
                 $ci = & get_instance();
-                $ci->load->model('transaksi/t_vat_setllement_ro_modifikasi');
-                $table = $ci->t_vat_setllement_ro_modifikasi;
+                $ci->load->model('transaksi/t_vat_setllement_ro_modifikasi_ubah_register');
+                $table = $ci->t_vat_setllement_ro_modifikasi_ubah_register;
 
                 
                 if( isset($_REQUEST['searchField'])){
@@ -62,11 +62,17 @@ class T_vat_setllement_ro_modifikasi_controller {
                 // Filter Table
 
                 $req_param['where'] = array();
-                $req_param['where'][] = "( upper(d.wp_name) LIKE upper('%".$s_keyword."%') OR 
-                      upper(a.npwd) LIKE upper('%".$s_keyword."%') OR
-                      upper(a.no_kohir) LIKE upper('%".$s_keyword."%') OR
-                      upper(a.payment_key) LIKE upper('%".$s_keyword."%')
-                    )";
+                $req_param['where'][] = "a.p_finance_period_id = b.p_finance_period_id AND
+                                            a.t_customer_order_id = c.t_customer_order_id AND
+                                            a.t_cust_account_id = d.t_cust_account_id AND
+                                            c.p_rqst_type_id = e.p_rqst_type_id AND
+                                            a.t_vat_setllement_id = f.t_vat_setllement_id AND
+                                            sett_type.p_settlement_type_id = a.p_settlement_type_id AND
+                                            ( upper(d.wp_name) LIKE upper('%".$s_keyword."%') OR 
+                                              upper(a.npwd) LIKE upper('%".$s_keyword."%') OR
+                                              upper(a.payment_key) LIKE upper('%".$s_keyword."%') OR
+                                              upper(a.no_kohir) LIKE upper('%".$s_keyword."%')
+                                            ) ";
 
                 $table->setJQGridParam($req_param);
                 $count = $table->countAll();
@@ -101,9 +107,8 @@ class T_vat_setllement_ro_modifikasi_controller {
         return $data;
     }
 
-    function readData(){
+    function readDataRegister(){
         $t_vat_setllement_id = getVarClean('t_vat_setllement_id','int',0);
-        $i_mode = getVarClean('i_mode','int',0);
         
 
         $data = array('rows' => array(), 'page' => 1, 'records' => 0, 'total' => 1, 'success' => false, 'message' => '');
@@ -111,10 +116,10 @@ class T_vat_setllement_ro_modifikasi_controller {
         try {
 
             $ci = & get_instance();
-            $ci->load->model('transaksi/t_vat_setllement_ro_modifikasi');
-            $table = $ci->t_vat_setllement_ro_modifikasi;
+            $ci->load->model('transaksi/t_vat_setllement_ro_modifikasi_ubah_register');
+            $table = $ci->t_vat_setllement_ro_modifikasi_ubah_register;
 
-            $result = $table->getData($t_vat_setllement_id, $i_mode) ;
+            $result = $table->getRegister($t_vat_setllement_id) ;
             
             $data['rows'] = $result;
             $data['success'] = true;
@@ -127,22 +132,29 @@ class T_vat_setllement_ro_modifikasi_controller {
 
     }
 
-    function updateData(){
+    function updateDataRegister(){
         $t_vat_setllement_id = getVarClean('t_vat_setllement_id','int',0);
-        $keyword = getVarClean('keyword','str','');
-        $alasan = getVarClean('alasan','str','');
-        $flag_piutang = getVarClean('alasan','int',0);
-        $i_mode = getVarClean('i_mode','int',0);
+        $total_trans_amount = getVarClean('total_trans_amount','int',0);
+        $total_vat_amount = getVarClean('total_vat_amount','int',0); 
+        $is_settled = getVarClean('is_settled','str',''); 
+        $receipt_no = getVarClean('receipt_no','str',''); 
+        $payment_amount = getVarClean('payment_amount','int',0); 
+        $payment_vat_amount = getVarClean('t_vat_setllement_id','int',0);
+        $payment_date = getVarClean('payment_date','str','');
+        $is_bjb = getVarClean('is_bjb','int',0);
+        $p_cg_terminal_id = getVarClean('p_cg_terminal_id','str','');
+        $penalty_amount = getVarClean('penalty_amount','int',0);
+
 
         $data = array('rows' => array(), 'page' => 1, 'records' => 0, 'total' => 1, 'success' => false, 'message' => '');
         
         try {
 
             $ci = & get_instance();
-            $ci->load->model('transaksi/t_vat_setllement_ro_modifikasi');
-            $table = $ci->t_vat_setllement_ro_modifikasi;
+            $ci->load->model('transaksi/t_vat_setllement_ro_modifikasi_ubah_register');
+            $table = $ci->t_vat_setllement_ro_modifikasi_ubah_register;
 
-            $result = $table->ubahData($t_vat_setllement_id, $keyword, $alasan, $flag_piutang, $i_mode);
+            $result = $table->ubahRegister($t_vat_setllement_id, $total_trans_amount, $total_vat_amount, $is_settled, $receipt_no, $payment_amount, $payment_vat_amount,$payment_date,$is_bjb,$p_cg_terminal_id,$penalty_amount);
             
             $data['rows'] = $result;
             $data['success'] = true;
@@ -155,54 +167,4 @@ class T_vat_setllement_ro_modifikasi_controller {
 
     }
 
-    function readDataTgl(){
-        $t_vat_setllement_id = getVarClean('t_vat_setllement_id','int',0);
-        
-
-        $data = array('rows' => array(), 'page' => 1, 'records' => 0, 'total' => 1, 'success' => false, 'message' => '');
-        
-        try {
-
-            $ci = & get_instance();
-            $ci->load->model('transaksi/t_vat_setllement_ro_modifikasi');
-            $table = $ci->t_vat_setllement_ro_modifikasi;
-
-            $result = $table->getDataTgl($t_vat_setllement_id) ;
-            
-            $data['rows'] = $result;
-            $data['success'] = true;
-
-        }catch (Exception $e) {
-            $data['message'] = $e->getMessage();
-        }
-
-        return $data;
-
-    }
-
-    function updateTgl(){
-        $t_vat_setllement_id = getVarClean('t_vat_setllement_id','int',0);
-        $settlement_date_new = getVarClean('settlement_date_new','string',0);
-        $alasan = getVarClean('alasan','int',0); 
-
-        $data = array('rows' => array(), 'page' => 1, 'records' => 0, 'total' => 1, 'success' => false, 'message' => '');
-
-        try {
-
-            $ci = & get_instance();
-            $ci->load->model('transaksi/t_vat_setllement_ro_modifikasi');
-            $table = $ci->t_vat_setllement_ro_modifikasi;
-
-            $result = $table->ubahTgl($t_vat_setllement_id, $settlement_date_new,$alasan) ;
-            
-            $data['rows'] = $result;
-            $data['success'] = true;
-
-        }catch (Exception $e) {
-            $data['message'] = $e->getMessage();
-        }
-
-        return $data;
-
-    }
 }
