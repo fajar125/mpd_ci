@@ -991,9 +991,7 @@ breadcrumb -->
     }
 
     function openInNewTab(url) {
-        // window.open("../report/cetak_rep_lap_harian_bdhr.php?tgl_penerimaan='" + tgl_penerimaan + "'&kabid=T"+ "&kode_bank="+kode_bank, '_blank', 'location=yes,height=570,width=520,scrollbars=yes,status=yes');
         window.open(url, 'No Payment', 'left=0,top=0,width=500,height=500,toolbar=no,scrollbars=yes,resizable=yes');
-      // win.focus();
     }
 
     function printLaporan(pejabat){
