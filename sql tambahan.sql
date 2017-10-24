@@ -302,3 +302,163 @@ where p_app_menu_id = 41;
 update p_app_menu
 set file_name = 'workflow.p_procedure'
 where p_app_menu_id = 39;
+
+/**
+ * Daftar WP yang bisa login di pelaporan wajib pajak
+ * select * from t_cust_account
+ * where p_vat_type_id = 2 and npwd IN ( select app_user_name from p_app_user)
+ * order by registration_date desc
+ * limit 100
+ **/
+
+ /**
+  * Update - an menu risma & anggi
+  */
+
+UPDATE sikp.p_app_menu
+SET file_name = 'parameter.p_year_period'
+WHERE p_app_menu_id = 16;
+
+UPDATE sikp.p_app_menu
+SET file_name = 'parameter.p_region_level'
+WHERE p_app_menu_id = 49;
+
+UPDATE sikp.p_app_menu
+SET file_name = 'parameter.p_provinsi'
+WHERE p_app_menu_id = 50;
+
+UPDATE sikp.p_app_menu
+SET file_name = 'parameter.p_room_type'
+WHERE p_app_menu_id = 55;
+
+UPDATE sikp.p_app_menu
+SET file_name = 'parameter.p_rest_service_type'
+WHERE p_app_menu_id = 56;
+
+UPDATE sikp.p_app_menu
+SET file_name = 'parameter.p_parking_classification'
+WHERE p_app_menu_id = 58;
+
+UPDATE sikp.p_app_menu
+SET file_name = 'transaksi.t_customer_order'
+WHERE p_app_menu_id = 61;
+
+UPDATE sikp.p_app_menu
+SET file_name = 'parameter.p_vat_type'
+WHERE p_app_menu_id = 64;
+
+UPDATE sikp.p_app_menu
+SET file_name = 'parameter.p_year_period'
+WHERE p_app_menu_id = 69;
+
+UPDATE sikp.p_app_menu
+SET file_name = 'pelaporan.t_target_realisasi'
+WHERE p_app_menu_id = 74;
+
+UPDATE sikp.p_app_menu
+SET file_name = 'transaksi.t_vat_setlement_manual'
+WHERE p_app_menu_id = 86;
+
+UPDATE sikp.p_app_menu
+SET file_name = 'transaksi.t_piutang_skpdkb'
+WHERE p_app_menu_id = 87;
+
+UPDATE sikp.p_app_menu
+SET file_name = 'transaksi.t_piutang_skpdkb_jabatan'
+WHERE p_app_menu_id = 90;
+
+UPDATE sikp.p_app_menu
+SET file_name = 'parameter.p_vat_group'
+WHERE p_app_menu_id = 133;
+
+UPDATE sikp.p_app_menu
+SET file_name = 'transaksi.t_vat_setllement_ro_order_paymentkey'
+WHERE p_app_menu_id = 180;
+
+UPDATE sikp.p_app_menu
+SET file_name = 'pelaporan.t_laporan_history_potensi_piutang_tgl_tap'
+WHERE p_app_menu_id = 196;
+
+UPDATE sikp.p_app_menu
+SET file_name = 'transaksi.t_piutang_skpdkb_nihil'
+WHERE p_app_menu_id = 198;
+
+UPDATE sikp.p_app_menu
+SET file_name = 'transaksi.t_vat_setllement_manual_skpd_nihil'
+WHERE p_app_menu_id = 202;
+
+UPDATE sikp.p_app_menu
+SET file_name = 'transaksi.t_piutang_skpdkb_tambahan'
+WHERE p_app_menu_id = 222;
+
+UPDATE sikp.p_app_menu
+SET file_name = 'transaksi.t_vat_setllement_manual_skpdkb_jabatan'
+WHERE p_app_menu_id = 239;
+
+UPDATE sikp.p_app_menu
+SET file_name = 'transaksi.t_vat_setllement_manual_skpdkb'
+WHERE p_app_menu_id = 258;
+
+UPDATE sikp.p_app_menu
+SET file_name = 'transaksi.t_vat_setllement_manual_skpdkb_tambahan'
+WHERE p_app_menu_id = 259;
+
+UPDATE sikp.p_app_menu
+SET file_name = 'parameter.p_account_status'
+WHERE p_app_menu_id = 84;
+
+UPDATE sikp.p_app_menu
+SET file_name = 'parameter.p_bank'
+WHERE p_app_menu_id = 181;
+
+UPDATE sikp.p_app_menu
+SET file_name = 'parameter.p_global_param'
+WHERE p_app_menu_id = 9;
+
+UPDATE sikp.p_app_menu
+SET file_name = 'parameter.p_license_type'
+WHERE p_app_menu_id = 53;
+
+UPDATE sikp.p_app_menu
+SET file_name = 'parameter.p_order_status'
+WHERE p_app_menu_id = 52;
+
+UPDATE sikp.p_app_menu
+SET file_name = 'parameter.p_rqst_type.php'
+WHERE p_app_menu_id = 51;
+
+UPDATE sikp.p_app_menu
+SET file_name = 'pelaporan.t_laporan_posisi_surat_teguran'
+WHERE p_app_menu_id = 179;
+
+UPDATE sikp.p_app_menu
+SET file_name = 'pelaporan.t_rep_bpps2'
+WHERE p_app_menu_id = 243;
+
+UPDATE sikp.p_app_menu
+SET file_name = 'data_master.t_customer'
+WHERE p_app_menu_id = 63;
+
+UPDATE sikp.p_app_menu
+SET file_name = 'data_master.t_customer_update'
+WHERE p_app_menu_id = 77;
+
+UPDATE sikp.p_app_menu
+SET file_name = 'pelaporan.t_laporan_denda'
+WHERE p_app_menu_id = 232;
+
+UPDATE sikp.p_app_menu
+SET file_name = 'pelaporan.t_laporan_denda_tgl_bayar'
+WHERE p_app_menu_id = 234;
+
+UPDATE sikp.p_app_menu
+SET file_name = 'pelaporan.t_rep_lap_bpps_terakhir_bayar'
+WHERE p_app_menu_id = 138;
+
+UPDATE sikp.p_app_menu
+SET file_name = 'pelaporan.t_history_skpdkb'
+WHERE p_app_menu_id = 199;
+
+UPDATE sikp.p_app_menu
+SET file_name = 'pelaporan.t_laporan_history_potensi_piutang'
+WHERE p_app_menu_id = 195;
