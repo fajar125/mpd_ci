@@ -96,6 +96,8 @@
         if(date_start_laporan == "" || date_end_laporan == ""){            
             swal ( "Oopss" ,  "Kolom Tanggal Tidak Boleh Kosong!" ,  "error" );
         }else{
+            
+
             var url = "<?php echo WS_JQGRID . "transaksi.t_laporan_daftar_bphtb_verifikasi_controller/excel/?"; ?>";
             url += "<?php echo $this->security->get_csrf_token_name(); ?>=<?php echo $this->security->get_csrf_hash(); ?>";
             url += "&date_start_laporan=" + date_start_laporan;
