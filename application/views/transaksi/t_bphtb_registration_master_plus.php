@@ -54,7 +54,7 @@ breadcrumb -->
                                         <label class="control-label col-md-2" id="keterangan-kurang-bayar">  </label>
                                     </div>
 
-                                    <div class="form-group">
+                                    <div class="form-group"> 
                                         <label class="control-label col-md-2"> A. Subjek Pajak </label>
                                         <div class="col-md-3">
                                             <input type="text" class="form-control" name="t_bphtb_registration_id" readonly="" id="t_bphtb_registration_id">
@@ -533,11 +533,8 @@ breadcrumb -->
 <?php $this->load->view('lov/lov_kel'); ?>
 <!-- First Load -->
 <script>
-
-    //var FLAG            = '<?php echo $_POST['FLAG']; ?>';
-    var p_bphtb_type_id = $('#p_bphtb_type_id').val();
-
-    $.ajax({
+    function LoadCombo(){
+        $.ajax({
             url: "<?php echo base_url().'bphtb_registration/load_combo_dok_pendukung/'; ?>" ,
             type: "POST",            
             data: {},
@@ -547,7 +544,15 @@ breadcrumb -->
             error: function (xhr, status, error) {
                 swal({title: "Error!", text: xhr.responseText, html: true, type: "error"});
             }
-    });
+        });
+    }
+    
+
+</script>
+<script>
+
+    //var FLAG            = '<?php echo $_POST['FLAG']; ?>';
+    var p_bphtb_type_id = $('#p_bphtb_type_id').val();
 
 
     $(".priceformat").number( true, 0 , '.',','); /* price number format */
@@ -556,9 +561,9 @@ breadcrumb -->
     $(".numberformat").number( true, 0 , '.','.');
     $(".numberformat").css("text-align", "right");
     $(".formatRight").css("text-align", "right");
+                    LoadCombo();
 
     //if(FLAG == 'Edit' || FLAG == 'Detail'){
-        
         $.ajax({
             url: '<?php echo WS_JQGRID."transaksi.t_bphtb_registration_list_controller/read_detail_bphtb"; ?>',
             type: "POST",
@@ -1005,8 +1010,8 @@ breadcrumb -->
         }else {
             //window.open("../report/cetak_rep_bphtb.php?t_bphtb_registration_id="+params, "_blank", "toolbar=0,location=0,menubar=0");
             url = "<?php echo base_url(); ?>"+"cetak_rep_bphtb/pageCetak?t_bphtb_registration_id="+params;
-            //openInNewTab(url);
-            PopupCenter(url,Cetak Nota Verifikasi,500,500);
+            openInNewTab(url);
+            //PopupCenter(url,Cetak Nota Verifikasi,500,500);
         }
     }
 
