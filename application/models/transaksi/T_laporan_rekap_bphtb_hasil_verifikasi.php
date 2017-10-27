@@ -24,7 +24,8 @@ class t_laporan_rekap_bphtb_hasil_verifikasi extends Abstract_model {
                                 building_area,
                                 building_total_price,
                                 market_price,
-                                bphtb_amt_final ";
+                                bphtb_amt_final,
+                                building_total_price+land_total_price as nilai_njop ";
     public $fromClause      = "sikp.t_bphtb_registration reg_bphtb
                                 LEFT JOIN p_bphtb_legal_doc_type bphtb_doc on bphtb_doc.p_bphtb_legal_doc_type_id = reg_bphtb.p_bphtb_legal_doc_type_id
                                 LEFT JOIN t_customer_order cust_order ON cust_order.t_customer_order_id = reg_bphtb.t_customer_order_id 
