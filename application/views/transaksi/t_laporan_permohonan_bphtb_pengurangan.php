@@ -8,7 +8,7 @@
             <i class="fa fa-circle"></i>
         </li>
         <li>
-            <span>Laporan Penerimaan BPHTB</span>
+            <span>Laporan Permohonan BPHTB Pengurangan</span>
         </li>
     </ul>
 </div>
@@ -20,7 +20,7 @@
             <div class="portlet-title">
                 <div class="caption">
                     <i class=" icon-list font-blue"></i>
-                    <span class="caption-subject font-blue bold uppercase"> Laporan Penerimaan BPHTB
+                    <span class="caption-subject font-blue bold uppercase"> Laporan Permohonan BPHTB Pengurangan
                     </span>
                 </div>
             </div>
@@ -127,32 +127,27 @@
                     </div>
                 </div>
 
-                <div class="space-2"></div>
-                <div class="row">                    
-                    <div class="form-group">
-                        <label class="control-label col-md-2">Nama Pemeriksa  
-                        </label>
-                        <div class="col-md-3">
-                            <select id="verificated_by" class="form-control" name="verificated_by">
-                                <option  value="">Semua</option>
-                                <option  value="ACEP">ACEP</option>
-                                <option  value="ASEP">ASEP</option>
-                                <option  value="IWAN">IWAN</option>
-                                <option  value="RONI">RONI</option>
-                                <option  value="TATANG">TATANG</option>
-                                <option  value="ZAENAL">ZAENAL</option>
-                          </select>
-                        </div>
-                    </div>
-                </div>
 
                 <div class="space-2"></div>
                 <div class="row col-md-offset-4">
-                    <button class="btn btn-primary" type="button" onclick="toPDF()" id="pdf">Download PDF</button>
+                    <button class="btn btn-primary" type="button" onclick="toTampil()" id="tampil">Tampilkan</button>
                     <button class="btn btn-danger" type="button" onclick="toExcel()" id="excel">Download Excel</button>
                     <button class="btn btn-outline green" type="button" onclick="toReset()" id="reset">Reset</button>
                 </div>
             </div>
+        </div>
+    </div>
+</div>
+
+<div class="tab-content no-border" id="table">
+    <div class="row">
+        <div class="col-xs-12">
+            <div id="gbox_grid-table" class="ui-jqgrid">
+                <div id="gview_grid-table" class="ui-jqgrid-view table-responsive" role="grid">
+                    <table id="grid-table"></table>
+                   <!--  <div id="grid-pager"></div> -->
+                </div>
+            </div>            
         </div>
     </div>
 </div>
@@ -166,6 +161,8 @@
         format: 'YYYY-MM-DD',
         // defaultDate: new Date()
     });
+
+    $('#table').css('display', 'none');
 
     $("#btn-lov-kecamatan").on('click', function() { 
         var kota = 749;  // id kota sama dengan cocas yaitu id dari kota bandung
@@ -203,6 +200,170 @@
             }
     });
 
+    
+
+</script>
+
+<script type="text/javascript">
+    
+
+    jQuery(function($) {
+        var grid_selector = "#grid-table";
+        var pager_selector = "#grid-pager";
+
+        jQuery("#grid-table").jqGrid({
+            url: '<?php echo WS_JQGRID."transaksi.t_laporan_permohonan_bphtb_pengurangan_controller/read"; ?>',
+            datatype: "json",
+            mtype: "POST",
+            colModel: [
+                {label: 'Nama Pemohon',name: 'wp_name',width: 120, align: "left"},
+                {name: 'Alamat',width: 300, align: "center",
+                    formatter:function(cellvalue, options, rowObject) {
+
+                        var wp_address_name = rowObject['wp_address_name'];
+                        var kelurahan_name = rowObject['kelurahan_name'];
+                        var kecamatan_name = rowObject['kecamatan_name'];
+                        var kota_name = rowObject['kota_name'];
+
+                        var alamat = wp_address_name+"<br>"+kelurahan_name+"<br>"+kecamatan_name+"<br>"+kota_name;
+                        
+                        return '<div>'+alamat+'</div>';
+
+                    }
+                },
+                {label: 'NOP PBB',name: 'njop_pbb',width: 150, align: "left"},
+                {name: 'Letak Tanah dan Bangunan',width: 300, align: "center",
+                    formatter:function(cellvalue, options, rowObject) {
+
+                        var wp_address_name = rowObject['object_address_name'];
+                        var kelurahan_name = rowObject['object_kelurahan_name'];
+                        var kecamatan_name = rowObject['object_kecamatan_name'];
+                        var kota_name = rowObject['object_kota_name'];
+
+                        var alamat = wp_address_name+"<br>"+kelurahan_name+"<br>"+kecamatan_name+"<br>"+kota_name;
+                        
+                        return '<div>'+alamat+'</div>';
+
+                    }
+                },
+                {label: 'Akta/Risalah Lelang/Kep. Pemberian Hak/Dokumen lainnya',name: 'keterangan_opsi_c',width: 300, align: "left"},
+                {label: 'NJOP (Rp)',name: 'njop',width: 150, summaryTpl:"{0}",summaryType:"sum", formatter:'integer', formatoptions: {prefix:"", thousandsSeparator:',', defaultValue:'0'},align: "right"},
+                {label: 'BPHTB TERHUTANG (Rp)',name: 'bphtb_amt',width: 150, summaryTpl:"{0}",summaryType:"sum", formatter:'integer', formatoptions: {prefix:"", thousandsSeparator:',', defaultValue:'0'},align: "right"},
+                {label: 'PENGURANGAN (Rp)',name: 'bphtb_discount',width: 150,summaryTpl:"{0}",summaryType:"sum", formatter:'integer', formatoptions: {prefix:"", thousandsSeparator:',', defaultValue:'0'},align: "right"},
+                {label: 'TANGGAL MENGAJUKAN PERMOHONAN',name: 'creation_date',width: 150, align: "left"},
+
+            ],
+            height: '100%',
+            autowidth: true,
+            viewrecords: true,
+            rowNum: -1,
+            rowList: [10,20,50],
+            rownumbers: true, // show row numbers
+            rownumWidth: 35, // the width of the row numbers columns
+            altRows: true,
+            shrinkToFit: true,
+            multiboxonly: true,
+            footerrow: true,
+            gridComplete: function() {
+                var $grid = $('#grid-table');
+                var njop = $grid.jqGrid('getCol', 'njop', false, 'sum');
+                var bphtb_amt = $grid.jqGrid('getCol', 'bphtb_amt', false, 'sum');
+                var bphtb_discount = $grid.jqGrid('getCol', 'bphtb_discount', false, 'sum');
+                $grid.jqGrid('footerData', 'set', { 'njop': njop,
+                                                    'bphtb_amt':bphtb_amt,
+                                                    'bphtb_discount':bphtb_discount
+
+                 });
+            },
+            onSelectRow: function (rowid) {
+                /*do something when selected*/
+
+            },
+            sortorder:'',
+            pager: '#grid-pager',
+            jsonReader: {
+                root: 'rows',
+                id: 'id',
+                repeatitems: false
+            },
+            loadComplete: function (response) {
+                if(response.success == false) {
+                    swal({title: 'Attention', text: response.message, html: true, type: "warning"});
+                }
+
+            },
+            caption: "Laporan Hasil Validasi BPHTB"
+
+        });
+
+        
+
+    });
+
+    function responsive_jqgrid(grid_selector, pager_selector) {
+        var parent_column = $(grid_selector).closest('[class*="col-"]');
+        $(grid_selector).jqGrid( 'setGridWidth', $(".page-content").width() );
+        $(pager_selector).jqGrid( 'setGridWidth', parent_column.width() );
+    }
+
+    
+
+    function toTampil(){
+        var date_start_laporan        = $('#date_start_laporan').val();        
+        var date_end_laporan          = $('#date_end_laporan').val();
+        var receipt_no                = $('#receipt_no').val();
+        var njop_pbb                  = $('#njop_pbb').val();
+        var wp_name                   = $('#wp_name').val();
+        var p_region_id_kecamatan     = $('#p_region_id_kecamatan').val();
+        var p_region_id_kelurahan     = $('#p_region_id_kelurahan').val();
+        var p_bphtb_legal_doc_type_id = $('#p_bphtb_legal_doc_type_id').val();
+
+        
+        if( date_start_laporan == "" && 
+            date_end_laporan == "" && 
+            receipt_no == "" &&
+            njop_pbb == "" &&
+            wp_name == "" &&
+            p_region_id_kecamatan == "" &&
+            p_region_id_kelurahan == "" &&
+            p_bphtb_legal_doc_type_id == "" ){            
+            swal ( "Oopss" ,  "Harus Terisi Salah Satu!" ,  "error" );
+            return;
+        }else{
+            if (date_start_laporan != "" && date_end_laporan == ""){
+                swal ( "Oopss" ,  "Kolom Tanggal Tidak Boleh Kosong!" ,  "error" );
+                return;
+            }
+            if (date_start_laporan == "" && date_end_laporan != ""){
+                swal ( "Oopss" ,  "Kolom Tanggal Tidak Boleh Kosong!" ,  "error" );
+                return;
+            }
+
+            if (date_end_laporan < date_start_laporan){
+                swal ( "Oopss" ,  "Tanggal awal harus lebih besar dari tanggal akhir" ,  "error" );
+                return;
+            }else{
+                $('#table').css('display', '');
+                jQuery(function($) {
+                    var grid_selector = "#grid-table";
+
+                    jQuery("#grid-table").jqGrid('setGridParam',{
+                        url: '<?php echo WS_JQGRID."transaksi.t_laporan_permohonan_bphtb_pengurangan_controller/read"; ?>',
+                        postData: {date_start_laporan:date_start_laporan,date_end_laporan:date_end_laporan,receipt_no:receipt_no,njop_pbb:njop_pbb,wp_name:wp_name,p_region_id_kecamatan:p_region_id_kecamatan,p_region_id_kelurahan:p_region_id_kelurahan,p_bphtb_legal_doc_type_id:p_bphtb_legal_doc_type_id}
+                    });
+                    $("#grid-table").jqGrid("setCaption", " Laporan Permohonan BPHTB Pengurangan");
+                    $("#grid-table").trigger("reloadGrid");
+                });
+            }
+            
+        }
+
+        
+    
+    }
+</script>
+
+<script>
     function toReset(){
         $('#date_start_laporan').val('');
         $('#date_end_laporan').val('');
@@ -216,7 +377,6 @@
         $('#nama_kelurahan').val('');
 
         $('#p_bphtb_legal_doc_type_id').val('');
-        $('#verificated_by').val('');
 
     }
 
@@ -229,7 +389,6 @@
         var p_region_id_kecamatan     = $('#p_region_id_kecamatan').val();
         var p_region_id_kelurahan     = $('#p_region_id_kelurahan').val();
         var p_bphtb_legal_doc_type_id = $('#p_bphtb_legal_doc_type_id').val();
-        var verificated_by            = $('#verificated_by').val();
         
 
         if( date_start_laporan == "" && 
@@ -239,8 +398,7 @@
             wp_name == "" &&
             p_region_id_kecamatan == "" &&
             p_region_id_kelurahan == "" &&
-            p_bphtb_legal_doc_type_id == "" &&
-            verificated_by == ""){            
+            p_bphtb_legal_doc_type_id == "" ){            
             swal ( "Oopss" ,  "Harus Terisi Salah Satu!" ,  "error" );
             return;
         }else{
@@ -253,7 +411,7 @@
                 return;
             }
 
-            var url = "<?php echo WS_JQGRID . "transaksi.t_laporan_penerimaan_bphtb_controller/excel/?"; ?>";
+            var url = "<?php echo WS_JQGRID . "transaksi.t_laporan_permohonan_bphtb_pengurangan_controller/excel/?"; ?>";
             url += "<?php echo $this->security->get_csrf_token_name(); ?>=<?php echo $this->security->get_csrf_hash(); ?>";
             url += "&date_start_laporan=" + date_start_laporan;
             url += "&date_end_laporan=" + date_end_laporan;
@@ -263,7 +421,6 @@
             url += "&p_region_id_kecamatan=" + p_region_id_kecamatan;
             url += "&p_region_id_kelurahan=" + p_region_id_kelurahan;
             url += "&p_bphtb_legal_doc_type_id=" + p_bphtb_legal_doc_type_id;
-            url += "&verificated_by=" + verificated_by;
 
             if (date_end_laporan < date_start_laporan){
                 swal ( "Oopss" ,  "Tanggal awal harus lebih besar dari tanggal akhir" ,  "error" );
@@ -274,64 +431,5 @@
             
         }
     }
-
-
-    function toPDF(){
-        var date_start_laporan        = $('#date_start_laporan').val();        
-        var date_end_laporan          = $('#date_end_laporan').val();
-        var receipt_no                = $('#receipt_no').val();
-        var njop_pbb                  = $('#njop_pbb').val();
-        var wp_name                   = $('#wp_name').val();
-        var p_region_id_kecamatan     = $('#p_region_id_kecamatan').val();
-        var p_region_id_kelurahan     = $('#p_region_id_kelurahan').val();
-        var p_bphtb_legal_doc_type_id = $('#p_bphtb_legal_doc_type_id').val();
-        var verificated_by            = $('#verificated_by').val();
-
-        if(date_start_laporan == "" && 
-            date_end_laporan == "" && 
-            receipt_no == "" &&
-            njop_pbb == "" &&
-            wp_name == "" &&
-            p_region_id_kecamatan == "" &&
-            p_region_id_kelurahan == "" &&
-            p_bphtb_legal_doc_type_id == "" &&
-            verificated_by == ""){
-            swal ( "Oopss" ,  "Harus Terisi Salah Satu!" ,  "error" ); 
-             return;          
-        }else{
-            if (date_start_laporan != "" && date_end_laporan == ""){
-                swal ( "Oopss" ,  "Kolom Tanggal Tidak Boleh Kosong!" ,  "error" );
-                return;
-            }
-            if (date_start_laporan == "" && date_end_laporan != ""){
-                swal ( "Oopss" ,  "Kolom Tanggal Tidak Boleh Kosong!" ,  "error" );
-                return;
-            }
-            var url = "<?php echo base_url(); ?>"+"pdf_lap_penerimaan_bphtb/save_pdf_t_lap_penerimaan_bphtb?";
-            url += "date_start_laporan=" + date_start_laporan;
-            url += "&date_end_laporan=" + date_end_laporan;
-            url += "&receipt_no=" + receipt_no;
-            url += "&njop_pbb=" + njop_pbb;
-            url += "&wp_name=" + wp_name;
-            url += "&p_region_id_kecamatan=" + p_region_id_kecamatan;
-            url += "&p_region_id_kelurahan=" + p_region_id_kelurahan;
-            url += "&p_bphtb_legal_doc_type_id=" + p_bphtb_legal_doc_type_id;
-            url += "&verificated_by=" + verificated_by;
-
-            if (date_end_laporan < date_start_laporan){
-                swal ( "Oopss" ,  "Tanggal awal harus lebih besar dari tanggal akhir" ,  "error" );
-                return;
-            }else{
-                openInNewTab(url);
-            }
-        }
-
-
-        
-    }
-    
-    function openInNewTab(url) {
-      window.open(url, '_blank', 'location=yes,height=570,width=820,scrollbars=yes,status=yes');
-    }
-
 </script>
+

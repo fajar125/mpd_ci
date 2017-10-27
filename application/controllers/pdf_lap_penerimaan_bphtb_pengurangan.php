@@ -229,7 +229,7 @@ class pdf_lap_penerimaan_bphtb_pengurangan extends CI_Controller{
 
   function getNameDoc($id){
 
-        $sql =" SELECT * from p_bphtb_legal_doc_type 
+        $sql =" SELECT description from p_bphtb_legal_doc_type 
         where p_bphtb_legal_doc_type_id = ".$id;
 
         $output = $this->db->query($sql);

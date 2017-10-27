@@ -20,7 +20,7 @@ class t_laporan_daftar_bphtb_verifikasi_controller {
 
             $items = $table->getExcel($start_date, $end_date, $kec);  
             
-            startExcel('DAFTAR_BPHTB_'.date("dmy").'.xls');
+            startExcel('DAFTAR_BPHTB_VERIFIKASI_'.date("dmy").'.xls');
             echo '<html>';
             echo '<head><title>LAPORAN DAFTAR BPHTB BERDASARKAN TANGGAL VERIFIKASI</title></head>';
             echo '<body>';

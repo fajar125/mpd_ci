@@ -8,7 +8,7 @@
             <i class="fa fa-circle"></i>
         </li>
         <li>
-            <span>Laporan Daftar BPHTB Verifikasi</span>
+            <span>Laporan Daftar BPHTB</span>
         </li>
     </ul>
 </div>
@@ -20,7 +20,7 @@
             <div class="portlet-title">
                 <div class="caption">
                     <i class=" icon-list font-blue"></i>
-                    <span class="caption-subject font-blue bold uppercase"> Laporan Daftar BPHTB Verifikasi
+                    <span class="caption-subject font-blue bold uppercase"> Laporan Daftar BPHTB
                     </span>
                 </div>
             </div>
@@ -42,22 +42,7 @@
                 </div>  
                 <div class="space-2"></div>
 
-                <div class="row">                    
-                    <div class="form-group">
-                        <label class="control-label col-md-2">kecamatan
-                        </label>
-                        <div class="col-md-3">
-                            <div class="input-group">
-                                <input type="hidden" class="form-control" name="object_p_region_id_kec" maxlength="8" id="object_p_region_id_kec" readonly>
-                                <input type="text" class="form-control" name="kecamatan" id="kecamatan" readonly>
-                                <span class="input-group-btn">
-                                    <button class="btn btn-success" type="button" id="btn-lov-kecamatan">
-                                    <i class="fa fa-search"></i>
-                                </span>
-                            </div>
-                        </div>
-                    </div>
-                </div> 
+                
 
                 <div class="space-2"></div>
                 <div class="row col-md-offset-4">
@@ -68,7 +53,6 @@
     </div>
 </div>
 
-<?php $this->load->view('lov/lov_kec'); ?>
 
 <script >
     //tanggal 
@@ -77,32 +61,20 @@
         // defaultDate: new Date()
     });
 
-    // call lov kecematan
-    $("#btn-lov-kecamatan").on('click', function() { 
-        var kota = 749;  // id kota sama dengan cocas yaitu id dari kota bandung
-
-        if( kota == null || kota == ''){
-            swal({title: "Error!", text: "Isi Kota/Kabupaten Terlebih Dahulu", html: true, type: "error"});
-            return;
-        }
-        modal_lov_kecamatan_show('object_p_region_id_kec','kecamatan',kota);        
-    });
 
     function toExcel(){
         var date_start_laporan     = $('#date_start_laporan').val();        
         var date_end_laporan       = $('#date_end_laporan').val();
-        var object_p_region_id_kec = $('#object_p_region_id_kec').val();
         
         if(date_start_laporan == "" || date_end_laporan == ""){            
             swal ( "Oopss" ,  "Kolom Tanggal Tidak Boleh Kosong!" ,  "error" );
         }else{
             
 
-            var url = "<?php echo WS_JQGRID . "transaksi.t_laporan_daftar_bphtb_verifikasi_controller/excel/?"; ?>";
+            var url = "<?php echo WS_JQGRID . "transaksi.t_laporan_daftar_bphtb_controller/excel/?"; ?>";
             url += "<?php echo $this->security->get_csrf_token_name(); ?>=<?php echo $this->security->get_csrf_hash(); ?>";
             url += "&date_start_laporan=" + date_start_laporan;
             url += "&date_end_laporan=" + date_end_laporan;
-            url += "&object_p_region_id_kec=" + object_p_region_id_kec;
 
             if (date_end_laporan < date_start_laporan){
                 swal ( "Oopss" ,  "Tanggal awal harus lebih besar dari tanggal akhir" ,  "error" );
