@@ -60,6 +60,40 @@ class Transaksi extends CI_Controller
 
     }
 
+    function getData(){
+        check_login();
+
+        $p_vat_type_id = getVarClean('p_vat_type_id','int',0);
+
+        $tgl_penerimaan = "'01-01-2010'";
+        $i_flag_setoran = 1;
+        $p_year_period_id = 4;
+
+       
+
+        $sql="select *,trunc(payment_date) , (kode_jns_pajak||' '||kode_ayat) as no_ayat
+                    from f_rep_bpps_piutang2new_rm_masuk_resto($p_vat_type_id, $p_year_period_id, $tgl_penerimaan, to_char(sysdate,'dd-mm-yyyy'), $i_flag_setoran) 
+                    order by p_vat_type_dtl_id, wp_name,npwpd, payment_date";
+
+        $query = $this->db->query($sql);
+        $result = $query->result_array();
+        //print_r($result);exit;
+        $s_result ="[";
+        for ($i=0;$i<count($result);$i++){
+            $s_result = $s_result . '["'.$result[$i]['no_ayat'].'","'.$result[$i]['no_kohir'].'","'.$result[$i]['wp_name'].'","'.$result[$i]['address'].'","'.$result[$i]['npwpd'].'","'.$result[$i]['jumlah_terima'].'","'.$result[$i]['payment_date'].'","'.$result[$i]['masa_pajak'].'"],';
+        }
+        $s_result = substr($s_result, 0, -1)  ;      
+
+        $s_result = $s_result . "]";
+        echo $s_result;
+        exit;
+        // print_r($items);
+        // exit();
+    
+
+
+    }
+
     function payment_type_combo(){
         try {
             $sql = "SELECT * 
