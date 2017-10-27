@@ -98,7 +98,7 @@
                 {label: 'HARGA TANAH (Rp)',name: 'land_total_price',width: 150, summaryTpl:"{0}",summaryType:"sum", formatter:'integer', formatoptions: {prefix:"", thousandsSeparator:',', defaultValue:'0'},align: "right"},
                 {label: 'HARGA BANGUNAN (Rp)    ',name: 'building_area',width: 180, summaryTpl:"{0}",summaryType:"sum", formatter:'integer', formatoptions: {prefix:"", thousandsSeparator:',', defaultValue:'0'},align: "right"},
                 {label: 'TOTAL NJOP (Rp)',name: 'building_total_price',width: 150, summaryTpl:"{0}",summaryType:"sum", formatter:'integer', formatoptions: {prefix:"", thousandsSeparator:',', defaultValue:'0'},align: "right"},
-                {label: 'HARGA PASAR TRANSAKSI LELANG (Rp)',name: 'market_price',width: 200, summaryTpl:"{0}",summaryType:"sum", formatter:'integer', formatoptions: {prefix:"", thousandsSeparator:',', defaultValue:'0'},align: "right"},
+                {label: 'HARGA PASAR TRANSAKSI LELANG (Rp)',name: 'market_price',width: 250, summaryTpl:"{0}",summaryType:"sum", formatter:'integer', formatoptions: {prefix:"", thousandsSeparator:',', defaultValue:'0'},align: "right"},
                 {label: 'NILAI PAJAK YANG  HARUS DIBAYAR(Rp)',name: 'bphtb_amt_final',width: 290, summaryTpl:"{0}",summaryType:"sum", formatter:'integer', formatoptions: {prefix:"", thousandsSeparator:',', defaultValue:'0'},align: "right"}
 
             ],
