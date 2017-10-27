@@ -117,159 +117,164 @@ class t_rep_lap_harian_per_ketetapan_controller {
             $jml_transaksi_sampai_kemarin_semua_jenis_pajak = 0;
             $jml_transaksi_sampai_hari_ini_per_jenis_pajak = 0;
             $jml_transaksi_sampai_hari_ini_semua_jenis_pajak = 0;
-
-            for ($i = 0; $i < count($items); $i++) {
-                //print data
-                echo '<tr>';
-                echo '<td>  
-                            '.$no.' 
-                         </td>
-                         <td>
-                            '.$items[$i]["nomor_ayat"].' 
-                         </td>
-                         <td>
-                                P. ' . strtoupper($items[$i]["nama_ayat"]).' 
-                         </td>
-                         <td align="right">
-                                '.number_format($items[$i]["jml_sptpd_hari_ini"], 0, ',', '.').' 
-                         </td>
-                         <td align="right">
-                                '.number_format($items[$i]["jml_jabatan_hari_ini"], 0, ',', '.').'   
-                         </td>
-                         <td align="right">
-                                '.number_format($items[$i]["jml_pemeriksaan_hari_ini"], 0, ',', '.').'   
-                         </td>
-                         <td align="right">
-                                '.number_format($items[$i]["jml_piutang_hari_ini"], 0, ',', '.').'   
-                         </td>
-                         <td align="right">
-                                '.number_format($items[$i]["jml_hari_ini"], 0, ',', '.').'   
-                         </td>
-                         
-
-                         <td align="right">
-                                '.number_format($items[$i]["jml_sptpd_sd_hari_lalu"], 0, ',', '.').'                                               
-                         </td>
-                         <td align="right">
-                                '.number_format($items[$i]["jml_jabatan_sd_hari_lalu"], 0, ',', '.').'                                                 
-                         </td>
-                         <td align="right">
-                                '.number_format($items[$i]["jml_pemeriksaan_sd_hari_lalu"], 0, ',', '.').'                                                 
-                         </td>
-                         <td align="right">
-                                '.number_format($items[$i]["jml_piutang_sd_hari_lalu"], 0, ',', '.').'                                                 
-                         </td>
-                         <td align="right">
-                                '.number_format($items[$i]["jml_sd_hari_lalu"], 0, ',', '.').'                                                 
-                         </td>
-                         
-
-                         <td align="right">
-                                '.number_format($items[$i]["jml_sptpd_sd_hari_ini"], 0, ',', '.').'
-                         </td>
-                         <td align="right">
-                                '.number_format($items[$i]["jml_jabatan_sd_hari_ini"], 0, ',', '.').'
-                         </td>
-                         <td align="right">
-                                '.number_format($items[$i]["jml_pemeriksaan_sd_hari_ini"], 0, ',', '.').'
-                         </td>
-                         <td align="right">
-                                '.number_format($items[$i]["jml_piutang_sd_hari_ini"], 0, ',', '.').'
-                         </td>
-                         <td align="right">
-                                '.number_format($items[$i]["jml_sd_hari_ini"], 0, ',', '.').'
-                         </td>';
-                echo '</tr>';
-                $no++;
-
-                //hitung jml_hari_ini sampai baris ini
-                $jumlahtemp += $items[$i]["jml_hari_ini"];
-                $jumlahtotal += $items[$i]["jml_hari_ini"];
-                $jumlahtemp_harilalu += $items[$i]["jml_sd_hari_lalu"];
-                $jumlahtotal_harilalu += $items[$i]["jml_sd_hari_lalu"];
-                $jumlahtemp_hariini += $items[$i]["jml_sd_hari_ini"];
-                $jumlahtotal_hariini += $items[$i]["jml_sd_hari_ini"];
-                /*$jml_transaksi_per_jenis_pajak += $items["jml_transaksi"][$i];
-                $jml_transaksi_semua_jenis_pajak += $items["jml_transaksi"][$i];*/
-
-                /*$jml_transaksi_sampai_kemarin_per_jenis_pajak += $items["jml_transaksi_sampai_kemarin"][$i];
-                $jml_transaksi_sampai_kemarin_semua_jenis_pajak += $items["jml_transaksi_sampai_kemarin"][$i];
-
-                $jml_transaksi_sampai_hari_ini_per_jenis_pajak += $items["jml_transaksi_sampai_hari_ini"][$i];
-                $jml_transaksi_sampai_hari_ini_semua_jenis_pajak += $items["jml_transaksi_sampai_hari_ini"][$i];*/
-                
-                //cek apakah perlu bikin baris jumlah
-                //jika iya, simpan jumlahtemp ke jumlahperjenis, print jumlahtemp, reset jumlahtemp
-                $jenis = $items[$i]["nama_jns_pajak"];
-                if((count($items)-1) != $i){
-                    $jenissesudah = $items[$i + 1]["nama_jns_pajak"];
-                }else{
-                    $jenissesudah = "";
-                }
-                
-                if($jenis != $jenissesudah || $jenissesudah = ""){
-                    $jumlahperjenis[] = $jumlahtemp;
-                    $jumlahperjenis_harilalu[] = $jumlahtemp_harilalu;
-                    $jumlahperjenis_hariini[] = $jumlahtemp_hariini;
-                    
+            if($items != 'no result'){
+                for ($i = 0; $i < count($items); $i++) {
+                    //print data
                     echo '<tr>';
-                    echo '<td style="font-weight:bold;" align="center" colspan=3>'.strtoupper($items[$i]["nama_jns_pajak"]).'</td>';
-                    echo '<td style="font-weight:bold;" align="right"></td>';
-                    echo '<td style="font-weight:bold;" align="right"></td>';
-                    echo '<td style="font-weight:bold;" align="right"></td>';
-                    echo '<td style="font-weight:bold;" align="right"></td>';
-                    echo '<td style="font-weight:bold;" align="right">'.number_format($jumlahtemp, 0, ',', '.').'</td>';
-                    
-                    echo '<td style="font-weight:bold;" align="right"></td>';
-                    echo '<td style="font-weight:bold;" align="right"></td>';
-                    echo '<td style="font-weight:bold;" align="right"></td>';
-                    echo '<td style="font-weight:bold;" align="right"></td>';
-                    echo '<td style="font-weight:bold;" align="right">'.number_format($jumlahtemp_harilalu, 0, ',', '.').'</td>';
-                    
-                    echo '<td style="font-weight:bold;" align="right"></td>';
-                    echo '<td style="font-weight:bold;" align="right"></td>';
-                    echo '<td style="font-weight:bold;" align="right"></td>';
-                    echo '<td style="font-weight:bold;" align="right"></td>';
-                    echo '<td style="font-weight:bold;" align="right">'.number_format($jumlahtemp_hariini, 0, ',', '.').'</td>';
-                    echo '</tr>';               
+                    echo '<td>  
+                                '.$no.' 
+                             </td>
+                             <td>
+                                '.$items[$i]["nomor_ayat"].' 
+                             </td>
+                             <td>
+                                    P. ' . strtoupper($items[$i]["nama_ayat"]).' 
+                             </td>
+                             <td align="right">
+                                    '.number_format($items[$i]["jml_sptpd_hari_ini"], 0, ',', '.').' 
+                             </td>
+                             <td align="right">
+                                    '.number_format($items[$i]["jml_jabatan_hari_ini"], 0, ',', '.').'   
+                             </td>
+                             <td align="right">
+                                    '.number_format($items[$i]["jml_pemeriksaan_hari_ini"], 0, ',', '.').'   
+                             </td>
+                             <td align="right">
+                                    '.number_format($items[$i]["jml_piutang_hari_ini"], 0, ',', '.').'   
+                             </td>
+                             <td align="right">
+                                    '.number_format($items[$i]["jml_hari_ini"], 0, ',', '.').'   
+                             </td>
+                             
 
-                    $jumlahtemp = 0;
-                    $jumlahtemp_harilalu = 0;
-                    $jumlahtemp_hariini = 0;
-                    $jml_transaksi_per_jenis_pajak = 0;
-                    $jml_transaksi_sampai_kemarin_per_jenis_pajak = 0;
-                    $jml_transaksi_sampai_hari_ini_per_jenis_pajak = 0;
-                }
-                
-                if($i == count($items) - 1){
-                    echo '<tr>';
-                    echo '<td style="font-weight:bold;" align="center" colspan=3>JUMLAH TOTAL</td>';
-                    echo '<td style="font-weight:bold;" align="right"></td>';
-                    echo '<td style="font-weight:bold;" align="right"></td>';
-                    echo '<td style="font-weight:bold;" align="right"></td>';
-                    echo '<td style="font-weight:bold;" align="right"></td>';
-                    echo '<td style="font-weight:bold;" align="right">'.number_format($jumlahtotal, 0, ',', '.').'</td>';
+                             <td align="right">
+                                    '.number_format($items[$i]["jml_sptpd_sd_hari_lalu"], 0, ',', '.').'                                               
+                             </td>
+                             <td align="right">
+                                    '.number_format($items[$i]["jml_jabatan_sd_hari_lalu"], 0, ',', '.').'                                                 
+                             </td>
+                             <td align="right">
+                                    '.number_format($items[$i]["jml_pemeriksaan_sd_hari_lalu"], 0, ',', '.').'                                                 
+                             </td>
+                             <td align="right">
+                                    '.number_format($items[$i]["jml_piutang_sd_hari_lalu"], 0, ',', '.').'                                                 
+                             </td>
+                             <td align="right">
+                                    '.number_format($items[$i]["jml_sd_hari_lalu"], 0, ',', '.').'                                                 
+                             </td>
+                             
 
-                    echo '<td style="font-weight:bold;" align="right"></td>';
-                    echo '<td style="font-weight:bold;" align="right"></td>';
-                    echo '<td style="font-weight:bold;" align="right"></td>';
-                    echo '<td style="font-weight:bold;" align="right"></td>';
-                    echo '<td style="font-weight:bold;" align="right">'.number_format($jumlahtotal_harilalu, 0, ',', '.').'</td>';
-
-                    echo '<td style="font-weight:bold;" align="right"></td>';
-                    echo '<td style="font-weight:bold;" align="right"></td>';
-                    echo '<td style="font-weight:bold;" align="right"></td>';
-                    echo '<td style="font-weight:bold;" align="right"></td>';
-                    echo '<td style="font-weight:bold;" align="right">'.number_format($jumlahtotal_hariini, 0, ',', '.').'</td>';
+                             <td align="right">
+                                    '.number_format($items[$i]["jml_sptpd_sd_hari_ini"], 0, ',', '.').'
+                             </td>
+                             <td align="right">
+                                    '.number_format($items[$i]["jml_jabatan_sd_hari_ini"], 0, ',', '.').'
+                             </td>
+                             <td align="right">
+                                    '.number_format($items[$i]["jml_pemeriksaan_sd_hari_ini"], 0, ',', '.').'
+                             </td>
+                             <td align="right">
+                                    '.number_format($items[$i]["jml_piutang_sd_hari_ini"], 0, ',', '.').'
+                             </td>
+                             <td align="right">
+                                    '.number_format($items[$i]["jml_sd_hari_ini"], 0, ',', '.').'
+                             </td>';
                     echo '</tr>';
-                    $jumlahtotal = 0;
-                    $jumlahtotal_harilalu = 0;
-                    $jumlahtotal_hariini = 0;
-                    $jml_transaksi_per_jenis_pajak = 0;
-                    $jml_transaksi_sampai_kemarin_per_jenis_pajak = 0;
-                    $jml_transaksi_sampai_hari_ini_per_jenis_pajak = 0;
+                    $no++;
+
+                    //hitung jml_hari_ini sampai baris ini
+                    $jumlahtemp += $items[$i]["jml_hari_ini"];
+                    $jumlahtotal += $items[$i]["jml_hari_ini"];
+                    $jumlahtemp_harilalu += $items[$i]["jml_sd_hari_lalu"];
+                    $jumlahtotal_harilalu += $items[$i]["jml_sd_hari_lalu"];
+                    $jumlahtemp_hariini += $items[$i]["jml_sd_hari_ini"];
+                    $jumlahtotal_hariini += $items[$i]["jml_sd_hari_ini"];
+                    /*$jml_transaksi_per_jenis_pajak += $items["jml_transaksi"][$i];
+                    $jml_transaksi_semua_jenis_pajak += $items["jml_transaksi"][$i];*/
+
+                    /*$jml_transaksi_sampai_kemarin_per_jenis_pajak += $items["jml_transaksi_sampai_kemarin"][$i];
+                    $jml_transaksi_sampai_kemarin_semua_jenis_pajak += $items["jml_transaksi_sampai_kemarin"][$i];
+
+                    $jml_transaksi_sampai_hari_ini_per_jenis_pajak += $items["jml_transaksi_sampai_hari_ini"][$i];
+                    $jml_transaksi_sampai_hari_ini_semua_jenis_pajak += $items["jml_transaksi_sampai_hari_ini"][$i];*/
+                    
+                    //cek apakah perlu bikin baris jumlah
+                    //jika iya, simpan jumlahtemp ke jumlahperjenis, print jumlahtemp, reset jumlahtemp
+                    $jenis = $items[$i]["nama_jns_pajak"];
+                    if((count($items)-1) != $i){
+                        $jenissesudah = $items[$i + 1]["nama_jns_pajak"];
+                    }else{
+                        $jenissesudah = "";
+                    }
+                    
+                    if($jenis != $jenissesudah || $jenissesudah = ""){
+                        $jumlahperjenis[] = $jumlahtemp;
+                        $jumlahperjenis_harilalu[] = $jumlahtemp_harilalu;
+                        $jumlahperjenis_hariini[] = $jumlahtemp_hariini;
+                        
+                        echo '<tr>';
+                        echo '<td style="font-weight:bold;" align="center" colspan=3>'.strtoupper($items[$i]["nama_jns_pajak"]).'</td>';
+                        echo '<td style="font-weight:bold;" align="right"></td>';
+                        echo '<td style="font-weight:bold;" align="right"></td>';
+                        echo '<td style="font-weight:bold;" align="right"></td>';
+                        echo '<td style="font-weight:bold;" align="right"></td>';
+                        echo '<td style="font-weight:bold;" align="right">'.number_format($jumlahtemp, 0, ',', '.').'</td>';
+                        
+                        echo '<td style="font-weight:bold;" align="right"></td>';
+                        echo '<td style="font-weight:bold;" align="right"></td>';
+                        echo '<td style="font-weight:bold;" align="right"></td>';
+                        echo '<td style="font-weight:bold;" align="right"></td>';
+                        echo '<td style="font-weight:bold;" align="right">'.number_format($jumlahtemp_harilalu, 0, ',', '.').'</td>';
+                        
+                        echo '<td style="font-weight:bold;" align="right"></td>';
+                        echo '<td style="font-weight:bold;" align="right"></td>';
+                        echo '<td style="font-weight:bold;" align="right"></td>';
+                        echo '<td style="font-weight:bold;" align="right"></td>';
+                        echo '<td style="font-weight:bold;" align="right">'.number_format($jumlahtemp_hariini, 0, ',', '.').'</td>';
+                        echo '</tr>';               
+
+                        $jumlahtemp = 0;
+                        $jumlahtemp_harilalu = 0;
+                        $jumlahtemp_hariini = 0;
+                        $jml_transaksi_per_jenis_pajak = 0;
+                        $jml_transaksi_sampai_kemarin_per_jenis_pajak = 0;
+                        $jml_transaksi_sampai_hari_ini_per_jenis_pajak = 0;
+                    }
+                    
+                    if($i == count($items) - 1){
+                        echo '<tr>';
+                        echo '<td style="font-weight:bold;" align="center" colspan=3>JUMLAH TOTAL</td>';
+                        echo '<td style="font-weight:bold;" align="right"></td>';
+                        echo '<td style="font-weight:bold;" align="right"></td>';
+                        echo '<td style="font-weight:bold;" align="right"></td>';
+                        echo '<td style="font-weight:bold;" align="right"></td>';
+                        echo '<td style="font-weight:bold;" align="right">'.number_format($jumlahtotal, 0, ',', '.').'</td>';
+
+                        echo '<td style="font-weight:bold;" align="right"></td>';
+                        echo '<td style="font-weight:bold;" align="right"></td>';
+                        echo '<td style="font-weight:bold;" align="right"></td>';
+                        echo '<td style="font-weight:bold;" align="right"></td>';
+                        echo '<td style="font-weight:bold;" align="right">'.number_format($jumlahtotal_harilalu, 0, ',', '.').'</td>';
+
+                        echo '<td style="font-weight:bold;" align="right"></td>';
+                        echo '<td style="font-weight:bold;" align="right"></td>';
+                        echo '<td style="font-weight:bold;" align="right"></td>';
+                        echo '<td style="font-weight:bold;" align="right"></td>';
+                        echo '<td style="font-weight:bold;" align="right">'.number_format($jumlahtotal_hariini, 0, ',', '.').'</td>';
+                        echo '</tr>';
+                        $jumlahtotal = 0;
+                        $jumlahtotal_harilalu = 0;
+                        $jumlahtotal_hariini = 0;
+                        $jml_transaksi_per_jenis_pajak = 0;
+                        $jml_transaksi_sampai_kemarin_per_jenis_pajak = 0;
+                        $jml_transaksi_sampai_hari_ini_per_jenis_pajak = 0;
+                    }
                 }
             }
+            echo '</table>';
+            echo '</html>';
+            echo '</body>';
+            
             exit;
             
         } catch (Exception $e) {

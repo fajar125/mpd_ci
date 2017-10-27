@@ -66,8 +66,8 @@
 
 <script>
     function print_pdf(){
-        var tgl_penerimaan = $('#tgl_penerimaan').val();        
-        var kode_bank = $('#kode_bank').val();
+        var tgl_penerimaan  = $('#tgl_penerimaan').val();        
+        var kode_bank       = $('#kode_bank').val();
         if(tgl_penerimaan == ""){
             swal ( "Oopss" ,  "Kolom Tanggal Tidak Boleh Kosong!" ,  "error" );           
         }else{

@@ -76,33 +76,34 @@ class t_rep_bpps2_controller {
             
             $items = $result;
             //print_r($items);exit;
-            if ($items != 'no result'){
-                startExcel(date("dmy") . '_LAPORAN_BPPS2.xls');
-                echo '<html>';
-                echo '<head><title>REP BPPS2</title></head>';
-                echo '<body>';
-                echo '<table border="1">';
-                echo '<tr>';
-                echo '<th>No</th>';
-                echo '<th>No Ayat</th>';
-                echo '<th>Nama Ayat</th>';
-                echo '<th>No Kohir</th>';
-                echo '<th>No Bayar</th>';
-                echo '<th>Nama WP</th>';
-                echo '<th>Merk Dagang</th>';
-                echo '<th>NPWPD</th>';
-                echo '<th>Jumlah</th>';
-                echo '<th>Masa Pajak</th>';
-                echo '<th>TGL TAP</th>';
-                echo '<th>Ket.</th>';
-                echo '<th>Status</th>';
-                echo '</tr>';
+            
+            startExcel(date("dmy") . '_LAPORAN_BPPS2.xls');
+            echo '<html>';
+            echo '<head><title>REP BPPS2</title></head>';
+            echo '<body>';
+            echo '<table border="1">';
+            echo '<tr>';
+            echo '<th>No</th>';
+            echo '<th>No Ayat</th>';
+            echo '<th>Nama Ayat</th>';
+            echo '<th>No Kohir</th>';
+            echo '<th>No Bayar</th>';
+            echo '<th>Nama WP</th>';
+            echo '<th>Merk Dagang</th>';
+            echo '<th>NPWPD</th>';
+            echo '<th>Jumlah</th>';
+            echo '<th>Masa Pajak</th>';
+            echo '<th>TGL TAP</th>';
+            echo '<th>Ket.</th>';
+            echo '<th>Status</th>';
+            echo '</tr>';
 
 
                 
-                $no = 0;
-                $jumlahtemp = 0;    
-                $total=0;
+            $no = 0;
+            $jumlahtemp = 0;    
+            $total=0;
+            if($items != 'no result'){
                 foreach ($items as $item) {
                     echo '<tr>';
                     echo '<td>' . ($no+1) . '</td>';
@@ -143,14 +144,14 @@ class t_rep_bpps2_controller {
                 echo '<td align="right">'.number_format($total, 0, ',', '.').'</td>';
                 echo '</tr>';
 
-                echo '</table>';
-                echo '</body>';
-                echo '</html>';
-            }else{
-                //echo '<script> swal ( "Oopss" ,  "Data Kosong" ,  "error" ); </script>';
-                 echo "<script language=\"javascript\">alert('test');</script>";
             }
+                
+                
             
+           
+            echo '</table>';
+            echo '</body>';
+            echo '</html>';
             exit;
 
         } catch (Exception $e) {

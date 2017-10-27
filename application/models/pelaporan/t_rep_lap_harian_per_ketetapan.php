@@ -28,7 +28,8 @@ class t_rep_lap_harian_per_ketetapan extends Abstract_model {
         //echo "vat_type->".$p_vat_type_id." tgl ->".$tgl_penerimaan." setoran->".$i_flag_setoran."kode bank -> ".$kode_bank." status->".$status;exit;
         $items = $output->result_array();
         //print_r($items); exit;
-        
+        if ($items == null || $items == '')
+            $items = 'no result';
         return $items;
     }
 

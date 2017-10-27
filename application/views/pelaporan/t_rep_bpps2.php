@@ -73,7 +73,7 @@
                 <div class="space-2"></div>
                 <div class="row col-md-offset-4">
                     <button class="btn btn-success" type="button" id="btn-search">Tampilkan Data</button>
-                    <button class="btn btn-success" type="button" onclick="toExcelBpps2()" id="excel">Tampilkan Excel</button>
+                    <button class="btn btn-danger" type="button" onclick="toExcelBpps2()" id="excel">Tampilkan Excel</button>
                 </div>
             </div>
         </div>
