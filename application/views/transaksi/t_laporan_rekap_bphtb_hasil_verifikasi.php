@@ -93,11 +93,11 @@
                 {label: 'Jenis Transaksi',name: 'description',width: 190, align: "left"},
                 {label: 'NOP',name: 'njop_pbb',width: 150, align: "left"},
                 {label: 'LT/LB',name: 'land_area',width: 80, align: "right"},
-                {label: 'HARGA TANAH (Rp)',name: 'land_total_price',width: 150, align: "right"},
-                {label: 'HARGA BANGUNAN (Rp)    ',name: 'building_area',width: 180, align: "right"},
-                {label: 'TOTAL NJOP (Rp)',name: 'building_total_price',width: 150, align: "right"},
-                {label: 'HARGA PASAR TRANSAKSI LELANG (Rp)',name: 'market_price',width: 200, align: "right"},
-                {label: 'NILAI PAJAK YANG  HARUS DIBAYAR(Rp)',name: 'bphtb_amt_final',width: 290, align: "right"},
+                {label: 'HARGA TANAH (Rp)',name: 'land_total_price',width: 150, summaryTpl:"{0}",summaryType:"sum", formatter:'integer', formatoptions: {prefix:"", thousandsSeparator:',', defaultValue:'0'},align: "right"},
+                {label: 'HARGA BANGUNAN (Rp)    ',name: 'building_area',width: 180, summaryTpl:"{0}",summaryType:"sum", formatter:'integer', formatoptions: {prefix:"", thousandsSeparator:',', defaultValue:'0'},align: "right"},
+                {label: 'TOTAL NJOP (Rp)',name: 'building_total_price',width: 150, summaryTpl:"{0}",summaryType:"sum", formatter:'integer', formatoptions: {prefix:"", thousandsSeparator:',', defaultValue:'0'},align: "right"},
+                {label: 'HARGA PASAR TRANSAKSI LELANG (Rp)',name: 'market_price',width: 200, summaryTpl:"{0}",summaryType:"sum", formatter:'integer', formatoptions: {prefix:"", thousandsSeparator:',', defaultValue:'0'},align: "right"},
+                {label: 'NILAI PAJAK YANG  HARUS DIBAYAR(Rp)',name: 'bphtb_amt_final',width: 290, summaryTpl:"{0}",summaryType:"sum", formatter:'integer', formatoptions: {prefix:"", thousandsSeparator:',', defaultValue:'0'},align: "right"},
                 {name: 'Cetak',width: 200, align: "center",
                     formatter:function(cellvalue, options, rowObject) {
 

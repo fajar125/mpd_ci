@@ -24,7 +24,7 @@ class t_laporan_permohonan_bphtb_pengurangan_controller {
         $data = array('rows' => array(), 'page' => 1, 'records' => 0, 'total' => 1, 'success' => false, 'message' => '');
         
         try {
-            if (!empty($start_date)&&!empty($end_date)){
+            if ((!empty($start_date)&&!empty($end_date))||!empty($no_transaksi)||!empty($nop)||!empty($nama)||!empty($kec)||!empty($kel)||!empty($jenis_transaksi)){
             	$ci = & get_instance();
                 $ci->load->model('transaksi/t_laporan_permohonan_bphtb_pengurangan');
                 $table = $ci->t_laporan_permohonan_bphtb_pengurangan;
@@ -33,7 +33,7 @@ class t_laporan_permohonan_bphtb_pengurangan_controller {
 
 
                 if (!empty($start_date)  && !empty($end_date))
-	            	$table->setCriteria(" (trunc(a.payment_date) BETWEEN '".$start_date."' AND '".$end_date."') ");
+	            	$table->setCriteria(" (trunc(b.creation_date) BETWEEN '".$start_date."' AND '".$end_date."') ");
 
 		        if (!empty($no_transaksi))
 		            $table->setCriteria(" a.receipt_no ILIKE '%".$no_transaksi."%' ");
@@ -99,7 +99,7 @@ class t_laporan_permohonan_bphtb_pengurangan_controller {
             $table = $ci->t_laporan_permohonan_bphtb_pengurangan;
 
             if (!empty($start_date)  && !empty($end_date))
-            	$table->setCriteria(" (trunc(a.payment_date) BETWEEN '".$start_date."' AND '".$end_date."') ");
+            	$table->setCriteria(" (trunc(b.creation_date) BETWEEN '".$start_date."' AND '".$end_date."') ");
 
 	        if (!empty($no_transaksi))
 	            $table->setCriteria(" a.receipt_no ILIKE '%".$no_transaksi."%' ");

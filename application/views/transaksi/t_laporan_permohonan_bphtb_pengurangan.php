@@ -216,7 +216,7 @@
             datatype: "json",
             mtype: "POST",
             colModel: [
-                {label: 'Nama Pemohon',name: 'wp_name',width: 120, align: "left"},
+                {label: 'Nama Pemohon',name: 'wp_name',width: 200, align: "left"},
                 {name: 'Alamat',width: 300, align: "center",
                     formatter:function(cellvalue, options, rowObject) {
 
@@ -246,11 +246,11 @@
 
                     }
                 },
-                {label: 'Akta/Risalah Lelang/Kep. Pemberian Hak/Dokumen lainnya',name: 'keterangan_opsi_c',width: 300, align: "left"},
+                {label: 'Akta/Risalah Lelang/Kep. Pemberian Hak/Dokumen lainnya',name: 'keterangan_opsi_c',width: 430, align: "left"},
                 {label: 'NJOP (Rp)',name: 'njop',width: 150, summaryTpl:"{0}",summaryType:"sum", formatter:'integer', formatoptions: {prefix:"", thousandsSeparator:',', defaultValue:'0'},align: "right"},
-                {label: 'BPHTB TERHUTANG (Rp)',name: 'bphtb_amt',width: 150, summaryTpl:"{0}",summaryType:"sum", formatter:'integer', formatoptions: {prefix:"", thousandsSeparator:',', defaultValue:'0'},align: "right"},
-                {label: 'PENGURANGAN (Rp)',name: 'bphtb_discount',width: 150,summaryTpl:"{0}",summaryType:"sum", formatter:'integer', formatoptions: {prefix:"", thousandsSeparator:',', defaultValue:'0'},align: "right"},
-                {label: 'TANGGAL MENGAJUKAN PERMOHONAN',name: 'creation_date',width: 150, align: "left"},
+                {label: 'BPHTB TERHUTANG (Rp)',name: 'bphtb_amt',width: 180, summaryTpl:"{0}",summaryType:"sum", formatter:'integer', formatoptions: {prefix:"", thousandsSeparator:',', defaultValue:'0'},align: "right"},
+                {label: 'PENGURANGAN (Rp)',name: 'bphtb_discount',width: 180,summaryTpl:"{0}",summaryType:"sum", formatter:'integer', formatoptions: {prefix:"", thousandsSeparator:',', defaultValue:'0'},align: "right"},
+                {label: 'TANGGAL MENGAJUKAN PERMOHONAN',name: 'creation_date',width: 300, align: "center"},
 
             ],
             height: '100%',

@@ -43,8 +43,8 @@
 
                 <div class="space-2"></div>
                 <div class="row col-md-offset-2">
-                    <button class="btn btn-danger" type="button" onclick="toTegurBar()" id="sTegur">Cetak Surat Teguran</button>
-                    <button class="btn btn-danger" type="button" onclick="toTegur()" id="sTegurBar">Cetak Surat Teguran Tanpa Barcode </button>
+                    <button class="btn btn-danger" type="button" onclick="toTegurBar()" id="sTeguBar">Cetak Surat Teguran</button>
+                    <button class="btn btn-danger" type="button" onclick="toTegur()" id="sTegur">Cetak Surat Teguran Tanpa Barcode </button>
                     <button class="btn btn-primary" type="button" onclick="toTampil()" id="Tampil">Tampilkan</button>
                 </div>
             </div>
@@ -95,11 +95,11 @@
                 {label: 'Jenis Transaksi',name: 'description',width: 190, align: "left"},
                 {label: 'NOP',name: 'njop_pbb',width: 150, align: "left"},
                 {label: 'LT/LB',name: 'land_area',width: 80, align: "right"},
-                {label: 'HARGA TANAH (Rp)',name: 'land_total_price',width: 150, align: "right"},
-                {label: 'HARGA BANGUNAN (Rp)    ',name: 'building_area',width: 180, align: "right"},
-                {label: 'TOTAL NJOP (Rp)',name: 'building_total_price',width: 150, align: "right"},
-                {label: 'HARGA PASAR TRANSAKSI LELANG (Rp)',name: 'market_price',width: 200, align: "right"},
-                {label: 'NILAI PAJAK YANG  HARUS DIBAYAR(Rp)',name: 'bphtb_amt_final',width: 290, align: "right"}
+                {label: 'HARGA TANAH (Rp)',name: 'land_total_price',width: 150, summaryTpl:"{0}",summaryType:"sum", formatter:'integer', formatoptions: {prefix:"", thousandsSeparator:',', defaultValue:'0'},align: "right"},
+                {label: 'HARGA BANGUNAN (Rp)    ',name: 'building_area',width: 180, summaryTpl:"{0}",summaryType:"sum", formatter:'integer', formatoptions: {prefix:"", thousandsSeparator:',', defaultValue:'0'},align: "right"},
+                {label: 'TOTAL NJOP (Rp)',name: 'building_total_price',width: 150, summaryTpl:"{0}",summaryType:"sum", formatter:'integer', formatoptions: {prefix:"", thousandsSeparator:',', defaultValue:'0'},align: "right"},
+                {label: 'HARGA PASAR TRANSAKSI LELANG (Rp)',name: 'market_price',width: 200, summaryTpl:"{0}",summaryType:"sum", formatter:'integer', formatoptions: {prefix:"", thousandsSeparator:',', defaultValue:'0'},align: "right"},
+                {label: 'NILAI PAJAK YANG  HARUS DIBAYAR(Rp)',name: 'bphtb_amt_final',width: 290, summaryTpl:"{0}",summaryType:"sum", formatter:'integer', formatoptions: {prefix:"", thousandsSeparator:',', defaultValue:'0'},align: "right"}
 
             ],
             height: '100%',
@@ -191,10 +191,10 @@
             swal ( "Oopss" ,  "Kolom Tanggal Tidak Boleh Kosong!" ,  "error" );
         }else{
             
-            var url = "<?php echo base_url(); ?>"+"pdf_lap_teguran_bphtb/save_pdf_t_lap_teguran_bphtb?";
+            var url = "<?php echo base_url(); ?>"+"pdf_lap_teguran_bphtb_barcode/save_pdf_t_lap_teguran_bphtb?";
             url += "date_start_laporan=" + date_start_laporan;
             url += "&date_end_laporan=" + date_end_laporan;
-            url += "&FLAG=0" ;
+            //url += "&FLAG=0" ;
 
             //alert(url);
             //return;
@@ -220,7 +220,7 @@
             var url = "<?php echo base_url(); ?>"+"pdf_lap_teguran_bphtb/save_pdf_t_lap_teguran_bphtb?";
             url += "date_start_laporan=" + date_start_laporan;
             url += "&date_end_laporan=" + date_end_laporan;
-            url += "&FLAG=1" ;
+           // url += "&FLAG=1" ;
 
             if (date_end_laporan < date_start_laporan){
                 swal ( "Oopss" ,  "Tanggal awal harus lebih besar dari tanggal akhir" ,  "error" );
@@ -244,7 +244,7 @@
             url += "date_start_laporan=" + date_start_laporan;
             url += "&date_end_laporan=" + date_end_laporan;
             url += "&t_bphtb_registration_id="+t_bphtb_registration_id ;
-            url += "&FLAG=1" ;
+           // url += "&FLAG=1" ;
 
             if (date_end_laporan < date_start_laporan){
                 swal ( "Oopss" ,  "Tanggal awal harus lebih besar dari tanggal akhir" ,  "error" );

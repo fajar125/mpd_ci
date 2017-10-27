@@ -2,7 +2,7 @@
 require('fpdf/fpdf.php');
 require('fpdf/invClassExtend.php');
 
-class pdf_lap_teguran_bphtb extends CI_Controller{
+class pdf_lap_teguran_bphtb_barcode extends CI_Controller{
     var $fontSize = 10;
     var $fontFam = 'Arial';
     var $yearId = 0;
@@ -395,6 +395,14 @@ class pdf_lap_teguran_bphtb extends CI_Controller{
         str_replace(" ","-",$this->dateToString($data['creation_date']))
         ,160,200,25,25,'PNG');
       }*/
+
+      //Barcode
+
+      $pdf->Image('http://'.$_SERVER['HTTP_HOST'].'/mpd_ci/qrcode/generate-qr.php?param='.
+      $data['njop_pbb']."_".
+      $data['registration_no']."_".
+      str_replace(" ","-",$this->dateToString($data['creation_date']))
+      ,160,200,25,25,'PNG');
       
 
       $pdf->SetFont('Times', 'B', 12);
@@ -618,4 +626,5 @@ class pdf_lap_teguran_bphtb extends CI_Controller{
     }
 
 }
+
 
