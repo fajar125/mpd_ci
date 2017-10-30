@@ -69,7 +69,9 @@
         var date_end_laporan       = $('#date_end_laporan').val();  
         //alert(date_end_laporan);
 
-        if(date_start_laporan == '' && date_end_laporan == '' && s_keyword == ''){
+        if(date_end_laporan < date_start_laporan){
+            swal ( "Oopss" ,  "Tanggal tidak boleh lebih kecil dari tanggal start!" ,  "error" );
+        }else if(date_start_laporan == '' && date_end_laporan == '' && s_keyword == ''){
             swal ( "Oopss" ,  "Filter Tidak Boleh Kosong!" ,  "error" );
         }else if(date_start_laporan == '' && date_end_laporan != ''){
             swal ( "Oopss" ,  "Kolom Tanggal Harus Diisi Keduanya!" ,  "error" );
