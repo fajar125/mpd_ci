@@ -462,3 +462,55 @@ WHERE p_app_menu_id = 199;
 UPDATE sikp.p_app_menu
 SET file_name = 'pelaporan.t_laporan_history_potensi_piutang'
 WHERE p_app_menu_id = 195;
+
+UPDATE sikp.p_app_menu
+SET file_name = 'pelaporan.t_rep_lap_harian_per_ketetapan'
+WHERE p_app_menu_id = 241;
+
+UPDATE sikp.p_app_menu
+SET file_name = 'transaksi.t_restore_trans'
+WHERE p_app_menu_id = 235;
+
+UPDATE sikp.p_app_menu
+SET file_name = 'pelaporan.t_history'
+WHERE p_app_menu_id = 131;
+
+UPDATE sikp.p_app_menu
+SET file_name = 'pelaporan.t_rep_bulanan_target_vs_realisasi_v2'
+WHERE p_app_menu_id = 193;
+
+UPDATE sikp.p_app_menu
+SET file_name = 'pelaporan.t_rep_harian_penerimaan'
+WHERE p_app_menu_id = 109;
+
+UPDATE sikp.p_app_menu
+SET file_name = 'pelaporan.t_rep_sisa_piutang'
+WHERE p_app_menu_id = 126;
+
+UPDATE sikp.p_app_menu 
+set file_name = 'transaksi.t_laporan_teguran_bphtb'  
+WHERE p_app_menu_id = 148;
+
+UPDATE sikp.p_app_menu 
+set file_name = 'transaksi.t_laporan_penerimaan_bphtb'  
+WHERE p_app_menu_id = 146;
+
+UPDATE sikp.p_app_menu 
+set file_name = 'transaksi.t_laporan_penerimaan_bphtb_pengurangan'  
+WHERE p_app_menu_id = 219;
+
+UPDATE sikp.p_app_menu 
+set file_name = 'transaksi.t_laporan_daftar_bphtb_verifikasi'  
+WHERE p_app_menu_id = 208;
+
+UPDATE sikp.p_app_menu 
+set file_name = 'transaksi.t_laporan_daftar_bphtb'  
+WHERE p_app_menu_id = 147;
+
+UPDATE sikp.p_app_menu 
+set file_name = 'transaksi.t_laporan_rekap_bphtb_hasil_verifikasi'  
+WHERE p_app_menu_id = 149;
+
+UPDATE sikp.p_app_menu 
+set file_name = 'transaksi.t_laporan_permohonan_bphtb_pengurangan'  
+WHERE p_app_menu_id = 247;
