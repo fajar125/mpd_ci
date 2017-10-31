@@ -1068,8 +1068,32 @@ breadcrumb -->
     });
     
     $('#update').on('click', function(event){
+        var alasan = $('#alasan').val();
+        var wp_kota = $('#wp_kota').val();
+        var wp_kecamatan = $('#wp_kecamatan').val();
+        var wp_kelurahan = $('#wp_kelurahan').val();
+        var p_bphtb_legal_doc_type_id = $('#p_bphtb_legal_doc_type_id').val();
+        var object_kota = $('#object_kota').val();
+        var object_kecamatan = $('#object_kecamatan').val();
+        var object_kelurahan = $('#object_kelurahan').val();
+        var wp_name = $('#wp_name').val();
+
         setNormalValue();
-        update();
+        if(alasan == '' || alasan == null){
+            swal ( "Oopss" ,  "Alasan mengubah haru diisi !" ,  "error" );
+        }else if(wp_kota == '' || wp_kota == null || object_kota == '' || object_kota == null){
+            swal ( "Oopss" ,  "Kota haru diisi !" ,  "error" );
+        }else if(wp_kecamatan == '' || wp_kecamatan == null || object_kecamatan == '' || object_kecamatan == null){
+            swal ( "Oopss" ,  "Kecamatan haru diisi !" ,  "error" );
+        }else if(wp_kelurahan == '' || wp_kelurahan == null || object_kelurahan == '' || object_kelurahan == null){
+            swal ( "Oopss" ,  "Kelurahan haru diisi !" ,  "error" );
+        }else if(p_bphtb_legal_doc_type_id == '' || p_bphtb_legal_doc_type_id == null){
+            swal ( "Oopss" ,  "Dokumen Pendukung haru diisi !" ,  "error" );
+        }else if(wp_name == '' || wp_name == null){
+            swal ( "Oopss" ,  "Nama WP haru diisi !" ,  "error" );
+        }else{
+            update();
+        }
         //alert('update');
     });
 
