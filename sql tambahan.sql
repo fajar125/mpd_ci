@@ -525,7 +525,7 @@ WHERE p_app_menu_id = 129;
 
 UPDATE sikp.p_app_menu
 SET file_name = 'pelaporan.t_laporan_pembayaran_dan_perkembangan_jml_wp'
-WHERE p_app_menu_id = 99;
+WHERE p_app_menu_id = 254;
 
 UPDATE sikp.p_app_menu
 SET file_name = 'pelaporan.t_rep_idx_kepatuhan_wp'
@@ -538,6 +538,10 @@ WHERE p_app_menu_id = 94;
 UPDATE sikp.p_app_menu
 SET file_name = 't_laporan_pembayaran_per_bulan_per_ayat'
 WHERE p_app_menu_id = 250;
+
+UPDATE sikp.p_app_menu
+SET file_name = 't_rep_penerimaan_pertahun'
+WHERE p_app_menu_id =   99;
 
 UPDATE sikp.p_app_menu 
 set file_name = 'transaksi.t_bphtb_registration_list_update_master'
