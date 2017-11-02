@@ -514,3 +514,47 @@ WHERE p_app_menu_id = 149;
 UPDATE sikp.p_app_menu 
 set file_name = 'transaksi.t_laporan_permohonan_bphtb_pengurangan'  
 WHERE p_app_menu_id = 247;
+
+UPDATE sikp.p_app_menu
+SET file_name = 'pelaporan.t_laporan_harian_denda'
+WHERE p_app_menu_id = 97;
+
+UPDATE sikp.p_app_menu
+SET file_name = 'pelaporan.t_rep_lap_tingkat_kepatuhan_wp'
+WHERE p_app_menu_id = 129;
+
+UPDATE sikp.p_app_menu
+SET file_name = 'pelaporan.t_laporan_pembayaran_dan_perkembangan_jml_wp'
+WHERE p_app_menu_id = 99;
+
+UPDATE sikp.p_app_menu
+SET file_name = 'pelaporan.t_rep_idx_kepatuhan_wp'
+WHERE p_app_menu_id =  130;
+
+UPDATE sikp.p_app_menu
+SET file_name = 'pelaporan.t_laporan_penerimaan_pajak'
+WHERE p_app_menu_id = 94;
+
+UPDATE sikp.p_app_menu
+SET file_name = 't_laporan_pembayaran_per_bulan_per_ayat'
+WHERE p_app_menu_id = 250;
+
+UPDATE sikp.p_app_menu 
+set file_name = 'transaksi.t_bphtb_registration_list_update_master'
+where p_app_menu_id = 153;
+
+UPDATE sikp.p_app_menu 
+set file_name = 'transaksi.t_bphtb_registration_list_update_master_sudah_bayar'
+where p_app_menu_id = 194;
+
+UPDATE sikp.p_app_menu 
+set file_name = 'pelaporan.t_history_bphtb'
+where p_app_menu_id = 210;
+
+UPDATE sikp.p_app_menu 
+set file_name = 'transaksi.t_laporan_pembayaran_wp_baru'
+where p_app_menu_id = 178;
+
+UPDATE sikp.p_app_menu 
+set file_name = 'transaksi.t_laporan_pembayaran_berdasarkan_cara_bayar_dan_ketetapan'
+where p_app_menu_id = 218;
