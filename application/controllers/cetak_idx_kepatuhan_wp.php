@@ -42,8 +42,8 @@ class cetak_idx_kepatuhan_wp extends CI_Controller{
 		$sql = "select max(rata_rata_pembayaran), max(rata_rata_pembayaran) / 3 , max(rata_rata_pembayaran) - (max(rata_rata_pembayaran) / 3) as batas_atas, max(rata_rata_pembayaran) - (max(rata_rata_pembayaran) / 3) - (max(rata_rata_pembayaran) / 3) batas_tengah from f_rep_index_kepatuhan(".$p_year_period_id.", ".$p_vat_type_id.", ".$status.")";
 		$query = $this->db->query($sql);
 		$arrBatas = $query->row_array();
-		//echo $arrBatas;
-		//exit;		
+		// print_r( $sql);
+		// exit;		
 
 		$pdf = new FPDF();
 

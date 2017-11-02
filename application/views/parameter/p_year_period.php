@@ -74,6 +74,7 @@ $("#tab-2").on("click", function(event) {
             url: '<?php echo WS_JQGRID."parameter.p_year_period_controller/crud"; ?>',
             datatype: "json",
             mtype: "POST",
+            
             colModel: [
                 {label: 'ID', name: 'p_year_period_id', key: true, width: 5, sorttype: 'number', editable: true, hidden: true},
                 {label: 'Tahun',name: 'year_code',width: 150, align: "left",editable: true,
