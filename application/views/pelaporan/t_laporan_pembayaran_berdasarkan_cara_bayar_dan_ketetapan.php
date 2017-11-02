@@ -343,7 +343,7 @@
             swal ( "Oopss" ,  "Kolom Tanggal Tidak Boleh Kosong!" ,  "error" );
         }else{
             if (date_end_laporan < date_start_laporan){
-                swal ( "Oopss" ,  "Tanggal awal harus lebih besar dari tanggal akhir" ,  "error" );
+                swal ( "Oopss" ,  "Tanggal akhir harus lebih besar dari tanggal awal !" ,  "error" );
                 return;
             }else{
                 $('#gview_grid-table').show();
@@ -379,7 +379,7 @@
             swal ( "Oopss" ,  "Kolom Tanggal Tidak Boleh Kosong!" ,  "error" );
         }else{
             if (date_end_laporan < date_start_laporan){
-                swal ( "Oopss" ,  "Tanggal awal harus lebih besar dari tanggal akhir" ,  "error" );
+                swal ( "Oopss" ,  "Tanggal akhir harus lebih besar dari tanggal awal ! " ,  "error" );
                 return;
             }else{
                 var url = "<?php echo WS_JQGRID . "pelaporan.t_laporan_pembayaran_berdasarkan_cara_bayar_dan_ketetapan_controller/excel/?"; ?>";
