@@ -312,7 +312,7 @@ where p_app_menu_id = 39;
  **/
 
  /**
-  * Update - an menu risma & anggi
+  * Update - an menu risma & anggi & hesti & dedi
   */
 
 UPDATE sikp.p_app_menu
@@ -562,3 +562,47 @@ where p_app_menu_id = 178;
 UPDATE sikp.p_app_menu 
 set file_name = 'transaksi.t_laporan_pembayaran_berdasarkan_cara_bayar_dan_ketetapan'
 where p_app_menu_id = 218;
+
+UPDATE sikp.p_app_menu 
+set file_name = 'pelaporan.t_laporan_pembayaran_wp_baru'
+where p_app_menu_id = 178;
+
+UPDATE sikp.p_app_menu 
+set file_name = 'pelaporan.t_laporan_pembayaran_berdasarkan_cara_bayar_dan_ketetapan'
+where p_app_menu_id = 218;
+
+UPDATE sikp.p_app_menu 
+set file_name = 'pelaporan.t_laporan_detil_pembayaran_per_bulan_per_ayat'
+where p_app_menu_id = 251;
+
+UPDATE sikp.p_app_menu 
+set file_name = 'pelaporan.t_laporan_pembayaran_wp_baru_summary'
+where p_app_menu_id = 226;
+
+UPDATE sikp.p_app_menu
+SET file_name = 'pelaporan.t_rep_bulanan_target_vs_realisasi'
+WHERE p_app_menu_id = 134;
+
+UPDATE sikp.p_app_menu
+SET file_name = 'pelaporan.t_laporan_perkembangan_jumlah_wp'
+WHERE p_app_menu_id = 249;
+
+UPDATE sikp.p_app_menu
+SET file_name = 'pelaporan.t_laporan_penyampaian_surat_teguran'
+WHERE p_app_menu_id = 253;
+
+UPDATE sikp.p_app_menu
+SET file_name = 'pelaporan.t_laporan_rekap_surat_teguran_per_bulan'
+WHERE p_app_menu_id = 228;
+
+UPDATE sikp.p_app_menu
+SET file_name = 'pelaporan.t_rep_penerimaan_pertahun_sts'
+WHERE p_app_menu_id = 120;
+
+UPDATE sikp.p_app_menu
+SET file_name = 'pelaporan.t_rep_lap_harian_bdhr'
+WHERE p_app_menu_id = 92;
+
+UPDATE sikp.p_app_menu
+SET file_name = 'pelaporan.t_rep_lap_harian'
+WHERE p_app_menu_id = 116;
