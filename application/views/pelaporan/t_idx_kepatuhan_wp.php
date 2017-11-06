@@ -110,7 +110,7 @@
             swal('Informasi','Semua Harus Diisi','info');
             return;
         }
-        // alert("Convert to Excel");
+        
         var url = "<?php echo WS_JQGRID . "pelaporan.t_idx_kepatuhan_wp_controller/excel/?"; ?>";
             url += "<?php echo $this->security->get_csrf_token_name(); ?>=<?php echo $this->security->get_csrf_hash(); ?>";
             url += "&p_vat_type_id="+vat_id;
@@ -118,7 +118,6 @@
             url += "&status=1"; 
             url += "&tahun="+year_code;
             url += "&pajak="+vat_code;
-
 
         window.location = url;
     }
