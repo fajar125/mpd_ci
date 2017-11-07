@@ -69,6 +69,7 @@ $("#tab-3").on("click", function(event) {
     var grid = $('#grid-table');
     p_region_id = grid.jqGrid ('getGridParam', 'selrow');
     region_name = grid.jqGrid ('getCell', p_region_id, 'region_name');
+    parent_id = <?php echo $this->input->post('p_region_id'); ?>;
 
     if(p_region_id == null) {
         swal('Informasi','Silahkan pilih salah satu kota','info');
@@ -77,7 +78,8 @@ $("#tab-3").on("click", function(event) {
 
     loadContentWithParams("parameter.p_region", {
         p_region_id: p_region_id,
-        region_name : region_name
+        region_name : region_name,
+        parent_id : parent_id
     });
 });
 </script>

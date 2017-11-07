@@ -68,16 +68,18 @@ $("#tab-1").on("click", function(event) {
     event.stopPropagation();
     loadContentWithParams("parameter.p_provinsi",{});
 });
+
 $("#tab-2").on("click", function(event) {
 
     event.stopPropagation();
     var grid = $('#grid-table');
-    p_region_id = grid.jqGrid ('getGridParam', 'selrow');
-    region_name = grid.jqGrid ('getCell', p_region_id, 'region_name');
-
+    var p_region_id = <?php echo $this->input->post('parent_id'); ?>;
+    //var region_name = <?php// echo $this->input->post('region_name'); ?>;
+    //region_name = grid.jqGrid ('getCell', p_region_id, 'region_name');
 
     loadContentWithParams("parameter.p_kota", {
-        p_region_id: p_region_id
+        p_region_id: p_region_id,
+        region_name : region_name
     });
 });
 </script>

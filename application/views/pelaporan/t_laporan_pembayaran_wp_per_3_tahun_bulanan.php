@@ -5,7 +5,7 @@
             <i class="fa fa-circle"></i>
         </li>
         <li>
-            <span>Laporan Penerimaan Pertahun</span>
+            <span>LAPORAN PEMBAYARAN WP PER 3 TAHUN BULANAN</span>
         </li>
     </ul> 
 </div>
@@ -110,21 +110,23 @@
 
         var grid_selector = "#grid-table-history";
 
+        var tahun = $('#form_year_code').val();
+
         jQuery("#grid-table-history").jqGrid({
             url: '<?php echo WS_JQGRID . "pelaporan.t_laporan_pembayaran_wp_per_3_tahun_bulanan_controller/readData"; ?>',
             datatype: "json",
             mtype: "POST",
             
             colModel: [
-                {label: 'NPWPD',name: 'npwpd',width: 150, align: "left",editable: false},
-                {label: 'Ayat Pajak',name: 'nama',width: 150, align: "left"},   
-                {label: 'Merk Dagang',name: 'company_brand',width: 200, align: "left"},
-                {label: 'Alamat Merk Dagang',name: 'alamat',width: 150, align: "left"},  
+                {label: 'NPWPD',name: 'npwd',width: 150, align: "left",editable: false},
+                {label: 'Ayat Pajak',name: 'vat_code',width: 200, align: "left"},   
+                {label: 'Merk Dagang',name: 'company_brand',width: 250, align: "left"},
+                {label: 'Alamat Merk Dagang',name: 'alamat',width: 350, align: "left"},  
                 {label: 'Tgl. Pengukuhan',name: 'active_date',width: 200, align: "left"}, 
-                {label: 'Masa Pajak',name: 'ket',width: 200, align: "left"},
-                {label: '2014',name: 'jml',width: 150,summaryTpl:"Jumlah: {0}",summaryType:"sum",formatter:'currency', formatoptions: {prefix:"", thousandsSeparator:','}, align: "right"},  
-                {label: '2015',name: 'jml',width: 150,summaryTpl:"Jumlah: {0}",summaryType:"sum",formatter:'currency', formatoptions: {prefix:"", thousandsSeparator:','}, align: "right"},  
-                {label: '2016',name: 'jml',width: 150,summaryTpl:"Jumlah: {0}",summaryType:"sum",formatter:'currency', formatoptions: {prefix:"", thousandsSeparator:','}, align: "right"}
+                {label: 'Masa Pajak',name: 'masa_pajak',width: 100, align: "left"},
+                {name: 'jml',width: 150,summaryTpl:"Jumlah: {0}",summaryType:"sum",formatter:'currency', formatoptions: {prefix:"", thousandsSeparator:','}, align: "right"},  
+                {name: 'jml1',width: 150,summaryTpl:"Jumlah: {0}",summaryType:"sum",formatter:'currency', formatoptions: {prefix:"", thousandsSeparator:','}, align: "right"},  
+                {name: 'jml2',width: 150,summaryTpl:"Jumlah: {0}",summaryType:"sum",formatter:'currency', formatoptions: {prefix:"", thousandsSeparator:','}, align: "right"}
             ],
             height: '100%',
             autowidth: true,
@@ -136,9 +138,11 @@
             altRows: true,
             shrinkToFit: false,
             multiboxonly: true,
-            caption: "Laporan Penerimaan Pertahun"
+            caption: "LAPORAN PEMBAYARAN WP PER 3 TAHUN BULANAN"
 
         });
+
+       
 
         
 
@@ -150,24 +154,24 @@
     function toExcel() {
 
         var p_vat_type_id = $('#form_vat_id').val(); 
-        var p_year_period_id = $('#form_year_period_id').val();
-        var p_account_status_id = $('#form_account_status_id').val(); 
-        var status = $('#status').val();
-        var tgl_status = $('#tgl_status').val();
-        if (p_vat_type_id==0||p_year_period_id==0||p_account_status_id==''||status==''||tgl_status==''){
+        var p_vat_type_dtl_id = $('#form_vat_dtl_idss').val();
+        var p_year_period_id = $('#form_year_period_id').val(); 
+        var p_finance_period_id = $('#form_finance_period_id').val();
+        var year_code = $('#form_year_code').val();
+        var vat_code = $('#vat_code').val();
+        if (p_vat_type_id==0||p_year_period_id==0||p_vat_type_dtl_id == 0 || p_finance_period_id == 0){
             swal('Informasi','Semua Harus Diisi','info');
-            $ ("#gview_grid-table-history").hide();
             return;
 
         }
         
         var url = "<?php echo WS_JQGRID . "pelaporan.t_laporan_pembayaran_wp_per_3_tahun_bulanan_controller/excel/?"; ?>";
             url += "<?php echo $this->security->get_csrf_token_name(); ?>=<?php echo $this->security->get_csrf_hash(); ?>";
-            url += "&p_year_period_id="+p_year_period_id;
+            url += "&p_finance_period_id="+p_finance_period_id;
             url += "&p_vat_type_id="+p_vat_type_id;      
-            url += "&p_account_status_id="+p_account_status_id;
-            url += "&status_bayar="+status;
-            url += "&tgl_status="+tgl_status;
+            url += "&p_vat_type_dtl_id="+p_vat_type_dtl_id;
+            url += "&year_code="+year_code;
+            url += "&vat_code="+vat_code;
 
             //alert(url);
         window.location = url;
@@ -176,9 +180,10 @@
     function showData(){
         $ ("#gview_grid-table-history").show();
         var p_vat_type_id = $('#form_vat_id').val(); 
-        var p_vat_type_dtl_id = $('#form_vat_dtl_idss').val();
+        var p_vat_type_dtl_id = $('#form_vat_dtl_id').val();
         var p_year_period_id = $('#form_year_period_id').val(); 
         var p_finance_period_id = $('#form_finance_period_id').val();
+        var tahun = $('#form_year_code').val();
 
         if (p_vat_type_id==0||p_year_period_id==0||p_vat_type_dtl_id == 0 || p_finance_period_id == 0){
             swal('Informasi','Semua Harus Diisi','info');
@@ -193,11 +198,18 @@
                 url: '<?php echo WS_JQGRID . "pelaporan.t_laporan_pembayaran_wp_per_3_tahun_bulanan_controller/readData"; ?>',
                 postData: { 
                         p_vat_type_id : p_vat_type_id,
-                        p_vat_type_dtl_id : p_vat_type_dtl_id}
+                        p_vat_type_dtl_id : p_vat_type_dtl_id,
+                        p_finance_period_id : p_finance_period_id
+                    }
 
             });
+            //var iPos = [9, 10, 11];// the position of the column
+            var colModel = $("#grid-table-history").jqGrid("getGridParam", "colModel");
 
-            $("#grid-table-history").jqGrid("setCaption", "Laporan Penerimaan Pertahun");
+            $("#grid-table-history").jqGrid("setLabel", "jml", tahun-2);
+            $("#grid-table-history").jqGrid("setLabel", "jml1", tahun-1);
+            $("#grid-table-history").jqGrid("setLabel", "jml2", tahun);
+            $("#grid-table-history").jqGrid("setCaption", "LAPORAN PEMBAYARAN WP PER 3 TAHUN BULANAN || JENIS PAJAK : "+$('#vat_code').val());
             $("#grid-table-history").trigger("reloadGrid");
         });
     }
