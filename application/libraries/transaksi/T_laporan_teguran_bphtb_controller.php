@@ -26,7 +26,7 @@ class t_laporan_teguran_bphtb_controller {
                 $ci->load->model('transaksi/t_laporan_teguran_bphtb');
                 $table = $ci->t_laporan_teguran_bphtb;
 
-                $req_param = array(
+                /*$req_param = array(
                     "sort_by" => $sidx,
                     "sord" => $sord,
                     "limit" => null,
@@ -41,7 +41,7 @@ class t_laporan_teguran_bphtb_controller {
                 );
 
                 // Filter Table
-                $req_param['where'] = array();
+                $req_param['where'] = array();*/
 
 
                 $start_date = "'".$start_date."'";
@@ -55,7 +55,7 @@ class t_laporan_teguran_bphtb_controller {
     					                            FROM t_payment_receipt_bphtb as x 
     					                        WHERE x.t_bphtb_registration_id = reg_bphtb.t_bphtb_registration_id)");                     
 
-                $table->setJQGridParam($req_param);
+                // $table->setJQGridParam($req_param);
                 $count = $table->countAll();
 
                 if ($count > 0) $total_pages = ceil($count / $limit);
@@ -64,12 +64,12 @@ class t_laporan_teguran_bphtb_controller {
                 if ($page > $total_pages) $page = $total_pages;
                 $start = $limit * $page - ($limit); // do not put $limit*($page - 1)
 
-                $req_param['limit'] = array(
+                /*$req_param['limit'] = array(
                     'start' => $start,
                     'end' => $limit
                 );
 
-                $table->setJQGridParam($req_param);
+                $table->setJQGridParam($req_param);*/
 
                 if ($page == 0) $data['page'] = 1;
                 else $data['page'] = $page;

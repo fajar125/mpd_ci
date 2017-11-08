@@ -59,7 +59,7 @@
             <div id="gbox_grid-table" class="ui-jqgrid">
                 <div id="gview_grid-table" class="ui-jqgrid-view table-responsive" role="grid">
                     <table id="grid-table"></table>
-                    <div id="grid-pager"></div>
+                    <!-- <div id="grid-pager"></div> -->
                 </div>
             </div>            
         </div>
@@ -73,7 +73,7 @@
 
     jQuery(function($) {
         var grid_selector = "#grid-table";
-        var pager_selector = "#grid-pager";
+        //var pager_selector = "#grid-pager";
 
         jQuery("#grid-table").jqGrid({
             url: '<?php echo WS_JQGRID."transaksi.t_laporan_teguran_bphtb_controller/read"; ?>',
@@ -105,19 +105,27 @@
             height: '100%',
             autowidth: true,
             viewrecords: true,
-            rowNum: 10,
+            rowNum: -1,
             rowList: [10,20,50],
             rownumbers: true, // show row numbers
             rownumWidth: 35, // the width of the row numbers columns
             altRows: true,
             shrinkToFit: true,
             multiboxonly: true,
+            footerrow: true,
+            gridComplete: function() {
+                var $grid = $('#grid-table');
+                var bphtb_amt_final = $grid.jqGrid('getCol', 'bphtb_amt_final', false, 'sum');
+                $grid.jqGrid('footerData', 'set', { 'bphtb_amt_final': bphtb_amt_final
+
+                 });
+            },
             onSelectRow: function (rowid) {
                 /*do something when selected*/
 
             },
             sortorder:'',
-            pager: '#grid-pager',
+            //pager: '#grid-pager',
             jsonReader: {
                 root: 'rows',
                 id: 'id',

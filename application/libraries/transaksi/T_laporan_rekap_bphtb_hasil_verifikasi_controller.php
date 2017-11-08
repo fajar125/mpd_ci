@@ -26,7 +26,7 @@ class t_laporan_rekap_bphtb_hasil_verifikasi_controller {
                 $ci->load->model('transaksi/t_laporan_rekap_bphtb_hasil_verifikasi');
                 $table = $ci->t_laporan_rekap_bphtb_hasil_verifikasi;
 
-                $req_param = array(
+                /*$req_param = array(
                     "sort_by" => $sidx,
                     "sord" => $sord,
                     "limit" => null,
@@ -41,7 +41,7 @@ class t_laporan_rekap_bphtb_hasil_verifikasi_controller {
                 );
 
                 // Filter Table
-                $req_param['where'] = array();
+                $req_param['where'] = array();*/
 
 
                 $start_date = "'".$start_date."'";
@@ -52,7 +52,7 @@ class t_laporan_rekap_bphtb_hasil_verifikasi_controller {
                 $table->setCriteria("(trunc(reg_bphtb.creation_date) BETWEEN ".$start_date." AND ".$end_date.")");
                 $table->setCriteria("(payment.receipt_no is not null or payment.receipt_no <> '')");                     
 
-                $table->setJQGridParam($req_param);
+                // $table->setJQGridParam($req_param);
                 $count = $table->countAll();
 
                 if ($count > 0) $total_pages = ceil($count / $limit);
@@ -61,12 +61,12 @@ class t_laporan_rekap_bphtb_hasil_verifikasi_controller {
                 if ($page > $total_pages) $page = $total_pages;
                 $start = $limit * $page - ($limit); // do not put $limit*($page - 1)
 
-                $req_param['limit'] = array(
+                /*$req_param['limit'] = array(
                     'start' => $start,
                     'end' => $limit
                 );
 
-                $table->setJQGridParam($req_param);
+                $table->setJQGridParam($req_param);*/
 
                 if ($page == 0) $data['page'] = 1;
                 else $data['page'] = $page;

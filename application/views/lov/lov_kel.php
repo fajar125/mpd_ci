@@ -83,9 +83,6 @@
              formatters: {
                 "opt-edit" : function(col, row) {
                     return '<a href="javascript:;" title="Set Value" onclick="modal_lov_kelurahan_set_value(\''+ row.p_region_id +'\', \''+ row.region_name +'\')" class="blue"><i class="fa fa-pencil-square-o bigger-130"></i></a>';
-                },
-                "icon_display" : function(col, row) {
-                    return '<i class="'+row.icon_code+' bigger-140"></i>';
                 }
              },
              rowCount:[5,10],
