@@ -33,7 +33,7 @@
                     <label class="control-label col-md-3">Nama</label>
                     <div class="col-md-5">
                         <div class="input-group">
-                            <input type="text" class="form-control" name="company_brand" id="company_brand" readonly style="width: 410px">                 
+                            <input type="text" class="form-control" name="company_brand" id="company_brand" readonly style="width: 260px;">                 
                         </div>
                     </div>
                 </div>
@@ -361,7 +361,8 @@ function showLOVTypeDtl(id, code) {
     }
     
 }
-function showLOVClass(id, code, parent) {
+function showLOVClass(id, code) {
+    //alert($('#form_vat_dtl_id').val());
     if ($('#form_vat_dtl_id').val()=='' || $('#form_vat_dtl_id').val()==0 ) {
         swal('Informasi','Tipe Pajak Harus Diisi','info');
         return false;
