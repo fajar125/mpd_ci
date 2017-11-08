@@ -116,7 +116,7 @@
                             <input id="form_class_id" type="text"  style="display:none;">
                             <input id="form_class_code" readonly type="text" class="FormElement form-control" placeholder="Pilih Kelas">
                             <span class="input-group-btn">
-                                <button class="btn btn-success" type="button" onclick="showLOVClass('form_class_id','form_class_code')">
+                                <button class="btn btn-success" type="button" id="btn-lov-class" name="btn-lov-class">
                                     <span class="fa fa-search bigger-110"></span>
                                 </button>
                             </span>
@@ -188,6 +188,23 @@
       format : 'dd-mm-yyyy',
       todayBtn: 'linked',
       todayHighlight: true
+    });
+</script>
+
+<script type="text/javascript">
+    $('#btn-lov-class').on('click', function() {
+        //alert( $('#form_vat_dtl_id').val());
+        if ($('#form_vat_dtl_id').val()=='' || $('#form_vat_dtl_id').val()==0 ) {
+            swal('Informasi','Tipe Pajak Harus Diisi','info');
+            return false;
+        } else {
+             modal_vat_type_dtl_cls_show('form_class_id','form_class_code',$('#form_vat_dtl_id').val());
+        }
+    });
+
+    $('#form_vat_dtl_id').on('change', function() {
+        $('#form_class_id').val('');
+        $('#form_class_code').val('');
     });
 </script>
 
@@ -361,16 +378,6 @@ function showLOVTypeDtl(id, code) {
     }
     
 }
-function showLOVClass(id, code) {
-    //alert($('#form_vat_dtl_id').val());
-    if ($('#form_vat_dtl_id').val()=='' || $('#form_vat_dtl_id').val()==0 ) {
-        swal('Informasi','Tipe Pajak Harus Diisi','info');
-        return false;
-    } else {
-        //swal('Informasi', $('#form_year_period_id').val(),'info');
 
-        modal_vat_type_dtl_cls_show(id, code,$('#form_vat_dtl_id').val());
-    }
-}
 
 </script>

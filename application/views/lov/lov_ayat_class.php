@@ -76,7 +76,7 @@
     }
 
     function modal_vat_type_dtl_cls_prepare_table(id_parent) {
-        $("#modal_finance_period_grid_selection").bootgrid("destroy");
+        $("#modal_vat_type_dtl_cls_grid_selection").bootgrid("destroy");
         $("#modal_vat_type_dtl_cls_grid_selection").bootgrid({
              formatters: {
                 "opt-edit" : function(col, row) {

@@ -92,6 +92,7 @@ class P_vat_type_dtl extends Abstract_model {
     }
 
     function getLOVClass($type_dtl_id, $keyword) {
+       // $type_dtl_id = 35;
         $sql = "select * from p_vat_type_dtl_cls
                 where p_vat_type_dtl_id = ?
                 and upper(vat_code) like '%".$keyword."%' ";
