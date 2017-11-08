@@ -79,6 +79,28 @@
 <?php $this->load->view('lov/lov_year_period'); ?> 
 <?php $this->load->view('lov/lov_finance_period'); ?>
 
+<script>
+    var urlJS = "<?php echo base_url(); ?>assets/js/highcharts.js";
+
+    if (!isScriptAlreadyIncluded(urlJS)){
+      // DOM: Create the script element
+        var jsElm = document.createElement("script");
+        // set the type attribute
+        jsElm.type = "application/javascript";
+        // make the script element load file
+        jsElm.src = urlJS;
+        // finally insert the element to the body element in order to load the script
+        document.body.appendChild(jsElm);
+    }
+
+    function isScriptAlreadyIncluded(src){
+        var scripts = document.getElementsByTagName("script");
+        for(var i = 0; i < scripts.length; i++) 
+           if(scripts[i].getAttribute('src') == src) return true;
+        return false;
+    }
+</script>
+
 <script type="text/javascript">
     $ ("#gview_grid-table-general").hide();
     $ ("#gview_grid-table-detail").hide();
@@ -425,4 +447,4 @@ function showLOVFinancePeriod(id, code) {
 }
 </script>
 
-<script src="<?php echo base_url(); ?>assets/js/highcharts.js"></script>
+
