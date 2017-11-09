@@ -21,6 +21,9 @@ class Laporan_pembayaran_berdasarkan_cara_bayar_dan_ketetapan extends CI_Control
         foreach ($items as $data) {
           $html .=" <option value='" . $data['p_year_period_id'] . "'>" . $data['year_code'] . "</option>";
         }
+        foreach ($items as $data) {
+          $html .=" <input type='hidden' name='year_code' id='year_code' value='" . $data['year_code'] . "'>";
+        }
         $html .= "</select>";
 
         echo $html;

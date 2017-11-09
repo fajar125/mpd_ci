@@ -101,7 +101,7 @@ class cetak_rep_bphtb extends CI_Controller{
 		$batas1 = ($lengthJudul3 * 2) / 5;
 		$batas2 = ($lengthJudul3 * 3) / 5;
 		
-		$pdf->Image('images/logo_pemda.png',20,10,25,25);
+		$pdf->Image('images/logo_lombok.png',20,10,25,25);
 		//$pdf->Image('images/logo_pemda.png',165,10,25,25);
 		$pdf->Image('http://localhost/mpd_ci/qrcode/generate-qr.php?param='.$encImageData,165,10,25,25,'PNG');
 
@@ -303,9 +303,9 @@ class cetak_rep_bphtb extends CI_Controller{
 		
 		$tgl = getVarClean('tgl','str','');
 		if ($tgl == ''){
-			$pdf->Cell($lbody1 - 103, $this->height, "Bandung, ".date("d-m-Y"), "", 0, 'C');
+			$pdf->Cell($lbody1 - 103, $this->height, "Lombok Utara, ".date("d-m-Y"), "", 0, 'C');
 		}else{
-			$pdf->Cell($lbody1 - 103, $this->height, "Bandung, ".$tgl, "", 0, 'C');
+			$pdf->Cell($lbody1 - 103, $this->height, "Lombok Utara, ".$tgl, "", 0, 'C');
 		}
 		
 		$pdf->Ln();
@@ -335,13 +335,15 @@ class cetak_rep_bphtb extends CI_Controller{
 			$pdf->Cell($lbody1 + 10, $this->height - 4, "NIP : 19731031 200901 1001 ", "", 0, 'C');
 			$pdf->Cell(202, $this->height - 4, "NIP : ".$data['verificated_nip']." ", "", 0, 'C');
 		}else{
-			$pdf->Cell($lbody1 + 10, $this->height - 4, "(ZAENAL MANSUR)", "", 0, 'C');
+			//$pdf->Cell($lbody1 + 10, $this->height - 4, "(ZAENAL MANSUR)", "", 0, 'C');
+			$pdf->Cell($lbody1 + 10, $this->height - 4, "( )", "", 0, 'C');
 			$pdf->Cell(202, $this->height - 4, "( ".$data['verificated_by']." )", "", 0, 'C');
 			$pdf->Ln();
 			$pdf->Ln();
 			$pdf->Ln();
 			$pdf->Ln();
-			$pdf->Cell($lbody1 + 10, $this->height - 4, "NIP : 19630817.1989.01.1.006 ", "", 0, 'C');
+			//$pdf->Cell($lbody1 + 10, $this->height - 4, "NIP : 19630817.1989.01.1.006 ", "", 0, 'C');
+			$pdf->Cell($lbody1 + 10, $this->height - 4, "NIP : ", "", 0, 'C');
 			$pdf->Cell(202, $this->height - 4, "NIP : ".$data['verificated_nip']." ", "", 0, 'C');
 		}
 
