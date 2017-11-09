@@ -1,118 +1,142 @@
-<div id="modal_upload_file" class="modal fade" tabindex="-1">
-	<div class="modal-dialog">
-		<div class="modal-content">
-		    <!-- modal title -->
-			<div class="modal-header no-padding">
-				<div class="table-header">
-					<span class="form-add-edit-title"> Tambah Data </span>
-				</div>
-			</div>
-			            
-			<!-- modal body -->
-			<form method="post" id="form-upload-file" enctype="multipart/form-data">
-			<input type="hidden" name="<?php echo $this->security->get_csrf_token_name(); ?>" value="<?php echo $this->security->get_csrf_hash(); ?>">
-			<div class="modal-body">
-				<div class="row">
-					<div class="form-group">
-						<label class="control-label col-md-3">Jenis Dokumen
-						</label>
-						<div class="col-md-7">
-							<div class="input-group">
-	                            <input id="form_p_legal_doc_type_id" type="text" name="legal_doc_desc" style="display:none;">
-	                            <input id="form_p_legal_doc_type_code" readonly type="text" class="FormElement form-control" placeholder="Pilih Jenis Dokumen">
-	                            <span class="input-group-btn">
-	                                <button class="btn btn-success" type="button" onclick="showLOVLegalDocType('form_p_legal_doc_type_id','form_p_legal_doc_type_code')">
-	                                    <span class="fa fa-search bigger-110"></span>
-	                                </button>
-	                            </span>
-                    		</div>
-						</div>			
-					</div>
-				</div>
-			   	<div class="space-2"></div>
-				<div class="row">
-					<div class="form-group">
-						<label class="control-label col-md-3">Upload File
-						</label>
-						<div class="col-md-7">
-							<div class="input-group">
-							<input type="file" id="file_name" name="file_name" required/>
-							</div>
-						</div>			
-					</div>
-				</div>
-				<div class="space-2"></div>
-				<div class="row">
-					<div class="form-group">
-						<label class="control-label col-md-3">Deskripsi
-						</label>
-						<div class="col-md-7">
-							<div class="input-group">
-							<textarea class="form-control" id="description" name="description"></textarea>
-							</div>
-						</div>			
-					</div>
-				</div>
-			</div>
+<div id="modal_lov_legaldoc" class="modal fade" tabindex="-1" style="overflow-y: scroll;">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <!-- modal title -->
+            <div class="modal-header no-padding">
+                <div class="table-header">
+                    <span class="form-add-edit-title"> DOKUMEN PENDUKUNG </span>
+                </div>
+            </div>
 
-			<!-- modal footer -->
-			<div class="modal-footer no-margin-top">
-			    <div class="bootstrap-dialog-footer">
-			        <div class="bootstrap-dialog-footer-buttons">
-        				
-						<button class="btn btn-md green-jungle radius-4">
-        					<i class="ace-icon fa fa-check"></i>
-        					Submit
-        				</button>
-						<button class="btn btn-danger btn-md radius-4" data-dismiss="modal">
-        					<i class="ace-icon fa fa-times"></i>
-        					Close
-        				</button>
-    				</div>
-				</div>
-			</div>
-			</form>
-		</div><!-- /.modal-content -->
-	</div><!-- /.modal-dialog -->
+            
+            
+                <form role="form" id="form_legal" name="form_legal" method="post" enctype="multipart/form-data" accept-charset="utf-8">
+                    <input type="hidden" id="legaldoc_params" name="legaldoc_params">
+                    <input type="hidden" name="<?php echo $this->security->get_csrf_token_name(); ?>" value="<?php echo $this->security->get_csrf_hash(); ?>">
+
+                    <!-- modal body -->
+                     <div class="modal-body">
+		                <div class="row">
+		                    <div class="col-md-12">
+		                        <div class="portlet light bordered">
+		                            <div class="form-body">
+		                                <div class="space-2"></div>
+		                                <div class="row">
+		                                    <label class="control-label col-md-3">Jenis Dokumen</label>
+		                                    <div class="input-group col-md-7">
+		                                        <input id="p_legal_doc_type_id" name="p_legal_doc_type_id" type="text"  style="display:none;">
+		                                        <input id="legal_doc_desc" name="legal_doc_desc" readonly type="text" class="FormElement form-control" placeholder="Pilih Jenis Dokumen" required>
+		                                        <span class="input-group-btn">
+		                                            <button class="btn btn-success" type="button" onclick="showLOVLegalDocType('p_legal_doc_type_id','legal_doc_desc')">
+		                                                <span class="fa fa-search bigger-110"></span>
+		                                            </button>
+		                                        </span>
+		                                    </div>
+		                                </div>
+		                                <div class="space-2"></div>
+			                            <div class="row">
+		                                    <label class="control-label col-md-3">Upload File</label>
+		                                    <div class="input-group col-md-7">
+		                                    	<input type="file" id="filename" name="filename" required/>
+		                                    </div>
+			                            </div>
+		                                <div class="space-2"></div>
+		                                <div class="row">
+		                                    <label class="control-label col-md-3">Deskripsi</label>
+		                                    <div class="input-group col-md-7">
+		                                        <textarea rows="5" class="form-control" id="deskripsi" name="deskripsi" ></textarea>   
+		                                    </div>
+		                                </div>
+		                            </div>  
+		                        </div>       
+		                    </div>   
+		                </div>
+		            </div>
+                    <!-- modal footer -->
+                    <div class="modal-footer no-margin-top">
+		                <div class="bootstrap-dialog-footer">
+		                    <div class="bootstrap-dialog-footer-buttons">
+		                        <button class="btn btn-sm green-jungle radius-4">
+		                            <i class="ace-icon fa fa-check"></i>
+		                            Submit
+		                        </button>
+		                        <button class="btn btn-danger btn-sm radius-4" data-dismiss="modal">
+		                            <i class="fa fa-times"></i>
+		                            Tutup
+		                        </button>
+		                    </div>
+		                </div>
+		            </div>
+                </form>
+           
+
+            
+            
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
 </div><!-- /.end modal -->
+
+
 <?php $this->load->view('lov/lov_p_legal_doc_type'); ?>
-<script>
-	function modal_upload_file_show(){
-		$("#modal_upload_file").modal("toggle");
-	};
 
-    $('#form-upload-file').submit(function(e){
-		var url_submit = "<?php echo WS_JQGRID.'transaksi.t_cust_order_legal_doc_controller/uploadFiles'; ?>"
-		var formData = new FormData($(this)[0]);
-		 $.ajax({
-            url: url_submit,
-            type:"POST",
-            secureuri: false,
-            dataType: "json",
-            data: formData,
-            success: function (data, status) {
+<script>    
 
-                if (typeof (data.success) != 'undefined') {
-                    if (data.success == true) {
-                        return;
-                    } else {
-                        alert(data.message);
+    $(function() {
+        /* submit */
+        $("#form_legal").on('submit', (function (e) {
+            e.preventDefault();   
+            var data = new FormData(this);
+            //console.log(data);
+            $.ajax({
+                type: 'POST',
+                dataType: "json",
+                url: '<?php echo WS_JQGRID."transaksi.t_cust_order_legal_doc_controller/saveUpload"; ?>',
+                data: data,
+                timeout: 10000,
+                contentType: false,       // The content type used when sending data to the server.
+                cache: false,             // To unable request pages to be cached
+                processData: false, 
+                success: function(data) {
+
+                    if(data.success) {
+                        // $('#grid-legal').bootgrid('reload');
+                        $('#grid-table').trigger( 'reloadGrid' );
+                        $('#p_legal_doc_type_id').val(1);
+                        $('#filename').val('');
+                        $('#deskripsi').val('');
+                        $('#legal_doc_desc').val('');
+                        $('#modal_lov_legaldoc').modal('hide');
+                    }else{
+                        swal("", data.message, "warning");
                     }
+                   
                 }
-                else {
-                    return alert('Failed to upload!');
-                }
-            },
-            error: function (data, status, e) {
-                return alert('Failed to upload!');
-            }
-        });
-		$('#modal_upload_file').modal('hide');
-		return false;
-	});
-</script>
-<script>
-	function showLOVLegalDocType(id, code) {
-    	modal_p_legal_doc_type_show(id, code);
-	}
+            });
+            return false;
+        }));
+        
+    });
+
+    function modal_lov_legaldoc_show(params_legaldoc) {
+        modal_lov_legaldoc_init(params_legaldoc);
+        $("#modal_lov_legaldoc").modal({backdrop: 'static'});
+    }
+
+    function modal_lov_legaldoc_init(params_legaldoc) {
+
+        $('#legaldoc_params').val( JSON.stringify(params_legaldoc) );
+        $('#p_legal_doc_type_id').val(1);
+        $('#filename').val('');
+        $('#deskripsi').val('');
+        $('#legal_doc_desc').val('');
+
+
+    }
+
+    function showLOVLegalDocType(id, code) {
+        modal_p_legal_doc_type_show(id, code);
+    } 
+
+
+    
 </script>

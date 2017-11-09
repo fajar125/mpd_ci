@@ -43,11 +43,13 @@
             </ul>
         </div>
 
+
+
         <div class="tab-content no-border">
             <div class="row">
                 <div class="col-md-12">
-                    <button class="btn btn-danger" type="submit" id="btn-submit" onclick="showLOVUpload()"><i class="fa fa-plus"></i> Tambah Data</button>
-                    <button class="btn btn-success" type="submit" id="btn-submit" onclick="cetak()"><i class="fa fa-pencil"></i> Edit Data</button>
+                    <button class="btn btn-danger" type="submit" id="btn-submit" onclick="cetak()"><i class="fa fa-print"></i>  Cetak Tanda Terima</button>
+                    <button class="btn btn-primary" type="submit" id="btn-lov-upload"><i class="fa fa-plus"></i>  Tambah Data</button>
                 </div>
             </div>
 
@@ -58,13 +60,9 @@
                     <div id="grid-pager"></div>
                 </div>
             </div>
+
             
-            <div class="space-2"></div>
-            <div class="row">
-                <div class="col-md-offset-5">
-                    <button class="btn btn-danger" type="submit" id="btn-submit" onclick="cetak()"><i class="fa fa-print"></i>Cetak Tanda Terima</button>
-                </div>
-            </div>
+            
         </div>
     </div>
 </div>
@@ -78,69 +76,103 @@
 
         PopupCenter(url,"Kartu Tanda Terima",500,500);
     } 
+
+    $("#btn-lov-upload").on("click", function(event) {
+        var params_legaldoc = {};
+        params_legaldoc.code = "TAMBAH LOG AKTIFITAS";
+        params_legaldoc.CURR_DOC_ID         = <?php echo $this->input->post('t_customer_order_id'); ?>;  
+        params_legaldoc.CURR_DOC_TYPE_ID    = $('#CURR_DOC_TYPE_ID').val();
+        params_legaldoc.CURR_PROC_ID        = $('#CURR_PROC_ID').val();
+        params_legaldoc.CURR_CTL_ID         = $('#CURR_CTL_ID').val();
+        params_legaldoc.USER_ID_DOC         = $('#USER_ID_DOC').val();
+        params_legaldoc.USER_ID_DONOR       = $('#USER_ID_DONOR').val();
+        params_legaldoc.USER_ID_LOGIN       = $('#USER_ID_LOGIN').val();
+        params_legaldoc.USER_ID_TAKEN       = $('#USER_ID_TAKEN').val();
+        params_legaldoc.IS_CREATE_DOC       = $('#IS_CREATE_DOC').val();
+        params_legaldoc.IS_MANUAL           = $('#IS_MANUAL').val();
+        params_legaldoc.CURR_PROC_STATUS    = $('#CURR_PROC_STATUS').val();
+        params_legaldoc.CURR_DOC_STATUS     = $('#CURR_DOC_STATUS').val();
+        params_legaldoc.PREV_DOC_ID         = $('#PREV_DOC_ID').val();
+        params_legaldoc.PREV_DOC_TYPE_ID    = $('#PREV_DOC_TYPE_ID').val();
+        params_legaldoc.PREV_PROC_ID        = $('#PREV_PROC_ID').val();
+        params_legaldoc.PREV_CTL_ID         = $('#PREV_CTL_ID').val();
+        params_legaldoc.SLOT_1              = $('#SLOT_1').val();    
+        params_legaldoc.SLOT_2              = $('#SLOT_2').val(); 
+        params_legaldoc.SLOT_3              = $('#SLOT_3').val();    
+        params_legaldoc.SLOT_4              = $('#SLOT_4').val();  
+        params_legaldoc.SLOT_5              = $('#SLOT_5').val();    
+        params_legaldoc.MESSAGE             = $('#MESSAGE').val();    
+        params_legaldoc.PROFILE_TYPE        = $('#PROFILE_TYPE').val();
+        params_legaldoc.ACTION_STATUS       = $('#ACTION_STATUS').val();
+
+        modal_lov_legaldoc_show(params_legaldoc);
+    });
+
 </script>
 
 <script>
-$("#tab-1").on("click", function(event) {
-    event.stopPropagation();
-    loadContentWithParams("transaksi.t_customer_order",{});
-});
+    $("#tab-1").on("click", function(event) {
+        event.stopPropagation();
+        loadContentWithParams("transaksi.t_customer_order",{});
+    });
 
-$("#tab-3").on("click", function(event) {
-    event.stopPropagation();
-    t_vat_registration_id = <?php echo $_POST['t_vat_registration_id'];?> ;
-    p_rqst_type_id = <?php echo $_POST['p_rqst_type_id'];?> ;
-    t_customer_order_id = <?php echo $_POST['t_customer_order_id'];?> ;
-    order_no = <?php echo $_POST['order_no'];?> ;
-    order_date = order_date = '<?php echo $this->input->post('order_date'); ?>' ;
-    //alert(p_rqst_type_id);
-    // t_vat_reg_employee_id = $('#t_vat_reg_employee_id').val() ;
-    // t_vat_reg_dtl_restaurant_id = $('#t_vat_reg_dtl_restaurant_id').val() ;
-    // t_license_letter_id = $('#t_license_letter_id').val() ;
-    if(t_vat_registration_id == null || t_vat_registration_id == 0 || t_vat_registration_id == ""){
-        swal('Peringatan','Isi Formulir Pendaftaran Terlebih Dahulu!','error');
-        return false;
-    }
+    $("#tab-3").on("click", function(event) {
+        event.stopPropagation();
+        t_vat_registration_id = <?php echo $_POST['t_vat_registration_id'];?> ;
+        p_rqst_type_id = <?php echo $_POST['p_rqst_type_id'];?> ;
+        t_customer_order_id = <?php echo $_POST['t_customer_order_id'];?> ;
+        order_no = <?php echo $_POST['order_no'];?> ;
+        order_date = order_date = '<?php echo $this->input->post('order_date'); ?>' ;
+        //alert(p_rqst_type_id);
+        // t_vat_reg_employee_id = $('#t_vat_reg_employee_id').val() ;
+        // t_vat_reg_dtl_restaurant_id = $('#t_vat_reg_dtl_restaurant_id').val() ;
+        // t_license_letter_id = $('#t_license_letter_id').val() ;
+        if(t_vat_registration_id == null || t_vat_registration_id == 0 || t_vat_registration_id == ""){
+            swal('Peringatan','Isi Formulir Pendaftaran Terlebih Dahulu!','error');
+            return false;
+        }
 
-    loadContentWithParams("transaksi.t_vat_reg_dtl", { //model yang ketiga
-        t_customer_order_id: t_customer_order_id,
-        order_no:order_no,
-        order_date:order_date,
-        p_rqst_type_id: p_rqst_type_id,
-        t_vat_registration_id: t_vat_registration_id
+        loadContentWithParams("transaksi.t_vat_reg_dtl", { //model yang ketiga
+            t_customer_order_id: t_customer_order_id,
+            order_no:order_no,
+            order_date:order_date,
+            p_rqst_type_id: p_rqst_type_id,
+            t_vat_registration_id: t_vat_registration_id
+            
+        });
+    });
+
+    $("#tab-2").on("click", function(event) {
+
+        event.stopPropagation();
+        var grid = $('#grid-table');
+        t_customer_order_id = <?php echo $_POST['t_customer_order_id'];?>;
+        t_vat_registration_id = <?php echo $_POST['t_vat_registration_id'];?> ;
+        p_rqst_type_id = <?php echo $_POST['p_rqst_type_id'];?> ;
+        order_no = <?php echo $_POST['order_no'];?> ;
+        order_date = '<?php echo $_POST['order_date'];?>' ;
         
+        if(t_customer_order_id == null) {
+            swal('Informasi','Silahkan pilih salah satu Permintaan Pelanggan','info');
+            return false;
+        }
+
+
+        loadContentWithParams("transaksi.t_vat_registration", {
+            t_customer_order_id: t_customer_order_id,
+            order_no:order_no,
+            order_date:order_date,
+            p_rqst_type_id:p_rqst_type_id,
+            t_vat_registration_id:t_vat_registration_id
+        });
     });
-});
-
-$("#tab-2").on("click", function(event) {
-
-    event.stopPropagation();
-    var grid = $('#grid-table');
-    t_customer_order_id = <?php echo $_POST['t_customer_order_id'];?>;
-    t_vat_registration_id = <?php echo $_POST['t_vat_registration_id'];?> ;
-    p_rqst_type_id = <?php echo $_POST['p_rqst_type_id'];?> ;
-    order_no = <?php echo $_POST['order_no'];?> ;
-    order_date = '<?php echo $_POST['order_date'];?>' ;
-    
-    if(t_customer_order_id == null) {
-        swal('Informasi','Silahkan pilih salah satu Permintaan Pelanggan','info');
-        return false;
-    }
-
-
-    loadContentWithParams("transaksi.t_vat_registration", {
-        t_customer_order_id: t_customer_order_id,
-        order_no:order_no,
-        order_date:order_date,
-        p_rqst_type_id:p_rqst_type_id,
-        t_vat_registration_id:t_vat_registration_id
-    });
-});
-</script>
 </script>
 
-<?php $this->load->view('lov/lov_p_legal_doc_type'); ?>
+
+
 <?php $this->load->view('lov/lov_upload_file'); ?>
+
+
 
 <script>
     $(function($) {
@@ -156,50 +188,8 @@ $("#tab-2").on("click", function(event) {
                 {label: 'ID', name: 't_cust_order_legal_doc_id', key: true, width: 5, sorttype: 'number', hidden: true},
                 {label: 'ID', name: 't_customer_order_id',  width: 5, sorttype: 'number', editable: true, hidden: true},
                 {label: 'Jenis Dokumen',name: 'legal_doc_desc',width: 150, align: "left",editable: false},
-                {label: 'Jenis Dokumen',
-                    name: 'p_legal_doc_type_id',
-                    width: 100,
-                    sortable: true,
-                    editable: true,
-                    hidden: true,
-                    editrules: {edithidden: true, required:false},
-                    edittype: 'custom',
-                    editoptions: {
-                        "custom_element":function( value  , options) {
-                            var elm = $('<span></span>');
+                {label: 'ID Dokumen',name: 'p_legal_doc_type_id',width: 150, align: "left",editable: false, hidden:true},
 
-                            // give the editor time to initialize
-                            setTimeout( function() {
-                                elm.append('<input id="form_p_legal_doc_type_id" type="text" style="display:none;" >'+
-                                        '<input id="form_p_legal_doc_type_code" name="legal_doc_desc" readonly type="text" class="FormElement form-control" placeholder="Pilih Jenis Dokumen" required=true>'+
-                                        '<button class="btn btn-success" type="button" onclick="showLOVLegalDocType(\'form_p_legal_doc_type_id\',\'form_p_legal_doc_type_code\')">'+
-                                        '   <span class="fa fa-search bigger-110"></span>'+
-                                        '</button>');
-                                $("#form_p_legal_doc_type_id").val(value);
-                                elm.parent().removeClass('jqgrid-required');
-                            }, 100);
-
-                            return elm;
-                        },
-                        "custom_value":function( element, oper, gridval) {
-
-                            if(oper === 'get') {
-                                return $("#form_p_legal_doc_type_id").val();
-                            } else if( oper === 'set') {
-                                $("#form_p_legal_doc_type_id").val(gridval);
-                                var gridId = this.id;
-                                // give the editor time to set display
-                                setTimeout(function(){
-                                    var selectedRowId = $("#"+gridId).jqGrid ('getGridParam', 'selrow');
-                                    if(selectedRowId != null) {
-                                        var code_display = $("#"+gridId).jqGrid('getCell', selectedRowId, 'legal_doc_type_code');
-                                        $("#form_p_legal_doc_type_code").val( code_display );
-                                    }
-                                },100);
-                            }
-                        }
-                    }
-                },
                 {label: 'Nama File',name: 'file_name',width: 150, align: "left",editable: true, edittype:'file',
                     editoptions:{
                         enctype:'multipart/form-data'
@@ -226,6 +216,8 @@ $("#tab-2").on("click", function(event) {
             onSelectRow: function (rowid) {
                 /*do something when selected*/
 
+                //alert($('#form_p_legal_doc_type_code').val());
+
             },
             sortorder:'',
             pager: '#grid-pager',
@@ -239,6 +231,10 @@ $("#tab-2").on("click", function(event) {
                     swal({title: 'Attention', text: response.message, html: true, type: "warning"});
                 }
 
+                setTimeout(function(){
+                  $("#grid-table").setSelection($("#grid-table").getDataIDs()[0],true);
+                },500);
+
             },
             //memanggil controller jqgrid yang ada di controller read
             editurl: '<?php echo WS_JQGRID."transaksi.t_cust_order_legal_doc_controller/crud"; ?>',
@@ -248,9 +244,9 @@ $("#tab-2").on("click", function(event) {
 
         jQuery('#grid-table').jqGrid('navGrid', '#grid-pager',
             {   //navbar options
-                edit: true,
+                edit: false,
                 editicon: 'fa fa-pencil blue bigger-120',
-                add: true,
+                add: false,
                 addicon: 'fa fa-plus-circle purple bigger-120',
                 del: true,
                 delicon: 'fa fa-trash-o red bigger-120',
@@ -327,9 +323,7 @@ $("#tab-2").on("click", function(event) {
                     console.log(form);
                     style_edit_form(form);
 
-                    setTimeout(function() {
-                    clearInputLegalDocType();
-                     },100);
+                   
                 },
                 afterShowForm: function(form) {
                     form.closest('.ui-jqdialog').center();
@@ -345,7 +339,7 @@ $("#tab-2").on("click", function(event) {
                     $(".tinfo").html('<div class="ui-state-success">' + response.message + '</div>');
                     var tinfoel = $(".tinfo").show();
                     tinfoel.delay(3000).fadeOut();
-                    clearInputLegalDocType();
+                    //clearInputLegalDocType();
                     uploadFile(response,postdata);
                     //reloadTreeMenu();
 
@@ -404,79 +398,3 @@ $("#tab-2").on("click", function(event) {
 
 
 
-<script>
-/**
- * [showLOVLegalDocType called by input menu_icon to show List Of Value (LOV) of icon]
- * @param  {[type]} id   [description]
- * @param  {[type]} code [description]
- * @return {[type]}      [description]
- */
-function showLOVLegalDocType(id, code) {
-    modal_p_legal_doc_type_show(id, code);
-}
-
-/**
- * [clearInputLegalDocType called by beforeShowForm method to clean input of menu_icon]
- * @return {[type]} [description]
- */
-function clearInputLegalDocType() {
-    $('#form_p_legal_doc_type_id').val('');
-    $('#form_p_legal_doc_type_code').val('');
-}
-
-function uploadFile(response, postdata) {
-    // alert($.parseJSON(response.responseText));
-    // return;
-    //alert(response.success);
-    if (response.success == true) {
-        alert($("#file_name").val());
-        if ($("#file_name").val() != "") {
-            //alert(response.success);
-            ajaxFileUpload(response);
-
-        }
-    }
-
-}
-
-function ajaxFileUpload(data) {
-    
-    $("#loading").ajaxStart(function () {
-        $(this).show();
-    }).ajaxComplete(function () {
-        $(this).hide();
-    });
-    //alert(data.success);
-
-    $.ajax({
-            url: "<?php echo WS_JQGRID.'transaksi.t_cust_order_legal_doc_controller/uploadFiles'; ?>",
-            type:"POST",
-            secureuri: false,
-            dataType: "json",
-            data: data,
-            success: function (data, status) {
-
-                if (typeof (data.success) != 'undefined') {
-                    if (data.success == true) {
-                        return;
-                    } else {
-                        alert(data.message);
-                    }
-                }
-                else {
-                    return alert('Failed to upload!');
-                }
-            },
-            error: function (data, status, e) {
-                return alert('Failed to upload!');
-            }
-        }
-    )          
-}  
-</script>
-
-<script type="text/javascript">
-    function showLOVUpload() {
-        modal_upload_file_show();
-    }
-</script>

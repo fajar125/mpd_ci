@@ -55,7 +55,7 @@ class T_cust_order_legal_doc extends Abstract_model {
             $this->record['updated_date'] = date('Y-m-d');
             $this->record['updated_by'] = $userdata['app_user_name'];
             
-            // $this->record['origin_file_name'] =  $file;
+            //$this->record['file_folder'] =  $file;
             // $this->record['file_name'] = date('Y-m-d'). $file;
             $this->record['file_folder'] = "upload";
 
@@ -69,6 +69,35 @@ class T_cust_order_legal_doc extends Abstract_model {
             //if false please throw new Exception
         }
         return true;
+    }
+
+    function save($param = array()){
+        $ci =& get_instance();
+        $userdata = $ci->session->userdata;
+        $user_name = $userdata['app_user_name'];
+        $sysdate = date('Y-m-d');
+        $t_cust_order_legal_doc_id = $this->generate_id($this->table, $this->pkey);
+
+
+
+        $data =  array(
+            't_cust_order_legal_doc_id' => $t_cust_order_legal_doc_id, 
+            't_customer_order_id' => $param['t_customer_order_id'],
+            'p_legal_doc_type_id' => $param['p_legal_doc_type_id'], 
+            'legal_doc_desc' => $param['legal_doc_desc'], 
+            'origin_file_name' => $param['client_name'], 
+            'file_folder' => 'upload', 
+            'file_name' => $param['file_name'],
+            'description' => $param['description'], 
+            'creation_date' => $sysdate, 
+            'created_by' => $user_name, 
+            'updated_date' => $sysdate, 
+            'updated_by' => $user_name);
+        
+        $query = $this->db->insert($this->table, $data);
+        $item = $query->row_array();
+            
+        return $item;
     }
 
 }

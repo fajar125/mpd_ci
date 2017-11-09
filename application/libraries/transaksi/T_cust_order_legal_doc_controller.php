@@ -293,36 +293,93 @@ class T_cust_order_legal_doc_controller {
         return $data;
     }
 
-    function uploadFiles($args = array()){
-        $data = array('success' => false, 'message' => '');
-        //global $_FILES;
+    function saveUpload(){
+        $ci =& get_instance();
+        $userinfo = $ci->session->userdata;
+        $ci->load->model('transaksi/t_cust_order_legal_doc');
+        $table = $ci->t_cust_order_legal_doc;
+
+        $params = json_decode($ci->input->post('legaldoc_params') , true);
+        $CREATED_BY = $userinfo['app_user_name'];
+        $UPDATED_BY = $userinfo['app_user_name'];
+        $log_params['CURR_DOC_ID'] = empty($log_params['CURR_DOC_ID']) ? NULL : $log_params['CURR_DOC_ID'];
+
         try {
-            if (isset($_GET['files'])) {
-                # code...
+
+            $config['upload_path'] = './upload';
+            $config['allowed_types'] = '*';
+            $config['max_size'] = '10000000';
+            $config['overwrite'] = TRUE;
+            $file_id = date("YmdHis");
+            //print_r ($ci->input->post('filename'));exit();
+            $config['file_name'] = 'doc_'.$file_id;
+
+            $ci->load->library('upload');
+            $ci->upload->initialize($config);
+
+            if (!$ci->upload->do_upload("filename")) {
+
+                $error = $ci->upload->display_errors();
+                $result['success'] = false;
+                $result['message'] = $error;
+
+                echo json_encode($result);
+                exit;
             }else{
 
+                //chmod
+
+                // Do Upload
+                $data = $ci->upload->data();
+
+                
+
+                $idd = $table->generate_id('t_cust_order_legal_doc', 't_cust_order_legal_doc_id');
+
+                $sql = "INSERT INTO sikp.t_cust_order_legal_doc(t_cust_order_legal_doc_id,
+                                                           legal_doc_desc,
+                                                           description,
+                                                           created_by,
+                                                           updated_by,
+                                                           creation_date,
+                                                           updated_date,
+                                                           p_legal_doc_type_id,
+                                                           t_customer_order_id,
+                                                           origin_file_name,
+                                                           file_folder,
+                                                           file_name)
+                            VALUES (".$idd.",
+                                    '".$ci->input->post('legal_doc_desc')."',
+                                    '".$ci->input->post('deskripsi')."',
+                                    '".$CREATED_BY."',
+                                    '".$UPDATED_BY."',
+                                    current_date,
+                                    current_date,
+                                    ".$ci->input->post('p_legal_doc_type_id').",
+                                    ".$params['CURR_DOC_ID'].",
+                                    '".$data['client_name']."',
+                                    'upload',
+                                    '".$data['file_name']."'
+                                    )";
+
+                $table->db->query($sql);
+
+
+                $result['success'] = true;
+                $result['message'] = 'Dokumen Pendukung Berhasil Ditambah';
+
             }
-            if(empty($_FILES['file_name']['name'])){
-                throw new Exception('File tidak boleh kosong');
-            }
-            
-            $file_name = $_FILES['file_name']['name']; // <-- File Name
-            $file_location = 'upload/'.$file_name; // <-- LOKASI Upload File
-        
-            if (!move_uploaded_file($_FILES['file_name']['tmp_name'], $file_location)){
-                throw new Exception("Upload file gagal");
-            }
-            
-            $data['success'] = true;
-            $data['message'] = 'Upload file transaksi berhasil dilakukan';
+
         }catch(Exception $e) {
-            $data['success'] = false;
-            $data['message'] = $e->getMessage();
+            $result['success'] = false;
+            $result['message'] = $e->getMessage();
         }
-           
-        echo json_encode($data);
+
+        echo json_encode($result);
         exit;
     }
+
+
 
 
     
