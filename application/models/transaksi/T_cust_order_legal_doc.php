@@ -26,8 +26,9 @@ class T_cust_order_legal_doc extends Abstract_model {
 
                             );
 
-    public $selectClause    = "a.*";
-    public $fromClause      = "t_cust_order_legal_doc a";
+    public $selectClause    = "a.*, b.code legal_doc_desc";
+    public $fromClause      = "t_cust_order_legal_doc a
+                               left join p_legal_doc_type b on  a.p_legal_doc_type_id =b.p_legal_doc_type_id";
     public $refs            = array();
 
     function __construct() {

@@ -900,7 +900,7 @@ class Wf_controller {
 
         try {
 
-            $config['upload_path'] = './application/third_party/upload_file';
+            $config['upload_path'] = './upload';
             $config['allowed_types'] = '*';
             $config['max_size'] = '10000000';
             $config['overwrite'] = TRUE;
@@ -925,20 +925,20 @@ class Wf_controller {
                 // Do Upload
                 $data = $ci->upload->data();
 
-                $idd = $table->generate_id('T_CUST_ORDER_LEGAL_DOC');
+                $idd = $table->generate_id('t_cust_order_legal_doc', 't_cust_order_legal_doc_id');
 
-                $sql = "INSERT INTO T_CUST_ORDER_LEGAL_DOC(T_CUST_ORDER_LEGAL_DOC_ID,
-                                                           DESCRIPTION,
-                                                           CREATED_BY,
-                                                           UPDATED_BY,
-                                                           CREATION_DATE,
-                                                           UPDATED_DATE,
-                                                           P_LEGAL_DOC_TYPE_ID,
-                                                           T_CUSTOMER_ORDER_ID,
-                                                           ORIGIN_FILE_NAME,
-                                                           FILE_FOLDER,
-                                                           FILE_NAME)
-                            VALUES (".$idd.",
+                $sql = "insert into t_cust_order_legal_doc(t_cust_order_legal_doc_id,
+                                                           description,
+                                                           created_by,
+                                                           updated_by,
+                                                           creation_date,
+                                                           updated_date,
+                                                           p_legal_doc_type_id,
+                                                           t_customer_order_id,
+                                                           origin_file_name,
+                                                           file_folder,
+                                                           file_name)
+                            values (".$idd.",
                                     '".$ci->input->post('desc')."',
                                     '".$CREATED_BY."',
                                     '".$UPDATED_BY."',
@@ -947,7 +947,7 @@ class Wf_controller {
                                     ".$ci->input->post('p_legal_doc_type_id').",
                                     ".$params['CURR_DOC_ID'].",
                                     '".$data['client_name']."',
-                                    'application/third_party/upload_file',
+                                    'upload',
                                     '".$data['file_name']."'
                                     )";
 
