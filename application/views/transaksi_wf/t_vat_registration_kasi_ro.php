@@ -584,6 +584,34 @@
     </div>   
 </div>
 
+<label class="control-label col-md-5"><b>Generate NPWDP</b></label>
+<div class="row">
+    <div class="col-xs-12">
+        <div class="portlet light bordered">
+            <div class="form-body">
+                <div class="space-2"></div>
+                <div class="row">
+                    <label class="control-label col-md-3">Input Nomor Surat </label>
+                    <div class="input-group col-md-4">                            
+                        <input type="text" class="form-control" name="reg_letter_no" id="reg_letter_no">
+                    </div>
+                </div>
+                <div class="space-2"></div>
+                <div class="row">
+                    <label class="control-label col-md-3">NPWPD</label>
+                    <div class="input-group col-md-4">
+                            <input id="npwpd" readonly type="text" class="FormElement form-control" placeholder="NPWPD">
+                            <span class="input-group-btn">
+                                <button class="btn btn-success" type="button" id="btn-gen" onclick="">Generate NPWPD</button>
+                            </span>
+                    </div>
+                </div>
+
+                
+            </div>  
+        </div>       
+    </div>   
+</div>
 
 <label class="control-label col-md-5"><b>Validasi</b></label>
 <div class="row">
@@ -598,16 +626,6 @@
                     </div>
                  
                 </div> 
-                <!-- <div class="space-2"></div> -->
-                <!-- <div class="row">
-                    <div class="col-sm-offset-3">
-                        <button class="btn btn-success" type="button" id="btn-add" onclick="">CETAK SPTPD/SKPDKB/SKPDN</button>
-                        <button class="btn btn-success" type="button" id="btn-edit" onclick="">CETAK FORMULIR</button>
-                        <button class="btn btn-success" type="button" id="btn-del" onclick="">CETAK SURAT PENOLAKAN</button>
-                        <button class="btn btn-danger" type="button" id="btn-del" onclick="">SUBMIT</button>
-                    </div>
-                 
-                </div>  -->
 
             </div>       
         </div>   
@@ -615,8 +633,9 @@
     <div class="col-xs-12">
         <div class="row">
             <div style="text-align: center;">
-                <button class="btn btn-success" type="button" id="btn-ctk2" onclick="cetak1();">CETAK FORMULIR</button>
-                <!-- <button class="btn btn-success" type="button" id="btn-ctk3" onclick="">CETAK SURAT PENOLAKAN</button> -->
+                <button class="btn btn-success" type="button" id="btn-ctk2" onclick="">CETAK NOTA DINAS</button>
+                <button class="btn btn-success" type="button" id="btn-ctk3" onclick="cetak1();">CETAK DRAF PENGUKUHAN</button>
+                <button class="btn btn-danger" type="button" id="btn-sub" onclick="saveform();">SAVE</button>
                 <button class="btn btn-danger" type="button" id="btn-sub" onclick="submitform();">SUBMIT</button>
                 <button class="btn btn-danger" type="button" id="btn-kel" onclick="backform();">KEMBALI</button>
             </div>
@@ -626,31 +645,77 @@
 
 <script type="text/javascript">
     function cetak1(){
+        // var t_customer_order_id = $('#CURR_DOC_ID').val();
+
+        // var url = "<?php echo base_url(); ?>"+"cetak_formulir_tanda_terima_pengukuhan_pdf/save_pdf?t_customer_order_id="+t_customer_order_id;
+
+        // PopupCenter(url,"Kartu Tanda Terima",500,500);
+    }    
+
+    function saveform(){
+        var npwpd = $('#npwpd').val();
+        var reg_letter_no = $('#reg_letter_no').val();
         var t_customer_order_id = $('#CURR_DOC_ID').val();
-        var p_rqst_type_id = $('#p_rqst_type_id').val();
+        var t_vat_registration_id = $('#t_vat_registration_id').val();
 
-        var url1 = "<?php echo base_url(); ?>"+"/cetak_formulir_hiburan_pdf/pageCetak?t_customer_order_id="+t_customer_order_id;
-        var url2 = "<?php echo base_url(); ?>"+"/cetak_formulir_hotel_pdf/pageCetak?t_customer_order_id="+t_customer_order_id;
-        var url3 = "<?php echo base_url(); ?>"+"/cetak_formulir_parkir_pdf/pageCetak?t_customer_order_id="+t_customer_order_id;
-        var url4 = "<?php echo base_url(); ?>"+"/cetak_formulir_ppj_pdf/pageCetak?t_customer_order_id="+t_customer_order_id;
-        var url5 = "<?php echo base_url(); ?>"+"/cetak_formulir_restaurant_pdf/pageCetak?t_customer_order_id="+t_customer_order_id;
-
-        if(p_rqst_type_id == 1){
-            PopupCenter(url2,"Kartu Tanda Terima",500,500);
-        }else if(p_rqst_type_id == 2){
-            PopupCenter(url5,"Kartu Tanda Terima",500,500);
-        }else if(p_rqst_type_id == 3){
-            PopupCenter(url1,"Kartu Tanda Terima",500,500);
-        }else if(p_rqst_type_id == 4){
-            PopupCenter(url3,"Kartu Tanda Terima",500,500);
-        }else if(p_rqst_type_id == 5){
-            PopupCenter(url4,"Kartu Tanda Terima",500,500);
-        }else{
-                alert("Formulir Kosong");
+        if(t_vat_registration_id == "" && t_customer_order_id == "") {
+            swal('Informasi','Terjadi kesalahan order','info');
+            return false;
         }
 
-        // 
-    } 
+        if(npwpd == "") {
+            swal('Informasi','NPWPD tidak boleh kosong','info');
+            return false;
+        }
+
+        if(reg_letter_no == "") {
+            swal('Informasi','Nomor Surat tidak boleh kosong','info');
+            return false;
+        }
+
+        $.ajax({
+            type: 'POST',
+            datatype: "json",
+            url: '<?php echo WS_JQGRID."workflow.wf_controller/save_kasi_npwpd";?>',
+            timeout: 10000,
+            data: { 
+                npwpd : npwpd,
+                reg_letter_no : reg_letter_no,
+                t_customer_order_id : t_customer_order_id,
+                t_vat_registration_id : t_vat_registration_id
+            },
+            success: function(data) {
+                var response = JSON.parse(data);
+                 swal('Informasi', response.message,'info');
+                 return false;
+            }
+        });
+
+    }
+
+    $('#btn-gen').on('click', function(){
+        var t_customer_order_id = $('#CURR_DOC_ID').val();
+
+        if(t_customer_order_id == "") {
+            swal('Informasi','Terjadi kesalahan order','info');
+            return false;
+        }
+
+        $.ajax({
+            type: 'POST',
+            datatype: "json",
+            url: '<?php echo WS_JQGRID."workflow.wf_controller/gen_npwpd";?>',
+            timeout: 10000,
+            data: { 
+                t_customer_order_id : t_customer_order_id
+            },
+            success: function(data) {
+                var response = JSON.parse(data);
+                $('#npwpd').val(response.data[0].npwpd);
+            }
+        });
+    });
+
 
     $.ajax({
         url: "<?php echo base_url().'transaksi/private_question_combo/'; ?>" ,
@@ -666,7 +731,7 @@
 
     $("#tab-2").on("click", function(event) {
         
-        loadContentWithParams("transaksi_wf.t_vat_reg_dtl_ver_ro", { //model yang ketiga
+        loadContentWithParams("transaksi_wf.t_vat_reg_dtl_kasi_ro", { //model yang ketiga
             t_customer_order_id: $( "#CURR_DOC_ID" ).val(),
             order_no: $('#order_no').val(),
             order_date:$('#registration_date').val(),
@@ -708,7 +773,7 @@
 
     $("#tab-3").on("click", function(event) {
         event.stopPropagation();
-    loadContentWithParams("transaksi_wf.t_cust_order_legal_doc_ver_ro", { //model yang ketiga
+    loadContentWithParams("transaksi_wf.t_cust_order_legal_doc_kasi_ro", { //model yang ketiga
             t_customer_order_id: $( "#CURR_DOC_ID" ).val(),
             order_no: $('#order_no').val(),
             order_date:$('#registration_date').val(),
@@ -750,7 +815,7 @@
 
     $("#tab-4").on("click", function(event) {
         
-        loadContentWithParams("transaksi_wf.t_order_log_kronologis_ver_ro", { //model yang ketiga
+        loadContentWithParams("transaksi_wf.t_order_log_kronologis_kasi_ro", { //model yang ketiga
             t_customer_order_id: $( "#CURR_DOC_ID" ).val(),
             order_no: $('#order_no').val(),
             order_date:$('#registration_date').val(),
@@ -882,6 +947,8 @@
                 $('#private_answer').val(data1.private_answer);
 
                 $( "#p_rqst_type_id" ).val(data1.p_rqst_type_id);
+                $( "#reg_letter_no" ).val(data1.reg_letter_no);
+                $( "#npwpd" ).val(data1.npwpd);
 
                 $.ajax({
                     url: "<?php echo base_url().'transaksi/nama_ayat_combo/'; ?>" ,

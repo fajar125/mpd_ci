@@ -262,7 +262,7 @@
 <script>
 $("#tab-1").on("click", function(event) {
     event.stopPropagation();
-    loadContentWithParams("transaksi_wf.t_vat_registration_ver_ro", { //model yang ketiga
+    loadContentWithParams("transaksi_wf.t_vat_registration_kasi_ro", { //model yang ketiga
             t_customer_order_id: $( "#CURR_DOC_ID" ).val(),
             order_no: $('#order_no').val(),
             order_date:$('#registration_date').val(),
@@ -305,7 +305,7 @@ $("#tab-1").on("click", function(event) {
 $("#tab-3").on("click", function(event) {
 
     event.stopPropagation();
-    loadContentWithParams("transaksi_wf.t_cust_order_legal_doc_ver_ro", { //model yang ketiga
+    loadContentWithParams("transaksi_wf.t_cust_order_legal_doc_kasi_ro", { //model yang ketiga
             t_customer_order_id: $( "#CURR_DOC_ID" ).val(),
             order_no: $('#order_no').val(),
             order_date:$('#registration_date').val(),
@@ -347,7 +347,7 @@ $("#tab-3").on("click", function(event) {
 
 $("#tab-4").on("click", function(event) {
         
-        loadContentWithParams("transaksi_wf.t_order_log_kronologis_ver_ro", { //model yang ketiga
+        loadContentWithParams("transaksi_wf.t_order_log_kronologis_kasi_ro", { //model yang ketiga
             t_customer_order_id: $( "#CURR_DOC_ID" ).val(),
             order_no: $('#order_no').val(),
             order_date:$('#registration_date').val(),

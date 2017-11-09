@@ -1011,6 +1011,109 @@ class Wf_controller {
         exit;
     }
 
+     public function save_petugas_bap(){
+        $ci =& get_instance();
+        $userinfo = $ci->session->userdata;
+        $ci->load->model('workflow/wf');
+        $table = $ci->wf;
+
+        $bap_employee_no_1 = $ci->input->post('bap_employee_no_1', '');
+        $bap_employee_no_2 = $ci->input->post('bap_employee_no_2', '');
+        $bap_employee_name_1 = $ci->input->post('bap_employee_name_1', '');
+        $bap_employee_name_2 = $ci->input->post('bap_employee_name_2', '');
+        $bap_employee_job_pos_1 = $ci->input->post('bap_employee_job_pos_1', '');
+        $bap_employee_job_pos_2 = $ci->input->post('bap_employee_job_pos_2', '');
+        $t_customer_order_id = $ci->input->post('t_customer_order_id', '');
+        $t_vat_registration_id = $ci->input->post('t_vat_registration_id', '');
+
+
+        try {
+
+            $sql = "UPDATE t_vat_registration SET 
+                    bap_employee_no_1 = '".$bap_employee_no_1."',
+                    bap_employee_no_2 = '".$bap_employee_no_2."',
+                    bap_employee_name_1 = '".$bap_employee_name_1."',
+                    bap_employee_name_2 = '".$bap_employee_name_2."',
+                    bap_employee_job_pos_1 = '".$bap_employee_job_pos_1."',
+                    bap_employee_job_pos_2 = '".$bap_employee_job_pos_2."'
+                    WHERE  t_customer_order_id = ".$t_customer_order_id."
+                    AND t_vat_registration_id = ".$t_vat_registration_id;
+
+            $table->db->query($sql);
+
+            $result['success'] = true;
+            $result['message'] = 'Data Berhasil Disimpan';
+
+        }catch(Exception $e) {
+            $result['success'] = false;
+            $result['message'] = $e->getMessage();
+        }
+
+         echo json_encode($result);
+         exit;
+    }
+
+    public function gen_npwpd(){
+        $ci =& get_instance();
+        $userinfo = $ci->session->userdata;
+        $ci->load->model('workflow/wf');
+        $table = $ci->wf;
+
+        $t_customer_order_id = $ci->input->post('t_customer_order_id', '');
+
+        try {
+
+            $sql = "select f_gen_npwpd(".$t_customer_order_id.")as npwpd from dual";
+
+            $query = $table->db->query($sql);
+
+            $result['success'] = true;
+            $result['message'] = 'Data Berhasil';
+            $result['data'] =  $query->result_array();
+
+        }catch(Exception $e) {
+            $result['success'] = false;
+            $result['message'] = $e->getMessage();
+            $result['data'] = array();
+        }
+
+         echo json_encode($result);
+         exit;
+    }
+
+    public function save_kasi_npwpd(){
+        $ci =& get_instance();
+        $userinfo = $ci->session->userdata;
+        $ci->load->model('workflow/wf');
+        $table = $ci->wf;
+
+        $npwpd = $ci->input->post('npwpd', '');
+        $reg_letter_no = $ci->input->post('reg_letter_no', '');
+        $t_customer_order_id = $ci->input->post('t_customer_order_id', '');
+        $t_vat_registration_id = $ci->input->post('t_vat_registration_id', '');
+
+
+        try {
+
+            $sql = "UPDATE t_vat_registration SET 
+                    npwpd = '".$npwpd."',
+                    reg_letter_no = '".$reg_letter_no."'
+                    WHERE  t_customer_order_id = ".$t_customer_order_id."
+                    AND t_vat_registration_id = ".$t_vat_registration_id;
+
+            $table->db->query($sql);
+
+            $result['success'] = true;
+            $result['message'] = 'Data Berhasil Disimpan';
+
+        }catch(Exception $e) {
+            $result['success'] = false;
+            $result['message'] = $e->getMessage();
+        }
+
+         echo json_encode($result);
+         exit;
+    }
 }
 
 /* End of file Groups_controller.php */

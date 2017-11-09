@@ -615,43 +615,14 @@
     <div class="col-xs-12">
         <div class="row">
             <div style="text-align: center;">
-                <button class="btn btn-success" type="button" id="btn-ctk2" onclick="cetak1();">CETAK FORMULIR</button>
-                <!-- <button class="btn btn-success" type="button" id="btn-ctk3" onclick="">CETAK SURAT PENOLAKAN</button> -->
                 <button class="btn btn-danger" type="button" id="btn-sub" onclick="submitform();">SUBMIT</button>
-                <button class="btn btn-danger" type="button" id="btn-kel" onclick="backform();">KEMBALI</button>
+                <button class="btn btn-danger" type="button" id="btn-kem" onclick="backform();">KEMBALI</button>
             </div>
         </div>
     </div>
 </div>
 
 <script type="text/javascript">
-    function cetak1(){
-        var t_customer_order_id = $('#CURR_DOC_ID').val();
-        var p_rqst_type_id = $('#p_rqst_type_id').val();
-
-        var url1 = "<?php echo base_url(); ?>"+"/cetak_formulir_hiburan_pdf/pageCetak?t_customer_order_id="+t_customer_order_id;
-        var url2 = "<?php echo base_url(); ?>"+"/cetak_formulir_hotel_pdf/pageCetak?t_customer_order_id="+t_customer_order_id;
-        var url3 = "<?php echo base_url(); ?>"+"/cetak_formulir_parkir_pdf/pageCetak?t_customer_order_id="+t_customer_order_id;
-        var url4 = "<?php echo base_url(); ?>"+"/cetak_formulir_ppj_pdf/pageCetak?t_customer_order_id="+t_customer_order_id;
-        var url5 = "<?php echo base_url(); ?>"+"/cetak_formulir_restaurant_pdf/pageCetak?t_customer_order_id="+t_customer_order_id;
-
-        if(p_rqst_type_id == 1){
-            PopupCenter(url2,"Kartu Tanda Terima",500,500);
-        }else if(p_rqst_type_id == 2){
-            PopupCenter(url5,"Kartu Tanda Terima",500,500);
-        }else if(p_rqst_type_id == 3){
-            PopupCenter(url1,"Kartu Tanda Terima",500,500);
-        }else if(p_rqst_type_id == 4){
-            PopupCenter(url3,"Kartu Tanda Terima",500,500);
-        }else if(p_rqst_type_id == 5){
-            PopupCenter(url4,"Kartu Tanda Terima",500,500);
-        }else{
-                alert("Formulir Kosong");
-        }
-
-        // 
-    } 
-
     $.ajax({
         url: "<?php echo base_url().'transaksi/private_question_combo/'; ?>" ,
         type: "POST",            
@@ -666,7 +637,7 @@
 
     $("#tab-2").on("click", function(event) {
         
-        loadContentWithParams("transaksi_wf.t_vat_reg_dtl_ver_ro", { //model yang ketiga
+        loadContentWithParams("transaksi_wf.t_vat_reg_dtl_ro", { //model yang ketiga
             t_customer_order_id: $( "#CURR_DOC_ID" ).val(),
             order_no: $('#order_no').val(),
             order_date:$('#registration_date').val(),
@@ -708,7 +679,7 @@
 
     $("#tab-3").on("click", function(event) {
         event.stopPropagation();
-    loadContentWithParams("transaksi_wf.t_cust_order_legal_doc_ver_ro", { //model yang ketiga
+    loadContentWithParams("transaksi_wf.t_cust_order_legal_doc_ro", { //model yang ketiga
             t_customer_order_id: $( "#CURR_DOC_ID" ).val(),
             order_no: $('#order_no').val(),
             order_date:$('#registration_date').val(),
@@ -750,7 +721,7 @@
 
     $("#tab-4").on("click", function(event) {
         
-        loadContentWithParams("transaksi_wf.t_order_log_kronologis_ver_ro", { //model yang ketiga
+        loadContentWithParams("transaksi_wf.t_order_log_kronologis_ro", { //model yang ketiga
             t_customer_order_id: $( "#CURR_DOC_ID" ).val(),
             order_no: $('#order_no').val(),
             order_date:$('#registration_date').val(),
