@@ -159,3 +159,35 @@ CREATE OR REPLACE VIEW sikp.v_wf_chart_next AS
 ALTER TABLE v_wf_chart_next
   OWNER TO sikp;
 GRANT ALL ON TABLE v_wf_chart_next TO sikp;
+
+CREATE OR REPLACE VIEW v_wf_chart_prev AS 
+SELECT DISTINCT a.p_workflow_id,
+    a.p_procedure_id_prev,
+    nvl(c.display_name, c.proc_name) AS proc_display_prev,
+    a.sequence_no
+   FROM p_w_chart_proc a,
+    p_workflow b,
+    p_procedure c
+  WHERE a.p_workflow_id = b.p_workflow_id AND a.p_procedure_id_prev = c.p_procedure_id AND c.is_active = 'Y'::bpchar 
+  ORDER BY a.sequence_no;
+  
+
+update sikp.p_procedure_files 
+set filename = 'transaksi_wf.t_vat_registration_srt_ro'
+where p_procedure_files_id = 17;
+
+update sikp.p_procedure_files 
+set filename = 'transaksi_wf.t_vat_registration_ro'
+where p_procedure_files_id in(3,4,16,2);
+
+update sikp.p_procedure_files 
+set filename = 'transaksi_wf.t_vat_registration_ver_ro'
+where p_procedure_files_id = 1;
+
+update sikp.p_procedure_files 
+set filename = 'transaksi_wf.t_vat_registration_bap_ro'
+where p_procedure_files_id = 5;
+
+update sikp.p_procedure_files 
+set filename = 'transaksi_wf.t_vat_registration_kasi_ro'
+where p_procedure_files_id = 21;

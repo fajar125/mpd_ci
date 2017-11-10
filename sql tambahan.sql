@@ -606,3 +606,158 @@ WHERE p_app_menu_id = 92;
 UPDATE sikp.p_app_menu
 SET file_name = 'pelaporan.t_rep_lap_harian'
 WHERE p_app_menu_id = 116;
+
+
+INSERT INTO sikp.p_app_menu(p_app_menu_id, p_application_id, code, parent_id, file_name, 
+            listing_no, is_active, description, creation_date, created_by, updated_date, updated_by)
+    VALUES ((select max(coalesce (p_app_menu_id))+1 from sikp.p_app_menu), 6, 'PELAPORAN PAJAK MANUAL SKPDKB TAMBAHAN', null, 'transaksi.t_vat_setllement_manual_skpdkb_tambahan', 5, 
+            'Y', null, current_date, 'ADMIN', current_date, 'ADMIN');
+
+ INSERT INTO sikp.p_app_menu(p_app_menu_id, p_application_id, code, parent_id, file_name, 
+            listing_no, is_active, description, creation_date, created_by, updated_date, updated_by)
+    VALUES ((select max(coalesce (p_app_menu_id))+1 from sikp.p_app_menu), 6, 'Pelaporan Pajak Manual Skpdkb Pemeriksaan', null, 'transaksi.t_vat_setllement_manual_skpdkb', 5, 
+            'Y', null, current_date, 'ADMIN', current_date, 'ADMIN');
+
+
+UPDATE sikp.p_app_menu
+   SET code = 'Pelaporan Pajak Manual Skpdkb Jabatan', listing_no = 5
+ WHERE p_app_menu_id=239;
+
+ UPDATE sikp.p_app_menu
+   SET listing_no = 6
+ WHERE p_app_menu_id=90;
+
+  UPDATE sikp.p_app_menu
+   SET listing_no = 6
+ WHERE p_app_menu_id=87;
+
+  UPDATE sikp.p_app_menu
+   SET listing_no = 6
+ WHERE p_app_menu_id=222;
+
+  UPDATE sikp.p_app_menu
+   SET listing_no = 6
+ WHERE p_app_menu_id=198;
+
+  UPDATE sikp.p_app_menu
+   SET listing_no = 5
+ WHERE p_app_menu_id=202;
+
+  UPDATE sikp.p_app_menu
+   SET listing_no = 5
+ WHERE p_app_menu_id=86;
+
+
+
+CREATE OR REPLACE VIEW v_vat_registration AS 
+ SELECT a.t_vat_registration_id,
+    a.t_customer_order_id,
+    a.registration_date,
+    a.company_name,
+    a.company_brand,
+    a.address_name,
+    a.address_no,
+    a.address_rt,
+    a.address_rw,
+    a.p_region_id_kelurahan,
+    a.p_region_id_kecamatan,
+    a.p_region_id,
+    a.phone_no,
+    a.mobile_no,
+    a.fax_no,
+    a.zip_code,
+    a.company_owner,
+    a.p_job_position_id,
+    a.address_name_owner,
+    a.address_no_owner,
+    a.address_rt_owner,
+    a.address_rw_owner,
+    a.p_region_id_kel_owner,
+    a.p_region_id_kec_owner,
+    a.p_region_id_owner,
+    a.phone_no_owner,
+    a.mobile_no_owner,
+    a.fax_no_owner,
+    a.zip_code_owner,
+    to_char(a.creation_date, 'DD-MON-YYYY'::character varying) AS creation_date,
+    a.created_by,
+    to_char(a.updated_date, 'DD-MON-YYYY'::character varying) AS updated_date,
+    a.updated_by,
+    b.order_no,
+    c.code AS job_position_code,
+    d.region_name AS kelurahan_code,
+    e.region_name AS kecamatan_code,
+    f.region_name AS kota_code,
+    g.region_name AS kelurahan_own_code,
+    h.region_name AS kecamatan_own_code,
+    i.region_name AS kota_own_code,
+    a.email,
+    a.p_hotel_grade_id,
+    a.p_rest_service_type_id,
+    a.p_entertaintment_type_id,
+    a.p_parking_classification_id,
+    a.company_additional_addr,
+    b.p_rqst_type_id,
+    j.code AS rqst_type_code,
+    a.reg_letter_no,
+    a.npwpd,
+    a.wp_user_name,
+    a.wp_user_pwd,
+    a.wp_name,
+    a.wp_address_name,
+    a.wp_address_no,
+    a.wp_address_rt,
+    a.wp_address_rw,
+    a.wp_p_region_id_kelurahan,
+    k.region_name AS wp_kelurahan,
+    a.wp_p_region_id_kecamatan,
+    l.region_name AS wp_kecamatan,
+    a.wp_p_region_id,
+    m.region_name AS wp_kota,
+    a.wp_phone_no,
+    a.wp_mobile_no,
+    a.wp_fax_no,
+    a.wp_zip_code,
+    a.wp_email,
+    a.brand_address_name,
+    a.brand_address_no,
+    a.brand_address_rt,
+    a.brand_address_rw,
+    a.brand_p_region_id_kel,
+    n.region_name AS brand_kelurahan,
+    a.brand_p_region_id_kec,
+    o.region_name AS brand_kecamatan,
+    a.brand_p_region_id,
+    p.region_name AS brand_kota,
+    a.brand_phone_no,
+    a.brand_mobile_no,
+    a.brand_fax_no,
+    a.brand_zip_code,
+    a.p_private_question_id,
+    r.question_pwd,
+    a.private_answer,
+    a.p_vat_type_dtl_id,
+    a.bap_employee_no_1,
+    a.bap_employee_no_2,
+    a.bap_employee_name_1,
+    a.bap_employee_name_2,
+    a.bap_employee_job_pos_1,
+    a.bap_employee_job_pos_2
+   FROM t_vat_registration a
+     LEFT JOIN p_vat_type_dtl s ON a.p_vat_type_dtl_id = s.p_vat_type_dtl_id
+     LEFT JOIN t_customer_order b ON a.t_customer_order_id = b.t_customer_order_id
+     LEFT JOIN p_job_position c ON a.p_job_position_id = c.p_job_position_id
+     LEFT JOIN p_region d ON a.p_region_id_kelurahan = d.p_region_id
+     LEFT JOIN p_region e ON a.p_region_id_kecamatan = e.p_region_id
+     LEFT JOIN p_region f ON a.p_region_id = f.p_region_id
+     LEFT JOIN p_region g ON a.p_region_id_kel_owner = g.p_region_id
+     LEFT JOIN p_region h ON a.p_region_id_kec_owner = h.p_region_id
+     LEFT JOIN p_region i ON a.p_region_id_owner = i.p_region_id
+     LEFT JOIN p_rqst_type j ON b.p_rqst_type_id = j.p_rqst_type_id
+     LEFT JOIN p_region k ON a.wp_p_region_id_kelurahan = k.p_region_id
+     LEFT JOIN p_region l ON a.wp_p_region_id_kecamatan = l.p_region_id
+     LEFT JOIN p_region m ON a.wp_p_region_id = m.p_region_id
+     LEFT JOIN p_region n ON a.brand_p_region_id_kel = n.p_region_id
+     LEFT JOIN p_region o ON a.brand_p_region_id_kec = o.p_region_id
+     LEFT JOIN p_region p ON a.brand_p_region_id = p.p_region_id
+     LEFT JOIN p_private_question r ON a.p_private_question_id = r.p_private_question_id;
