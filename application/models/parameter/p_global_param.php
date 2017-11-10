@@ -28,7 +28,7 @@ class p_global_param extends Abstract_model {
                             );
 
     public $selectClause    = "gb.*";
-    public $fromClause      = "p_global_param gb";
+    public $fromClause      = "sikp.p_global_param gb";
 
     public $refs            = array();
 
@@ -60,6 +60,15 @@ class p_global_param extends Abstract_model {
         }
         return true;
     }
+
+	function getValByCode($code) {
+		$sql = "SELECT * FROM sikp.p_global_param WHERE upper(code) = ?";
+		$result = $this->db->query($sql, array(strtoupper($code)));
+		$item = $result->row_array();
+
+		if(count($item) == 0) return '';
+		return $item['value'];
+	}
 
 }
 
