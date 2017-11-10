@@ -648,7 +648,7 @@ UPDATE sikp.p_app_menu
  WHERE p_app_menu_id=86;
 
 
-
+ 
 CREATE OR REPLACE VIEW v_vat_registration AS 
  SELECT a.t_vat_registration_id,
     a.t_customer_order_id,
