@@ -145,6 +145,9 @@ class t_trans_histories extends Abstract_model {
         $output = $this->db->query($sql, array($t_cust_account_id));
         //echo "id cust ->".$t_cust_account_id;exit;
         $items = $output->result_array();
+
+        if ($items == null || $items == '')
+            $items = 'no result';
         
         return $items;
     }

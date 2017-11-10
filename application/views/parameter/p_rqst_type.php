@@ -14,17 +14,6 @@
 <div class="space-4"></div>
 <div class="row">
     <div class="col-xs-12">
-        <div class="tabbable">
-            <ul class="nav nav-tabs">
-                <li class="active">
-                    <a href="javascript:;" data-toggle="tab" aria-expanded="true" id="tab-1">
-                        <i class="blue"></i>
-                        <strong> Daftar Jenis Permohonan </strong>
-                    </a>
-                </li>
-            </ul>
-        </div>
-
         <div class="tab-content no-border">
             <div class="row">
                 <div class="col-xs-12">

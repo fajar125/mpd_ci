@@ -40,6 +40,9 @@ class pdf_lap_harian_penerimaan_summary extends CI_Controller{
         $output = $this->db->query($sql, array($start_date, $end_date));
         $items = $output->result_array();
 
+        if($items == '' || $items == null)
+            $items = 'no result';
+
         //print_r($items);exit();
         
 
@@ -206,188 +209,190 @@ class pdf_lap_harian_penerimaan_summary extends CI_Controller{
         $j_t_slktk=0;
         $j_t_slk1thn=0;
 
-        for ($i = 0; $i < count($items); $i++) {
-          //isi kolom
-          $pdf->SetWidths(array($ltable1, $ltable2, $ltable3, $ltable3, $ltable1, $ltable3, $ltable1, $ltable3, $ltable1, $ltable3, $ltable1, $ltable1, $ltable3, $ltable1, $ltable3, $ltable1, $ltable3, $ltable1, $ltable3, $ltable3, $ltable3));
-          $pdf->SetAligns(array("C", "C", "L", "R", "R", "R", "R", "R", "R", "R", "R", "R", "R", "R", "R", "R", "R", "R", "R", "R", "R"));
-          //print data
-          $pdf->SetFont('Arial', '', 6);
-          
-          $no++;
-
-          //hitung jml_hari_ini sampai baris ini
-          $j_target[] = $items[$i]["target"];
-          $j_count_jml_hari_ini[] = $items[$i]["count_jml_hari_ini"];
-          $j_jml_hari_ini[] = $items[$i]["jml_hari_ini"];
-          $j_count_jml_sd_hari_lalu[] = $items[$i]["count_jml_sd_hari_lalu"];
-          $j_jml_sd_hari_lalu[] = $items[$i]["jml_sd_hari_lalu"];
-          $j_count_jml_sd_hari_ini[] = $items[$i]["count_jml_sd_hari_ini"];
-          $j_jml_sd_hari_ini[] = $items[$i]["jml_sd_hari_ini"];
-          $j_count_sptpd_jml_hari_ini[] = $items[$i]["count_sptpd_jml_hari_ini"];
-          $j_sptpd_jml_hari_ini[] = $items[$i]["sptpd_jml_hari_ini"];
-          $j_count_sptpd_jml_sd_hari_lalu[] = $items[$i]["count_sptpd_jml_sd_hari_lalu"];
-          $j_sptpd_jml_sd_hari_lalu[] = $items[$i]["sptpd_jml_sd_hari_lalu"];
-          $j_count_sptpd_jml_sd_hari_ini[] = $items[$i]["count_sptpd_jml_sd_hari_ini"];
-          $j_sptpd_jml_sd_hari_ini[] = $items[$i]["sptpd_jml_sd_hari_ini"];
-          $j_sptpd[] = 0;
-          //buka dibawah ini untuk kembalikan ke semula
-          //$j_slktk[] = $items[$i]["sptpd_jml_sd_hari_ini"][$i]-$items[$i]["jml_sd_hari_ini"][$i];
-          $j_slktk[] = $items[$i]["jml_sd_hari_ini"];
-          $j_slk4bln[] = 0;
-          $j_slk1thn[] = $items[$i]["sptpd_jml_sd_hari_ini"]-$items[$i]["target"];
-          
-          $pdf->SetWidths(array($ltable1 + $ltable2 + $ltable3, $ltable3, $ltable1, $ltable3, $ltable1, $ltable3, $ltable1, $ltable3, $ltable1, $ltable1, $ltable3, $ltable1, $ltable3, $ltable1, $ltable3, $ltable1, $ltable3, $ltable3, $ltable3));
-          $pdf->SetAligns(array("C", "R", "R", "R", "R", "R", "R", "R", "R", "R", "R", "R", "R", "R", "R", "R", "R", "R", "R"));
-          //cek apakah perlu bikin baris jumlah
-          //jika iya, simpan jumlahtemp ke jumlahperjenis, print jumlahtemp, reset jumlahtemp
-          $jenis = $items[$i]["nama_jns_pajak"];
-          if((count($items)-1) != $i){                
-                $jenissesudah = $items[$i+1]["nama_jns_pajak"];
-            }else{
-              $jenissesudah = "";
-            }
-          //$jenissesudah = $items[$i+1]["nama_jns_pajak"];
-          $tot_sptpd_thn_lalu = $tot_sptpd_thn_lalu + $items[$i]['sptpd_thn_lalu'];
-          $tot_sptpd_thn_lalu_all = $tot_sptpd_thn_lalu_all + $items[$i]['sptpd_thn_lalu'];
-          $pdf->SetFont('Arial', 'B', 6);
-          if($jenis != $jenissesudah || $jenissesudah == ""){
+        if($items != 'no result'){
+          for ($i = 0; $i < count($items); $i++) {
+            //isi kolom
+            $pdf->SetWidths(array($ltable1, $ltable2, $ltable3, $ltable3, $ltable1, $ltable3, $ltable1, $ltable3, $ltable1, $ltable3, $ltable1, $ltable1, $ltable3, $ltable1, $ltable3, $ltable1, $ltable3, $ltable1, $ltable3, $ltable3, $ltable3));
+            $pdf->SetAligns(array("C", "C", "L", "R", "R", "R", "R", "R", "R", "R", "R", "R", "R", "R", "R", "R", "R", "R", "R", "R", "R"));
+            //print data
+            $pdf->SetFont('Arial', '', 6);
             
-              $pdf->SetWidths(array($ltable1,$ltable2 + $ltable3, $ltable3, $ltable1, $ltable3, $ltable1, $ltable3, $ltable1, $ltable3, $ltable1, $ltable1, $ltable3, $ltable1, $ltable3, $ltable1, $ltable3, $ltable1, $ltable3, $ltable3, $ltable3));
-            $pdf->SetAligns(array("L","L", "R", "R", "R", "R", "R", "R", "R", "R", "R", "R", "R", "R", "R", "R", "R", "R", "R", "R")); 
-            $pdf->RowMultiBorderWithHeight(
-              array($no_jumlah,"JUMLAH " . strtoupper($items[$i]["nama_jns_pajak"]),
-                  number_format(array_sum($j_target), 0, ',', '.'),
-                  number_format(array_sum($j_count_jml_hari_ini), 0, ',', '.'),
-                  number_format(array_sum($j_jml_hari_ini), 0, ',', '.'),
-                  number_format(array_sum($j_count_jml_sd_hari_lalu), 0, ',', '.'),
-                  number_format(array_sum($j_jml_sd_hari_lalu), 0, ',', '.'),
-                  number_format(array_sum($j_count_jml_sd_hari_ini), 0, ',', '.'),
-                  number_format(array_sum($j_jml_sd_hari_ini), 0, ',', '.'),
-                  0,
-                  number_format(array_sum($j_count_sptpd_jml_hari_ini), 0, ',', '.'),
-                  number_format(array_sum($j_sptpd_jml_hari_ini), 0, ',', '.'),
-                  number_format(array_sum($j_count_sptpd_jml_sd_hari_lalu), 0, ',', '.'),
-                  number_format(array_sum($j_sptpd_jml_sd_hari_lalu), 0, ',', '.'),
-                  number_format(array_sum($j_count_sptpd_jml_sd_hari_ini), 0, ',', '.'),
-                  number_format(array_sum($j_sptpd_jml_sd_hari_ini), 0, ',', '.'),
-                  number_format(array_sum($j_count_sptpd_jml_hari_ini)-array_sum($j_count_jml_hari_ini), 0, ',', '.'),
-                  number_format(array_sum($j_slktk), 0, ',', '.'),
-                  number_format($tot_sptpd_thn_lalu, 0, ',', '.'),
-                  number_format(array_sum($j_jml_sd_hari_ini)+$tot_sptpd_thn_lalu, 0, ',', '.')
-                  ),
-              array("TLBR",
-                  "TBLR",
-                  "TBLR",
-                  "TBLR",
-                  "TBLR",
-                  "TBLR",
-                  "TBLR",
-                  "TBLR",
-                  "TBLR",
-                  "TBLR",
-                  "TBLR",
-                  "TBLR",
-                  "TBLR",
-                  "TBLR",
-                  "TBLR",
-                  "TBLR",
-                  "TBLR",
-                  "TBLR",
-                  "TBLR"
-                  ),
-                $this->height);
-                $no_jumlah++;
+            $no++;
 
-                $j_t_target += array_sum($j_target);
-                $j_t_count_jml_hari_ini += array_sum($j_count_jml_hari_ini);
-                $j_t_jml_hari_ini += array_sum($j_jml_hari_ini);
-                $j_t_count_jml_sd_hari_lalu += array_sum($j_count_jml_sd_hari_lalu);
-                $j_t_jml_sd_hari_lalu += array_sum($j_jml_sd_hari_lalu);
-                $j_t_count_jml_sd_hari_ini  += array_sum($j_count_jml_sd_hari_ini);
-                $j_t_jml_sd_hari_ini  += array_sum($j_jml_sd_hari_ini);
-                $j_t_count_sptpd_jml_hari_ini += array_sum($j_count_sptpd_jml_hari_ini);
-                $j_t_sptpd_jml_hari_ini += array_sum($j_sptpd_jml_hari_ini);
-                $j_t_count_sptpd_jml_sd_hari_lalu += array_sum($j_count_sptpd_jml_sd_hari_lalu);
-                $j_t_sptpd_jml_sd_hari_lalu += array_sum($j_sptpd_jml_sd_hari_lalu);
-                $j_t_count_sptpd_jml_sd_hari_ini  += array_sum($j_count_sptpd_jml_sd_hari_ini);
-                $j_t_sptpd_jml_sd_hari_ini  += array_sum($j_sptpd_jml_sd_hari_ini);
-                $j_t_sptpd = 0;
-                $j_t_slktk += array_sum($j_slktk);
-                $j_t_slk4bln = 0;
-                $j_t_slk1thn +=array_sum($j_slk1thn);
-
-                //Re-initialize
-                $j_target = array();
-                $j_count_jml_hari_ini = array();
-                $j_jml_hari_ini = array();
-                $j_count_jml_sd_hari_lalu = array();
-                $j_jml_sd_hari_lalu = array();
-                $j_count_jml_sd_hari_ini = array();
-                $j_jml_sd_hari_ini = array();
-                $j_count_sptpd_jml_hari_ini = array();
-                $j_sptpd_jml_hari_ini = array();
-                $j_count_sptpd_jml_sd_hari_lalu = array();
-                $j_sptpd_jml_sd_hari_lalu = array();
-                $j_count_sptpd_jml_sd_hari_ini = array();
-                $j_sptpd_jml_sd_hari_ini = array();
-                $j_sptpd = array();
-                $j_slktk = array();
-                $j_slk4bln = array();
-                $j_slk1thn= array();
-                $tot_sptpd_thn_lalu=0;
-          }
-          
-          
-
-          //Total
-          if($i == count($items) - 1 ){
+            //hitung jml_hari_ini sampai baris ini
+            $j_target[] = $items[$i]["target"];
+            $j_count_jml_hari_ini[] = $items[$i]["count_jml_hari_ini"];
+            $j_jml_hari_ini[] = $items[$i]["jml_hari_ini"];
+            $j_count_jml_sd_hari_lalu[] = $items[$i]["count_jml_sd_hari_lalu"];
+            $j_jml_sd_hari_lalu[] = $items[$i]["jml_sd_hari_lalu"];
+            $j_count_jml_sd_hari_ini[] = $items[$i]["count_jml_sd_hari_ini"];
+            $j_jml_sd_hari_ini[] = $items[$i]["jml_sd_hari_ini"];
+            $j_count_sptpd_jml_hari_ini[] = $items[$i]["count_sptpd_jml_hari_ini"];
+            $j_sptpd_jml_hari_ini[] = $items[$i]["sptpd_jml_hari_ini"];
+            $j_count_sptpd_jml_sd_hari_lalu[] = $items[$i]["count_sptpd_jml_sd_hari_lalu"];
+            $j_sptpd_jml_sd_hari_lalu[] = $items[$i]["sptpd_jml_sd_hari_lalu"];
+            $j_count_sptpd_jml_sd_hari_ini[] = $items[$i]["count_sptpd_jml_sd_hari_ini"];
+            $j_sptpd_jml_sd_hari_ini[] = $items[$i]["sptpd_jml_sd_hari_ini"];
+            $j_sptpd[] = 0;
+            //buka dibawah ini untuk kembalikan ke semula
+            //$j_slktk[] = $items[$i]["sptpd_jml_sd_hari_ini"][$i]-$items[$i]["jml_sd_hari_ini"][$i];
+            $j_slktk[] = $items[$i]["jml_sd_hari_ini"];
+            $j_slk4bln[] = 0;
+            $j_slk1thn[] = $items[$i]["sptpd_jml_sd_hari_ini"]-$items[$i]["target"];
+            
             $pdf->SetWidths(array($ltable1 + $ltable2 + $ltable3, $ltable3, $ltable1, $ltable3, $ltable1, $ltable3, $ltable1, $ltable3, $ltable1, $ltable1, $ltable3, $ltable1, $ltable3, $ltable1, $ltable3, $ltable1, $ltable3, $ltable3, $ltable3));
             $pdf->SetAligns(array("C", "R", "R", "R", "R", "R", "R", "R", "R", "R", "R", "R", "R", "R", "R", "R", "R", "R", "R"));
-            $pdf->RowMultiBorderWithHeight(
-              array("JUMLAH TOTAL",
-                  number_format($j_t_target, 0, ',', '.'),
-                  number_format($j_t_count_jml_hari_ini, 0, ',', '.'),
-                  number_format($j_t_jml_hari_ini, 0, ',', '.'),
-                  number_format($j_t_count_jml_sd_hari_lalu, 0, ',', '.'),
-                  number_format($j_t_jml_sd_hari_lalu, 0, ',', '.'),
-                  number_format($j_t_count_jml_sd_hari_ini, 0, ',', '.'),
-                  number_format($j_t_jml_sd_hari_ini, 0, ',', '.'),
-                  0,
-                  number_format($j_t_count_sptpd_jml_hari_ini, 0, ',', '.'),
-                  number_format($j_t_sptpd_jml_hari_ini, 0, ',', '.'),
-                  number_format($j_t_count_sptpd_jml_sd_hari_lalu, 0, ',', '.'),
-                  number_format($j_t_sptpd_jml_sd_hari_lalu, 0, ',', '.'),
-                  number_format($j_t_count_sptpd_jml_sd_hari_ini, 0, ',', '.'),
-                  number_format($j_t_sptpd_jml_sd_hari_ini, 0, ',', '.'),
-                  number_format($j_t_count_sptpd_jml_hari_ini-$j_t_count_jml_hari_ini, 0, ',', '.'),
-                  number_format($j_t_slktk, 0, ',', '.'),
-                  number_format($tot_sptpd_thn_lalu_all, 0, ',', '.'),
-                  number_format($j_t_jml_sd_hari_ini+$tot_sptpd_thn_lalu_all, 0, ',', '.')
-                  ),
-              array("TBLR",
-                  "TBLR",
-                  "TBLR",
-                  "TBLR",
-                  "TBLR",
-                  "TBLR",
-                  "TBLR",
-                  "TBLR",
-                  "TBLR",
-                  "TBLR",
-                  "TBLR",
-                  "TBLR",
-                  "TBLR",
-                  "TBLR",
-                  "TBLR",
-                  "TBLR",
-                  "TBLR",
-                  "TBLR"
-                  ),
-                $this->height);
+            //cek apakah perlu bikin baris jumlah
+            //jika iya, simpan jumlahtemp ke jumlahperjenis, print jumlahtemp, reset jumlahtemp
+            $jenis = $items[$i]["nama_jns_pajak"];
+            if((count($items)-1) != $i){                
+                  $jenissesudah = $items[$i+1]["nama_jns_pajak"];
+              }else{
+                $jenissesudah = "";
+              }
+            //$jenissesudah = $items[$i+1]["nama_jns_pajak"];
+            $tot_sptpd_thn_lalu = $tot_sptpd_thn_lalu + $items[$i]['sptpd_thn_lalu'];
+            $tot_sptpd_thn_lalu_all = $tot_sptpd_thn_lalu_all + $items[$i]['sptpd_thn_lalu'];
+            $pdf->SetFont('Arial', 'B', 6);
+            if($jenis != $jenissesudah || $jenissesudah == ""){
+              
+                $pdf->SetWidths(array($ltable1,$ltable2 + $ltable3, $ltable3, $ltable1, $ltable3, $ltable1, $ltable3, $ltable1, $ltable3, $ltable1, $ltable1, $ltable3, $ltable1, $ltable3, $ltable1, $ltable3, $ltable1, $ltable3, $ltable3, $ltable3));
+              $pdf->SetAligns(array("L","L", "R", "R", "R", "R", "R", "R", "R", "R", "R", "R", "R", "R", "R", "R", "R", "R", "R", "R")); 
+              $pdf->RowMultiBorderWithHeight(
+                array($no_jumlah,"JUMLAH " . strtoupper($items[$i]["nama_jns_pajak"]),
+                    number_format(array_sum($j_target), 0, ',', '.'),
+                    number_format(array_sum($j_count_jml_hari_ini), 0, ',', '.'),
+                    number_format(array_sum($j_jml_hari_ini), 0, ',', '.'),
+                    number_format(array_sum($j_count_jml_sd_hari_lalu), 0, ',', '.'),
+                    number_format(array_sum($j_jml_sd_hari_lalu), 0, ',', '.'),
+                    number_format(array_sum($j_count_jml_sd_hari_ini), 0, ',', '.'),
+                    number_format(array_sum($j_jml_sd_hari_ini), 0, ',', '.'),
+                    0,
+                    number_format(array_sum($j_count_sptpd_jml_hari_ini), 0, ',', '.'),
+                    number_format(array_sum($j_sptpd_jml_hari_ini), 0, ',', '.'),
+                    number_format(array_sum($j_count_sptpd_jml_sd_hari_lalu), 0, ',', '.'),
+                    number_format(array_sum($j_sptpd_jml_sd_hari_lalu), 0, ',', '.'),
+                    number_format(array_sum($j_count_sptpd_jml_sd_hari_ini), 0, ',', '.'),
+                    number_format(array_sum($j_sptpd_jml_sd_hari_ini), 0, ',', '.'),
+                    number_format(array_sum($j_count_sptpd_jml_hari_ini)-array_sum($j_count_jml_hari_ini), 0, ',', '.'),
+                    number_format(array_sum($j_slktk), 0, ',', '.'),
+                    number_format($tot_sptpd_thn_lalu, 0, ',', '.'),
+                    number_format(array_sum($j_jml_sd_hari_ini)+$tot_sptpd_thn_lalu, 0, ',', '.')
+                    ),
+                array("TLBR",
+                    "TBLR",
+                    "TBLR",
+                    "TBLR",
+                    "TBLR",
+                    "TBLR",
+                    "TBLR",
+                    "TBLR",
+                    "TBLR",
+                    "TBLR",
+                    "TBLR",
+                    "TBLR",
+                    "TBLR",
+                    "TBLR",
+                    "TBLR",
+                    "TBLR",
+                    "TBLR",
+                    "TBLR",
+                    "TBLR"
+                    ),
+                  $this->height);
+                  $no_jumlah++;
+
+                  $j_t_target += array_sum($j_target);
+                  $j_t_count_jml_hari_ini += array_sum($j_count_jml_hari_ini);
+                  $j_t_jml_hari_ini += array_sum($j_jml_hari_ini);
+                  $j_t_count_jml_sd_hari_lalu += array_sum($j_count_jml_sd_hari_lalu);
+                  $j_t_jml_sd_hari_lalu += array_sum($j_jml_sd_hari_lalu);
+                  $j_t_count_jml_sd_hari_ini  += array_sum($j_count_jml_sd_hari_ini);
+                  $j_t_jml_sd_hari_ini  += array_sum($j_jml_sd_hari_ini);
+                  $j_t_count_sptpd_jml_hari_ini += array_sum($j_count_sptpd_jml_hari_ini);
+                  $j_t_sptpd_jml_hari_ini += array_sum($j_sptpd_jml_hari_ini);
+                  $j_t_count_sptpd_jml_sd_hari_lalu += array_sum($j_count_sptpd_jml_sd_hari_lalu);
+                  $j_t_sptpd_jml_sd_hari_lalu += array_sum($j_sptpd_jml_sd_hari_lalu);
+                  $j_t_count_sptpd_jml_sd_hari_ini  += array_sum($j_count_sptpd_jml_sd_hari_ini);
+                  $j_t_sptpd_jml_sd_hari_ini  += array_sum($j_sptpd_jml_sd_hari_ini);
+                  $j_t_sptpd = 0;
+                  $j_t_slktk += array_sum($j_slktk);
+                  $j_t_slk4bln = 0;
+                  $j_t_slk1thn +=array_sum($j_slk1thn);
+
+                  //Re-initialize
+                  $j_target = array();
+                  $j_count_jml_hari_ini = array();
+                  $j_jml_hari_ini = array();
+                  $j_count_jml_sd_hari_lalu = array();
+                  $j_jml_sd_hari_lalu = array();
+                  $j_count_jml_sd_hari_ini = array();
+                  $j_jml_sd_hari_ini = array();
+                  $j_count_sptpd_jml_hari_ini = array();
+                  $j_sptpd_jml_hari_ini = array();
+                  $j_count_sptpd_jml_sd_hari_lalu = array();
+                  $j_sptpd_jml_sd_hari_lalu = array();
+                  $j_count_sptpd_jml_sd_hari_ini = array();
+                  $j_sptpd_jml_sd_hari_ini = array();
+                  $j_sptpd = array();
+                  $j_slktk = array();
+                  $j_slk4bln = array();
+                  $j_slk1thn= array();
+                  $tot_sptpd_thn_lalu=0;
+            }
+            
+            
+
+            //Total
+            if($i == count($items) - 1 ){
+              $pdf->SetWidths(array($ltable1 + $ltable2 + $ltable3, $ltable3, $ltable1, $ltable3, $ltable1, $ltable3, $ltable1, $ltable3, $ltable1, $ltable1, $ltable3, $ltable1, $ltable3, $ltable1, $ltable3, $ltable1, $ltable3, $ltable3, $ltable3));
+              $pdf->SetAligns(array("C", "R", "R", "R", "R", "R", "R", "R", "R", "R", "R", "R", "R", "R", "R", "R", "R", "R", "R"));
+              $pdf->RowMultiBorderWithHeight(
+                array("JUMLAH TOTAL",
+                    number_format($j_t_target, 0, ',', '.'),
+                    number_format($j_t_count_jml_hari_ini, 0, ',', '.'),
+                    number_format($j_t_jml_hari_ini, 0, ',', '.'),
+                    number_format($j_t_count_jml_sd_hari_lalu, 0, ',', '.'),
+                    number_format($j_t_jml_sd_hari_lalu, 0, ',', '.'),
+                    number_format($j_t_count_jml_sd_hari_ini, 0, ',', '.'),
+                    number_format($j_t_jml_sd_hari_ini, 0, ',', '.'),
+                    0,
+                    number_format($j_t_count_sptpd_jml_hari_ini, 0, ',', '.'),
+                    number_format($j_t_sptpd_jml_hari_ini, 0, ',', '.'),
+                    number_format($j_t_count_sptpd_jml_sd_hari_lalu, 0, ',', '.'),
+                    number_format($j_t_sptpd_jml_sd_hari_lalu, 0, ',', '.'),
+                    number_format($j_t_count_sptpd_jml_sd_hari_ini, 0, ',', '.'),
+                    number_format($j_t_sptpd_jml_sd_hari_ini, 0, ',', '.'),
+                    number_format($j_t_count_sptpd_jml_hari_ini-$j_t_count_jml_hari_ini, 0, ',', '.'),
+                    number_format($j_t_slktk, 0, ',', '.'),
+                    number_format($tot_sptpd_thn_lalu_all, 0, ',', '.'),
+                    number_format($j_t_jml_sd_hari_ini+$tot_sptpd_thn_lalu_all, 0, ',', '.')
+                    ),
+                array("TBLR",
+                    "TBLR",
+                    "TBLR",
+                    "TBLR",
+                    "TBLR",
+                    "TBLR",
+                    "TBLR",
+                    "TBLR",
+                    "TBLR",
+                    "TBLR",
+                    "TBLR",
+                    "TBLR",
+                    "TBLR",
+                    "TBLR",
+                    "TBLR",
+                    "TBLR",
+                    "TBLR",
+                    "TBLR"
+                    ),
+                  $this->height);
+            }
+            $pdf->SetFont('Arial', '', 8);
+
+
           }
-          $pdf->SetFont('Arial', '', 8);
-
-
         }       
         
         $pdf->Ln();

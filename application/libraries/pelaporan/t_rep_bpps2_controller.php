@@ -72,9 +72,8 @@ class t_rep_bpps2_controller {
             $table = $ci->t_rep_bpps2;
 
             //echo "getBpps2($sidx, $tgl_penerimaan, $i_flag_setoran, $kode_bank, $status)";
-            $result = $table->getBpps2($sidx, $tgl_penerimaan, $i_flag_setoran, $kode_bank, $status);  
+            $items = $table->getBpps2($sidx, $tgl_penerimaan, $i_flag_setoran, $kode_bank, $status);  
             
-            $items = $result;
             //print_r($items);exit;
             
             startExcel(date("dmy") . '_LAPORAN_BPPS2.xls');

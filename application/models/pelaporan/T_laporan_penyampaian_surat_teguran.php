@@ -1,10 +1,10 @@
 <?php
 
 /**
- * t_laporan_posisi_surat_teguran Model
+ * T_laporan_penyampaian_surat_teguran Model
  *
  */
-class t_laporan_posisi_surat_teguran extends Abstract_model {
+class T_laporan_penyampaian_surat_teguran extends Abstract_model {
 
     public $table           = "";
     public $pkey            = "";
@@ -21,25 +21,21 @@ class t_laporan_posisi_surat_teguran extends Abstract_model {
         parent::__construct();
     }
 
-    function getLaporanPosisi($p_vat_type_id, $p_finance_period_id, $tanggal){
-        $sql = "select b.company_brand,regexp_replace(b.brand_address_name, '\r|\n', '', 'g')||' '||b.brand_address_no as alamat_merk_dagang,a.*, 
-        '' as surat_teguran1,
-        '' as surat_teguran2,
-        '' as surat_teguran3
-            from f_posisi_surat_teguran_test_2(?,?,?) a
+    function getDataTeguran($p_vat_type_id, $p_finance_period_id){
+        /*echo $npwpd_jabatan." ".$p_finance_period_id;
+        exit();*/
+        $sql = "select b.company_brand,regexp_replace(b.brand_address_name, '\r|\n', '', 'g')||' '||b.brand_address_no as alamat_merk_dagang,a.* ,
+            c.total_vat_amount,c.total_penalty_amount
+            from f_penyampaian_surat_teguran_fase_2(?,?,'') a
             left join t_cust_account b on a.npwpd = b.npwd
+            left join t_vat_setllement c on a.t_vat_setllement_id = c.t_vat_setllement_id
             ORDER BY company_brand,npwpd, surat_teguran_3,surat_teguran_2,surat_teguran_1";
         
-        $output = $this->db->query($sql, array($p_vat_type_id, $p_finance_period_id, $tanggal));
+        $output = $this->db->query($sql, array($p_vat_type_id, $p_finance_period_id));
         //echo "vat_type->".$p_vat_type_id." tgl ->".$tgl_penerimaan." setoran->".$i_flag_setoran."kode bank -> ".$kode_bank." status->".$status;exit;
 
         $items = $output->result_array();
         //print_r($items); exit;
-
-        if($items == null || $items == '')
-            $items = 'no result';
-
-
         return $items;
     }
 
@@ -69,4 +65,4 @@ class t_laporan_posisi_surat_teguran extends Abstract_model {
 
 }
 
-/* End of file t_laporan_posisi_surat_teguran.php */
+/* End of file T_laporan_penyampaian_surat_teguran.php */

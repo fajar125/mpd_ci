@@ -41,7 +41,7 @@
         </div>       
     </div>    
 </div>
-<div class="tab-content no-border">
+<div class="tab-content no-border" id="table">
     <div class="row">
         <div class="col-xs-12">
             <div id="gbox_grid-table" class="ui-jqgrid">
@@ -53,6 +53,7 @@
     </div>
 </div>
 <script type="text/javascript">
+    $('#table').css('display', 'none');
     jQuery(function ($) {
         var grid_selector = "#grid-table-lap";
         jQuery("#grid-table-lap").jqGrid({
@@ -64,7 +65,7 @@
 
                 {label: 'Pajak/Retribusi',name: 'nama_ayat',width: 180, align: "left"},
 
-                {label: 'Jenis Pajak',name: 'nama_jns_pajak', width: 110, align: "left"},
+                {label: 'Jenis Pajak',name: 'nama_jns_pajak', width: 110, align: "left",summaryTpl:"Total" ,summaryType:"sum"},
 
                 /* Hari ini */
 
@@ -132,7 +133,8 @@
                 var col_jml_hari_ini = $grid.jqGrid('getCol', 'jml_hari_ini', false, 'sum');
                 var col_jml_sd_hari_lalu = $grid.jqGrid('getCol', 'jml_sd_hari_lalu', false, 'sum');
                 var col_jml_sd_hari_ini = $grid.jqGrid('getCol', 'jml_sd_hari_ini', false, 'sum');
-                $grid.jqGrid('footerData', 'set', { 'jml_hari_ini': col_jml_hari_ini,
+                $grid.jqGrid('footerData', 'set', { 'nama_jns_pajak':'Grand Total',
+                                                    'jml_hari_ini': col_jml_hari_ini,
                                                     'jml_sd_hari_lalu':col_jml_sd_hari_lalu,
                                                     'jml_sd_hari_ini':col_jml_sd_hari_ini
 
@@ -176,27 +178,30 @@
     $("#btn-search").on('click', function() {       
         var tgl_penerimaan  = $('#tgl_penerimaan').val();        
         var kode_bank       = $('#kode_bank').val();
-        alert(tgl_penerimaan+" "+ kode_bank);
+        //alert(tgl_penerimaan+" "+ kode_bank);
         
         if(tgl_penerimaan == ""){            
             swal ( "Oopss" ,  "Kolom Tanggal Tidak Boleh Kosong!" ,  "error" );
+        }else{
+            $('#table').css('display', '');
+            jQuery(function($) {            
+                var grid_selector = "#grid-table-lap";
+                //var pager_selector = "#grid-pager-bpps2";
+
+                jQuery("#grid-table-lap").jqGrid('setGridParam',{
+                    url: '<?php echo WS_JQGRID."pelaporan.t_rep_lap_harian_per_ketetapan_controller/read"; ?>',
+                    postData: { tgl_penerimaan: tgl_penerimaan,
+                                kode_bank: kode_bank
+                            }
+
+                });
+
+
+                $("#grid-table-lap").jqGrid("setCaption", "Laporan Harian");
+                $("#grid-table-lap").trigger("reloadGrid");
+            }); 
         }
-        jQuery(function($) {
-        var grid_selector = "#grid-table-lap";
-        //var pager_selector = "#grid-pager-bpps2";
-
-            jQuery("#grid-table-lap").jqGrid('setGridParam',{
-                url: '<?php echo WS_JQGRID."pelaporan.t_rep_lap_harian_per_ketetapan_controller/read"; ?>',
-                postData: { tgl_penerimaan: tgl_penerimaan,
-                            kode_bank: kode_bank
-                        }
-
-            });
-
-
-            $("#grid-table-lap").jqGrid("setCaption", "Laporan Harian");
-            $("#grid-table-lap").trigger("reloadGrid");
-        });
+        
     });
 
 </script>

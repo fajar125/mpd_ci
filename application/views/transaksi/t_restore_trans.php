@@ -64,7 +64,7 @@
     <?php $this->load->view('lov/lov_t_vat_setllement_restore_transaksi'); ?>
     
 </div>
-<div class="tab-content no-border">
+<div class="tab-content no-border" id="table">
     <div class="row">
         <div class="col-xs-12">
             <div id="gbox_grid-table" class="ui-jqgrid">
@@ -76,6 +76,7 @@
     </div>
 </div>
 <script type="text/javascript">
+    $('#table').css('display', 'none');
     jQuery(function ($) {
         var grid_selector = "#grid-table-restore";
         jQuery("#grid-table-restore").jqGrid({
@@ -289,6 +290,7 @@
             swal ( "Oopss" ,  "Kolom Filter Harus Diisi!" ,  "error" );  
                  
         }else{
+            $('#table').css('display', '');
             jQuery(function($) {
                 var grid_selector = "#grid-table-restore";
                 //var pager_selector = "#grid-pager-bpps2";

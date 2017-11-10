@@ -35,13 +35,13 @@
                 <div class="space-2"></div>
                 <div class="row col-md-offset-4">
                     <button class="btn btn-success" type="button" id="btn-search">Tampilkan Data</button>
-                    <button class="btn btn-success" type="button" onclick="print_pdf()" id="pdf">Donwload PDF</button>
+                    <button class="btn btn-danger" type="button" onclick="print_pdf()" id="pdf">Donwload PDF</button>
                 </div>
             </div>
         </div>       
     </div>    
 </div>
-<div class="tab-content no-border">
+<div class="tab-content no-border" id="table">
     <div class="row">
         <div class="col-xs-12">
             <div id="gbox_grid-table" class="ui-jqgrid">
@@ -53,7 +53,7 @@
     </div>
 </div>
 <script type="text/javascript">
-    
+    $('#table').css('display', 'none');
     jQuery(function ($) {
         var grid_selector = "#grid-table-lap";
         jQuery("#grid-table-lap").jqGrid({
@@ -65,7 +65,7 @@
 
 				{label: 'Pajak/Retribusi',name: 'nama_ayat',width: 140, align: "left"},
 
-				{label: 'Jenis Pajak',name: 'nama_jns_pajak', width: 110, align: "left"},
+				{label: 'Jenis Pajak',name: 'nama_jns_pajak', width: 110, summaryTpl:"Total",summaryType:"sum",align: "left"},
 
 				{label: 'Jumlah (Rp.)',name: 'jml_hari_ini',width: 130, summaryTpl:"{0}",summaryType:"sum", formatter:'integer', formatoptions: {prefix:"", thousandsSeparator:',', defaultValue:'0'},align: "right"},
 
@@ -109,7 +109,8 @@
                 var col_jml_transaksi_sampai_kemarin = $grid.jqGrid('getCol', 'jml_transaksi_sampai_kemarin', false, 'sum');
                 var col_jml_sd_hari_ini = $grid.jqGrid('getCol', 'jml_sd_hari_ini', false, 'sum');
                 var col_jml_transaksi_sampai_hari_ini = $grid.jqGrid('getCol', 'jml_transaksi_sampai_hari_ini', false, 'sum');
-                $grid.jqGrid('footerData', 'set', { 'jml_hari_ini': col_jml_hari_ini,
+                $grid.jqGrid('footerData', 'set', { 'nama_jns_pajak': 'Grand Total',
+                                                    'jml_hari_ini': col_jml_hari_ini,
                 									'jml_transaksi':col_jml_transaksi,
                 									'jml_sd_hari_lalu':col_jml_sd_hari_lalu,
                 									'jml_transaksi_sampai_kemarin':col_jml_transaksi_sampai_kemarin,
@@ -158,10 +159,10 @@
         
         if(tgl_penerimaan == ""){            
             swal ( "Oopss" ,  "Kolom Tanggal Tidak Boleh Kosong!" ,  "error" );
-        }
-        jQuery(function($) {
-        var grid_selector = "#grid-table-lap";
-        //var pager_selector = "#grid-pager-bpps2";
+        }else{
+            $('#table').css('display', '');
+            jQuery(function($) {
+            var grid_selector = "#grid-table-lap";           
 
             jQuery("#grid-table-lap").jqGrid('setGridParam',{
                 url: '<?php echo WS_JQGRID."pelaporan.t_rep_lap_harian_controller/read"; ?>',
@@ -175,6 +176,8 @@
             $("#grid-table-lap").jqGrid("setCaption", "Laporan Harian");
             $("#grid-table-lap").trigger("reloadGrid");
         });
+        }
+        
     });
 
 </script>

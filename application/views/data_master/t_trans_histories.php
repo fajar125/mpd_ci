@@ -316,9 +316,11 @@
 
     function cetak_excel() {
         // alert("Convert to Excel");
+        var t_cust_account_id = $('#t_cust_account_id').val();
+
         var url = "<?php echo WS_JQGRID . "data_master.t_trans_histories_controller/excel/?"; ?>";
          url += "<?php echo $this->security->get_csrf_token_name(); ?>=<?php echo $this->security->get_csrf_hash(); ?>";
-            url += "&t_cust_account_id=" + $("#grid-table-trans").getGridParam("postData").t_cust_account_id;
+            url += "&t_cust_account_id="+t_cust_account_id;
         window.location = url;
     }
 
@@ -346,5 +348,5 @@
 
 <div class="space-2"></div>
 <div class="row col-md-offset-5">
-    <button class="btn btn-success" type="button" onclick="cetak_excel()" id="excel">Download Excel</button>
+    <button class="btn btn-danger" type="button" onclick="cetak_excel()" id="excel">Download Excel</button>
 </div>

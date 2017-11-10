@@ -65,9 +65,7 @@ class t_rep_lap_harian_per_ketetapan_controller {
             $ci->load->model('pelaporan/t_rep_lap_harian_per_ketetapan');
             $table = $ci->t_rep_lap_harian_per_ketetapan;
 
-            $result = $table->getLapHarianPerKetetapan($tgl_penerimaan, $kode_bank);  
-            
-            $items = $result;
+            $items = $table->getLapHarianPerKetetapan($tgl_penerimaan, $kode_bank);
 
             startExcel(date("dmy") . '_LAPORAN_HARIAN_PER_KETETAPAN.xls');
             echo '<html>';
@@ -189,17 +187,7 @@ class t_rep_lap_harian_per_ketetapan_controller {
                     $jumlahtotal_harilalu += $items[$i]["jml_sd_hari_lalu"];
                     $jumlahtemp_hariini += $items[$i]["jml_sd_hari_ini"];
                     $jumlahtotal_hariini += $items[$i]["jml_sd_hari_ini"];
-                    /*$jml_transaksi_per_jenis_pajak += $items["jml_transaksi"][$i];
-                    $jml_transaksi_semua_jenis_pajak += $items["jml_transaksi"][$i];*/
-
-                    /*$jml_transaksi_sampai_kemarin_per_jenis_pajak += $items["jml_transaksi_sampai_kemarin"][$i];
-                    $jml_transaksi_sampai_kemarin_semua_jenis_pajak += $items["jml_transaksi_sampai_kemarin"][$i];
-
-                    $jml_transaksi_sampai_hari_ini_per_jenis_pajak += $items["jml_transaksi_sampai_hari_ini"][$i];
-                    $jml_transaksi_sampai_hari_ini_semua_jenis_pajak += $items["jml_transaksi_sampai_hari_ini"][$i];*/
                     
-                    //cek apakah perlu bikin baris jumlah
-                    //jika iya, simpan jumlahtemp ke jumlahperjenis, print jumlahtemp, reset jumlahtemp
                     $jenis = $items[$i]["nama_jns_pajak"];
                     if((count($items)-1) != $i){
                         $jenissesudah = $items[$i + 1]["nama_jns_pajak"];

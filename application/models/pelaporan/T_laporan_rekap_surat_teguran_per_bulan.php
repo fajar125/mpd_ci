@@ -1,10 +1,10 @@
 <?php
 
 /**
- * t_laporan_posisi_surat_teguran Model
+ * T_laporan_rekap_surat_teguran_per_bulan Model
  *
  */
-class t_laporan_posisi_surat_teguran extends Abstract_model {
+class T_laporan_rekap_surat_teguran_per_bulan extends Abstract_model {
 
     public $table           = "";
     public $pkey            = "";
@@ -21,25 +21,26 @@ class t_laporan_posisi_surat_teguran extends Abstract_model {
         parent::__construct();
     }
 
-    function getLaporanPosisi($p_vat_type_id, $p_finance_period_id, $tanggal){
-        $sql = "select b.company_brand,regexp_replace(b.brand_address_name, '\r|\n', '', 'g')||' '||b.brand_address_no as alamat_merk_dagang,a.*, 
-        '' as surat_teguran1,
-        '' as surat_teguran2,
-        '' as surat_teguran3
-            from f_posisi_surat_teguran_test_2(?,?,?) a
-            left join t_cust_account b on a.npwpd = b.npwd
-            ORDER BY company_brand,npwpd, surat_teguran_3,surat_teguran_2,surat_teguran_1";
+    function getDataRekap($p_finance_period_id){
+        $sql = "select t_debt_letter_id,t_customer_order_id,letter_date, sequence_no, code, 
+                    (select count(*)
+                    from f_debt_letter_list(a.t_customer_order_id) x
+                    LEFT JOIN t_cust_account as y ON x.t_cust_account_id = y.t_cust_account_id
+                    where y.p_vat_type_dtl_id NOT IN (11, 15, 17, 21, 27, 30, 41, 42, 43)) as jml
+            from t_debt_letter a
+            LEFT JOIN p_finance_period b on a.p_finance_period_id=b.p_finance_period_id
+             where 
+                a.p_finance_period_id in (select p_finance_period_id 
+                    from p_finance_period where p_year_period_id = ?)
+            ORDER BY letter_date";
         
-        $output = $this->db->query($sql, array($p_vat_type_id, $p_finance_period_id, $tanggal));
+        $output = $this->db->query($sql, array($p_finance_period_id));
         //echo "vat_type->".$p_vat_type_id." tgl ->".$tgl_penerimaan." setoran->".$i_flag_setoran."kode bank -> ".$kode_bank." status->".$status;exit;
 
         $items = $output->result_array();
-        //print_r($items); exit;
-
-        if($items == null || $items == '')
+        if($items == '' || $items == null)
             $items = 'no result';
-
-
+        //print_r($items); exit;
         return $items;
     }
 
@@ -69,4 +70,4 @@ class t_laporan_posisi_surat_teguran extends Abstract_model {
 
 }
 
-/* End of file t_laporan_posisi_surat_teguran.php */
+/* End of file T_laporan_rekap_surat_teguran_per_bulan.php */

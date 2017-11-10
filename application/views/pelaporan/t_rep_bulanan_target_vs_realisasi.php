@@ -5,7 +5,7 @@
             <i class="fa fa-circle"></i>
         </li>
         <li>
-            <span>Laporan Bulanan Target VS Realisasi (Dengan Denda)</span>
+            <span>Laporan Bulanan Target VS Realisasi</span>
         </li>
     </ul> 
 </div>
@@ -85,13 +85,13 @@
     jQuery(function ($) {
         var grid_selector = "#grid-table";
         jQuery("#grid-table").jqGrid({
-            url: '<?php echo WS_JQGRID . "pelaporan.t_rep_bulanan_target_vs_realisasi_v2_controller/read"; ?>',
+            url: '<?php echo WS_JQGRID . "pelaporan.t_rep_bulanan_target_vs_realisasi_controller/read"; ?>',
             datatype: "json",
             mtype: "POST",
             colModel: [
                 {label: 'ID Pajak', name: 'p_vat_type_dtl_id', key: true, width: 5, sorttype: 'number', editable: true, hidden: true},
                 {label: 'Ayat Pajak',name: 'ayat',width: 200, align: "left"},
-                {label: 'Jenis Pajak',name: 'jenis_pajak',width: 200, align: "left"},
+                {label: 'Jenis Pajak',name: 'jenis_pajak',width: 200, summaryTpl:"Total", summaryType:"sum", align: "left"},
                 {label: 'Target',name: 'target',width: 223, summaryTpl:"{0}",summaryType:"sum", formatter:'integer', formatoptions: {prefix:"", thousandsSeparator:',', defaultValue:'0'},align: "right"},
                 {label: 'Realisasi',name: 'realisasiDanPiutang',width: 223,summaryTpl:"{0}",summaryType:"sum", formatter:'integer', formatoptions: {prefix:"", thousandsSeparator:',', defaultValue:'0'},align: "right"},
                 {label: 'Keterangan Selisih',name: 'selisih',width: 223, summaryTpl:"{0}",summaryType:"sum", formatter:'integer', formatoptions: {prefix:"", thousandsSeparator:',', defaultValue:'0'},align: "right"}
@@ -123,7 +123,8 @@
                 var col_target = $grid.jqGrid('getCol', 'target', false, 'sum');
                 var col_realisasiDanPiutang = $grid.jqGrid('getCol', 'realisasiDanPiutang', false, 'sum');
                 var col_selisih = $grid.jqGrid('getCol', 'selisih', false, 'sum');
-                $grid.jqGrid('footerData', 'set', { 'target': col_target,
+                $grid.jqGrid('footerData', 'set', { 'jenis_pajak':'Grand Total',
+                                                    'target': col_target,
                                                     'realisasiDanPiutang':col_realisasiDanPiutang,
                                                     'selisih':col_selisih
 
@@ -165,7 +166,7 @@
                 //var pager_selector = "#grid-pager-bpps2";
 
                 jQuery("#grid-table").jqGrid('setGridParam',{
-                    url: '<?php echo WS_JQGRID."pelaporan.t_rep_bulanan_target_vs_realisasi_v2_controller/read"; ?>',
+                    url: '<?php echo WS_JQGRID."pelaporan.t_rep_bulanan_target_vs_realisasi_controller/read"; ?>',
                     postData: {p_year_period_id: p_year_period_id,
                                 p_finance_period_id_start: p_finance_period_id_start,
                                 p_finance_period_id_end: p_finance_period_id_end,

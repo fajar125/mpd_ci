@@ -108,26 +108,28 @@ class t_trans_histories_controller {
                 <th>Nilai Pembayaran</th>
             </tr>';
             $no = 0;
-            foreach ($items as $item) {
-                echo '<tr>';
-                echo '<td>' . ($no+1) . '</td>';
-                echo '<td>' . $item["npwd"] . '</td>';
-                echo '<td>' . $item['company_name'] . '</td>';
-                echo '<td>' . $item['type_code'] . '</td>';
-                echo '<td>' . $item['vat_code'] . '</td>';
-                echo '<td>' . $item['periode_pelaporan'] . '</td>';
-                echo '<td>' . $item['periode_transaksi'] . '</td>';
-                echo '<td>' . $item['tgl_pelaporan'] . '</td>';
-                echo '<td>' . $item['total_transaksi'] . '</td>';
-                echo '<td>' . $item['total_pajak'] . '</td>';
-                echo '<td>' . $item['debt_vat_amt'] . '</td>';
-                echo '<td>' . $item['kenaikan'] . '</td>';
-                echo '<td>' . $item['total_denda'] . '</td>';
-                echo '<td>' . $item['total_hrs_bayar'] . '</td>';
-                echo '<td>' . $item['kuitansi_pembayaran'] . '</td>';
-                echo '<td>' . $item['tgl_pembayaran'] . '</td>';
-                echo '<td>' . $item['payment_amount'] . '</td>';
-                $no++;
+            if($items != 'no result'){
+                foreach ($items as $item) {
+                    echo '<tr>';
+                    echo '<td>' . ($no+1) . '</td>';
+                    echo '<td>' . $item["npwd"] . '</td>';
+                    echo '<td>' . $item['company_name'] . '</td>';
+                    echo '<td>' . $item['type_code'] . '</td>';
+                    echo '<td>' . $item['vat_code'] . '</td>';
+                    echo '<td>' . $item['periode_pelaporan'] . '</td>';
+                    echo '<td>' . $item['periode_transaksi'] . '</td>';
+                    echo '<td>' . $item['tgl_pelaporan'] . '</td>';
+                    echo '<td>' . $item['total_transaksi'] . '</td>';
+                    echo '<td>' . $item['total_pajak'] . '</td>';
+                    echo '<td>' . $item['debt_vat_amt'] . '</td>';
+                    echo '<td>' . $item['kenaikan'] . '</td>';
+                    echo '<td>' . $item['total_denda'] . '</td>';
+                    echo '<td>' . $item['total_hrs_bayar'] . '</td>';
+                    echo '<td>' . $item['kuitansi_pembayaran'] . '</td>';
+                    echo '<td>' . $item['tgl_pembayaran'] . '</td>';
+                    echo '<td>' . $item['payment_amount'] . '</td>';
+                    $no++;
+                }
             }
 
             echo '</table>';

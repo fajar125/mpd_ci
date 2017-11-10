@@ -32,7 +32,7 @@
                         </div>
                     </div>
                     <div class="col-md-3">
-                        <button class="btn btn-success" type="button" onclick="print_pdf()" id="pdf">Tampilkan</button>
+                        <button class="btn btn-danger" type="button" onclick="print_pdf()" id="pdf">Tampilkan</button>
                     </div>
                 </div>                
                 <div class="space-2"></div>
@@ -41,17 +41,7 @@
         </div>       
     </div>    
 </div>
-<div class="tab-content no-border">
-    <div class="row">
-        <div class="col-xs-12">
-            <div id="gbox_grid-table" class="ui-jqgrid">
-                <div id="gview_grid-table" class="ui-jqgrid-view table-responsive" role="grid">
-                    <table id="grid-table-lap"></table>
-                </div>
-            </div>            
-        </div>
-    </div>
-</div>
+
 
 
 <script> 

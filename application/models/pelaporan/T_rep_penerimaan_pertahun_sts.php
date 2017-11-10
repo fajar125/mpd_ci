@@ -1,10 +1,10 @@
 <?php
 
 /**
- * t_laporan_posisi_surat_teguran Model
+ * T_rep_penerimaan_pertahun_sts Model
  *
  */
-class t_laporan_posisi_surat_teguran extends Abstract_model {
+class T_rep_penerimaan_pertahun_sts extends Abstract_model {
 
     public $table           = "";
     public $pkey            = "";
@@ -21,25 +21,19 @@ class t_laporan_posisi_surat_teguran extends Abstract_model {
         parent::__construct();
     }
 
-    function getLaporanPosisi($p_vat_type_id, $p_finance_period_id, $tanggal){
-        $sql = "select b.company_brand,regexp_replace(b.brand_address_name, '\r|\n', '', 'g')||' '||b.brand_address_no as alamat_merk_dagang,a.*, 
-        '' as surat_teguran1,
-        '' as surat_teguran2,
-        '' as surat_teguran3
-            from f_posisi_surat_teguran_test_2(?,?,?) a
-            left join t_cust_account b on a.npwpd = b.npwd
-            ORDER BY company_brand,npwpd, surat_teguran_3,surat_teguran_2,surat_teguran_1";
+    function getWP($p_year_period_id,$p_vat_type_id, $start_piutang, $end_piutang,  $tgl_status, $p_account_status_id){
+        //echo $p_vat_type_id;exit();
+        $sql = "select * from sikp.f_rep_penerimaan_pertahun_sts_piutang(?,?,?,?,?,?)";
         
-        $output = $this->db->query($sql, array($p_vat_type_id, $p_finance_period_id, $tanggal));
-        //echo "vat_type->".$p_vat_type_id." tgl ->".$tgl_penerimaan." setoran->".$i_flag_setoran."kode bank -> ".$kode_bank." status->".$status;exit;
-
+        $output = $this->db->query($sql, array($p_year_period_id, $p_vat_type_id, $start_piutang, $end_piutang, $tgl_status, $p_account_status_id));
+        //echo "p_year_period_id->".$p_year_period_id." p_vat_type_id ->".$p_vat_type_id." start_piutang->".$start_piutang."end_piutang -> ".$end_piutang." end_piutang->".$end_piutang." p_account_status_id->".$p_account_status_id;exit;
+        
         $items = $output->result_array();
-        //print_r($items); exit;
+        //print_r($items);exit();
 
-        if($items == null || $items == '')
+        if ($items == null || $items == '')
             $items = 'no result';
-
-
+        
         return $items;
     }
 
@@ -69,4 +63,4 @@ class t_laporan_posisi_surat_teguran extends Abstract_model {
 
 }
 
-/* End of file t_laporan_posisi_surat_teguran.php */
+/* End of file T_rep_penerimaan_pertahun_sts.php */

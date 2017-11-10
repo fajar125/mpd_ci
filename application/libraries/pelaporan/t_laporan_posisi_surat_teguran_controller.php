@@ -120,6 +120,7 @@ class t_laporan_posisi_surat_teguran_controller {
             $result = $table->getLaporanPosisi($p_vat_type_id,$p_finance_period_id,$tanggal);
             //$items = $result;
             //print_r($result);exit;
+            
             $temp = $result[0];
             $result_final=null;
             $sebelum = 'Belum Bayar';
@@ -185,18 +186,20 @@ class t_laporan_posisi_surat_teguran_controller {
             echo '<th>SETELAH TANGGAL '.$tanggal.'</th>';
             echo '</tr>';
             $i=1;
-            foreach ($result_final as $item) {
-                echo '<tr>';
-                echo '<td align="center">'.($i++).'</td>';
-                echo '<td align="left">'.$item['company_brand'].'</td>';
-                echo '<td align="left">'.$item['alamat_merk_dagang'].'</td>';
-                echo '<td align="center">'.$item['npwpd'].'</td>';
-                echo '<td align="center">'.$item['surat_teguran1'].'</td>';
-                echo '<td align="center">'.$item['surat_teguran2'].'</td>';
-                echo '<td align="center">'.$item['surat_teguran3'].'</td>'; 
-                echo '<td align="center">'.$item['tgl_bayar'].'</td>'; 
-                echo '<td align="center">'.$item['tgl_bayar2'].'</td>'; 
-                echo '</tr>';
+            if($result != 'no result'){
+                foreach ($result_final as $item) {
+                    echo '<tr>';
+                    echo '<td align="center">'.($i++).'</td>';
+                    echo '<td align="left">'.$item['company_brand'].'</td>';
+                    echo '<td align="left">'.$item['alamat_merk_dagang'].'</td>';
+                    echo '<td align="center">'.$item['npwpd'].'</td>';
+                    echo '<td align="center">'.$item['surat_teguran1'].'</td>';
+                    echo '<td align="center">'.$item['surat_teguran2'].'</td>';
+                    echo '<td align="center">'.$item['surat_teguran3'].'</td>'; 
+                    echo '<td align="center">'.$item['tgl_bayar'].'</td>'; 
+                    echo '<td align="center">'.$item['tgl_bayar2'].'</td>'; 
+                    echo '</tr>';
+                }
             }
             echo'</table>';
             exit;

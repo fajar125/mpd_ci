@@ -5,7 +5,7 @@
             <i class="fa fa-circle"></i>
         </li>
         <li>
-            <span>LAPORAN POSISI SURAT TEGURAN</span>
+            <span>Laporan Penyampaian Surat Teguran</span>
         </li>
     </ul> 
 </div>
@@ -54,19 +54,12 @@
                                 </button>
                             </span>
                         </div>
-                    </div>
-                    <label class="control-label col-md-2">Per Tanggal</label>
-                    <div class="col-md-3">
-                        <div class="input-group">
-                            <input type="text" class="form-control" name="tanggal" id="tanggal">                 
-                        </div>
-                    </div>
-                    
+                    </div>                    
                 </div>                
                 <div class="space-2"></div>
                 <div class="row col-md-offset-4">
                     <button class="btn btn-success" type="button" id="btn-search">Tampilkan Data</button>
-                    <button class="btn btn-success" type="button" onclick="saveExcel()" id="excel">Tampilkan Excel</button>
+                    <button class="btn btn-danger" type="button" onclick="saveExcel()" id="excel">Tampilkan Excel</button>
                 </div>
             </div>
         </div>
@@ -94,18 +87,42 @@
     jQuery(function ($) {
         var grid_selector = "#grid-table-teguran";
         jQuery("#grid-table-teguran").jqGrid({
-            url: '<?php echo WS_JQGRID . "pelaporan.t_laporan_posisi_surat_teguran_controller/read"; ?>',
+            url: '<?php echo WS_JQGRID . "pelaporan.t_laporan_penyampaian_surat_teguran_controller/read"; ?>',
             datatype: "json",
             mtype: "POST",
             colModel: [
-                {label: 'Merk Dagang',name: 'company_brand',width: 200, align: "left"},
+                {label: 'Objek Pajak',name: 'company_brand',width: 200, align: "left"},
                 {label: 'Alamat Merk Dagang',name: 'alamat_merk_dagang',width: 170, align: "left"},
                 {label: 'NPWPD',name: 'npwpd',width: 150, align: "left"},
                 {label: 'Surat Teguran 1',name: 'surat_teguran1',width: 120, align: "left"},
                 {label: 'Surat Teguran 2',name: 'surat_teguran2',width: 120, align: "left"},
-                {label: 'Surat Teguran 3',name: 'surat_teguran3',width: 300, align: "left"},
-                {label: 'Per Tanggal',name: 'tgl_bayar',width: 150, align: "left"},
-                {label: 'Setelah Tanggal',name: 'tgl_bayar2',width: 150, align: "left"}
+                {label: 'Surat Teguran 3',name: 'surat_teguran3',width: 120, align: "left"},
+                {label: 'Tanggal',name: 'tanggal',width: 100, align: "left"},
+                {label: 'Pokok',width: 100, 
+                    formatter:function(cellvalue, options, rowObject) {
+                        var kolom_pokok = rowObject['pokok'];
+                        var output = '<div>'+kolom_pokok+'</div>';
+                        if(!isNaN(kolom_pokok)){
+                            kolom_pokok=kolom_pokok.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+                            output = '<div style="text-align:right;">'+kolom_pokok+'</div>';
+                        }                        
+                    return output ;
+
+                    }
+                },
+                {label: 'Denda',width: 100, 
+                    formatter:function(cellvalue, options, rowObject) {
+                        var kolom_denda = rowObject['denda'];
+                        var output = '<div>'+kolom_denda+'</div>';
+                        if(!isNaN(kolom_denda)){
+                            kolom_denda=kolom_denda.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+                            output = '<div style="text-align:right;">'+kolom_denda+'</div>';
+                        }                        
+                    return output ;
+                }
+
+
+                }
             ],
             height: '100%',
             autowidth: false,
@@ -131,28 +148,25 @@
               
             caption: "LAPORAN POSISI SURAT TEGURAN"
         });
+        jQuery("#grid-table-teguran").jqGrid('setGroupHeaders', {
+            useColSpanStyle: true, 
+            groupHeaders:[
+                {startColumnName: 'surat_teguran1', numberOfColumns: 3, titleText: 'Teguran'},
+                {startColumnName: 'tanggal', numberOfColumns: 3, titleText: 'Pembayaran'}
+            ]
+        });
         
     });    
-</script>
-
-<script> 
-    $('#tanggal').datepicker({ // mengambil dari class datepicker
-      autoclose: true,
-      format : 'dd-mm-yyyy',
-      todayBtn: 'linked',
-      todayHighlight: true
-    });
 </script>
 
 <script type="text/javascript">
 
     $("#btn-search").on('click', function() {
         var p_vat_type_id = $('#form_vat_id').val();
-        var tanggal = $('#tanggal').val();
-        var p_year_period_id = $('#form_year_period_id').val();
         var p_finance_period_id = $('#form_finance_period_id').val();
         var form_finance_code = $('#form_finance_code').val();
         var vat_code = $('#form_vat_code').val();
+        var p_year_period_id = $('#form_year_period_id').val();
         //alert(tanggal);
 
         if(p_vat_type_id == "" || p_year_period_id == "" || p_finance_period_id == ""){
@@ -165,16 +179,13 @@
                 //var pager_selector = "#grid-pager-teguran";
 
                 jQuery("#grid-table-teguran").jqGrid('setGridParam',{
-                    url: '<?php echo WS_JQGRID."pelaporan.t_laporan_posisi_surat_teguran_controller/read"; ?>',
+                    url: '<?php echo WS_JQGRID."pelaporan.t_laporan_penyampaian_surat_teguran_controller/read"; ?>',
                     postData: {p_vat_type_id: p_vat_type_id,
-                                p_year_period_id: p_year_period_id,
-                                p_finance_period_id: p_finance_period_id,
-                                tanggal: tanggal
-                            }
+                                p_finance_period_id: p_finance_period_id}
 
                 });
 
-                $("#grid-table-teguran").jqGrid("setCaption", "LAPORAN POSISI SURAT TEGURAN || JENIS PAJAK : "+ vat_code+" - PERIODE PAJAK : "+form_finance_code);
+                $("#grid-table-teguran").jqGrid("setCaption", "LAPORAN PENYAMPAIAN SURAT TEGURAN || JENIS PAJAK : "+ vat_code+" - PERIODE PAJAK : "+form_finance_code);
                 $("#grid-table-teguran").trigger("reloadGrid");
             });
         }      
@@ -184,21 +195,18 @@
     function saveExcel() {
         // alert("Convert to Excel");
         var p_vat_type_id = $('#form_vat_id').val();
-        var tanggal = $('#tanggal').val();
-        var p_year_period_id = $('#form_year_period_id').val();
         var p_finance_period_id = $('#form_finance_period_id').val();
         var form_finance_code = $('#form_finance_code').val();
         var vat_code = $('#form_vat_code').val();
+        var p_year_period_id = $('#form_year_period_id').val();
 
         if(p_vat_type_id == "" || p_year_period_id == "" || p_finance_period_id == ""){
             swal ( "Oopss" ,  "Kolom Filter Tidak Boleh Kosong!" ,  "error" );
 
         }else{
-           var url = "<?php echo WS_JQGRID . "pelaporan.t_laporan_posisi_surat_teguran_controller/excel/?"; ?>";
+           var url = "<?php echo WS_JQGRID . "pelaporan.t_laporan_penyampaian_surat_teguran_controller/excel/?"; ?>";
             url += "<?php echo $this->security->get_csrf_token_name(); ?>=<?php echo $this->security->get_csrf_hash(); ?>";
             url += "&p_vat_type_id=" + p_vat_type_id;
-            url += "&tanggal=" + tanggal;
-            url += "&p_year_period_id=" + p_year_period_id;
             url += "&p_finance_period_id=" + p_finance_period_id;
             url += "&form_finance_code=" + form_finance_code;
             url += "&vat_code=" + vat_code;
@@ -209,8 +217,11 @@
 
 </script>
 
-<script>
-function responsive_jqgrid(grid_selector) {
+<script type="text/javascript">
+    $(".priceformat").number( true, 0 , '.',','); /* price number format */
+    $(".priceformat").css("text-align", "right");
+
+    function responsive_jqgrid(grid_selector) {
 
         var parent_column = $(grid_selector).closest('[class*="col-"]');
         $(grid_selector).jqGrid('setGridWidth', $(".form-body").width());
@@ -218,25 +229,25 @@ function responsive_jqgrid(grid_selector) {
 
     }
 
-function showLOVYearPeriod(id, code) {
+    function showLOVYearPeriod(id, code) {
 
-    modal_year_period_show(id, code);
-}
-
-function showLOVFinancePeriod(id, code, start_date,end_date) {
-    if ($('#form_year_period_id').val()=='' || $('#form_year_period_id').val()==0 ) {
-        swal('Informasi','Periode Tahun Harus Diisi','info');
-        return false;
-    } else {
-        //swal('Informasi', $('#form_year_period_id').val(),'info');
-
-        modal_finance_period_show(id, code, $('#form_year_period_id').val(), start_date,end_date);
+        modal_year_period_show(id, code);
     }
-    
-}
 
-function showLOVVat_type(id, code) {
-    modal_lov_vat_show(id, code);
-}
+    function showLOVFinancePeriod(id, code, start_date,end_date) {
+        if ($('#form_year_period_id').val()=='' || $('#form_year_period_id').val()==0 ) {
+            swal('Informasi','Periode Tahun Harus Diisi','info');
+            return false;
+        } else {
+            //swal('Informasi', $('#form_year_period_id').val(),'info');
+
+            modal_finance_period_show(id, code, $('#form_year_period_id').val(), start_date,end_date);
+        }
+        
+    }
+
+    function showLOVVat_type(id, code) {
+        modal_lov_vat_show(id, code);
+    }
 
 </script>

@@ -37,6 +37,9 @@ class pdf_lap_bdhr extends CI_Controller{
         $sql = "select * from f_rep_lap_harian_bdhr_mod_2(?,?) order by nomor_ayat";        
         $output = $this->db->query($sql, array($tgl_penerimaan, $kode_bank));
         $items = $output->result_array();
+
+        if($items == null || $items == '')
+            $items = 'no result';
         
 
         /*print_r($tgl_penerimaan); 
@@ -160,121 +163,122 @@ class pdf_lap_bdhr extends CI_Controller{
         $jml_transaksi_sampai_kemarin_semua_jenis_pajak = 0;
         $jml_transaksi_sampai_hari_ini_per_jenis_pajak = 0;
         $jml_transaksi_sampai_hari_ini_semua_jenis_pajak = 0;
+        if($items != 'no result'){
+          for ($i = 0; $i < count($items); $i++) {
+              $pdf->SetWidths(array($ltable1, $ltable1+1, $ltable1 * 5.2, $sepertiga/3*2,$sepertiga/3*1,$sepertiga/3*2,$sepertiga/3*1, $sepertiga/3*2,$sepertiga/3*1));
+              $pdf->SetAligns(array("C", "L", "L", "R", "R", "R", "R", "R", "R"));
+              $pdf->RowMultiBorderWithHeight(array($no,
+                                                    $items[$i]["nomor_ayat"],
+                                                    "P. " . strtoupper($items[$i]["nama_ayat"]),
+                                                    number_format($items[$i]["jml_hari_ini"], 0, ',', '.'),
+                                                    number_format($items[$i]["jml_transaksi"], 0, ',', '.'),
+                                                    number_format($items[$i]["jml_sd_hari_lalu"], 0, ',', '.'),
+                                                    number_format($items[$i]["jml_transaksi_sampai_kemarin"], 0, ',', '.'),
+                                                    number_format($items[$i]["jml_sd_hari_ini"], 0, ',', '.'),
+                                                    number_format($items[$i]["jml_transaksi_sampai_hari_ini"], 0, ',', '.')
+                                                    ),
+                                              array('TBLR',
+                                                    'TBLR',
+                                                    'TBLR',
+                                                    'TBLR',
+                                                    'TBLR',
+                                                    'TBLR',
+                                                    'TBLR',
+                                                    'TBLR',
+                                                    'TBLR'
+                                                    )
+                                                    ,$this->height);
+              $no++;
 
-        for ($i = 0; $i < count($items); $i++) {
-            $pdf->SetWidths(array($ltable1, $ltable1+1, $ltable1 * 5.2, $sepertiga/3*2,$sepertiga/3*1,$sepertiga/3*2,$sepertiga/3*1, $sepertiga/3*2,$sepertiga/3*1));
-            $pdf->SetAligns(array("C", "L", "L", "R", "R", "R", "R", "R", "R"));
-            $pdf->RowMultiBorderWithHeight(array($no,
-                                                  $items[$i]["nomor_ayat"],
-                                                  "P. " . strtoupper($items[$i]["nama_ayat"]),
-                                                  number_format($items[$i]["jml_hari_ini"], 0, ',', '.'),
-                                                  number_format($items[$i]["jml_transaksi"], 0, ',', '.'),
-                                                  number_format($items[$i]["jml_sd_hari_lalu"], 0, ',', '.'),
-                                                  number_format($items[$i]["jml_transaksi_sampai_kemarin"], 0, ',', '.'),
-                                                  number_format($items[$i]["jml_sd_hari_ini"], 0, ',', '.'),
-                                                  number_format($items[$i]["jml_transaksi_sampai_hari_ini"], 0, ',', '.')
-                                                  ),
-                                            array('TBLR',
-                                                  'TBLR',
-                                                  'TBLR',
-                                                  'TBLR',
-                                                  'TBLR',
-                                                  'TBLR',
-                                                  'TBLR',
-                                                  'TBLR',
-                                                  'TBLR'
-                                                  )
-                                                  ,$this->height);
-            $no++;
+               //hitung jml_hari_ini sampai baris ini
+              $jumlahtemp += $items[$i]["jml_hari_ini"];
+              $jumlahtotal += $items[$i]["jml_hari_ini"];
+              $jumlahtemp_harilalu += $items[$i]["jml_sd_hari_lalu"];
+              $jumlahtotal_harilalu += $items[$i]["jml_sd_hari_lalu"];
+              $jumlahtemp_hariini += $items[$i]["jml_sd_hari_ini"];
+              $jumlahtotal_hariini += $items[$i]["jml_sd_hari_ini"];
+              $jml_transaksi_per_jenis_pajak += $items[$i]["jml_transaksi"];
+              $jml_transaksi_semua_jenis_pajak += $items[$i]["jml_transaksi"];
+              
+              $jml_transaksi_sampai_kemarin_per_jenis_pajak += $items[$i]["jml_transaksi_sampai_kemarin"];
+              $jml_transaksi_sampai_kemarin_semua_jenis_pajak += $items[$i]["jml_transaksi_sampai_kemarin"];
 
-             //hitung jml_hari_ini sampai baris ini
-            $jumlahtemp += $items[$i]["jml_hari_ini"];
-            $jumlahtotal += $items[$i]["jml_hari_ini"];
-            $jumlahtemp_harilalu += $items[$i]["jml_sd_hari_lalu"];
-            $jumlahtotal_harilalu += $items[$i]["jml_sd_hari_lalu"];
-            $jumlahtemp_hariini += $items[$i]["jml_sd_hari_ini"];
-            $jumlahtotal_hariini += $items[$i]["jml_sd_hari_ini"];
-            $jml_transaksi_per_jenis_pajak += $items[$i]["jml_transaksi"];
-            $jml_transaksi_semua_jenis_pajak += $items[$i]["jml_transaksi"];
-            
-            $jml_transaksi_sampai_kemarin_per_jenis_pajak += $items[$i]["jml_transaksi_sampai_kemarin"];
-            $jml_transaksi_sampai_kemarin_semua_jenis_pajak += $items[$i]["jml_transaksi_sampai_kemarin"];
+              $jml_transaksi_sampai_hari_ini_per_jenis_pajak += $items[$i]["jml_transaksi_sampai_hari_ini"];
+              $jml_transaksi_sampai_hari_ini_semua_jenis_pajak += $items[$i]["jml_transaksi_sampai_hari_ini"];
 
-            $jml_transaksi_sampai_hari_ini_per_jenis_pajak += $items[$i]["jml_transaksi_sampai_hari_ini"];
-            $jml_transaksi_sampai_hari_ini_semua_jenis_pajak += $items[$i]["jml_transaksi_sampai_hari_ini"];
+              //cek apakah perlu bikin baris jumlah
+              //jika iya, simpan jumlahtemp ke jumlahperjenis, print jumlahtemp, reset jumlahtemp
+              $jenis = $items[$i]["nama_jns_pajak"];
+              if((count($items)-1) != $i){                
+                  $jenissesudah = $items[$i+1]["nama_jns_pajak"];
+              }else{
+                $jenissesudah = "";
+              }             
+              $pdf->SetFont('Arial', 'B', 10);
+              if($jenis != $jenissesudah || $jenissesudah == ""){
+                  $jumlahperjenis[] = $jumlahtemp;
+                  $jumlahperjenis_harilalu[] = $jumlahtemp_harilalu;
+                  $jumlahperjenis_hariini[] = $jumlahtemp_hariini;
+                  $pdf->SetWidths(array($ltable1+ $ltable1+1+ $ltable1 * 5.2, $sepertiga/3*2,$sepertiga/3*1,$sepertiga/3*2,$sepertiga/3*1, $sepertiga/3*2,$sepertiga/3*1));
+                  $pdf->SetAligns(array("C", "R", "R", "R", "R", "R", "R"));
+                  
+                  $pdf->RowMultiBorderWithHeight(array("JUMLAH " . strtoupper($items[$i]["nama_jns_pajak"]),
+                                                        number_format($jumlahtemp, 0, ',', '.'),
+                                                        number_format($jml_transaksi_per_jenis_pajak, 0, ',', '.'),
+                                                        number_format($jumlahtemp_harilalu, 0, ',', '.'),
+                                                        number_format($jml_transaksi_sampai_kemarin_per_jenis_pajak, 0, ',', '.'),
+                                                        number_format($jumlahtemp_hariini, 0, ',', '.'),
+                                                        number_format($jml_transaksi_sampai_hari_ini_per_jenis_pajak, 0, ',', '.')
+                                                        ),
+                                                  array('TBLR',
+                                                        'TBLR',
+                                                        'TBLR',
+                                                        'TBLR',
+                                                        'TBLR',
+                                                        'TBLR',
+                                                        'TBLR'
+                                                        )
+                                                        ,$this->height);
+                  
+                  $jumlahtemp = 0;
+                  $jumlahtemp_harilalu = 0;
+                  $jumlahtemp_hariini = 0;
+                  $jml_transaksi_per_jenis_pajak = 0;
+                  $jml_transaksi_sampai_kemarin_per_jenis_pajak = 0;
+                  $jml_transaksi_sampai_hari_ini_per_jenis_pajak = 0;
+              }
 
-            //cek apakah perlu bikin baris jumlah
-            //jika iya, simpan jumlahtemp ke jumlahperjenis, print jumlahtemp, reset jumlahtemp
-            $jenis = $items[$i]["nama_jns_pajak"];
-            if((count($items)-1) != $i){                
-                $jenissesudah = $items[$i+1]["nama_jns_pajak"];
-            }else{
-              $jenissesudah = "";
-            }             
-            $pdf->SetFont('Arial', 'B', 10);
-            if($jenis != $jenissesudah || $jenissesudah == ""){
-                $jumlahperjenis[] = $jumlahtemp;
-                $jumlahperjenis_harilalu[] = $jumlahtemp_harilalu;
-                $jumlahperjenis_hariini[] = $jumlahtemp_hariini;
-                $pdf->SetWidths(array($ltable1+ $ltable1+1+ $ltable1 * 5.2, $sepertiga/3*2,$sepertiga/3*1,$sepertiga/3*2,$sepertiga/3*1, $sepertiga/3*2,$sepertiga/3*1));
-                $pdf->SetAligns(array("C", "R", "R", "R", "R", "R", "R"));
-                
-                $pdf->RowMultiBorderWithHeight(array("JUMLAH " . strtoupper($items[$i]["nama_jns_pajak"]),
-                                                      number_format($jumlahtemp, 0, ',', '.'),
-                                                      number_format($jml_transaksi_per_jenis_pajak, 0, ',', '.'),
-                                                      number_format($jumlahtemp_harilalu, 0, ',', '.'),
-                                                      number_format($jml_transaksi_sampai_kemarin_per_jenis_pajak, 0, ',', '.'),
-                                                      number_format($jumlahtemp_hariini, 0, ',', '.'),
-                                                      number_format($jml_transaksi_sampai_hari_ini_per_jenis_pajak, 0, ',', '.')
-                                                      ),
-                                                array('TBLR',
-                                                      'TBLR',
-                                                      'TBLR',
-                                                      'TBLR',
-                                                      'TBLR',
-                                                      'TBLR',
-                                                      'TBLR'
-                                                      )
-                                                      ,$this->height);
-                
-                $jumlahtemp = 0;
-                $jumlahtemp_harilalu = 0;
-                $jumlahtemp_hariini = 0;
-                $jml_transaksi_per_jenis_pajak = 0;
-                $jml_transaksi_sampai_kemarin_per_jenis_pajak = 0;
-                $jml_transaksi_sampai_hari_ini_per_jenis_pajak = 0;
-            }
-
-            if($i == count($items) - 1){
-                $pdf->SetWidths(array($ltable1+ $ltable1+1+ $ltable1 * 5.2, $sepertiga/3*2,$sepertiga/3*1,$sepertiga/3*2,$sepertiga/3*1, $sepertiga/3*2,$sepertiga/3*1));
-                $pdf->SetAligns(array("C", "R", "R", "R", "R", "R", "R"));
-                
-                $pdf->RowMultiBorderWithHeight(array("JUMLAH TOTAL" ,
-                                                      number_format($jumlahtotal, 0, ',', '.'),
-                                                      number_format($jml_transaksi_semua_jenis_pajak, 0, ',', '.'),
-                                                      number_format($jumlahtotal_harilalu, 0, ',', '.'),
-                                                      number_format($jml_transaksi_sampai_kemarin_semua_jenis_pajak, 0, ',', '.'),
-                                                      number_format($jumlahtotal_hariini, 0, ',', '.'),
-                                                      number_format($jml_transaksi_sampai_hari_ini_semua_jenis_pajak, 0, ',', '.')
-                                                      ),
-                                                array('TBLR',
-                                                      'TBLR',
-                                                      'TBLR',
-                                                      'TBLR',
-                                                      'TBLR',
-                                                      'TBLR',
-                                                      'TBLR'
-                                                      )
-                                                      ,$this->height);
-                
-                $jumlahtotal = 0;
-                $jumlahtotal_harilalu = 0;
-                $jumlahtotal_hariini = 0;
-                $jml_transaksi_per_jenis_pajak = 0;
-                $jml_transaksi_sampai_kemarin_per_jenis_pajak = 0;
-                $jml_transaksi_sampai_hari_ini_per_jenis_pajak = 0;
-            }
-            $pdf->SetFont('Arial', '', 10);
+              if($i == count($items) - 1){
+                  $pdf->SetWidths(array($ltable1+ $ltable1+1+ $ltable1 * 5.2, $sepertiga/3*2,$sepertiga/3*1,$sepertiga/3*2,$sepertiga/3*1, $sepertiga/3*2,$sepertiga/3*1));
+                  $pdf->SetAligns(array("C", "R", "R", "R", "R", "R", "R"));
+                  
+                  $pdf->RowMultiBorderWithHeight(array("JUMLAH TOTAL" ,
+                                                        number_format($jumlahtotal, 0, ',', '.'),
+                                                        number_format($jml_transaksi_semua_jenis_pajak, 0, ',', '.'),
+                                                        number_format($jumlahtotal_harilalu, 0, ',', '.'),
+                                                        number_format($jml_transaksi_sampai_kemarin_semua_jenis_pajak, 0, ',', '.'),
+                                                        number_format($jumlahtotal_hariini, 0, ',', '.'),
+                                                        number_format($jml_transaksi_sampai_hari_ini_semua_jenis_pajak, 0, ',', '.')
+                                                        ),
+                                                  array('TBLR',
+                                                        'TBLR',
+                                                        'TBLR',
+                                                        'TBLR',
+                                                        'TBLR',
+                                                        'TBLR',
+                                                        'TBLR'
+                                                        )
+                                                        ,$this->height);
+                  
+                  $jumlahtotal = 0;
+                  $jumlahtotal_harilalu = 0;
+                  $jumlahtotal_hariini = 0;
+                  $jml_transaksi_per_jenis_pajak = 0;
+                  $jml_transaksi_sampai_kemarin_per_jenis_pajak = 0;
+                  $jml_transaksi_sampai_hari_ini_per_jenis_pajak = 0;
+              }
+              $pdf->SetFont('Arial', '', 10);
+          }
         }
 
         

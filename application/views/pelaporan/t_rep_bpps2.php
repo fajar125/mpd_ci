@@ -83,7 +83,7 @@
     <?php $this->load->view('lov/lov_vat_type'); ?>
     
 </div>
-<div class="tab-content no-border">
+<div class="tab-content no-border" id="table">
     <div class="row">
         <div class="col-xs-12">
             <div id="gbox_grid-table" class="ui-jqgrid">
@@ -96,7 +96,7 @@
 </div>
 
 <script type="text/javascript">
-    
+    $('#table').css('display', 'none');
     jQuery(function ($) {
         var grid_selector = "#grid-table-bpps2";
         jQuery("#grid-table-bpps2").jqGrid({
@@ -110,8 +110,8 @@
                 {label: 'No Bayar',name: 'payment_key',width: 170, align: "left"},
                 {label: 'Nama WP',name: 'wp_name',width: 180, align: "left"},
                 {label: 'Merk Dagang',name: 'brand_name',width: 180, align: "left"},
-                {label: 'NPWPD',name: 'npwpd',width: 180, align: "left"},
-                {label: 'Jumlah',name: 'jumlah_terima',width: 150,summaryTpl:"Jumlah: {0}",summaryType:"sum", formatter:'currency', formatoptions: {prefix:"", thousandsSeparator:','},align: "right"},
+                {label: 'NPWPD',name: 'npwpd',width: 180, align: "left", summaryTpl:"Total" ,summaryType:"sum"},
+                {label: 'Jumlah',name: 'jumlah_terima',width: 150, summaryTpl:"{0}",summaryType:"sum", formatter:'currency', formatoptions: {prefix:"", thousandsSeparator:','},align: "right"},
                 {label: 'Masa Pajak',name: 'masa_pajak',width: 150, align: "left"},
                 {label: 'TGL TAP',name: 'kd_tap',width: 150, align: "left"},
                 {label: 'Ket.',name: 'keterangan',width: 80, align: "left"},
@@ -142,7 +142,7 @@
             gridComplete: function() {
                 var $grid = $('#grid-table-bpps2');
                 var colSum = $grid.jqGrid('getCol', 'jumlah_terima', false, 'sum');
-                $grid.jqGrid('footerData', 'set', { 'jumlah_terima': colSum });
+                $grid.jqGrid('footerData', 'set', { 'npwpd':'Grand Total', 'jumlah_terima': colSum });
             },
             onSelectRow: function (rowid) {
                 /*do something when selected*/
@@ -182,6 +182,7 @@
         }else if(p_vat_type_id ==  ""){
             swal ( "Oopss" ,  "Filter Harus Dipilih!" ,  "error" );         
         }else{
+            $('#table').css('display', '');
             jQuery(function($) {
                 var grid_selector = "#grid-table-bpps2";
                 //var pager_selector = "#grid-pager-bpps2";

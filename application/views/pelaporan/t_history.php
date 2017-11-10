@@ -64,7 +64,7 @@
     <?php $this->load->view('lov/lov_vat_type'); ?>
     
 </div>
-<div class="tab-content no-border">
+<div class="tab-content no-border" id="table">
     <div class="row">
         <div class="col-xs-12">
             <div id="gbox_grid-table" class="ui-jqgrid">
@@ -76,6 +76,7 @@
     </div>
 </div>
 <script type="text/javascript">
+    $('#table').css('display', 'none');
     jQuery(function ($) {
         var grid_selector = "#grid-table-history";
         jQuery("#grid-table-history").jqGrid({
@@ -282,6 +283,7 @@
             swal ( "Oopss" ,  "Kolom Filter Harus Diisi!" ,  "error" );  
                  
         }else{
+            $('#table').css('display', '');
             //alert(npwd);
             jQuery(function($) {
                 var grid_selector = "#grid-table-history";
