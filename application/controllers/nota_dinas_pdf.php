@@ -34,14 +34,14 @@ class nota_dinas_pdf extends CI_Controller{
 	function pageCetak() {
 
         $pdf = new FPDF();
-        $this->startY = $pdf->GetY();
-        $this->startX = $this->paperWSize-50;
-        $this->lengthCell = $this->startX+20;
+        $startY = $pdf->GetY();
+        $startX = $this->paperWSize-50;
+        $lengthCell = $this->startX+20;
         $pdf->AliasNbPages();
         $pdf->AddPage("P");
 
-        $lengthJudul1 = ($this->lengthCell * 1) / 6;
-        $lengthJudul2 = ($this->lengthCell * 5) / 6;
+        $lengthJudul1 = ($lengthCell * 1) / 6;
+        $lengthJudul2 = ($lengthCell * 5) / 6;
 
         $pdf->Image(getValByCode('LOGO'), 15, 14, 25, 25);
 
