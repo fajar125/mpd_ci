@@ -191,3 +191,7 @@ where p_procedure_files_id = 5;
 update sikp.p_procedure_files 
 set filename = 'transaksi_wf.t_vat_registration_kasi_ro'
 where p_procedure_files_id = 21;
+
+update p_procedure_files
+set filename = replace(filename, 'transaksi', 'transaksi_wf')
+where filename not like '%_wf%';
