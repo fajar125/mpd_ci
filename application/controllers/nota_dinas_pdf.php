@@ -8,7 +8,7 @@ class nota_dinas_pdf extends CI_Controller{
     var $yearId = 0;
     var $yearCode = "";
     var $paperWSize = 210;
-    var $paperHSize = 320;
+    var $paperHSize = 297;
     var $height = 6;
     var $currX;
     var $currY;
@@ -46,7 +46,7 @@ class nota_dinas_pdf extends CI_Controller{
         $data = $output->row_array();
 
 
-        $pdf = new FPDF('P', 'mm', array(210,297));
+        $pdf = new FPDF('P', 'mm', array(210,330));
         $startY = $pdf->GetY();
         $startX = $this->paperWSize-50;
         $lengthCell = $this->startX+20;
