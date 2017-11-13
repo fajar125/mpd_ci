@@ -46,13 +46,12 @@ class nota_dinas_pdf extends CI_Controller{
         $data = $output->row_array();
 
 
-        $pdf = new FPDF();
+        $pdf = new FPDF('P', 'mm', array(210,297));
+        $startY = $pdf->GetY();
+        $startX = $this->paperWSize-50;
+        $lengthCell = $this->startX+20;
         $pdf->AliasNbPages();
-		$pdf->AddPage("P");
-		$startY = $pdf->GetY();
-		$startX = $this->paperWSize-42;
-		$lengthCell = $startX+20;
-		$pdf->SetFont('Arial', '', 10);
+        $pdf->AddPage("P");
 
         $lengthJudul1 = ($lengthCell * 1) / 6;
         $lengthJudul2 = ($lengthCell * 5) / 6;
