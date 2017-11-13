@@ -69,7 +69,7 @@ class nota_dinas_pdf extends CI_Controller{
         $pdf->Ln(8);
         $pdf->SetFont('Times', '', 12);
         $pdf->Cell($lengthJudul1, $this->height, "", "B", 0, 'C');
-        $pdf->Cell($lengthJudul2, $this->height, getValByCode('ALAMAT_1'), "B", 0, 'C');
+        $pdf->Cell($lengthJudul2, $this->height, getValByCode('ALAMAT_5'), "B", 0, 'C');
 
         $pdf->Ln(10);
         $pdf->SetFont('Times', 'B', 14);
@@ -190,7 +190,7 @@ class nota_dinas_pdf extends CI_Controller{
         $pdf->Cell($lengthJudul1, $this->height, "", "", 0, 'L');
         $pdf->Cell($lengWP1, $this->height, "", "", "", 'L');
         $pdf->Cell($lengWP2, $this->height, "NIP. 19780927 199703 2 001", "", "", 'C');
-        $pdf->Ln(6);
+        //$pdf->Ln(6);
 
         $pdf->Output();
 
