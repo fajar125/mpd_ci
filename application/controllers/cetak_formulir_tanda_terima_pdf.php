@@ -58,9 +58,6 @@ class cetak_formulir_tanda_terima_pdf extends CI_Controller{
 		$data = $query->result_array();
 		// print_r($data);
 		// exit();
-
-
-
 		
 
 		$pdf = new FPDF();
@@ -77,7 +74,7 @@ class cetak_formulir_tanda_terima_pdf extends CI_Controller{
 		$batas1 = ($lengthJudul3 * 2) / 5;
 		$batas2 = ($lengthJudul3 * 3) / 5;
 
-		$pdf->Image('images/logo_pemda.png',15,20,25,25);
+		$pdf->Image(getValByCode('LOGO'),15,20,25,25);
 
 		$length1 = ($this->lengthCell * 2) / 9;
 		$length2 = ($this->lengthCell * 4) / 9;
@@ -99,11 +96,11 @@ class cetak_formulir_tanda_terima_pdf extends CI_Controller{
 		$pdf->Ln();
         $this->seEnter($pdf);
 		$pdf->Cell($length1, $this->height, "", "L", 0, 'C');
-		$pdf->Cell($length2, $this->height, "PEMERINTAH KOTA BANDUNG", 0, 0, 'C');
+		$pdf->Cell($length2, $this->height, getValByCode('INSTANSI_1'), 0, 0, 'C');
 		$pdf->Cell($length3, $this->height, "  Nomor Formulir", "R", 0, 'L');
 		$pdf->Ln();
 		$pdf->Cell($length1, $this->height, "", "L", 0, 'C');
-		$pdf->Cell($length2, $this->height, "DINAS PELAYANAN PAJAK", 0, 0, 'C');
+		$pdf->Cell($length2, $this->height, getValByCode('INSTANSI_2'), 0, 0, 'C');
 
 		//nomor formulir
 		$tmp = "";
@@ -125,19 +122,19 @@ class cetak_formulir_tanda_terima_pdf extends CI_Controller{
 		//================
 		$pdf->Ln();
 		$pdf->Cell($length1, $this->height, "", "L", 0, 'C');
-		$pdf->Cell($length2, $this->height, "Jl. Wastukancana No. 2", 0, 0, 'C');
+		$pdf->Cell($length2, $this->height, getValByCode('ALAMAT_1'), 0, 0, 'C');
 		$pdf->Cell($length3, $this->height, "", "R", 0, 'L');
 		$pdf->Ln();
 		$pdf->Cell($length1, $this->height, "", "L", 0, 'C');
-		$pdf->Cell($length2, $this->height, "Telp. (022) 4235052", 0, 0, 'C');
+		$pdf->Cell($length2, $this->height, getValByCode('ALAMAT_2'), 0, 0, 'C');
 		$pdf->Cell($length3, $this->height, "", "R", 0, 'L');
 		$pdf->Ln();
 		$pdf->Cell($length1, $this->height, "", "L", 0, 'C');
-		$pdf->Cell($length2, $this->height, "Fax (022) 4208604", 0, 0, 'C');
+		$pdf->Cell($length2, $this->height, getValByCode('ALAMAT_4'), 0, 0, 'C');
 		$pdf->Cell($length3, $this->height, "", "R", 0, 'L');
 		$pdf->Ln();
 		$pdf->Cell($length1, $this->height, "", "L", 0, 'C');
-		$pdf->Cell($length2, $this->height, "BANDUNG", 0, 0, 'C');
+		$pdf->Cell($length2, $this->height, getValByCode('ALAMAT_3'), 0, 0, 'C');
 		$pdf->Cell($length3, $this->height, "", "R", 0, 'L');
 		$pdf->Ln();
 		$pdf->Cell($length1, $this->height-4, "", "L", 0, 'C');
@@ -231,7 +228,7 @@ class cetak_formulir_tanda_terima_pdf extends CI_Controller{
         $ttdKolom1 = ($this->lengthCell * 5) / 8;
         $ttdKolom2 = ($this->lengthCell * 3) / 8;
         $pdf->Cell($ttdKolom1, $this->height, '', 'L', 0,'L');
-        $pdf->Cell($ttdKolom2, $this->height, 'Bandung, ...................................................', 'R', 0,'R');
+        $pdf->Cell($ttdKolom2, $this->height, getValByCode('ALAMAT_3').', ...................................................', 'R', 0,'R');
         $pdf->Ln();
         $pdf->Cell($ttdKolom1, $this->height, '', 'L', 0,'C');
         $pdf->Cell($ttdKolom2, $this->height, '    Yang Menerima', 'R', 0,'C');
