@@ -192,6 +192,8 @@ class nota_dinas_pdf extends CI_Controller{
         $pdf->Cell($lengWP2, $this->height, "NIP. 19780927 199703 2 001", "", "", 'C');
         $pdf->Ln(6);
 
+        $pdf->Output();
+
 	}
 
     function romanNumerals($num){
