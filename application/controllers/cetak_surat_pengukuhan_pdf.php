@@ -28,7 +28,15 @@ class cetak_surat_pengukuhan_pdf extends CI_Controller{
         $pdf = new FPDF('P', 'mm', array(203.2,330.2));
         $pdf->Cell($this->lengthCell, $this->height, "", "", 0, 'L');
         $pdf->Ln();
-    }
+	}
+
+	function setCourier(){
+		$this->SetFont('Courier', 'B', 11);
+	}
+
+	function setTimes(){
+		$this->SetFont('Times', 'B', 11);
+	}
 
 
 	function pageCetak() {
@@ -283,55 +291,55 @@ class cetak_surat_pengukuhan_pdf extends CI_Controller{
 		// }
 
 		// Form 6. Kewajiban Wajib Pajak -> Kotak Pilihan -> Baris 1
-		$pdf->SetCourier();
+		$pdf->SetFont('Courier', 'B', 11);
 		$pdf->Cell($kotakLen1, $this->height, "[$parkir]", "", 0, 'L');
-		$pdf->SetTimes();
+		$pdf->SetFont('Times', 'B', 11);
 		$pdf->Cell($kotakLen9, $this->height, " Pajak Parkir", "", 0, 'L');
-		$pdf->SetCourier();
+		$pdf->SetFont('Courier', 'B', 11);
 		$pdf->Cell($kotakLen1, $this->height, "[ ]", "", 0, 'L');
-		$pdf->SetTimes();
+		$pdf->SetFont('Times', 'B', 11);
 		$pdf->Cell($kotakLen9, $this->height, " Pajak Reklame", "", 0, 'L');
 
 		// Form 6. Kewajiban Wajib Pajak -> Kotak Pilihan -> Baris 2
 		$pdf->Ln();
 		$pdf->Cell($formLen1 + $twelfth1-12, $this->height, "", 0, 0, 'L');
-		$pdf->SetCourier();
+		$pdf->SetFont('Courier', 'B', 11);
 		$pdf->Cell($kotakLen1, $this->height, "[$hiburan]", "", 0, 'L');
-		$pdf->SetTimes();
+		$pdf->SetFont('Times', 'B', 11);
 		$pdf->Cell($kotakLen9, $this->height, " Pajak Hiburan", "", 0, 'L');
-		$pdf->SetCourier();
+		$pdf->SetFont('Courier', 'B', 11);
 		$pdf->Cell($kotakLen1, $this->height, "[$ppj]", "", 0, 'L');
-		$pdf->SetTimes();
+		$pdf->SetFont('Times', 'B', 11);
 		$pdf->Cell($kotakLen9, $this->height, " Pajak Penerangan Jalan", "", 0, 'L');
 
 		// Form 6. Kewajiban Wajib Pajak -> Kotak Pilihan -> Baris 3
 		$pdf->Ln();
 		$pdf->Cell($formLen1 + $twelfth1-12, $this->height, "", 0, 0, 'L');
-		$pdf->SetCourier();
+		$pdf->SetFont('Courier', 'B', 11);
 		$pdf->Cell($kotakLen1, $this->height, "[$restoran]", "", 0, 'L');
-		$pdf->SetTimes();
+		$pdf->SetFont('Times', 'B', 11);
 		$pdf->Cell($kotakLen9 * 2 + $kotakLen1, $this->height, " Pajak Restoran/Rumah Makan", "", 0, 'L');
 
 		// Form 6. Kewajiban Wajib Pajak -> Kotak Pilihan -> Baris 4
 		$pdf->Ln();
 		$pdf->Cell($formLen1 + $twelfth1-12, $this->height, "", 0, 0, 'L');
-		$pdf->SetCourier();
+		$pdf->SetFont('Courier', 'B', 11);
 		$pdf->Cell($kotakLen1, $this->height, "[$hotel]", "", 0, 'L');
-		$pdf->SetTimes();
+		$pdf->SetFont('Times', 'B', 11);
 		$pdf->Cell($kotakLen9 + 8, $this->height, " Pajak Hotel: Klasifikasi: Bintang", "", 0, 'L');
-		$pdf->SetCourier();
+		$pdf->SetFont('Courier', 'B', 11);
 		$pdf->Cell($kotakLen1, $this->height, "[$bintang]", "", 0, 'L');
-		$pdf->SetTimes();
+		$pdf->SetFont('Times', 'B', 11);
 		$pdf->Cell($kotakLen3 - 3, $this->height, "  Melati", "", 0, 'L');
-		$pdf->SetCourier();
+		$pdf->SetFont('Courier', 'B', 11);
 		$pdf->Cell($kotakLen1, $this->height, "[$melati]", "", 0, 'L');
 
 		// Form 6. Kewajiban Wajib Pajak -> Kotak Pilihan -> Baris 5
 		$pdf->Ln();
 		$pdf->Cell($formLen1 + $twelfth1-12, $this->height, "", 0, 0, 'L');
-		$pdf->SetCourier();
+		$pdf->SetFont('Courier', 'B', 11);
 		$pdf->Cell($kotakLen1, $this->height, "[$losmen]", "", 0, 'L');
-		$pdf->SetTimes();
+		$pdf->SetFont('Times', 'B', 11);
 		$pdf->Cell($kotakLen9 * 2 + $kotakLen1, $this->height, " Pajak Sewa Menyewa/Kontrak Rumah dan/atau", "", 0, 'L');
 		$pdf->Ln();
 		$pdf->Cell($formLen1 + $twelfth1, $this->height, "", 0, 0, 'L');
