@@ -29,7 +29,7 @@ class T_bphtb_keberatan_ro extends Abstract_model {
                 left join t_bphtb_registration b on b.t_bphtb_registration_id=a.t_bphtb_registration_id
                 left join t_customer_order c on c.t_customer_order_id = a.t_customer_order_id
                 left join p_rqst_type d on d.p_rqst_type_id = c.p_rqst_type_id
-                WHERE a.t_customer_order_id = 4";//.$t_customer_order_id;
+                WHERE a.t_customer_order_id = ".$t_customer_order_id;
         $query = $this->db->query($sql);
         //exit;
         return $query->row_array();
