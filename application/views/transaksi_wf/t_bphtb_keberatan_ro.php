@@ -158,7 +158,7 @@
                                                 <a href="javascript:;" style="DISPLAY: none" class="btn green" id="print_sp" onclick="cetak_sp()" > CETAK SURAT PENOLAKAN
                                                 </a>
                                                 
-                                                <a href="javascript:;" class="btn green" id="submitter"  > SUBMIT
+                                                <a href="javascript:;" class="btn green" id="submitter"  onClick="submitform()" > SUBMIT
                                                 </a>
                                                 
                                                 <a href="javascript:;" style="DISPLAY: none" class="btn green" id="Add"  > SIMPAN
@@ -172,6 +172,7 @@
                                                 
                                                 <a href="javascript:;" style="DISPLAY: none" class="btn  green " id="Cancel"> BATAL                                                   
                                                 </a>
+                                                <button class="btn btn-danger" type="button" id="btn-kem" onclick="backform();">KEMBALI</button>
                                                 
                                             </div>
                                         </div>
@@ -187,6 +188,67 @@
     </div>
 </div>
 
+<?php $this->load->view('workflow/lov_submitter.php'); ?>
+<script>
+    /* parameter kembali ke workflow summary */
+    params_back_summary = {};
+    params_back_summary.ELEMENT_ID = $('#TEMP_ELEMENT_ID').val();
+    params_back_summary.PROFILE_TYPE = $('#TEMP_PROFILE_TYPE').val();
+    params_back_summary.P_W_DOC_TYPE_ID = $('#TEMP_P_W_DOC_TYPE_ID').val();
+    params_back_summary.P_W_PROC_ID = $('#TEMP_P_W_PROC_ID').val();
+    params_back_summary.USER_ID = $('#TEMP_USER_ID').val();
+    params_back_summary.FSUMMARY = $('#TEMP_FSUMMARY').val();
+    /* end parameter */ 
+
+    /*ketika tombol cancel diklik, maka kembali ke summary*/
+    function backform(){
+        loadContentWithParams( $('#TEMP_FSUMMARY').val() , params_back_summary );
+    };
+
+    /* cek jika tipe view */
+    if (  $('#ACTION_STATUS').val() == 'VIEW' ) {
+        $('#form_customer_order_btn_submit').remove();
+        $('#form_customer_order_btn_save').remove();
+        $('#add_legal_doc').hide();
+        $('#add_log').hide();
+    }
+
+    function submitform(){
+        var params_submit = {};
+        
+        params_submit.CURR_DOC_ID         = $('#CURR_DOC_ID').val();  
+        params_submit.CURR_DOC_TYPE_ID    = $('#CURR_DOC_TYPE_ID').val();
+        params_submit.CURR_PROC_ID        = $('#CURR_PROC_ID').val();
+        params_submit.CURR_CTL_ID         = $('#CURR_CTL_ID').val();
+        params_submit.USER_ID_DOC         = $('#USER_ID_DOC').val();
+        params_submit.USER_ID_DONOR       = $('#USER_ID_DONOR').val();
+        params_submit.USER_ID_LOGIN       = $('#USER_ID_LOGIN').val();
+        params_submit.USER_ID_TAKEN       = $('#USER_ID_TAKEN').val();
+        params_submit.IS_CREATE_DOC       = $('#IS_CREATE_DOC').val();
+        params_submit.IS_MANUAL           = $('#IS_MANUAL').val();
+        params_submit.CURR_PROC_STATUS    = $('#CURR_PROC_STATUS').val();
+        params_submit.CURR_DOC_STATUS     = $('#CURR_DOC_STATUS').val();
+        params_submit.PREV_DOC_ID         = $('#PREV_DOC_ID').val();
+        params_submit.PREV_DOC_TYPE_ID    = $('#PREV_DOC_TYPE_ID').val();
+        params_submit.PREV_PROC_ID        = $('#PREV_PROC_ID').val();
+        params_submit.PREV_CTL_ID         = $('#PREV_CTL_ID').val();
+        params_submit.SLOT_1              = $('#SLOT_1').val();    
+        params_submit.SLOT_2              = $('#SLOT_2').val(); 
+        params_submit.SLOT_3              = $('#SLOT_3').val();    
+        params_submit.SLOT_4              = $('#SLOT_4').val();  
+        params_submit.SLOT_5              = $('#SLOT_5').val();    
+        params_submit.MESSAGE             = $('#MESSAGE').val();    
+        params_submit.PROFILE_TYPE        = $('#PROFILE_TYPE').val();
+        params_submit.ACTION_STATUS       = $('#ACTION_STATUS').val();
+
+        if (  $('#ACTION_STATUS').val() != 'VIEW' ) {
+            modal_lov_submitter_show(params_submit, params_back_summary); 
+        } else {
+            loadContentWithParams( $('#TEMP_FSUMMARY').val() , params_back_summary );
+        }
+    }
+
+</script>
 <script>
 
     $.ajax({
