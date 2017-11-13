@@ -653,8 +653,8 @@
 
     function cetakDraftPengukuhan(){
         var currDocId = $('#CURR_DOC_ID').val();
-        var url = "<?php echo base_url(); ?>"+"cetak_surat_pengukuhan_pdf/showReport?CURR_DOC_ID="+currDocId;
-
+        var url = "<?php echo base_url(); ?>"+"cetak_surat_pengukuhan_pdf/pageCetak?CURR_DOC_ID="+currDocId;
+        PopupCenter(url, 'Surat Pengukuhan', 600, 400);
     }
 
 
