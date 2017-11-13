@@ -260,39 +260,6 @@ breadcrumb -->
                                         <label class="control-label col-md-6 col-md-offset-2">(Gunakan tanda "."(titik) untuk luas dengan bilangan pecahan)
                                         </label>
                                     </div>
-                                    <!-- <div class="form-group">
-                                        <label class="control-label col-md-2">Nilai Tanah (Ref)
-                                        </label>
-                                        <div class="col-md-3">
-                                            <div class="input-group ">
-                                                <input type="text" onkeyup="hitungTotalTanah();return 1;" class="form-control formatRight"  readonly="true" maxlength="16" name="land_area_real" id="land_area_real">
-                                                <span class="input-group-addon">m2</span>
-                                            </div> 
-                                        </div>
-                                        <div class="col-md-3">
-                                            <div class="input-group ">
-                                                <span class="input-group-addon">Rp.</span>
-                                                <input type="text" onkeyup="hitungTotalTanah();" maxlength="16" class="form-control priceformat" readonly="true" name="land_price_real" id="land_price_real">
-                                            </div> 
-                                        </div>
-                                    </div>
-
-                                    <div class="form-group">
-                                        <label class="control-label col-md-2"> Nilai bangunan (Ref)
-                                        </label>
-                                        <div class="col-md-3">
-                                            <div class="input-group ">
-                                                <input type="text" onkeyup="hitungTotalBangunan();" maxlength="16" class="form-control formatRight"  readonly="true" name="building_area_real" id="building_area_real">
-                                                <span class="input-group-addon">m2</span>
-                                            </div> 
-                                        </div>
-                                        <div class="col-md-3">
-                                            <div class="input-group ">
-                                                <span class="input-group-addon">Rp.</span>
-                                                <input type="text" onkeyup="hitungTotalBangunan();" maxlength="16" class="form-control priceformat" readonly="true" name="building_price_real" id="building_price_real">
-                                            </div> 
-                                        </div>
-                                    </div> -->
 
                                     <div class="form-group">
                                         <label class="control-label col-md-2"> Tanah 
@@ -454,16 +421,6 @@ breadcrumb -->
                                         <div class="col-md-3">
                                             <input type="text" class="form-control" name="description" id="description">
                                         </div>
-                                        
-                                        <!-- <div class="col-md-3">
-                                            <div class="input-group ">
-                                                <label class="control-label input-group-addon  ">  Cek Potongan :
-                                                </label>
-                                                <span class="input-group-addon"><input type="checkbox" class="form-control" name="check_potongan" id="check_potongan"></span>
-                                            </div> 
-                                        </div>
-                                        <label class="control-label col-md-5 col-md-offset-6">(Silahkan cheklis utk pembayaran yg ada potongan)
-                                        </label> -->
                                     </div>
 
                                     <div id="div-harus-bayar" class="form-group" style="display: none">
