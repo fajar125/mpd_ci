@@ -8,7 +8,7 @@ class nota_dinas_pdf extends CI_Controller{
     var $yearId = 0;
     var $yearCode = "";
     var $paperWSize = 210;
-    var $paperHSize = 297;
+    var $paperHSize = 320;
     var $height = 6;
     var $currX;
     var $currY;
