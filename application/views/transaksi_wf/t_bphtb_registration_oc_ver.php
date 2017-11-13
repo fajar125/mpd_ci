@@ -6,31 +6,65 @@
             <i class="fa fa-circle"></i>
         </li>
         <li>
-            <span>Daftar BPHTB</span>
-            <i class="fa fa-circle"></i>
-        </li>
-        <li>
-            <span><?php echo $_POST['FLAG'] ?> BPHTB</span>
+            <span>FORMULIR PENDAFTARAN</span>
             <i class="fa fa-circle"></i>
         </li>
     </ul>
 </div>
+
+<!-- Hidden -->
+    <input type="hidden" id="TEMP_ELEMENT_ID" value="<?php echo $this->input->post('ELEMENT_ID'); ?>" />
+    <input type="hidden" id="TEMP_PROFILE_TYPE" value="<?php echo $this->input->post('PROFILE_TYPE'); ?>" />
+    <input type="hidden" id="TEMP_P_W_DOC_TYPE_ID" value="<?php echo $this->input->post('P_W_DOC_TYPE_ID'); ?>" />
+    <input type="hidden" id="TEMP_P_W_PROC_ID" value="<?php echo $this->input->post('P_W_PROC_ID'); ?>" />
+    <input type="hidden" id="TEMP_USER_ID" value="<?php echo $this->input->post('USER_ID'); ?>" />
+    <input type="hidden" id="TEMP_FSUMMARY" value="<?php echo $this->input->post('FSUMMARY'); ?>" />
+    <!-- end type hidden -->
+
+    <!-- paramater untuk kebutuhan submit dan status -->
+    <input type="hidden" id="CURR_DOC_ID" value="<?php echo $this->input->post('CURR_DOC_ID'); ?>">
+    <input type="hidden" id="CURR_DOC_TYPE_ID" value="<?php echo $this->input->post('CURR_DOC_TYPE_ID'); ?>">
+    <input type="hidden" id="CURR_PROC_ID" value="<?php echo $this->input->post('CURR_PROC_ID'); ?>">
+    <input type="hidden" id="CURR_CTL_ID" value="<?php echo $this->input->post('CURR_CTL_ID'); ?>">
+    <input type="hidden" id="USER_ID_DOC" value="<?php echo $this->input->post('USER_ID_DOC'); ?>">
+    <input type="hidden" id="USER_ID_DONOR" value="<?php echo $this->input->post('USER_ID_DONOR'); ?>">
+    <input type="hidden" id="USER_ID_LOGIN" value="<?php echo $this->input->post('USER_ID_LOGIN'); ?>">
+    <input type="hidden" id="USER_ID_TAKEN" value="<?php echo $this->input->post('USER_ID_TAKEN'); ?>">
+    <input type="hidden" id="IS_CREATE_DOC" value="<?php echo $this->input->post('IS_CREATE_DOC'); ?>">
+    <input type="hidden" id="IS_MANUAL" value="<?php echo $this->input->post('IS_MANUAL'); ?>">
+    <input type="hidden" id="CURR_PROC_STATUS" value="<?php echo $this->input->post('CURR_PROC_STATUS'); ?>">
+    <input type="hidden" id="CURR_DOC_STATUS" value="<?php echo $this->input->post('CURR_DOC_STATUS'); ?>">
+    <input type="hidden" id="PREV_DOC_ID" value="<?php echo $this->input->post('PREV_DOC_ID'); ?>">
+    <input type="hidden" id="PREV_DOC_TYPE_ID" value="<?php echo $this->input->post('PREV_DOC_TYPE_ID'); ?>">
+    <input type="hidden" id="PREV_PROC_ID" value="<?php echo $this->input->post('PREV_PROC_ID'); ?>">
+    <input type="hidden" id="PREV_CTL_ID" value="<?php echo $this->input->post('PREV_CTL_ID'); ?>">
+    <input type="hidden" id="SLOT_1" value="<?php echo $this->input->post('SLOT_1'); ?>">
+    <input type="hidden" id="SLOT_2" value="<?php echo $this->input->post('SLOT_2'); ?>">
+    <input type="hidden" id="SLOT_3" value="<?php echo $this->input->post('SLOT_3'); ?>">
+    <input type="hidden" id="SLOT_4" value="<?php echo $this->input->post('SLOT_4'); ?>">
+    <input type="hidden" id="SLOT_5" value="<?php echo $this->input->post('SLOT_5'); ?>">
+    <input type="hidden" id="MESSAGE" value="<?php echo $this->input->post('MESSAGE'); ?>">
+    <input type="hidden" id="PROFILE_TYPE" value="<?php echo $this->input->post('PROFILE_TYPE'); ?>">
+    <input type="hidden" id="ACTION_STATUS" value="<?php echo $this->input->post('ACTION_STATUS'); ?>">
+<!-- Hidden -->
+
+
 <!-- end breadcrumb -->
 <div class="space-4"></div>
 <div class="row">
     <div class="col-xs-12">
         <div class="tabbable">
             <ul class="nav nav-tabs">
-                <li class="">
-                    <a href="javascript:;" data-toggle="tab" aria-expanded="true" class="back" id="tab-0">
+                <li class="active">
+                    <a href="javascript:;" data-toggle="tab" aria-expanded="true" id="tab-0">
                         <i class="blue"></i>
-                        <strong> Daftar BPHTB </strong>
+                        <strong>FORMULIR PENDAFTARAN</strong>
                     </a>
                 </li>
-                <li class="active">
+                <li class="">
                     <a href="javascript:;" data-toggle="tab" aria-expanded="true" id="tab-1">
                         <i class="blue"></i>
-                        <strong><?php echo $_POST['FLAG'] ?> BPHTB </strong>
+                        <strong>Document Pendukung</strong>
                     </a>
                 </li>
             </ul>
@@ -41,7 +75,7 @@
                 <div class="col-md-12">
                     <div class="portlet blue box menu-panel">
                         <div class="portlet-title">
-                            <div class="caption"><?php echo $_POST['FLAG'] ?> BPHTB</div>
+                            <div class="caption">INFORMASI FORMULIR PENDAFTARAN</div>
                             <div class="tools">
                                 <a class="collapse" href="javascript:;" data-original-title="" title=""> </a>
                             </div>
@@ -64,7 +98,6 @@
                                         <div class="col-md-3">
                                             <input type="hidden" class="form-control" name="t_bphtb_registration_id" id="t_bphtb_registration_id">
                                             <input type="text" class="form-control" maxlength="64" name="wp_name" id="wp_name">
-                                            <input type="hidden" class="form-control" name="p_bphtb_type_id" id="p_bphtb_type_id">
                                         </div>
 
                                     </div>
@@ -370,22 +403,6 @@
                                     </div>
 
                                     <div class="form-group">
-                                        <label class="control-label col-md-2 ">  Potongan Kebijakan untuk Waris
-                                        </label>
-                                        <div class="col-md-3 ">
-                                            <select  name="potongan_waris" id="potongan_waris" class="form-control">
-                                                <option value='1/1' >Bukan Waris</option>
-                                                <option value='1/2' >1/2</option>
-                                                <option value='1/3' >1/3</option>
-                                                <option value='2/3' >2/3</option>
-                                                <option value='1/4' >1/4</option>
-                                                <option value='1/7' >1/7</option>
-                                                <option value='3/4' >3/4</option>
-                                            </select>
-                                        </div>
-                                    </div>
-
-                                    <div class="form-group">
                                         <label class="control-label col-md-2 ">  Nilai Perolehan Objek Pajak (NPOP)
                                         </label>
                                         <div class="col-md-3">
@@ -453,15 +470,6 @@
                                             <input type="text" class="form-control" name="description" id="description">
                                         </div>
                                         
-                                        <div class="col-md-3">
-                                            <div class="input-group ">
-                                                <label class="control-label input-group-addon  ">  Cek Potongan :
-                                                </label>
-                                                <span class="input-group-addon"><input type="checkbox" class="form-control" name="check_potongan" id="check_potongan"></span>
-                                            </div> 
-                                        </div>
-                                        <label class="control-label col-md-5 col-md-offset-6">(Silahkan cheklis utk pembayaran yg ada potongan)
-                                        </label>
                                     </div>
 
                                     <div id="div-harus-bayar" class="form-group" style="display: none">
@@ -492,21 +500,19 @@
                                     <div class="form-actions">
                                         <div class="row">
                                             <div class="col-md-offset-3 col-md-9">
-                                                <a href="javascript:;" class="btn default button-previous back" id="back">
-                                                    <i class="fa fa-angle-left"></i> Back </a>
-                                                <a href="javascript:;" style="display: none" class="btn btn-outline green button-next" id="printWisnu"> CETAK NOTA VERIFIKASI (INDRA WISNU)                                                    
-                                                </a>
                                                 <a href="javascript:;" class="btn btn-outline green button-next" id="print"  > CETAK NOTA VERIFIKASI                                                    
                                                 </a>
-                                                <!-- <button type="submit" class="btn green button-submit"> Simpan
-                                                    <i class="fa fa-check"></i>
-                                                </button> -->
-                                                <a href="javascript:;" class="btn  green " id="update"> Simpan                                                   
+                                                <a href="javascript:;" class="btn  green " id="submit"  onClick="submitform()"> Submit                                                   
                                                 </a>
-                                                <a href="javascript:;" class="btn  green " id="insert"> Simpan                                                   
+                                                <a href="javascript:;" style="DISPLAY: none" class="btn  green " id="update"> Simpan                                                   
                                                 </a>
-                                                <a href="javascript:;" class="btn  green " id="delete"> Hapus                                                   
+                                                <a href="javascript:;" style="DISPLAY: none" class="btn  green " id="insert"> Simpan                                                   
                                                 </a>
+                                                <a href="javascript:;" style="DISPLAY: none" class="btn  green " id="delete"> Hapus                                                   
+                                                </a>
+                                                <a href="javascript:;" style="DISPLAY: none" class="btn  green " id="cancel"> Batal                                                   
+                                                </a>
+                                                <button class="btn btn-danger" type="button" id="btn-kem" onclick="backform();">KEMBALI</button>
                                             </div>
                                         </div>
                                     </div>
@@ -523,10 +529,71 @@
 <?php $this->load->view('lov/lov_kota'); ?>
 <?php $this->load->view('lov/lov_kec'); ?>
 <?php $this->load->view('lov/lov_kel'); ?>
+<?php $this->load->view('workflow/lov_submitter.php'); ?>
+<script>
+    /* parameter kembali ke workflow summary */
+    params_back_summary = {};
+    params_back_summary.ELEMENT_ID = $('#TEMP_ELEMENT_ID').val();
+    params_back_summary.PROFILE_TYPE = $('#TEMP_PROFILE_TYPE').val();
+    params_back_summary.P_W_DOC_TYPE_ID = $('#TEMP_P_W_DOC_TYPE_ID').val();
+    params_back_summary.P_W_PROC_ID = $('#TEMP_P_W_PROC_ID').val();
+    params_back_summary.USER_ID = $('#TEMP_USER_ID').val();
+    params_back_summary.FSUMMARY = $('#TEMP_FSUMMARY').val();
+    /* end parameter */ 
+
+    /*ketika tombol cancel diklik, maka kembali ke summary*/
+    function backform(){
+        loadContentWithParams( $('#TEMP_FSUMMARY').val() , params_back_summary );
+    };
+
+    /* cek jika tipe view */
+    if (  $('#ACTION_STATUS').val() == 'VIEW' ) {
+        $('#form_customer_order_btn_submit').remove();
+        $('#form_customer_order_btn_save').remove();
+        $('#add_legal_doc').hide();
+        $('#add_log').hide();
+    }
+
+    function submitform(){
+        var params_submit = {};
+        
+        params_submit.CURR_DOC_ID         = $('#CURR_DOC_ID').val();  
+        params_submit.CURR_DOC_TYPE_ID    = $('#CURR_DOC_TYPE_ID').val();
+        params_submit.CURR_PROC_ID        = $('#CURR_PROC_ID').val();
+        params_submit.CURR_CTL_ID         = $('#CURR_CTL_ID').val();
+        params_submit.USER_ID_DOC         = $('#USER_ID_DOC').val();
+        params_submit.USER_ID_DONOR       = $('#USER_ID_DONOR').val();
+        params_submit.USER_ID_LOGIN       = $('#USER_ID_LOGIN').val();
+        params_submit.USER_ID_TAKEN       = $('#USER_ID_TAKEN').val();
+        params_submit.IS_CREATE_DOC       = $('#IS_CREATE_DOC').val();
+        params_submit.IS_MANUAL           = $('#IS_MANUAL').val();
+        params_submit.CURR_PROC_STATUS    = $('#CURR_PROC_STATUS').val();
+        params_submit.CURR_DOC_STATUS     = $('#CURR_DOC_STATUS').val();
+        params_submit.PREV_DOC_ID         = $('#PREV_DOC_ID').val();
+        params_submit.PREV_DOC_TYPE_ID    = $('#PREV_DOC_TYPE_ID').val();
+        params_submit.PREV_PROC_ID        = $('#PREV_PROC_ID').val();
+        params_submit.PREV_CTL_ID         = $('#PREV_CTL_ID').val();
+        params_submit.SLOT_1              = $('#SLOT_1').val();    
+        params_submit.SLOT_2              = $('#SLOT_2').val(); 
+        params_submit.SLOT_3              = $('#SLOT_3').val();    
+        params_submit.SLOT_4              = $('#SLOT_4').val();  
+        params_submit.SLOT_5              = $('#SLOT_5').val();    
+        params_submit.MESSAGE             = $('#MESSAGE').val();    
+        params_submit.PROFILE_TYPE        = $('#PROFILE_TYPE').val();
+        params_submit.ACTION_STATUS       = $('#ACTION_STATUS').val();
+
+        if (  $('#ACTION_STATUS').val() != 'VIEW' ) {
+            modal_lov_submitter_show(params_submit, params_back_summary); 
+        } else {
+            loadContentWithParams( $('#TEMP_FSUMMARY').val() , params_back_summary );
+        }
+    }
+
+</script>
+
+
 <!-- First Load -->
 <script>
-
-    var FLAG            = '<?php echo $_POST['FLAG']; ?>';
     var p_bphtb_type_id = $('#p_bphtb_type_id').val();
 
     $.ajax({
@@ -541,80 +608,71 @@
             }
     });
 
+     t_customer_order_id= "<?php echo $_POST['CURR_DOC_ID']; ?>"
+     //t_customer_order_id = 420748;
 
-    $(".priceformat").number( true, 0 , '.',','); /* price number format */
-    $(".priceformat").css("text-align", "right");
-
-    $(".numberformat").number( true, 0 , '.','.');
-    $(".numberformat").css("text-align", "right");
-    $(".formatRight").css("text-align", "right");
-
-    if(FLAG == 'Edit' || FLAG == 'Detail'){
-        
+    if (t_customer_order_id!=null || t_customer_order_id!=''){
         $.ajax({
-            url: '<?php echo WS_JQGRID."transaksi.t_bphtb_registration_list_controller/read_detail_bphtb"; ?>',
+            url: '<?php echo WS_JQGRID."transaksi_wf.t_bphtb_registration_oc_ver_controller/read"; ?>',
             type: "POST",
             dataType: "json",
             data: {
-                id: "<?php echo $_POST['id']; ?>"
+               t_customer_order_id: t_customer_order_id
             },
             success: function (data) {
                 if(data.success){
-                    var dt = data.items;
+                    var dt = data.rows[0];
 
-                    $('#t_bphtb_registration_id').val(dt.t_bphtb_registration_id);
-                    $('#wp_name').val(dt.wp_name);
-                    $('#npwp').val(dt.npwp);
-                    $('#wp_address_name').val(dt.wp_address_name);
-                    $('#wp_rt').val(dt.wp_rt);
-                    $('#wp_rw').val(dt.wp_rw);
-                    $('#wp_p_region_id').val(dt.wp_p_region_id);
-                    $('#wp_kota').val(dt.wp_kota);
-                    $('#wp_p_region_id_kec').val(dt.wp_p_region_id_kec);
-                    $('#wp_kecamatan').val(dt.wp_kecamatan);
-                    $('#wp_p_region_id_kel').val(dt.wp_p_region_id_kel);
-                    $('#wp_kelurahan').val(dt.wp_kelurahan);
-                    $('#phone_no').val(dt.phone_no);
-                    $('#mobile_phone_no').val(dt.mobile_phone_no);
-                    $('#njop_pbb').val(dt.njop_pbb);
-                    $('#object_letak_tanah').val(dt.object_address_name);
-                    $('#object_rt').val(dt.object_rt);
-                    $('#object_rw').val(dt.object_rw);
-                    $('#object_p_region_id').val(dt.object_p_region_id);
-                    $('#object_kota').val(dt.object_region);
-                    $('#object_p_region_id_kec').val(dt.object_p_region_id_kec);
-                    $('#object_kecamatan').val(dt.object_kecamatan);
-                    $('#object_p_region_id_kel').val(dt.object_p_region_id_kel);
-                    $('#object_kelurahan').val(dt.object_kelurahan);
-                    $('#p_bphtb_legal_doc_type_id').val(dt.p_bphtb_legal_doc_type_id);
-                    $('#land_area').val(dt.land_area);
-                    $('#land_price_per_m').val(dt.land_price_per_m);
-                    $('#land_total_price').val(dt.land_total_price);
-                    $('#building_area').val(dt.building_area);
-                    $('#building_price_per_m').val(dt.building_price_per_m);
-                    $('#building_total_price').val(dt.building_total_price);
-                    $('#market_price').val(dt.market_price);
-                    $('#npop').val(dt.npop);
-                    $('#npop_tkp').val(dt.npop_tkp);
-                    $('#npop_kp').val(dt.npop_kp);
-                    $('#bphtb_amt').val(dt.bphtb_amt);
-                    $('#bphtb_discount').val(dt.bphtb_discount);
-                    $('#bphtb_amt_final').val(dt.bphtb_amt_final);
-                    $('#description').val(dt.description);
-                    $('#jenis_harga_bphtb').val(dt.jenis_harga_bphtb);
-                    $('#bphtb_legal_doc_description').val(dt.bphtb_legal_doc_description);
-                    $('#add_disc_percent').val(dt.add_disc_percent);
-                    $('#add_discount').val(dt.add_discount);
-                    $('#total_price').val(Number($('#land_total_price').val())+Number($('#building_total_price').val()));
-                    if(dt.check_potongan == 'Y'){
-                        $('#check_potongan').attr('checked', true);
-                    };
-                    $('#land_area_real').val(dt.land_area_real);
-                    $('#land_price_real').val(dt.land_price_real);
-                    $('#building_area_real').val(dt.building_area_real);
-                    $('#building_price_real').val(dt.building_price_real);
-
-                   
+                    if (dt != null || dt != ''){
+                        $('#t_bphtb_registration_id').val(dt.t_bphtb_registration_id);
+                        $('#wp_name').val(dt.wp_name);
+                        $('#npwp').val(dt.npwp);
+                        $('#wp_address_name').val(dt.wp_address_name);
+                        $('#wp_rt').val(dt.wp_rt);
+                        $('#wp_rw').val(dt.wp_rw);
+                        $('#wp_p_region_id').val(dt.wp_p_region_id);
+                        $('#wp_kota').val(dt.wp_kota);
+                        $('#wp_p_region_id_kec').val(dt.wp_p_region_id_kec);
+                        $('#wp_kecamatan').val(dt.wp_kecamatan);
+                        $('#wp_p_region_id_kel').val(dt.wp_p_region_id_kel);
+                        $('#wp_kelurahan').val(dt.wp_kelurahan);
+                        $('#phone_no').val(dt.phone_no);
+                        $('#mobile_phone_no').val(dt.mobile_phone_no);
+                        $('#njop_pbb').val(dt.njop_pbb);
+                        $('#object_letak_tanah').val(dt.object_address_name);
+                        $('#object_rt').val(dt.object_rt);
+                        $('#object_rw').val(dt.object_rw);
+                        $('#object_p_region_id').val(dt.object_p_region_id);
+                        $('#object_kota').val(dt.object_region);
+                        $('#object_p_region_id_kec').val(dt.object_p_region_id_kec);
+                        $('#object_kecamatan').val(dt.object_kecamatan);
+                        $('#object_p_region_id_kel').val(dt.object_p_region_id_kel);
+                        $('#object_kelurahan').val(dt.object_kelurahan);
+                        $('#p_bphtb_legal_doc_type_id').val(dt.p_bphtb_legal_doc_type_id);
+                        $('#land_area').val(dt.land_area);
+                        $('#land_price_per_m').val(dt.land_price_per_m);
+                        $('#land_total_price').val(dt.land_total_price);
+                        $('#building_area').val(dt.building_area);
+                        $('#building_price_per_m').val(dt.building_price_per_m);
+                        $('#building_total_price').val(dt.building_total_price);
+                        $('#market_price').val(dt.market_price);
+                        $('#npop').val(dt.npop);
+                        $('#npop_tkp').val(dt.npop_tkp);
+                        $('#npop_kp').val(dt.npop_kp);
+                        $('#bphtb_amt').val(dt.bphtb_amt);
+                        $('#bphtb_discount').val(dt.bphtb_discount);
+                        $('#bphtb_amt_final').val(dt.bphtb_amt_final);
+                        $('#description').val(dt.description);
+                        $('#jenis_harga_bphtb').val(dt.jenis_harga_bphtb);
+                        $('#bphtb_legal_doc_description').val(dt.bphtb_legal_doc_description);
+                        $('#add_disc_percent').val(dt.add_disc_percent);
+                        $('#add_discount').val(dt.add_discount);
+                        $('#total_price').val(Number($('#land_total_price').val())+Number($('#building_total_price').val()));
+                        $('#land_area_real').val(dt.land_area_real);
+                        $('#land_price_real').val(dt.land_price_real);
+                        $('#building_area_real').val(dt.building_area_real);
+                        $('#building_price_real').val(dt.building_price_real);
+                    }
                 }
                 // console.log(dt.product_name);
             },
@@ -623,23 +681,17 @@
             }
         });
     }
+    
 
-    if(FLAG == 'Add'){
-        $('#print').css('display', 'none');
-        $('#update').css('display', 'none');
-        $('#delete').css('display', 'none');
-        $('#insert').css('display', '');
-    }else if(FLAG == 'Edit'){
-        $('#print').css('display', '');
-        $('#update').css('display', '');
-        $('#delete').css('display', 'none');
-        $('#insert').css('display', 'none');
-    }else if(FLAG == 'Detail'){
-        $('#print').css('display', 'none');
-        $('#update').css('display', '');
-        $('#delete').css('display', '');
-        $('#insert').css('display', 'none');
-    }
+
+    $(".priceformat").number( true, 0 , '.',','); /* price number format */
+    $(".priceformat").css("text-align", "right");
+
+    $(".numberformat").number( true, 0 , '.','.');
+    $(".numberformat").css("text-align", "right");
+    $(".formatRight").css("text-align", "right");
+
+    
     
 
     if(p_bphtb_type_id == 3) {
@@ -661,8 +713,6 @@
       $("#njop_pbb").prop('disabled', true);
       $("#jenis_harga_bphtb").prop('disabled', true);
       $("#add_disc_percent").prop('disabled', true);
-
-
     }
 </script>
 <!-- /First Load -->
@@ -742,6 +792,9 @@
         }
         modal_lov_kelurahan_show('object_p_region_id_kel','object_kelurahan',kec);
     });
+
+    
+
 </script>
 <!-- /LOV -->
 
@@ -828,16 +881,16 @@
     }
 
     function getNPOP(){
-        var waris               = $('#potongan_waris').val(); 
+        //var waris               = $('#potongan_waris').val(); 
         var total_price         = $('#total_price').val().replace(/,/g ,''); 
         var market_price        = $('#market_price').val().replace(/,/g ,''); 
         var nilai_doc           = $('#nilai_doc').val();
         var npop                = $('#npop').val().replace(/,/g ,''); 
         var add_disc_percent    = $('#add_disc_percent').val()/100;
 
-        var res        = waris.split("/"); 
+        //var res        = waris.split("/"); 
         var components = [];
-        var result     = 0 ;
+        //var result     = 0 ;
 
         if(total_price==''){
             total_price=0;
@@ -848,9 +901,11 @@
         }
 
 
-        var total_p  = ReplaceNumberWithCommas(total_price*(res[0]/res[1]));
-        var market_p = ReplaceNumberWithCommas(market_price*(res[0]/res[1]));
+        //var total_p  = ReplaceNumberWithCommas(total_price*(res[0]/res[1]));
+        //var market_p = ReplaceNumberWithCommas(market_price*(res[0]/res[1]));
 
+        var total_p  = ReplaceNumberWithCommas(total_price);
+        var market_p = ReplaceNumberWithCommas(market_price);
 
 
         if(parseFloat(total_price)> parseFloat(market_price)){
@@ -971,7 +1026,7 @@
                     }else{
                         $('#npop').val(ReplaceNumberWithCommas(market_price));
                     }
-                } 
+                }
                 
                 $('#npop_tkp').val(ReplaceNumberWithCommas(npoptkp));
             },
@@ -980,23 +1035,6 @@
                 $('#bphtb_discount').val("0");
             }
         });
-    }
-
-    function printLaporan(pejabat){
-        //alert(pejabat);
-        var params          = $('#t_bphtb_registration_id').val();
-        var p_bphtb_type_id = $('#p_bphtb_type_id').val();
-        params              = params +"&pejabat="+pejabat;
-
-        if(p_bphtb_type_id == 3) {
-            //window.open("../report/cetak_rep_bphtb_kb.php?t_bphtb_registration_id="+params, "_blank", "toolbar=0,location=0,menubar=0");
-            url = "<?php echo base_url(); ?>"+"cetak_rep_bphtb_kb/pageCetak?t_bphtb_registration_id="+params;
-            openInNewTab(url);
-        }else {
-            //window.open("../report/cetak_rep_bphtb.php?t_bphtb_registration_id="+params, "_blank", "toolbar=0,location=0,menubar=0");
-            url = "<?php echo base_url(); ?>"+"cetak_rep_bphtb/pageCetak?t_bphtb_registration_id="+params;
-            openInNewTab(url);
-        }
     }
 
     function setNormalValue(){
@@ -1011,333 +1049,97 @@
     
 </script>
 
-<!-- /Function Pendukung -->
-
-<!-- Action -->
-
+<!-- action -->
 <script>
 
-    $('#njop_pbb').on('change', function() {
-        var njop_pbb = $('#njop_pbb').val();
-        if(njop_pbb != "") {
-            var result = njop_pbb.replace(/[^0-9]/g,'');
-            $('#njop_pbb').val(result);
-        }
-    });
-
-    $('#potongan_waris').on('change', function() {  
-        getNPOP();
-    });
-
-    $('#bphtb_discount').on('change', function() {
-        hitungPembayaran();
-    });
-
-    $('.back').on('click', function(event){
-        var FLAG            = '<?php echo $_POST['FLAG']; ?>';
-        event.stopPropagation();
-
-        if(FLAG == 'Detail' || FLAG == 'Add'){
-            loadContentWithParams("transaksi.t_bphtb_registration_list", {});
-        }else if(FLAG == 'Edit' ){
-            loadContentWithParams("transaksi.t_bphtb_registration_list_update", {});
-        }
-    });
-
-    $('#printWisnu').on('click', function(event){
-        printLaporan(2);
-    });
-
     $('#print').on('click', function(event){
-        printLaporan(1);
+        printLaporan();
     });
 
-    $('#insert').on('click', function(event){
-        setNormalValue();
-        save();
-        //alert('insert');
-    });
+    function printLaporan(){
+        //alert(pejabat);
+        var params          = $('#t_bphtb_registration_id').val();
+        var p_bphtb_type_id = $('#p_bphtb_type_id').val();
+        var url = "<?php echo base_url(); ?>";
+
+        if(p_bphtb_type_id == 3) {
+            url += "cetak_rep_bphtb_kb/pageCetak?";
+            url += "t_bphtb_registration_id=" + params;
+        }else {
+            url += "cetak_rep_bphtb/pageCetak?";
+            url += "t_bphtb_registration_id=" + params;
+        }
+
+        openInNewTab(url);
+    }
+
+    function openInNewTab(url) {
+      window.open(url, '_blank', 'location=yes,height=570,width=820,scrollbars=yes,status=yes');
+    }
+
     
-    $('#update').on('click', function(event){
-        var wp_kota = $('#wp_kota').val();
-        var wp_kecamatan = $('#wp_kecamatan').val();
-        var wp_kelurahan = $('#wp_kelurahan').val();
-        var p_bphtb_legal_doc_type_id = $('#p_bphtb_legal_doc_type_id').val();
-        var object_kota = $('#object_kota').val();
-        var object_kecamatan = $('#object_kecamatan').val();
-        var object_kelurahan = $('#object_kelurahan').val();
-        var wp_name = $('#wp_name').val();
+    $('#tab-1').on('click', function(event){
+        var idelement;
 
-        setNormalValue();
-        if(wp_kota == '' || wp_kota == null || object_kota == '' || object_kota == null){
-            swal ( "Oopss" ,  "Kota haru diisi !" ,  "error" );
-        }else if(wp_kecamatan == '' || wp_kecamatan == null || object_kecamatan == '' || object_kecamatan == null){
-            swal ( "Oopss" ,  "Kecamatan haru diisi !" ,  "error" );
-        }else if(wp_kelurahan == '' || wp_kelurahan == null || object_kelurahan == '' || object_kelurahan == null){
-            swal ( "Oopss" ,  "Kelurahan haru diisi !" ,  "error" );
-        }else if(p_bphtb_legal_doc_type_id == '' || p_bphtb_legal_doc_type_id == null){
-            swal ( "Oopss" ,  "Dokumen Pendukung haru diisi !" ,  "error" );
-        }else if(wp_name == '' || wp_name == null){
-            swal ( "Oopss" ,  "Nama WP haru diisi !" ,  "error" );
-        }else{
-            update();
-        }
-
-        //update();
-        //alert('update');
-    });
-
-    $('#delete').on('click', function(event){
-        var var_url = "<?php echo WS_JQGRID . "transaksi.t_bphtb_registration_list_controller/delete/?"; ?>";
-        var_url += "id="+"<?php echo $_POST['id']; ?>";
-
-        swal({
-          title: "Are you sure?",
-          text: "Your will not be able to recover this imaginary file!",
-          type: "warning",
-          showCancelButton: true,
-          confirmButtonClass: "btn-danger",
-          confirmButtonText: "Yes, delete it!",
-          closeOnConfirm: false
-        },
-        function(){
-            setTimeout(function(){
-            $.getJSON(var_url, function( items ) {
-                swal("Delete finished!");
-                loadContentWithParams("transaksi.t_bphtb_registration_list", {});
-            });
-        }, 3000);
-           
-        });
-    });
-
-    $('#update').on('click', function(event){
-        var wp_kota = $('#wp_kota').val();
-        var wp_kecamatan = $('#wp_kecamatan').val();
-        var wp_kelurahan = $('#wp_kelurahan').val();
-        var p_bphtb_legal_doc_type_id = $('#p_bphtb_legal_doc_type_id').val();
-        var object_kota = $('#object_kota').val();
-        var object_kecamatan = $('#object_kecamatan').val();
-        var object_kelurahan = $('#object_kelurahan').val();
-        var wp_name = $('#wp_name').val();
-
-        setNormalValue();
-        if(wp_kota == '' || wp_kota == null || object_kota == '' || object_kota == null){
-            swal ( "Oopss" ,  "Kota haru diisi !" ,  "error" );
-        }else if(wp_kecamatan == '' || wp_kecamatan == null || object_kecamatan == '' || object_kecamatan == null){
-            swal ( "Oopss" ,  "Kecamatan haru diisi !" ,  "error" );
-        }else if(wp_kelurahan == '' || wp_kelurahan == null || object_kelurahan == '' || object_kelurahan == null){
-            swal ( "Oopss" ,  "Kelurahan haru diisi !" ,  "error" );
-        }else if(p_bphtb_legal_doc_type_id == '' || p_bphtb_legal_doc_type_id == null){
-            swal ( "Oopss" ,  "Dokumen Pendukung haru diisi !" ,  "error" );
-        }else if(wp_name == '' || wp_name == null){
-            swal ( "Oopss" ,  "Nama WP haru diisi !" ,  "error" );
-        }else{
-            update();
-        }
-        //alert('update');
-    });
-
-    function save(){
-        var wp_name                     = $('#wp_name').val();
-        var npwp                        = $('#npwp').val();
-        var wp_address_name             = $('#wp_address_name').val();
-        var wp_rt                       = $('#wp_rt').val();
-        var wp_rw                       = $('#wp_rw').val();
-        var wp_p_region_id              = $('#wp_p_region_id').val();
-        var wp_p_region_id_kec          = $('#wp_p_region_id_kec').val();
-        var wp_p_region_id_kel          = $('#wp_p_region_id_kel').val();
-        var phone_no                    = $('#phone_no').val();
-        var mobile_phone_no             = $('#mobile_phone_no').val();
-        var njop_pbb                    = $('#njop_pbb').val();
-        var object_letak_tanah          = $('#object_letak_tanah').val();
-        var object_rt                   = $('#object_rt').val();
-        var object_rw                   = $('#object_rw').val();
-        var object_p_region_id          = $('#object_p_region_id').val();
-        var object_p_region_id_kec      = $('#object_p_region_id_kec').val();
-        var object_p_region_id_kel      = $('#object_p_region_id_kel').val();
-        var p_bphtb_legal_doc_type_id   = $('#p_bphtb_legal_doc_type_id').val();
-        var land_area                   = $('#land_area').val();        
-        var land_price_per_m            = $('#land_price_per_m').val();
-        var land_total_price            = $('#land_total_price').val();
-        var building_area               = $('#building_area').val();
-        var building_price_per_m        = $('#building_price_per_m').val();
-        var building_total_price        = $('#building_total_price').val();
-        var market_price                = $('#market_price').val();
-        var npop                        = $('#npop').val();
-        var npop_tkp                    = $('#npop_tkp').val();
-        var npop_kp                     = $('#npop_kp').val();
-        var bphtb_amt                   = $('#bphtb_amt').val();
-        var bphtb_discount              = $('#bphtb_discount').val();
-        var bphtb_amt_final             = $('#bphtb_amt_final').val();
-        var description                 = $('#description').val();
-        var jenis_harga_bphtb           = $('#jenis_harga_bphtb').val();
-        var bphtb_legal_doc_description = $('#bphtb_legal_doc_description').val();
-        var add_disc_percent            = $('#add_disc_percent').val();
-        var check_potongan              = $('#check_potongan').val();
-        var land_area_real              = $('#land_area_real').val();
-        var land_price_real             = $('#land_price_real').val();
-        var building_area_real          = $('#building_area_real').val();
-        var building_price_real         = $('#building_price_real').val();
-
-        var ischeck = $('#check_potongan').is(":checked");
-        if(ischeck){
-            check_potongan = 'Y';
-        }else{
-            check_potongan = 'N';
-        }
-
-        var var_url = "<?php echo WS_JQGRID . "transaksi.t_bphtb_registration_list_controller/insert/?"; ?>";
-        var_url += "<?php echo $this->security->get_csrf_token_name(); ?>=<?php echo $this->security->get_csrf_hash(); ?>";
-
-         var_url += "&wp_name=" + wp_name;
-         var_url += "&npwp=" + npwp;
-         var_url += "&wp_address_name=" + wp_address_name;
-         var_url += "&wp_rt=" + wp_rt;
-         var_url += "&wp_rw=" + wp_rw;
-         var_url += "&wp_p_region_id=" + wp_p_region_id;
-         var_url += "&wp_p_region_id_kec=" + wp_p_region_id_kec;
-         var_url += "&wp_p_region_id_kel=" + wp_p_region_id_kel;
-         var_url += "&phone_no=" + phone_no;
-         var_url += "&mobile_phone_no=" + mobile_phone_no;
-         var_url += "&njop_pbb=" + njop_pbb;
-         var_url += "&object_letak_tanah=" + object_letak_tanah;
-         var_url += "&object_rt=" + object_rt;
-         var_url += "&object_rw=" + object_rw;
-         var_url += "&object_p_region_id=" + object_p_region_id;
-         var_url += "&object_p_region_id_kec=" + object_p_region_id_kec
-         var_url += "&object_p_region_id_kel=" + object_p_region_id_kel;
-         var_url += "&p_bphtb_legal_doc_type_id=" + p_bphtb_legal_doc_type_id;
-         var_url += "&land_area=" + land_area;
-         var_url += "&land_price_per_m=" + land_price_per_m;
-         var_url += "&land_total_price=" + land_total_price;
-         var_url += "&building_area=" + building_area;
-         var_url += "&building_price_per_m=" + building_price_per_m;
-         var_url += "&building_total_price=" + building_total_price;
-         var_url += "&market_price=" + market_price;
-         var_url += "&npop=" + npop;
-         var_url += "&npop_tkp=" + npop_tkp;
-         var_url += "&npop_kp=" + npop_kp;
-         var_url += "&bphtb_amt=" + bphtb_amt;
-         var_url += "&bphtb_discount=" + bphtb_discount;
-         var_url += "&bphtb_amt_final=" + bphtb_amt_final;
-         var_url += "&description=" + description;
-         var_url += "&jenis_harga_bphtb=" + jenis_harga_bphtb;
-         var_url += "&bphtb_legal_doc_description=" + bphtb_legal_doc_description;
-         var_url += "&add_disc_percent=" + add_disc_percent;
-         var_url += "&check_potongan=" + check_potongan;
-         var_url += "&land_area_real=" + land_area_real;
-         var_url += "&land_price_real=" + land_price_real;
-         var_url += "&building_area_real=" + building_area_real;
-         var_url += "&building_price_real=" + building_price_real;
-         //alert(var_url);
+        if (idelement = $('#t_customer_order_id'))
+        {
             
-            
-            
-        $.getJSON(var_url, function( items ) {
-            if(items.rows.o_mess=="Data Berhasil Disimpan"){
-                swal('Informasi',items.rows.o_mess,'info');
-                loadContentWithParams("transaksi.t_bphtb_registration_list", {});
+            var pid=idelement.val();
+            var req_code=$('#rqst_type_code').val();
+            var id_req=$('#p_rqst_type_id').val();
+            var id_vat=$('#t_bphtb_registration_id').val();
+            if (pid != 0)
+            {
+                //loadContentWithParams('transaksi_wf.t_cust_order_legal_doc_ro', {t_bphtb_registration_id:id_vat,rqst_type_code:req_code,p_rqst_type_id:id_req,t_customer_order_id:pid});
+
+                loadContentWithParams("transaksi_wf.t_cust_order_legal_doc_oc_ver", { //model yang ketiga
+                t_customer_order_id: $( "#CURR_DOC_ID" ).val(),
+                t_bphtb_registration_id:$('#t_bphtb_registration_id').val(),
+                rqst_type_code:$('#rqst_type_code').val(),
+                order_no: $('#order_no').val(),
+                order_date:$('#registration_date').val(),
+                p_rqst_type_id: $("#p_rqst_type_id").val(),
+                t_vat_registration_id: $( "#t_vat_registration_id" ).val(),
+                ELEMENT_ID : $('#TEMP_ELEMENT_ID').val(),
+                PROFILE_TYPE : $('#TEMP_PROFILE_TYPE').val(),
+                P_W_DOC_TYPE_ID : $('#TEMP_P_W_DOC_TYPE_ID').val(),
+                P_W_PROC_ID : $('#TEMP_P_W_PROC_ID').val(),
+                USER_ID : $('#TEMP_USER_ID').val(),
+                FSUMMARY : $('#TEMP_FSUMMARY').val(),
+                CURR_DOC_ID : $('#CURR_DOC_ID').val(),
+                CURR_DOC_TYPE_ID : $('#CURR_DOC_TYPE_ID').val(),
+                CURR_PROC_ID : $('#CURR_PROC_ID').val(),
+                CURR_CTL_ID : $('#CURR_CTL_ID').val(),
+                USER_ID_DOC : $('#USER_ID_DOC').val(),
+                USER_ID_DONOR : $('#USER_ID_DONOR').val(),
+                USER_ID_LOGIN : $('#USER_ID_LOGIN').val(),
+                USER_ID_TAKEN : $('#USER_ID_TAKEN').val(),
+                IS_CREATE_DOC : $('#IS_CREATE_DOC').val(),
+                IS_MANUAL : $('#IS_MANUAL').val(),
+                CURR_PROC_STATUS : $('#CURR_PROC_STATUS').val(),
+                CURR_DOC_STATUS : $('#CURR_DOC_STATUS').val(),
+                PREV_DOC_ID : $('#PREV_DOC_ID').val(),
+                PREV_DOC_TYPE_ID : $('#PREV_DOC_TYPE_ID').val(),
+                PREV_PROC_ID : $('#PREV_PROC_ID').val(),
+                PREV_CTL_ID : $('#PREV_CTL_ID').val(),
+                SLOT_1 : $('#SLOT_1').val(),
+                SLOT_2 : $('#SLOT_2').val(),
+                SLOT_3 : $('#SLOT_3').val(),
+                SLOT_4 : $('#SLOT_4').val(),
+                SLOT_5 : $('#SLOT_5').val(),
+                MESSAGE : $('#MESSAGE').val(),
+                PROFILE_TYPE : $('#PROFILE_TYPE').val(),
+                ACTION_STATUS : $('#ACTION_STATUS').val()});
+            } else {
+                swal({title: "Error!", text: "Pilih salah satu ORDER!", html: true, type: "error"});
             }
-        })
-    }
- 
-    function update(){
-        //alert('masuk');
-        var t_bphtb_registration_id     = $('#t_bphtb_registration_id').val();
-        var wp_name                     = $('#wp_name').val();
-        var npwp                        = $('#npwp').val();
-        var wp_address_name             = $('#wp_address_name').val();
-        var wp_rt                       = $('#wp_rt').val();
-        var wp_rw                       = $('#wp_rw').val();
-        var wp_p_region_id              = $('#wp_p_region_id').val();
-        var wp_p_region_id_kec          = $('#wp_p_region_id_kec').val();
-        var wp_p_region_id_kel          = $('#wp_p_region_id_kel').val();
-        var mobile_phone_no             = $('#mobile_phone_no').val();
-        var njop_pbb                    = $('#njop_pbb').val();
-        var object_address_name         = $('#object_letak_tanah').val();
-        var object_rt                   = $('#object_rt').val();
-        var object_rw                   = $('#object_rw').val();
-        var object_p_region_id          = $('#object_p_region_id').val();
-        var object_p_region_id_kec      = $('#object_p_region_id_kec').val();
-        var object_p_region_id_kel      = $('#object_p_region_id_kel').val();
-        var p_bphtb_legal_doc_type_id   = $('#p_bphtb_legal_doc_type_id').val();
-        var land_area                   = $('#land_area').val();        
-        var land_price_per_m            = $('#land_price_per_m').val();
-        var land_total_price            = $('#land_total_price').val();
-        var building_area               = $('#building_area').val();
-        var building_price_per_m        = $('#building_price_per_m').val();
-        var building_total_price        = $('#building_total_price').val();
-        var market_price                = $('#market_price').val();
-        var npop                        = $('#npop').val();
-        var npop_tkp                    = $('#npop_tkp').val();
-        var npop_kp                     = $('#npop_kp').val();
-        var bphtb_amt                   = $('#bphtb_amt').val();
-        var bphtb_discount              = $('#bphtb_discount').val();
-        var bphtb_amt_final             = $('#bphtb_amt_final').val();
-        var description                 = $('#description').val();
-        var jenis_harga_bphtb           = $('#jenis_harga_bphtb').val();
-        var bphtb_legal_doc_description = $('#bphtb_legal_doc_description').val();
-        var add_disc_percent            = $('#add_disc_percent').val();
-        var land_area_real              = $('#land_area_real').val();
-        var land_price_real             = $('#land_price_real').val();
-        var building_area_real          = $('#building_area_real').val();
-        var building_price_real         = $('#building_price_real').val();
+        } else {
+            swal({title: "Error!", text: "Pilih salah satu ORDER!!!", html: true, type: "error"});
+        }
+    });
 
-
-        var var_url = "<?php echo WS_JQGRID . "transaksi.t_bphtb_registration_list_controller/update/?"; ?>";
-        var_url += "<?php echo $this->security->get_csrf_token_name(); ?>=<?php echo $this->security->get_csrf_hash(); ?>";
-
-         var_url += "&wp_name=" + wp_name;
-         var_url += "&npwp=" + npwp;
-         var_url += "&wp_address_name=" + wp_address_name;
-         var_url += "&wp_rt=" + wp_rt;
-         var_url += "&wp_rw=" + wp_rw;
-         var_url += "&wp_p_region_id=" + wp_p_region_id;
-         var_url += "&wp_p_region_id_kec=" + wp_p_region_id_kec;
-         var_url += "&wp_p_region_id_kel=" + wp_p_region_id_kel;
-         var_url += "&mobile_phone_no=" + mobile_phone_no;
-         var_url += "&njop_pbb=" + njop_pbb;
-         var_url += "&object_address_name=" + object_address_name;
-         var_url += "&object_rt=" + object_rt;
-         var_url += "&object_rw=" + object_rw;
-         var_url += "&object_p_region_id=" + object_p_region_id;
-         var_url += "&object_p_region_id_kec=" + object_p_region_id_kec
-         var_url += "&object_p_region_id_kel=" + object_p_region_id_kel;
-         var_url += "&p_bphtb_legal_doc_type_id=" + p_bphtb_legal_doc_type_id;
-         var_url += "&land_area=" + land_area;
-         var_url += "&land_price_per_m=" + land_price_per_m;
-         var_url += "&land_total_price=" + land_total_price;
-         var_url += "&building_area=" + building_area;
-         var_url += "&building_price_per_m=" + building_price_per_m;
-         var_url += "&building_total_price=" + building_total_price;
-         var_url += "&market_price=" + market_price;
-         var_url += "&npop=" + npop;
-         var_url += "&npop_tkp=" + npop_tkp;
-         var_url += "&npop_kp=" + npop_kp;
-         var_url += "&bphtb_amt=" + bphtb_amt;
-         var_url += "&bphtb_discount=" + bphtb_discount;
-         var_url += "&bphtb_amt_final=" + bphtb_amt_final;
-         var_url += "&description=" + description;
-         var_url += "&jenis_harga_bphtb=" + jenis_harga_bphtb;
-         var_url += "&bphtb_legal_doc_description=" + bphtb_legal_doc_description;
-         var_url += "&add_disc_percent=" + add_disc_percent;
-         var_url += "&land_area_real=" + land_area_real;
-         var_url += "&land_price_real=" + land_price_real; 
-         var_url += "&building_area_real=" + building_area_real;
-         var_url += "&building_price_real=" + building_price_real;
-         var_url += "&t_bphtb_registration_id=" + t_bphtb_registration_id;
-            
-         
-        //alert(var_url);
-         
-            
-        $.getJSON(var_url, function( items ) {
-            swal('Informasi',items.rows,'info');
-            loadContentWithParams("transaksi.t_bphtb_registration_list", {});
-        })
-    }
     
-</script>
 
-<!-- Action -->
+
+</script>
+<!-- end action -->

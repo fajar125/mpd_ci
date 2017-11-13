@@ -32,8 +32,8 @@
                         </label>
                         <div class="col-md-3">
                             <div class="input-group">
-                                <input type="text" class="form-control required" required name="p_vat_type_id"  id="p_vat_type_id" readonly value="4">
-                                <input type="text" class="form-control required" required name="vat_code" id="vat_code" readonly value="Pajak Parkir">
+                                <input type="hidden" class="form-control required" required name="p_vat_type_id"  id="p_vat_type_id" readonly >
+                                <input type="text" class="form-control required" required name="vat_code" id="vat_code" readonly >
                                 <span class="input-group-btn">
                                     <button class="btn btn-success" type="button" id="btn-lov-vat">
                                     <i class="fa fa-search"></i>
@@ -50,8 +50,8 @@
                         </label>
                         <div class="col-md-3">
                             <div class="input-group">
-                                <input type="text" class="form-control required" required name="p_year_period_id" id="p_year_period_id"  readonly value="26">
-                                <input type="text" class="form-control required" name="year_code" required  id="year_code" readonly value="2015">
+                                <input type="hidden" class="form-control required" required name="p_year_period_id" id="p_year_period_id"  readonly >
+                                <input type="text" class="form-control required" name="year_code" required  id="year_code" readonly >
                                 <span class="input-group-btn">
                                     <button class="btn btn-success" type="button" id="btn-lov-period">
                                     <i class="fa fa-search"></i>
@@ -66,13 +66,13 @@
                     <label class="control-label col-md-2">Tanggal Penerimaan</label>
                     <div class="col-md-3">
                         <div class="input-group">
-                            <input type="text" class="form-control datepicker1 required" name="tgl_penerimaan" id="tgl_penerimaan" required value="01-10-2015">                 
+                            <input type="text" class="form-control datepicker1 required" name="tgl_penerimaan" id="tgl_penerimaan" required >                 
                         </div>
                     </div>
                     <label class="control-label col-md-1">s/d</label>
                     <div class="col-md-3">
                         <div class="input-group">
-                            <input type="text" class="form-control datepicker1 required" name="tgl_penerimaan_last" id="tgl_penerimaan_last" required value="30-10-2015">
+                            <input type="text" class="form-control datepicker1 required" name="tgl_penerimaan_last" id="tgl_penerimaan_last" required >
                         </div>
                     </div>
                 </div> 
@@ -85,7 +85,7 @@
                             <select id="jenis_setoran" class="form-control required" name="jenis_setoran" required>
                                 <option  value="">Pilih</option>
                                 <option  value="1">POKOK</option>
-                                <option  selected value="2">DENDA</option>
+                                <option  value="2">DENDA</option>
                             </select>
                         </div>
                     </div>
