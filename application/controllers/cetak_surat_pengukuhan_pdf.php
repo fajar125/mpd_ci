@@ -53,8 +53,7 @@ class cetak_surat_pengukuhan_pdf extends CI_Controller{
                 type.vat_code,
                 c.reg_letter_no,
                 decode(c.p_hotel_grade_id,null,null,1,1,2,1,3,1,4,1,5,1,0) as klasifikasi,
-                d.vat_code as detail_jenis_pajak,
-                a.jenis_usaha
+                d.vat_code as detail_jenis_pajak
         from t_customer_order a,
                 p_rqst_type b,
                 t_vat_registration c,
