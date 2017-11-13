@@ -608,7 +608,7 @@
             }
     });
 
-     t_customer_order_id= "<?php echo $_POST['CURR_DOC_ID']; ?>"
+     t_customer_order_id= "<?php echo $_POST['CURR_DOC_ID']; ?>";
      //t_customer_order_id = 420748;
 
     if (t_customer_order_id!=null || t_customer_order_id!=''){

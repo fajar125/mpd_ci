@@ -4,7 +4,7 @@
 * @class Groups_controller
 * @version 07/05/2015 12:18:00
 */
-class T_bphtb_registration_oc_ver_controller {
+class T_vat_registration_npwpd_jabatan_ro_controller {
 
     function read() {
 
@@ -19,8 +19,8 @@ class T_bphtb_registration_oc_ver_controller {
         try {
 
             $ci = & get_instance();
-            $ci->load->model('transaksi_wf/t_bphtb_registration_oc_ver');
-            $table = $ci->t_bphtb_registration_oc_ver;
+            $ci->load->model('transaksi_wf/t_vat_registration_npwpd_jabatan_ro');
+            $table = $ci->t_vat_registration_npwpd_jabatan_ro;
 
             $req_param = array(
                 "sort_by" => $sidx,

@@ -6,9 +6,9 @@
  */
 class T_bphtb_registration_oc_ver extends Abstract_model {
 
-    public $table           = "v_wf_workflow_list";
-    public $pkey            = "p_workflow_id";
-    public $alias           = "wf";
+    public $table           = "";
+    public $pkey            = "";
+    public $alias           = "";
 
     public $fields          = array();
 
