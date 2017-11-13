@@ -411,7 +411,7 @@ class cetak_surat_pengukuhan_pdf extends CI_Controller{
 
 		$pdf->Cell($lengthCell, $this->height, "1. Bapak Bupati ".getValByCode('ALAMAT_3')." (sebagai laporan);", 0, 0, 'L');
 		$pdf->Ln();
-		$pdf->Cell($lengthCell, $this->height, "2. Bapak Wakil Walikota ".getValByCode('ALAMAT_3')." (sebagai laporan);", 0, 0, 'L');
+		$pdf->Cell($lengthCell, $this->height, "2. Bapak Wakil Bupati ".getValByCode('ALAMAT_3')." (sebagai laporan);", 0, 0, 'L');
 		$pdf->Ln();
 		$pdf->Cell($lengthCell, $this->height, "3. Bapak Sekretaris Daerah Kabupaten ".getValByCode('ALAMAT_3')." (sebagai laporan);", 0, 0, 'L');
 		$pdf->Ln();
