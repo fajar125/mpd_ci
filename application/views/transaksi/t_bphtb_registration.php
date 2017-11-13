@@ -496,11 +496,8 @@
                                                     <i class="fa fa-angle-left"></i> Back </a>
                                                 <a href="javascript:;" style="display: none" class="btn btn-outline green button-next" id="printWisnu"> CETAK NOTA VERIFIKASI (INDRA WISNU)                                                    
                                                 </a>
-                                                <a href="javascript:;" class="btn btn-outline green button-next" id="print"  > CETAK NOTA VERIFIKASI                                                    
+                                                <a href="javascript:;" class="btn btn-outline green button-next" id="print" onclick="printLaporan(1)" > CETAK NOTA VERIFIKASI                                                    
                                                 </a>
-                                                <!-- <button type="submit" class="btn green button-submit"> Simpan
-                                                    <i class="fa fa-check"></i>
-                                                </button> -->
                                                 <a href="javascript:;" class="btn  green " id="update"> Simpan                                                   
                                                 </a>
                                                 <a href="javascript:;" class="btn  green " id="insert"> Simpan                                                   
@@ -604,6 +601,7 @@
                     $('#jenis_harga_bphtb').val(dt.jenis_harga_bphtb);
                     $('#bphtb_legal_doc_description').val(dt.bphtb_legal_doc_description);
                     $('#add_disc_percent').val(dt.add_disc_percent);
+                    $('#p_bphtb_type_id').val(dt.p_bphtb_type_id);
                     $('#add_discount').val(dt.add_discount);
                     $('#total_price').val(Number($('#land_total_price').val())+Number($('#building_total_price').val()));
                     if(dt.check_potongan == 'Y'){
@@ -634,6 +632,10 @@
         $('#update').css('display', '');
         $('#delete').css('display', 'none');
         $('#insert').css('display', 'none');
+
+        /*$('#print').on('click', function(event){
+            printLaporan(1);
+        });*/
     }else if(FLAG == 'Detail'){
         $('#print').css('display', 'none');
         $('#update').css('display', '');
@@ -981,12 +983,16 @@
             }
         });
     }
+    function openInNewTab(url) {
+        window.open(url, 'No Payment', 'left=0,top=0,width=500,height=500,toolbar=no,scrollbars=yes,resizable=yes');
+    }
 
     function printLaporan(pejabat){
         //alert(pejabat);
         var params          = $('#t_bphtb_registration_id').val();
         var p_bphtb_type_id = $('#p_bphtb_type_id').val();
         params              = params +"&pejabat="+pejabat;
+        //alert(params);
 
         if(p_bphtb_type_id == 3) {
             //window.open("../report/cetak_rep_bphtb_kb.php?t_bphtb_registration_id="+params, "_blank", "toolbar=0,location=0,menubar=0");
@@ -1046,10 +1052,6 @@
 
     $('#printWisnu').on('click', function(event){
         printLaporan(2);
-    });
-
-    $('#print').on('click', function(event){
-        printLaporan(1);
     });
 
     $('#insert').on('click', function(event){
