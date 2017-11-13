@@ -494,7 +494,7 @@ breadcrumb -->
                                             <div class="col-md-offset-3 col-md-9">
                                                 <a href="javascript:;" class="btn default button-previous back" id="back">
                                                     <i class="fa fa-angle-left"></i> Back </a>
-                                                <a href="javascript:;" class="btn btn-outline green button-next" id="printWisnu"> CETAK NOTA VERIFIKASI (INDRA WISNU)                                                    
+                                                <a href="javascript:;" style="display: none" class="btn btn-outline green button-next" id="printWisnu"> CETAK NOTA VERIFIKASI (INDRA WISNU)                                                    
                                                 </a>
                                                 <a href="javascript:;" class="btn btn-outline green button-next" id="print"  > CETAK NOTA VERIFIKASI                                                    
                                                 </a>
@@ -971,7 +971,7 @@ breadcrumb -->
                     }else{
                         $('#npop').val(ReplaceNumberWithCommas(market_price));
                     }
-                }
+                } 
                 
                 $('#npop_tkp').val(ReplaceNumberWithCommas(npoptkp));
             },
@@ -989,9 +989,13 @@ breadcrumb -->
         params              = params +"&pejabat="+pejabat;
 
         if(p_bphtb_type_id == 3) {
-            window.open("../report/cetak_rep_bphtb_kb.php?t_bphtb_registration_id="+params, "_blank", "toolbar=0,location=0,menubar=0");
+            //window.open("../report/cetak_rep_bphtb_kb.php?t_bphtb_registration_id="+params, "_blank", "toolbar=0,location=0,menubar=0");
+            url = "<?php echo base_url(); ?>"+"cetak_rep_bphtb_kb/pageCetak?t_bphtb_registration_id="+params;
+            openInNewTab(url);
         }else {
-            window.open("../report/cetak_rep_bphtb.php?t_bphtb_registration_id="+params, "_blank", "toolbar=0,location=0,menubar=0");
+            //window.open("../report/cetak_rep_bphtb.php?t_bphtb_registration_id="+params, "_blank", "toolbar=0,location=0,menubar=0");
+            url = "<?php echo base_url(); ?>"+"cetak_rep_bphtb/pageCetak?t_bphtb_registration_id="+params;
+            openInNewTab(url);
         }
     }
 

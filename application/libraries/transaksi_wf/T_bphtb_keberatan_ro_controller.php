@@ -10,18 +10,23 @@ class T_bphtb_keberatan_ro_controller {
 
         $page = getVarClean('page','int',1);
         $limit = getVarClean('rows','int',5);
-        $sidx = getVarClean('sidx','str','p_workflow_id');
+        $sidx = getVarClean('sidx','str','t_customer_order_id');
         $sord = getVarClean('sord','str','desc');
+        $t_customer_order_id = getVarClean('t_customer_order_id','int',0);
 
         $data = array('rows' => array(), 'page' => 1, 'records' => 0, 'total' => 1, 'success' => false, 'message' => '');
 
         try {
 
             $ci = & get_instance();
-            $ci->load->model('workflow/chart_proc');
-            $table = $ci->chart_proc;
+            $ci->load->model('transaksi_wf/t_bphtb_keberatan_ro');
+            $table = $ci->t_bphtb_keberatan_ro;
 
-            $req_param = array(
+            $result = $table->getData($t_customer_order_id);
+            /*print_r($result);
+            exit;*/
+
+            /*$req_param = array(
                 "sort_by" => $sidx,
                 "sord" => $sord,
                 "limit" => null,
@@ -33,13 +38,15 @@ class T_bphtb_keberatan_ro_controller {
                 "search_field" => isset($_REQUEST['searchField']) ? $_REQUEST['searchField'] : null,
                 "search_operator" => isset($_REQUEST['searchOper']) ? $_REQUEST['searchOper'] : null,
                 "search_str" => isset($_REQUEST['searchString']) ? $_REQUEST['searchString'] : null
-            );
+            );*/
+
+            $count = count($result);
 
             // Filter Table
-            $req_param['where'] = array();
+            //$req_param['where'] = array();
 
-            $table->setJQGridParam($req_param);
-            $count = $table->countAll();
+            //$table->setJQGridParam($req_param);
+            //$count = $table->countAll();
 
             if ($count > 0) $total_pages = ceil($count / $limit);
             else $total_pages = 1;
@@ -47,20 +54,20 @@ class T_bphtb_keberatan_ro_controller {
             if ($page > $total_pages) $page = $total_pages;
             $start = $limit * $page - ($limit); // do not put $limit*($page - 1)
 
-            $req_param['limit'] = array(
+            /*$req_param['limit'] = array(
                 'start' => $start,
                 'end' => $limit
             );
 
-            $table->setJQGridParam($req_param);
+            $table->setJQGridParam($req_param);*/
 
-            if ($page == 0) $data['page'] = 1;
+            /*if ($page == 0) $data['page'] = 1;
             else $data['page'] = $page;
 
             $data['total'] = $total_pages;
-            $data['records'] = $count;
+            $data['records'] = $count;*/
 
-            $data['rows'] = $table->getAll();
+            $data['items'] = $result;
             $data['success'] = true;
 
         }catch (Exception $e) {
