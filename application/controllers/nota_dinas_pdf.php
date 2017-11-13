@@ -186,7 +186,7 @@ class nota_dinas_pdf extends CI_Controller{
         $pdf->Cell($lengthJudul1, $this->height, "", "", 0, 'L');
         $pdf->Cell($lengWP1, $this->height, "", "", "", 'L');
         $pdf->Cell($lengWP2, $this->height, "Penata Tingkat I", "", "", 'C');
-        $pdf->Ln(6);
+        //$pdf->Ln(6);
         $pdf->Cell($lengthJudul1, $this->height, "", "", 0, 'L');
         $pdf->Cell($lengWP1, $this->height, "", "", "", 'L');
         $pdf->Cell($lengWP2, $this->height, "NIP. 19780927 199703 2 001", "", "", 'C');
