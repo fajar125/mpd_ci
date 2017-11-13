@@ -2,7 +2,7 @@
 require('fpdf/fpdf.php');
 require('fpdf/invClassExtend.php');
 
-class nota_dinas_pdf extends CI_Controller{
+class cetak_surat_pengukuhan_pdf extends CI_Controller{
 	var $fontSize = 10;
     var $fontFam = 'Arial';
     var $yearId = 0;
