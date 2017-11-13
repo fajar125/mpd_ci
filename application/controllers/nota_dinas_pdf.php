@@ -33,6 +33,10 @@ class nota_dinas_pdf extends CI_Controller{
 
 	function pageCetak() {
 
+        $pdf = new FPDF();
+        $this->startY = $pdf->GetY();
+        $this->startX = $this->paperWSize-50;
+        $this->lengthCell = $this->startX+20;
         $pdf->AliasNbPages();
         $pdf->AddPage("P");
 
