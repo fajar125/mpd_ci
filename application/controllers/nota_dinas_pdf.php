@@ -33,7 +33,20 @@ class nota_dinas_pdf extends CI_Controller{
 
 	function pageCetak() {
 
-        $pdf = new FPDF();
+        /**
+         * Get Data
+         */
+        $t_customer_order_id = getVarClean('CURR_DOC_ID','int',0);
+
+        $sql = "select *, b.vat_code from t_vat_registration a, p_vat_type_dtl b ".
+	            "where a.t_customer_order_id = ? ".
+	            "and a.p_vat_type_dtl_id = b.p_vat_type_dtl_id";
+
+        $output = $this->db->query($sql, array($t_customer_order_id));
+        $data = $output->row_array();
+
+
+        $pdf = new FPDF('P', 'mm', array(210,297));
         $startY = $pdf->GetY();
         $startX = $this->paperWSize-50;
         $lengthCell = $this->startX+20;
