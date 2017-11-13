@@ -70,7 +70,7 @@ class cetak_surat_pengukuhan_pdf extends CI_Controller{
 
 
         $pdf = new FPDF('P', 'mm', array(210,330));
-        $startY = $this->GetY();
+        $startY = $pdf->GetY();
 		$startX = $this->paperWSize-42;
 		$lengthCell = $startX + 20;
         $pdf->AliasNbPages();
