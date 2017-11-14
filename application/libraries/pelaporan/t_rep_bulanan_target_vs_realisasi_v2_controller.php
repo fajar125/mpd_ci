@@ -140,26 +140,9 @@ class t_rep_bulanan_target_vs_realisasi_v2_controller {
                     $data_arr[$j]['selisih'] = $total_selisih;
                     $data_arr[$j]['jenis_pajak'] = $isi_data['jenis_pajak'][$i];
                     $ayat_sebelum = $isi_data['p_vat_type_dtl_id'][$i];
-                    /*$data_arr[$j]['realisasiDanPiutang'] += $isi_data['realisasiDanPiutang'][$i];
-                    $data_arr[$j]['selisih'] += $isi_data['selisih'][$i];
-                    $data_arr[$j]['jenis_pajak'] += $isi_data['jenis_pajak'][$i];
-                    $ayat_sebelum = $isi_data['p_vat_type_dtl_id'][$i];*/
+                    
                 }else{
-                   /* $total_target += $isi_data['target'][$i];
-                    $total_realisasi_dan_piutang += $isi_data['realisasiDanPiutang'][$i];
-                    $total_selisih += $isi_data['selisih'][$i];*/
-
-                    //$data_arr[$i]['ayat'] = $isi_data['ayat'][$i];
-                    //$data_arr[$i]['jenis_pajak'] = $isi_data['jenis_pajak'][$i];
-                    /*$data_arr[$i]['target'] = $total_target;
-                    $data_arr[$i]['realisasiDanPiutang'] = $total_realisasi_dan_piutang;
-                    $data_arr[$i]['selisih'] = $total_selisih;
-                    $data_arr[$i]['p_vat_type_dtl_id'] = $isi_data['p_vat_type_dtl_id'][$i];*/
-                    /*$data_arr[$j]['target'] += $isi_data['target'][$i];
-                    $data_arr[$j]['realisasiDanPiutang'] += $isi_data['realisasiDanPiutang'][$i];
-                    $data_arr[$j]['selisih'] += $isi_data['selisih'][$i];*/
-                    //$data_arr[$j]['jenis_pajak'] += $isi_data['jenis_pajak'][$i];
-
+                   
                     $total_target += $isi_data['target'][$i];
                     $total_realisasi_dan_piutang += $isi_data['realisasiDanPiutang'][$i];
                     $total_selisih += $isi_data['selisih'][$i];
