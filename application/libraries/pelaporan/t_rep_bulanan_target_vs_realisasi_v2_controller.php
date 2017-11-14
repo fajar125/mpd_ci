@@ -89,6 +89,7 @@ class t_rep_bulanan_target_vs_realisasi_v2_controller {
                         $selisih = $items['realisasiDanPiutang'] + $items['denda'] - $items['target'];
                         $isi_data['selisih'][]= $selisih;
                         $isi_data['jenis_pajak'][]= $data_pajak['jenis_pajak'][$i];
+                        $isi_data['p_vat_type_dtl_id'][] = $results[$counter]['p_vat_type_dtl_id'];
 
                     }else{
                         $items['target'] = $results[$counter]['target_amount'];
@@ -104,24 +105,30 @@ class t_rep_bulanan_target_vs_realisasi_v2_controller {
                         $selisih = $items['realisasiDanPiutang'] + $items['denda'] - $items['target'];
                         $isi_data['selisih'][]= $selisih;
                         $isi_data['jenis_pajak'][]= $data_pajak['jenis_pajak'][$i];
+                        $isi_data['p_vat_type_dtl_id'][] = $results[$counter]['p_vat_type_dtl_id'];
                     }
                         
 
                 }
                 
             } 
-
+            print_r($isi_data);exit();
+            $ayat_sebelum = $isi_data['p_vat_type_dtl_id'][0];
+            //echo $ayat_sebelum;exit();
             $data_arr = array();
             for ($i=0;$i<count($isi_data['ayat']);$i++){
+
                 $data_arr[$i]['ayat'] = $isi_data['ayat'][$i];
                 $data_arr[$i]['target'] = $isi_data['target'][$i];
                 $data_arr[$i]['realisasiDanPiutang'] = $isi_data['realisasiDanPiutang'][$i];
                 $data_arr[$i]['selisih'] = $isi_data['selisih'][$i];
                 $data_arr[$i]['jenis_pajak'] = $isi_data['jenis_pajak'][$i];
+                $data_arr[$i]['p_vat_type_dtl_id'] = $isi_data['p_vat_type_dtl_id'][$i];
+
             }
 
             
-            //print_r($data_arr);exit;         
+            print_r($data_arr);exit;         
             $data['rows'] = $data_arr;
         }catch (Exception $e) {
             $data['message'] = $e->getMessage();
