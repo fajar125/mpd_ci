@@ -118,7 +118,7 @@ class t_rep_bulanan_target_vs_realisasi_v2_controller {
             $total_realisasi_dan_piutang = $isi_data['realisasiDanPiutang'][0];
             $total_selisih               = $isi_data['selisih'][0];*/
             //echo $ayat_sebelum;exit();
-            $total_realisasi_dan_piutang = 0;
+            $total_realisasi_dan_piutang = 0;  
 
             $data_arr = array();
             for ($i=0;$i<count($isi_data['ayat']);$i++){
