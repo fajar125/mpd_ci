@@ -49,8 +49,8 @@ class pdf_lap_rekap_bphtb_hasil_verifikasi extends CI_Controller{
 
     function kopSurat($pdf,$encImageData){
       $pdf->AddPage();
-      $pdf->Image('images/logo_lombok.png',37,13,25,25);
-      $pdf->Image('http://'.$_SERVER['HTTP_HOST'].'/mpd_ci/qrcode/generate-qr.php?param='.$encImageData,179,13,25,25,'PNG');
+      $pdf->Image(getValByCode('LOGO'),37,13,25,25);
+      $pdf->Image(base_url().'/qrcode/generate-qr.php?param='.$encImageData,179,13,25,25,'PNG');
       
       $pdf->SetFont('Arial', '', 11);
 

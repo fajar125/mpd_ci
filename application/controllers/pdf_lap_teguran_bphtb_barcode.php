@@ -389,7 +389,7 @@ class pdf_lap_teguran_bphtb_barcode extends CI_Controller{
 
       //$this->Image('../images/ttd_pa_soni.jpg',$lbody2+$lbody4+$lbody4-20,203,$lbody4+48,20);
       /*if ($FLAG==0){
-        $pdf->Image('http://'.$_SERVER['HTTP_HOST'].'/mpd_ci/qrcode/generate-qr.php?param='.
+        $pdf->Image(base_url().'/qrcode/generate-qr.php?param='.
         $data['njop_pbb']."_".
         $data['registration_no']."_".
         str_replace(" ","-",$this->dateToString($data['creation_date']))
@@ -398,7 +398,7 @@ class pdf_lap_teguran_bphtb_barcode extends CI_Controller{
 
       //Barcode
 
-      $pdf->Image('http://'.$_SERVER['HTTP_HOST'].'/mpd_ci/qrcode/generate-qr.php?param='.
+      $pdf->Image(base_url().'/qrcode/generate-qr.php?param='.
       $data['njop_pbb']."_".
       $data['registration_no']."_".
       str_replace(" ","-",$this->dateToString($data['creation_date']))
