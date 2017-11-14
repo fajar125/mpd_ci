@@ -30,7 +30,7 @@ class Auth extends CI_Controller
             redirect(base_url().'auth/index');
         }
 
-        $sql = "select * from p_app_user where app_user_name = ?";
+        $sql = "select * from p_app_user where app_user_name = ? and is_employee = 'Y'";
 
         $query = $this->db->query($sql, array($username));
         $row = $query->row_array();
