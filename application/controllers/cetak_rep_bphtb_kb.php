@@ -110,7 +110,7 @@ class cetak_rep_bphtb_kb extends CI_Controller{
 		
 		$pdf->Image('images/logo_lombok.png',20,10,25,25);
 		//$pdf->Image('images/logo_pemda.png',165,10,25,25);
-		$pdf->Image('http://localhost/mpd_ci/qrcode/generate-qr.php?param='.$encImageData,165,10,25,25,'PNG');
+		$pdf->Image(base_url().'/qrcode/generate-qr.php?param='.$encImageData,165,10,25,25,'PNG');
 
 		
 		$length1 = ($lengthCell * 2) / 9;
