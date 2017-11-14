@@ -90,11 +90,11 @@
             mtype: "POST",
             colModel: [
                 {label: 'ID Pajak', name: 'p_vat_type_dtl_id', key: true, width: 5, sorttype: 'number', editable: true, hidden: true},
-                {label: 'Ayat Pajak',name: 'ayat',width: 200, align: "left"},
-                {label: 'Jenis Pajak',name: 'jenis_pajak',width: 200, align: "left"},
-                {label: 'Target',name: 'target',width: 223, summaryTpl:"{0}",summaryType:"sum", formatter:'integer', formatoptions: {prefix:"", thousandsSeparator:',', defaultValue:'0'},align: "right"},
-                {label: 'Realisasi',name: 'realisasiDanPiutang',width: 223,summaryTpl:"{0}",summaryType:"sum", formatter:'integer', formatoptions: {prefix:"", thousandsSeparator:',', defaultValue:'0'},align: "right"},
-                {label: 'Keterangan Selisih',name: 'selisih',width: 223, summaryTpl:"{0}",summaryType:"sum", formatter:'integer', formatoptions: {prefix:"", thousandsSeparator:',', defaultValue:'0'},align: "right"}
+                {label: 'Ayat Pajak',name: 'ayat',width: 270, align: "left"},
+                {label: 'Jenis Pajak',name: 'jenis_pajak',width: 200, summaryTpl:"Total",summaryType:"sum",align: "left"},
+                {label: 'Target',name: 'target',width: 200, summaryTpl:"{0}",summaryType:"sum", formatter:'integer', formatoptions: {prefix:"", thousandsSeparator:',', defaultValue:'0'},align: "right"},
+                {label: 'Realisasi',name: 'realisasiDanPiutang',width: 200,summaryTpl:"{0}",summaryType:"sum", formatter:'integer', formatoptions: {prefix:"", thousandsSeparator:',', defaultValue:'0'},align: "right"},
+                {label: 'Keterangan Selisih',name: 'selisih',width: 200, summaryTpl:"{0}",summaryType:"sum", formatter:'integer', formatoptions: {prefix:"", thousandsSeparator:',', defaultValue:'0'},align: "right"}
             ],
             height: '100%',
             autowidth: false,
@@ -123,7 +123,8 @@
                 var col_target = $grid.jqGrid('getCol', 'target', false, 'sum');
                 var col_realisasiDanPiutang = $grid.jqGrid('getCol', 'realisasiDanPiutang', false, 'sum');
                 var col_selisih = $grid.jqGrid('getCol', 'selisih', false, 'sum');
-                $grid.jqGrid('footerData', 'set', { 'target': col_target,
+                $grid.jqGrid('footerData', 'set', { 'jenis_pajak': 'Grand Total',
+                                                    'target': col_target,
                                                     'realisasiDanPiutang':col_realisasiDanPiutang,
                                                     'selisih':col_selisih
 

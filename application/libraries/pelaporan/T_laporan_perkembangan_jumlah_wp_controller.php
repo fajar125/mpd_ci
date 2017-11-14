@@ -24,6 +24,13 @@ class T_laporan_perkembangan_jumlah_wp_controller {
                  
                 $result = $table->getDataWp($npwpd_jabatan, $p_finance_period_id);
 
+                for($i=0;$i<count($result);$i++){
+                    $result[$i]['jumlah_aktif_sd_bulan_ini'] = $result[$i]['jumlah_aktif_sd_bulan_ini'] - $result[$i]['jumlah_non_aktif_bulan_ini'];
+
+                }
+
+                //print_r($result);exit();
+
 
                 
                 //$table->setJQGridParam($req_param);
