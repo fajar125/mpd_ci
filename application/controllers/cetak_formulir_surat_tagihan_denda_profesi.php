@@ -30,28 +30,31 @@ class cetak_formulir_surat_tagihan_denda_profesi extends CI_Controller{
     }
 
     function save_pdf() {
-        $pdf = new FPDF('P','mm',array($this->paperWSize, $this->paperHSize));
+      $pdf = new FPDF('P','mm',array($this->paperWSize, $this->paperHSize));
 
-        $pdf->AliasNbPages();
-        $pdf->AddPage("P");
-        $this->showPdf($pdf);
-        $pdf->Output();
+      $pdf->AliasNbPages();
+      $pdf->AddPage("P");
+      $this->showPdf($pdf);
+      $pdf->Output();
+      
     } 
 
     function showPdf($pdf){
-      $t_customer_order_id = getVarClean('t_customer_order_id', 'str', '');
+      $t_customer_order_id = getVarClean('t_customer_order_id', 'int', 0);
       $data = $this->getData($t_customer_order_id);
 
       $this->kopSurat($pdf,$data);
       $this->tujuan($pdf,$data);
       $this->isiSurat($pdf,$data);
       $this->penutupSurat($pdf,$data);
+      
+      
     }
 
     function kopSurat($pdf,$data){
-      $pdf->SetFont('Arial', '', 10);
+      $pdf->SetFont('Arial', '', 8);
         
-      $pdf->Image('images/logo_lombok.png',15,12,25,25);
+      $pdf->Image(getValByCode('LOGO'),15,12,25,25);
       
       $lheader = $this->lengthCell / 8;
       $lheader1 = $lheader * 1;
@@ -66,30 +69,30 @@ class cetak_formulir_surat_tagihan_denda_profesi extends CI_Controller{
       $pdf->Ln();
       
       $pdf->Cell($lheader1, $this->height, "", "L", 0, 'L');
-      $pdf->Cell($lheader3, $this->height, "PEMERINTAH KAB LOMBOK", "R", 0, 'C');
+      $pdf->Cell($lheader3, $this->height, getValByCode('INSTANSI_1'), "R", 0, 'C');
       $pdf->SetFont('Arial', '', 12);
       $pdf->Cell($lheader2, $this->height, "Surat Tagihan", "R", 0, 'C');
-      $pdf->SetFont('Arial', '', 10);
+      $pdf->SetFont('Arial', '', 7);
       $pdf->Cell($lheader2, $this->height, "", "R", 0, 'C');
       $pdf->Ln();
       
       $pdf->Cell($lheader1, $this->height, "", "L", 0, 'L');
-      $pdf->Cell($lheader3, $this->height, "DINAS PELAYANAN PAJAK", "R", 0, 'C');
+      $pdf->Cell($lheader3, $this->height, getValByCode('INSTANSI_2'), "R", 0, 'C');
       $pdf->SetFont('Arial', '', 12);
       $pdf->Cell($lheader2, $this->height, "Denda Profesi", "R", 0, 'C');
-      $pdf->SetFont('Arial', '', 10);
+      $pdf->SetFont('Arial', '', 7);
       $pdf->Cell($lheader2, $this->height, "No. Urut", "R", 0, 'C');
       $pdf->Ln();
       
       $periode=explode(" ", preg_replace('/\s+/', ' ',$data["finance_period_code"]));
       
       $pdf->Cell($lheader1, $this->height + 2, "", "L", 0, 'L');
-      $pdf->Cell($lheader3, $this->height + 2, "Jalan Wastukancana no. 2", "R", 0, 'C');
+      $pdf->Cell($lheader3, $this->height + 2, getValByCode('ALAMAT_6'), "R", 0, 'C');
       $pdf->Cell(12, $this->height + 2,"Bulan" , "", 0, 'L');
       //$pdf->SetFont('Arial', '', 8);
       $pdf->Cell($lheader2-12, $this->height + 2, ": ".$periode[0], "R", 0, 'L');
       //$pdf->Cell($lheader1 + 3, $this->height + 2, ": " . $periode[0], "R", 0, 'L');
-      $pdf->SetFont('Arial', '', 10);
+      $pdf->SetFont('Arial', '', 7);
       $pdf->Cell($lheader2, $this->height + 2, "", "R", 0, 'C');
       $pdf->Ln($this->height-4);
       // No Urut
@@ -107,7 +110,7 @@ class cetak_formulir_surat_tagihan_denda_profesi extends CI_Controller{
       $pdf->Ln();
 
       $pdf->Cell($lheader1, $this->height, "", "L", 0, 'L');
-      $pdf->Cell($lheader3, $this->height, "Telp. 022. 4235052 - Bandung", "R", 0, 'C');
+      $pdf->Cell($lheader3, $this->height, "Telp. ".getValByCode('ALAMAT_2')." - ".getValByCode('ALAMAT_3'), "R", 0, 'C');
       $pdf->Cell(12, $this->height + 2,"Tahun" , "", 0, 'L');
       //$pdf->SetFont('Arial', '', 8);
       $pdf->Cell($lheader2-12, $this->height + 2, ": ".$periode[1], "R", 0, 'L');
@@ -400,7 +403,7 @@ class cetak_formulir_surat_tagihan_denda_profesi extends CI_Controller{
       $pdf->RowMultiBorderWithHeight(
         array("",
           "Bandung, ".date("d-m-Y")."\n".
-          "a.n. KEPALA DINAS PELAYANAN PAJAK\n".
+          "a.n. KEPALA ".getValByCode('INSTANSI_2')."\n".
           "Kepala Bidang Pajak Pendaftaran\n\n\n\n".
           "Drs. H. GUN GUN SUMARYANA\n".
           "Pembina\n".

@@ -345,9 +345,13 @@
 
     function showDenda(id){
 
-        var url = "<?php echo base_url(); ?>"+"cetak_formulir_surat_tagihan_denda_profesi/save_pdf?";
-        url += "t_customer_order_id=" + id;
-        openInNewTab(url);
+        if (id!=null){
+            var url = "<?php echo base_url(); ?>"+"cetak_formulir_surat_tagihan_denda_profesi/save_pdf?";
+            url += "t_customer_order_id=" + id;
+            openInNewTab(url);
+        }
+
+        
     }
 
 

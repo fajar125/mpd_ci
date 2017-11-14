@@ -116,7 +116,7 @@
             gridComplete: function() {
                 var $grid = $('#grid-table');
                 var bphtb_amt_final = $grid.jqGrid('getCol', 'bphtb_amt_final', false, 'sum');
-                $grid.jqGrid('footerData', 'set', { 'bphtb_amt_final': bphtb_amt_final
+                $grid.jqGrid('footerData', 'set', { description: 'TOTAL',bphtb_amt_final: bphtb_amt_final
 
                  });
             },

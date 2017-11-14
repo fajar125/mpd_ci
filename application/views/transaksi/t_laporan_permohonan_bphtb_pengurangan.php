@@ -269,7 +269,7 @@
                 var njop = $grid.jqGrid('getCol', 'njop', false, 'sum');
                 var bphtb_amt = $grid.jqGrid('getCol', 'bphtb_amt', false, 'sum');
                 var bphtb_discount = $grid.jqGrid('getCol', 'bphtb_discount', false, 'sum');
-                $grid.jqGrid('footerData', 'set', { 'njop': njop,
+                $grid.jqGrid('footerData', 'set', { 'keterangan_opsi_c':'TOTAL','njop': njop,
                                                     'bphtb_amt':bphtb_amt,
                                                     'bphtb_discount':bphtb_discount
 

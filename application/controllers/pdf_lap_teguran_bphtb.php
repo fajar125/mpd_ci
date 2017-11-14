@@ -70,21 +70,21 @@ class pdf_lap_teguran_bphtb extends CI_Controller{
         
         $pdf->SetFont('BKANT', '', 12);
 
-        $pdf->Image('images/logo_lombok.png',17,13,25,25);
+        $pdf->Image(getValByCode('LOGO'),17,13,25,25);
 
         $pdf->SetFont('TIMES', 'B', 14);
         $pdf->Cell(40, $this->height, "", "", 0, 'L');
-        $pdf->Cell(181, $this->height, "PEMERINTAH KABUPATEN LOMBOK UTARA", "", 0, 'C');
+        $pdf->Cell(181, $this->height, getValByCode('INSTANSI_1'), "", 0, 'C');
         
         $pdf->Ln();
         $pdf->SetFont('TIMES', 'B', 20);
         $pdf->Cell(40, $this->height+10, "", "", 0, 'L');
-        $pdf->Cell(181, $this->height+10, "D I N A S  P E L A Y A N A N  P A J A K", "", 0, 'C');
+        $pdf->Cell(181, $this->height+10, getValByCode('INSTANSI_2'), "", 0, 'C');
         
         $pdf->Ln();
         $pdf->SetFont('BKANT', '', 12);
         $pdf->Cell(40, $this->height, "", "", 0, 'L');
-        $pdf->Cell(181, $this->height, "Jalan Wastukancana No 2 Telp. 022 4235052 - Bandung", "", 0, 'C');
+        $pdf->Cell(181, $this->height, getValByCode('ALAMAT_5'), "", 0, 'C');
 
         $pdf->Ln(5);
         $pdf->Ln();
@@ -187,7 +187,7 @@ class pdf_lap_teguran_bphtb extends CI_Controller{
       $lkepada3 = $lkepada * 3+20;
       
       $pdf->Cell($lkepada3-20, $this->height, "", "", 0, 'L');
-      $pdf->Cell($lkepada2-60, $this->height, "Bandung,", "", 0, 'L');
+      $pdf->Cell($lkepada2-40, $this->height, getValByCode('ALAMAT_3').',', "", 0, 'L');
       $pdf->Cell(30, $this->height, $this->dateToday(), "", 0, 'R');
       $pdf->Ln();
 
@@ -253,7 +253,7 @@ class pdf_lap_teguran_bphtb extends CI_Controller{
       $pdf->SetAligns(array("L","L","L","L"));
       $pdf->SetWidths(array("25",200));
       $pdf->RowMultiBorderWithHeight(
-        array("","Disampaikan dengan hormat, berdasarkan data pembukuan Dinas Pelayanan Pajak Kabupaten Lombok Utara hingga saat ini tercatat, bahwa objek pajak :"
+        array("","Disampaikan dengan hormat, berdasarkan data pembukuan ".ucwords(strtolower(getValByCode('INSTANSI_2')))." ". getValByCode('ALAMAT_3') ." hingga saat ini tercatat, bahwa objek pajak :"
         ),
         array("",""
         ),
@@ -326,8 +326,8 @@ class pdf_lap_teguran_bphtb extends CI_Controller{
           "Tempat",
           ":",
           "Seksi Penyelesaian Piutang Pajak Bidang Pajak Pendaftaran\n".
-          "DINAS PELAYANAN PAJAK Kabupaten Lombok Utara\n".
-          "Jl. Wastukencana No. 2 Bandung."
+          getValByCode('INSTANSI_2')." \nKabupaten ".getValByCode('ALAMAT_3') ." ".
+          getValByCode('ALAMAT_6')." ".getValByCode('ALAMAT_3')
         ),
         array("",
           "",
@@ -395,13 +395,15 @@ class pdf_lap_teguran_bphtb extends CI_Controller{
         str_replace(" ","-",$this->dateToString($data['creation_date']))
         ,160,200,25,25,'PNG');
       }*/
+
+      //Barcode
       
 
       $pdf->SetFont('Times', 'B', 12);
       $pdf->Cell($lbody2, $this->height, "", "", 0, 'C');
       $pdf->Cell($lbody4, $this->height, "", "", 0, 'C');
       $pdf->Cell($lbody4, $this->height, "", "", 0, 'C');
-      $pdf->Cell($lbody4, $this->height, "an. KEPALA DINAS PELAYANAN PAJAK", "", 0, 'C');
+      $pdf->Cell($lbody4, $this->height, "an. KEPALA ".getValByCode('INSTANSI_2'), "", 0, 'C');
       $pdf->Cell($lbody2, $this->height, "", "", 0, 'C');
       $pdf->Ln();
       
@@ -453,10 +455,10 @@ class pdf_lap_teguran_bphtb extends CI_Controller{
       $pdf->Ln();
       $pdf->SetFont('BKANT', '', 12);
       $pdf->Cell(3, $this->height, "", "", 0, 'L');
-      $pdf->Cell("", $this->height, "1. Bapak Kepala Dinas Pelayanan Pajak (sebagai laporan);", "", 0, 'L');
+      $pdf->Cell("", $this->height, "1. Bapak Kepala ".ucwords(strtolower(getValByCode('INSTANSI_2')))." (sebagai laporan)", "", 0, 'L');
       $pdf->Ln();
       $pdf->Cell(3, $this->height, "", "", 0, 'L');
-      $pdf->Cell("", $this->height, "2. Bapak Kepala Badan Pertanahan Kabupaten Lombok Utara.", "", 0, 'L');
+      $pdf->Cell("", $this->height, "2. Bapak Kepala Badan Pertanahan Kabupaten ".getValByCode('ALAMAT_3'), "", 0, 'L');
     }
 
     //function showSurat($pdf,$data,$FLAG){
@@ -618,4 +620,5 @@ class pdf_lap_teguran_bphtb extends CI_Controller{
     }
 
 }
+
 

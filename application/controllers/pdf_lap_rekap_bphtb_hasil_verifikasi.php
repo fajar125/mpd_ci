@@ -55,19 +55,19 @@ class pdf_lap_rekap_bphtb_hasil_verifikasi extends CI_Controller{
       $pdf->SetFont('Arial', '', 11);
 
       $pdf->Cell(60, $this->height, "", "", 0, 'L');
-      $pdf->Cell(101, $this->height, "PEMERINTAH KOTA BANDUNG", "", 0, 'C');
+      $pdf->Cell(101, $this->height, getValByCode('INSTANSI_1'), "", 0, 'C');
       $pdf->Cell(60, $this->height, "", "", 0, 'L');
       $pdf->Ln();
       $pdf->Cell(60, $this->height, "", "", 0, 'L');
-      $pdf->Cell(101, $this->height, "BADAN PENGELOLAAN PENDAPATAN DAERAH", "", 0, 'C');
+      $pdf->Cell(101, $this->height, getValByCode('INSTANSI_2'), "", 0, 'C');
       $pdf->Cell(60, $this->height, "", "", 0, 'L');
       $pdf->Ln();
       $pdf->Cell(60, $this->height, "", "", 0, 'L');
-      $pdf->Cell(101, $this->height, "Jalan Wastukancana No 2", "", 0, 'C');
+      $pdf->Cell(101, $this->height, getValByCode('ALAMAT_6'), "", 0, 'C');
       $pdf->Cell(60, $this->height, "", "", 0, 'L');
       $pdf->Ln();
       $pdf->Cell(60, $this->height, "", "", 0, 'L');
-      $pdf->Cell(101, $this->height, "Telp. 022 4235052 - Bandung", "", 0, 'C');
+      $pdf->Cell(101, $this->height, "Telp.".getValByCode('ALAMAT_2')." ".getValByCode('ALAMAT_3'), "", 0, 'C');
       $pdf->Cell(60, $this->height, "", "", 0, 'L');
       $pdf->Ln();
       $pdf->SetFont('Arial', 'B', 14);

@@ -80,7 +80,7 @@ class pdf_rep_realisasi_harian_per_jenis_pajak2 extends CI_Controller{
     function kopSurat($pdf,$tgl_penerimaan,$tgl_penerimaan_last){
       $tahun  = date("Y", strtotime($tgl_penerimaan));
 
-      $pdf->Image('images/logo_lombok.png',15,13,25,25);
+      $pdf->Image(getValByCode('LOGO'),15,13,25,25);
         
       $lheader = $this->lengthCell / 8;
       $lheader1 = $lheader * 1+8;
@@ -93,19 +93,19 @@ class pdf_rep_realisasi_harian_per_jenis_pajak2 extends CI_Controller{
       $pdf->Cell($lheader1, $this->height, "", "TR", 0, 'L');
       $pdf->Ln();
       $pdf->Cell($lheader1, $this->height, "", "L", 0, 'L');
-      $pdf->Cell($lheader3, $this->height, "PEMERINTAH KABUPATEN LOMBOK UTARA", "R", 0, 'C');
+      $pdf->Cell($lheader3, $this->height, getValByCode('INSTANSI_1'), "R", 0, 'C');
       $pdf->Cell($lheader4, $this->height, "LAPORAN REALISASI HARIAN", "R", 0, 'C');
       $pdf->Ln();
       $pdf->Cell($lheader1, $this->height, "", "L", 0, 'L');
-      $pdf->Cell($lheader3, $this->height, "DINAS PELAYANAN PAJAK", "R", 0, 'C');
+      $pdf->Cell($lheader3, $this->height, getValByCode('INSTANSI_2'), "R", 0, 'C');
       $pdf->Cell($lheader4, $this->height, "PER JENIS PAJAK", "R", 0, 'C');
       $pdf->Ln();
       $pdf->Cell($lheader1, $this->height, "", "L", 0, 'L');
-      $pdf->Cell($lheader3, $this->height, "Jalan Wastukancana no. 2", "R", 0, 'C');
+      $pdf->Cell($lheader3, $this->height, getValByCode('ALAMAT_6'), "R", 0, 'C');
       $pdf->Cell($lheader4, $this->height, "Tahun " . $tahun, "R", 0, 'C');    
       $pdf->Ln();
       $pdf->Cell($lheader1, $this->height, "", "L", 0, 'L');
-      $pdf->Cell($lheader3, $this->height, "Telp. 022. 4235052 - Bandung", "R", 0, 'C');
+      $pdf->Cell($lheader3, $this->height, "Telp. ".getValByCode('ALAMAT_2')." - ".getValByCode('ALAMAT_3'), "R", 0, 'C');
       if($tgl_penerimaan == $tgl_penerimaan_last)
         $pdf->Cell($lheader4, $this->height, "Tanggal Penerimaan " . $tgl_penerimaan, "R", 0, 'C');
       else 
@@ -206,7 +206,7 @@ class pdf_rep_realisasi_harian_per_jenis_pajak2 extends CI_Controller{
       
       $pdf->SetAligns(array("C", "C"));
       $pdf->SetWidths(array(210, 120));
-      $pdf->RowMultiBorderWithHeight( array("","Lombok, " . date("d F Y")."\n\n\n\n\n\n\n\n(....................................)"), array("",""), 5 );
+      $pdf->RowMultiBorderWithHeight( array("",getValByCode('ALAMAT_3').",". date("d F Y")."\n\n\n\n\n\n\n\n(....................................)"), array("",""), 5 );
     }
 
     function getData($param=array()){
