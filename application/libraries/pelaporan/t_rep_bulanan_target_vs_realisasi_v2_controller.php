@@ -154,7 +154,7 @@ class t_rep_bulanan_target_vs_realisasi_v2_controller {
             }
 
             
-            print_r($data_arr);exit;         
+            //print_r($data_arr);         
             $data['rows'] = $data_arr;
         }catch (Exception $e) {
             $data['message'] = $e->getMessage();
