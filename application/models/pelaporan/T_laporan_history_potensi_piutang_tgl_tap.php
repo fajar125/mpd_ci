@@ -125,6 +125,8 @@ class T_laporan_history_potensi_piutang_tgl_tap extends Abstract_model {
             $query = $this->db->query($sql);
 
 
+
+
             $items_date = $query->result_array();
 
 
@@ -169,7 +171,8 @@ class T_laporan_history_potensi_piutang_tgl_tap extends Abstract_model {
             }
             
 
-               
+            // print_r($sql);
+            // exit();
             return $items;
             
             

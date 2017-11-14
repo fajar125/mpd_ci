@@ -143,17 +143,17 @@ class T_laporan_history_potensi_piutang_tgl_tap_controller {
             $jumlah_sisa =0;
             $count = count($date);
             
-            // print_r($result);
-            // exit();
+            
             
 
             for ($i = 0; $i < $count; $i++) {
-                $jumlah +=$result[$i]['denda'];
+                $jumlah +=$result[$i]['ketetapan'];
 
             }
 
             
-
+            //  print_r($result);
+            // exit();
             if ($count > 0) $total_pages = ceil($count / $limit);
             else $total_pages = 1;
 

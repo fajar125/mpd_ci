@@ -196,9 +196,9 @@ jQuery(function ($) {
         colModel: [
             {label: 'No. ',name: 'nomor',width: 75, align: "left"},
             {label: 'Bulan Penerbitan',name: 'code',width: 200, align: "left"},
-            {label: 'Ketetapan',name: 'ketetapan',width: 300, summaryTpl:"Jumlah: {0}",summaryType:"sum",formatter:'currency', formatoptions: {prefix:"", thousandsSeparator:'.'}, align: "right"},
-            {label: 'Realisasi',name: 'realisasi',width: 300, summaryTpl:"Jumlah: {0}",summaryType:"sum",formatter:'currency', formatoptions: {prefix:"", thousandsSeparator:'.'}, align: "right"},
-            {label: 'Sisa',name: 'sisa',width: 300, summaryTpl:"Jumlah: {0}",summaryType:"sum",formatter:'currency', formatoptions: {prefix:"", thousandsSeparator:'.'}, align: "right"},
+            {label: 'Ketetapan',name: 'ketetapan',width: 300, summaryTpl:"Jumlah: {0}",summaryType:"sum",formatter:'currency', formatoptions: {prefix:"", thousandsSeparator:','}, align: "right"},
+            {label: 'Realisasi',name: 'realisasi',width: 300, summaryTpl:"Jumlah: {0}",summaryType:"sum",formatter:'currency', formatoptions: {prefix:"", thousandsSeparator:','}, align: "right"},
+            {label: 'Sisa',name: 'sisa',width: 300, summaryTpl:"Jumlah: {0}",summaryType:"sum",formatter:'currency', formatoptions: {prefix:"", thousandsSeparator:','}, align: "right"},
             {label: 'Keterangan',name: '',width: 200, align: "left"}
         ],
         height: '100%',
