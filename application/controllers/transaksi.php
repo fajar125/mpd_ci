@@ -259,6 +259,44 @@ class Transaksi extends CI_Controller
         
     }
 
+    function parking_grade_combo(){
+        try {
+            $sql = "select * from p_parking_classification";
+            $query = $this->db->query($sql);
+
+            $items = $query->result_array();
+            echo '<select id="p_parking_classification_id" name="p_parking_classification_id" class="FormElement form-control" disabled>';
+            foreach($items  as $item ){
+                echo '<option value="'.$item['p_parking_classification_id'].'">'.$item['code'].'</option>';
+            }
+            echo '</select>';
+            exit;
+        } catch (Exception $e) {
+            echo $e->getMessage();
+            exit;
+        }
+        
+    }
+
+    function rest_grade_combo(){
+        try {
+            $sql = "select * from p_rest_service_type";
+            $query = $this->db->query($sql);
+
+            $items = $query->result_array();
+            echo '<select id="p_rest_service_type_id" name="p_rest_service_type_id" class="FormElement form-control" disabled>';
+            foreach($items  as $item ){
+                echo '<option value="'.$item['p_rest_service_type_id'].'">'.$item['code'].'</option>';
+            }
+            echo '</select>';
+            exit;
+        } catch (Exception $e) {
+            echo $e->getMessage();
+            exit;
+        }
+        
+    }
+
     function enter_type_combo(){
         try {
             $sql = "SELECT * 

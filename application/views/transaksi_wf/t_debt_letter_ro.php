@@ -71,7 +71,7 @@
                 <li class="">
                     <a href="javascript:;" data-toggle="tab" aria-expanded="true" id="tab-3">
                         <i class="blue"></i>
-                        <strong>DATA LOG AKTIFITAS </strong>
+                        <strong> LOG AKTIFITAS </strong>
                     </a>
                 </li>
             </ul>
@@ -311,42 +311,48 @@
     });
 
     $("#tab-3").on("click", function(event) {
+
+        //if($( "#CURR_DOC_ID" ).val() != null || $( "#CURR_DOC_ID" ).val()!= 0 || $( "#CURR_DOC_ID" ).val() != '' || empty($( "#CURR_DOC_ID" ).val())){
+            loadContentWithParams("transaksi_wf.t_debt_letter_ro_log_kronologis", { //model yang ketiga
+                t_customer_order_id: $( "#CURR_DOC_ID" ).val(),
+                t_debt_letter_id: $('#t_debt_letter_id').val(),
+                ELEMENT_ID : $('#TEMP_ELEMENT_ID').val(),
+                PROFILE_TYPE : $('#TEMP_PROFILE_TYPE').val(),
+                P_W_DOC_TYPE_ID : $('#TEMP_P_W_DOC_TYPE_ID').val(),
+                P_W_PROC_ID : $('#TEMP_P_W_PROC_ID').val(),
+                USER_ID : $('#TEMP_USER_ID').val(),
+                FSUMMARY : $('#TEMP_FSUMMARY').val(),
+                CURR_DOC_ID : $('#CURR_DOC_ID').val(),
+                CURR_DOC_TYPE_ID : $('#CURR_DOC_TYPE_ID').val(),
+                CURR_PROC_ID : $('#CURR_PROC_ID').val(),
+                CURR_CTL_ID : $('#CURR_CTL_ID').val(),
+                USER_ID_DOC : $('#USER_ID_DOC').val(),
+                USER_ID_DONOR : $('#USER_ID_DONOR').val(),
+                USER_ID_LOGIN : $('#USER_ID_LOGIN').val(),
+                USER_ID_TAKEN : $('#USER_ID_TAKEN').val(),
+                IS_CREATE_DOC : $('#IS_CREATE_DOC').val(),
+                IS_MANUAL : $('#IS_MANUAL').val(),
+                CURR_PROC_STATUS : $('#CURR_PROC_STATUS').val(),
+                CURR_DOC_STATUS : $('#CURR_DOC_STATUS').val(),
+                PREV_DOC_ID : $('#PREV_DOC_ID').val(),
+                PREV_DOC_TYPE_ID : $('#PREV_DOC_TYPE_ID').val(),
+                PREV_PROC_ID : $('#PREV_PROC_ID').val(),
+                PREV_CTL_ID : $('#PREV_CTL_ID').val(),
+                SLOT_1 : $('#SLOT_1').val(),
+                SLOT_2 : $('#SLOT_2').val(),
+                SLOT_3 : $('#SLOT_3').val(),
+                SLOT_4 : $('#SLOT_4').val(),
+                SLOT_5 : $('#SLOT_5').val(),
+                MESSAGE : $('#MESSAGE').val(),
+                PROFILE_TYPE : $('#PROFILE_TYPE').val(),
+                ACTION_STATUS : $('#ACTION_STATUS').val()
+                
+            });
+        /*}else{
+            swal('Informasi','Pilih Salah Satu Order','info');
+        }*/
         
-        loadContentWithParams("transaksi_wf.t_debt_letter_ro_log_kronologis", { //model yang ketiga
-            t_customer_order_id: $( "#CURR_DOC_ID" ).val(),
-            t_debt_letter_id: $('#t_debt_letter_id').val(),
-            ELEMENT_ID : $('#TEMP_ELEMENT_ID').val(),
-            PROFILE_TYPE : $('#TEMP_PROFILE_TYPE').val(),
-            P_W_DOC_TYPE_ID : $('#TEMP_P_W_DOC_TYPE_ID').val(),
-            P_W_PROC_ID : $('#TEMP_P_W_PROC_ID').val(),
-            USER_ID : $('#TEMP_USER_ID').val(),
-            FSUMMARY : $('#TEMP_FSUMMARY').val(),
-            CURR_DOC_ID : $('#CURR_DOC_ID').val(),
-            CURR_DOC_TYPE_ID : $('#CURR_DOC_TYPE_ID').val(),
-            CURR_PROC_ID : $('#CURR_PROC_ID').val(),
-            CURR_CTL_ID : $('#CURR_CTL_ID').val(),
-            USER_ID_DOC : $('#USER_ID_DOC').val(),
-            USER_ID_DONOR : $('#USER_ID_DONOR').val(),
-            USER_ID_LOGIN : $('#USER_ID_LOGIN').val(),
-            USER_ID_TAKEN : $('#USER_ID_TAKEN').val(),
-            IS_CREATE_DOC : $('#IS_CREATE_DOC').val(),
-            IS_MANUAL : $('#IS_MANUAL').val(),
-            CURR_PROC_STATUS : $('#CURR_PROC_STATUS').val(),
-            CURR_DOC_STATUS : $('#CURR_DOC_STATUS').val(),
-            PREV_DOC_ID : $('#PREV_DOC_ID').val(),
-            PREV_DOC_TYPE_ID : $('#PREV_DOC_TYPE_ID').val(),
-            PREV_PROC_ID : $('#PREV_PROC_ID').val(),
-            PREV_CTL_ID : $('#PREV_CTL_ID').val(),
-            SLOT_1 : $('#SLOT_1').val(),
-            SLOT_2 : $('#SLOT_2').val(),
-            SLOT_3 : $('#SLOT_3').val(),
-            SLOT_4 : $('#SLOT_4').val(),
-            SLOT_5 : $('#SLOT_5').val(),
-            MESSAGE : $('#MESSAGE').val(),
-            PROFILE_TYPE : $('#PROFILE_TYPE').val(),
-            ACTION_STATUS : $('#ACTION_STATUS').val()
-            
-        });
+        
     });
 
 
