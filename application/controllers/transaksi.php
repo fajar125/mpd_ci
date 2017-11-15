@@ -179,6 +179,46 @@ class Transaksi extends CI_Controller
         
     }
 
+    function petugas_administrator_combo(){
+        try {
+            $sql = "SELECT * FROM t_bphtb_exemption_pemeriksa
+                    WHERE pemeriksa_status = 'administrator'";
+            $query = $this->db->query($sql);
+
+            $items = $query->result_array();
+            echo '<select id="administrator_id" name="administrator_id" class="FormElement form-control"> <option value="0">--Pilih Petugas Administrator--</option>';
+            foreach($items  as $item ){
+                echo '<option value="'.$item['t_bphtb_exemption_pemeriksa_id'].'">'.$item['pemeriksa_nama'].'</option>';
+            }
+            echo '</select>';
+            exit;
+        } catch (Exception $e) {
+            echo $e->getMessage();
+            exit;
+        }
+        
+    }
+
+    function petugas_pemeriksa_combo(){
+        try {
+            $sql = "SELECT * FROM t_bphtb_exemption_pemeriksa
+                    WHERE pemeriksa_status = 'pemeriksa'";
+            $query = $this->db->query($sql);
+
+            $items = $query->result_array();
+            echo '<select id="administrator_id" name="administrator_id" class="FormElement form-control"> <option value="0">--Pilih Petugas Penerima--</option>';
+            foreach($items  as $item ){
+                echo '<option value="'.$item['t_bphtb_exemption_pemeriksa_id'].'">'.$item['pemeriksa_nama'].'</option>';
+            }
+            echo '</select>';
+            exit;
+        } catch (Exception $e) {
+            echo $e->getMessage();
+            exit;
+        }
+        
+    }
+
     function jenis_ketetapan_combo(){
         try {
             $sql = "select * from p_settlement_type";
