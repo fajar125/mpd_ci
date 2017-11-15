@@ -197,6 +197,48 @@ class Transaksi extends CI_Controller
         }
         
     }
+
+    function hotel_grade_combo(){
+        try {
+            $sql = "SELECT * 
+                        FROM p_hotel_grade
+                        ORDER BY p_hotel_grade_id ASC";
+            $query = $this->db->query($sql);
+
+            $items = $query->result_array();
+            echo '<select id="p_hotel_grade_id" name="p_hotel_grade_id" class="FormElement form-control" disabled>';
+            foreach($items  as $item ){
+                echo '<option value="'.$item['p_hotel_grade_id'].'">'.$item['grade_name'].'</option>';
+            }
+            echo '</select>';
+            exit;
+        } catch (Exception $e) {
+            echo $e->getMessage();
+            exit;
+        }
+        
+    }
+
+    function enter_type_combo(){
+        try {
+            $sql = "SELECT * 
+                        FROM p_entertaintment_type
+                        ORDER BY p_entertaintment_type_id ASC";
+            $query = $this->db->query($sql);
+
+            $items = $query->result_array();
+            echo '<select id="p_entertaintment_type_id" name="p_entertaintment_type_id" class="FormElement form-control" disabled>';
+            foreach($items  as $item ){
+                echo '<option value="'.$item['p_entertaintment_type_id'].'">'.$item['entertaintment_name'].'</option>';
+            }
+            echo '</select>';
+            exit;
+        } catch (Exception $e) {
+            echo $e->getMessage();
+            exit;
+        }
+        
+    }
     
 
     public function getMonitoring($id, $search, $tmp){
