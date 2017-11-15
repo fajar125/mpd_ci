@@ -40,7 +40,7 @@ class Bphtb_registration extends CI_Controller
         $query = $this->db->query($sql);
         $items = $query->result_array();
         $html = "";
-        $html.="<select name='p_bphtb_legal_doc_type_id' id='p_bphtb_legal_doc_type_id' readonly onchange='getdok(this);' class='form-control '>";
+        $html.="<select name='p_bphtb_legal_doc_type_id' id='p_bphtb_legal_doc_type_id' disabled='disabled' readonly onchange='getdok(this);' class='form-control '>";
         $html.="<option value='' >Select Value</option>";
         foreach ($items as $data) {
           $html .=" <option value='" . $data['p_bphtb_legal_doc_type_id'] . "'>" . $data['code'] . "</option>";

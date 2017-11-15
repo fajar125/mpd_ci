@@ -387,7 +387,7 @@
 
                                     <div class="form-group">
                                         <div class="col-md-3 col-md-offset-2">
-                                            <select  name="jenis_harga_bphtb" readonly id="jenis_harga_bphtb" class="form-control">
+                                            <select  name="jenis_harga_bphtb" disabled="disabled" readonly id="jenis_harga_bphtb" class="form-control">
                                                 <option value='1' >Harga transaksi</option>
                                                 <option value='2' >Harga Pasar</option>
                                                 <option value='3' >Harga Lelang</option>
