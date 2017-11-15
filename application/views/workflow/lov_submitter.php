@@ -13,6 +13,9 @@
                 <form class="form-horizontal" application="form" id="form_submitter">
                     <input type="hidden" id="form_submitter_params">
                     <input type="hidden" id="form_submitter_back_summary">
+                    <input type="hidden" id="form_wp_email">
+                    <input type="hidden" id="form_wp_username">
+                    <input type="hidden" id="form_wp_userpwd">
                     <div class="form-group">
                         <label class="col-sm-3 control-label no-padding-right"> Tanggal :</label>
                         <div class="col-sm-3">
@@ -129,6 +132,10 @@
                             $('#form_submitter_warning_message').val( response.warning );
 
                             if( response.return_message.trim() == 'BERHASIL') {
+
+                                if($('#form_wp_email').val() != ''){
+                                    sendMail();
+                                }
                                 modal_lov_submitter_back_summary();
                             }
 
@@ -235,7 +242,15 @@
         $('#form_submitter_back_summary').val( JSON.stringify(params_back_summary) );
         $('#form_submitter_interactive_message').val("");
 
-
+        if(params_back_summary.WP_EMAIL){
+            $('#form_wp_email').val(params_back_summary.WP_EMAIL);
+            $('#form_wp_username').val(params_back_summary.WP_NAME);
+            $('#form_wp_userpwd').val(params_back_summary.WP_PWD);
+        }else{
+            $('#form_wp_email').val('');
+            $('#form_wp_username').val('');
+            $('#form_wp_userpwd').val('');
+        }
         /*init pekerjaan tersedia*/
         $.ajax({
             type: 'POST',
@@ -282,5 +297,20 @@
         },3000);
     }
 
+    function sendMail(){
+         $.ajax({
+            url: "<?php echo site_url('sendmail');?>",
+            type: "POST",
+            dataType: "json",
+            data: {
+              email : $('#form_wp_email').val(),
+              uname : $('#form_wp_username').val(),
+              upwd : $('#form_wp_userpwd').val()
+            },
+            success: function (data) {
+
+            }
+        });
+    }
 
 </script>

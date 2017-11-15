@@ -898,6 +898,13 @@
     params_back_summary.P_W_PROC_ID = $('#TEMP_P_W_PROC_ID').val();
     params_back_summary.USER_ID = $('#TEMP_USER_ID').val();
     params_back_summary.FSUMMARY = $('#TEMP_FSUMMARY').val();
+
+    setTimeout(function(){
+        params_back_summary.WP_NAME = $('#wp_user_name').val();
+        params_back_summary.WP_PWD = $('#wp_user_pwd').val();
+        params_back_summary.WP_EMAIL = $('#wp_email').val(); 
+    },3000);
+       
     /* end parameter */ 
 
     /*ketika tombol cancel diklik, maka kembali ke summary*/
