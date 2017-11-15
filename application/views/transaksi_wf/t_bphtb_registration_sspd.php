@@ -600,7 +600,7 @@
     var p_bphtb_type_id = $('#p_bphtb_type_id').val();
 
     $.ajax({
-            url: "<?php echo base_url().'bphtb_registration/load_combo_dok_pendukung/'; ?>" ,
+            url: "<?php echo base_url().'bphtb_registration/load_combo_dok_pendukung_readonly/'; ?>" ,
             type: "POST",            
             data: {},
             success: function (data) {
@@ -616,7 +616,7 @@
 
     if (t_customer_order_id!=null || t_customer_order_id!=''){
         $.ajax({
-            url: '<?php echo WS_JQGRID."transaksi_wf.t_bphtb_registration_oc_ver_controller/read"; ?>',
+            url: '<?php echo WS_JQGRID."transaksi_wf.t_bphtb_registration_sspd_controller/read"; ?>',
             type: "POST",
             dataType: "json",
             data: {

@@ -29,6 +29,28 @@ class Bphtb_registration extends CI_Controller
         exit;
     }
 
+    function load_combo_dok_pendukung_readonly (){
+        check_login();
+        $sql = "select p_bphtb_legal_doc_type_id,code
+                    from p_bphtb_legal_doc_type bphtb_legal
+                 left join p_legal_doc_type legal 
+                  on legal.p_legal_doc_type_id = bphtb_legal.p_legal_doc_type_id
+                  order by p_bphtb_legal_doc_type_id
+                ";
+        $query = $this->db->query($sql);
+        $items = $query->result_array();
+        $html = "";
+        $html.="<select name='p_bphtb_legal_doc_type_id' id='p_bphtb_legal_doc_type_id' readonly onchange='getdok(this);' class='form-control '>";
+        $html.="<option value='' >Select Value</option>";
+        foreach ($items as $data) {
+          $html .=" <option value='" . $data['p_bphtb_legal_doc_type_id'] . "'>" . $data['code'] . "</option>";
+        }
+        $html .= "</select>";
+
+        echo $html;
+        exit;
+    }
+
     function call_service_doc (){
         check_login();
         $id = $this->input->post('id');
