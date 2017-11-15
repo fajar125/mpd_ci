@@ -542,7 +542,7 @@
                                         <label class="control-label col-md-2">Pemeriksa
                                         </label>
                                         <div class="col-md-3">
-                                            <input type="text" class="form-control" name="vericated_by" id="vericated_by">
+                                            <input type="text" class="form-control" name="vericated_by" id="vericated_by" value="<?php echo $this->session->userdata('full_name');?>">
                                         </div>
                                     </div>
 
@@ -711,9 +711,6 @@
                         $('#land_price_real').val(dt.land_price_real);
                         $('#building_area_real').val(dt.building_area_real);
                         $('#building_price_real').val(dt.building_price_real);
-                        
-                        //var vericated_by = <?php //echo $this->session->userdata('full_name'); ?>;
-                        //alert(vericated_by);
                         
 
                        
