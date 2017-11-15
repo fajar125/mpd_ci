@@ -40,25 +40,29 @@ class view_daftar_surat_teguran_pdf extends CI_Controller{
 
 
 	function pageCetak() {
-        
-        $ci =& get_instance();
-        $userdata = $ci->session->userdata;
-
         /**
          * Get Data
          */
-        $t_customer_order_id = getVarClean('t_customer_order_id ','int',0);
         $p_vat_type_id = getVarClean('p_vat_type_id','int',0);
+        $cusId = getVarClean('t_customer_order_id','int',0);
+
+        $ci =& get_instance();
+        $userdata = $ci->session->userdata;
         $user_login = $userdata['app_user_name'];
 
-        $sql = "";
-        if ($t_customer_order_id != 0 && $p_vat_type_id != 0){
-            $sql .= "select * from f_debt_letter_list($t_customer_order_id) as a 
-                  LEFT JOIN t_cust_account as b ON a.t_cust_account_id = b.t_cust_account_id
-                  WHERE a.p_vat_type_id = $p_vat_type_id AND b.p_vat_type_dtl_id NOT IN (11, 15, 17, 21, 27, 30, 41, 42, 43)
-                  order by b.wp_name";
+       // echo($cusId); exit();
+
+        //$sql = "";
+        if ($cusId == 0 || $p_vat_type_id == 0){
+            echo "TIDAK DAPAT MENAMPILKAN DATA";
+            exit();
         }
-        //echo $sql ; exit();
+
+        $sql = "select * from f_debt_letter_list($cusId) as a 
+              LEFT JOIN t_cust_account as b ON a.t_cust_account_id = b.t_cust_account_id
+              WHERE a.p_vat_type_id = $p_vat_type_id AND b.p_vat_type_dtl_id NOT IN (11, 15, 17, 21, 27, 30, 41, 42, 43)
+              order by b.wp_name";
+
         $output = $this->db->query($sql);
         
         $data = $output->result_array();

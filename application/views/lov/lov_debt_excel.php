@@ -99,8 +99,10 @@
         }
         
         var url = "<?php echo base_url(); ?>"+"view_daftar_surat_teguran_pdf/pageCetak?";
-            url += "t_customer_order_id="+t_customer_order_id;
+            url += "<?php echo $this->security->get_csrf_token_name(); ?>=<?php echo $this->security->get_csrf_hash(); ?>";
             url += "&p_vat_type_id="+p_vat_type_id;
+            url += "&t_customer_order_id="+t_customer_order_id;
+            //alert(url);
         PopupCenter(url,"Cetak Surat Teguran",500,500);
 
 

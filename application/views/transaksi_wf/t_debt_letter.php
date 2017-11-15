@@ -270,6 +270,7 @@ $("#tab-3").on("click", function(event) {
                     <button class="btn btn-danger" type="button" id="btn-sub" onclick="toPDF();">CETAK PDF</button>
                     <button class="btn btn-danger" type="button" id="btn-sub" onclick="submitform();">SUBMIT</button>
                     <button class="btn btn-danger" type="button" id="btn-kel" onclick="backform();">SIMPAN</button>
+                    <button class="btn btn-danger" type="button" id="btn-kel" onclick="backform();">BACK</button>
                     </div>
                 </div>
                 
