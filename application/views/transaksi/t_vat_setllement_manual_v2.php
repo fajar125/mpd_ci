@@ -143,7 +143,7 @@
                 </div>
                 <div class="space-2"></div>
                 <div class="row col-md-offset-3">
-                    <button class="btn btn-success" type="submit" id="btn-submit" onclick="save()">Simpan</button>
+                    <button class="btn btn-success" type="submit" id="btn-submit" onclick="save()">Submit</button>
                 </div>
             </div>
         </div>
