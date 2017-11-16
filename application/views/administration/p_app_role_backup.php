@@ -49,6 +49,13 @@
             <div class="space-4"></div>
             <hr>
             <div class="row" id="detail_placeholder" style="display:none;">
+                <div class="col-xs-12 col-md-3">
+                    <div class="form-group">
+                        <button class="btn btn-danger btn-block" id="btn-save">
+                            Save Changes
+                        </button>
+                    </div>
+                </div>
                 <div class="col-xs-12">
                     <table id="grid-table-detail"></table>
                     <div id="grid-pager-detail"></div>
@@ -77,7 +84,74 @@ $("#tab-2").on("click", function(event) {
     });
 });
 </script>
+<script>
+    function savePermission() {
+        var grid = $("#grid-table-detail");
+        var dataGrid = grid.jqGrid('getRowData');
 
+        var selRowId =  $("#grid-table").jqGrid ('getGridParam', 'selrow');
+        var p_app_role_id = $("#grid-table").jqGrid('getCell', selRowId, 'p_app_role_id');
+        var code = $("#grid-table").jqGrid('getCell', selRowId, 'code');
+
+        var items = new Array();
+        if( dataGrid.length > 0) {
+            for(var row = 0; row < dataGrid.length; row++) {
+                items[row] = {};
+                items[row].id = dataGrid[row].role_permissions_id;
+                items[row].val = $('input[name="permission'+dataGrid[row].role_permissions_id+'"]:checked').val();
+            }
+
+            var ajaxOptions = {
+                url: '<?php echo WS_JQGRID."administration.permission_role_controller/crud"; ?>',
+                type: "POST",
+                dataType: "json",
+                data: { oper:'add', 'p_app_role_id':p_app_role_id, items: JSON.stringify(items) },
+                success: function (data) {
+                    if(data.success == true) {
+                        swal('Success',data.message,'success');
+                        grid.trigger("reloadGrid");
+                    }else {
+                        swal('Attention',data.message,'warning');
+                    }
+                },
+                error: function (xhr, status, error) {
+                    swal({title: "Error!", text: xhr.responseText, html: true, type: "error"});
+                }
+            };
+
+            $.ajax({
+                beforeSend: function( xhr ) {
+                    swal({
+                        title: "Confirmation",
+                        text: 'Are You sure to update data permission for <strong class="text-blue">'+ code +'</strong> role ?',
+                        type: "info",
+                        showCancelButton: true,
+                        showLoaderOnConfirm: true,
+                        confirmButtonText: "Yes, Do It",
+                        confirmButtonColor: "#00a65a",
+                        cancelButtonText: "Cancel",
+                        closeOnConfirm: false,
+                        closeOnCancel: true,
+                        html: true
+                    },
+                    function(isConfirm){
+                        if(isConfirm) {
+                            $.ajax(ajaxOptions);
+                            return true;
+                        }else {
+                            return false;
+                        }
+                    });
+                }
+            });
+        }
+    }
+
+    $('#btn-save').on('click', function() {
+        savePermission();
+    });
+
+</script>
 <script>
     jQuery(function($) {
         var grid_selector = "#grid-table";
@@ -116,8 +190,8 @@ $("#tab-2").on("click", function(event) {
             height: '100%',
             autowidth: true,
             viewrecords: true,
-            rowNum: 10,
-            rowList: [10, 20],
+            rowNum: 5,
+            rowList: [5, 10, 20],
             rownumbers: true, // show row numbers
             rownumWidth: 35, // the width of the row numbers columns
             altRows: true,
@@ -131,7 +205,7 @@ $("#tab-2").on("click", function(event) {
                 var grid_detail = $("#grid-table-detail");
                 if (rowid != null) {
                     grid_detail.jqGrid('setGridParam', {
-                        url: '<?php echo WS_JQGRID."administration.p_app_user_role_controller/showUserList"; ?>',
+                        url: '<?php echo WS_JQGRID."administration.permission_role_controller/crud"; ?>',
                         postData: {p_app_role_id: rowid}
                     });
                     var strCaption = 'Permission Role :: ' + celCode;
@@ -158,7 +232,7 @@ $("#tab-2").on("click", function(event) {
             },
             //memanggil controller jqgrid yang ada di controller crud
             editurl: '<?php echo WS_JQGRID."administration.p_app_role_controller/crud"; ?>',
-            caption: "Role"
+            caption: "p_app_role"
 
         });
 
@@ -294,15 +368,35 @@ $("#tab-2").on("click", function(event) {
      * ---------------------------------------------------------------------
      */
     $("#grid-table-detail").jqGrid({
-        url: '<?php echo WS_JQGRID."administration.p_app_user_role_controller/showUserList"; ?>',
+        url: '<?php echo WS_JQGRID."administration.permission_role_controller/crud"; ?>',
         datatype: "json",
         mtype: "POST",
         colModel: [
-            {label: 'ID', key:true, name: 'p_app_user_role_id', width: 5, sorttype: 'number', editable: true, hidden: true},
-            {label: 'User ID',  name: 'p_app_user_id', width: 5, sorttype: 'number',editable: false, hidden: true},
-            {label: 'Username', name: 'app_user_name', width: 200, align: "left", editable: false},
-            {label: 'Full Name', name: 'full_name', width: 200, align: "left", editable: false},
-            {label: 'User Status', name: 'user_status', width: 200, align: "left", editable: false},
+            {label: 'ID', key:true, name: 'role_permissions_id', width: 5, sorttype: 'number', editable: true, hidden: true},
+            {label: 'Permission ID',  name: 'permission_id', width: 5, sorttype: 'number',editable: true, hidden: true},
+            {label: 'Role ID', name: 'p_app_role_id', width: 5, sorttype: 'number', editable: true, hidden: true},
+            {label: 'Yes', name: 'status_permission', width: 40,  sortable:false, search:false, align: "left", align:"center", editable: false,
+                formatter: function(cellvalue, options, rowObject) {
+                    var  theID = rowObject['role_permissions_id'];
+                    var checked = '';
+                    if (cellvalue == 'Yes')
+                        checked = ' checked="checked"';
+
+                    return '<input type="radio" class="jqgrid-radio" name="permission'+theID+'" value="Yes"'+checked+'> <span class="green">Yes</span>';
+                }
+            },
+            {label: 'No', name: 'status_permission', width: 40,  sortable:false, search:false, align: "left", align:"center", editable: false,
+                formatter: function(cellvalue, options, rowObject) {
+                    var  theID = rowObject['role_permissions_id'];
+                    var checked = '';
+                    if (cellvalue == 'No')
+                        checked = ' checked="checked"';
+
+                    return '<input type="radio" class="jqgrid-radio" name="permission'+theID+'" value="No"'+checked+'> <span class="red">No</span>';
+                }
+            },
+            {label: 'Action', name: 'permission_name', width: 200, align: "left", editable: false},
+            {label: 'Display Name', name: 'permission_display_name', width: 200, align: "left", editable: false},
 
         ],
         height: '100%',
@@ -331,7 +425,8 @@ $("#tab-2").on("click", function(event) {
             }
 
         },
-        caption: "User"
+        editurl: '<?php echo WS_JQGRID."administration.permission_role_controller/crud"; ?>',
+        caption: "Role Permissions"
 
     });
 
