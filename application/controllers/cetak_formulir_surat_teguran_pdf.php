@@ -36,6 +36,11 @@ class cetak_formulir_surat_teguran_pdf extends CI_Controller{
 		
 		$t_customer_order_id = getVarClean('t_customer_order_id','int',0);
 
+		if($t_customer_order_id == 0){
+			echo "DATA TIDAK ADA";
+            exit();
+		}
+
 		$ttd = "SELECT value as nama_kadin, value_2 as nip_kadin FROM p_global_param WHERE code = 'TTD KADIN'";
 			
 		$query = $this->db->query($ttd);
@@ -51,112 +56,110 @@ class cetak_formulir_surat_teguran_pdf extends CI_Controller{
 		//print_r($company_brand); exit();
 		// echo $sql ;
 		// exit();
-		
 		$pdf = new FPDF('P','mm',array($this->paperWSize, $this->paperHSize));
-
-		$pdf->AliasNbPages();
-		$pdf->SetLeftMargin(10);
-		$pdf->SetTopMargin(2);
-		$pdf->AddPage("P");
-		$pdf->AddFont('BKANT');
-		
-		$pdf->SetFont('BKANT', '', 12);
-		
-		$lheader = $this->lengthCell / 8;
-		$lheader1 = $lheader * 1;
-		$lheader2 = $lheader * 2;
-		$lheader3 = $lheader * 3;
-		$lheader4 = $lheader * 4;
-		$lheader7 = $lheader * 7;
-		
-		$pdf->SetFont('Arial', 'B', 8);
-
-		$pdf->Cell(8, 3, "", "", 0, 'L');
-		$pdf->Cell(70, 3, "", "", 0, 'C');
-		$pdf->Ln();
-		
-		//$pdf->SetFont('BKANT', '', 16);
-		$pdf->Cell(8, 3, "", "", 0, 'L');
-		$pdf->Cell(70, 3, "", "", 0, 'C');
-		$pdf->Ln();
-		
-		$pdf->SetFont('Arial', '', 6);
-		$pdf->Cell(8, 3, "", "", 0, 'L');
-		$pdf->Cell(70, 3, "", "", 0, 'C');
-		$pdf->Ln();
-		$pdf->SetFont('Arial', 'B', 6);
-		$pdf->Cell(8, 3, "", "", 0, 'L');
-		$pdf->Cell(70, 3, "", "", 0, 'C');
-		$pdf->Ln();
-		$pdf->Ln();
-		
-		$pdf->Cell($lheader1, $this->height, "", "", 0, 'L');
-		$pdf->Cell($lheader7, $this->height, "", "", 0, 'C');
-		$pdf->Ln();
-		$pdf->Cell($lheader1, $this->height, "", "", 0, 'L');
-		$pdf->Cell($lheader7, $this->height, "", "", 0, 'C');
-		$pdf->Ln();
-		
-		$pdf->Cell($this->lengthCell, $this->height, "", "TLR", 0, 'L');
-		$pdf->Ln();
-		
-		$pdf->SetFont('BKANT', '', 12);
-		$lbody = $this->lengthCell / 4;
-		$lbody1 = $lbody * 1;
-		$lbody2 = $lbody * 2;
-		$lbody3 = $lbody * 3;
-
-		$pdf->SetWidths(array(20,2,$this->lengthCell-22));
-		$pdf->SetAligns(array("L","L","L"));
-		$posy = $pdf->getY();
-		
-		if(!empty($letter_no)){
-			$pdf->RowMultiBorderWithHeight(
-				array("Nomor",
-					":",
-					/*$data["letter_no"]."-".$no_urut*/""
-				),
-				array("",
-					"",
-					""
-				),
-				3
-			);
-		}else{
-			$pdf->RowMultiBorderWithHeight(
-				array("Nomor",
-					":",
-					/*" - "*/""
-				),
-				array("",
-					"",
-					""
-				),
-				3
-			);
-		}
-		$pdf->RowMultiBorderWithHeight(
-			array("Perihal",
-				":",
-				"SURAT TEGURAN"
-			),
-			array("L",
-				"",
-				"R"
-			),
-			3
-		);
-
-		$pdf->setY($posy-3);
-		$today = getdate();
-		$lkepada = $this->lengthCell / 5;
-		$lkepada2 = $lkepada * 2;
-		$lkepada3 = $lkepada * 3;
-
 		//print_r(count($data)); exit();
 		for ($i=0; $i <count($data) ; $i++) { 
 			# code...
+
+			$pdf->AliasNbPages();
+			$pdf->SetLeftMargin(10);
+			$pdf->SetTopMargin(2);
+			$pdf->AddPage("P");
+			$pdf->AddFont('BKANT');
 			
+			$pdf->SetFont('BKANT', '', 12);
+			
+			$lheader = $this->lengthCell / 8;
+			$lheader1 = $lheader * 1;
+			$lheader2 = $lheader * 2;
+			$lheader3 = $lheader * 3;
+			$lheader4 = $lheader * 4;
+			$lheader7 = $lheader * 7;
+			
+			$pdf->SetFont('Arial', 'B', 8);
+
+			$pdf->Cell(8, 3, "", "", 0, 'L');
+			$pdf->Cell(70, 3, "", "", 0, 'C');
+			$pdf->Ln();
+			
+			//$pdf->SetFont('BKANT', '', 16);
+			$pdf->Cell(8, 3, "", "", 0, 'L');
+			$pdf->Cell(70, 3, "", "", 0, 'C');
+			$pdf->Ln();
+			
+			$pdf->SetFont('Arial', '', 6);
+			$pdf->Cell(8, 3, "", "", 0, 'L');
+			$pdf->Cell(70, 3, "", "", 0, 'C');
+			$pdf->Ln();
+			$pdf->SetFont('Arial', 'B', 6);
+			$pdf->Cell(8, 3, "", "", 0, 'L');
+			$pdf->Cell(70, 3, "", "", 0, 'C');
+			$pdf->Ln();
+			$pdf->Ln();
+			
+			$pdf->Cell($lheader1, $this->height, "", "", 0, 'L');
+			$pdf->Cell($lheader7, $this->height, "", "", 0, 'C');
+			$pdf->Ln();
+			$pdf->Cell($lheader1, $this->height, "", "", 0, 'L');
+			$pdf->Cell($lheader7, $this->height, "", "", 0, 'C');
+			$pdf->Ln();
+			
+			$pdf->Cell($this->lengthCell, $this->height, "", "TLR", 0, 'L');
+			$pdf->Ln();
+			
+			$pdf->SetFont('BKANT', '', 12);
+			$lbody = $this->lengthCell / 4;
+			$lbody1 = $lbody * 1;
+			$lbody2 = $lbody * 2;
+			$lbody3 = $lbody * 3;
+
+			$pdf->SetWidths(array(20,2,$this->lengthCell-22));
+			$pdf->SetAligns(array("L","L","L"));
+			$posy = $pdf->getY();
+			
+			if(!empty($letter_no)){
+				$pdf->RowMultiBorderWithHeight(
+					array("Nomor",
+						":",
+						/*$data["letter_no"]."-".$no_urut*/""
+					),
+					array("",
+						"",
+						""
+					),
+					3
+				);
+			}else{
+				$pdf->RowMultiBorderWithHeight(
+					array("Nomor",
+						":",
+						/*" - "*/""
+					),
+					array("",
+						"",
+						""
+					),
+					3
+				);
+			}
+			$pdf->RowMultiBorderWithHeight(
+				array("Perihal",
+					":",
+					"SURAT TEGURAN"
+				),
+				array("L",
+					"",
+					"R"
+				),
+				3
+			);
+
+			$pdf->setY($posy-3);
+			$today = getdate();
+			$lkepada = $this->lengthCell / 5;
+			$lkepada2 = $lkepada * 2;
+			$lkepada3 = $lkepada * 3;
+
 		
 			$pdf->Cell($lkepada3, $this->height, "", "L", 0, 'L');
 			$pdf->Cell($lkepada2, $this->height, getValByCode('ALAMAT_3').", ".$data[$i]['letter_date_txt'], "R", 0, 'L');
@@ -387,14 +390,14 @@ class cetak_formulir_surat_teguran_pdf extends CI_Controller{
 			$pdf->Cell($lbody2, $this->height, "", "L", 0, 'C');
 			$pdf->Cell($lbody4, $this->height, "", "", 0, 'C');
 			$pdf->Cell($lbody4, $this->height, "", "", 0, 'C');
-			$pdf->Cell($lbody4, $this->height, "Bandung, " .$data[$i]['letter_date_txt'] /*. $data["tanggal"]*/, "", 0, 'C');
+			$pdf->Cell($lbody4, $this->height, "Lombok Utara, " .$data[$i]['letter_date_txt'] /*. $data["tanggal"]*/, "", 0, 'C');
 			$pdf->Cell($lbody2, $this->height, "", "R", 0, 'C');
 			$pdf->Ln();
 			
 			$pdf->Cell($lbody2, $this->height, "", "L", 0, 'C');
 			$pdf->Cell($lbody4, $this->height, "", "", 0, 'C');
 			$pdf->Cell($lbody4, $this->height, "", "", 0, 'C');
-			$pdf->Cell($lbody4, $this->height, "an. KEPALA BADAN PENGELOLAAN PENDAPATAN DAERAH", "", 0, 'C');
+			$pdf->Cell($lbody4, $this->height, "an. KEPALA ".getValByCode('INSTANSI_2'), "", 0, 'C');
 			$pdf->Cell($lbody2, $this->height, "", "R", 0, 'C');
 			$pdf->Ln();
 			
@@ -438,7 +441,7 @@ class cetak_formulir_surat_teguran_pdf extends CI_Controller{
 				,15,170,25,25,'PNG');
 			}*/
 
-			$pdf->Image('http://'.$_SERVER['HTTP_HOST'].'/mpd/include/qrcode/generate-qr.php?param='.
+			$pdf->Image(base_url().'/qrcode/generate-qr.php?param='.
 			str_replace(" ","-",$data[$i]['letter_date_txt'])."_".
 			$data[$i]['npwd']."_".
 			str_replace(" ","-",$data[$i]['periode'])

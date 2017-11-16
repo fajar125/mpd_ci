@@ -54,7 +54,7 @@ class view_daftar_surat_teguran_pdf extends CI_Controller{
 
         //$sql = "";
         if ($cusId == 0 || $p_vat_type_id == 0){
-            echo "TIDAK DAPAT MENAMPILKAN DATA";
+            echo "DATA TIDAK ADA";
             exit();
         }
 
