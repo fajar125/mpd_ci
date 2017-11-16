@@ -26,11 +26,11 @@
             </div>
             <!-- CONTENT  value="2015-09-01" -->
             <div class="form-body">
-                <div class="row">                    
+                <div class="row">
                     <label class="control-label col-md-2">Tanggal</label>
                     <div class="col-md-3">
                         <div class="input-group">
-                            <input type="text" class="form-control datepicker1 " name="date_start_laporan" id="date_start_laporan"  >                 
+                            <input type="text" class="form-control datepicker1 " name="date_start_laporan" id="date_start_laporan"  >
                         </div>
                     </div>
                     <label class="control-label col-md-1">s/d</label>
@@ -39,12 +39,12 @@
                             <input type="text" class="form-control datepicker1 " name="date_end_laporan" id="date_end_laporan"  >
                         </div>
                     </div>
-                </div>  
+                </div>
 
                 <div class="space-2"></div>
-                <div class="row">                    
+                <div class="row">
                     <div class="form-group">
-                        <label class="control-label col-md-2">No Transaksi 
+                        <label class="control-label col-md-2">No Transaksi
                         </label>
                         <div class="col-md-3">
                             <div class="input-group">
@@ -55,9 +55,9 @@
                 </div>
 
                 <div class="space-2"></div>
-                <div class="row">                    
+                <div class="row">
                     <div class="form-group">
-                        <label class="control-label col-md-2">NOP  
+                        <label class="control-label col-md-2">NOP
                         </label>
                         <div class="col-md-3">
                             <div class="input-group">
@@ -68,9 +68,9 @@
                 </div>
 
                 <div class="space-2"></div>
-                <div class="row">                    
+                <div class="row">
                     <div class="form-group">
-                        <label class="control-label col-md-2">Nama  
+                        <label class="control-label col-md-2">Nama
                         </label>
                         <div class="col-md-3">
                             <div class="input-group">
@@ -81,7 +81,7 @@
                 </div>
 
                 <div class="space-2"></div>
-                <div class="row">                    
+                <div class="row">
                     <div class="form-group">
                         <label class="control-label col-md-2">kecamatan
                         </label>
@@ -97,9 +97,9 @@
                         </div>
                     </div>
                 </div>
-                
+
                 <div class="space-2"></div>
-                <div class="row">                    
+                <div class="row">
                     <div class="form-group">
                         <label class="control-label col-md-2">Kelurahan
                         </label>
@@ -117,9 +117,9 @@
                 </div>
 
                 <div class="space-2"></div>
-                <div class="row">                    
+                <div class="row">
                     <div class="form-group">
-                        <label class="control-label col-md-2">Jenis Transaksi  
+                        <label class="control-label col-md-2">Jenis Transaksi
                         </label>
                         <div class="col-md-3">
                            <div id="comboJenisTransaksi"></div>
@@ -143,20 +143,20 @@
 <?php $this->load->view('lov/lov_kel'); ?>
 
 <script >
-    //tanggal 
+    //tanggal
     $('.datepicker1').datetimepicker({
         format: 'YYYY-MM-DD',
         // defaultDate: new Date()
     });
 
-    $("#btn-lov-kecamatan").on('click', function() { 
-        var kota = 749;  // id kota sama dengan cocas yaitu id dari kota bandung
+    $("#btn-lov-kecamatan").on('click', function() {
+        var kota = 659;  // id kota sama dengan cocas yaitu id dari kota bandung
 
         if( kota == null || kota == ''){
             swal({title: "Error!", text: "Isi Kota/Kabupaten Terlebih Dahulu", html: true, type: "error"});
             return;
         }
-        modal_lov_kecamatan_show('p_region_id_kecamatan','nama_kecamatan',kota);        
+        modal_lov_kecamatan_show('p_region_id_kecamatan','nama_kecamatan',kota);
     });
 
     $('#p_region_id_kecamatan').on('change', function() {
@@ -164,7 +164,7 @@
         $('#nama_kelurahan').val('');
     });
 
-    $("#btn-lov-kelurahan").on('click', function() { 
+    $("#btn-lov-kelurahan").on('click', function() {
         var kec = $('#p_region_id_kecamatan').val();
         if( kec == null || kec == ''){
             swal({title: "Error!", text: "Isi Kecamatan Terlebih Dahulu", html: true, type: "error"});
@@ -175,7 +175,7 @@
 
     $.ajax({
             url: "<?php echo base_url().'bphtb_registration/load_combo_jenis_transaksi'; ?>" ,
-            type: "POST",            
+            type: "POST",
             data: {},
             success: function (data) {
                 $( "#comboJenisTransaksi" ).html( data );
@@ -202,7 +202,7 @@
     }
 
     function toExcel(){
-        var date_start_laporan        = $('#date_start_laporan').val();        
+        var date_start_laporan        = $('#date_start_laporan').val();
         var date_end_laporan          = $('#date_end_laporan').val();
         var receipt_no                = $('#receipt_no').val();
         var njop_pbb                  = $('#njop_pbb').val();
@@ -210,16 +210,16 @@
         var p_region_id_kecamatan     = $('#p_region_id_kecamatan').val();
         var p_region_id_kelurahan     = $('#p_region_id_kelurahan').val();
         var p_bphtb_legal_doc_type_id = $('#p_bphtb_legal_doc_type_id').val();
-        
 
-        if( date_start_laporan == "" && 
-            date_end_laporan == "" && 
+
+        if( date_start_laporan == "" &&
+            date_end_laporan == "" &&
             receipt_no == "" &&
             njop_pbb == "" &&
             wp_name == "" &&
             p_region_id_kecamatan == "" &&
             p_region_id_kelurahan == "" &&
-            p_bphtb_legal_doc_type_id == "" ){            
+            p_bphtb_legal_doc_type_id == "" ){
             swal ( "Oopss" ,  "Harus Terisi Salah Satu!" ,  "error" );
             return;
         }else{
@@ -249,13 +249,13 @@
             }else{
                 window.location = url;
             }
-            
+
         }
     }
 
 
     function toPDF(){
-        var date_start_laporan        = $('#date_start_laporan').val();        
+        var date_start_laporan        = $('#date_start_laporan').val();
         var date_end_laporan          = $('#date_end_laporan').val();
         var receipt_no                = $('#receipt_no').val();
         var njop_pbb                  = $('#njop_pbb').val();
@@ -264,16 +264,16 @@
         var p_region_id_kelurahan     = $('#p_region_id_kelurahan').val();
         var p_bphtb_legal_doc_type_id = $('#p_bphtb_legal_doc_type_id').val();
 
-        if(date_start_laporan == "" && 
-            date_end_laporan == "" && 
+        if(date_start_laporan == "" &&
+            date_end_laporan == "" &&
             receipt_no == "" &&
             njop_pbb == "" &&
             wp_name == "" &&
             p_region_id_kecamatan == "" &&
             p_region_id_kelurahan == "" &&
             p_bphtb_legal_doc_type_id == "" ){
-            swal ( "Oopss" ,  "Harus Terisi Salah Satu!" ,  "error" ); 
-             return;          
+            swal ( "Oopss" ,  "Harus Terisi Salah Satu!" ,  "error" );
+             return;
         }else{
             if (date_start_laporan != "" && date_end_laporan == ""){
                 swal ( "Oopss" ,  "Kolom Tanggal Tidak Boleh Kosong!" ,  "error" );
@@ -303,9 +303,9 @@
         }
 
 
-        
+
     }
-    
+
     function openInNewTab(url) {
       window.open(url, '_blank', 'location=yes,height=570,width=820,scrollbars=yes,status=yes');
     }

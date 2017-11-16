@@ -26,11 +26,11 @@
             </div>
             <!-- CONTENT  value="2015-09-01" -->
             <div class="form-body">
-                <div class="row">                    
+                <div class="row">
                     <label class="control-label col-md-2">Tanggal</label>
                     <div class="col-md-3">
                         <div class="input-group">
-                            <input type="text" class="form-control datepicker1 required" name="date_start_laporan" id="date_start_laporan" required >                 
+                            <input type="text" class="form-control datepicker1 required" name="date_start_laporan" id="date_start_laporan" required >
                         </div>
                     </div>
                     <label class="control-label col-md-1">s/d</label>
@@ -39,10 +39,10 @@
                             <input type="text" class="form-control datepicker1 required" name="date_end_laporan" id="date_end_laporan" required >
                         </div>
                     </div>
-                </div>  
+                </div>
                 <div class="space-2"></div>
 
-                <div class="row">                    
+                <div class="row">
                     <div class="form-group">
                         <label class="control-label col-md-2">kecamatan
                         </label>
@@ -57,7 +57,7 @@
                             </div>
                         </div>
                     </div>
-                </div> 
+                </div>
 
                 <div class="space-2"></div>
                 <div class="row col-md-offset-4">
@@ -71,32 +71,32 @@
 <?php $this->load->view('lov/lov_kec'); ?>
 
 <script >
-    //tanggal 
+    //tanggal
     $('.datepicker1').datetimepicker({
         format: 'YYYY-MM-DD',
         // defaultDate: new Date()
     });
 
     // call lov kecematan
-    $("#btn-lov-kecamatan").on('click', function() { 
-        var kota = 749;  // id kota sama dengan cocas yaitu id dari kota bandung
+    $("#btn-lov-kecamatan").on('click', function() {
+        var kota = 659;  // id kota sama dengan cocas yaitu id dari kota bandung
 
         if( kota == null || kota == ''){
             swal({title: "Error!", text: "Isi Kota/Kabupaten Terlebih Dahulu", html: true, type: "error"});
             return;
         }
-        modal_lov_kecamatan_show('object_p_region_id_kec','kecamatan',kota);        
+        modal_lov_kecamatan_show('object_p_region_id_kec','kecamatan',kota);
     });
 
     function toExcel(){
-        var date_start_laporan     = $('#date_start_laporan').val();        
+        var date_start_laporan     = $('#date_start_laporan').val();
         var date_end_laporan       = $('#date_end_laporan').val();
         var object_p_region_id_kec = $('#object_p_region_id_kec').val();
-        
-        if(date_start_laporan == "" || date_end_laporan == ""){            
+
+        if(date_start_laporan == "" || date_end_laporan == ""){
             swal ( "Oopss" ,  "Kolom Tanggal Tidak Boleh Kosong!" ,  "error" );
         }else{
-            
+
 
             var url = "<?php echo WS_JQGRID . "transaksi.t_laporan_daftar_bphtb_verifikasi_controller/excel/?"; ?>";
             url += "<?php echo $this->security->get_csrf_token_name(); ?>=<?php echo $this->security->get_csrf_hash(); ?>";
@@ -110,7 +110,7 @@
             }else{
                 window.location = url;
             }
-            
+
         }
     }
 </script>
