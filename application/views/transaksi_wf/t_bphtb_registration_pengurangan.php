@@ -289,188 +289,7 @@
                                         </div>
                                         
                                     </div>
-                                    <div class="form-group">
-                                        <label class="control-label col-md-3">Pendukung
-                                        </label>
-                                        <div class="col-md-2">
-                                            <div class="input-group ">
-                                                <input type="text" class="form-control formatRight" name="add_disc_percent" onkeyup="hitungTotalTanah();return 1;" id="add_disc_percent">
-                                                <span class="input-group-addon">% </span>
-                                            </div> 
-                                        </div>
-                                        <label class="control-label col-md-6 col-md-offset-2">(Gunakan tanda "."(titik) untuk luas dengan bilangan pecahan)
-                                        </label>
-                                    </div>
-                                    <div class="form-group">
-                                        <label class="control-label col-md-2">Nilai Tanah (Ref)
-                                        </label>
-                                        <div class="col-md-3">
-                                            <div class="input-group ">
-                                                <input type="text" onkeyup="hitungTotalTanah();return 1;" class="form-control formatRight"  readonly="true" maxlength="16" name="land_area_real" id="land_area_real">
-                                                <span class="input-group-addon">m2</span>
-                                            </div> 
-                                        </div>
-                                        <div class="col-md-3">
-                                            <div class="input-group ">
-                                                <span class="input-group-addon">Rp.</span>
-                                                <input type="text" onkeyup="hitungTotalTanah();" maxlength="16" class="form-control priceformat" readonly="true" name="land_price_real" id="land_price_real">
-                                            </div> 
-                                        </div>
-                                    </div>
-
-                                    <div class="form-group">
-                                        <label class="control-label col-md-2"> Nilai bangunan (Ref)
-                                        </label>
-                                        <div class="col-md-3">
-                                            <div class="input-group ">
-                                                <input type="text" onkeyup="hitungTotalBangunan();" maxlength="16" class="form-control formatRight"  readonly="true" name="building_area_real" id="building_area_real">
-                                                <span class="input-group-addon">m2</span>
-                                            </div> 
-                                        </div>
-                                        <div class="col-md-3">
-                                            <div class="input-group ">
-                                                <span class="input-group-addon">Rp.</span>
-                                                <input type="text" onkeyup="hitungTotalBangunan();" maxlength="16" class="form-control priceformat" readonly="true" name="building_price_real" id="building_price_real">
-                                            </div> 
-                                        </div>
-                                    </div>
-
-                                    <div class="form-group">
-                                        <label class="control-label col-md-2"> Tanah 
-                                        </label>
-                                        <div class="col-md-3">
-                                            <div class="input-group ">
-                                                <input type="text" onkeyup="hitungTotalTanah();return 1;" maxlength="10"  class="form-control formatRight"   name="land_area" id="land_area">
-                                                <span class="input-group-addon">m2</span>
-                                            </div> 
-                                        </div>
-                                        <div class="col-md-3">
-                                            <div class="input-group ">
-                                                <span class="input-group-addon">Rp.</span>
-                                                <input type="text" onkeyup="hitungTotalTanah();" maxlength="10" class="form-control priceformat"  name="land_price_per_m" id="land_price_per_m">
-                                            </div> 
-                                        </div>
-                                        <div class="col-md-3">
-                                            <div class="input-group ">
-                                                <span class="input-group-addon">Rp.</span>
-                                                <input type="text" class="form-control  priceformat"  maxlength="16" name="land_total_price" id="land_total_price">
-                                            </div> 
-                                        </div>
-                                        <label class="control-label col-md-5 col-md-offset-2">(Gunakan tanda "."(titik) untuk luas dengan bilangan pecahan)
-                                        </label>
-                                    </div>
-
-                                    <div class="form-group">
-                                        <label class="control-label col-md-2">  Bangunan 
-                                        </label>
-                                        <div class="col-md-3">
-                                            <div class="input-group ">
-                                                <input type="text" onkeyup="hitungTotalBangunan();"  maxlength="10" class="form-control formatRight"   name="building_area" id="building_area">
-                                                <span class="input-group-addon">m2</span>
-                                            </div> 
-                                        </div>
-                                        <div class="col-md-3">
-                                            <div class="input-group ">
-                                                <span class="input-group-addon">Rp.</span>
-                                                <input type="text" onkeyup=" hitungTotalBangunan();"  maxlength="10" class="form-control priceformat"  name="building_price_per_m" id="building_price_per_m">
-                                            </div> 
-                                        </div>
-                                        <div class="col-md-3">
-                                            <div class="input-group ">
-                                                <span class="input-group-addon">Rp.</span>
-                                                <input type="text" class="form-control priceformat"  maxlength="16"  name="building_total_price" id="building_total_price">
-                                            </div> 
-                                        </div>
-                                        <label class="control-label col-md-5 col-md-offset-2">(Gunakan tanda "."(titik) untuk luas dengan bilangan pecahan)
-                                        </label>
-                                    </div>
-
-                                    <div class="form-group">
-                                        <label class="control-label col-md-2 col-md-offset-2">  Total
-                                        </label>
-                                        <div class="col-md-3 col-md-offset-4 ">
-                                            <div class="input-group ">
-                                                <span class="input-group-addon">Rp</span>
-                                                <input type="text" class="form-control priceformat"   name="total_price" id="total_price">
-                                            </div> 
-                                        </div>
-                                    </div>
-
-                                    <div class="form-group">
-                                        <div class="col-md-3 col-md-offset-2">
-                                            <select  name="jenis_harga_bphtb" id="jenis_harga_bphtb" class="form-control">
-                                                <option value='1' >Harga transaksi</option>
-                                                <option value='2' >Harga Pasar</option>
-                                                <option value='3' >Harga Lelang</option>
-                                            </select>
-                                        </div>
-                                        <div class="col-md-3 col-md-offset-3 ">
-                                            <div class="input-group ">
-                                                <span class="input-group-addon">Rp</span>
-                                                <input type="text" onkeyup=" getNPOP();" maxlength="16"  class="form-control priceformat"   name="market_price" id="market_price">
-                                            </div> 
-                                        </div>
-                                    </div>
-
-                                    <div class="form-group">
-                                        <label class="control-label col-md-2 ">  Potongan Kebijakan untuk Waris
-                                        </label>
-                                        <div class="col-md-3 ">
-                                            <select  name="potongan_waris" id="potongan_waris" class="form-control">
-                                                <option value='1/1' >Bukan Waris</option>
-                                                <option value='1/2' >1/2</option>
-                                                <option value='1/3' >1/3</option>
-                                                <option value='2/3' >2/3</option>
-                                                <option value='1/4' >1/4</option>
-                                                <option value='1/7' >1/7</option>
-                                                <option value='3/4' >3/4</option>
-                                            </select>
-                                        </div>
-                                    </div>
-
-                                    <div class="form-group">
-                                        <label class="control-label col-md-2 ">  Nilai Perolehan Objek Pajak (NPOP)
-                                        </label>
-                                        <div class="col-md-3">
-                                            <div class="input-group ">
-                                                <span class="input-group-addon">Rp.</span>
-                                                <input type="text" class="form-control priceformat" maxlength="16" readonly  name="npop" id="npop">
-                                            </div> 
-                                        </div>
-                                    </div>
-
-                                    <div class="form-group">
-                                        <label class="control-label col-md-2 ">  Potongan Tambahan
-                                        </label>
-                                        <div class="col-md-3">
-                                            <div class="input-group ">
-                                                <span class="input-group-addon">Rp.</span>
-                                                <input type="text" class="form-control priceformat"  name="add_discount" id="add_discount">
-                                            </div> 
-                                        </div>
-                                    </div>
-
-                                    <div class="form-group">
-                                        <label class="control-label col-md-2 ">  Nilai Perolehan Objek Pajak Tidak Kena Pajak(NPOPTKP)
-                                        </label>
-                                        <div class="col-md-3">
-                                            <div class="input-group ">
-                                                <span class="input-group-addon">Rp.</span>
-                                                <input type="text" class="form-control priceformat" maxlength="16"  name="npop_tkp" id="npop_tkp">
-                                            </div> 
-                                        </div>
-                                    </div>
-
-                                    <div class="form-group">
-                                        <label class="control-label col-md-2 ">  Nilai Perolehan Objek Pajak Kena Pajak(NPOPKP)
-                                        </label>
-                                        <div class="col-md-3">
-                                            <div class="input-group ">
-                                                <span class="input-group-addon">Rp.</span>
-                                                <input type="text" class="form-control priceformat" maxlength="16" name="npop_kp" id="npop_kp">
-                                            </div> 
-                                        </div>
-                                    </div>
+                                    
 
                                     <div class="form-group">
                                         <label class="control-label col-md-2 ">  Bea Perolehan Hak atas Tanah dan Bangunan yang terutang
@@ -496,15 +315,7 @@
                                             <input type="text" class="form-control" name="description" id="description">
                                         </div>
                                         
-                                        <div class="col-md-3">
-                                            <div class="input-group ">
-                                                <label class="control-label input-group-addon  ">  Cek Potongan :
-                                                </label>
-                                                <span class="input-group-addon"><input type="checkbox" class="form-control" name="check_potongan" id="check_potongan"></span>
-                                            </div> 
-                                        </div>
-                                        <label class="control-label col-md-5 col-md-offset-6">(Silahkan cheklis utk pembayaran yg ada potongan)
-                                        </label>
+                                        
                                     </div>
 
                                     <div id="div-harus-bayar" class="form-group" style="display: none">
@@ -680,29 +491,34 @@
 
                                     <div class="form-actions">
                                         <div class="row">
-                                            <div class="col-md-12">
-                                                <a href="javascript:;" class="btn green" id="perhitungan" style="display: none"> CETAK LEMBAR KENDALI</a>
+                                            <div class="col-md-11 col-md-offset-1">
+                                                <a href="javascript:;" class="btn-danger" id="perhitungan" style="display: none"> CETAK LEMBAR KENDALI</a>
 
-                                                <a href="javascript:;" class="btn green" id="perhitungan" onclick="cetakPdf('perhitungan')"> LEMBAR PERHITUNGAN (1)</a>        
-                                               <a href="javascript:;" class="btn green " id="disposisi" onclick="cetakPdf('disposisi')">LEMBAR DISPOSISI (2)</a>
+                                                <button class="btn btn-danger" type="submit" id="perhitungan" onclick="cetakPdf('perhitungan')"> LEMBAR PERHITUNGAN (1)</button>
 
-                                                <a href="javascript:;" class="btn  green " id="acara" onclick="cetakPdf('acara')">BERITA ACARA (3)</a>
+                                                <button class="btn btn-danger" type="submit" id="disposisi" onclick="cetakPdf('disposisi')">LEMBAR DISPOSISI (2)</button>
 
-                                                <a href="javascript:;" class="btn  green " id="kasi" onclick="cetakPdf('kasi')">NOTA DINAS KASI (4)</a>
+                                                <button class="btn btn-danger" type="submit" id="acara" onclick="cetakPdf('acara')">BERITA ACARA (3)</button>
 
-                                                <a href="javascript:;" class="btn  green " id="kabid" onclick="cetakPdf('kabid')">NOTA DINAS KABID (4)</a>
+                                                <button class="btn btn-danger" type="submit" id="kasi" onclick="cetakPdf('kasi')">NOTA DINAS KASI (4)</button>
 
-                                                <a href="javascript:;" class="btn  green " id="kadis"onclick="cetakPdf('kadis')">KEPUTUSAN KADIS (5)</a>
+                                                <button class="btn btn-danger" type="submit" id="kabid" onclick="cetakPdf('kabid')">NOTA DINAS KABID (4)</button>
 
-                                                <a href="javascript:;" class="btn  green " id="submit">SUBMIT</a>
+                                                <button class="btn btn-danger" type="submit" id="kadis"onclick="cetakPdf('kadis')">KEPUTUSAN KADIS (5)</button>
+                                            </div>
+                                        </div>
+                                        <div class="space-2"></div>
+                                        <div class="row">
+                                            <div class="col-md-6 col-md-offset-5">
+                                                <button class="btn btn-success" type="submit" id="submit"onclick="">SUBMIT</button>
 
-                                                <a href="javascript:;" style="display: none" class="btn  green " id="disposisi">SIMPAN</a>
+                                                <button class="btn btn-success" type="submit" id="insert" onclick="">SIMPAN</button>
 
-                                                <a href="javascript:;" style="display: none" class="btn  green " id="disposisi">SIMPAN</a>
+                                                <a href="javascript:;" style="display: none" class="btn  green " id="update">SIMPAN</a>
 
-                                                <a href="javascript:;" style="display: none" class="btn  green " id="disposisi">HAPUS</a>
+                                                <a href="javascript:;" style="display: none" class="btn  green " id="delete">HAPUS</a>
 
-                                                <a href="javascript:;" style="display: none" class="btn  green " id="disposisi">BATAL</a>
+                                                <a href="javascript:;" style="display: none" class="btn  green " id="reject">BATAL</a>
                                                 
                                             </div>
                                         </div>
@@ -930,8 +746,6 @@
             success: function (data) {
                 if(data.success){
                     var dt = data.rows[0];
-
-
 
                     $('#t_bphtb_registration_id').val(dt.t_bphtb_registration_id);
                     $('#wp_name').val(dt.wp_name);

@@ -217,7 +217,8 @@
 </script>
 
 <script type="text/javascript">
-    
+    var jenis_pajak = $('#p_vat_type_id').val();
+
     jQuery(function ($) {
         var grid_selector = "#grid-table-pegawai";
         jQuery("#grid-table-pegawai").jqGrid({
