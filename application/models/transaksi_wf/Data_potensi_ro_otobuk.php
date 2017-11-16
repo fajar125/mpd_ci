@@ -44,7 +44,7 @@ class Data_potensi_ro_otobuk extends Abstract_model {
 	function data_pajak($jenis_pajak, $t_cust_account_id){
 		try {
 			if($jenis_pajak == 'Pajak Hotel'){
-				$sql = "SELECT * FROM SELECT t_cacc_dtl_hotel_id, t_cust_account_id, a.p_room_type_id, room_qty, service_qty, service_charge_wd, service_charge_we,
+				$sql = "SELECT t_cacc_dtl_hotel_id, t_cust_account_id, a.p_room_type_id, room_qty, service_qty, service_charge_wd, service_charge_we,
 					valid_from, valid_to, a.description, a.creation_date, a.created_by,
 					a.updated_date , a.updated_by, b.code AS room_type_code 
 					FROM t_cacc_dtl_hotel a 
@@ -65,6 +65,19 @@ class Data_potensi_ro_otobuk extends Abstract_model {
 
             $items = $query->result_array();
 
+		} catch (Exception $e) {
+			echo $e->getMessage();
+            exit;
+		}
+	}
+
+	function data_log_otobuk($t_customer_order_id){
+		try {
+			$sql = "SELECT * FROM v_t_nwo_log_kronologis where t_customer_order_id = ".$t_customer_order_id;
+
+			$query = $this->db->query($sql);
+
+            $items = $query->result_array();
 		} catch (Exception $e) {
 			echo $e->getMessage();
             exit;

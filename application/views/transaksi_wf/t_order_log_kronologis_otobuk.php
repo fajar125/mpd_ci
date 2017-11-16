@@ -1,6 +1,16 @@
 
 <div class="space-4"></div>
 <!-- parameter untuk kembali ke workflow summary -->
+    <input type="hidden" id="t_vat_setllement_id" value="<?php echo $this->input->post('t_vat_setllement_id'); ?>" />
+     <input type="hidden" id="npwd" value="<?php echo $this->input->post('npwd'); ?>" />
+    <input type="hidden" id="t_cust_account_id" value="<?php echo $this->input->post('t_cust_account_id'); ?>" />
+    <input type="hidden" id="finance_period_code" value="<?php echo $this->input->post('finance_period_code'); ?>" />
+    <input type="hidden" id="p_finance_period_id" value="<?php echo $this->input->post('p_finance_period_id'); ?>" />
+    <input type="hidden" id="t_customer_order_id" value="<?php echo $this->input->post('t_customer_order_id'); ?>" />
+    <input type="hidden" id="order_no" value="<?php echo $this->input->post('order_no'); ?>" />
+    <input type="hidden" id="p_rqst_type_id" value="<?php echo $this->input->post('p_rqst_type_id'); ?>" />
+    <input type="hidden" id="rqst_type_code" value="<?php echo $this->input->post('rqst_type_code'); ?>" />
+
     <input type="hidden" id="TEMP_ELEMENT_ID" value="<?php echo $this->input->post('ELEMENT_ID'); ?>" />
     <input type="hidden" id="TEMP_PROFILE_TYPE" value="<?php echo $this->input->post('PROFILE_TYPE'); ?>" />
     <input type="hidden" id="TEMP_P_W_DOC_TYPE_ID" value="<?php echo $this->input->post('P_W_DOC_TYPE_ID'); ?>" />
@@ -9,7 +19,7 @@
     <input type="hidden" id="TEMP_FSUMMARY" value="<?php echo $this->input->post('FSUMMARY'); ?>" />
     <!-- end type hidden -->
 
-    <!-- paramater untuk kebutuhan submit dan status -->
+    <!--paramater untuk kebutuhan submit dan status -->
     <input type="hidden" id="CURR_DOC_ID" value="<?php echo $this->input->post('CURR_DOC_ID'); ?>">
     <input type="hidden" id="CURR_DOC_TYPE_ID" value="<?php echo $this->input->post('CURR_DOC_TYPE_ID'); ?>">
     <input type="hidden" id="CURR_PROC_ID" value="<?php echo $this->input->post('CURR_PROC_ID'); ?>">
@@ -33,8 +43,6 @@
     <input type="hidden" id="SLOT_5" value="<?php echo $this->input->post('SLOT_5'); ?>">
     <input type="hidden" id="MESSAGE" value="<?php echo $this->input->post('MESSAGE'); ?>">
     <input type="hidden" id="PROFILE_TYPE" value="<?php echo $this->input->post('PROFILE_TYPE'); ?>">
-    <input type="hidden" id="ACTION_STATUS" value="<?php echo $this->input->post('ACTION_STATUS'); ?>">
-    <input type="hidden" id="t_cust_account_id" value="<?php echo $this->input->post('t_cust_account_id'); ?>">
 
 
 <!-- end breadcrumb -->
@@ -89,9 +97,22 @@
                 {label: 'Counter No', name: 'counter_no', hidden:true},
                 {label: 'ID Cust Order', name: 't_customer_order_id', hidden:true},
                 {label: 'Tanggal',name: 'log_date_txt',width: 200, align: "left"},
-                {label: 'Jam',name: 'log_hour',width: 200, align: "left"}, 
-                {label: 'Aktifitas',name: 'employee_qty',width: 300, align: "left"},                
+                {label: 'Jam',name: 'log_hour',width: 200, align: "left"},
+                {name: 'Aktivitas',width: 300, align: "center",
+                    formatter:function(cellvalue, options, rowObject) {
+
+                        var lbl_edit = rowObject['lbl_edit'];
+                        var activity = rowObject['activity'];
+                        var description = rowObject['description'];
+                        var aktifitas = lbl_edit+" "+activity+" "+description;
+                        
+                        return '<div>'+aktifitas+'</div>';
+
+                    }
+                },
                 {label: 'Oleh',name: 'app_user_name',width: 200, align: "left"}
+
+                
             ],
             height: '100%',
             autowidth: false,

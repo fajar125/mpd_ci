@@ -291,7 +291,7 @@
                                         
                                     </div>
                                     <div class="form-group">
-                                        <label class="control-label col-md-3">Pendukung
+                                        <label class="control-label col-md-3">Potongan
                                         </label>
                                         <div class="col-md-2">
                                             <div class="input-group ">
@@ -302,39 +302,7 @@
                                         <label class="control-label col-md-6 col-md-offset-2">(Gunakan tanda "."(titik) untuk luas dengan bilangan pecahan)
                                         </label>
                                     </div>
-                                    <div class="form-group">
-                                        <label class="control-label col-md-2">Nilai Tanah (Ref)
-                                        </label>
-                                        <div class="col-md-3">
-                                            <div class="input-group ">
-                                                <input type="text" onkeyup="hitungTotalTanah();return 1;" class="form-control formatRight"  readonly="true" maxlength="16" name="land_area_real" id="land_area_real">
-                                                <span class="input-group-addon">m2</span>
-                                            </div> 
-                                        </div>
-                                        <div class="col-md-3">
-                                            <div class="input-group ">
-                                                <span class="input-group-addon">Rp.</span>
-                                                <input type="text" onkeyup="hitungTotalTanah();" maxlength="16" class="form-control priceformat" readonly="true" name="land_price_real" id="land_price_real">
-                                            </div> 
-                                        </div>
-                                    </div>
-
-                                    <div class="form-group">
-                                        <label class="control-label col-md-2"> Nilai bangunan (Ref)
-                                        </label>
-                                        <div class="col-md-3">
-                                            <div class="input-group ">
-                                                <input type="text" onkeyup="hitungTotalBangunan();" maxlength="16" class="form-control formatRight"  readonly="true" name="building_area_real" id="building_area_real">
-                                                <span class="input-group-addon">m2</span>
-                                            </div> 
-                                        </div>
-                                        <div class="col-md-3">
-                                            <div class="input-group ">
-                                                <span class="input-group-addon">Rp.</span>
-                                                <input type="text" onkeyup="hitungTotalBangunan();" maxlength="16" class="form-control priceformat" readonly="true" name="building_price_real" id="building_price_real">
-                                            </div> 
-                                        </div>
-                                    </div>
+                                    
 
                                     <div class="form-group">
                                         <label class="control-label col-md-2"> Tanah 
@@ -497,15 +465,7 @@
                                             <input type="text" class="form-control" name="description" id="description">
                                         </div>
                                         
-                                        <div class="col-md-3">
-                                            <div class="input-group ">
-                                                <label class="control-label input-group-addon  ">  Cek Potongan :
-                                                </label>
-                                                <span class="input-group-addon"><input type="checkbox" class="form-control" name="check_potongan" id="check_potongan"></span>
-                                            </div> 
-                                        </div>
-                                        <label class="control-label col-md-5 col-md-offset-6">(Silahkan cheklis utk pembayaran yg ada potongan)
-                                        </label>
+                                        
                                     </div>
 
                                     <div id="div-harus-bayar" class="form-group" style="display: none">
@@ -559,8 +519,9 @@
                                             <div class="col-md-offset-4 col-md-9">
                                                
                                                 <a href="javascript:;" class="btn btn-outline green button-next" id="print"  > CETAK NOTA VERIFIKASI                                                    
-                                               
-                                                <a href="javascript:;" class="btn  green " id="insert"> Simpan                                                   
+                                                <a href="javascript:;" class="btn  green " id="submit" onClick="submitform()"> Submit                                                   
+                                                </a>
+                                                <a href="javascript:;" class="btn  green " id="update" onclick="update()"> Simpan                                                   
                                                 </a>
 
                                                 <button class="btn btn-danger" type="button" id="btn-kem" onclick="backform();">KEMBALI</button>
@@ -646,8 +607,8 @@
 <!-- First Load -->
 <script>
 
-    t_customer_order_id= "<?php echo $_POST['CURR_DOC_ID']; ?>";
-    //t_customer_order_id = 420749;
+    //t_customer_order_id= "<?php //echo $_POST['CURR_DOC_ID']; ?>";
+    t_customer_order_id = 420749;
     if(t_customer_order_id!=null || t_customer_order_id!=''){
         $.ajax({
                 url: '<?php echo WS_JQGRID."transaksi_wf.t_bphtb_registration_ro_ver_controller/read"; ?>',
@@ -750,6 +711,111 @@
       $("#jenis_harga_bphtb").prop('disabled', true);
       $("#add_disc_percent").prop('disabled', true);
     }
+
+    function update(){
+        var updated_by                  = $('#vericated_by').val();
+        var wp_p_region_id              = $('#wp_p_region_id').val();
+        var wp_p_region_id_kel          = $('#wp_p_region_id_kel').val();
+        var wp_name                     = $('#wp_name').val();
+        var wp_address_name             = $('#wp_address_name').val();
+        var npwp                        = $('#npwp').val();
+        var object_p_region_id_kec      = $('#object_p_region_id_kec').val();
+        var object_p_region_id          = $('#object_p_region_id').val();
+        var land_area                   = $('#land_area').val();
+        var land_price_per_m            = $('#land_price_per_m').val();
+        var land_total_price            = $('#land_total_price').val();
+        var building_area               = $('#building_area').val();
+        var building_price_per_m        = $('#building_price_per_m').val();
+        var building_total_price        = $('#building_total_price').val();
+        var wp_rt                       = $('#wp_rt').val();
+        var wp_rw                       = $('#wp_rw').val();
+        var object_rt                   = $('#object_rt').val();
+        var object_rw                   = $('#object_rw').val();
+        var njop_pbb                    = $('#njop_pbb').val();
+        var object_address_name         = $('#object_address_name').val();
+        var p_bphtb_legal_doc_type_id   = $('#p_bphtb_legal_doc_type_id').val();
+        var npop                        = $('#npop').val();
+        var npop_tkp                    = $('#npop_tkp').val();
+        var npop_kp                     = $('#npop_kp').val();
+        var bphtb_amt                   = $('#bphtb_amt').val();
+        var bphtb_amt_final             = $('#bphtb_amt_final').val();
+        var bphtb_discount              = $('#bphtb_discount').val();
+        var description                 = $('#description').val();
+        var market_price                = $('#market_price').val();
+        var mobile_phone_no             = $('#mobile_phone_no').val();
+        var wp_p_region_id_kec          = $('#wp_p_region_id_kec').val();
+        var object_p_region_id_kel      = $('#object_p_region_id_kel').val();
+        var verificated_by              = $('#verificated_by').val();
+        var verificated_nip             = $('#verificated_nip').val();
+        var bphtb_legal_doc_description = $('#bphtb_legal_doc_description').val();
+        var add_disc_percent            = $('#add_disc_percent').val();
+        // mau diproses ke update button simpan
+        $.ajax({
+            url     : "<?php echo WS_JQGRID . "transaksi.t_penutupan_wp_controller/update"; ?>" ,
+            type    : "POST", 
+            datatype: "json",           
+            data    :{
+                    updated_by                  = $('#vericated_by').val();
+                    wp_p_region_id              = $('#wp_p_region_id').val();
+                    wp_p_region_id_kel          = $('#wp_p_region_id_kel').val();
+                    wp_name                     = $('#wp_name').val();
+                    wp_address_name             = $('#wp_address_name').val();
+                    npwp                        = $('#npwp').val();
+                    object_p_region_id_kec      = $('#object_p_region_id_kec').val();
+                    object_p_region_id          = $('#object_p_region_id').val();
+                    land_area                   = $('#land_area').val();
+                    land_price_per_m            = $('#land_price_per_m').val();
+                    land_total_price            = $('#land_total_price').val();
+                    building_area               = $('#building_area').val();
+                    building_price_per_m        = $('#building_price_per_m').val();
+                    building_total_price        = $('#building_total_price').val();
+                    wp_rt                       = $('#wp_rt').val();
+                    wp_rw                       = $('#wp_rw').val();
+                    object_rt                   = $('#object_rt').val();
+                    object_rw                   = $('#object_rw').val();
+                    njop_pbb                    = $('#njop_pbb').val();
+                    object_address_name         = $('#object_address_name').val();
+                    p_bphtb_legal_doc_type_id   = $('#p_bphtb_legal_doc_type_id').val();
+                    npop                        = $('#npop').val();
+                    npop_tkp                    = $('#npop_tkp').val();
+                    npop_kp                     = $('#npop_kp').val();
+                    bphtb_amt                   = $('#bphtb_amt').val();
+                    bphtb_amt_final             = $('#bphtb_amt_final').val();
+                    bphtb_discount              = $('#bphtb_discount').val();
+                    description                 = $('#description').val();
+                    market_price                = $('#market_price').val();
+                    mobile_phone_no             = $('#mobile_phone_no').val();
+                    wp_p_region_id_kec          = $('#wp_p_region_id_kec').val();
+                    object_p_region_id_kel      = $('#object_p_region_id_kel').val();
+                    verificated_by              = $('#verificated_by').val();
+                        verificated_nip             = $('#verificated_nip').val();
+                        bphtb_legal_doc_description = $('#bphtb_legal_doc_description').val();
+                        add_disc_percent            = $('#add_disc_percent').val();
+                    },
+            success: function (data) {
+                var data1 = data.rows;
+                if (data1 == true){
+                    swal('Informasi', 'Data Berhasil Disimpan', 'info');
+                    return;
+                }else{
+                    swal('Peringatan', 'Data Gagal Disimpan', 'error');
+                    return;
+                }
+                //alert(data.rows.order_no);
+               
+                
+            },
+            error: function (xhr, status, error) {
+                swal({title: "Error!", text: xhr.responseText, html: true, type: "error"});
+            }
+        });
+
+
+        
+
+
+
+    }
 </script>
 <!-- /First Load -->
 
@@ -827,6 +893,18 @@
              return;
         }
         modal_lov_kelurahan_show('object_p_region_id_kel','object_kelurahan',kec);
+    });
+
+    $.ajax({
+            url: "<?php echo base_url().'bphtb_registration/load_combo_dok_pendukung/'; ?>" ,
+            type: "POST",            
+            data: {},
+            success: function (data) {
+                $( "#comboDocPendukung" ).html( data );
+            },
+            error: function (xhr, status, error) {
+                swal({title: "Error!", text: xhr.responseText, html: true, type: "error"});
+            }
     });
 </script>
 <!-- /LOV -->

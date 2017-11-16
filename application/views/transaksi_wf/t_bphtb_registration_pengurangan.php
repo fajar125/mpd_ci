@@ -885,7 +885,7 @@
     $(".formatRight").css("text-align", "right");
 
     $.ajax({
-        url: "<?php echo base_url().'transaksi/petugas_administrator_combo/'; ?>" ,
+        url: "<?php echo base_url().'bphtb_registration/petugas_administrator_combo/'; ?>" ,
         type: "POST",
         success: function (data) {
             $( "#administrator" ).html( data );
@@ -896,7 +896,7 @@
     });
 
     $.ajax({
-        url: "<?php echo base_url().'transaksi/petugas_pemeriksa_combo/'; ?>" ,
+        url: "<?php echo base_url().'bphtb_registration/petugas_pemeriksa_combo/'; ?>" ,
         type: "POST",
         success: function (data) {
             $( "#pemeriksa" ).html( data );
@@ -904,6 +904,18 @@
         error: function (xhr, status, error) {
             swal({title: "Error!", text: xhr.responseText, html: true, type: "error"});
         }
+    });
+
+    $.ajax({
+            url: "<?php echo base_url().'bphtb_registration/load_combo_dok_pendukung_readonly/'; ?>" ,
+            type: "POST",            
+            data: {},
+            success: function (data) {
+                $( "#comboDocPendukung" ).html( data );
+            },
+            error: function (xhr, status, error) {
+                swal({title: "Error!", text: xhr.responseText, html: true, type: "error"});
+            }
     });
 
 
@@ -918,6 +930,8 @@
             success: function (data) {
                 if(data.success){
                     var dt = data.rows[0];
+
+
 
                     $('#t_bphtb_registration_id').val(dt.t_bphtb_registration_id);
                     $('#wp_name').val(dt.wp_name);
@@ -981,13 +995,11 @@
                     $('#nomor_berita_acara').val(dt.nomor_berita_acara);
                     $('#keterangan_opsi_c_gono_gini').val(dt.keterangan_opsi_c);
                     $('#tgl_berita_acara').val(dt.tanggal_berita_acara);
-                    $('#administrator').val(dt.administrator_id);
-                    $('#pemeriksa').val(dt.pemeriksa_id);
+                    $('#administrator_id').val(dt.administrator_id);
+                    $('#pemeriksa_id').val(dt.pemeriksa_id);
                     $('#dasar_pengurang').val(dt.dasar_pengurang);
                     $('#analisa_pengurangan').val(dt.analisa_penguranan);
-
-                    
-
+                    getValueData();
                    
                 }
                 // console.log(dt.product_name);

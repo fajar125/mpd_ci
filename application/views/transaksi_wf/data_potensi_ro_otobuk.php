@@ -14,6 +14,16 @@
 </div>
 <div class="space-4"></div>
 <!-- parameter untuk kembali ke workflow summary -->
+    <input type="hidden" id="t_vat_setllement_id" value="<?php echo $this->input->post('t_vat_setllement_id'); ?>" />
+     <input type="hidden" id="npwd" value="<?php echo $this->input->post('npwd'); ?>" />
+    <input type="hidden" id="t_cust_account_id" value="<?php echo $this->input->post('t_cust_account_id'); ?>" />
+    <input type="hidden" id="finance_period_code" value="<?php echo $this->input->post('finance_period_code'); ?>" />
+    <input type="hidden" id="p_finance_period_id" value="<?php echo $this->input->post('p_finance_period_id'); ?>" />
+    <input type="hidden" id="t_customer_order_id" value="<?php echo $this->input->post('t_customer_order_id'); ?>" />
+    <input type="hidden" id="order_no" value="<?php echo $this->input->post('order_no'); ?>" />
+    <input type="hidden" id="p_rqst_type_id" value="<?php echo $this->input->post('p_rqst_type_id'); ?>" />
+    <input type="hidden" id="rqst_type_code" value="<?php echo $this->input->post('rqst_type_code'); ?>" />
+
     <input type="hidden" id="TEMP_ELEMENT_ID" value="<?php echo $this->input->post('ELEMENT_ID'); ?>" />
     <input type="hidden" id="TEMP_PROFILE_TYPE" value="<?php echo $this->input->post('PROFILE_TYPE'); ?>" />
     <input type="hidden" id="TEMP_P_W_DOC_TYPE_ID" value="<?php echo $this->input->post('P_W_DOC_TYPE_ID'); ?>" />
@@ -22,7 +32,7 @@
     <input type="hidden" id="TEMP_FSUMMARY" value="<?php echo $this->input->post('FSUMMARY'); ?>" />
     <!-- end type hidden -->
 
-    <!-- paramater untuk kebutuhan submit dan status -->
+    <!--paramater untuk kebutuhan submit dan status -->
     <input type="hidden" id="CURR_DOC_ID" value="<?php echo $this->input->post('CURR_DOC_ID'); ?>">
     <input type="hidden" id="CURR_DOC_TYPE_ID" value="<?php echo $this->input->post('CURR_DOC_TYPE_ID'); ?>">
     <input type="hidden" id="CURR_PROC_ID" value="<?php echo $this->input->post('CURR_PROC_ID'); ?>">
@@ -46,7 +56,6 @@
     <input type="hidden" id="SLOT_5" value="<?php echo $this->input->post('SLOT_5'); ?>">
     <input type="hidden" id="MESSAGE" value="<?php echo $this->input->post('MESSAGE'); ?>">
     <input type="hidden" id="PROFILE_TYPE" value="<?php echo $this->input->post('PROFILE_TYPE'); ?>">
-    <input type="hidden" id="ACTION_STATUS" value="<?php echo $this->input->post('ACTION_STATUS'); ?>">
 
 
 <!-- end breadcrumb -->
@@ -160,12 +169,12 @@
             colModel: [
                 {label: 'ID Cust Account', name: 't_cust_account_id', hidden:true},
                 {label: 'ID Cust Account Employee', name: 't_cust_acc_employee_id', hidden:true},
-                {label: 'Jabatan',name: 'jabatan',width: 120, align: "left"},
+                {label: 'Jabatan',name: 'jabatan',width: 185, align: "left"},
                 {label: 'Jumlah Pegawai',name: 'employee_qty',width: 150, align: "left"},
                 {label: 'Gaji Pegawai',name: 'employee_salery',width: 180, summaryTpl:"{0}",summaryType:"sum", formatter:'currency', formatoptions: {prefix:"", thousandsSeparator:','},align: "left"},
                 {label: 'Berlaku Dari',name: 'valid_from',width: 150, align: "left"},
                 {label: 'Berlaku Sampai',name: 'valid_to',width: 170, align: "left"},
-                {label: 'Deskripsi',name: 'description',width: 180, align: "left"}
+                {label: 'Deskripsi',name: 'description',width: 200, align: "left"}
             ],
             height: '100%',
             autowidth: false,
@@ -204,12 +213,12 @@
             colModel: [
                 {label: 'ID Cust Account', name: 't_cust_account_id', hidden:true},
                 {label: 'ID dtl', name: 't_cacc_dtl_hotel_id', hidden:true},
-                {label: 'Golongan Kamar',name: 'room_type_code',width: 120, align: "left"},
+                {label: 'Golongan Kamar',name: 'room_type_code',width: 185, align: "left"},
                 {label: 'Jumlah Kamar',name: 'room_qty',width: 150, align: "left"},
-                {label: 'Frekuensi PL',name: 'service_qty',width: 120, align: "left"},
-                {label: 'Tarif Weekend',name: 'service_charge_we',width: 180, summaryTpl:"{0}",summaryType:"sum", formatter:'currency', formatoptions: {prefix:"", thousandsSeparator:','},align: "left"},
+                {label: 'Frekuensi PL',name: 'service_qty',width: 200, align: "left"},
+                {label: 'Tarif Weekend',name: 'service_charge_we',width: 200, summaryTpl:"{0}",summaryType:"sum", formatter:'currency', formatoptions: {prefix:"", thousandsSeparator:','},align: "left"},
                 {label: 'Berlaku Dari',name: 'valid_from',width: 150, align: "left"},
-                {label: 'Berlaku Sampai',name: 'valid_to',width: 170, align: "left"}
+                {label: 'Berlaku Sampai',name: 'valid_to',width: 150, align: "left"}
             ],
             height: '100%',
             autowidth: false,
@@ -252,7 +261,7 @@
                 {label: 'Jumlah Kursi',name: 'seat_qty',width: 150, align: "left"},
                 {label: 'Jumlah Meja',name: 'table_qty',width: 120, align: "left"},
                 {label: 'Daya Tampung',name: 'max_service_qty',width: 120, align: "left"},
-                {label: 'Jumlah Pengunjung Rata-rata Per Bulan',name: 'avg_subscription',width: 120, align: "left"},
+                {label: 'Jumlah Pengunjung Rata-rata Per Bulan',name: 'avg_subscription',width: 280, align: "left"},
                 {label: 'Berlaku Dari',name: 'valid_from',width: 150, align: "left"},
                 {label: 'Berlaku Sampai',name: 'valid_to',width: 170, align: "left"}
             ],
@@ -295,7 +304,7 @@
                 {label: 'ID dtl restaurant', name: 't_cacc_dtl_entertaintment_id', hidden:true},
                 {label: 'Jenis Hiburan',name: 'entertainment_desc',width: 120, align: "left"},
                 {label: 'Tarif Weekend',name: 'service_charge_we',width: 180, summaryTpl:"{0}",summaryType:"sum", formatter:'currency', formatoptions: {prefix:"", thousandsSeparator:','},align: "left"},
-                {label: 'Jumlah Lembar Meja/Kursi',name: 'seat_qty',width: 150, align: "left"},
+                {label: 'Jumlah Lembar Meja/Kursi',name: 'seat_qty',width: 200, align: "left"},
                 {label: 'Jumlah Room',name: 'room_qty',width: 120, align: "left"},
                 {label: 'Jumlah PL',name: 'clerk_qty',width: 120, align: "left"},
                 {label: 'Booking Jam',name: ' booking_hour',width: 120, align: "left"},
@@ -341,9 +350,9 @@
             colModel: [
                 {label: 'ID Cust Account', name: 't_cust_account_id', hidden:true},
                 {label: 'ID dtl Parking', name: 't_acc_dtl_parking_id', hidden:true},
-                {label: 'Luas Lahan Parkir',name: 'parking_size',width: 120, align: "left"},
-                {label: 'Daya Tampung Kendaraan Bermotor',name: 'max_load_qty',width: 150, align: "left"},
-                {label: 'Frekuensi Kendaraan Bermotor',name: 'avg_subscription_qty',width: 120, align: "left"},
+                {label: 'Luas Lahan Parkir',name: 'parking_size',width: 200, align: "left"},
+                {label: 'Daya Tampung Kendaraan Bermotor',name: 'max_load_qty',width: 265, align: "left"},
+                {label: 'Frekuensi Kendaraan Bermotor',name: 'avg_subscription_qty',width: 250, align: "left"},
                 {label: 'Berlaku Dari',name: 'valid_from',width: 150, align: "left"},
                 {label: 'Berlaku Sampai',name: 'valid_to',width: 170, align: "left"}
             ],
@@ -385,7 +394,7 @@
                 {label: 'ID Cust Account', name: 't_cust_account_id', hidden:true},
                 {label: 'ID dtl Parking', name: 't_cacc_dtl_ppj_id', hidden:true},
                 {label: 'Golongan',name: 'pwr_classification_desc',width: 120, align: "left"},
-                {label: 'Kapasitas Daya',name: 'power_capacity',width: 150, align: "left"},
+                {label: 'Kapasitas Daya',name: 'power_capacity',width: 175, align: "left"},
                 {label: 'Harga Satuan',name: 'service_charge',width: 180, summaryTpl:"{0}",summaryType:"sum", formatter:'currency', formatoptions: {prefix:"", thousandsSeparator:','},align: "left"},
                 {label: 'Faktor Daya',name: 'power_factor',width: 120, align: "left"},
                 {label: 'Keterangan',name: 'description',width: 120, align: "left"},
