@@ -12,7 +12,7 @@ class T_debt_letter_ro_controller {
         $limit = getVarClean('rows','int',5);
         $sidx = getVarClean('sidx','str','t_customer_order_id');
         $sord = getVarClean('sord','str','desc');
-        $t_customer_order_id = getVarClean('t_customer_order_id','int',466191);
+        $t_customer_order_id = getVarClean('t_customer_order_id','int',0);
 
         $data = array('rows' => array(), 'page' => 1, 'records' => 0, 'total' => 1, 'success' => false, 'message' => '');
 

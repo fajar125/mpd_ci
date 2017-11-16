@@ -76,7 +76,7 @@ class T_penutupan_wp_ver_piutang_controller {
         $page = getVarClean('page','int',1);
         $limit = getVarClean('rows','int',5);
 
-        $t_customer_order_id= getVarClean('t_customer_order_id','int',534281);
+        $t_customer_order_id= getVarClean('t_customer_order_id','int',0);
         
 
         $data = array('rows' => array(), 'page' => 1, 'records' => 0, 'total' => 1, 'success' => false, 'message' => '');
@@ -132,7 +132,7 @@ class T_penutupan_wp_ver_piutang_controller {
     }
 
     function setWpInactive(){
-        $setWpInactive = getVarClean('t_cust_account_id','int',0);
+        $t_cust_account_id = getVarClean('t_cust_account_id','int',0);
         /*echo $npwd;
         exit;*/
         
@@ -144,7 +144,7 @@ class T_penutupan_wp_ver_piutang_controller {
             $ci->load->model('transaksi_wf/t_penutupan_wp_ver_piutang');
             $table = $ci->t_penutupan_wp_ver_piutang;
 
-            $result = $table->setWpInactive($setWpInactive);
+            $result = $table->setWpInactive($t_cust_account_id);
             
 
             $data['rows'] = $result;
