@@ -155,7 +155,7 @@ class view_daftar_surat_teguran_pdf extends CI_Controller{
         $pdf->SetAligns(array("C","C"));
         $pdf->SetWidths(array(($kol1+$kol2+$kol3+$kol3+$kol2+$kol2+$kol2+$kol3)/2,($kol1+$kol2+$kol3+$kol3+$kol2+$kol2+$kol2+$kol3)/2));
         //$pdf->RowMultiBorderWithHeight(array("\n\n\n\n\n\n\nMengetahui,\nan. KEPALA DINAS PELAYANAN PAJAK\nKepala Bidang Pajak Pendaftaran\n\n\n\n\n\nH. SONI BAKHTIYAR, S.Sos, M.Si\nNIP. 19750625 199403 1 001","Kepala Seksi Piutang\n\n\n\n\n\nRACHMAT SATIADI, S.Ip., M.Si\nNIP.19691104 199803 1 007"),array('',''),$this->height);
-        $pdf->RowMultiBorderWithHeight(array("\n\nKepala Seksi Penyelesaian Piutang\n\n\n\n\n\nDIN KAMADIANTINI S.IP, MM\nNIP. 19710320 1998032 006","Mengetahui,\nan. KEPALA BADAN PENGELOLA PENDAPATAN DAERAH\nKepala Bidang Pajak Pendaftaran\n\n\n\n\n\nDrs. H. GUN GUN SUMARYANA\nNIP. 19700806 199101 1 001"),array('',''),$this->height);
+        $pdf->RowMultiBorderWithHeight(array("\n\nKepala Seksi Penyelesaian Piutang\n\n\n\n\n\nDIN KAMADIANTINI S.IP, MM\nNIP. 19710320 1998032 006","Mengetahui,\nan. KEPALA ".getValByCode('INSTANSI_2')."\nKepala Bidang Pajak Pendaftaran\n\n\n\n\n\nDrs. H. GUN GUN SUMARYANA\nNIP. 19700806 199101 1 001"),array('',''),$this->height);
         /*$pdf->Ln(16);
         $pdf->RowMultiBorderWithHeight(array('','RACHMAT SATIADI, S.Ip., M.Si'),array('',''),$this->height);
         $pdf->RowMultiBorderWithHeight(array('','NIP.19691104 199803 1 007'),array('',''),$this->height);  */  
