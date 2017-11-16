@@ -17,6 +17,7 @@
     <input type="hidden" id="t_vat_setllement_id" value="<?php echo $this->input->post('t_vat_setllement_id'); ?>" />
      <input type="hidden" id="npwd" value="<?php echo $this->input->post('npwd'); ?>" />
     <input type="hidden" id="t_cust_account_id" value="<?php echo $this->input->post('t_cust_account_id'); ?>" />
+    <!--<input type="hidden" id="t_cust_account_id" value="123" />-->
     <input type="hidden" id="finance_period_code" value="<?php echo $this->input->post('finance_period_code'); ?>" />
     <input type="hidden" id="p_finance_period_id" value="<?php echo $this->input->post('p_finance_period_id'); ?>" />
     <input type="hidden" id="t_customer_order_id" value="<?php echo $this->input->post('t_customer_order_id'); ?>" />
@@ -57,6 +58,9 @@
     <input type="hidden" id="MESSAGE" value="<?php echo $this->input->post('MESSAGE'); ?>">
     <input type="hidden" id="PROFILE_TYPE" value="<?php echo $this->input->post('PROFILE_TYPE'); ?>">
 
+    <input type="hidden" id="p_vat_type_id"/>
+    
+
 
 <!-- end breadcrumb -->
 <div class="space-4"></div>
@@ -64,6 +68,12 @@
     <div class="col-xs-12">
         <div class="tabbable">
             <ul class="nav nav-tabs">
+                <li class="">
+                    <a href="javascript:;" data-toggle="tab" aria-expanded="true" class="back" id="tab-0">
+                        <i class="blue"></i>
+                        <strong> SPTPD (Pelaporan Pajak) </strong>
+                    </a>
+                </li>
                 <li class="active">
                     <a href="javascript:;" data-toggle="tab" aria-expanded="true" class="back" id="tab-1">
                         <i class="blue"></i>
@@ -160,11 +170,60 @@
 </div>
 
 <script type="text/javascript">
+    var t_cust_account_id = $('#t_cust_account_id').val();
+
+    $.ajax({
+            url: "<?php echo WS_JQGRID .'transaksi_wf.data_potensi_ro_otobuk_controller/get_Pajak'; ?>" ,
+            type: "POST",            
+            data: {t_cust_account_id: t_cust_account_id},
+            success: function (data) {
+                //alert(data.result);
+                var jenis_pajak = data.result;
+                $('#p_vat_type_id').val(jenis_pajak);
+
+                if(jenis_pajak == 1){
+                    $('#table_hiburan').css('display', 'none');
+                    $('#table_ppj').css('display', 'none');
+                    $('#table_parkir').css('display', 'none');
+                    $('#table_restoran').css('display', 'none');
+                }else if(jenis_pajak == 3){
+                    $('#table_hotel').css('display', 'none');
+                    $('#table_ppj').css('display', 'none');
+                    $('#table_parkir').css('display', 'none');
+                    $('#table_restoran').css('display', 'none');
+                }else if(jenis_pajak == 5){
+                    $('#table_hotel').css('display', 'none');
+                    $('#table_hiburan').css('display', 'none');
+                    $('#table_parkir').css('display', 'none');
+                    $('#table_restoran').css('display', 'none');
+                }else if(jenis_pajak == 4){
+                    $('#table_hotel').css('display', 'none');
+                    $('#table_hiburan').css('display', 'none');
+                    $('#table_ppj').css('display', 'none');
+                    $('#table_restoran').css('display', 'none');
+                }else if(jenis_pajak == 2){
+                    $('#table_hotel').css('display', 'none');
+                    $('#table_hiburan').css('display', 'none');
+                    $('#table_parkir').css('display', 'none');
+                    $('#table_ppj').css('display', 'none');
+                }
+            },
+            error: function (xhr, status, error) {
+                swal({title: "Error!", text: xhr.responseText, html: true, type: "error"});
+            }
+    });
+
+    
+</script>
+
+<script type="text/javascript">
+    
     jQuery(function ($) {
         var grid_selector = "#grid-table-pegawai";
         jQuery("#grid-table-pegawai").jqGrid({
             url: '<?php echo WS_JQGRID . "transaksi_wf.data_potensi_ro_otobuk_controller/read_pegawai"; ?>',
             datatype: "json",
+            postData:{p_vat_type_id:jenis_pajak},
             mtype: "POST",
             colModel: [
                 {label: 'ID Cust Account', name: 't_cust_account_id', hidden:true},
@@ -174,7 +233,7 @@
                 {label: 'Gaji Pegawai',name: 'employee_salery',width: 180, summaryTpl:"{0}",summaryType:"sum", formatter:'currency', formatoptions: {prefix:"", thousandsSeparator:','},align: "left"},
                 {label: 'Berlaku Dari',name: 'valid_from',width: 150, align: "left"},
                 {label: 'Berlaku Sampai',name: 'valid_to',width: 170, align: "left"},
-                {label: 'Deskripsi',name: 'description',width: 200, align: "left"}
+                {label: 'Deskripsi',name: 'description',width: 215, align: "left"}
             ],
             height: '100%',
             autowidth: false,
@@ -209,6 +268,7 @@
         jQuery("#grid-table-pajak-hotel").jqGrid({
             url: '<?php echo WS_JQGRID . "transaksi_wf.data_potensi_ro_otobuk_controller/read_data_pajak"; ?>',
             datatype: "json",
+            postData:{p_vat_type_id:jenis_pajak},
             mtype: "POST",
             colModel: [
                 {label: 'ID Cust Account', name: 't_cust_account_id', hidden:true},
@@ -253,6 +313,7 @@
         jQuery("#grid-table-pajak-restoran").jqGrid({
             url: '<?php echo WS_JQGRID . "transaksi_wf.data_potensi_ro_otobuk_controller/read_data_pajak"; ?>',
             datatype: "json",
+            postData:{p_vat_type_id:jenis_pajak},
             mtype: "POST",
             colModel: [
                 {label: 'ID Cust Account', name: 't_cust_account_id', hidden:true},
@@ -298,6 +359,7 @@
         jQuery("#grid-table-pajak-hiburan").jqGrid({
             url: '<?php echo WS_JQGRID . "transaksi_wf.data_potensi_ro_otobuk_controller/read_data_pajak"; ?>',
             datatype: "json",
+            postData:{p_vat_type_id:jenis_pajak},
             mtype: "POST",
             colModel: [
                 {label: 'ID Cust Account', name: 't_cust_account_id', hidden:true},
@@ -346,6 +408,7 @@
         jQuery("#grid-table-pajak-parkir").jqGrid({
             url: '<?php echo WS_JQGRID . "transaksi_wf.data_potensi_ro_otobuk_controller/read_data_pajak"; ?>',
             datatype: "json",
+            postData:{p_vat_type_id:jenis_pajak},
             mtype: "POST",
             colModel: [
                 {label: 'ID Cust Account', name: 't_cust_account_id', hidden:true},
@@ -389,6 +452,7 @@
         jQuery("#grid-table-pajak-ppj").jqGrid({
             url: '<?php echo WS_JQGRID . "transaksi_wf.data_potensi_ro_otobuk_controller/read_data_pajak"; ?>',
             datatype: "json",
+            postData:{p_vat_type_id:jenis_pajak},
             mtype: "POST",
             colModel: [
                 {label: 'ID Cust Account', name: 't_cust_account_id', hidden:true},
@@ -431,66 +495,96 @@
 </script>
 
 <script type="text/javascript">
-    $('#tab-2').on('click', function(event){
+    $('#tab-0').on('click', function(event){
         var idelement;
-        loadContentWithParams('transaksi_wf.t_order_log_kronologis_otobuk'
-        /*if (idelement = $('#t_customer_order_id'))
-        {
-            
-            //console.log(idelement);
-            var pid=idelement.val();
-            //console.log($('#t_customer_order_id').val());
-            var req_code=$('#rqst_type_code').val();
-            var id_req=$('#p_rqst_type_id').val();
-            var id_vat=$('#t_bphtb_registration_id').val();
-            if (pid != 0)
-            {
-                //loadContentWithParams('transaksi_wf.t_cust_order_legal_doc_ro', {t_bphtb_registration_id:id_vat,rqst_type_code:req_code,p_rqst_type_id:id_req,t_customer_order_id:pid});
+        loadContentWithParams("transaksi_wf.t_vat_setllement_ro_otobuk", { //model yang ketiga
+            t_vat_setllement_id:$('#t_vat_setllement_id').val(),
+            npwd:$('#npwd').val(),
+            t_cust_account_id:$('#t_cust_account_id').val(),
+            finance_period_code:$('#finance_period_code').val(),
+            p_finance_period_id:$('#p_finance_period_id').val(),
+            t_customer_order_id:$('#t_customer_order_id').val(),
+            order_no:$('#order_no').val(),
+            p_rqst_type_id:$('#p_rqst_type_id').val(),
+            rqst_type_code:$('#rqst_type_code').val(),
+            ELEMENT_ID : $('#TEMP_ELEMENT_ID').val(),
+            PROFILE_TYPE : $('#TEMP_PROFILE_TYPE').val(),
+            P_W_DOC_TYPE_ID : $('#TEMP_P_W_DOC_TYPE_ID').val(),
+            P_W_PROC_ID : $('#TEMP_P_W_PROC_ID').val(),
+            USER_ID : $('#TEMP_USER_ID').val(),
+            FSUMMARY : $('#TEMP_FSUMMARY').val(),
+            CURR_DOC_ID : $('#CURR_DOC_ID').val(),
+            CURR_DOC_TYPE_ID : $('#CURR_DOC_TYPE_ID').val(),
+            CURR_PROC_ID : $('#CURR_PROC_ID').val(),
+            CURR_CTL_ID : $('#CURR_CTL_ID').val(),
+            USER_ID_DOC : $('#USER_ID_DOC').val(),
+            USER_ID_DONOR : $('#USER_ID_DONOR').val(),
+            USER_ID_LOGIN : $('#USER_ID_LOGIN').val(),
+            USER_ID_TAKEN : $('#USER_ID_TAKEN').val(),
+            IS_CREATE_DOC : $('#IS_CREATE_DOC').val(),
+            IS_MANUAL : $('#IS_MANUAL').val(),
+            CURR_PROC_STATUS : $('#CURR_PROC_STATUS').val(),
+            CURR_DOC_STATUS : $('#CURR_DOC_STATUS').val(),
+            PREV_DOC_ID : $('#PREV_DOC_ID').val(),
+            PREV_DOC_TYPE_ID : $('#PREV_DOC_TYPE_ID').val(),
+            PREV_PROC_ID : $('#PREV_PROC_ID').val(),
+            PREV_CTL_ID : $('#PREV_CTL_ID').val(),
+            SLOT_1 : $('#SLOT_1').val(),
+            SLOT_2 : $('#SLOT_2').val(),
+            SLOT_3 : $('#SLOT_3').val(),
+            SLOT_4 : $('#SLOT_4').val(),
+            SLOT_5 : $('#SLOT_5').val(),
+            MESSAGE : $('#MESSAGE').val(),
+            PROFILE_TYPE : $('#PROFILE_TYPE').val(),
+            ACTION_STATUS : $('#ACTION_STATUS').val()
+                
+        });
+        
+    });
 
-                loadContentWithParams("transaksi_wf.t_cust_order_legal_doc_ro_ver", { //model yang ketiga
-                t_customer_order_id: $( "#CURR_DOC_ID" ).val(),
-                t_bphtb_registration_id:$('#t_bphtb_registration_id').val(),
-                rqst_type_code:$('#rqst_type_code').val(),
-                order_no: $('#order_no').val(),
-                order_date:$('#registration_date').val(),
-                p_rqst_type_id: $("#p_rqst_type_id").val(),
-                t_vat_registration_id: $( "#t_vat_registration_id" ).val(),
-                ELEMENT_ID : $('#TEMP_ELEMENT_ID').val(),
-                PROFILE_TYPE : $('#TEMP_PROFILE_TYPE').val(),
-                P_W_DOC_TYPE_ID : $('#TEMP_P_W_DOC_TYPE_ID').val(),
-                P_W_PROC_ID : $('#TEMP_P_W_PROC_ID').val(),
-                USER_ID : $('#TEMP_USER_ID').val(),
-                FSUMMARY : $('#TEMP_FSUMMARY').val(),
-                CURR_DOC_ID : $('#CURR_DOC_ID').val(),
-                CURR_DOC_TYPE_ID : $('#CURR_DOC_TYPE_ID').val(),
-                CURR_PROC_ID : $('#CURR_PROC_ID').val(),
-                CURR_CTL_ID : $('#CURR_CTL_ID').val(),
-                USER_ID_DOC : $('#USER_ID_DOC').val(),
-                USER_ID_DONOR : $('#USER_ID_DONOR').val(),
-                USER_ID_LOGIN : $('#USER_ID_LOGIN').val(),
-                USER_ID_TAKEN : $('#USER_ID_TAKEN').val(),
-                IS_CREATE_DOC : $('#IS_CREATE_DOC').val(),
-                IS_MANUAL : $('#IS_MANUAL').val(),
-                CURR_PROC_STATUS : $('#CURR_PROC_STATUS').val(),
-                CURR_DOC_STATUS : $('#CURR_DOC_STATUS').val(),
-                PREV_DOC_ID : $('#PREV_DOC_ID').val(),
-                PREV_DOC_TYPE_ID : $('#PREV_DOC_TYPE_ID').val(),
-                PREV_PROC_ID : $('#PREV_PROC_ID').val(),
-                PREV_CTL_ID : $('#PREV_CTL_ID').val(),
-                SLOT_1 : $('#SLOT_1').val(),
-                SLOT_2 : $('#SLOT_2').val(),
-                SLOT_3 : $('#SLOT_3').val(),
-                SLOT_4 : $('#SLOT_4').val(),
-                SLOT_5 : $('#SLOT_5').val(),
-                MESSAGE : $('#MESSAGE').val(),
-                PROFILE_TYPE : $('#PROFILE_TYPE').val(),
-                ACTION_STATUS : $('#ACTION_STATUS').val()});
-            } else {
-                swal({title: "Error!", text: "Pilih salah satu ORDER!", html: true, type: "error"});
-            }
-        } else {
-            swal({title: "Error!", text: "Pilih salah satu ORDER!!!", html: true, type: "error"});
-        }*/
-        );
+    $('#tab-2').on('click', function(event){
+        loadContentWithParams("transaksi_wf.t_order_log_kronologis_otobuk", { //model yang ketiga
+            t_vat_setllement_id:$('#t_vat_setllement_id').val(),
+            npwd:$('#npwd').val(),
+            t_cust_account_id:$('#t_cust_account_id').val(),
+            finance_period_code:$('#finance_period_code').val(),
+            p_finance_period_id:$('#p_finance_period_id').val(),
+            t_customer_order_id:$('#t_customer_order_id').val(),
+            order_no:$('#order_no').val(),
+            p_rqst_type_id:$('#p_rqst_type_id').val(),
+            rqst_type_code:$('#rqst_type_code').val(),
+            ELEMENT_ID : $('#TEMP_ELEMENT_ID').val(),
+            PROFILE_TYPE : $('#TEMP_PROFILE_TYPE').val(),
+            P_W_DOC_TYPE_ID : $('#TEMP_P_W_DOC_TYPE_ID').val(),
+            P_W_PROC_ID : $('#TEMP_P_W_PROC_ID').val(),
+            USER_ID : $('#TEMP_USER_ID').val(),
+            FSUMMARY : $('#TEMP_FSUMMARY').val(),
+            CURR_DOC_ID : $('#CURR_DOC_ID').val(),
+            CURR_DOC_TYPE_ID : $('#CURR_DOC_TYPE_ID').val(),
+            CURR_PROC_ID : $('#CURR_PROC_ID').val(),
+            CURR_CTL_ID : $('#CURR_CTL_ID').val(),
+            USER_ID_DOC : $('#USER_ID_DOC').val(),
+            USER_ID_DONOR : $('#USER_ID_DONOR').val(),
+            USER_ID_LOGIN : $('#USER_ID_LOGIN').val(),
+            USER_ID_TAKEN : $('#USER_ID_TAKEN').val(),
+            IS_CREATE_DOC : $('#IS_CREATE_DOC').val(),
+            IS_MANUAL : $('#IS_MANUAL').val(),
+            CURR_PROC_STATUS : $('#CURR_PROC_STATUS').val(),
+            CURR_DOC_STATUS : $('#CURR_DOC_STATUS').val(),
+            PREV_DOC_ID : $('#PREV_DOC_ID').val(),
+            PREV_DOC_TYPE_ID : $('#PREV_DOC_TYPE_ID').val(),
+            PREV_PROC_ID : $('#PREV_PROC_ID').val(),
+            PREV_CTL_ID : $('#PREV_CTL_ID').val(),
+            SLOT_1 : $('#SLOT_1').val(),
+            SLOT_2 : $('#SLOT_2').val(),
+            SLOT_3 : $('#SLOT_3').val(),
+            SLOT_4 : $('#SLOT_4').val(),
+            SLOT_5 : $('#SLOT_5').val(),
+            MESSAGE : $('#MESSAGE').val(),
+            PROFILE_TYPE : $('#PROFILE_TYPE').val(),
+            ACTION_STATUS : $('#ACTION_STATUS').val()
+                
+        });
+        
     });
 </script>

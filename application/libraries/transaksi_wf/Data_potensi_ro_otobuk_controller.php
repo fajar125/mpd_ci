@@ -44,7 +44,7 @@ class Data_potensi_ro_otobuk_controller {
 		$page = getVarClean('page','int',1);
 	    $limit = getVarClean('rows','int',5);
 	    $t_cust_account_id = getVarClean('t_cust_account_id','int',0);
-	    $jenis_pajak = getVarClean('jenis_pajak','str','');
+	    $p_vat_type_id = getVarClean('p_vat_type_id','str','');
 
 	    $data = array('rows' => array(), 'page' => 1, 'records' => 0, 'total' => 1, 'success' => false, 'message' => '');
 
@@ -54,7 +54,7 @@ class Data_potensi_ro_otobuk_controller {
 	        $ci->load->model('transaksi_wf/data_potensi_ro_otobuk');
 	        $table = $ci->data_potensi_ro_otobuk;
 
-	        $result = $table->data_pajak($jenis_pajak, $t_cust_account_id);
+	        $result = $table->data_pajak($p_vat_type_id, $t_cust_account_id);
 	       
 	        $count = count($result);
 
@@ -107,6 +107,28 @@ class Data_potensi_ro_otobuk_controller {
 	    }
 
 	    return $data;
+	}
+
+	function get_Pajak(){
+		$t_cust_account_id = getVarClean('t_cust_account_id','int',0);
+
+		$data = array('rows' => array(), 'page' => 1, 'records' => 0, 'total' => 1, 'success' => false, 'message' => '');
+
+		try {
+			$ci = & get_instance();
+	        $ci->load->model('transaksi_wf/data_potensi_ro_otobuk');
+	        $id = $ci->data_potensi_ro_otobuk;
+
+	        $result = $id->get_vat_type($t_cust_account_id);
+
+	        $data['result'] = $result;
+	        $data['success'] = true;
+
+		} catch (Exception $e) {
+			echo $e.getMessage();
+			exit();
+		}
+		return $data;
 	}
     
 }
