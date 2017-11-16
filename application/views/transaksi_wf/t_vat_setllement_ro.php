@@ -265,7 +265,7 @@ $("#tab-2").on("click", function(event) {
 
         jQuery("#grid-table").jqGrid({
             url: '<?php echo WS_JQGRID."transaksi.t_vat_setllement_ro_controller/read"; ?>',
-            postData: { t_customer_id : $('#CURR_DOC_ID').val() },
+            postData: { t_customer_order_id : $('#CURR_DOC_ID').val() },
             datatype: "json",
             mtype: "POST",
             colModel: [

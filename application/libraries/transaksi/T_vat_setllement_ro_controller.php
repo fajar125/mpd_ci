@@ -42,7 +42,7 @@ class T_vat_setllement_ro_controller {
             $req_param['where'][] = ' a.t_customer_order_id = c.t_customer_order_id ';
             $req_param['where'][] = ' a.t_cust_account_id = d.t_cust_account_id ';
             $req_param['where'][] = ' c.p_rqst_type_id = e.p_rqst_type_id ';
-            $req_param['where'][] = ' a.t_customer_order_id = 10';//.$t_customer_order_id;
+            $req_param['where'][] = ' a.t_customer_order_id = '.$t_customer_order_id;
               
 
             $table->setJQGridParam($req_param);
