@@ -1114,6 +1114,36 @@ class Wf_controller {
          echo json_encode($result);
          exit;
     }
+
+    public function reject_transaksi(){
+        $ci =& get_instance();
+        $userinfo = $ci->session->userdata;
+        $ci->load->model('workflow/wf');
+        $table = $ci->wf;
+
+        $t_vat_setllement_id = getVarClean('t_vat_setllement_id','int',0);
+        $alasan = getVarClean('alasan','str','');
+
+
+        try {
+
+            $sql = "SELECT f_reject_trans(".$t_vat_setllement_id.",'".$userinfo['app_user_name']."','".$alasan."', 0, '') AS msg";
+
+            $query =$table->db->query($sql);
+            $msg = $query->result_array();
+
+
+            $result['success'] = true;
+            $result['message'] = $msg[0]['msg'];
+
+        }catch(Exception $e) {
+            $result['success'] = false;
+            $result['message'] = $e->getMessage();
+        }
+
+        echo json_encode($result);
+        exit;
+    }
 }
 
 /* End of file Groups_controller.php */
