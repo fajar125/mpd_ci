@@ -50,7 +50,7 @@
         <div class="content">
             <!-- BEGIN LOGIN FORM -->
             <form class="login-form" name="login_form" action="<?php echo $login_url;?>" method="post">
-                <h4 class="form-title">SMPD - Lombok Utara</h4>
+                <h4 class="form-title"><center>SMPD - BAPENDA Lombok Utara</center></h4>
                 <?php if($this->session->flashdata('error_message') != ""): ?>
                     <div class="alert alert-danger alert-dismissible" role="alert">
                         <button aria-label="Close" data-dismiss="alert" class="close" type="button"><span aria-hidden="true">×</span></button>
@@ -80,7 +80,7 @@
         </div>
         <!-- END LOGIN -->
         <!-- BEGIN COPYRIGHT -->
-        <div class="copyright"> Copyright &copy; 2017 Lombok Utara. </div>
+        <div class="copyright"> Copyright &copy; 2017. BAPENDA Lombok Utara. </div>
         <!-- END COPYRIGHT -->
         <!--[if lt IE 9]>
 <script src="<?php echo base_url(); ?>assets/global/plugins/respond.min.js"></script>
