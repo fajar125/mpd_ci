@@ -1,0 +1,487 @@
+<!--breadcrumb -->
+<div class="page-bar">
+    <ul class="page-breadcrumb">
+        <li>
+            <a href="<?php base_url(); ?>">Home</a>
+            <i class="fa fa-circle"></i>
+        </li>
+        <li>
+            <span>Data Potensi</span>
+            <i class="fa fa-circle"></i>
+        </li>
+        
+    </ul>
+</div>
+<div class="space-4"></div>
+<!-- parameter untuk kembali ke workflow summary -->
+    <input type="hidden" id="TEMP_ELEMENT_ID" value="<?php echo $this->input->post('ELEMENT_ID'); ?>" />
+    <input type="hidden" id="TEMP_PROFILE_TYPE" value="<?php echo $this->input->post('PROFILE_TYPE'); ?>" />
+    <input type="hidden" id="TEMP_P_W_DOC_TYPE_ID" value="<?php echo $this->input->post('P_W_DOC_TYPE_ID'); ?>" />
+    <input type="hidden" id="TEMP_P_W_PROC_ID" value="<?php echo $this->input->post('P_W_PROC_ID'); ?>" />
+    <input type="hidden" id="TEMP_USER_ID" value="<?php echo $this->input->post('USER_ID'); ?>" />
+    <input type="hidden" id="TEMP_FSUMMARY" value="<?php echo $this->input->post('FSUMMARY'); ?>" />
+    <!-- end type hidden -->
+
+    <!-- paramater untuk kebutuhan submit dan status -->
+    <input type="hidden" id="CURR_DOC_ID" value="<?php echo $this->input->post('CURR_DOC_ID'); ?>">
+    <input type="hidden" id="CURR_DOC_TYPE_ID" value="<?php echo $this->input->post('CURR_DOC_TYPE_ID'); ?>">
+    <input type="hidden" id="CURR_PROC_ID" value="<?php echo $this->input->post('CURR_PROC_ID'); ?>">
+    <input type="hidden" id="CURR_CTL_ID" value="<?php echo $this->input->post('CURR_CTL_ID'); ?>">
+    <input type="hidden" id="USER_ID_DOC" value="<?php echo $this->input->post('USER_ID_DOC'); ?>">
+    <input type="hidden" id="USER_ID_DONOR" value="<?php echo $this->input->post('USER_ID_DONOR'); ?>">
+    <input type="hidden" id="USER_ID_LOGIN" value="<?php echo $this->input->post('USER_ID_LOGIN'); ?>">
+    <input type="hidden" id="USER_ID_TAKEN" value="<?php echo $this->input->post('USER_ID_TAKEN'); ?>">
+    <input type="hidden" id="IS_CREATE_DOC" value="<?php echo $this->input->post('IS_CREATE_DOC'); ?>">
+    <input type="hidden" id="IS_MANUAL" value="<?php echo $this->input->post('IS_MANUAL'); ?>">
+    <input type="hidden" id="CURR_PROC_STATUS" value="<?php echo $this->input->post('CURR_PROC_STATUS'); ?>">
+    <input type="hidden" id="CURR_DOC_STATUS" value="<?php echo $this->input->post('CURR_DOC_STATUS'); ?>">
+    <input type="hidden" id="PREV_DOC_ID" value="<?php echo $this->input->post('PREV_DOC_ID'); ?>">
+    <input type="hidden" id="PREV_DOC_TYPE_ID" value="<?php echo $this->input->post('PREV_DOC_TYPE_ID'); ?>">
+    <input type="hidden" id="PREV_PROC_ID" value="<?php echo $this->input->post('PREV_PROC_ID'); ?>">
+    <input type="hidden" id="PREV_CTL_ID" value="<?php echo $this->input->post('PREV_CTL_ID'); ?>">
+    <input type="hidden" id="SLOT_1" value="<?php echo $this->input->post('SLOT_1'); ?>">
+    <input type="hidden" id="SLOT_2" value="<?php echo $this->input->post('SLOT_2'); ?>">
+    <input type="hidden" id="SLOT_3" value="<?php echo $this->input->post('SLOT_3'); ?>">
+    <input type="hidden" id="SLOT_4" value="<?php echo $this->input->post('SLOT_4'); ?>">
+    <input type="hidden" id="SLOT_5" value="<?php echo $this->input->post('SLOT_5'); ?>">
+    <input type="hidden" id="MESSAGE" value="<?php echo $this->input->post('MESSAGE'); ?>">
+    <input type="hidden" id="PROFILE_TYPE" value="<?php echo $this->input->post('PROFILE_TYPE'); ?>">
+    <input type="hidden" id="ACTION_STATUS" value="<?php echo $this->input->post('ACTION_STATUS'); ?>">
+
+
+<!-- end breadcrumb -->
+<div class="space-4"></div>
+<div class="row">
+    <div class="col-xs-12">
+        <div class="tabbable">
+            <ul class="nav nav-tabs">
+                <li class="active">
+                    <a href="javascript:;" data-toggle="tab" aria-expanded="true" class="back" id="tab-1">
+                        <i class="blue"></i>
+                        <strong> Data Potensi </strong>
+                    </a>
+                </li>
+                <li class="">
+                    <a href="javascript:;" data-toggle="tab" aria-expanded="true" id="tab-2">
+                        <i class="blue"></i>
+                        <strong> Data Log Aktifitas </strong>
+                    </a>
+                </li>
+                <li class="">
+                    <a href="javascript:;" data-toggle="tab" aria-expanded="true" id="tab-3">
+                        <i class="blue"></i>
+                        <strong> Dokumen Pendukung </strong>
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</div>
+
+<div class="tab-content no-border">
+    <div class="row">
+        <div class="col-xs-12">
+            <div id="gbox_grid-table" class="ui-jqgrid">
+                <div id="gview_grid-table" class="ui-jqgrid-view table-responsive" role="grid">
+                    <table id="grid-table-pegawai"></table>
+                </div>
+            </div>            
+        </div>
+    </div>
+</div>
+
+<div class="tab-content no-border" id="table_hotel">
+    <div class="row">
+        <div class="col-xs-12">
+            <div id="gbox_grid-table" class="ui-jqgrid">
+                <div id="gview_grid-table" class="ui-jqgrid-view table-responsive" role="grid">
+                    <table id="grid-table-pajak-hotel"></table>
+                </div>
+            </div>            
+        </div>
+    </div>
+</div>
+
+<div class="tab-content no-border" id="table_restoran">
+    <div class="row">
+        <div class="col-xs-12">
+            <div id="gbox_grid-table" class="ui-jqgrid">
+                <div id="gview_grid-table" class="ui-jqgrid-view table-responsive" role="grid">
+                    <table id="grid-table-pajak-restoran"></table>
+                </div>
+            </div>            
+        </div>
+    </div>
+</div>
+
+<div class="tab-content no-border" id="table_hiburan">
+    <div class="row">
+        <div class="col-xs-12">
+            <div id="gbox_grid-table" class="ui-jqgrid">
+                <div id="gview_grid-table" class="ui-jqgrid-view table-responsive" role="grid">
+                    <table id="grid-table-pajak-hiburan"></table>
+                </div>
+            </div>            
+        </div>
+    </div>
+</div>
+
+<div class="tab-content no-border" id="table_parkir">
+    <div class="row">
+        <div class="col-xs-12">
+            <div id="gbox_grid-table" class="ui-jqgrid">
+                <div id="gview_grid-table" class="ui-jqgrid-view table-responsive" role="grid">
+                    <table id="grid-table-pajak-parkir"></table>
+                </div>
+            </div>            
+        </div>
+    </div>
+</div>
+
+<div class="tab-content no-border" id="table_ppj">
+    <div class="row">
+        <div class="col-xs-12">
+            <div id="gbox_grid-table" class="ui-jqgrid">
+                <div id="gview_grid-table" class="ui-jqgrid-view table-responsive" role="grid">
+                    <table id="grid-table-pajak-ppj"></table>
+                </div>
+            </div>            
+        </div>
+    </div>
+</div>
+
+<script type="text/javascript">
+    jQuery(function ($) {
+        var grid_selector = "#grid-table-pegawai";
+        jQuery("#grid-table-pegawai").jqGrid({
+            url: '<?php echo WS_JQGRID . "transaksi_wf.data_potensi_ro_otobuk_controller/read_pegawai"; ?>',
+            datatype: "json",
+            mtype: "POST",
+            colModel: [
+                {label: 'ID Cust Account', name: 't_cust_account_id', hidden:true},
+                {label: 'ID Cust Account Employee', name: 't_cust_acc_employee_id', hidden:true},
+                {label: 'Jabatan',name: 'jabatan',width: 120, align: "left"},
+                {label: 'Jumlah Pegawai',name: 'employee_qty',width: 150, align: "left"},
+                {label: 'Gaji Pegawai',name: 'employee_salery',width: 180, summaryTpl:"{0}",summaryType:"sum", formatter:'currency', formatoptions: {prefix:"", thousandsSeparator:','},align: "left"},
+                {label: 'Berlaku Dari',name: 'valid_from',width: 150, align: "left"},
+                {label: 'Berlaku Sampai',name: 'valid_to',width: 170, align: "left"},
+                {label: 'Deskripsi',name: 'description',width: 180, align: "left"}
+            ],
+            height: '100%',
+            autowidth: false,
+            viewrecords: true,
+            rowNum: -1,
+            rowList: [10, 20, 50],
+            rownumbers: true, // show row numbers
+            rownumWidth: 35, // the width of the row numbers columns
+            altRows: true,
+            shrinkToFit: false,
+            multiboxonly: true,
+            footerrow: true,
+           
+            gridComplete: function() {
+                
+            },
+            onSelectRow: function (rowid) {
+                /*do something when selected*/
+
+            },
+            loadComplete: function () {                
+               
+            },
+              
+            caption: "DAFTAR POTENSI PEGAWAI"
+        });
+        
+    });
+
+    jQuery(function ($) {
+        var grid_selector = "#grid-table-pajak-hotel";
+        jQuery("#grid-table-pajak-hotel").jqGrid({
+            url: '<?php echo WS_JQGRID . "transaksi_wf.data_potensi_ro_otobuk_controller/read_data_pajak"; ?>',
+            datatype: "json",
+            mtype: "POST",
+            colModel: [
+                {label: 'ID Cust Account', name: 't_cust_account_id', hidden:true},
+                {label: 'ID dtl', name: 't_cacc_dtl_hotel_id', hidden:true},
+                {label: 'Golongan Kamar',name: 'room_type_code',width: 120, align: "left"},
+                {label: 'Jumlah Kamar',name: 'room_qty',width: 150, align: "left"},
+                {label: 'Frekuensi PL',name: 'service_qty',width: 120, align: "left"},
+                {label: 'Tarif Weekend',name: 'service_charge_we',width: 180, summaryTpl:"{0}",summaryType:"sum", formatter:'currency', formatoptions: {prefix:"", thousandsSeparator:','},align: "left"},
+                {label: 'Berlaku Dari',name: 'valid_from',width: 150, align: "left"},
+                {label: 'Berlaku Sampai',name: 'valid_to',width: 170, align: "left"}
+            ],
+            height: '100%',
+            autowidth: false,
+            viewrecords: true,
+            rowNum: -1,
+            rowList: [10, 20, 50],
+            rownumbers: true, // show row numbers
+            rownumWidth: 35, // the width of the row numbers columns
+            altRows: true,
+            shrinkToFit: false,
+            multiboxonly: true,
+            footerrow: true,
+           
+            gridComplete: function() {
+                
+            },
+            onSelectRow: function (rowid) {
+                /*do something when selected*/
+
+            },
+            loadComplete: function () {                
+               
+            },
+              
+            caption: "DAFTAR POTENSI PAJAK HOTEL"
+        });
+        
+    });    
+
+    jQuery(function ($) {
+        var grid_selector = "#grid-table-pajak-restoran";
+        jQuery("#grid-table-pajak-restoran").jqGrid({
+            url: '<?php echo WS_JQGRID . "transaksi_wf.data_potensi_ro_otobuk_controller/read_data_pajak"; ?>',
+            datatype: "json",
+            mtype: "POST",
+            colModel: [
+                {label: 'ID Cust Account', name: 't_cust_account_id', hidden:true},
+                {label: 'ID dtl restaurant', name: 't_cacc_dtl_restaurant_id', hidden:true},
+                {label: 'Jenis Pelayanan',name: 'service_type_desc',width: 120, align: "left"},
+                {label: 'Jumlah Kursi',name: 'seat_qty',width: 150, align: "left"},
+                {label: 'Jumlah Meja',name: 'table_qty',width: 120, align: "left"},
+                {label: 'Daya Tampung',name: 'max_service_qty',width: 120, align: "left"},
+                {label: 'Jumlah Pengunjung Rata-rata Per Bulan',name: 'avg_subscription',width: 120, align: "left"},
+                {label: 'Berlaku Dari',name: 'valid_from',width: 150, align: "left"},
+                {label: 'Berlaku Sampai',name: 'valid_to',width: 170, align: "left"}
+            ],
+            height: '100%',
+            autowidth: false,
+            viewrecords: true,
+            rowNum: -1,
+            rowList: [10, 20, 50],
+            rownumbers: true, // show row numbers
+            rownumWidth: 35, // the width of the row numbers columns
+            altRows: true,
+            shrinkToFit: false,
+            multiboxonly: true,
+            footerrow: true,
+           
+            gridComplete: function() {
+                
+            },
+            onSelectRow: function (rowid) {
+                /*do something when selected*/
+
+            },
+            loadComplete: function () {                
+               
+            },
+              
+            caption: "DAFTAR POTENSI PAJAK RESTORAN"
+        });
+        
+    });
+
+    jQuery(function ($) {
+        var grid_selector = "#grid-table-pajak-hiburan";
+        jQuery("#grid-table-pajak-hiburan").jqGrid({
+            url: '<?php echo WS_JQGRID . "transaksi_wf.data_potensi_ro_otobuk_controller/read_data_pajak"; ?>',
+            datatype: "json",
+            mtype: "POST",
+            colModel: [
+                {label: 'ID Cust Account', name: 't_cust_account_id', hidden:true},
+                {label: 'ID dtl restaurant', name: 't_cacc_dtl_entertaintment_id', hidden:true},
+                {label: 'Jenis Hiburan',name: 'entertainment_desc',width: 120, align: "left"},
+                {label: 'Tarif Weekend',name: 'service_charge_we',width: 180, summaryTpl:"{0}",summaryType:"sum", formatter:'currency', formatoptions: {prefix:"", thousandsSeparator:','},align: "left"},
+                {label: 'Jumlah Lembar Meja/Kursi',name: 'seat_qty',width: 150, align: "left"},
+                {label: 'Jumlah Room',name: 'room_qty',width: 120, align: "left"},
+                {label: 'Jumlah PL',name: 'clerk_qty',width: 120, align: "left"},
+                {label: 'Booking Jam',name: ' booking_hour',width: 120, align: "left"},
+                {label: 'F & B',name: ' f_and_b',width: 120, align: "left"},
+                {label: 'Porsi/Orang',name: ' portion_person',width: 120, align: "left"},
+                {label: 'Berlaku Dari',name: 'valid_from',width: 150, align: "left"},
+                {label: 'Berlaku Sampai',name: 'valid_to',width: 170, align: "left"}
+            ],
+            height: '100%',
+            autowidth: false,
+            viewrecords: true,
+            rowNum: -1,
+            rowList: [10, 20, 50],
+            rownumbers: true, // show row numbers
+            rownumWidth: 35, // the width of the row numbers columns
+            altRows: true,
+            shrinkToFit: false,
+            multiboxonly: true,
+            footerrow: true,
+           
+            gridComplete: function() {
+                
+            },
+            onSelectRow: function (rowid) {
+                /*do something when selected*/
+
+            },
+            loadComplete: function () {                
+               
+            },
+              
+            caption: "DAFTAR POTENSI PAJAK HIBURAN"
+        });
+        
+    });
+
+    jQuery(function ($) {
+        var grid_selector = "#grid-table-pajak-parkir";
+        jQuery("#grid-table-pajak-parkir").jqGrid({
+            url: '<?php echo WS_JQGRID . "transaksi_wf.data_potensi_ro_otobuk_controller/read_data_pajak"; ?>',
+            datatype: "json",
+            mtype: "POST",
+            colModel: [
+                {label: 'ID Cust Account', name: 't_cust_account_id', hidden:true},
+                {label: 'ID dtl Parking', name: 't_acc_dtl_parking_id', hidden:true},
+                {label: 'Luas Lahan Parkir',name: 'parking_size',width: 120, align: "left"},
+                {label: 'Daya Tampung Kendaraan Bermotor',name: 'max_load_qty',width: 150, align: "left"},
+                {label: 'Frekuensi Kendaraan Bermotor',name: 'avg_subscription_qty',width: 120, align: "left"},
+                {label: 'Berlaku Dari',name: 'valid_from',width: 150, align: "left"},
+                {label: 'Berlaku Sampai',name: 'valid_to',width: 170, align: "left"}
+            ],
+            height: '100%',
+            autowidth: false,
+            viewrecords: true,
+            rowNum: -1,
+            rowList: [10, 20, 50],
+            rownumbers: true, // show row numbers
+            rownumWidth: 35, // the width of the row numbers columns
+            altRows: true,
+            shrinkToFit: false,
+            multiboxonly: true,
+            footerrow: true,
+           
+            gridComplete: function() {
+                
+            },
+            onSelectRow: function (rowid) {
+                /*do something when selected*/
+
+            },
+            loadComplete: function () {                
+               
+            },
+              
+            caption: "DAFTAR POTENSI PAJAK PARKIR"
+        });
+        
+    });
+
+    jQuery(function ($) {
+        var grid_selector = "#grid-table-pajak-ppj";
+        jQuery("#grid-table-pajak-ppj").jqGrid({
+            url: '<?php echo WS_JQGRID . "transaksi_wf.data_potensi_ro_otobuk_controller/read_data_pajak"; ?>',
+            datatype: "json",
+            mtype: "POST",
+            colModel: [
+                {label: 'ID Cust Account', name: 't_cust_account_id', hidden:true},
+                {label: 'ID dtl Parking', name: 't_cacc_dtl_ppj_id', hidden:true},
+                {label: 'Golongan',name: 'pwr_classification_desc',width: 120, align: "left"},
+                {label: 'Kapasitas Daya',name: 'power_capacity',width: 150, align: "left"},
+                {label: 'Harga Satuan',name: 'service_charge',width: 180, summaryTpl:"{0}",summaryType:"sum", formatter:'currency', formatoptions: {prefix:"", thousandsSeparator:','},align: "left"},
+                {label: 'Faktor Daya',name: 'power_factor',width: 120, align: "left"},
+                {label: 'Keterangan',name: 'description',width: 120, align: "left"},
+                {label: 'Berlaku Dari',name: 'valid_from',width: 150, align: "left"},
+                {label: 'Berlaku Sampai',name: 'valid_to',width: 170, align: "left"}
+            ],
+            height: '100%',
+            autowidth: false,
+            viewrecords: true,
+            rowNum: -1,
+            rowList: [10, 20, 50],
+            rownumbers: true, // show row numbers
+            rownumWidth: 35, // the width of the row numbers columns
+            altRows: true,
+            shrinkToFit: false,
+            multiboxonly: true,
+            footerrow: true,
+           
+            gridComplete: function() {
+                
+            },
+            onSelectRow: function (rowid) {
+                /*do something when selected*/
+
+            },
+            loadComplete: function () {                
+               
+            },
+              
+            caption: "DAFTAR POTENSI PAJAK PPJ PLN"
+        });
+        
+    });
+</script>
+
+<script type="text/javascript">
+    $('#tab-2').on('click', function(event){
+        var idelement;
+        loadContentWithParams('transaksi_wf.t_order_log_kronologis_otobuk'
+        /*if (idelement = $('#t_customer_order_id'))
+        {
+            
+            //console.log(idelement);
+            var pid=idelement.val();
+            //console.log($('#t_customer_order_id').val());
+            var req_code=$('#rqst_type_code').val();
+            var id_req=$('#p_rqst_type_id').val();
+            var id_vat=$('#t_bphtb_registration_id').val();
+            if (pid != 0)
+            {
+                //loadContentWithParams('transaksi_wf.t_cust_order_legal_doc_ro', {t_bphtb_registration_id:id_vat,rqst_type_code:req_code,p_rqst_type_id:id_req,t_customer_order_id:pid});
+
+                loadContentWithParams("transaksi_wf.t_cust_order_legal_doc_ro_ver", { //model yang ketiga
+                t_customer_order_id: $( "#CURR_DOC_ID" ).val(),
+                t_bphtb_registration_id:$('#t_bphtb_registration_id').val(),
+                rqst_type_code:$('#rqst_type_code').val(),
+                order_no: $('#order_no').val(),
+                order_date:$('#registration_date').val(),
+                p_rqst_type_id: $("#p_rqst_type_id").val(),
+                t_vat_registration_id: $( "#t_vat_registration_id" ).val(),
+                ELEMENT_ID : $('#TEMP_ELEMENT_ID').val(),
+                PROFILE_TYPE : $('#TEMP_PROFILE_TYPE').val(),
+                P_W_DOC_TYPE_ID : $('#TEMP_P_W_DOC_TYPE_ID').val(),
+                P_W_PROC_ID : $('#TEMP_P_W_PROC_ID').val(),
+                USER_ID : $('#TEMP_USER_ID').val(),
+                FSUMMARY : $('#TEMP_FSUMMARY').val(),
+                CURR_DOC_ID : $('#CURR_DOC_ID').val(),
+                CURR_DOC_TYPE_ID : $('#CURR_DOC_TYPE_ID').val(),
+                CURR_PROC_ID : $('#CURR_PROC_ID').val(),
+                CURR_CTL_ID : $('#CURR_CTL_ID').val(),
+                USER_ID_DOC : $('#USER_ID_DOC').val(),
+                USER_ID_DONOR : $('#USER_ID_DONOR').val(),
+                USER_ID_LOGIN : $('#USER_ID_LOGIN').val(),
+                USER_ID_TAKEN : $('#USER_ID_TAKEN').val(),
+                IS_CREATE_DOC : $('#IS_CREATE_DOC').val(),
+                IS_MANUAL : $('#IS_MANUAL').val(),
+                CURR_PROC_STATUS : $('#CURR_PROC_STATUS').val(),
+                CURR_DOC_STATUS : $('#CURR_DOC_STATUS').val(),
+                PREV_DOC_ID : $('#PREV_DOC_ID').val(),
+                PREV_DOC_TYPE_ID : $('#PREV_DOC_TYPE_ID').val(),
+                PREV_PROC_ID : $('#PREV_PROC_ID').val(),
+                PREV_CTL_ID : $('#PREV_CTL_ID').val(),
+                SLOT_1 : $('#SLOT_1').val(),
+                SLOT_2 : $('#SLOT_2').val(),
+                SLOT_3 : $('#SLOT_3').val(),
+                SLOT_4 : $('#SLOT_4').val(),
+                SLOT_5 : $('#SLOT_5').val(),
+                MESSAGE : $('#MESSAGE').val(),
+                PROFILE_TYPE : $('#PROFILE_TYPE').val(),
+                ACTION_STATUS : $('#ACTION_STATUS').val()});
+            } else {
+                swal({title: "Error!", text: "Pilih salah satu ORDER!", html: true, type: "error"});
+            }
+        } else {
+            swal({title: "Error!", text: "Pilih salah satu ORDER!!!", html: true, type: "error"});
+        }*/
+        );
+    });
+</script>
