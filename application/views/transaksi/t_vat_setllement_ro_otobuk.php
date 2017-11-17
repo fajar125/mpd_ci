@@ -208,7 +208,7 @@
     <!-- end type hidden -->
 </div>
 <?php
-    $this->load->view('workflow/lov_submitter_non_reject_and_send_back.php');
+    $this->load->view('workflow/lov_submitter.php');
 ?>
 
 <script>

@@ -105,7 +105,7 @@
                                 <a class="collapse" href="javascript:;" data-original-title="" title=""> </a>
                             </div>
                         </div>
-                        <div class="portlet-body">   
+                        <div class="portlet-body">
                             <div class="form-horizontal">
                                 <div class="row">
                                     <div class="form-group">
@@ -116,14 +116,14 @@
                                         </div>
                                     </div>
                                     <div class="form-group">
-                                        <label class="control-label col-md-4">Jenis Pajak 
+                                        <label class="control-label col-md-4">Jenis Pajak
                                         </label>
                                         <div class="col-md-5">
                                             <input type="text" class="form-control" readonly  name="jenis_pajak" id="jenis_pajak">
                                         </div>
                                     </div>
                                     <div class="form-group">
-                                        <label class="control-label col-md-4">NPWPD 
+                                        <label class="control-label col-md-4">NPWPD
                                         </label>
                                         <div class="col-md-5">
                                             <input type="text" class="form-control" readonly  name="npwd" id="npwd">
@@ -143,7 +143,7 @@
                                         <div class="col-md-5">
                                             <div class="input-group ">
                                                 <textarea rows="4" cols="50" class="form-control" readonly maxlength="256"  name="wp_address_name" id="wp_address_name"></textarea>
-                                            </div> 
+                                            </div>
                                         </div>
                                     </div>
 
@@ -153,7 +153,7 @@
                                         <div class="col-md-5">
                                             <div class="input-group ">
                                                 <input type="text" class="form-control" readonly   name="finance_period_code" id="finance_period_code">
-                                            </div> 
+                                            </div>
                                         </div>
                                     </div>
 
@@ -194,7 +194,7 @@
                                     </div>
 
                                     <div class="form-group">
-                                        <label class="control-label col-md-4">Dasar Pengenaan 
+                                        <label class="control-label col-md-4">Dasar Pengenaan
                                         </label>
                                         <div class="col-md-5">
                                             <input type="text" class="form-control priceformat" readonly name="debt_vat_amt" id="debt_vat_amt">
@@ -202,7 +202,7 @@
                                     </div>
 
                                     <div class="form-group">
-                                        <label class="control-label col-md-4">Pajak yang Terutang 
+                                        <label class="control-label col-md-4">Pajak yang Terutang
                                         </label>
                                         <div class="col-md-5">
                                             <input type="text" class="form-control priceformat" readonly name="terutang" id="terutang">
@@ -218,7 +218,7 @@
                                     </div>
 
                                     <div class="form-group">
-                                        <label class="control-label col-md-4">Setoran yang dilakukan 
+                                        <label class="control-label col-md-4">Setoran yang dilakukan
                                         </label>
                                         <div class="col-md-5">
                                             <input type="text" class="form-control priceformat" readonly name="cr_payment" id="cr_payment">
@@ -226,7 +226,7 @@
                                     </div>
 
                                     <div class="form-group">
-                                        <label class="control-label col-md-4">Lain-lain 
+                                        <label class="control-label col-md-4">Lain-lain
                                         </label>
                                         <div class="col-md-5">
                                             <input type="text" class="form-control priceformat" readonly name="cr_others" id="cr_others">
@@ -234,7 +234,7 @@
                                     </div>
 
                                     <div class="form-group">
-                                        <label class="control-label col-md-4">STP (Pokok) 
+                                        <label class="control-label col-md-4">STP (Pokok)
                                         </label>
                                         <div class="col-md-5">
                                             <input type="text" class="form-control priceformat" readonly name="cr_stp" id="cr_stp">
@@ -242,7 +242,7 @@
                                     </div>
 
                                     <div class="form-group">
-                                        <label class="control-label col-md-4">Bunga (Pasal 65 ayat(2))  
+                                        <label class="control-label col-md-4">Bunga (Pasal 65 ayat(2))
                                         </label>
                                         <div class="col-md-5">
                                             <input type="text" class="form-control priceformat" readonly name="db_interest_charge" id="db_interest_charge">
@@ -250,7 +250,7 @@
                                     </div>
 
                                     <div class="form-group">
-                                        <label class="control-label col-md-4">Kenaikan (Pasal 65 ayat (3)) 
+                                        <label class="control-label col-md-4">Kenaikan (Pasal 65 ayat (3))
                                         </label>
                                         <div class="col-md-5">
                                             <input type="text" class="form-control priceformat" readonly name="db_increasing_charge" id="db_increasing_charge">
@@ -271,7 +271,7 @@
                                     </div>
 
                                     <div class="form-group">
-                                        <label class="control-label col-md-4">Nomor Kohir 
+                                        <label class="control-label col-md-4">Nomor Kohir
                                         </label>
                                         <div class="col-md-5">
                                             <input type="text" class="form-control required" readonly name="no_kohir" id="no_kohir">
@@ -288,9 +288,9 @@
 
                                                 <input type="hidden" class="form-control " readonly name="payment_key" id="payment_key">
 
-                                                <a class="btn green" id="print_pembayaran" onClick="printPembayaran();"> Print No Pembayaran                                                   
+                                                <a class="btn green" id="print_pembayaran" onClick="printPembayaran();"> Print No Pembayaran
                                                 </a>
-                                                
+
                                                 <a href="javascript:;" style="DISPLAY: none" class="btn green" id="Update"  > SIMPAN
                                                 </a>
 
@@ -317,7 +317,7 @@
 </script>
 
 <!-- script untuk workflow -->
-<?php $this->load->view('workflow/lov_submitter.php'); ?>
+<?php $this->load->view('workflow/lov_submitter_non_reject_and_send_back.php'); ?>
 <?php $this->load->view('workflow/lov_reject.php'); ?>
 <script>
     /* parameter kembali ke workflow summary */
@@ -328,7 +328,7 @@
     params_back_summary.P_W_PROC_ID = $('#TEMP_P_W_PROC_ID').val();
     params_back_summary.USER_ID = $('#TEMP_USER_ID').val();
     params_back_summary.FSUMMARY = $('#TEMP_FSUMMARY').val();
-    /* end parameter */ 
+    /* end parameter */
 
     /*ketika tombol cancel diklik, maka kembali ke summary*/
     function backform(){
@@ -345,8 +345,8 @@
 
     function submitform(){
         var params_submit = {};
-        
-        params_submit.CURR_DOC_ID         = $('#CURR_DOC_ID').val();  
+
+        params_submit.CURR_DOC_ID         = $('#CURR_DOC_ID').val();
         params_submit.CURR_DOC_TYPE_ID    = $('#CURR_DOC_TYPE_ID').val();
         params_submit.CURR_PROC_ID        = $('#CURR_PROC_ID').val();
         params_submit.CURR_CTL_ID         = $('#CURR_CTL_ID').val();
@@ -362,17 +362,17 @@
         params_submit.PREV_DOC_TYPE_ID    = $('#PREV_DOC_TYPE_ID').val();
         params_submit.PREV_PROC_ID        = $('#PREV_PROC_ID').val();
         params_submit.PREV_CTL_ID         = $('#PREV_CTL_ID').val();
-        params_submit.SLOT_1              = $('#SLOT_1').val();    
-        params_submit.SLOT_2              = $('#SLOT_2').val(); 
-        params_submit.SLOT_3              = $('#SLOT_3').val();    
-        params_submit.SLOT_4              = $('#SLOT_4').val();  
-        params_submit.SLOT_5              = $('#SLOT_5').val();    
-        params_submit.MESSAGE             = $('#MESSAGE').val();    
+        params_submit.SLOT_1              = $('#SLOT_1').val();
+        params_submit.SLOT_2              = $('#SLOT_2').val();
+        params_submit.SLOT_3              = $('#SLOT_3').val();
+        params_submit.SLOT_4              = $('#SLOT_4').val();
+        params_submit.SLOT_5              = $('#SLOT_5').val();
+        params_submit.MESSAGE             = $('#MESSAGE').val();
         params_submit.PROFILE_TYPE        = $('#PROFILE_TYPE').val();
         params_submit.ACTION_STATUS       = $('#ACTION_STATUS').val();
 
         if (  $('#ACTION_STATUS').val() != 'VIEW' ) {
-            modal_lov_submitter_show(params_submit, params_back_summary); 
+            modal_lov_submitter_show(params_submit, params_back_summary);
         } else {
             loadContentWithParams( $('#TEMP_FSUMMARY').val() , params_back_summary );
         }
@@ -392,9 +392,9 @@
 
 <script>
 
-   var nilai; // variabel global untuk pengecekan kolom Cetak SPTPD/SKPDKB/SKPDN 
+   var nilai; // variabel global untuk pengecekan kolom Cetak SPTPD/SKPDKB/SKPDN
    var is_ada; // variabel global untuk pengecekan kolom Cetak SPTPD
-   
+
 
     jQuery(function($) {
         var grid_selector = "#grid-table";
@@ -418,7 +418,7 @@
                         var p_rqst_type_id = rowObject['p_rqst_type_id'];
                         var rqst_type_code = rowObject['rqst_type_code'];
 
-                        
+
                         return '<button class="btn btn-xs btn-danger"  type="button" id="btn-det" onClick="detail('+
                                     t_vat_setllement_id+',\''+
                                     npwd+'\','+
@@ -431,7 +431,7 @@
                                     rqst_type_code+'\''
                                     +');">Detail</button>';
 
-                        
+
 
                     }
                 },
@@ -506,10 +506,10 @@
             footerrow: false,
             userDataOnFooter : true,
             gridComplete: function() {
-                
+
             },
-            grouping: true, 
-                groupingView : { 
+            grouping: true,
+                groupingView : {
                                 },
             onSelectRow: function (rowid) {
                 /*do something when selected*/
@@ -522,7 +522,7 @@
                 repeatitems: false
             },
             beforeProcessing: function (data) {
-                //untuk mengambil data p_settlement_type_id yang di gunakan untuk kolom Cetak SPTPD/SKPDKB/SKPDN 
+                //untuk mengambil data p_settlement_type_id yang di gunakan untuk kolom Cetak SPTPD/SKPDKB/SKPDN
                 // yang di tampung di dalam variabel global yang di berinama nilai
                 $.ajax({
                     url: '<?php echo WS_JQGRID."transaksi_wf.t_vat_setllement_ro_otobuk_controller/read_type_setllement"; ?>',
@@ -560,14 +560,14 @@
                         swal({title: "Error!", text: xhr.responseText, html: true, type: "error"});
                     }
                 });
-                
+
             },
             loadComplete: function (response) {
                 setTimeout(function(){
                     $("#grid-table").setSelection($("#grid-table").getDataIDs()[0],true);
                 },500);
                 // ============================Untuk Form
-                // untuk mengisi data from nya 
+                // untuk mengisi data from nya
                 $.ajax({
                     url: '<?php echo WS_JQGRID."transaksi_wf.t_vat_setllement_ro_otobuk_controller/read_setllement"; ?>',
                     type: "POST",
@@ -579,9 +579,9 @@
                         if(data.success){
                             var dt = data.items;
                             if (dt != null || dt != ''){
-                                $('#order_no').val(dt.order_no);  
-                                $('#jenis_pajak').val(dt.jenis_pajak);  
-                                $('#npwd').val(dt.npwd); 
+                                $('#order_no').val(dt.order_no);
+                                $('#jenis_pajak').val(dt.jenis_pajak);
+                                $('#npwd').val(dt.npwd);
                                 $('#wp_name').val(dt.wp_name);
                                 $('#wp_address_name').val(dt.wp_address_name);
                                 $('#finance_period_code').val(dt.finance_period_code);
@@ -606,7 +606,7 @@
                                 $('#t_vat_setllement_id').val(dt.t_vat_setllement_id);
                                 $('#t_cust_account_id').val(dt.t_cust_account_id);
                             }
-                        }                    
+                        }
                     },
                     error: function (xhr, status, error) {
                         swal({title: "Error!", text: xhr.responseText, html: true, type: "error"});
@@ -624,10 +624,10 @@
 
         });
 
-        
-        
 
-    });     
+
+
+    });
 </script>
 
 <!-- /script untuk table -->
@@ -647,7 +647,7 @@
                     p_rqst_type_id,
                     rqst_type_code){
 
-        loadContentWithParams("transaksi_wf.t_vat_setllement_dtl_ro_otobuk", { 
+        loadContentWithParams("transaksi_wf.t_vat_setllement_dtl_ro_otobuk", {
                     t_vat_setllement_id:t_vat_setllement_id,
                     npwd:npwd,
                     t_cust_account_id:t_cust_account_id,
@@ -699,7 +699,7 @@
                     p_rqst_type_id,
                     rqst_type_code){
 
-        loadContentWithParams("transaksi_wf.t_sptpd_legal_doc_ro_otobuk", { 
+        loadContentWithParams("transaksi_wf.t_sptpd_legal_doc_ro_otobuk", {
                     t_vat_setllement_id:t_vat_setllement_id,
                     npwd:npwd,
                     t_cust_account_id:t_cust_account_id,
@@ -740,7 +740,7 @@
                     PROFILE_TYPE : $('#PROFILE_TYPE').val(),
                     ACTION_STATUS : $('#ACTION_STATUS').val()});
     }
-    
+
 
     function cetak1(p_rqst_type_id,t_vat_setllement_id){
         //alert('cetak1 '+p_rqst_type_id+" - "+t_vat_setllement_id);
@@ -750,7 +750,7 @@
         var urlLink = "?t_vat_setllement_id="+t_vat_setllement_id;
         if(p_rqst_type_id == 9){
             url += "cetak_sptpd_hiburan_pdf/pageCetak"+urlLink;
-        }else if(p_rqst_type_id == 7){ 
+        }else if(p_rqst_type_id == 7){
             url += "cetak_sptpd_hotel_pdf/pageCetak"+urlLink;
         }else if(p_rqst_type_id == 10){
             url += "cetak_sptpd_parkir_pdf/pageCetak"+urlLink;
@@ -801,7 +801,7 @@
                     if(data.success){
                         var dt = data.items.payment_key;
                         $('#payment_key').val(dt);
-                    }                    
+                    }
                 },
                 error: function (xhr, status, error) {
                     swal({title: "Error!", text: xhr.responseText, html: true, type: "error"});
@@ -834,13 +834,13 @@
                                 if(data.success){
                                     var dt = data.items.payment_key;
                                     $('#payment_key').val(dt);
-                                }                    
+                                }
                             },
                             error: function (xhr, status, error) {
                                 swal({title: "Error!", text: xhr.responseText, html: true, type: "error"});
                             }
                         });
-                    }                    
+                    }
                 },
                 error: function (xhr, status, error) {
                     swal({title: "Error!", text: xhr.responseText, html: true, type: "error"});
@@ -861,7 +861,7 @@
             success: function (data) {
                 if(data.success){
                     var dt = data.item;
-                }                    
+                }
             },
             error: function (xhr, status, error) {
                 swal({title: "Error!", text: xhr.responseText, html: true, type: "error"});
@@ -931,7 +931,7 @@
                     MESSAGE : $('#MESSAGE').val(),
                     PROFILE_TYPE : $('#PROFILE_TYPE').val(),
                     ACTION_STATUS : $('#ACTION_STATUS').val()
-                
+
             });
     });
 
@@ -977,7 +977,7 @@
                     MESSAGE : $('#MESSAGE').val(),
                     PROFILE_TYPE : $('#PROFILE_TYPE').val(),
                     ACTION_STATUS : $('#ACTION_STATUS').val()
-                
+
             });
     });
 
@@ -1023,7 +1023,7 @@
                     MESSAGE : $('#MESSAGE').val(),
                     PROFILE_TYPE : $('#PROFILE_TYPE').val(),
                     ACTION_STATUS : $('#ACTION_STATUS').val()
-                
+
             });
     });
 </script>
