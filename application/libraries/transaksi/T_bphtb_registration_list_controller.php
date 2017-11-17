@@ -269,8 +269,10 @@ class T_bphtb_registration_list_controller {
                             'land_price_real'=>$land_price_real,
                             'building_area_real'=>$building_area_real,
                             'building_price_real'=>$building_price_real);
-
+            //print_r($param);exit;
             $result = $table->insert($param) ;
+
+            //print_r($result);exit;
             $count = count($result);
 
             $data['rows'] = $result;

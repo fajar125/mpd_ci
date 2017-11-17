@@ -103,10 +103,18 @@ class T_bphtb_registration_list extends Abstract_model {
                 $key == 'bphtb_legal_doc_description'||
                 $key == 'check_potongan')
             {
-                ${"$key"} = ($value == ''|| $value == null) ? 'null' : '\''.$value.'\'';
+                ${"$key"} = ($value == ''|| $value == null) ?  'null': '\''.$value.'\'';
             }
             else{
-                ${"$key"} = (($value == ''|| $value == null)&& $value != 0) ? 'null' : $value;
+                ${"$key"} = (($value == ''|| $value == null) && $value != 0) ? 'null' : $value;
+            }
+
+            if ($key == 'add_disc_percent') {
+                ${"$key"} = ($value == ''|| $value == null) ? '0' : $value;
+            }
+
+            if ($key == 'p_bphtb_legal_doc_type_id') {
+                ${"$key"} = ($value == ''|| $value == null) ? 'null' : $value;
             }
             
         }

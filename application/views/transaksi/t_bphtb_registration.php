@@ -1240,6 +1240,8 @@
             if(items.rows.o_mess=="Data Berhasil Disimpan"){
                 swal('Informasi',items.rows.o_mess,'info');
                 loadContentWithParams("transaksi.t_bphtb_registration_list", {});
+            }else{
+                swal('Informasi','Tolong Periksa Inputan Anda Kembali','info');
             }
         })
     }
