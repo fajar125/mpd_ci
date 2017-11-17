@@ -996,7 +996,7 @@ $("#tab-1").on("click", function(event) {
 
     $("#tab-3").on("click", function(event) {
     event.stopPropagation();
-    alert($('#t_vat_registration_id').val());
+    //alert($('#t_vat_registration_id').val());
 
     t_vat_registration_id = $('#t_vat_registration_id').val();
     p_rqst_type_id = <?php echo $_POST['p_rqst_type_id'];?> ;
