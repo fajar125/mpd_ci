@@ -31,9 +31,8 @@ class T_customer_order extends Abstract_model {
 
                             );
 
-    public $selectClause    = "a.*,b.company_brand,b.npwpd, b.brand_address_name";
-    public $fromClause      = "v_customer_order  a
-                                left join t_vat_registration b on a.t_vat_registration_id = b.t_vat_registration_id";
+    public $selectClause    = "a.* ,b.company_brand,b.npwpd, b.brand_address_name ";
+    public $fromClause      = "v_customer_order  a left join t_vat_registration b on a.t_vat_registration_id = b.t_vat_registration_id";
 
     public $refs            = array();
 
@@ -103,6 +102,17 @@ class T_customer_order extends Abstract_model {
 
         return $item;
 
+    }
+
+    function delete($t_customer_order_id){
+        try {
+            $sql = 'DELETE FROM t_customer_order WHERE t_customer_order_id = $t_customer_order_id';
+            $query = $this->db->query($sql);
+            
+            return $query;
+        } catch (Exception $e) {
+            
+        }
     }
 
 }

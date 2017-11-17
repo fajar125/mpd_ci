@@ -38,7 +38,7 @@ class cetak_rep_lap_kepatuhan_wp extends CI_Controller{
 		$pdf->AddPage("L");
 		$pdf->SetFont('Arial', '', 10);
 		
-		$pdf->Image('images/logo_pemda.png',15,13,25,25);
+		$pdf->Image(getValByCode('LOGO'),15,13,25,25);
 
 		$p_vat_type_id			= getVarClean('p_vat_type_id','int',0);
 		$p_finance_period_id	= getVarClean('p_finance_period_id','int',0);
@@ -84,19 +84,19 @@ class cetak_rep_lap_kepatuhan_wp extends CI_Controller{
 		$pdf->Cell($lheader1, $this->height, "", "TR", 0, 'L');
 		$pdf->Ln();
 		$pdf->Cell($lheader1, $this->height, "", "L", 0, 'L');
-		$pdf->Cell($lheader3, $this->height, "PEMERINTAH KOTA BANDUNG", "R", 0, 'C');
+		$pdf->Cell($lheader3, $this->height, getValByCode('INSTANSI_1'), "R", 0, 'C');
 		$pdf->Cell($lheader4, $this->height, "LAPORAN REALISASI HARIAN", "R", 0, 'C');
 		$pdf->Ln();
 		$pdf->Cell($lheader1, $this->height, "", "L", 0, 'L');
-		$pdf->Cell($lheader3, $this->height, "DINAS PELAYANAN PAJAK", "R", 0, 'C');
+		$pdf->Cell($lheader3, $this->height, getValByCode('INSTANSI_2'), "R", 0, 'C');
 		$pdf->Cell($lheader4, $this->height, strtoupper($pajak), "R", 0, 'C');
 		$pdf->Ln();
 		$pdf->Cell($lheader1, $this->height, "", "L", 0, 'L');
-		$pdf->Cell($lheader3, $this->height, "Jalan Wastukancana no. 2", "R", 0, 'C');
+		$pdf->Cell($lheader3, $this->height, getValByCode('ALAMAT_1'), "R", 0, 'C');
 		$pdf->Cell($lheader4, $this->height, "PERIODE " . $period, "R", 0, 'C');		
 		$pdf->Ln();
 		$pdf->Cell($lheader1, $this->height, "", "L", 0, 'L');
-		$pdf->Cell($lheader3, $this->height, "Telp. 022. 4235052 - Bandung", "R", 0, 'C');
+		$pdf->Cell($lheader3, $this->height, getValByCode('ALAMAT_2'), "R", 0, 'C');
 		$pdf->Cell($lheader4, $this->height, "", "R", 0, 'L');
 		//if($tgl_penerimaan == $tgl_penerimaan_last)
 		//	$pdf->Cell($lheader4, $this->height, "Tanggal Penerimaan " . $tgl_penerimaan, "R", 0, 'C');
@@ -368,7 +368,7 @@ class cetak_rep_lap_kepatuhan_wp extends CI_Controller{
 		
 		$pdf->SetAligns(array("C", "C"));
 		$pdf->SetWidths(array(180, 120));
-		$pdf->RowMultiBorderWithHeight( array("","Bandung, " . date("d F Y")."\n\n\n\n\n\n\n\n(....................................)"), array("",""), 5 );
+		$pdf->RowMultiBorderWithHeight( array("","Lombok Utara, " . date("d F Y")."\n\n\n\n\n\n\n\n(....................................)"), array("",""), 5 );
 	
 	    
 		/*$lbody = $this->lengthCell / 4;

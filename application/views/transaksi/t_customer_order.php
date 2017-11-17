@@ -203,6 +203,34 @@ $("#tab-4").on("click", function(event) {
 
         PopupCenter(url,"Cetak Formulir",500,500);
     }
+
+    function deleteData(id){
+
+        var var_url = "<?php echo WS_JQGRID."transaksi.t_customer_order_controller/hapus/?";?>";
+        var_url += "<?php echo $this->security->get_csrf_token_name(); ?>=<?php echo $this->security->get_csrf_hash(); ?>";
+        var_url += "&t_customer_order_id=" + id;
+
+        swal({
+          title: "Delete Confirmation",
+          text: "Are you sure to delete selected record ? ",
+          type: "warning",
+          showCancelButton: true,
+          confirmButtonColor: "#DD6B55",
+          confirmButtonText: "Yes, delete it!",
+          closeOnConfirm: false,
+          showLoaderOnConfirm: true
+        },
+        function(){
+          //swal("Deleted!", "Your imaginary file has been deleted.", "success");
+            setTimeout(function(){
+                $.getJSON(var_url, function( items ) {
+                    swal(items);
+                    loadContentWithParams("transaksi.t_customer_order", {});
+                });
+            }, 2000);
+        });
+    }
+    
 </script>
 
 <script>
@@ -283,19 +311,25 @@ $("#tab-4").on("click", function(event) {
                     },
                     editrules: {required: false}
                 },
-                {name: 'Options',width: 200, align: "center",
+                {name: 'Options',width: 250, align: "center",
                     formatter:function(cellvalue, options, rowObject) {
                         var custId = rowObject['t_customer_order_id'];
                         var rqstId = rowObject['p_rqst_type_id'];
+                        var vatRegId = rowObject['t_vat_registration_id'];
                         var npwpd = rowObject['npwpd'];
                         var order_no = rowObject['order_no'];
                         var company_brand = rowObject['company_brand'];
                         var brand_address_name = rowObject['brand_address_name'];
                         var display = "";
+                        var display1 = "disabled";
                         if (npwpd == "" || npwpd == null || npwpd == 0){
                             display = "disabled";
                         }
-                        return '<button class="btn btn-danger btn-xs" type="submit" '+display+' id="btn_cetak" onclick="cetak(\''+rqstId+'\',\''+custId+'\');"><i class="fa fa-print"></i>Cetak</button> <button class="btn btn-success btn-xs" type="submit" id="btn_submit" onclick="submit(\''+custId+'\',\''+company_brand+'\',\''+npwpd+'\',\''+order_no+'\',\''+brand_address_name+'\');"><i class="fa fa-save"></i>Submit</button>';
+
+                        if (vatRegId == "" || vatRegId == null || vatRegId == 0){
+                            display1 = "";
+                        }
+                        return '<button class="btn btn-danger btn-xs" type="submit" '+display+' id="btn_cetak" onclick="cetak(\''+rqstId+'\',\''+custId+'\');"><i class="fa fa-print"></i>Cetak</button> <button class="btn btn-success btn-xs" type="submit" id="btn_submit" onclick="submit(\''+custId+'\',\''+company_brand+'\',\''+npwpd+'\',\''+order_no+'\',\''+brand_address_name+'\');"><i class="fa fa-save"></i>Submit</button> <button class="btn btn-danger btn-xs" type="submit" '+display1+' id="btn_cetak" onclick="deleteData(\''+custId+'\');"><i class="fa fa-trash-o"></i> Hapus</button>';
 
                     }
                 }
@@ -339,7 +373,7 @@ $("#tab-4").on("click", function(event) {
                 editicon: 'fa fa-pencil blue bigger-120',
                 add: true,
                 addicon: 'fa fa-plus-circle purple bigger-120',
-                del: true,
+                del: false,
                 delicon: 'fa fa-trash-o red bigger-120',
                 search: true,
                 searchicon: 'fa fa-search orange bigger-120',

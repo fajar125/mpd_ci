@@ -47,31 +47,7 @@ $("#tab-1").on("click", function(event) {
     loadContentWithParams("transaksi.t_customer_order",{});
 });
 
-$("#tab-3").on("click", function(event) {
-    event.stopPropagation();
-    t_vat_registration_id = <?php echo $_POST['t_vat_registration_id'];?> ;
-    p_rqst_type_id = <?php echo $_POST['p_rqst_type_id'];?> ;
-    t_customer_order_id = <?php echo $_POST['t_customer_order_id'];?> ;
-    order_date = '<?php echo $_POST['order_date'];?>' ;
-    var order_no = $('#order_no').val();
-    //alert(p_rqst_type_id);
-    // t_vat_reg_employee_id = $('#t_vat_reg_employee_id').val() ;
-    // t_vat_reg_dtl_restaurant_id = $('#t_vat_reg_dtl_restaurant_id').val() ;
-    // t_license_letter_id = $('#t_license_letter_id').val() ;
-    if(t_vat_registration_id == null || t_vat_registration_id == 0 || t_vat_registration_id == ""){
-        swal('Peringatan','Isi Formulir Pendaftaran Terlebih Dahulu!','error');
-        return false;
-    }
 
-    loadContentWithParams("transaksi.t_vat_reg_dtl", { //model yang ketiga
-        t_customer_order_id: t_customer_order_id,
-        order_no:order_no,
-        order_date:order_date,
-        p_rqst_type_id: p_rqst_type_id,
-        t_vat_registration_id: t_vat_registration_id
-        
-    });
-});
 </script>
 
 <script type="text/javascript">
@@ -219,7 +195,7 @@ $("#tab-3").on("click", function(event) {
                 <div class="row">
                     <label class="control-label col-md-3">Nomor Order</label>                
                         <div class="input-group col-md-4 col-md-4">
-                            <input type="text" class="form-control" name="t_vat_registration_id" id="t_vat_registration_id" style="display:none;">   
+                            <input type="hidden" class="form-control" name="t_vat_registration_id" id="t_vat_registration_id">   
                             <input type="text" class="form-control" name="order_no" id="order_no" readonly="true">                 
                         </div>
                     
@@ -266,14 +242,14 @@ $("#tab-3").on("click", function(event) {
                 <div class="row">
                     <label class="control-label col-md-3">Nama Wajib Pajak</label>
                     <div class="input-group col-md-4">
-                        <input type="text" class="form-control" name="wp_name" id="wp_name">
+                        <input type="text" class="form-control required" name="wp_name" id="wp_name">
                     </div>
                 </div>
                 <div class="space-2"></div>
                 <div class="row">
                     <label class="control-label col-md-3">Alamat Wajib Pajak</label>
                     <div class="input-group col-md-4">
-                            <textarea class="form-control" name="wp_address_name" id="wp_address_name"></textarea>
+                            <textarea class="form-control required" name="wp_address_name" id="wp_address_name"></textarea>
                         </div>
                 </div>
                 <div class="space-2"></div>
@@ -292,7 +268,7 @@ $("#tab-3").on("click", function(event) {
                     <label class="control-label col-md-3">Kota/Kabupaten</label>
                     <div class="input-group col-md-4">
                             <input id="wp_p_region_id" type="text"  style="display:none;">
-                            <input id="wp_kota" readonly type="text" class="FormElement form-control" placeholder="Pilih Kota/Kabupaten">
+                            <input id="wp_kota" readonly type="text" class="FormElement form-control required" placeholder="Pilih Kota/Kabupaten">
                             <span class="input-group-btn">
                                 <button class="btn btn-success" type="button" onclick="showLOVKota('wp_p_region_id','wp_kota')">
                                     <span class="fa fa-search bigger-110"></span>
@@ -373,21 +349,21 @@ $("#tab-3").on("click", function(event) {
                 <div class="row">
                     <label class="control-label col-md-3">Nama Badan/Perusahaan</label>
                     <div class="input-group col-md-4">
-                            <input type="text" class="form-control" name="company_name" id="company_name">
+                            <input type="text" class="form-control  required" name="company_name" id="company_name">
                     </div>
                 </div>
                 <div class="space-2"></div>
                 <div class="row">
                     <label class="control-label col-md-3">Alamat Badan</label>
                     <div class="input-group col-md-4">
-                            <textarea class="form-control" name="address_name" id="address_name"></textarea>
+                            <textarea class="form-control  required" name="address_name" id="address_name"></textarea>
                     </div>
                 </div>
                 <div class="space-2"></div>
                 <div class="row">
                     <label class="control-label col-md-3">No</label>
                     <div class="input-group col-md-4">
-                            <input type="text" class="form-control" name="address_no" id="address_no">      
+                            <input type="text" class="form-control required" name="address_no" id="address_no">      
                             <span class="input-group-addon"> RT </span> 
                             <input type="text" class="form-control" name="address_rt" id="address_rt">   
                             <span class="input-group-addon"> RW </span> 
@@ -472,21 +448,21 @@ $("#tab-3").on("click", function(event) {
                 <div class="row">
                     <label class="control-label col-md-3">Nama Merk Dagang</label>
                     <div class="input-group col-md-4">
-                            <input type="text" class="form-control" name="company_brand" id="company_brand">
+                            <input type="text" class="form-control  required" name="company_brand" id="company_brand">
                     </div>
                 </div>
                 <div class="space-2"></div>
                 <div class="row">
                     <label class="control-label col-md-3">Alamat</label>
                     <div class="input-group col-md-4">
-                            <textarea class="form-control" name="brand_address_name" id="brand_address_name"></textarea>
+                            <textarea class="form-control  required" name="brand_address_name" id="brand_address_name"></textarea>
                     </div>
                 </div>
                 <div class="space-2"></div>
                 <div class="row">
                     <label class="control-label col-md-3">No.</label>
                     <div class="input-group col-md-4">
-                            <input type="text" class="form-control" name="brand_address_no" id="brand_address_no">      
+                            <input type="text" class="form-control required" name="brand_address_no" id="brand_address_no">      
                             <span class="input-group-addon"> RT </span> 
                             <input type="text" class="form-control" name="brand_address_rt" id="brand_address_rt">   
                             <span class="input-group-addon"> RW </span> 
@@ -499,7 +475,7 @@ $("#tab-3").on("click", function(event) {
                     <label class="control-label col-md-3">Kota/Kabupaten</label>
                     <div class="input-group col-md-4">
                             <input id="brand_p_region_id" type="text"  style="display:none;">
-                            <input id="brand_kota" readonly type="text" class="FormElement form-control" placeholder="Pilih Kota/Kabupaten">
+                            <input id="brand_kota" readonly type="text" class="FormElement form-control required" placeholder="Pilih Kota/Kabupaten">
                             <span class="input-group-btn">
                                 <button class="btn btn-success" type="button" onclick="showLOVKota('brand_p_region_id','brand_kota')">
                                     <span class="fa fa-search bigger-110"></span>
@@ -612,7 +588,7 @@ $("#tab-3").on("click", function(event) {
                     <label class="control-label col-md-3">Kota/Kabupaten</label>
                     <div class="input-group col-md-4">
                             <input id="p_region_id_owner" type="text"  style="display:none;">
-                            <input id="kota_own_code" readonly type="text" class="FormElement form-control" placeholder="Pilih Kota/Kabupaten">
+                            <input id="kota_own_code" readonly type="text" class="FormElement form-control required" placeholder="Pilih Kota/Kabupaten">
                             <span class="input-group-btn">
                                 <button class="btn btn-success" type="button" onclick="showLOVKota('p_region_id_owner','kota_own_code')">
                                     <span class="fa fa-search bigger-110"></span>
@@ -737,9 +713,10 @@ $("#tab-3").on("click", function(event) {
 
 
 <script type="text/javascript">
-    var t_vat_registration_id = $('#t_vat_registration_id').val(); 
+    var t_vat_reg_id = "<?php echo $this->input->post('t_vat_registration_id');?>"; 
+    //alert(t_vat_reg_id);
 
-    if (t_vat_registration_id == 0 || t_vat_registration_id == "" || t_vat_registration_id == false || t_vat_registration_id == undefined ||  t_vat_registration_id == null){
+    if (t_vat_reg_id == 0 || t_vat_reg_id == "" || t_vat_reg_id == false || t_vat_reg_id == undefined ||  t_vat_reg_id == null){
         $('#btn-add').show();
         $('#btn-edit').hide();
     } else{    
@@ -747,8 +724,8 @@ $("#tab-3").on("click", function(event) {
         $('#btn-add').hide();
     }
 
-    function insertUpdate($imode){
-        // alert($imode);
+    function insertUpdate(imode){
+        //alert(imode);
         // return;
         // alert();
         var t_vat_registration_id = $('#t_vat_registration_id').val(); 
@@ -867,6 +844,23 @@ $("#tab-3").on("click", function(event) {
             address_rw_owner = "-"; 
         }
 
+        if (phone_no == "" || phone_no == 0 || phone_no == false || phone_no == undefined ||  phone_no == null){
+            phone_no = "-";
+        }
+        if (mobile_no == "" || mobile_no == 0 || mobile_no == false || mobile_no == undefined ||  mobile_no == null){
+            mobile_no = "-"; 
+        }
+        if (fax_no == "" || fax_no == 0 || fax_no == false || fax_no == undefined ||  fax_no == null){
+            fax_no = "-"; 
+        }
+
+        if (brand_mobile_no == "" || brand_mobile_no == 0 || brand_mobile_no == false || brand_mobile_no == undefined ||  brand_mobile_no == null){
+            brand_mobile_no = "-"; 
+        }
+        if (brand_phone_no == "" || brand_phone_no == 0 || brand_phone_no == false || brand_phone_no == undefined ||  brand_phone_no == null){
+            brand_phone_no = "-"; 
+        }
+
         
         if (wp_name == "" || wp_name == 0 || wp_name == false || wp_name == undefined ||  wp_name == null){
             swal('Informasi',"Nama Wajib Pajak harus diisi",'info'); 
@@ -912,7 +906,8 @@ $("#tab-3").on("click", function(event) {
             swal('Informasi',"Kota Pemilik/Pengelola harus diisi",'info'); 
             return;
         }
-         
+
+         //alert(brand_address_name);
         var var_url = "<?php echo WS_JQGRID . "transaksi.t_vat_registration_controller/insertUpdate/?"; ?>";
             var_url += "<?php echo $this->security->get_csrf_token_name(); ?>=<?php echo $this->security->get_csrf_hash(); ?>";
             var_url += '&icode=null';
@@ -975,13 +970,57 @@ $("#tab-3").on("click", function(event) {
             var_url += '&t_vat_registration_id='+t_vat_registration_id;
             var_url += '&p_private_question_id='+p_private_question_id;
             var_url += '&private_answer='+private_answer;
-            var_url += '&i_mode='+$imode;
+            var_url += '&i_mode='+imode;
+
 
             $.getJSON(var_url, function( items ) {
-                swal('Informasi',items.rows.f_crud_vat_reg,'info');  
+
+                var t_vat_reg = items.rows.f_crud_vat_reg_new;
+                $('#t_vat_registration_id').val(t_vat_reg);
+
+                if (items.rows.f_crud_vat_reg_new > 0 ){
+                    swal('Informasi','Sukses','info');  
+                    return;
+                } else {
+                    swal('Informasi','Gagal','info');  
+                    return;
+                }
+
+                
+
+
+                
             }) 
    
     }
+
+    $("#tab-3").on("click", function(event) {
+    event.stopPropagation();
+    alert($('#t_vat_registration_id').val());
+
+    t_vat_registration_id = $('#t_vat_registration_id').val();
+    p_rqst_type_id = <?php echo $_POST['p_rqst_type_id'];?> ;
+    t_customer_order_id = <?php echo $_POST['t_customer_order_id'];?> ;
+    order_date = '<?php echo $_POST['order_date'];?>' ;
+    var order_no = $('#order_no').val();
+    //alert(p_rqst_type_id);
+    // t_vat_reg_employee_id = $('#t_vat_reg_employee_id').val() ;
+    // t_vat_reg_dtl_restaurant_id = $('#t_vat_reg_dtl_restaurant_id').val() ;
+    // t_license_letter_id = $('#t_license_letter_id').val() ;
+    if(t_vat_registration_id == null || t_vat_registration_id == 0 || t_vat_registration_id == ""){
+        swal('Peringatan','Isi Formulir Pendaftaran Terlebih Dahulu!','error');
+        return false;
+    }
+
+    loadContentWithParams("transaksi.t_vat_reg_dtl", { //model yang ketiga
+        t_customer_order_id: t_customer_order_id,
+        order_no:order_no,
+        order_date:order_date,
+        p_rqst_type_id: p_rqst_type_id,
+        t_vat_registration_id: t_vat_registration_id
+        
+    });
+});
 </script>
 
 

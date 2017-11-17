@@ -25,7 +25,7 @@ class T_vat_setllement_ro_controller {
 
             $req_param = array(
                 "sort_by" => $sidx,
-                "sord" => $sord,
+                "sord" => $sord, 
                 "limit" => null,
                 "field" => null,
                 "where" => null,

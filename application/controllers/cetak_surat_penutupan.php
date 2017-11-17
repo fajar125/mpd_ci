@@ -117,7 +117,7 @@ class cetak_surat_penutupan extends CI_Controller{
         $pdf->Ln();
         
         $pdf->SetFont('Times', '', 11);
-        $pdf->Cell($lengthCell, $this->height, "Nomor: 973/" . $data["reg_letter_no"]."/".str_ireplace('Pajak ','',$data['vat_code']) ."-TUP/Disyanjak", 0, 0, 'C');
+        $pdf->Cell($lengthCell, $this->height, "Nomor: 973/" . $data["reg_letter_no"]."/".str_ireplace('Pajak ','',$data['vat_code']) ."-TUP/Bapenda", 0, 0, 'C');
         // Body Atas
         $pdf->Ln();
         $pdf->Ln();
@@ -329,7 +329,7 @@ class cetak_surat_penutupan extends CI_Controller{
         //$pdf->Ln();
         $pdf->Cell($lengthCell, $this->height, "                Dengan diterbitkannya surat ini, maka NPWPD Wajib Pajak tersebut telah dicabut dan", 0, 0, 'L');
         $pdf->Ln();
-        $pdf->Cell($lengthCell, $this->height, "ditutup sehingga tidak lagi terdaftar sebagai Wajib Pajak Daerah Kota Bandung.", 0, 0, 'L');
+        $pdf->Cell($lengthCell, $this->height, "ditutup sehingga tidak lagi terdaftar sebagai Wajib Pajak Daerah Lombok Utara.", 0, 0, 'L');
         
         // Signature
         $pdf->Ln();
@@ -340,16 +340,16 @@ class cetak_surat_penutupan extends CI_Controller{
         
         $pdf->Cell($sigLen1, $this->height, "", 0, 0, 'C');
         //$pdf->Cell($sigLen1, $this->height, "Bandung, 28 January 2015" , 0, 0, 'C');
-        $pdf->Cell($sigLen1, $this->height, "Bandung, " . date("j F Y"), 0, 0, 'C');
+        $pdf->Cell($sigLen1, $this->height, "Lombok Utara, " . date("j F Y"), 0, 0, 'C');
         $pdf->Ln();
         
         $pdf->Cell($sigLen1, $this->height, "", 0, 0, 'C');
         $pdf->SetFont('Times', 'B', 11);
-        $pdf->Cell($sigLen1, $this->height, "a.n. WALIKOTA BANDUNG", 0, 0, 'C');
+        $pdf->Cell($sigLen1, $this->height, "a.n. BUPATI LOMBOK UTARA", 0, 0, 'C');
         $pdf->Ln();
         
         $pdf->Cell($sigLen1, $this->height, "", 0, 0, 'C');
-        $pdf->Cell($sigLen1, $this->height, "Kepala Dinas Pelayanan Pajak", 0, 0, 'C');
+        $pdf->Cell($sigLen1, $this->height, "Kepala Badan Pengelolaan Pendapatan Daerah", 0, 0, 'C');
         $pdf->Ln();
         $pdf->Ln();
         $pdf->Ln();
@@ -379,11 +379,11 @@ class cetak_surat_penutupan extends CI_Controller{
         $pdf->Cell($lengthCell - ($lengthCell / 10), $this->height, "disampaikan kepada Yth:", 0, 0, 'L');
         $pdf->Ln();
         
-        $pdf->Cell($lengthCell, $this->height, "1. Bapak Walikota Bandung (sebagai laporan);", 0, 0, 'L');
+        $pdf->Cell($lengthCell, $this->height, "1. Bapak Bupati Lombok Utara (sebagai laporan);", 0, 0, 'L');
         $pdf->Ln();
-        $pdf->Cell($lengthCell, $this->height, "2. Bapak Wakil Walikota Bandung (sebagai laporan);", 0, 0, 'L');
+        $pdf->Cell($lengthCell, $this->height, "2. Bapak Wakil Bupati Lombok Utara (sebagai laporan);", 0, 0, 'L');
         $pdf->Ln();
-        $pdf->Cell($lengthCell, $this->height, "3. Bapak Sekretaris Daerah Kota Bandung (sebagai laporan);", 0, 0, 'L');
+        $pdf->Cell($lengthCell, $this->height, "3. Bapak Sekretaris Daerah Lombok Utara (sebagai laporan);", 0, 0, 'L');
         $pdf->Ln();
         $pdf->Cell($lengthCell, $this->height, "4. Arsip.", 0, 0, 'L');
         $pdf->Ln();

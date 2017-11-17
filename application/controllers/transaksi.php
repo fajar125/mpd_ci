@@ -206,7 +206,7 @@ class Transaksi extends CI_Controller
             $query = $this->db->query($sql);
 
             $items = $query->result_array();
-            echo '<select id="administrator_id" name="administrator_id" class="FormElement form-control"> <option value="0">--Pilih Petugas Penerima--</option>';
+            echo '<select id="pemeriksa_id" name="pemeriksa_id" class="FormElement form-control"> <option value="0">--Pilih Petugas Penerima--</option>';
             foreach($items  as $item ){
                 echo '<option value="'.$item['t_bphtb_exemption_pemeriksa_id'].'">'.$item['pemeriksa_nama'].'</option>';
             }

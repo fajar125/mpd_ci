@@ -32,6 +32,12 @@ class cetak_rep_pengurangan_bphtb_gono_gini extends CI_Controller{
 		$this->lengthCell = $size[0]-30;
 	}
 
+	function newLine(){
+		$pdf = new FPDF();
+		$pdf->Cell($this->lengthCell, $this->height, "", "", 0, 'L');
+		$pdf->Ln();
+	}
+
 
 
 	function pageCetak_perhitungan() {
@@ -132,7 +138,229 @@ class cetak_rep_pengurangan_bphtb_gono_gini extends CI_Controller{
 		$pdf->Ln();
 
 
+		$this->newLine();
+		$this->newLine();
+		
+		$lbody = $this->lengthCell / 20;
+		$lbody1 = $lbody * 1;
+		$lbody4 = $lbody * 4;
+		$lbody10 = $lbody * 15;
 
+		$pdf->SetFont("Arial", "B", 12);
+		$this->barisBaru("A", "1 Nama Wajib Pajak", ": " . $data["wp_name"]);
+		$this->barisBaru("", "2 ".$data['opsi_a2'], ": ".$data['opsi_a2_keterangan']);
+		$this->barisBaru("", "3 Alamat Wajib Pajak", ": " . $data["wp_address_name"]);
+		$this->barisBaru("", "4 RT/RW", ": RT. " . $data["wp_rt"] . "/RW. " .  $data["wp_rw"]);
+		$this->barisBaru("", "5 Kelurahan/Desa", ": " . $data["wp_kelurahan"]);
+		$this->barisBaru("", "6 Kecamatan", ": " . $data["wp_kecamatan"]);
+		$this->barisBaru("", "7 Kabupaten/Kota", ": " . $data["wp_kota"]);
+		$pdf->Ln();
+		
+		$this->barisBaru_long("B", "1 Nomor Objek Pajak (NOP) PBB ", ": " . $data["njop_pbb"]);
+		$this->barisBaru("", "2 Letak tanah atau bangunan", ": " . $data["object_address_name"]);
+		$this->barisBaru("", "3 RT/RW", ": RT. " . $data["object_rt"] . "/RW. " . $data["object_rw"]);
+		$this->barisBaru("", "4 Kelurahan/Desa", ": " . $data["object_kelurahan"]);
+		$this->barisBaru("", "5 Kecamatan", ": " . $data["object_kecamatan"]);
+		$this->barisBaru("", "6 Kabupaten/Kota", ": " . $data["object_region"]);
+		$this->barisBaru("", "7 ".$data['opsi_b7'], ": ".$data['opsi_b7_keterangan']);
+		$pdf->Ln();
+		
+		$this->barisBaru("C", "Penghitungan NJOP PBB", "");
+		$lbodyx = ($this->lengthCell - $lbody1) / 9;
+		$lbodyx1 = $lbodyx * 1;
+		$lbodyx2 = $lbodyx * 2;
+		$lbodyx3 = $lbodyx * 3;
+		
+		$pdf->Cell($lbody1, $this->height, "", "", 0, "");
+		$pdf->SetWidths(array($lbodyx1, $lbodyx2, $lbodyx3, $lbodyx3));
+		$pdf->SetAligns(array("C", "C", "C", "C"));
+		$pdf->RowMultiBorderWithHeight(
+			array
+			(
+				"\nUraian",
+				"Luas\n(Diisi luas tanah dan atau bangunan yang haknya diperoleh)",
+				"NJOP PBB / m2\n(Diisi berdasarkan SPPT PBB tahun terjadinya perolehan hak / Tahun",
+				"\nLuas x NJOP PBB / m2"
+			),
+			array
+			(
+				"TBL",
+				"TBR",
+				"TBLR",
+				"TBLR"
+			),
+			$this->height);
+		
+		$pdf->Cell($lbody1, $this->height, "", "", 0, "");
+		$pdf->Cell($lbodyx1, $this->height, "Tanah (bumi)", "L", 0, "");
+		$pdf->Cell($lbodyx1, $this->height, number_format($data["land_area"], 0, ",", "."), "", 0, "R");
+		$pdf->Cell($lbodyx1, $this->height, "m2", "R", 0, "L");
+		$pdf->Cell($lbodyx1, $this->height, "Rp", "", 0, "L");
+		$pdf->Cell($lbodyx1, $this->height, number_format($data["land_price_per_m"], 0, ",", "."), "", 0, "R");
+		$pdf->Cell($lbodyx1, $this->height, "", "R", 0, "");
+		$pdf->Cell($lbodyx1, $this->height, "Rp", "", 0, "L");
+		$pdf->Cell($lbodyx1+$lbodyx1, $this->height, number_format($data["land_total_price"], 0, ",", "."), "R", 0, "R");
+		/*$pdf->Cell($lbodyx1, $this->height, "", "R", 0, "");*/
+		$pdf->Ln();
+		
+		$pdf->Cell($lbody1, $this->height, "", "", 0, "");
+		$pdf->Cell($lbodyx1, $this->height, "Bangunan", "L", 0, "");
+		$pdf->Cell($lbodyx1, $this->height, number_format($data["building_area"], 0, ",", "."), "", 0, "R");
+		$pdf->Cell($lbodyx1, $this->height, "m2", "R", 0, "L");
+		$pdf->Cell($lbodyx1, $this->height, "Rp", "", 0, "L");
+		$pdf->Cell($lbodyx1, $this->height, number_format($data["building_price_per_m"], 0, ",", "."), "", 0, "R");
+		$pdf->Cell($lbodyx1, $this->height, "", "R", 0, "");
+		$pdf->Cell($lbodyx1, $this->height, "Rp", "", 0, "L");
+		$pdf->Cell($lbodyx1+$lbodyx1, $this->height, number_format($data["building_total_price"], 0, ",", "."), "R", 0, "R");
+		/*$pdf->Cell($lbodyx1, $this->height, "", "R", 0, "");*/
+		$pdf->Ln();
+		
+		$pdf->Cell($lbody1, $this->height, "", "", 0, "");
+		$pdf->Cell($lbodyx1, $this->height, "", "BL", 0, "");
+		$pdf->Cell($lbodyx1, $this->height, "", "B", 0, "R");
+		$pdf->Cell($lbodyx1, $this->height, "", "BR", 0, "L");
+		$pdf->Cell($lbodyx1, $this->height, "", "B", 0, "L");
+		$pdf->Cell($lbodyx1, $this->height, "", "B", 0, "R");
+		$pdf->Cell($lbodyx1, $this->height, "", "BR", 0, "R");
+		$pdf->Cell($lbodyx1, $this->height, "Rp", "B", 0, "L");
+		$pdf->Cell($lbodyx1+$lbodyx1, $this->height, number_format($data["land_total_price"] + $data["building_total_price"], 0, ",", "."), "BR", 0, "R");
+		/*$pdf->Cell($lbodyx1, $this->height, "", "BR", 0, "");*/
+		$pdf->Ln();
+		$jenis_harga_bphtb = $data["jenis_harga_bphtb"];
+		if(empty($jenis_harga_bphtb)) $jenis_harga_bphtb = 99;
+		$jenis_harga = array(1 => 'Harga Transaksi',2 =>  'Harga Pasar',3 => 'Harga Lelang', 99 => 'Harga Pasar');
+		
+		$pdf->Ln(2);
+		$pdf->SetWidths(array($lbody1, $this->lengthCell - $lbody1));
+		$pdf->SetAligns(array("C", "J"));
+		$pdf->RowMultiBorderWithHeight(
+			array
+			(
+				"",
+				$data['keterangan_opsi_c_gono_gini']
+			),
+			array
+			(
+				"",
+				""
+			),
+			$this->height);
+
+		$pdf->Ln(2);		
+		$pdf->Cell($lbody1, $this->height, "", "", 0, "");
+		$pdf->SetWidths(array($lbodyx1, $lbodyx2, $lbodyx3, $lbodyx3));
+		$pdf->SetAligns(array("C", "C", "C", "C"));
+		$pdf->RowMultiBorderWithHeight(
+			array
+			(
+				"Uraian",
+				"Luas",
+				"NJOP PBB / m2",
+				"Luas x NJOP PBB / m2"
+			),
+			array
+			(
+				"TBL",
+				"TBR",
+				"TBLR",
+				"TBLR"
+			),
+			$this->height);
+
+		$total_land = $data["land_area"] * $data["land_price_per_m"];
+		$total_build = $data["building_area"] * $data["building_price_per_m"];
+		
+		$pdf->Cell($lbody1, $this->height, "", "", 0, "");
+		$pdf->Cell($lbodyx1, $this->height, "Tanah (bumi)", "L", 0, "");
+		$pdf->Cell($lbodyx1, $this->height, number_format($data["land_area"], 2, ",", "."), "", 0, "R");
+		$pdf->Cell($lbodyx1, $this->height, "m2", "R", 0, "L");
+		$pdf->Cell($lbodyx1, $this->height, "Rp", "", 0, "L");
+		$pdf->Cell($lbodyx1, $this->height, number_format($data["land_price_per_m"], 0, ",", "."), "", 0, "R");
+		$pdf->Cell($lbodyx1, $this->height, "", "R", 0, "");
+		$pdf->Cell($lbodyx1, $this->height, "Rp", "", 0, "L");
+		$pdf->Cell($lbodyx1+$lbodyx1, $this->height, number_format($total_land, 0, ",", "."), "R", 0, "R");
+		/*$pdf->Cell($lbodyx1, $this->height, "", "R", 0, "");*/
+		$pdf->Ln();
+		
+		$pdf->Cell($lbody1, $this->height, "", "", 0, "");
+		$pdf->Cell($lbodyx1, $this->height, "Bangunan", "L", 0, "");
+		$pdf->Cell($lbodyx1, $this->height, number_format($data["building_area"], 2, ",", "."), "", 0, "R");
+		$pdf->Cell($lbodyx1, $this->height, "m2", "R", 0, "L");
+		$pdf->Cell($lbodyx1, $this->height, "Rp", "", 0, "L");
+		$pdf->Cell($lbodyx1, $this->height, number_format($data["building_price_per_m"], 0, ",", "."), "", 0, "R");
+		$pdf->Cell($lbodyx1, $this->height, "", "R", 0, "");
+		$pdf->Cell($lbodyx1, $this->height, "Rp", "", 0, "L");
+		$pdf->Cell($lbodyx1+$lbodyx1, $this->height, number_format($total_build, 0, ",", "."), "R", 0, "R");
+		/*$pdf->Cell($lbodyx1, $this->height, "", "R", 0, "");*/
+		$pdf->Ln();
+		
+		$pdf->Cell($lbody1, $this->height, "", "", 0, "");
+		$pdf->Cell($lbodyx1, $this->height, "", "BL", 0, "");
+		$pdf->Cell($lbodyx1, $this->height, "", "B", 0, "R");
+		$pdf->Cell($lbodyx1, $this->height, "", "BR", 0, "L");
+		$pdf->Cell($lbodyx1, $this->height, "", "B", 0, "L");
+		$pdf->Cell($lbodyx1, $this->height, "", "B", 0, "R");
+		$pdf->Cell($lbodyx1, $this->height, "", "BR", 0, "R");
+		$pdf->Cell($lbodyx1, $this->height, "Rp", "B", 0, "L");
+		$pdf->Cell($lbodyx1+$lbodyx1, $this->height, number_format($total_land + $total_build, 0, ",", "."), "BR", 0, "R");
+		/*$pdf->Cell($lbodyx1, $this->height, "", "BR", 0, "");*/
+		$pdf->Ln();
+
+		$pdf->Cell($lbody1, $this->height, "", "", 0, "");
+		$pdf->Cell($this->length - $lbody1, $this->height, "Jenis perolehan hak atas tanah dan atau bangunan	".$data['jenis_perolehan_hak'], "", 0, "");
+		$pdf->Ln();
+		$pdf->Cell($lbody1, $this->height, "", "", 0, "");
+		$pdf->Cell($this->length - $lbody1, $this->height, $data['keterangan_opsi_c'], "", 0, "");
+		$pdf->Ln();
+		$pdf->Cell($lbody1, $this->height, "", "", 0, "");
+		$pdf->Cell($lbody1+$lbody1, $this->height, "Nomor ", "", 0, "");
+		$pdf->Cell($this->length - $lbody1 -$lbody1-$lbody1, $this->height, ": ".$data['nomor_notaris'], "", 0, "");
+		$pdf->Ln();
+		$pdf->Cell($lbody1, $this->height, "", "", 0, "");
+		$pdf->Cell($lbody1+ $lbody1, $this->height, "Tanggal ", "", 0, "");
+		$pdf->Cell($this->length - $lbody1-$lbody1-$lbody1, $this->height, ": ".$this->beautyDate($data['tanggal_sk']), "", 0, "");
+		$pdf->Ln(7);
+		
+		$pdf->Cell($lbody1, $this->height, "", "", 0, "");
+		$pdf->Cell($this->length - $lbody1, $this->height, "PENGHITUNGAN BPHTB", "", 0, "");
+		$pdf->Ln();
+		
+		$this->barisBaru2($lbody1, "Nilai Perolehan Objek Pajak (NPOP)", "", "Rp", $data["npop"]);
+		$this->barisBaru2($lbody1, "Nilai Perolehan Objek Pajak Tidak Kena Pajak (NPOPTKP)", "", "Rp", $data["npop_tkp"]);
+		if($data["npop_kp"]==0){
+			$this->barisBaruStr($lbody1, "Nilai Perolehan Objek Pajak Kena Pajak (NPOPKP)", "", "Rp","NIHIL");
+		}else{
+			$this->barisBaru2($lbody1, "Nilai Perolehan Objek Pajak Kena Pajak (NPOPKP)", "", "Rp", $data["npop_kp"]);
+		}
+		
+		if($data["npop_kp"]==0){
+			$this->barisBaruStr($lbody1, "Bea Perolehan Hak atas Tanah dan Bangunan yang terutang", "5%", "Rp", "NIHIL");
+		}else{
+			$this->barisBaru2($lbody1, "Bea Perolehan Hak atas Tanah dan Bangunan yang terutang", "5%", "Rp", $data["bphtb_amt"]);
+		}
+
+		$pdf->Cell($lbody1, $this->height, "", "", 0, "");
+		$pdf->Cell($this->length - $lbody1, $this->height, "Pengenaan Pengurangan Karena ".$data['jenis_perolehan_hak'], "", 0, "");
+		$pdf->Ln();
+		$this->barisBaru2($lbody1, "Besaran Pengenaan Pengurangan ", $data['persen_pengurangan']."%", "Rp", $data["bphtb_discount"]);
+
+		if($data["npop_kp"]==0){
+			$this->barisBaruStr($lbody1, "Bea Perolehan Hak atas Tanah dan Bangunan yang harus dibayar", "", "Rp", "NIHIL");
+		}else{
+			$this->barisBaru3($lbody1, "Bea Perolehan Hak atas Tanah dan Bangunan yang harus dibayar", "", "Rp", $data["bphtb_amt_final"]);
+		}
+
+		$pdf->Cell($lbody1, $this->height, "", "", 0, "");
+		$pdf->Cell($lbody1+ $lbody1, $this->height, "Terbilang :", "", 0, "");
+		$pdf->SetFont("Arial", "iB", 8);
+		$pdf->Cell($this->length - $lbody1- $lbody1- $lbody1, $this->height, $data['terbilang'], "", 0, "");
+		
+		
+		$pdf->Ln(10);
+		$pdf->SetFont("Arial", "", 8);
+		$pdf->Cell($lbody1+5, $this->height, "Catatan :", "", 0, "");
+		$pdf->SetFont("Arial", "i", 8);
+		$pdf->Cell($this->length - $lbody1 - 5, $this->height, "Apabila ada kekeliruan dikarenakan data maka akan diperbaiki dengan data terbaru", "", 0, "");
 		
 
 		$pdf->output();
@@ -225,10 +453,12 @@ class cetak_rep_pengurangan_bphtb_gono_gini extends CI_Controller{
 		$pdf->SetWidths(array($lbody15));
 		$pdf->SetAligns(array("L"));
 		$pdf->RowMultiBorderWithHeight(array($data), array(""), $this->height);
-		$pdf->output();
+		//$pdf->output();
 	}
 	function barisBaru_long($section, $field, $data){
 		$pdf = new FPDF();	
+		$pdf->AliasNbPages();
+		$pdf->AddPage("P");
 		$pdf->SetFont("Arial", "", 8);
 		$lbody = $this->lengthCell / 20;
 		$lbody1 = $lbody * 1;

@@ -50,7 +50,7 @@ class cetak_rep_penerimaan_pertahun extends CI_Controller{
 		$query = $this->db->query($sql);
 		$data = $query->result_array();
 		
-		$pdf->Image('images/logo_pemda.png',15,13,25,25);
+		$pdf->Image(getValByCode('LOGO'),15,13,25,25);
 		
 		$lheader = $this->lengthCell / 8;
 		$lheader1 = $lheader * 1;
@@ -71,19 +71,19 @@ class cetak_rep_penerimaan_pertahun extends CI_Controller{
 		$pdf->Cell($lheader1+$ltable2+$ltable1, $this->height, "", "TR", 0, 'L');
 		$pdf->Ln();
 		$pdf->Cell($lheader1, $this->height, "", "L", 0, 'L');
-		$pdf->Cell($lheader3+$ltable2, $this->height, "PEMERINTAH KOTA BANDUNG", "R", 0, 'C');
+		$pdf->Cell($lheader3+$ltable2, $this->height, getValByCode('INSTANSI_1'), "R", 0, 'C');
 		$pdf->Cell($lheader4+$ltable2+$ltable1, $this->height, "LAPORAN PENERIMAAN PER TAHUN", "R", 0, 'C');
 		$pdf->Ln();
 		$pdf->Cell($lheader1, $this->height, "", "L", 0, 'L');
-		$pdf->Cell($lheader3+$ltable2, $this->height, "DINAS PELAYANAN PAJAK", "R", 0, 'C');
+		$pdf->Cell($lheader3+$ltable2, $this->height, getValByCode('INSTANSI_2'), "R", 0, 'C');
 		$pdf->Cell($lheader4+$ltable2+$ltable1, $this->height, "", "R", 0, 'C');
 		$pdf->Ln();
 		$pdf->Cell($lheader1, $this->height, "", "L", 0, 'L');
-		$pdf->Cell($lheader3+$ltable2, $this->height, "Jalan Wastukancana no. 2", "R", 0, 'C');
+		$pdf->Cell($lheader3+$ltable2, $this->height, getValByCode('ALAMAT_1'), "R", 0, 'C');
 		$pdf->Cell($lheader4+$ltable2+$ltable1, $this->height, "Tahun " . $data[0]['tahun'], "R", 0, 'C');		
 		$pdf->Ln();
 		$pdf->Cell($lheader1, $this->height, "", "L", 0, 'L');
-		$pdf->Cell($lheader3+$ltable2, $this->height, "Telp. 022. 4235052 - Bandung", "R", 0, 'C');
+		$pdf->Cell($lheader3+$ltable2, $this->height, getValByCode('ALAMAT_2'), "R", 0, 'C');
 		$pdf->Cell($lheader4+$ltable2+$ltable1, $this->height, "", "R", 0, 'C');
 		$pdf->Ln();
 		$pdf->Cell($lheader1, $this->height, "", "LB", 0, 'L');
@@ -268,7 +268,7 @@ class cetak_rep_penerimaan_pertahun extends CI_Controller{
 		$pdf->Cell($this->lengthCell, $this->height, "", "", 0, 'L');
 		$pdf->Ln();
 		$pdf->Cell($lbody3 - 10, $this->height, "", "", 0, 'L');
-		$pdf->Cell($lbody1 + 10, $this->height, "Bandung, " . date("d F Y") /*. $data["tanggal"]*/, "", 0, 'C');
+		$pdf->Cell($lbody1 + 10, $this->height, "Lombok Utara, " . date("d F Y") /*. $data["tanggal"]*/, "", 0, 'C');
 		$pdf->Ln();
 		$pdf->Cell($lbody3 - 10, $this->height, "", "", 0, 'L');
 		$nama_pajak = strtoupper(substr($data[0]["jenis_pajak"], 5));

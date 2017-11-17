@@ -357,6 +357,30 @@ class T_customer_order_controller {
         return $data;
     }
 
+    function hapus(){
+        $data = array('rows' => array(), 'page' => 1, 'records' => 0, 'total' => 1, 'success' => false, 'message' => '');
+        
+        $cusorderid= getVarClean('t_customer_order_id','int',0);
+        
+        try {
+
+            $ci = & get_instance();
+            $ci->load->model('transaksi/t_customer_order');
+            $table = $ci->t_customer_order;
+
+            $result = $table->delete($cusorderid) ;
+            $count = count($result);
+
+            $data['rows'] = $result;
+            $data['success'] = true;
+
+        }catch (Exception $e) {
+            $data['message'] = $e->getMessage();
+        }
+
+        return $data;
+    }
+
 }
 
 /* End of file vats_controller.php */

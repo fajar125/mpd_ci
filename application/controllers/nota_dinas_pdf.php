@@ -30,6 +30,8 @@ class nota_dinas_pdf extends CI_Controller{
         $pdf->Ln();
     }
 
+    
+
 
 	function pageCetak() {
 

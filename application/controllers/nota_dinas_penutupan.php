@@ -113,7 +113,7 @@ class nota_dinas_penutupan extends CI_Controller{
         //Isi
         $pdf->SetFont('Times', '', 12);
         $pdf->Cell($lengthJudul1, $this->height, "", "", 0, 'L');
-        $pdf->MultiCell($lengthJudul2, $this->height, "Dipermaklumkan dengan hormat, berdasarkan Peraturan Walikota Bandung Nomor 016 Tahun 2014 tentang Standar Operasional Prosedur Tata Cara Pemungutan Pajak Daerah, atas permohonan dari Wajib Pajak / Berita Acara dapat diusulkan pencabutan dan penutupan NPWPD dengan persyaratan sesuai ketentuan yang berlaku.", "", 'J');
+        $pdf->MultiCell($lengthJudul2, $this->height, "Dipermaklumkan dengan hormat, berdasarkan Peraturan Bupati Lombok Utara Nomor 016 Tahun 2014 tentang Standar Operasional Prosedur Tata Cara Pemungutan Pajak Daerah, atas permohonan dari Wajib Pajak / Berita Acara dapat diusulkan pencabutan dan penutupan NPWPD dengan persyaratan sesuai ketentuan yang berlaku.", "", 'J');
         $pdf->Ln(6);
 
         $pdf->Cell($lengthJudul1, $this->height, "", "", 0, 'L');

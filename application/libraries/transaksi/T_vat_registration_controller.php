@@ -123,7 +123,7 @@ class T_vat_registration_controller {
         $wpfaxno= getVarClean('wp_fax_no','str','') ;
         $wpzipcode= getVarClean('wp_zip_code','str','') ;
         $wpemail = getVarClean('wp_email','str','');
-        $brandaddress= getVarClean('brand_address','str','') ;
+        $brandaddress= getVarClean('brand_address_name','str','') ;
         $brandno= getVarClean('brand_address_no','str','') ;
         $brandrt= getVarClean('brand_address_rt','str','') ;
         $brandrw = getVarClean('brand_address_rw','str','');

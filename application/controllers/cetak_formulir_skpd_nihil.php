@@ -75,7 +75,7 @@ class cetak_formulir_skpd_nihil extends CI_Controller{
 		$pdf->Ln();
 		
 		$pdf->SetFont('Arial', '', 10);
-		$pdf->Image('images/logo_lombok.png',12,15,20,20);
+		$pdf->Image(getValByCode('LOGO'),12,15,20,20);
 		$pdf->Cell($lheader1, $this->height, "", "L", 0, 'C');			
 		$pdf->Cell($lheader2, $this->height, "PEMERINTAH KABUPATEN", "R", 0, 'C');
 		$pdf->SetFont('Arial', '', 12);
@@ -106,7 +106,7 @@ class cetak_formulir_skpd_nihil extends CI_Controller{
 		
 		
 		$pdf->Cell($lheader1, $this->height + 1, "", "L", 0, 'C');	
-		$pdf->Cell($lheader2, $this->height + 1, "DINAS PELAYANAN PAJAK", "R", 0, 'C');
+		$pdf->Cell($lheader2, $this->height + 1, getValByCode('INSTANSI_2'), "R", 0, 'C');
 		$pdf->Cell($lheader3, $this->height + 1, "     Masa Pajak    : ".$data["finance_period_code"], "R", 0, 'L');
 		$pdf->Cell($lheader2, $this->height + 1, "", "R", 0, 'C');
 		$pdf->Ln($this->height - 4);
@@ -133,7 +133,7 @@ class cetak_formulir_skpd_nihil extends CI_Controller{
 		*/
 		$pdf->Cell($lheader1, $this->height-1, "", "L", 0, 'C');	
 		$pdf->SetFont('Arial', '', 8);
-		$pdf->Cell($lheader2, $this->height-1, "Jalan Wastukancana No.2", "R", 0, 'C');
+		$pdf->Cell($lheader2, $this->height-1, getValByCode('ALAMAT_1'), "R", 0, 'C');
 		$pdf->SetFont('Arial', '', 10);
 		$pdf->Cell($lheader3, $this->height-1, "     Tahun Pajak   : ".$data["tahun"], "R", 0, 'L');
 		$pdf->Cell($lheader2, $this->height-1, "No.Bayar", "R", 0, 'C');
@@ -146,7 +146,7 @@ class cetak_formulir_skpd_nihil extends CI_Controller{
 		
 		$pdf->Cell($lheader1, $this->height+1, "", "BL", 0, 'C');	
 		$pdf->SetFont('Arial', '', 8);
-		$pdf->Cell($lheader2, $this->height+1, "Telp. 022-4235052 - Bandung", "BR", 0, 'C');
+		$pdf->Cell($lheader2, $this->height+1, getValByCode('ALAMAT_4'), "BR", 0, 'C');
 		$pdf->SetFont('Arial', '', 10);
 		$pdf->Cell($lheader3, $this->height+1, "", "BR", 0, 'L');
 		$pdf->Cell($lheader2, $this->height+1, $data["payment_key"], "BR", 0, 'C');
@@ -204,7 +204,7 @@ class cetak_formulir_skpd_nihil extends CI_Controller{
 		$pdf->Ln();
 		// $this->tulis("I. Berdasarkan Pasal 65 ayat (2) dan (3) Peraturan Daerah Kota Bandung Nomor 20 Tahun 2011 tentang Pajak Daerah, telah dilakukan", "L", $pdf);
 		$pdf->Cell(5, $this->height+2, "", "L", 0, 'C');
-		$pdf->Cell($this->lengthCell - 10, $this->height+2, "I. Berdasarkan Pasal 65 ayat (2) dan (3) Peraturan Daerah Kota Bandung Nomor 20 Tahun 2011 tentang Pajak Daerah, telah dilakukan", "", 0, "L");
+		$pdf->Cell($this->lengthCell - 10, $this->height+2, "I. Berdasarkan Pasal 65 ayat (2) dan (3) Peraturan Daerah Lombok Utara Nomor 20 Tahun 2011 tentang Pajak Daerah, telah dilakukan", "", 0, "L");
 		$pdf->Cell(5, $this->height+2, "", "R", 0, 'C');
 		$pdf->Ln();
 		
@@ -378,7 +378,7 @@ class cetak_formulir_skpd_nihil extends CI_Controller{
 		$pdf->Ln();
 		
 		$pdf->Cell($lbody3 - 10, $this->height, "", "L", 0, 'L');
-		$pdf->Cell($lbody1 + 10, $this->height, "a.n KEPALA DINAS PELAYANAN PAJAK", "R", 0, 'C');
+		$pdf->Cell($lbody1 + 10, $this->height, "a.n KEPALA BADAN PENGELOLAAN PENDAPATAN DAERAH", "R", 0, 'C');
 		$pdf->Ln();
 
 		$pdf->Cell($lbody3 - 10, $this->height, "", "L", 0, 'L');

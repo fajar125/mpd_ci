@@ -85,7 +85,7 @@ class cetak_formulir_parkir_pdf extends CI_Controller{
 		$batas1 = ($lengthJudul3 * 2) / 5;
 		$batas2 = ($lengthJudul3 * 3) / 5;
 		
-		$pdf->Image('images/logo_pemda.png',15,13,25,25);
+		$pdf->Image(getValByCode('LOGO'),15,13,25,25);
 		// $pdf->Cell($lengthJudul1, $this->height, "", 0, 0, 'C');
 		// $pdf->Cell($lengthJudul2, $this->height, "LAMPIRAN :", 0, 0, 'R');
 		// $pdf->Cell($lengthJudul3, $this->height, "PERATURAN WALIKOTA BANDUNG", 0, 0, 'L');
@@ -123,11 +123,11 @@ class cetak_formulir_parkir_pdf extends CI_Controller{
 		$pdf->Cell($length3, $this->height-4, "", "TR", 0, 'L');
 		$pdf->Ln();
 		$pdf->Cell($length1, $this->height, "", "L", 0, 'C');
-		$pdf->Cell($length2, $this->height, "PEMERINTAH KOTA BANDUNG", 0, 0, 'C');
+		$pdf->Cell($length2, $this->height, getValByCode('INSTANSI_1'), 0, 0, 'C');
 		$pdf->Cell($length3, $this->height, "  Nomor Formulir", "R", 0, 'L');
 		$pdf->Ln();
 		$pdf->Cell($length1, $this->height, "", "L", 0, 'C');
-		$pdf->Cell($length2, $this->height, "DINAS PELAYANAN PAJAK", 0, 0, 'C');
+		$pdf->Cell($length2, $this->height, getValByCode('INSTANSI_2'), 0, 0, 'C');
 		
 		//nomor formulir
 		$arr1 = str_split($data["o_order_no"]);
@@ -143,19 +143,19 @@ class cetak_formulir_parkir_pdf extends CI_Controller{
 		//================
 		$pdf->Ln();
 		$pdf->Cell($length1, $this->height, "", "L", 0, 'C');
-		$pdf->Cell($length2, $this->height, "Jl. Wastukancana No. 2", 0, 0, 'C');
+		$pdf->Cell($length2, $this->height, getValByCode('ALAMAT_1'), 0, 0, 'C');
 		$pdf->Cell($length3, $this->height, "", "R", 0, 'L');
 		$pdf->Ln();
 		$pdf->Cell($length1, $this->height, "", "L", 0, 'C');
-		$pdf->Cell($length2, $this->height, "Telp. (022) 4235052", 0, 0, 'C');
+		$pdf->Cell($length2, $this->height, getValByCode('ALAMAT_2'), 0, 0, 'C');
 		$pdf->Cell($length3, $this->height, "", "R", 0, 'L');
 		$pdf->Ln();
 		$pdf->Cell($length1, $this->height, "", "L", 0, 'C');
-		$pdf->Cell($length2, $this->height, "Fax (022) 4208604", 0, 0, 'C');
+		$pdf->Cell($length2, $this->height, getValByCode('ALAMAT_4'), 0, 0, 'C');
 		$pdf->Cell($length3, $this->height, "", "R", 0, 'L');
 		$pdf->Ln();
 		$pdf->Cell($length1, $this->height, "", "L", 0, 'C');
-		$pdf->Cell($length2, $this->height, "BANDUNG", 0, 0, 'C');
+		$pdf->Cell($length2, $this->height, getValByCode('ALAMAT_3'), 0, 0, 'C');
 		$pdf->Cell($length3, $this->height, "", "R", 0, 'L');
 		$pdf->Ln();
 		$pdf->Cell($length1, $this->height-4, "", "BL", 0, 'C');
@@ -180,7 +180,7 @@ class cetak_formulir_parkir_pdf extends CI_Controller{
 		$pdf->Cell($len2, $this->height, "Kepada Yth.", "BR", 0, 'L');
 		$pdf->Ln();
 		$pdf->Cell($len1, $this->height, "", "TBL", 0, 'C');
-		$pdf->Cell($len2, $this->height, "DINAS PELAYANAN PAJAK KOTA BANDUNG", "BR", 0, 'L');
+		$pdf->Cell($len2, $this->height, getValByCode('INSTANSI_2'), "BR", 0, 'L');
 		$pdf->Ln();
 		/*
 		$pdf->Cell($len1, $this->height, "", "TBL", 0, 'C');
@@ -207,10 +207,10 @@ class cetak_formulir_parkir_pdf extends CI_Controller{
 		$pdf->Cell($per2+$per3, $this->height, "Diberi v pada kotak yang tersedia untuk jawaban yang diberikan;", "BR", 0, 'L');
 		$pdf->Ln();
 		$pdf->Cell($per1, $this->height, "3. ", "TBL", 0, 'C');
-		$pdf->Cell($per2+$per3, $this->height, "Setelah Formulir Pendaftaran ini diisi dan ditanda tangani,  harap diserahkan kembali Kepada Dinas Pelayanan Pajak", "BR", 0, 'L');
+		$pdf->Cell($per2+$per3, $this->height, "Setelah Formulir Pendaftaran ini diisi dan ditanda tangani,  harap diserahkan kembali Kepada Badan Pengelolaan Pendapatan Daerah", "BR", 0, 'L');
 		$pdf->Ln();
 		$pdf->Cell($per1, $this->height, "", "TBL", 0, 'L');
-		$pdf->Cell($per2+$per3, $this->height, "Kota Bandung langsung atau dikirim melalui Pos paling lambat tanggal .......................", "BR", 0, 'L');
+		$pdf->Cell($per2+$per3, $this->height, "Lombok Utara langsung atau dikirim melalui Pos paling lambat tanggal .......................", "BR", 0, 'L');
 		$pdf->Ln();
 		$pdf->Cell($lengthCell, $this->height, "", 1, 0, 'C');
 		$pdf->Ln();
@@ -430,8 +430,9 @@ class cetak_formulir_parkir_pdf extends CI_Controller{
 		//surat izin
 		
 		for($i=0; $i<count($data1); $i++){
+			//print_r($data1); exit();
 			$pdf->Cell($per1, $this->height, "", "TBL", 0, 'C');
-			$pdf->Cell($per2, $this->height, "- Surat Izin ".$data1["license_type_code"][$i], "B", 0, 'L');
+			$pdf->Cell($per2, $this->height, "- Surat Izin ".$data1["license_type_code"], "B", 0, 'L');
 			$pdf->Cell($isi1, $this->height, ": ", "B", 0, 'L');
 			$pdf->Cell($isi2, $this->height, "No. ".$data1["license_no"][$i], "B", 0, 'L');
 			$pdf->Cell($isi3, $this->height, "Tgl. ".$data1["valid_from"][$i], "BR", 0, 'L');
