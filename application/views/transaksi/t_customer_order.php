@@ -329,7 +329,7 @@ $("#tab-4").on("click", function(event) {
                         if (vatRegId == "" || vatRegId == null || vatRegId == 0){
                             display1 = "";
                         }
-                        return '<button class="btn btn-danger btn-xs" type="submit" '+display+' id="btn_cetak" onclick="cetak(\''+rqstId+'\',\''+custId+'\');"><i class="fa fa-print"></i>Cetak</button> <button class="btn btn-success btn-xs" type="submit" id="btn_submit" onclick="submit(\''+custId+'\',\''+company_brand+'\',\''+npwpd+'\',\''+order_no+'\',\''+brand_address_name+'\');"><i class="fa fa-save"></i>Submit</button> <button class="btn btn-danger btn-xs" type="submit" '+display1+' id="btn_cetak" onclick="deleteData(\''+custId+'\');"><i class="fa fa-trash-o"></i> Hapus</button>';
+                        return '<button class="btn btn-danger btn-xs" type="button" '+display+' id="btn_cetak" onclick="cetak(\''+rqstId+'\',\''+custId+'\');"><i class="fa fa-print"></i>Cetak</button> <button class="btn btn-success btn-xs" type="button" id="btn_submit" onclick="submit(\''+custId+'\',\''+company_brand+'\',\''+npwpd+'\',\''+order_no+'\',\''+brand_address_name+'\');"><i class="fa fa-save"></i>Submit</button> <button class="btn btn-danger btn-xs" type="button" '+display1+' id="btn_delete" onclick="deleteData(\''+custId+'\');"><i class="fa fa-trash-o"></i> Hapus</button>';
 
                     }
                 }
