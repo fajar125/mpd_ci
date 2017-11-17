@@ -21,6 +21,15 @@ class T_customer_order_controller {
             $ci->load->model('transaksi/t_customer_order');
             $table = $ci->t_customer_order;
 
+            if( isset($_REQUEST['searchField'])){
+                if($_REQUEST['searchField']=='npwd') {
+                    $_REQUEST['searchField']='b.npwd';
+                }
+                if($_REQUEST['searchField']=='company_brand_name') {
+                    $_REQUEST['searchField']='b.company_brand';
+                }
+            }
+
             $req_param = array(
                 "sort_by" => $sidx,
                 "sord" => $sord,
