@@ -420,4 +420,84 @@ class T_bphtb_registration_list_controller {
         return $data;
 
     } 
+
+    function getOrderStatus() {
+
+        $t_bphtb_registration_id = getVarClean('t_bphtb_registration_id', 'int', 0);
+
+        //exit;
+
+        $data = array('rows' => array(), 'success' => false, 'message' => '', 'records' => 0, 'total' => 0);
+
+        try {
+
+            $ci = & get_instance();
+            $ci->load->model('transaksi/t_bphtb_registration_list');
+            $table = $ci->t_bphtb_registration_list;
+
+            $items = $table->getOrderStatus($t_bphtb_registration_id);
+
+            $data['result'] = $items;
+            $data['success'] = true;
+        }catch (Exception $e) {
+            $data['message'] = $e->getMessage();
+        }
+
+        echo json_encode($data);
+        exit;
+
+    }
+
+    function getJumlahProductOrder() {
+
+        $t_customer_order_id = getVarClean('t_customer_order_id', 'int', 0);
+
+        //exit;
+
+        $data = array('rows' => array(), 'success' => false, 'message' => '', 'records' => 0, 'total' => 0);
+
+        try {
+
+            $ci = & get_instance();
+            $ci->load->model('transaksi/t_bphtb_registration_list');
+            $table = $ci->t_bphtb_registration_list;
+
+            $items = $table->getJumlahProductOrder($t_customer_order_id);
+
+            $data['result'] = $items;
+            $data['success'] = true;
+        }catch (Exception $e) {
+            $data['message'] = $e->getMessage();
+        }
+
+        echo json_encode($data);
+        exit;
+
+    }
+
+    function SubmitTable() {
+
+        $t_customer_order_id = getVarClean('t_customer_order_id', 'int', 0);
+
+        //exit;
+
+        $data = array('rows' => array(), 'success' => false, 'message' => '', 'records' => 0, 'total' => 0);
+
+        try {
+
+            $ci = & get_instance();
+            $ci->load->model('transaksi/t_bphtb_registration_list');
+            $table = $ci->t_bphtb_registration_list;
+
+            $items = $table->SubmitTable($t_customer_order_id);
+
+            $data['result'] = $items;
+            $data['success'] = true;
+        }catch (Exception $e) {
+            $data['message'] = $e->getMessage();
+        }
+
+        return $data;
+
+    }
 }

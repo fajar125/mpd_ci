@@ -235,6 +235,40 @@ class T_bphtb_registration_list extends Abstract_model {
         return $item;      
     }
 
+    function getOrderStatus($t_bphtb_registration_id){
+        $sql = "SELECT b.p_order_status_id
+                    FROM t_bphtb_exemption AS a
+                    LEFT JOIN t_customer_order AS b ON a.t_customer_order_id = b.t_customer_order_id
+                    WHERE a.t_bphtb_registration_id =".$t_bphtb_registration_id;
+        $query = $this->db->query($sql);
+        $item = $query->row_array();
+        
+            
+        return $item;
+    }
+
+    function getJumlahProductOrder($t_customer_order_id){
+        $sql = "SELECT count(*) AS jml 
+                FROM t_product_order_control 
+                WHERE doc_id = ".$t_customer_order_id."
+                AND p_w_doc_type_id = 505";
+        $query = $this->db->query($sql);
+        $item = $query->row_array();
+        
+            
+        return $item;
+    }
+
+    function SubmitTable($t_customer_order_id){
+        $userdata = $ci->session->userdata;
+        $sql = "SELECT sikp.f_first_submit_engine(505,".$t_customer_order_id.",'".$userdata['app_user_name']."')";
+        $query = $this->db->query($sql);
+        $item = $query->row_array();
+        
+            
+        return $item;
+    }
+
     
 }
 

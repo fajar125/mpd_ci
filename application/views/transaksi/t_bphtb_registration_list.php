@@ -79,10 +79,12 @@
                 },
                 {name: 'Options',width: 20, align: "center",
                     formatter:function(cellvalue, options, rowObject) {
-                        var val = rowObject['t_bphtb_registration_id'];
+                        var t_bphtb_registration_id = rowObject['t_bphtb_registration_id'];
+                        var t_customer_order_id = rowObject['t_customer_order_id'];
+                        var check_potongan = rowObject['check_potongan'];
                         var t_ppat_id = rowObject['t_ppat_id'];
                         if (t_ppat_id==null || t_ppat_id==''){
-                            return '<a class="btn btn-danger btn-xs" href="#" onclick="PopupCenter('+val+');">Submit</a>';
+                            return '<a class="btn btn-danger btn-xs" href="#" onclick="PopupCenter(\''+check_potongan+'\','+t_customer_order_id+','+t_bphtb_registration_id+');">Submit</a>';
                         }else{
                             return '';
                         }
@@ -260,8 +262,82 @@
 
     }
 
-    function PopupCenter(id){
-        alert(id);
+    function PopupCenter(check_potongan,t_customer_order_id,t_bphtb_registration_id){
+        // alert(check_potongan);
+        if (check_potongan=='Y'){
+            $.ajax({
+                url: '<?php echo WS_JQGRID."transaksi.t_bphtb_registration_list_controller/getOrderStatus"; ?>',
+                type: "POST",
+                dataType: "json",
+                data: {
+                    t_bphtb_registration_id: t_bphtb_registration_id
+                },
+                success: function (data) {
+                    if(data.success){
+                        var dt = data.result;
+
+                        console.log(dt.p_order_status_id);
+
+                        if (dt.p_order_status_id!=3){
+                            alert('Proses Permohonan Pengurangan BPHTB Belum Selesai. Data tidak dapat disubmit');
+                        }else{
+                            $.ajax({
+                                url: '<?php echo WS_JQGRID."transaksi.t_bphtb_registration_list_controller/getJumlahProductOrder"; ?>',
+                                type: "POST",
+                                dataType: "json",
+                                data: {
+                                    t_customer_order_id: t_customer_order_id
+                                },
+                                success: function (data) {
+                                    if(data.success){
+                                        var dt = data.result;
+
+                                        var jumlah_data = dt.jml;
+
+                                        if (jumlah_data==0){
+                                            $.ajax({
+                                                    url: '<?php echo WS_JQGRID."transaksi.t_bphtb_registration_list_controller/SubmitTable"; ?>',
+                                                    type: "POST",
+                                                    dataType: "json",
+                                                    data: {
+                                                        t_customer_order_id: t_customer_order_id
+                                                    },
+                                                    success: function (data) {
+                                                        if(data.success){
+                                                            alert(data.result);
+                                                           
+                                                        }
+                                                        // console.log(dt.product_name);
+                                                    },
+                                                    error: function (xhr, status, error) {
+                                                        swal({title: "Error!", text: xhr.responseText, html: true, type: "error"});
+                                                    }
+                                                });
+                                        }else{
+                                            alert('Data BPHTB Sudah Tersubmit');
+                                        }
+
+                                       
+                                    }
+                                    // console.log(dt.product_name);
+                                },
+                                error: function (xhr, status, error) {
+                                    swal({title: "Error!", text: xhr.responseText, html: true, type: "error"});
+                                }
+                            });
+                        }
+
+                       
+                    }
+                    // console.log(dt.product_name);
+                },
+                error: function (xhr, status, error) {
+                    swal({title: "Error!", text: xhr.responseText, html: true, type: "error"});
+                }
+            });
+        }else{
+
+        }
     }
 
 </script>
