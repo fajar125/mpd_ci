@@ -55,7 +55,7 @@ class pdf_lap_bdhr extends CI_Controller{
         $pdf->AliasNbPages();
         $pdf->AddPage("L");
         $pdf->SetFont('Arial', '', 10);
-        $pdf->Image('images/logo_lombok.png',15,13,25,25);
+        $pdf->Image(getValByCode('LOGO'),15,13,25,25);
 
         $pdf->startY = $pdf->GetY();
         $pdf->startX = $this->paperWSize-72;
@@ -72,21 +72,21 @@ class pdf_lap_bdhr extends CI_Controller{
         $pdf->Cell($lheader1, $this->height, "", "TR", 0, 'L');
         $pdf->Ln();
         $pdf->Cell($lheader1, $this->height, "", "L", 0, 'L');
-        $pdf->Cell($lheader3, $this->height, "PEMERINTAH KABUPATEN LOMBOK UTARA", "R", 0, 'C');
+        $pdf->Cell($lheader3, $this->height, getValByCode('INSTANSI_1'), "R", 0, 'C');
         $pdf->Cell($lheader4, $this->height, "LAMPIRAN LAPORAN HARIAN", "R", 0, 'C');
         $pdf->Ln();
         $pdf->Cell($lheader1, $this->height, "", "L", 0, 'L');
-        $pdf->Cell($lheader3, $this->height, "DINAS PELAYANAN PAJAK", "R", 0, 'C');
+        $pdf->Cell($lheader3, $this->height, getValByCode('INSTANSI_2'), "R", 0, 'C');
         $pdf->Cell($lheader4, $this->height, "BENDAHARA PENERIMAAN", "R", 0, 'C');
         $pdf->Ln();
         $pdf->Cell($lheader1, $this->height, "", "L", 0, 'L');
-        $pdf->Cell($lheader3, $this->height, "Jalan Wastukancana no. 2", "R", 0, 'C');
+        $pdf->Cell($lheader3, $this->height, getValByCode('ALAMAT_6'), "R", 0, 'C');
         
         $tahun = date("Y", strtotime($tgl_penerimaan));
         $pdf->Cell($lheader4, $this->height, "Tahun Anggaran " . $tahun, "R", 0, 'C');     
         $pdf->Ln();
         $pdf->Cell($lheader1, $this->height, "", "L", 0, 'L');
-        $pdf->Cell($lheader3, $this->height, "Telp. 022. 4235052 - Bandung", "R", 0, 'C');
+        $pdf->Cell($lheader3, $this->height, "Telp. ".getValByCode('ALAMAT_4')." - ".getValByCode('ALAMAT_3'), "R", 0, 'C');
         $pdf->Cell($lheader4, $this->height, "Tanggal Penerimaan " . $tgl_penerimaan, "R", 0, 'C');
         $pdf->Ln();
         $pdf->Cell($lheader1, $this->height, "", "LB", 0, 'L');
@@ -295,7 +295,7 @@ class pdf_lap_bdhr extends CI_Controller{
         $pdf->Ln();
         
         $pdf->Cell($lbody3 - 10, $this->height, "", "", 0, 'L');
-        $pdf->Cell($lbody1 + 10, $this->height, "Bandung, " . date("d F Y") /*. $data["tanggal"]*/, "", 0, 'C');
+        $pdf->Cell($lbody1 + 10, $this->height, "Lombok, " . date("d F Y") /*. $data["tanggal"]*/, "", 0, 'C');
         $pdf->Ln();
         $pdf->Cell($lbody3 - 10, $this->height, "", "", 0, 'L');
         $pdf->Cell($lbody1 + 10, $this->height, "BENDAHARA PENERIMAAN, ", "", 0, 'C');

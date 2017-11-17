@@ -82,7 +82,8 @@ class Bphtb_registration extends CI_Controller
         $query = $this->db->query($sql);
         $items = $query->result_array();
         $html = "";
-        $html.="<select name='p_bphtb_legal_doc_type_id' id='p_bphtb_legal_doc_type_id' onchange='getdok(this);' class='form-control '>";
+        //$html.="<select name='p_bphtb_legal_doc_type_id' id='p_bphtb_legal_doc_type_id' onchange='getdok(this);' class='form-control '>";
+        $html.="<select name='p_bphtb_legal_doc_type_id' id='p_bphtb_legal_doc_type_id'  class='form-control '>";
         $html.="<option value='' >Semua</option>";
         foreach ($items as $data) {
           $html .=" <option value='" . $data['p_bphtb_legal_doc_type_id'] . "'>" . $data['description'] . "</option>";
@@ -91,6 +92,46 @@ class Bphtb_registration extends CI_Controller
 
         echo $html;
         exit;
+    }
+
+    function petugas_administrator_combo(){
+        try {
+            $sql = "SELECT * FROM t_bphtb_exemption_pemeriksa
+                    WHERE pemeriksa_status = 'administrator'";
+            $query = $this->db->query($sql);
+
+            $items = $query->result_array();
+            echo '<select id="administrator_id" name="administrator_id" class="FormElement form-control"> <option value="">--Pilih Petugas Administrator--</option>';
+            foreach($items  as $item ){
+                echo '<option value="'.$item['t_bphtb_exemption_pemeriksa_id'].'">'.$item['pemeriksa_nama'].'</option>';
+            }
+            echo '</select>';
+            exit;
+        } catch (Exception $e) {
+            echo $e->getMessage();
+            exit;
+        }
+        
+    }
+
+    function petugas_pemeriksa_combo(){
+        try {
+            $sql = "SELECT * FROM t_bphtb_exemption_pemeriksa
+                    WHERE pemeriksa_status = 'pemeriksa'";
+            $query = $this->db->query($sql);
+
+            $items = $query->result_array();
+            echo '<select id="pemeriksa_id" name="pemeriksa_id"  class="FormElement form-control"> <option value="">--Pilih Petugas Penerima--</option>';
+            foreach($items  as $item ){
+                echo '<option value="'.$item['t_bphtb_exemption_pemeriksa_id'].'">'.$item['pemeriksa_nama'].'</option>';
+            }
+            echo '</select>';
+            exit;
+        } catch (Exception $e) {
+            echo $e->getMessage();
+            exit;
+        }
+        
     }
 
 }

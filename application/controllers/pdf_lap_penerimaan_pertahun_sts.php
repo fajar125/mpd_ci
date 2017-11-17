@@ -56,7 +56,7 @@ class pdf_lap_penerimaan_pertahun_sts extends CI_Controller{
         $pdf->AliasNbPages();
         $pdf->AddPage("L");
         $pdf->SetFont('Arial', '', 10);
-        $pdf->Image('images/logo_lombok.png',15,13,25,25);
+        $pdf->Image(getValByCode('LOGO'),15,13,25,25);
 
         $pdf->startY = $pdf->GetY();
         $pdf->startX = $this->paperWSize-72;
@@ -73,19 +73,19 @@ class pdf_lap_penerimaan_pertahun_sts extends CI_Controller{
         $pdf->Cell($lheader1, $this->height, "", "TR", 0, 'L');
         $pdf->Ln();
         $pdf->Cell($lheader1, $this->height, "", "L", 0, 'L');
-        $pdf->Cell($lheader3, $this->height, "PEMERINTAH KOTA BANDUNG", "R", 0, 'C');
+        $pdf->Cell($lheader3, $this->height, getValByCode('INSTANSI_1'), "R", 0, 'C');
         $pdf->Cell($lheader4, $this->height, "LAPORAN POSISI WP BELUM BAYAR", "R", 0, 'C');
         $pdf->Ln();
         $pdf->Cell($lheader1, $this->height, "", "L", 0, 'L');
-        $pdf->Cell($lheader3, $this->height, "DINAS PELAYANAN PAJAK", "R", 0, 'C');
+        $pdf->Cell($lheader3, $this->height, getValByCode('INSTANSI_2'), "R", 0, 'C');
         $pdf->Cell($lheader4, $this->height, "", "R", 0, 'C');
         $pdf->Ln();
         $pdf->Cell($lheader1, $this->height, "", "L", 0, 'L');
-        $pdf->Cell($lheader3, $this->height, "Jalan Wastukancana no. 2", "R", 0, 'C');
+        $pdf->Cell($lheader3, $this->height, getValByCode('ALAMAT_6'), "R", 0, 'C');
         $pdf->Cell($lheader4, $this->height, "Periode Belum Bayar : " . str_replace("'","",$start_piutang).' s/d '.str_replace("'","",$end_piutang), "R", 0, 'C');   
         $pdf->Ln();
         $pdf->Cell($lheader1, $this->height, "", "L", 0, 'L');
-        $pdf->Cell($lheader3, $this->height, "Telp. 022. 4235052 - Bandung", "R", 0, 'C');
+        $pdf->Cell($lheader3, $this->height, "Telp. ".getValByCode('ALAMAT_4')." - ".getValByCode('ALAMAT_3'), "R", 0, 'C');
         $pdf->Cell($lheader4, $this->height, "Posisi Laporan Tanggal : ".str_replace("'","",$tgl_status), "R", 0, 'C');
         $pdf->Ln();
         $pdf->Cell($lheader1, $this->height, "", "LB", 0, 'L');

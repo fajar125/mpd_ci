@@ -6,7 +6,7 @@
             <i class="fa fa-circle"></i>
         </li>
         <li>
-            <span>Informasi Formulir Pendaftaran</span>
+            <span>Pengurangan BPHTB</span>
             <i class="fa fa-circle"></i>
         </li>
         
@@ -55,6 +55,7 @@
     <!-- end type hidden -->
 
     <input type="hidden" class="form-control" name="t_bphtb_exemption_id" id="t_bphtb_exemption_id">
+    <input type="hidden" class="form-control" name="p_bphtb_legal_doc_type_id" id="p_bphtb_legal_doc_type_id">
 <!-- end breadcrumb -->
 <div class="space-4"></div>
 <div class="row">
@@ -62,15 +63,15 @@
         <div class="tabbable">
             <ul class="nav nav-tabs">
                 <li class="active">
-                    <a href="javascript:;" data-toggle="tab" aria-expanded="true" class="back" id="tab-0">
+                    <a href="javascript:;" data-toggle="tab" aria-expanded="true" class="back" id="tab-1">
                         <i class="blue"></i>
-                        <strong> Formulir Pengurangan BPHTB</strong>
+                        <strong> FORMULIR PENGURANGAN BPHTB </strong>
                     </a>
                 </li>
                 <li class="">
-                    <a href="javascript:;" data-toggle="tab" aria-expanded="true" id="tab-1">
+                    <a href="javascript:;" data-toggle="tab" aria-expanded="true" id="tab-2">
                         <i class="blue"></i>
-                        <strong> Dokumen Pendukung </strong>
+                        <strong> DOKUMEN PENDUKUNG </strong>
                     </a>
                 </li>
             </ul>
@@ -507,9 +508,9 @@
 
                                                 <button class="btn btn-danger" type="submit" id="acara" onclick="cetakPdf('acara')">BERITA ACARA (3)</button>
 
-                                                <button class="btn btn-danger" type="submit" id="kasi" onclick="cetakPdf('kasi')">NOTA DINAS KASI (4)</button>
+                                                <button class="btn btn-danger" type="submit" id="kasi" onclick="cetakPdf('1')">NOTA DINAS KASI (4)</button>
 
-                                                <button class="btn btn-danger" type="submit" id="kabid" onclick="cetakPdf('kabid')">NOTA DINAS KABID (4)</button>
+                                                <button class="btn btn-danger" type="submit" id="kabid" onclick="cetakPdf('2')">NOTA DINAS KABID (4)</button>
 
                                                 <button class="btn btn-danger" type="submit" id="kadis"onclick="cetakPdf('kadis')">KEPUTUSAN KADIS (5)</button>
                                             </div>
@@ -521,7 +522,7 @@
 
                                                 <button class="btn btn-success" style="display: none" type="submit" id="insert" onclick="">SIMPAN</button>
 
-                                                <button class="btn btn-success" type="submit" id="update" onclick="upadteForm()">SIMPAN</button>
+                                                <button class="btn btn-success" type="submit" id="update" onclick="updateForm()">SIMPAN</button>
 
                                                 <a href="javascript:;" style="display: none" class="btn  green " id="delete">HAPUS</a>
 
@@ -683,77 +684,22 @@
 
 
 </script>
-
-<script>
-
-    $('#tgl_sk').datepicker({ // mengambil dari class datepicker
-      autoclose: true,
-      format : 'dd-mm-yyyy',
-      todayBtn: 'linked',
-      todayHighlight: true
-    });
-
-    $('#tgl_berita_acara').datepicker({ // mengambil dari class datepicker
-      autoclose: true,
-      format : 'dd-mm-yyyy',
-      todayBtn: 'linked',
-      todayHighlight: true
-    });
-
-
-    $(".priceformat").number( true, 0 , '.',','); /* price number format */
-    $(".priceformat").css("text-align", "right");
-
-    $(".numberformat").number( true, 0 , '.','.');
-    $(".numberformat").css("text-align", "right");
-    $(".formatRight").css("text-align", "right");
-
-    $.ajax({
-        url: "<?php echo base_url().'bphtb_registration/petugas_administrator_combo/'; ?>" ,
-        type: "POST",
-        success: function (data) {
-            $( "#administrator" ).html( data );
-        },
-        error: function (xhr, status, error) {
-            swal({title: "Error!", text: xhr.responseText, html: true, type: "error"});
-        }
-    });
-
-    $.ajax({
-        url: "<?php echo base_url().'bphtb_registration/petugas_pemeriksa_combo/'; ?>" ,
-        type: "POST",
-        success: function (data) {
-            $( "#pemeriksa" ).html( data );
-        },
-        error: function (xhr, status, error) {
-            swal({title: "Error!", text: xhr.responseText, html: true, type: "error"});
-        }
-    });
-
-    $.ajax({
-            url: "<?php echo base_url().'bphtb_registration/load_combo_dok_pendukung_readonly/'; ?>" ,
-            type: "POST",            
-            data: {},
-            success: function (data) {
-                $( "#comboDocPendukung" ).html( data );
-            },
-            error: function (xhr, status, error) {
-                swal({title: "Error!", text: xhr.responseText, html: true, type: "error"});
-            }
-    });
-
-
-
-    $.ajax({
+<script type="text/javascript">
+    t_customer_order_id = "<?php echo $_POST['CURR_DOC_ID']; ?>";
+    //t_customer_order_id= 513211
+    if(t_customer_order_id!=null || t_customer_order_id!=''){
+        $.ajax({
             url: '<?php echo WS_JQGRID."transaksi_wf.t_bphtb_registration_pengurangan_controller/read"; ?>',
             type: "POST",
             dataType: "json",
             data: {
-                t_customer_order_id: 513211
+                
+                t_customer_order_id: t_customer_order_id
             },
             success: function (data) {
                 if(data.success){
                     var dt = data.rows[0];
+                    //alert(dt.p_bphtb_legal_doc_type_id);return;
 
                     $('#t_bphtb_exemption_id').val(dt.t_bphtb_exemption_id);                    
                     $('#t_bphtb_registration_id').val(dt.t_bphtb_registration_id);
@@ -830,7 +776,69 @@
                 swal({title: "Error!", text: xhr.responseText, html: true, type: "error"});
             }
         });
+    }
 </script>
+
+<script>
+
+    $('#tgl_sk').datepicker({ // mengambil dari class datepicker
+      autoclose: true,
+      format : 'dd-mm-yyyy',
+      todayBtn: 'linked',
+      todayHighlight: true
+    });
+
+    $('#tgl_berita_acara').datepicker({ // mengambil dari class datepicker
+      autoclose: true,
+      format : 'dd-mm-yyyy',
+      todayBtn: 'linked',
+      todayHighlight: true
+    });
+
+
+    $(".priceformat").number( true, 0 , '.',','); /* price number format */
+    $(".priceformat").css("text-align", "right");
+
+    $(".numberformat").number( true, 0 , '.','.');
+    $(".numberformat").css("text-align", "right");
+    $(".formatRight").css("text-align", "right");
+
+    $.ajax({
+        url: "<?php echo base_url().'bphtb_registration/petugas_administrator_combo/'; ?>" ,
+        type: "POST",
+        success: function (data) {
+            $( "#administrator" ).html( data );
+        },
+        error: function (xhr, status, error) {
+            swal({title: "Error!", text: xhr.responseText, html: true, type: "error"});
+        }
+    });
+
+    $.ajax({
+        url: "<?php echo base_url().'bphtb_registration/petugas_pemeriksa_combo/'; ?>" ,
+        type: "POST",
+        success: function (data) {
+            $( "#pemeriksa" ).html( data );
+        },
+        error: function (xhr, status, error) {
+            swal({title: "Error!", text: xhr.responseText, html: true, type: "error"});
+        }
+    });
+
+    $.ajax({
+            url: "<?php echo base_url().'bphtb_registration/load_combo_dok_pendukung_readonly/'; ?>" ,
+            type: "POST",            
+            data: {},
+            success: function (data) {
+                $( "#comboDocPendukung" ).html( data );
+            },
+            error: function (xhr, status, error) {
+                swal({title: "Error!", text: xhr.responseText, html: true, type: "error"});
+            }
+    });
+</script>
+
+
 <!-- /First Load -->
 
 <!-- LOV -->
@@ -1209,45 +1217,49 @@
     }
 
     function updateForm(){
-        var wp_p_region_id              = $('wp_p_region_id').val(); 
-        var wp_p_region_id_kel          = $('wp_p_region_id_kel').val(); 
-        var wp_name                     = $('wp_name').val(); 
-        var wp_address_name             = $('wp_address_name').val();
-        var npwp                        = $('npwp').val();
-        var object_p_region_id_kec      = $('object_p_region_id_kec').val(); 
-        var object_p_region_id          = $('object_p_region_id').val(); 
-        var land_area                   = $('land_area').val(); 
-        var land_price_per_m            = $('land_price_per_m').val(); 
-        var land_total_price            = $('land_total_price').val(); 
-        var building_area               = $('building_area').val(); 
-        var building_price_per_m        = $('building_price_per_m').val(); 
-        var building_total_price        = $('building_total_price').val(); 
-        var wp_rt                       = $('wp_rt').val(); 
-        var wp_rw                       = $('wp_rw').val(); 
-        var object_rt                   = $('object_rt').val(); 
-        var object_rw                   = $('object_rw').val(); 
-        var njop_pbb                    = $('njop_pbb').val(); 
-        var object_address_name         = $('object_address_name').val(); 
-        var p_bphtb_legal_doc_type_id   = $('p_bphtb_legal_doc_type_id').val(); 
-        var npop                        = $('npop').val();
-        var npop_tkp                    = $('npop_tkp').val(); 
-        var npop_kp                     = $('npop_kp').val(); 
-        var bphtb_amt                   = $('bphtb_amt').val(); 
-        var bphtb_amt_final             = $('bphtb_amt_final').val(); 
-        var bphtb_discount              = $('bphtb_discount').val(); 
-        var description                 = $('description').val(); 
-        var market_price                = $('market_price').val(); 
-        var mobile_phone_no             = $('mobile_phone_no').val(); 
-        var wp_p_region_id_kec          = $('wp_p_region_id_kec').val(); 
-        var object_p_region_id_kel      = $('object_p_region_id_kel').val(); 
-        var bphtb_legal_doc_description = $('bphtb_legal_doc_description').val(); 
-        var add_disc_percent            = $('add_disc_percent').val();
 
+        var t_bphtb_registration_id     = $('#t_bphtb_registration_id').val();
+        var wp_p_region_id              = $('#wp_p_region_id').val(); 
+        var wp_p_region_id_kel          = $('#wp_p_region_id_kel').val(); 
+        var wp_name                     = $('#wp_name').val(); 
+        var wp_address_name             = $('#wp_address_name').val();
+        var npwp                        = $('#npwp').val();
+        var object_p_region_id_kec      = $('#object_p_region_id_kec').val(); 
+        var object_p_region_id          = $('#object_p_region_id').val(); 
+        //var land_area                   = $('land_area').val(); 
+        //var land_price_per_m            = $('land_price_per_m').val(); 
+        //var land_total_price            = $('land_total_price').val(); 
+        //var building_area               = $('building_area').val(); 
+        //var building_price_per_m        = $('building_price_per_m').val(); 
+        //var building_total_price        = $('building_total_price').val(); 
+        var wp_rt                       = $('#wp_rt').val(); 
+        var wp_rw                       = $('#wp_rw').val(); 
+        var object_rt                   = $('#object_rt').val(); 
+        var object_rw                   = $('#object_rw').val(); 
+        var njop_pbb                    = $('#njop_pbb').val(); 
+        var object_address_name         = $('#object_address_name').val(); 
+        var p_bphtb_legal_doc_type_id   = $('#p_bphtb_legal_doc_type_id').val(); 
+        //var npop                        = $('npop').val();
+        //var npop_tkp                    = $('npop_tkp').val(); 
+        //var npop_kp                     = $('npop_kp').val(); 
+        var bphtb_amt                   = $('#bphtb_amt').val(); 
+        var bphtb_amt_final             = $('#bphtb_amt_final').val(); 
+        var bphtb_discount              = $('#bphtb_discount').val(); 
+        var description                 = $('#description').val(); 
+        var market_price                = $('#market_price').val(); 
+        var mobile_phone_no             = $('#mobile_phone_no').val(); 
+        var wp_p_region_id_kec          = $('#wp_p_region_id_kec').val(); 
+        var object_p_region_id_kel      = $('#object_p_region_id_kel').val(); 
+        var bphtb_legal_doc_description = $('#bphtb_legal_doc_description').val(); 
+        var add_disc_percent            = $('#add_disc_percent').val();
+
+        //alert(p_bphtb_legal_doc_type_id);return;
         $.ajax({
-            url     : "<?php echo WS_JQGRID . "transaksi.t_penutupan_wp_controller/update"; ?>" ,
+            url     : "<?php echo WS_JQGRID . "transaksi_wf.t_bphtb_registration_pengurangan_controller/update"; ?>" ,
             type    : "POST", 
             datatype: "json",           
             data    :{
+                        t_bphtb_registration_id: t_bphtb_registration_id,
                         wp_p_region_id :wp_p_region_id,
                         wp_p_region_id_kel :wp_p_region_id_kel,
                         wp_name :wp_name,
@@ -1255,12 +1267,12 @@
                         npwp :npwp,
                         object_p_region_id_kec :object_p_region_id_kec,
                         object_p_region_id :object_p_region_id,
-                        land_area :land_area,
+                        /*land_area :land_area,
                         land_price_per_m :land_price_per_m,
                         land_total_price :land_total_price,
                         building_area :building_area,
                         building_price_per_m :building_price_per_m,
-                        building_total_price :building_total_price,
+                        building_total_price :building_total_price,*/
                         wp_rt :wp_rt,
                         wp_rw :wp_rw,
                         object_rt :object_rt,
@@ -1268,9 +1280,9 @@
                         njop_pbb :njop_pbb,
                         object_address_name :object_address_name,
                         p_bphtb_legal_doc_type_id :p_bphtb_legal_doc_type_id,
-                        npop :npop,
+                        /*npop :npop,
                         npop_tkp :npop_tkp,
-                        npop_kp :npop_kp,
+                        npop_kp :npop_kp,*/
                         bphtb_amt :bphtb_amt,
                         bphtb_amt_final :bphtb_amt_final,
                         bphtb_discount :bphtb_discount,
@@ -1376,21 +1388,102 @@
                     url += "t_bphtb_registration_id=" + params;
                 }
             }else if(aksi == 'disposisi'){
+                    url += "cetak_rep_pengurangan_bphtb_lembar_disposisi/pageCetak?";
+                    url += "t_bphtb_registration_id=" + params;
 
             }else if(aksi == 'acara'){
+                if(lembar_cetak == '2' || lembar_cetak == '3' || lembar_cetak == '4' || lembar_cetak == '7') {
+                    url += "cetak_rep_pengurangan_bphtb_berita_acara/pageCetak?";
+                    url += "t_bphtb_registration_id=" + params;
+                }else {                    
+                    url += "cetak_rep_pengurangan_bphtb_berita_acara_v2/pageCetak?";
+                    url += "t_bphtb_registration_id=" + params;
+                
+                }
+            }else if(aksi == '1'){
+                var pejabat = 1;
 
-            }else if(aksi == 'kasi'){
+                url += "cetak_rep_pengurangan_bphtb_nota_dinas/pageCetak?";
+                url += "t_bphtb_registration_id=" + params + "&pejabat=" + pejabat;
+            }else if(aksi == '2'){
+                var pejabat = 2;
 
-            }else if(aksi == 'kabid'){
+                url += "cetak_rep_pengurangan_bphtb_nota_dinas/pageCetak?";
+                url += "t_bphtb_registration_id=" + params + "&pejabat=" + pejabat;
 
-            }else if(aksi == 'kabid'){
-
+            }else if(aksi == 'kadis'){
+                url += "cetak_rep_pengurangan_bphtb_surat_keputusan/pageCetak?";
+                url += "t_bphtb_registration_id=" + params;
             }
         //}
         openInNewTab(url);
 
         
     }
+</script>
+
+<script type="text/javascript">
+    $('#tab-2').on('click', function(event){
+        var idelement;
+
+        if (idelement = $('#t_customer_order_id'))
+        {
+            
+            //console.log(idelement);
+            var pid=idelement.val();
+            //console.log($('#t_customer_order_id').val());
+            var req_code=$('#rqst_type_code').val();
+            var id_req=$('#p_rqst_type_id').val();
+            var id_vat=$('#t_bphtb_registration_id').val();
+            if (pid != 0)
+            {
+                //loadContentWithParams('transaksi_wf.t_cust_order_legal_doc_ro', {t_bphtb_registration_id:id_vat,rqst_type_code:req_code,p_rqst_type_id:id_req,t_customer_order_id:pid});
+
+                loadContentWithParams("transaksi_wf.t_cust_order_legal_doc", { //model yang ketiga
+                t_customer_order_id: $( "#CURR_DOC_ID" ).val(),
+                t_bphtb_registration_id:$('#t_bphtb_registration_id').val(),
+                rqst_type_code:$('#rqst_type_code').val(),
+                order_no: $('#order_no').val(),
+                order_date:$('#registration_date').val(),
+                p_rqst_type_id: $("#p_rqst_type_id").val(),
+                t_vat_registration_id: $( "#t_vat_registration_id" ).val(),
+                ELEMENT_ID : $('#TEMP_ELEMENT_ID').val(),
+                PROFILE_TYPE : $('#TEMP_PROFILE_TYPE').val(),
+                P_W_DOC_TYPE_ID : $('#TEMP_P_W_DOC_TYPE_ID').val(),
+                P_W_PROC_ID : $('#TEMP_P_W_PROC_ID').val(),
+                USER_ID : $('#TEMP_USER_ID').val(),
+                FSUMMARY : $('#TEMP_FSUMMARY').val(),
+                CURR_DOC_ID : $('#CURR_DOC_ID').val(),
+                CURR_DOC_TYPE_ID : $('#CURR_DOC_TYPE_ID').val(),
+                CURR_PROC_ID : $('#CURR_PROC_ID').val(),
+                CURR_CTL_ID : $('#CURR_CTL_ID').val(),
+                USER_ID_DOC : $('#USER_ID_DOC').val(),
+                USER_ID_DONOR : $('#USER_ID_DONOR').val(),
+                USER_ID_LOGIN : $('#USER_ID_LOGIN').val(),
+                USER_ID_TAKEN : $('#USER_ID_TAKEN').val(),
+                IS_CREATE_DOC : $('#IS_CREATE_DOC').val(),
+                IS_MANUAL : $('#IS_MANUAL').val(),
+                CURR_PROC_STATUS : $('#CURR_PROC_STATUS').val(),
+                CURR_DOC_STATUS : $('#CURR_DOC_STATUS').val(),
+                PREV_DOC_ID : $('#PREV_DOC_ID').val(),
+                PREV_DOC_TYPE_ID : $('#PREV_DOC_TYPE_ID').val(),
+                PREV_PROC_ID : $('#PREV_PROC_ID').val(),
+                PREV_CTL_ID : $('#PREV_CTL_ID').val(),
+                SLOT_1 : $('#SLOT_1').val(),
+                SLOT_2 : $('#SLOT_2').val(),
+                SLOT_3 : $('#SLOT_3').val(),
+                SLOT_4 : $('#SLOT_4').val(),
+                SLOT_5 : $('#SLOT_5').val(),
+                MESSAGE : $('#MESSAGE').val(),
+                PROFILE_TYPE : $('#PROFILE_TYPE').val(),
+                ACTION_STATUS : $('#ACTION_STATUS').val()});
+            } else {
+                swal({title: "Error!", text: "Pilih salah satu ORDER!", html: true, type: "error"});
+            }
+        } else {
+            swal({title: "Error!", text: "Pilih salah satu ORDER!!!", html: true, type: "error"});
+        }
+    });
 </script>
 
 <!-- Action -->

@@ -56,11 +56,12 @@ class T_bphtb_registration_pengurangan extends Abstract_model {
         parent::__construct();
     }
 
-    function updateDataPengurangan($wp_p_region_id,$wp_p_region_id_kel,$wp_name,$wp_address_name,$npwp,$object_p_region_id_kec,$object_p_region_id,$land_area,$land_price_per_m,$land_total_price,$building_area,$building_price_per_m,$building_total_price,$wp_rt,$wp_rw,$object_rt,$object_rw,$njop_pbb,$object_address_name,$p_bphtb_legal_doc_type_id,$npop,$npop_tkp,$npop_kp,$bphtb_amt,$bphtb_amt_final,$bphtb_discount,$description,$market_price,$mobile_phone_no,$wp_p_region_id_kec,$object_p_region_id_kel,$bphtb_legal_doc_description,$add_disc_percent){
+    function updateDataPengurangan($wp_p_region_id,$wp_p_region_id_kel,$wp_name,$wp_address_name,$npwp,$object_p_region_id_kec,$object_p_region_id,$wp_rt,$wp_rw,$object_rt,$object_rw,$njop_pbb,$object_address_name,$p_bphtb_legal_doc_type_id,$bphtb_amt,$bphtb_amt_final,$bphtb_discount,$description,$market_price,$mobile_phone_no,$wp_p_region_id_kec,$object_p_region_id_kel,$bphtb_legal_doc_description,$add_disc_percent,$t_bphtb_registration_id){
 
         $ci =& get_instance();
         $userdata = $ci->session->userdata;
         $user = $userdata['app_user_name'];
+
 
         $sql =  "UPDATE t_bphtb_registration 
                 SET updated_by ='$user',
@@ -71,13 +72,7 @@ class T_bphtb_registration_pengurangan extends Abstract_model {
                 wp_address_name='$wp_address_name',
                 npwp='$npwp',
                 object_p_region_id_kec=$object_p_region_id_kec, 
-                object_p_region_id=$object_p_region_id}, 
-                land_area=$land_area, 
-                land_price_per_m=$land_price_per_m, 
-                land_total_price=$land_total_price, 
-                building_area=$building_area, 
-                building_price_per_m=$building_price_per_m, 
-                building_total_price=$building_total_price, 
+                object_p_region_id=$object_p_region_id, 
                 wp_rt='$wp_rt', 
                 wp_rw='$wp_rw', 
                 object_rt='$object_rt', 
@@ -85,20 +80,19 @@ class T_bphtb_registration_pengurangan extends Abstract_model {
                 njop_pbb='$njop_pbb', 
                 object_address_name='$object_address_name', 
                 p_bphtb_legal_doc_type_id=$p_bphtb_legal_doc_type_id, 
-                npop=$npop,
-                npop_tkp=$npop_tkp, 
-                npop_kp=$npop_kp, 
                 bphtb_amt=$bphtb_amt, 
                 bphtb_amt_final=$bphtb_amt_final, 
                 bphtb_discount=$bphtb_discount, 
                 description='$description', 
-                market_price=$market_price} 
+                market_price=$market_price,
                 mobile_phone_no='$mobile_phone_no', 
                 wp_p_region_id_kec=$wp_p_region_id_kec, 
                 object_p_region_id_kel=$object_p_region_id_kel, 
                 bphtb_legal_doc_description='$bphtb_legal_doc_description', 
                 add_disc_percent=$add_disc_percent 
                 WHERE  t_bphtb_registration_id = $t_bphtb_registration_id";
+
+        //echo $sql;exit();
 
         $query = $this->db->query($sql);
 

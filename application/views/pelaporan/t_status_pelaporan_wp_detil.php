@@ -132,7 +132,7 @@
                     text: 'Jumlah Wajib Pajak Per Jenis Pajak Dengan Status Aktif'
                 },
                 subtitle: {
-                    text: 'Disyanjak Kota Bandung '
+                    text: '<?php echo getValByCode('INSTANSI_4')." - ".getValByCode('ALAMAT_3'); ?>'
                 },
                 xAxis: {
                     categories: ['Jenis Pajak']
