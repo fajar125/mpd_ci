@@ -71,4 +71,58 @@ class T_bphtb_registration_pengurangan_controller {
 
         return $data;
     }
+
+    function update(){
+        $wp_p_region_id                 = getVarClean('wp_p_region_id','int',0);
+        $wp_p_region_id_kel             = getVarClean('wp_p_region_id_kel','int',0);
+        $wp_name                        = getVarClean('wp_name','str','');
+        $wp_address_name                = getVarClean('wp_address_name','str','');
+        $npwp                           = getVarClean('npwp','str','');
+        $object_p_region_id_kec         = getVarClean('object_p_region_id_kec','int',0);
+        $object_p_region_id             = getVarClean('object_p_region_id','int',0);
+        $land_area                      = getVarClean('land_area','str','');
+        $land_price_per_m               = getVarClean('land_price_per_m','int',0);
+        $land_total_price               = getVarClean('land_total_price','int',0);
+        $building_area                  = getVarClean('building_area','int',0);
+        $building_price_per_m           = getVarClean('building_price_per_m','int',0);
+        $building_total_price           = getVarClean('building_total_price','int',0);
+        $wp_rt                          = getVarClean('wp_rt','str','');
+        $wp_rw                          = getVarClean('wp_rw','str','');
+        $object_rt                      = getVarClean('object_rt','str','');
+        $object_rw                      = getVarClean('object_rw','str','');
+        $njop_pbb                       = getVarClean('njop_pbb','str','');
+        $object_address_name            = getVarClean('object_address_name','str','');
+        $p_bphtb_legal_doc_type_id      = getVarClean('p_bphtb_legal_doc_type_id','int',0);
+        $npop                           = getVarClean('npop','str','');
+        $npop_tkp                       = getVarClean('npop_tkp','str','');
+        $npop_kp                        = getVarClean('npop_kp','str','');
+        $bphtb_amt                      = getVarClean('bphtb_amt','str','');
+        $bphtb_amt_final                = getVarClean('bphtb_amt_final','str','');
+        $bphtb_discount                 = getVarClean('bphtb_discount','str','');
+        $description                    = getVarClean('description','str','');
+        $market_price                   = getVarClean('market_price','str','');
+        $mobile_phone_no                = getVarClean('mobile_phone_no','str','');
+        $wp_p_region_id_kec             = getVarClean('wp_p_region_id_kec','str','');
+        $object_p_region_id_kel         = getVarClean('object_p_region_id_kel','str','');
+        $bphtb_legal_doc_description    = getVarClean('bphtb_legal_doc_description','str','');
+        $add_disc_percent               = getVarClean('add_disc_percent','str','');
+
+        $data = array('rows' => array(), 'page' => 1, 'records' => 0, 'total' => 1, 'success' => false, 'message' => '');
+        
+        try {
+
+            $ci = & get_instance();
+            $ci->load->model('transaksi_wf/t_bphtb_registration_pengurangan');
+            $table = $ci->t_bphtb_registration_pengurangan;
+
+            $result = $table->updateDataPengurangan($wp_p_region_id,$wp_p_region_id_kel,$wp_name,$wp_address_name,$npwp,$object_p_region_id_kec,$object_p_region_id,$land_area,$land_price_per_m,$land_total_price,$building_area,$building_price_per_m,$building_total_price,$wp_rt,$wp_rw,$object_rt,$object_rw,$njop_pbb,$object_address_name,$p_bphtb_legal_doc_type_id,$npop,$npop_tkp,$npop_kp,$bphtb_amt,$bphtb_amt_final,$bphtb_discount,$description,$market_price,$mobile_phone_no,$wp_p_region_id_kec,$object_p_region_id_kel,$bphtb_legal_doc_description,$add_disc_percent);
+
+            $count = count($result);
+
+            $data['rows'] = $result;
+            $data['success'] = true;
+        } catch (Exception $e) {
+            $data['message'] = $e->getMessage();
+        }
+    }
 }
