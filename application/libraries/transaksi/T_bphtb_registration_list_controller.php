@@ -423,63 +423,11 @@ class T_bphtb_registration_list_controller {
 
     } 
 
-    function getOrderStatus() {
-
-        $t_bphtb_registration_id = getVarClean('t_bphtb_registration_id', 'int', 0);
-
-        //exit;
-
-        $data = array('rows' => array(), 'success' => false, 'message' => '', 'records' => 0, 'total' => 0);
-
-        try {
-
-            $ci = & get_instance();
-            $ci->load->model('transaksi/t_bphtb_registration_list');
-            $table = $ci->t_bphtb_registration_list;
-
-            $items = $table->getOrderStatus($t_bphtb_registration_id);
-
-            $data['result'] = $items;
-            $data['success'] = true;
-        }catch (Exception $e) {
-            $data['message'] = $e->getMessage();
-        }
-
-        echo json_encode($data);
-        exit;
-
-    }
-
-    function getJumlahProductOrder() {
-
-        $t_customer_order_id = getVarClean('t_customer_order_id', 'int', 0);
-
-        //exit;
-
-        $data = array('rows' => array(), 'success' => false, 'message' => '', 'records' => 0, 'total' => 0);
-
-        try {
-
-            $ci = & get_instance();
-            $ci->load->model('transaksi/t_bphtb_registration_list');
-            $table = $ci->t_bphtb_registration_list;
-
-            $items = $table->getJumlahProductOrder($t_customer_order_id);
-
-            $data['result'] = $items;
-            $data['success'] = true;
-        }catch (Exception $e) {
-            $data['message'] = $e->getMessage();
-        }
-
-        echo json_encode($data);
-        exit;
-
-    }
 
     function SubmitTable() {
-
+        $t_bphtb_registration_id = getVarClean('t_bphtb_registration_id', 'int', 0);
         $t_customer_order_id = getVarClean('t_customer_order_id', 'int', 0);
+        $check_potongan = getVarClean('check_potongan', 'str', '');
 
         //exit;
 
@@ -491,10 +439,36 @@ class T_bphtb_registration_list_controller {
             $ci->load->model('transaksi/t_bphtb_registration_list');
             $table = $ci->t_bphtb_registration_list;
 
-            $items = $table->SubmitTable($t_customer_order_id);
+            $sukses = true;
 
-            $data['result'] = $items;
-            $data['success'] = true;
+            if($check_potongan=='Y'){
+                $items = $table->getOrderStatus($t_bphtb_registration_id);
+                $p_order_status_id = $items['p_order_status_id'];
+                if ($p_order_status_id!=3){
+                    $data['message'] = "Proses Permohonan Pengurangan BPHTB Belum Selesai. Data tidak dapat disubmit";
+                    $sukses = false;
+                }
+            }
+
+            if ($sukses){
+                $items = $table->getJumlahProductOrder($t_customer_order_id);
+                $jumlah_data = $items['jml'];
+                if($jumlah_data!=0){
+                    $data['message'] = "Data BPHTB Sudah Tersubmit";
+                    $sukses = false;
+                }
+            }
+
+            if ($sukses){
+                $items = $table->SubmitTable($t_customer_order_id);
+                $f_first_submit_engine = $items['f_first_submit_engine'];
+                
+                $data['message'] = $f_first_submit_engine;
+                $sukses = false;
+            }
+
+            //$data['result'] = $items;
+            $data['success'] = $sukses;
         }catch (Exception $e) {
             $data['message'] = $e->getMessage();
         }

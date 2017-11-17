@@ -274,146 +274,29 @@
           closeOnConfirm: false
         },
         function(){
-            setTimeout(function(){
-            if (check_potongan=='Y'){
-                $.ajax({
-                    url: '<?php echo WS_JQGRID."transaksi.t_bphtb_registration_list_controller/getOrderStatus"; ?>',
-                    type: "POST",
-                    dataType: "json",
-                    data: {
-                        t_bphtb_registration_id: t_bphtb_registration_id
-                    },
-                    success: function (data) {
-                        if(data.success){
-                            var dt = data.result;
+            
 
-                            console.log(dt.p_order_status_id);
-
-                            if (dt.p_order_status_id!=3){
-                                swal({title: "Error!", text:"Proses Permohonan Pengurangan BPHTB Belum Selesai. Data tidak dapat disubmit", html: true, type: "error"});
-                            }else{
-                                $.ajax({
-                                    url: '<?php echo WS_JQGRID."transaksi.t_bphtb_registration_list_controller/getJumlahProductOrder"; ?>',
-                                    type: "POST",
-                                    dataType: "json",
-                                    data: {
-                                        t_customer_order_id: t_customer_order_id
-                                    },
-                                    success: function (data) {
-                                        if(data.success){
-                                            var dt = data.result;
-
-                                            var jumlah_data = dt.jml;
-
-                                            if (jumlah_data==0){
-                                                $.ajax({
-                                                        url: '<?php echo WS_JQGRID."transaksi.t_bphtb_registration_list_controller/SubmitTable"; ?>',
-                                                        type: "POST",
-                                                        dataType: "json",
-                                                        data: {
-                                                            t_customer_order_id: t_customer_order_id
-                                                        },
-                                                        success: function (data) {
-                                                            if(data.success){
-                                                                var msg = data.result.f_first_submit_engine;
-                                                               swal({title: "Informasi!", text: msg, html: true, type: "info"});
-                                                                jQuery(function($) {
-                                                                    var grid_selector = "#grid-table";
-
-                                                                    jQuery("#grid-table-2b").jqGrid('setGridParam',{
-                                                                        url: '<?php echo WS_JQGRID."transaksi.t_bphtb_registration_list_controller/read"; ?>',
-                                                                        postData: {}
-
-                                                                    });
-                                                                    $("#grid-table").trigger("reloadGrid");
-                                                                });
-                                                            }
-                                                            // console.log(dt.product_name);
-                                                        },
-                                                        error: function (xhr, status, error) {
-                                                            swal({title: "Error!", text: xhr.responseText, html: true, type: "error"});
-                                                        }
-                                                    });
-                                            }else{
-                                                swal({title: "Error!", text:"Data BPHTB Sudah Tersubmit", html: true, type: "error"});
-                                            }
-
-                                           
-                                        }
-                                        // console.log(dt.product_name);
-                                    },
-                                    error: function (xhr, status, error) {
-                                        swal({title: "Error!", text: xhr.responseText, html: true, type: "error"});
-                                    }
-                                });
-                            }
-
-                           
-                        }
-                        // console.log(dt.product_name);
-                    },
-                    error: function (xhr, status, error) {
-                        swal({title: "Error!", text: xhr.responseText, html: true, type: "error"});
+            $.ajax({
+                url: '<?php echo WS_JQGRID."transaksi.t_bphtb_registration_list_controller/SubmitTable"; ?>',
+                type: "POST",
+                dataType: "json",
+                data: {
+                    check_potongan: check_potongan,
+                    t_customer_order_id: t_customer_order_id,
+                    t_bphtb_registration_id: t_bphtb_registration_id
+                },
+                success: function (data) {
+                    var msg = data.message;
+                    swal({title: "Informasi!", text: msg, html: true, type: "info"});
+                    if (data.success){
+                        loadContentWithParams("transaksi.t_bphtb_registration_list", {});
                     }
-                });
-            }else{
-                $.ajax({
-                    url: '<?php echo WS_JQGRID."transaksi.t_bphtb_registration_list_controller/getJumlahProductOrder"; ?>',
-                    type: "POST",
-                    dataType: "json",
-                    data: {
-                        t_customer_order_id: t_customer_order_id
-                    },
-                    success: function (data) {
-                        if(data.success){
-                            var dt = data.result;
-
-                            var jumlah_data = dt.jml;
-
-                            if (jumlah_data==0){
-                                $.ajax({
-                                        url: '<?php echo WS_JQGRID."transaksi.t_bphtb_registration_list_controller/SubmitTable"; ?>',
-                                        type: "POST",
-                                        dataType: "json",
-                                        data: {
-                                            t_customer_order_id: t_customer_order_id
-                                        },
-                                        success: function (data) {
-                                            if(data.success){
-                                                var msg = data.result.f_first_submit_engine;
-                                                swal({title: "Informasi!", text: msg, html: true, type: "info"});
-                                                jQuery(function($) {
-                                                    var grid_selector = "#grid-table";
-
-                                                    jQuery("#grid-table-2b").jqGrid('setGridParam',{
-                                                        url: '<?php echo WS_JQGRID."transaksi.t_bphtb_registration_list_controller/read"; ?>',
-                                                        postData: {}
-
-                                                    });
-                                                    $("#grid-table").trigger("reloadGrid");
-                                                });
-                                            }
-                                            // console.log(dt.product_name);
-                                        },
-                                        error: function (xhr, status, error) {
-                                            swal({title: "Error!", text: xhr.responseText, html: true, type: "error"});
-                                        }
-                                    });
-                            }else{
-                                swal({title: "Error!", text:"Data BPHTB Sudah Tersubmit", html: true, type: "error"});
-                            }
-
-                           
-                        }
-                        // console.log(dt.product_name);
-                    },
-                    error: function (xhr, status, error) {
-                        swal({title: "Error!", text: xhr.responseText, html: true, type: "error"});
-                    }
-                });
-            }
-        }, 3000);
-           
+                        
+                },
+                error: function (xhr, status, error) {
+                    swal({title: "Error!", text: xhr.responseText, html: true, type: "error"});
+                }
+            });
         });
         
     }
