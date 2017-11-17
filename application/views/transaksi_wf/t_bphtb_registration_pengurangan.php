@@ -1368,14 +1368,13 @@
             swal ( "Oopss" ,  "Pilih Lembar Cetakan Harus Dipilih!" ,  "error" );
         }else{*/
             if(aksi == 'perhitungan'){
-                //if(lembar_cetak == '4' || lembar_cetak == '7'){    
+                if(lembar_cetak == '4' || lembar_cetak == '7'){    
                     url += "cetak_rep_pengurangan_bphtb_gono_gini/pageCetak_perhitungan?";
-                    url += "t_bphtb_registration_id=" + params;        
-
-                    openInNewTab(url);
-                //}else{
-
-                //}
+                    url += "t_bphtb_registration_id=" + params;                    
+                }else{
+                    url += "cetak_rep_pengurangan_bphtb/pageCetak?";
+                    url += "t_bphtb_registration_id=" + params;
+                }
             }else if(aksi == 'disposisi'){
 
             }else if(aksi == 'acara'){
@@ -1388,6 +1387,7 @@
 
             }
         //}
+        openInNewTab(url);
 
         
     }
