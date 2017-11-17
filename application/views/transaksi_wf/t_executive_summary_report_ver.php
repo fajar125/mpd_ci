@@ -28,7 +28,7 @@
     <input type="hidden" id="rqst_type_code" value="<?php echo $this->input->post('rqst_type_code'); ?>" />
 
 
-    <input type="text" class="form-control" name="t_customer_order_id" id="t_customer_order_id">
+    <input type="hidden" class="form-control" name="t_customer_order_id" id="t_customer_order_id">
 
     <input type="hidden" id="TEMP_ELEMENT_ID" value="<?php echo $this->input->post('ELEMENT_ID'); ?>" />
     <input type="hidden" id="TEMP_PROFILE_TYPE" value="<?php echo $this->input->post('PROFILE_TYPE'); ?>" />
