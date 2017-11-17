@@ -316,7 +316,17 @@
                                                         success: function (data) {
                                                             if(data.success){
                                                                 var msg = data.result.f_first_submit_engine;
-                                                               //swal('Informasi',msg,'info');
+                                                               swal({title: "Informasi!", text: msg, html: true, type: "info"});
+                                                                jQuery(function($) {
+                                                                    var grid_selector = "#grid-table";
+
+                                                                    jQuery("#grid-table-2b").jqGrid('setGridParam',{
+                                                                        url: '<?php echo WS_JQGRID."transaksi.t_bphtb_registration_list_controller/read"; ?>',
+                                                                        postData: {}
+
+                                                                    });
+                                                                    $("#grid-table").trigger("reloadGrid");
+                                                                });
                                                             }
                                                             // console.log(dt.product_name);
                                                         },
@@ -372,6 +382,16 @@
                                             if(data.success){
                                                 var msg = data.result.f_first_submit_engine;
                                                 swal({title: "Informasi!", text: msg, html: true, type: "info"});
+                                                jQuery(function($) {
+                                                    var grid_selector = "#grid-table";
+
+                                                    jQuery("#grid-table-2b").jqGrid('setGridParam',{
+                                                        url: '<?php echo WS_JQGRID."transaksi.t_bphtb_registration_list_controller/read"; ?>',
+                                                        postData: {}
+
+                                                    });
+                                                    $("#grid-table").trigger("reloadGrid");
+                                                });
                                             }
                                             // console.log(dt.product_name);
                                         },
