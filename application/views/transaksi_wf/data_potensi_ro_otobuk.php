@@ -81,13 +81,13 @@
                     </a>
                 </li>
                 <li class="">
-                    <a href="javascript:;" data-toggle="tab" aria-expanded="true" id="tab-4">
+                    <a href="javascript:;" data-toggle="tab" aria-expanded="true" id="tab-3">
                         <i class="blue"></i>
                         <strong> Data Log Aktifitas </strong>
                     </a>
                 </li>
                 <li class="">
-                    <a href="javascript:;" data-toggle="tab" aria-expanded="true" id="tab-5">
+                    <a href="javascript:;" data-toggle="tab" aria-expanded="true" id="tab-4">
                         <i class="blue"></i>
                         <strong> Dokumen Pendukung </strong>
                     </a>
