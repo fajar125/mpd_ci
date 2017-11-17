@@ -79,7 +79,7 @@
             </ul>
         </div>
 
-        
+
     </div>
 </div>
 
@@ -88,27 +88,27 @@
 <?php $this->load->view('lov/lov_kel'); ?>
 <?php $this->load->view('lov/lov_vat_type_dtl'); ?>
 <?php $this->load->view('lov/lov_job_position'); ?>
-<?php $this->load->view('workflow/lov_submitter.php'); ?>
+<?php $this->load->view('workflow/lov_submitter_non_send_back_only.php'); ?>
 
 <div class="row">
     <div class="col-md-12">
         <div class="portlet light bordered">
             <div class="form-body">
                 <div class="row">
-                    <label class="control-label col-md-3">Nomor Order</label>                
+                    <label class="control-label col-md-3">Nomor Order</label>
                         <div class="input-group col-md-4 col-md-4">
-                            <input type="text" class="form-control" name="t_vat_registration_id" id="t_vat_registration_id" style="display:none;">   
-                            <input type="text" class="form-control" name="p_rqst_type_id" id="p_rqst_type_id" style="display:none;">   
-                            <input type="text" class="form-control" name="order_no" id="order_no" readonly="true">                 
+                            <input type="text" class="form-control" name="t_vat_registration_id" id="t_vat_registration_id" style="display:none;">
+                            <input type="text" class="form-control" name="p_rqst_type_id" id="p_rqst_type_id" style="display:none;">
+                            <input type="text" class="form-control" name="order_no" id="order_no" readonly="true">
                         </div>
-                    
+
                 </div>
                 <div class="space-2"></div>
                 <div class="row">
                     <label class="control-label col-md-3">Tanggal Pendaftaran</label>
                         <div class="input-group col-md-4 col-md-4">
-                            <input type="text" class="form-control" name="registration_date" id="registration_date" readonly="true">                 
-                        </div>                 
+                            <input type="text" class="form-control" name="registration_date" id="registration_date" readonly="true">
+                        </div>
                 </div>
                 <div class="space-2"></div>
                 <div class="row">
@@ -128,7 +128,7 @@
                 <div class="row">
                     <label class="control-label col-md-3">Password</label>
                         <div class="input-group col-md-4 col-md-4">
-                            <input type="password" class="form-control" name="wp_user_pwd" id="wp_user_pwd" readonly="true">                            
+                            <input type="password" class="form-control" name="wp_user_pwd" id="wp_user_pwd" readonly="true">
                         </div>
                 </div>
             </div>
@@ -159,15 +159,15 @@
                 <div class="row">
                     <label class="control-label col-md-3">No</label>
                         <div class="input-group col-md-4">
-                            <input type="text" class="form-control" name="wp_address_no" id="wp_address_no" readonly="true">      
-                            <span class="input-group-addon"> RT </span> 
-                            <input type="text" class="form-control" name="wp_address_rt" id="wp_address_rt" readonly="true">   
-                            <span class="input-group-addon"> RW </span> 
-                            <input type="text" class="form-control" name="wp_address_rw" id="wp_address_rw" readonly="true">                            
+                            <input type="text" class="form-control" name="wp_address_no" id="wp_address_no" readonly="true">
+                            <span class="input-group-addon"> RT </span>
+                            <input type="text" class="form-control" name="wp_address_rt" id="wp_address_rt" readonly="true">
+                            <span class="input-group-addon"> RW </span>
+                            <input type="text" class="form-control" name="wp_address_rw" id="wp_address_rw" readonly="true">
                         </div>
                 </div>
                 <div class="space-2"></div>
-                <div class="row">                
+                <div class="row">
                     <label class="control-label col-md-3">Kota/Kabupaten</label>
                     <div class="input-group col-md-4">
                             <input id="wp_p_region_id" type="text"  style="display:none;">
@@ -190,7 +190,7 @@
                                     <span class="fa fa-search bigger-110"></span>
                                 </button>
                             </span>
-                    </div>               
+                    </div>
                 </div>
 
                 <div class="space-2"></div>
@@ -238,16 +238,16 @@
                             <input type="text" class="form-control" name="wp_zip_code" id="brand_zip_code" readonly="true">
                     </div>
                 </div>
-            </div>  
-        </div>       
-    </div>   
+            </div>
+        </div>
+    </div>
 </div>
 
 <label class="control-label col-md-5"><b>Keterangan Perusahaan atau Badan</b></label>
 <div class="row">
     <div class="col-xs-12">
         <div class="portlet light bordered">
-            <div class="form-body">               
+            <div class="form-body">
                 <div class="space-2"></div>
                 <div class="row">
                     <label class="control-label col-md-3">Nama Badan/Perusahaan</label>
@@ -266,15 +266,15 @@
                 <div class="row">
                     <label class="control-label col-md-3">No</label>
                     <div class="input-group col-md-4">
-                            <input type="text" class="form-control" name="address_no" id="address_no" readonly="true">      
-                            <span class="input-group-addon"> RT </span> 
-                            <input type="text" class="form-control" name="address_rt" id="address_rt" readonly="true">   
-                            <span class="input-group-addon"> RW </span> 
+                            <input type="text" class="form-control" name="address_no" id="address_no" readonly="true">
+                            <span class="input-group-addon"> RT </span>
+                            <input type="text" class="form-control" name="address_rt" id="address_rt" readonly="true">
+                            <span class="input-group-addon"> RW </span>
                             <input type="text" class="form-control" name="address_rw" id="address_rw" readonly="true">
                     </div>
                 </div>
                 <div class="space-2"></div>
-                <div class="row">                
+                <div class="row">
                     <label class="control-label col-md-3">Kota/Kabupaten</label>
                     <div class="input-group col-md-4">
                             <input id="p_region_id" type="text"  style="display:none;">
@@ -297,9 +297,9 @@
                                     <span class="fa fa-search bigger-110"></span>
                                 </button>
                             </span>
-                    </div>               
-                
-                    
+                    </div>
+
+
                 </div>
                 <div class="space-2"></div>
                 <div class="row">
@@ -336,7 +336,7 @@
                     <div class="input-group col-md-4">
                             <input type="text" class="form-control" name="brand_zip_code" id="brand_zip_code" readonly="true">
                     </div>
-                </div>          
+                </div>
             </div>
         </div>
     </div>
@@ -365,16 +365,16 @@
                 <div class="row">
                     <label class="control-label col-md-3">No.</label>
                     <div class="input-group col-md-4">
-                            <input type="text" class="form-control" name="brand_address_no" id="brand_address_no" readonly="true">      
-                            <span class="input-group-addon"> RT </span> 
-                            <input type="text" class="form-control" name="brand_address_rt" id="brand_address_rt" readonly="true">   
-                            <span class="input-group-addon"> RW </span> 
+                            <input type="text" class="form-control" name="brand_address_no" id="brand_address_no" readonly="true">
+                            <span class="input-group-addon"> RT </span>
+                            <input type="text" class="form-control" name="brand_address_rt" id="brand_address_rt" readonly="true">
+                            <span class="input-group-addon"> RW </span>
                             <input type="text" class="form-control" name="brand_address_rw" id="brand_address_rw" readonly="true">
                     </div>
-                   
+
                 </div>
                 <div class="space-2"></div>
-                <div class="row">                
+                <div class="row">
                     <label class="control-label col-md-3">Kota/Kabupaten</label>
                     <div class="input-group col-md-4">
                             <input id="brand_p_region_id" type="text"  style="display:none;">
@@ -397,9 +397,9 @@
                                     <span class="fa fa-search bigger-110"></span>
                                 </button>
                             </span>
-                    </div>               
-                
-                    
+                    </div>
+
+
                 </div>
                 <div class="space-2"></div>
                 <div class="row">
@@ -437,9 +437,9 @@
                             <input type="text" class="form-control" name="brand_zip_code" id="brand_zip_code" readonly="true">
                     </div>
                 </div>
-            </div>  
-        </div>       
-    </div>   
+            </div>
+        </div>
+    </div>
 </div>
 
 <label class="control-label col-md-5"><b>Keterangan Pemilik/Pengelola</b></label>
@@ -479,15 +479,15 @@
                 <div class="row">
                     <label class="control-label col-md-3">No.</label>
                     <div class="input-group col-md-4">
-                            <input type="text" class="form-control" name="address_no_owner" id="address_no_owner" readonly="true">      
-                            <span class="input-group-addon"> RT </span> 
-                            <input type="text" class="form-control" name="address_rt_owner" id="address_rt_owner" readonly="true">   
-                            <span class="input-group-addon"> RW </span> 
+                            <input type="text" class="form-control" name="address_no_owner" id="address_no_owner" readonly="true">
+                            <span class="input-group-addon"> RT </span>
+                            <input type="text" class="form-control" name="address_rt_owner" id="address_rt_owner" readonly="true">
+                            <span class="input-group-addon"> RW </span>
                             <input type="text" class="form-control" name="address_rw_owner" id="address_rw_owner" readonly="true">
                     </div>
                 </div>
                 <div class="space-2"></div>
-                <div class="row">                
+                <div class="row">
                     <label class="control-label col-md-3">Kota/Kabupaten</label>
                     <div class="input-group col-md-4">
                             <input id="p_region_id_owner" type="text"  style="display:none;">
@@ -510,9 +510,9 @@
                                     <span class="fa fa-search bigger-110"></span>
                                 </button>
                             </span>
-                    </div>               
-                
-                    
+                    </div>
+
+
                 </div>
                 <div class="space-2"></div>
                 <div class="row">
@@ -555,9 +555,9 @@
                             <input type="text" class="form-control" name="zip_code_owner" id="zip_code_owner" readonly="true">
                     </div>
                 </div>
-            </div>  
-        </div>       
-    </div>   
+            </div>
+        </div>
+    </div>
 </div>
 
 <label class="control-label col-md-5"><b>Lupa Password</b></label>
@@ -568,7 +568,7 @@
                 <div class="space-2"></div>
                 <div class="row">
                     <label class="control-label col-md-3">Pilih Pertanyaaan</label>
-                    <div class="input-group col-md-4">                            
+                    <div class="input-group col-md-4">
                         <div id="privateQuestion"></div>
                     </div>
                 </div>
@@ -579,9 +579,9 @@
                         <input type="text" class="form-control" name="private_answer" id="private_answer" readonly="true">
                     </div>
                 </div>
-            </div>  
-        </div>       
-    </div>   
+            </div>
+        </div>
+    </div>
 </div>
 
 
@@ -596,8 +596,8 @@
                     <div class="input-group col-md-4">
                         <input type="text" class="form-control" name="mobile_no_owner" id="mobile_no_owner" readonly="true">
                     </div>
-                 
-                </div> 
+
+                </div>
                 <!-- <div class="space-2"></div> -->
                 <!-- <div class="row">
                     <div class="col-sm-offset-3">
@@ -606,11 +606,11 @@
                         <button class="btn btn-success" type="button" id="btn-del" onclick="">CETAK SURAT PENOLAKAN</button>
                         <button class="btn btn-danger" type="button" id="btn-del" onclick="">SUBMIT</button>
                     </div>
-                 
+
                 </div>  -->
 
-            </div>       
-        </div>   
+            </div>
+        </div>
     </div>
     <div class="col-xs-12">
         <div class="row">
@@ -649,12 +649,12 @@
                 alert("Formulir Kosong");
         }
 
-        // 
-    } 
+        //
+    }
 
     $.ajax({
         url: "<?php echo base_url().'transaksi/private_question_combo/'; ?>" ,
-        type: "POST",            
+        type: "POST",
         data: {},
         success: function (data) {
             $( "#privateQuestion" ).html( data );
@@ -665,7 +665,7 @@
     });
 
     $("#tab-2").on("click", function(event) {
-        
+
         loadContentWithParams("transaksi_wf.t_vat_reg_dtl_ver_ro", { //model yang ketiga
             t_customer_order_id: $( "#CURR_DOC_ID" ).val(),
             order_no: $('#order_no').val(),
@@ -702,7 +702,7 @@
             MESSAGE : $('#MESSAGE').val(),
             PROFILE_TYPE : $('#PROFILE_TYPE').val(),
             ACTION_STATUS : $('#ACTION_STATUS').val()
-            
+
         });
     });
 
@@ -744,12 +744,12 @@
             MESSAGE : $('#MESSAGE').val(),
             PROFILE_TYPE : $('#PROFILE_TYPE').val(),
             ACTION_STATUS : $('#ACTION_STATUS').val()
-            
+
         });
     });
 
     $("#tab-4").on("click", function(event) {
-        
+
         loadContentWithParams("transaksi_wf.t_order_log_kronologis_ver_ro", { //model yang ketiga
             t_customer_order_id: $( "#CURR_DOC_ID" ).val(),
             order_no: $('#order_no').val(),
@@ -786,7 +786,7 @@
             MESSAGE : $('#MESSAGE').val(),
             PROFILE_TYPE : $('#PROFILE_TYPE').val(),
             ACTION_STATUS : $('#ACTION_STATUS').val()
-            
+
         });
     });
 </script>
@@ -794,88 +794,88 @@
 <script type="text/javascript">
     $.ajax({
         url: "<?php echo WS_JQGRID . "transaksi.t_vat_registration_controller/readro"; ?>" ,
-        type: "POST", 
-        datatype: "json",           
+        type: "POST",
+        datatype: "json",
         data: {
             t_customer_order_id : "<?php echo $this->input->post('CURR_DOC_ID'); ?>"
         },
         success: function (data) {
             var data1 = data.row[0];
            if(data.row[0].t_vat_registration_id){
-                $('#t_vat_registration_id').val(data1.t_vat_registration_id); 
-                $('#order_no').val(data1.order_no); 
-                $('#registration_date').val(data1.registration_date); 
-                $('#p_vat_type_dtl').val(data1.p_vat_type_dtl_id); 
-                
-                $('#wp_user_name').val(data1.wp_user_name);  
-                $('#wp_user_pwd').val(data1.wp_user_pwd); 
+                $('#t_vat_registration_id').val(data1.t_vat_registration_id);
+                $('#order_no').val(data1.order_no);
+                $('#registration_date').val(data1.registration_date);
+                $('#p_vat_type_dtl').val(data1.p_vat_type_dtl_id);
 
-                $('#wp_name').val(data1.wp_name);  
+                $('#wp_user_name').val(data1.wp_user_name);
+                $('#wp_user_pwd').val(data1.wp_user_pwd);
+
+                $('#wp_name').val(data1.wp_name);
                 $('#wp_address_name').val(data1.wp_address_name);
-                $('#wp_address_no').val(data1.wp_address_no); 
-                $('#wp_address_rt').val(data1.wp_address_rt); 
-                $('#wp_address_rw').val(data1.wp_address_rw);  
+                $('#wp_address_no').val(data1.wp_address_no);
+                $('#wp_address_rt').val(data1.wp_address_rt);
+                $('#wp_address_rw').val(data1.wp_address_rw);
                 $('#wp_kota').val(data1.wp_kota);
                 $('#wp_p_region_id').val(data1.wp_p_region_id);
-                $('#wp_kecamatan').val(data1.wp_kecamatan); 
+                $('#wp_kecamatan').val(data1.wp_kecamatan);
                 $('#wp_p_region_id_kecamatan').val(data1.wp_p_region_id_kecamatan);
                 $('#wp_kelurahan').val(data1.wp_kelurahan);
-                $('#wp_p_region_id_kelurahan').val(data1.wp_p_region_id_kelurahan); 
-                $('#wp_email').val(data1.wp_email);  
-                $('#wp_phone_no').val(data1.wp_phone_no);  
+                $('#wp_p_region_id_kelurahan').val(data1.wp_p_region_id_kelurahan);
+                $('#wp_email').val(data1.wp_email);
+                $('#wp_phone_no').val(data1.wp_phone_no);
                 $('#wp_mobile_no').val(data1.wp_mobile_no);
-                $('#wp_fax_no').val(data1.wp_fax_no); 
-                $('#wp_zip_code').val(data1.wp_zip_code); 
+                $('#wp_fax_no').val(data1.wp_fax_no);
+                $('#wp_zip_code').val(data1.wp_zip_code);
 
-                $('#company_name').val(data1.company_name);  
+                $('#company_name').val(data1.company_name);
                 $('#address_name').val(data1.address_name);
-                $('#address_no').val(data1.address_no); 
-                $('#address_rt').val(data1.address_rt); 
-                $('#address_rw').val(data1.address_rw);  
+                $('#address_no').val(data1.address_no);
+                $('#address_rt').val(data1.address_rt);
+                $('#address_rw').val(data1.address_rw);
                 $('#kota_code').val(data1.kota_code);
                 $('#p_region_id').val(data1.p_region_id);
-                $('#kecamatan_code').val(data1.kecamatan_code); 
+                $('#kecamatan_code').val(data1.kecamatan_code);
                 $('#p_region_id_kecamatan').val(data1.p_region_id_kecamatan);
                 $('#kelurahan_code').val(data1.kelurahan_code);
-                $('#p_region_id_kelurahan').val(data1.p_region_id_kelurahan); 
-                $('#phone_no').val(data1.phone_no);  
+                $('#p_region_id_kelurahan').val(data1.p_region_id_kelurahan);
+                $('#phone_no').val(data1.phone_no);
                 $('#mobile_no').val(data1.mobile_no);
-                $('#fax_no').val(data1.fax_no); 
-                $('#zip_code').val(data1.zip_code); 
+                $('#fax_no').val(data1.fax_no);
+                $('#zip_code').val(data1.zip_code);
 
-                $('#company_brand').val(data1.company_brand);  
+                $('#company_brand').val(data1.company_brand);
                 $('#brand_address_name').val(data1.brand_address_name);
-                $('#brand_address_no').val(data1.brand_address_no); 
-                $('#brand_address_rt').val(data1.brand_address_rt); 
-                $('#brand_address_rw').val(data1.brand_address_rw);  
+                $('#brand_address_no').val(data1.brand_address_no);
+                $('#brand_address_rt').val(data1.brand_address_rt);
+                $('#brand_address_rw').val(data1.brand_address_rw);
                 $('#brand_kota').val(data1.brand_kota);
                 $('#brand_p_region_id').val(data1.brand_p_region_id);
-                $('#brand_kecamatan').val(data1.brand_kecamatan); 
+                $('#brand_kecamatan').val(data1.brand_kecamatan);
                 $('#brand_p_region_id_kecamatan').val(data1.brand_p_region_id_kecamatan);
                 $('#brand_kelurahan').val(data1.brand_kelurahan);
-                $('#brand_p_region_id_kelurahan').val(data1.brand_p_region_id_kelurahan); 
-                $('#brand_phone_no').val(data1.brand_phone_no);  
+                $('#brand_p_region_id_kelurahan').val(data1.brand_p_region_id_kelurahan);
+                $('#brand_phone_no').val(data1.brand_phone_no);
                 $('#brand_mobile_no').val(data1.brand_mobile_no);
-                $('#brand_fax_no').val(data1.brand_fax_no); 
-                $('#brand_zip_code').val(data1.brand_zip_code); 
+                $('#brand_fax_no').val(data1.brand_fax_no);
+                $('#brand_zip_code').val(data1.brand_zip_code);
 
-                $('#company_owner').val(data1.company_owner);  
+                $('#company_owner').val(data1.company_owner);
                 $('#address_name_owner').val(data1.address_name_owner);
                 $('#p_job_position_id').val(data1.p_job_position_id);
                 $('#job_position_code').val(data1.job_position_code);
-                $('#address_no_owner').val(data1.address_no_owner); 
-                $('#address_rt_owner').val(data1.address_rt_owner); 
-                $('#address_rw_owner').val(data1.address_rw_owner);  
+                $('#address_no_owner').val(data1.address_no_owner);
+                $('#address_rt_owner').val(data1.address_rt_owner);
+                $('#address_rw_owner').val(data1.address_rw_owner);
                 $('#kota_own_code').val(data1.kota_own_code);
                 $('#p_region_id_owner').val(data1.p_region_id_owner);
-                $('#kecamatan_own_code').val(data1.kecamatan_own_code); 
+                $('#kecamatan_own_code').val(data1.kecamatan_own_code);
                 $('#p_region_id_kecamatan_owner').val(data1.p_region_id_kecamatan_owner);
                 $('#kelurahan_own_code').val(data1.kelurahan_own_code);
-                $('#p_region_id_kelurahan').val(data1.p_region_id_kelurahan_owner); 
-                $('#email').val(data1.email);  
-                $('#phone_no_owner').val(data1.phone_no_owner);  
+                $('#p_region_id_kelurahan').val(data1.p_region_id_kelurahan_owner);
+                $('#email').val(data1.email);
+                $('#phone_no_owner').val(data1.phone_no_owner);
                 $('#mobile_no_owner').val(data1.mobile_no_owner);
-                $('#fax_no_owner').val(data1.fax_no_owner); 
+                $('#fax_no_owner').val(data1.fax_no_owner);
                 $('#zip_code_owner').val(data1.zip_code_owner);
 
                 $('#p_private_question_id').val(data1.p_private_question_id);
@@ -885,20 +885,20 @@
 
                 $.ajax({
                     url: "<?php echo base_url().'transaksi/nama_ayat_combo/'; ?>" ,
-                    type: "POST",            
+                    type: "POST",
                     data: {p_rqst_type_id:  data1.p_rqst_type_id },
                     success: function (data) {
-                        $( "#namaAyat" ).html( data );                      
+                        $( "#namaAyat" ).html( data );
                     },
                     error: function (xhr, status, error) {
                         swal({title: "Error!", text: xhr.responseText, html: true, type: "error"});
                     }
                 });
 
-                
-                
+
+
            }
-            
+
         },
         error: function (xhr, status, error) {
             swal({title: "Error!", text: xhr.responseText, html: true, type: "error"});
@@ -917,7 +917,7 @@
     params_back_summary.P_W_PROC_ID = $('#TEMP_P_W_PROC_ID').val();
     params_back_summary.USER_ID = $('#TEMP_USER_ID').val();
     params_back_summary.FSUMMARY = $('#TEMP_FSUMMARY').val();
-    /* end parameter */ 
+    /* end parameter */
 
     /*ketika tombol cancel diklik, maka kembali ke summary*/
     function backform(){
@@ -937,7 +937,7 @@
     }
     function showLOVKec(id, code, parent) {
         return false;
-        
+
     }
     function showLOVKel(id, code, parent) {
         return false;
@@ -951,8 +951,8 @@
 
     function submitform(){
         var params_submit = {};
-        
-        params_submit.CURR_DOC_ID         = $('#CURR_DOC_ID').val();  
+
+        params_submit.CURR_DOC_ID         = $('#CURR_DOC_ID').val();
         params_submit.CURR_DOC_TYPE_ID    = $('#CURR_DOC_TYPE_ID').val();
         params_submit.CURR_PROC_ID        = $('#CURR_PROC_ID').val();
         params_submit.CURR_CTL_ID         = $('#CURR_CTL_ID').val();
@@ -968,17 +968,17 @@
         params_submit.PREV_DOC_TYPE_ID    = $('#PREV_DOC_TYPE_ID').val();
         params_submit.PREV_PROC_ID        = $('#PREV_PROC_ID').val();
         params_submit.PREV_CTL_ID         = $('#PREV_CTL_ID').val();
-        params_submit.SLOT_1              = $('#SLOT_1').val();    
-        params_submit.SLOT_2              = $('#SLOT_2').val(); 
-        params_submit.SLOT_3              = $('#SLOT_3').val();    
-        params_submit.SLOT_4              = $('#SLOT_4').val();  
-        params_submit.SLOT_5              = $('#SLOT_5').val();    
-        params_submit.MESSAGE             = $('#MESSAGE').val();    
+        params_submit.SLOT_1              = $('#SLOT_1').val();
+        params_submit.SLOT_2              = $('#SLOT_2').val();
+        params_submit.SLOT_3              = $('#SLOT_3').val();
+        params_submit.SLOT_4              = $('#SLOT_4').val();
+        params_submit.SLOT_5              = $('#SLOT_5').val();
+        params_submit.MESSAGE             = $('#MESSAGE').val();
         params_submit.PROFILE_TYPE        = $('#PROFILE_TYPE').val();
         params_submit.ACTION_STATUS       = $('#ACTION_STATUS').val();
 
         if (  $('#ACTION_STATUS').val() != 'VIEW' ) {
-            modal_lov_submitter_show(params_submit, params_back_summary); 
+            modal_lov_submitter_show(params_submit, params_back_summary);
         } else {
             loadContentWithParams( $('#TEMP_FSUMMARY').val() , params_back_summary );
         }
