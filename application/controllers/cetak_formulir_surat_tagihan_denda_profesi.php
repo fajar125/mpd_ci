@@ -402,7 +402,7 @@ class cetak_formulir_surat_tagihan_denda_profesi extends CI_Controller{
       $pdf->SetAligns(array("J","C","C"));
       $pdf->RowMultiBorderWithHeight(
         array("",
-          "Bandung, ".date("d-m-Y")."\n".
+          getValByCode('ALAMAT_3').", ".date("d-m-Y")."\n".
           "a.n. KEPALA ".getValByCode('INSTANSI_2')."\n".
           "Kepala Bidang Pajak Pendaftaran\n\n\n\n".
           "Drs. H. GUN GUN SUMARYANA\n".

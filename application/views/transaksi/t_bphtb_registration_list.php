@@ -65,13 +65,27 @@
                 {label: 'ID', name: 't_bphtb_registration_id',  width: 5, sorttype: 'number', hidden: false},
                 {label: 'Nama Wajib Pajak', name: 'wp_name',  width: 15, sorttype: 'text', hidden: false},
                 {label: 'No Order', name: 'order_no',  width: 7, sorttype: 'text', hidden: false},
-                {label: 'Via Online ?', name: 't_ppat_id',  width: 5, sorttype: 'text', hidden: false},
+                {label: 'Via Online ?',  width: 5, sorttype: 'text', hidden: false,
+                    formatter:function(cellvalue, options, rowObject) {
+                        var t_ppat_id = rowObject['t_ppat_id'];
+                        if (t_ppat_id==null || t_ppat_id==''){
+                            return '<div>Manual</div>';
+                        }else{
+                            return '<div>Via Online</div>';
+                        }
+                        
+
+                    }
+                },
                 {name: 'Options',width: 20, align: "center",
                     formatter:function(cellvalue, options, rowObject) {
                         var val = rowObject['t_bphtb_registration_id'];
-                        //var url = '<?php echo base_url(); ?>'+'cetak_formulir_skpd_nihil/pageCetak?t_cust_order_id='+val;
-                        return '<a class="btn btn-danger btn-xs" href="#" onclick="PopupCenter('+val+');">Submit</a>';
-
+                        var t_ppat_id = rowObject['t_ppat_id'];
+                        if (t_ppat_id==null || t_ppat_id==''){
+                            return '<a class="btn btn-danger btn-xs" href="#" onclick="PopupCenter('+val+');">Submit</a>';
+                        }else{
+                            return '';
+                        }
                     }
                 }
 

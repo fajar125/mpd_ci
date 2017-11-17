@@ -110,7 +110,7 @@ class pdf_lap_teguran_bphtb_barcode extends CI_Controller{
             array("Nomor",
               ":",
               /*$data["letter_no"]."-".$no_urut*/"",
-              "-Disyanjak"
+              "-".getValByCode('INSTANSI_4')
             ),
             array("",
               "",
@@ -124,7 +124,7 @@ class pdf_lap_teguran_bphtb_barcode extends CI_Controller{
             array("Nomor",
               ":",
               "",
-              "-Disyanjak"
+              "-".getValByCode('INSTANSI_4')
             ),
             array("",
               "",
