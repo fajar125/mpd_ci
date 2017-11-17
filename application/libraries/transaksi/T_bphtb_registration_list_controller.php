@@ -323,7 +323,7 @@ class T_bphtb_registration_list_controller {
         $description                    = getVarClean('description','str',''); 
         $jenis_harga_bphtb              = getVarClean('jenis_harga_bphtb','int',0); 
         $bphtb_legal_doc_description    = getVarClean('bphtb_legal_doc_description','str',''); 
-        $add_disc_percent               = getVarClean('add_disc_percent','str',''); 
+        $add_disc_percent               = getVarClean('add_disc_percent','int',0); 
         $land_area_real                 = getVarClean('land_area_real','int',0); 
         $land_price_real                = getVarClean('land_price_real','int',0); 
         $building_area_real             = getVarClean('building_area_real','int',0); 

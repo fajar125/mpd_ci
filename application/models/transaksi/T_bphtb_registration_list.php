@@ -177,6 +177,39 @@ class T_bphtb_registration_list extends Abstract_model {
         $userdata = $userdata['app_user_name'];
         $updated_date = date('Y-m-d');
 
+        foreach ($param as $key => $value) {
+            if ($key == 'wp_name'||
+                $key == 'npwp'||
+                $key == 'wp_address_name'||
+                $key == 'wp_rt'||
+                $key == 'wp_rw'||
+                $key == 'mobile_phone_no'||
+                $key == 'njop_pbb'||
+                $key == 'object_letak_tanah'||
+                $key == 'object_rt'||
+                $key == 'object_rw'||
+                $key == 'object_p_region_id'||
+                $key == 'object_p_region_id_kec'||
+                $key == 'object_p_region_id_kel'||
+                $key == 'description'||
+                $key == 'bphtb_legal_doc_description')
+            {
+                ${"$key"} = ($value == ''|| $value == null) ?  'null': '\''.$value.'\'';
+            }
+            else{
+                ${"$key"} = (($value == ''|| $value == null) && $value != 0) ? 'null' : $value;
+            }
+
+            if ($key == 'add_disc_percent') {
+                ${"$key"} = ($value == '' || $value == null) ? '0' : $value;
+            }
+
+            if ($key == 'p_bphtb_legal_doc_type_id') {
+                ${"$key"} = ($value == ''|| $value == null) ? 'null' : $value;
+            }
+            
+        }
+
         $data =  array('wp_name' =>$param['wp_name'],
                             'npwp'=>$param['npwp'],
                             'wp_address_name'=>$param['wp_address_name'],
