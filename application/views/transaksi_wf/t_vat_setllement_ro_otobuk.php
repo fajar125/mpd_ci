@@ -383,16 +383,6 @@
         var t_vat_setllement_id = $('#t_vat_setllement_id').val();
 
         modal_lov_reject_show(t_vat_setllement_id, params_back_summary);
-
-        /*url = "../trans/t_vat_setllement_reject_transaksi.php?t_vat_setllement_id="+t_vat_setllement_id;
-
-        params  = 'width=650';
-        params += ', height=300';
-        params += ', top=0, left=0';
-
-        newwin=window.open(url,'windowname4', params);
-        if (window.focus) {newwin.focus()}
-            return false;*/
     }
 
 </script>
