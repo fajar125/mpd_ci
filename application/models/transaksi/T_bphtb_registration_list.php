@@ -260,6 +260,7 @@ class T_bphtb_registration_list extends Abstract_model {
     }
 
     function SubmitTable($t_customer_order_id){
+        $ci =& get_instance();
         $userdata = $ci->session->userdata;
         $sql = "SELECT sikp.f_first_submit_engine(505,".$t_customer_order_id.",'".$userdata['app_user_name']."')";
         $query = $this->db->query($sql);

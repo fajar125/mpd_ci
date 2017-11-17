@@ -1094,8 +1094,8 @@
         var_url += "id="+"<?php echo $_POST['id']; ?>";
 
         swal({
-          title: "Are you sure?",
-          text: "Your will not be able to recover this imaginary file!",
+          title: "Apakah anda Ingin Menghapus Data Ini?",
+          text: "",
           type: "warning",
           showCancelButton: true,
           confirmButtonClass: "btn-danger",

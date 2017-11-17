@@ -497,7 +497,8 @@ class T_bphtb_registration_list_controller {
             $data['message'] = $e->getMessage();
         }
 
-        return $data;
+        echo json_encode($data);
+        exit;
 
     }
 }
