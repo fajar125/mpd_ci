@@ -406,9 +406,9 @@ class cetak_rep_pengurangan_bphtb_surat_keputusan extends CI_Controller{
 			$pdf->SetAligns(array("L"));
 			$pdf->RowMultiBorderWithHeight(
 				array
-				(	"1. Bapak Walikota Bandung (sebagai laporan)\n".
-					"2. Bapak Wakil Walikota Bandung (sebagai laporan)\n".
-					"3. Bapak Sekretaris Kota Bandung (sebagai laporan)\n".
+				(	"1. Bapak Bupati Kabupaten Lombok Utara (sebagai laporan)\n".
+					"2. Bapak Wakil Bupati Kabupaten Lombok Utara (sebagai laporan)\n".
+					"3. Bapak Sekretaris Kabupaten Lombok Utara (sebagai laporan)\n".
 					"4. Arsip"
 				),
 				array
