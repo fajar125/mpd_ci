@@ -31,8 +31,8 @@ class T_customer_order extends Abstract_model {
 
                             );
 
-    public $selectClause    = "a.* ,b.company_brand,b.npwpd, b.brand_address_name ";
-    public $fromClause      = "v_customer_order  a left join t_vat_registration b on a.t_vat_registration_id = b.t_vat_registration_id";
+    public $selectClause    = "a.* ";
+    public $fromClause      = "v_customer_order a ";
 
     public $refs            = array();
 

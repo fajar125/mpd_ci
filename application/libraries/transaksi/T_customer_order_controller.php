@@ -21,15 +21,6 @@ class T_customer_order_controller {
             $ci->load->model('transaksi/t_customer_order');
             $table = $ci->t_customer_order;
 
-            if( isset($_REQUEST['searchField'])){
-                if($_REQUEST['searchField']=='npwd') {
-                    $_REQUEST['searchField']='b.npwd';
-                }
-                if($_REQUEST['searchField']=='company_brand_name') {
-                    $_REQUEST['searchField']='b.company_brand';
-                }
-            }
-
             $req_param = array(
                 "sort_by" => $sidx,
                 "sord" => $sord,
@@ -48,6 +39,7 @@ class T_customer_order_controller {
             $req_param['where'] = array();
             $req_param['where'][] = 'p_rqst_type_id IN (1,2,3,4,5)';
             $req_param['where'][] = 'p_order_status_id = 1';
+            $req_param['where'][] = 'npwpd is NULL';
             
             $table->setJQGridParam($req_param);
 

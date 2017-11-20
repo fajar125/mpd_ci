@@ -6,7 +6,7 @@
             <i class="fa fa-circle"></i>
         </li>
         <li>
-            <span>Informasi Formulir Pendaftaran</span>
+            <span>Formulir Pengurangan BPHTB</span>
             <i class="fa fa-circle"></i>
         </li>
         
@@ -96,7 +96,7 @@
                                         <label class="control-label col-md-2">No Registrasi
                                         </label>
                                         <div class="col-md-3">
-                                            <input type="hidden" class="form-control" name="registration_no" id="registration_no">
+                                            <input type="hidden" class="form-control" name="registration_no" id="registration_no" readonly>
 
                                         </div>
 
@@ -106,7 +106,7 @@
                                         </label>
                                         <div class="col-md-3">
                                             <input type="hidden" class="form-control" name="t_bphtb_registration_id" id="t_bphtb_registration_id">
-                                            <input type="text" class="form-control" maxlength="64" name="wp_name" id="wp_name">
+                                            <input type="text" class="form-control" maxlength="64" name="wp_name" id="wp_name" readonly>
                                             <input type="hidden" class="form-control" name="p_bphtb_type_id" id="p_bphtb_type_id">
                                         </div>
 
@@ -115,28 +115,28 @@
                                         <label class="control-label col-md-2">NPWP
                                         </label>
                                         <div class="col-md-3">
-                                            <input type="text" class="form-control" maxlength="32" name="npwp" id="npwp">
+                                            <input type="text" class="form-control" maxlength="32" name="npwp" id="npwp" readonly>
                                         </div>
                                     </div>
                                     <div class="form-group">
                                         <label class="control-label col-md-2">Alamat
                                         </label>
                                         <div class="col-md-4">
-                                            <textarea rows="4" cols="50" class="form-control" maxlength="256"  name="wp_address_name" id="wp_address_name"></textarea>
+                                            <textarea rows="4" cols="50" class="form-control" maxlength="256"  name="wp_address_name" id="wp_address_name" readonly></textarea>
                                         </div>
                                     </div>
                                     <div class="form-group">
                                         <label class="control-label col-md-2">No Telp
                                         </label>
                                         <div class="col-md-3">
-                                            <input type="text" class="form-control" maxlength="32" name="phone_no" id="phone_no">
+                                            <input type="text" class="form-control" maxlength="32" name="phone_no" id="phone_no" readonly>
                                         </div>
                                     </div>
                                     <div class="form-group">
                                         <label class="control-label col-md-2">No Hp
                                         </label>
                                         <div class="col-md-3">
-                                            <input type="text" class="form-control formatRight" maxlength="32" name="mobile_phone_no" id="mobile_phone_no">
+                                            <input type="text" class="form-control formatRight" maxlength="32" name="mobile_phone_no" id="mobile_phone_no" readonly>
                                         </div>
                                     </div>
                                     <div class="form-group">
@@ -144,9 +144,9 @@
                                         </label>
                                         <div class="col-md-3">
                                             <div class="input-group ">
-                                                <input type="text" class="form-control" maxlength="10" name="wp_rt" id="wp_rt">
+                                                <input type="text" class="form-control" maxlength="10" name="wp_rt" id="wp_rt" readonly>
                                                 <span class="input-group-addon"> / </span>
-                                                <input type="text" class="form-control" maxlength="10" name="wp_rw" id="wp_rw">
+                                                <input type="text" class="form-control" maxlength="10" name="wp_rw" id="wp_rw" readonly>
                                             </div>
                                         </div>
                                     </div>
@@ -156,11 +156,7 @@
                                         <div class="col-md-3">
                                             <div class="input-group">
                                                 <input type="hidden" class="form-control required" maxlength="8" name="wp_p_region_id" id="wp_p_region_id" readonly>
-                                                <input type="text" class="form-control required" name="wp_kota" id="wp_kota" readonly>
-                                                <span class="input-group-btn">
-                                                    <button class="btn btn-success" type="button" id="btn-lov-kota-subjek">
-                                                    <i class="fa fa-search"></i>
-                                                </span>
+                                                <input type="text" class="form-control" name="wp_kota" id="wp_kota" readonly>
                                             </div>
                                         </div>
                                     </div>
@@ -170,12 +166,8 @@
                                         </label>
                                         <div class="col-md-3">
                                             <div class="input-group">
-                                                <input type="hidden" class="form-control required" name="wp_p_region_id_kec" maxlength="8" id="wp_p_region_id_kec" readonly>
-                                                <input type="text" class="form-control required" name="wp_kecamatan" id="wp_kecamatan" readonly>
-                                                <span class="input-group-btn">
-                                                    <button class="btn btn-success" type="button" id="btn-lov-kecamatan-subjek">
-                                                    <i class="fa fa-search"></i>
-                                                </span>
+                                                <input type="hidden" class="form-control" name="wp_p_region_id_kec" maxlength="8" id="wp_p_region_id_kec" readonly>
+                                                <input type="text" class="form-control" name="wp_kecamatan" id="wp_kecamatan" readonly>
                                             </div>
                                         </div>
                                     </div>
@@ -186,11 +178,7 @@
                                         <div class="col-md-3">
                                             <div class="input-group">
                                                 <input type="hidden" class="form-control required" name="wp_p_region_id_kel" maxlength="8" id="wp_p_region_id_kel" readonly>
-                                                <input type="text" class="form-control required" name="wp_kelurahan" id="wp_kelurahan" readonly>
-                                                <span class="input-group-btn">
-                                                    <button class="btn btn-success" type="button" id="btn-lov-kelurahan-subjek">
-                                                    <i class="fa fa-search"></i>
-                                                </span>
+                                                <input type="text" class="form-control" name="wp_kelurahan" id="wp_kelurahan" readonly>
                                             </div>
                                         </div>
                                     </div>
@@ -206,7 +194,7 @@
                                         <label class="control-label col-md-2">No Objek Pajak
                                         </label>
                                         <div class="col-md-3">
-                                            <input type="text" class="form-control" maxlength="48" name="njop_pbb" id="njop_pbb">
+                                            <input type="text" class="form-control" maxlength="48" name="njop_pbb" id="njop_pbb" readonly>
                                         </div>
                                     </div>
 
@@ -214,7 +202,7 @@
                                         <label class="control-label col-md-2">Letak Tanah dan atau Bangunan
                                         </label>
                                         <div class="col-md-3">
-                                            <input type="text" class="form-control" maxlength="128" name="object_letak_tanah" id="object_letak_tanah">
+                                            <input type="text" class="form-control" maxlength="128" name="object_letak_tanah" id="object_letak_tanah" readonly>
                                         </div>
                                     </div>
                                     
@@ -223,9 +211,9 @@
                                         </label>
                                         <div class="col-md-3">
                                             <div class="input-group ">
-                                                <input type="text" class="form-control" maxlength="10" name="object_rt" id="object_rt">
+                                                <input type="text" class="form-control" maxlength="10" name="object_rt" id="object_rt" readonly>
                                                 <span class="input-group-addon"> / </span>
-                                                <input type="text" class="form-control" maxlength="10" name="object_rw" id="object_rw">
+                                                <input type="text" class="form-control" maxlength="10" name="object_rw" id="object_rw" readonly>
                                             </div>
                                         </div>
                                     </div>
@@ -235,12 +223,9 @@
                                         </label>
                                         <div class="col-md-3">
                                             <div class="input-group">
-                                                <input type="hidden" class="form-control required" maxlength="10" name="object_p_region_id" id="object_p_region_id" readonly>
-                                                <input type="text" class="form-control required" name="object_kota" id="object_kota" readonly>
-                                                <span class="input-group-btn">
-                                                    <button class="btn btn-success" type="button" id="btn-lov-kota-objek">
-                                                    <i class="fa fa-search"></i>
-                                                </span>
+                                                <input type="text" class="form-control" name="object_kota" id="object_kota" readonly>
+                                                <input type="hidden" class="form-control" maxlength="10" name="object_p_region_id" id="object_p_region_id" readonly>
+                                                
                                             </div>
                                         </div>
                                     </div>
@@ -250,12 +235,8 @@
                                         </label>
                                         <div class="col-md-3">
                                             <div class="input-group">
-                                                <input type="hidden" class="form-control required" maxlength="10" name="object_p_region_id_kec" id="object_p_region_id_kec" readonly>
-                                                <input type="text" class="form-control required" name="object_kecamatan" id="object_kecamatan" readonly>
-                                                <span class="input-group-btn">
-                                                    <button class="btn btn-success" type="button" id="btn-lov-kecamatan-objek">
-                                                    <i class="fa fa-search"></i>
-                                                </span>
+                                                <input type="hidden" class="form-control" maxlength="10" name="object_p_region_id_kec" id="object_p_region_id_kec" readonly>
+                                                <input type="text" class="form-control" name="object_kecamatan" id="object_kecamatan" readonly>
                                             </div>
                                         </div>
                                     </div>
@@ -265,12 +246,8 @@
                                         </label>
                                         <div class="col-md-3">
                                             <div class="input-group">
-                                                <input type="hidden" class="form-control required" maxlength="10" name="object_p_region_id_kel" id="object_p_region_id_kel" readonly>
-                                                <input type="text" class="form-control required" name="object_kelurahan" id="object_kelurahan" readonly>
-                                                <span class="input-group-btn">
-                                                    <button class="btn btn-success" type="button" id="btn-lov-kelurahan-objek">
-                                                    <i class="fa fa-search"></i>
-                                                </span>
+                                                <input type="hidden" class="form-control" maxlength="10" name="object_p_region_id_kel" id="object_p_region_id_kel" readonly>
+                                                <input type="text" class="form-control" name="object_kelurahan" id="object_kelurahan" readonly>
                                             </div>
                                         </div>
                                     </div>
@@ -282,194 +259,12 @@
                                            <div id="comboDocPendukung"></div>
                                         </div>
                                         <div class="col-md-3">
-                                            <input type="text" class="form-control" maxlength="100" name="bphtb_legal_doc_description" id="bphtb_legal_doc_description">
+                                            <input type="text" class="form-control" maxlength="100" name="bphtb_legal_doc_description" id="bphtb_legal_doc_description" readonly>
                                         </div>
                                         <div class="col-md-3">
                                             <input type="hidden" class="form-control" name="nilai_doc" id="nilai_doc">
                                         </div>
                                         
-                                    </div>
-                                    <div class="form-group">
-                                        <label class="control-label col-md-3">Pendukung
-                                        </label>
-                                        <div class="col-md-2">
-                                            <div class="input-group ">
-                                                <input type="text" class="form-control formatRight" name="add_disc_percent" onkeyup="hitungTotalTanah();return 1;" id="add_disc_percent">
-                                                <span class="input-group-addon">% </span>
-                                            </div> 
-                                        </div>
-                                        <label class="control-label col-md-6 col-md-offset-2">(Gunakan tanda "."(titik) untuk luas dengan bilangan pecahan)
-                                        </label>
-                                    </div>
-                                    <div class="form-group">
-                                        <label class="control-label col-md-2">Nilai Tanah (Ref)
-                                        </label>
-                                        <div class="col-md-3">
-                                            <div class="input-group ">
-                                                <input type="text" onkeyup="hitungTotalTanah();return 1;" class="form-control formatRight"  readonly="true" maxlength="16" name="land_area_real" id="land_area_real">
-                                                <span class="input-group-addon">m2</span>
-                                            </div> 
-                                        </div>
-                                        <div class="col-md-3">
-                                            <div class="input-group ">
-                                                <span class="input-group-addon">Rp.</span>
-                                                <input type="text" onkeyup="hitungTotalTanah();" maxlength="16" class="form-control priceformat" readonly="true" name="land_price_real" id="land_price_real">
-                                            </div> 
-                                        </div>
-                                    </div>
-
-                                    <div class="form-group">
-                                        <label class="control-label col-md-2"> Nilai bangunan (Ref)
-                                        </label>
-                                        <div class="col-md-3">
-                                            <div class="input-group ">
-                                                <input type="text" onkeyup="hitungTotalBangunan();" maxlength="16" class="form-control formatRight"  readonly="true" name="building_area_real" id="building_area_real">
-                                                <span class="input-group-addon">m2</span>
-                                            </div> 
-                                        </div>
-                                        <div class="col-md-3">
-                                            <div class="input-group ">
-                                                <span class="input-group-addon">Rp.</span>
-                                                <input type="text" onkeyup="hitungTotalBangunan();" maxlength="16" class="form-control priceformat" readonly="true" name="building_price_real" id="building_price_real">
-                                            </div> 
-                                        </div>
-                                    </div>
-
-                                    <div class="form-group">
-                                        <label class="control-label col-md-2"> Tanah 
-                                        </label>
-                                        <div class="col-md-3">
-                                            <div class="input-group ">
-                                                <input type="text" onkeyup="hitungTotalTanah();return 1;" maxlength="10"  class="form-control formatRight"   name="land_area" id="land_area">
-                                                <span class="input-group-addon">m2</span>
-                                            </div> 
-                                        </div>
-                                        <div class="col-md-3">
-                                            <div class="input-group ">
-                                                <span class="input-group-addon">Rp.</span>
-                                                <input type="text" onkeyup="hitungTotalTanah();" maxlength="10" class="form-control priceformat"  name="land_price_per_m" id="land_price_per_m">
-                                            </div> 
-                                        </div>
-                                        <div class="col-md-3">
-                                            <div class="input-group ">
-                                                <span class="input-group-addon">Rp.</span>
-                                                <input type="text" class="form-control  priceformat"  maxlength="16" name="land_total_price" id="land_total_price">
-                                            </div> 
-                                        </div>
-                                        <label class="control-label col-md-5 col-md-offset-2">(Gunakan tanda "."(titik) untuk luas dengan bilangan pecahan)
-                                        </label>
-                                    </div>
-
-                                    <div class="form-group">
-                                        <label class="control-label col-md-2">  Bangunan 
-                                        </label>
-                                        <div class="col-md-3">
-                                            <div class="input-group ">
-                                                <input type="text" onkeyup="hitungTotalBangunan();"  maxlength="10" class="form-control formatRight"   name="building_area" id="building_area">
-                                                <span class="input-group-addon">m2</span>
-                                            </div> 
-                                        </div>
-                                        <div class="col-md-3">
-                                            <div class="input-group ">
-                                                <span class="input-group-addon">Rp.</span>
-                                                <input type="text" onkeyup=" hitungTotalBangunan();"  maxlength="10" class="form-control priceformat"  name="building_price_per_m" id="building_price_per_m">
-                                            </div> 
-                                        </div>
-                                        <div class="col-md-3">
-                                            <div class="input-group ">
-                                                <span class="input-group-addon">Rp.</span>
-                                                <input type="text" class="form-control priceformat"  maxlength="16"  name="building_total_price" id="building_total_price">
-                                            </div> 
-                                        </div>
-                                        <label class="control-label col-md-5 col-md-offset-2">(Gunakan tanda "."(titik) untuk luas dengan bilangan pecahan)
-                                        </label>
-                                    </div>
-
-                                    <div class="form-group">
-                                        <label class="control-label col-md-2 col-md-offset-2">  Total
-                                        </label>
-                                        <div class="col-md-3 col-md-offset-4 ">
-                                            <div class="input-group ">
-                                                <span class="input-group-addon">Rp</span>
-                                                <input type="text" class="form-control priceformat"   name="total_price" id="total_price">
-                                            </div> 
-                                        </div>
-                                    </div>
-
-                                    <div class="form-group">
-                                        <div class="col-md-3 col-md-offset-2">
-                                            <select  name="jenis_harga_bphtb" id="jenis_harga_bphtb" class="form-control">
-                                                <option value='1' >Harga transaksi</option>
-                                                <option value='2' >Harga Pasar</option>
-                                                <option value='3' >Harga Lelang</option>
-                                            </select>
-                                        </div>
-                                        <div class="col-md-3 col-md-offset-3 ">
-                                            <div class="input-group ">
-                                                <span class="input-group-addon">Rp</span>
-                                                <input type="text" onkeyup=" getNPOP();" maxlength="16"  class="form-control priceformat"   name="market_price" id="market_price">
-                                            </div> 
-                                        </div>
-                                    </div>
-
-                                    <div class="form-group">
-                                        <label class="control-label col-md-2 ">  Potongan Kebijakan untuk Waris
-                                        </label>
-                                        <div class="col-md-3 ">
-                                            <select  name="potongan_waris" id="potongan_waris" class="form-control">
-                                                <option value='1/1' >Bukan Waris</option>
-                                                <option value='1/2' >1/2</option>
-                                                <option value='1/3' >1/3</option>
-                                                <option value='2/3' >2/3</option>
-                                                <option value='1/4' >1/4</option>
-                                                <option value='1/7' >1/7</option>
-                                                <option value='3/4' >3/4</option>
-                                            </select>
-                                        </div>
-                                    </div>
-
-                                    <div class="form-group">
-                                        <label class="control-label col-md-2 ">  Nilai Perolehan Objek Pajak (NPOP)
-                                        </label>
-                                        <div class="col-md-3">
-                                            <div class="input-group ">
-                                                <span class="input-group-addon">Rp.</span>
-                                                <input type="text" class="form-control priceformat" maxlength="16" readonly  name="npop" id="npop">
-                                            </div> 
-                                        </div>
-                                    </div>
-
-                                    <div class="form-group">
-                                        <label class="control-label col-md-2 ">  Potongan Tambahan
-                                        </label>
-                                        <div class="col-md-3">
-                                            <div class="input-group ">
-                                                <span class="input-group-addon">Rp.</span>
-                                                <input type="text" class="form-control priceformat"  name="add_discount" id="add_discount">
-                                            </div> 
-                                        </div>
-                                    </div>
-
-                                    <div class="form-group">
-                                        <label class="control-label col-md-2 ">  Nilai Perolehan Objek Pajak Tidak Kena Pajak(NPOPTKP)
-                                        </label>
-                                        <div class="col-md-3">
-                                            <div class="input-group ">
-                                                <span class="input-group-addon">Rp.</span>
-                                                <input type="text" class="form-control priceformat" maxlength="16"  name="npop_tkp" id="npop_tkp">
-                                            </div> 
-                                        </div>
-                                    </div>
-
-                                    <div class="form-group">
-                                        <label class="control-label col-md-2 ">  Nilai Perolehan Objek Pajak Kena Pajak(NPOPKP)
-                                        </label>
-                                        <div class="col-md-3">
-                                            <div class="input-group ">
-                                                <span class="input-group-addon">Rp.</span>
-                                                <input type="text" class="form-control priceformat" maxlength="16" name="npop_kp" id="npop_kp">
-                                            </div> 
-                                        </div>
                                     </div>
 
                                     <div class="form-group">
@@ -478,7 +273,7 @@
                                         <div class="col-md-3">
                                             <div class="input-group ">
                                                 <span class="input-group-addon">Rp.</span>
-                                                <input type="text" class="form-control priceformat" maxlength="16"  name="bphtb_amt" id="bphtb_amt">
+                                                <input type="text" class="form-control priceformat" maxlength="16"  name="bphtb_amt" id="bphtb_amt" readonly>
                                             </div> 
                                         </div>
                                     </div>
@@ -489,35 +284,26 @@
                                         <div class="col-md-3">
                                             <div class="input-group ">
                                                 <span class="input-group-addon">Rp.</span>
-                                                <input type="text" class="form-control priceformat" maxlength="16"  name="bphtb_discount" id="bphtb_discount">
+                                                <input type="text" class="form-control priceformat" maxlength="16"  name="bphtb_discount" id="bphtb_discount" readonly>
                                             </div> 
                                         </div>
                                         <div class="col-md-3">
-                                            <input type="text" class="form-control" name="description" id="description">
+                                            <input type="text" class="form-control" name="description" id="description" readonly>
                                         </div>
                                         
-                                        <div class="col-md-3">
-                                            <div class="input-group ">
-                                                <label class="control-label input-group-addon  ">  Cek Potongan :
-                                                </label>
-                                                <span class="input-group-addon"><input type="checkbox" class="form-control" name="check_potongan" id="check_potongan"></span>
-                                            </div> 
-                                        </div>
-                                        <label class="control-label col-md-5 col-md-offset-6">(Silahkan cheklis utk pembayaran yg ada potongan)
-                                        </label>
                                     </div>
 
                                     <div id="div-harus-bayar" class="form-group" style="display: none">
                                         <label class="control-label col-md-2 " class="control-label col-md-2 ">Bea Perolehan Hak atas Tanah dan Bangunan yang harus dibayar </label>
                                         <div class="col-md-3">
-                                            <input type="text" class="form-control" name="bphtb_amt_final_old" id="bphtb_amt_final_old">
+                                            <input type="text" class="form-control" name="bphtb_amt_final_old" id="bphtb_amt_final_old" readonly>
                                         </div>
                                     </div>
 
                                     <div id="div-pembayaran-sebelumnya" class="form-group" style="display: none">
                                         <label class="control-label col-md-2 " class="control-label col-md-2 ">Nilai Pajak yang sudah dibayar </label>
                                         <div class="col-md-3">
-                                            <input type="text" class="form-control" name="prev_payment_amount" id="prev_payment_amount">
+                                            <input type="text" class="form-control" name="prev_payment_amount" id="prev_payment_amount" readonly>
                                         </div>
                                     </div>
 
@@ -526,7 +312,7 @@
                                         <div class="col-md-3">
                                             <div class="input-group ">
                                                 <span class="input-group-addon">Rp.</span>
-                                                <input type="text" class="form-control priceformat" maxlength="16" name="bphtb_amt_final" id="bphtb_amt_final">
+                                                <input type="text" class="form-control priceformat" maxlength="16" name="bphtb_amt_final" id="bphtb_amt_final" readonly>
                                             </div> 
                                         </div>
                                         
@@ -538,7 +324,7 @@
                                     <div class="form-group">
                                         <label class="control-label col-md-2 " > PILIH LEMBAR CETAKAN UNTUK  </label>
                                         <div class="col-md-3 ">
-                                            <select name="pilih_lembar_cetak" id="pilih_lembar_cetak" class="form-control" onchange="getValueData()">
+                                            <select name="pilih_lembar_cetak" id="pilih_lembar_cetak" class="form-control" readonly disabled>
                                                 <option value='' >-- Pilih Lembar Cetakan --</option>
                                                 <option value='1' >Waris</option>
                                                 <option value='2' >Fasos</option>
@@ -560,14 +346,14 @@
                                         <label class="control-label col-md-2">Pilih Untuk A2
                                         </label>
                                         <div class="col-md-3">
-                                             <select  name="opsi_a2" id="opsi_a2" class="form-control">
+                                             <select  name="opsi_a2" id="opsi_a2" class="form-control" readonly disabled>
                                              </select>
                                             <input type="hidden" class="form-control" name="a2_val" id="a2_val">
                                         </div>
                                         <label class="control-label col-md-2">Keterangan A2
                                         </label>
                                         <div class="col-md-3">
-                                            <input type="text" class="form-control" name="opsi_a2_keterangan" id="opsi_a2_keterangan">
+                                            <input type="text" class="form-control" name="opsi_a2_keterangan" id="opsi_a2_keterangan" readonly>
                                         </div>
                                     </div>
 
@@ -575,22 +361,22 @@
                                         <label class="control-label col-md-2">Pilih Untuk B7
                                         </label>
                                         <div class="col-md-3">
-                                             <select  name="opsi_b7" id="opsi_b7" class="form-control">
+                                             <select  name="opsi_b7" id="opsi_b7" class="form-control" readonly disabled>
                                              </select>
                                             <input type="hidden" class="form-control" name="b7_val" id="b7_val">
                                         </div>
                                         <label class="control-label col-md-2">Keterangan B7
                                         </label>
                                         <div class="col-md-3">
-                                            <input type="text" class="form-control" name="opsi_b7_keterangan" id="opsi_b7_keterangan">
+                                            <input type="text" class="form-control" name="opsi_b7_keterangan" id="opsi_b7_keterangan" readonly>
                                         </div>
                                     </div>
 
                                     <div class="form-group">
                                         <label class="control-label col-md-2">Keterangan Opsi C
                                         </label>
-                                        <div class="col-md-3">
-                                            <input type="text" class="form-control" name="keterangan_opsi_c" id="keterangan_opsi_c">
+                                        <div class="col-md-4">
+                                            <input type="text" class="form-control" name="keterangan_opsi_c" id="keterangan_opsi_c" readonly>
                                         </div>
                                     </div>
 
@@ -598,7 +384,7 @@
                                         <label class="control-label col-md-2">Tanggal SK
                                         </label>
                                         <div class="col-md-3">
-                                            <input type="text" class="form-control" name="tgl_sk" id="tgl_sk">
+                                            <input type="text" class="form-control" name="tgl_sk" id="tgl_sk" readonly>
                                         </div>
                                     </div>
 
@@ -606,7 +392,7 @@
                                         <label class="control-label col-md-2">Nomor Notaris
                                         </label>
                                         <div class="col-md-3">
-                                            <input type="text" class="form-control" name="nomor_notaris" id="nomor_notaris">
+                                            <input type="text" class="form-control" name="nomor_notaris" id="nomor_notaris" readonly>
                                         </div>
                                     </div>
 
@@ -614,7 +400,7 @@
                                         <label class="control-label col-md-2"><font color="green">Keterangan Opsi C Khusus Gono-Gini/Harta Bersama :
                                         </font></label>
                                         <div class="col-md-4">
-                                            <textarea rows="4" cols="50" class="form-control" maxlength="256"  name="keterangan_opsi_c_gono_gini" id="keterangan_opsi_c_gono_gini"></textarea>
+                                            <textarea rows="4" cols="50" class="form-control" maxlength="256"  name="keterangan_opsi_c_gono_gini" id="keterangan_opsi_c_gono_gini" readonly></textarea>
                                         </div>
                                     </div>
 
@@ -626,7 +412,7 @@
                                         <label class="control-label col-md-2">Nomor Berita Acara
                                         </label>
                                         <div class="col-md-3">
-                                            <input type="text" class="form-control" name="nomor_berita_acara" id="nomor_berita_acara">
+                                            <input type="text" class="form-control" name="nomor_berita_acara" id="nomor_berita_acara" readonly>
                                         </div>
                                     </div>
 
@@ -634,7 +420,7 @@
                                         <label class="control-label col-md-2">Tanggal Berita Acara
                                         </label>
                                         <div class="col-md-3">
-                                            <input type="text" class="form-control" name="tgl_berita_acara" id="tgl_berita_acara">
+                                            <input type="text" class="form-control" name="tgl_berita_acara" id="tgl_berita_acara" readonly>
                                         </div>
                                     </div>
 
@@ -662,7 +448,7 @@
                                         <label class="control-label col-md-2">DASAR PENGURANGAN (LEMBAR DISPOSISI) :
                                         </label>
                                         <div class="col-md-7">
-                                            <textarea rows="4" cols="100" class="form-control" maxlength="256"  name="dasar_pengurang" id="dasar_pengurang"></textarea>
+                                            <textarea rows="5" cols="100" class="form-control" maxlength="256"  name="dasar_pengurang" id="dasar_pengurang" readonly></textarea>
                                         </div>
                                     </div>
 
@@ -670,7 +456,7 @@
                                         <label class="control-label col-md-2">ANALISA PERMOHONAN PENGURANGAN (LEMBAR DISPOSISI) :
                                         </label>
                                         <div class="col-md-7">
-                                            <textarea rows="4" cols="100" class="form-control" maxlength="256"  name="analisa_pengurangan" id="analisa_pengurangan"></textarea>
+                                            <textarea rows="5" cols="100" class="form-control" maxlength="256"  name="analisa_pengurangan" id="analisa_pengurangan" readonly></textarea>
                                         </div>
                                     </div>
                                     <div class="form-group" style="">
@@ -681,28 +467,20 @@
                                     <div class="form-actions">
                                         <div class="row">
                                             <div class="col-md-12">
-                                                <a href="javascript:;" class="btn green" id="perhitungan" style="display: none"> CETAK LEMBAR KENDALI</a>
+                                                <a href="javascript:;" class="btn btn-danger" id="perhitungan" style="display: none"> CETAK LEMBAR KENDALI</a>
 
-                                                <a href="javascript:;" class="btn green" id="perhitungan" onclick="cetakPdf('perhitungan')"> LEMBAR PERHITUNGAN (1)</a>        
-                                               <a href="javascript:;" class="btn green " id="disposisi" onclick="cetakPdf('disposisi')">LEMBAR DISPOSISI (2)</a>
+                                                <a href="javascript:;" class="btn btn-danger" id="perhitungan" onclick="cetakPdf('perhitungan')"> LEMBAR PERHITUNGAN (1)</a>        
+                                               <a href="javascript:;" class="btn btn-danger " id="disposisi" onclick="cetakPdf('disposisi')">LEMBAR DISPOSISI (2)</a>
 
-                                                <a href="javascript:;" class="btn  green " id="acara" onclick="cetakPdf('acara')">BERITA ACARA (3)</a>
+                                                <a href="javascript:;" class="btn  btn-danger " id="acara" onclick="cetakPdf('acara')">BERITA ACARA (3)</a>
 
-                                                <a href="javascript:;" class="btn  green " id="kasi" onclick="cetakPdf('kasi')">NOTA DINAS KASI (4)</a>
+                                                <a href="javascript:;" class="btn  btn-danger " id="kasi" onclick="cetakPdf('1')">NOTA DINAS KASI (4)</a>
 
-                                                <a href="javascript:;" class="btn  green " id="kabid" onclick="cetakPdf('kabid')">NOTA DINAS KABID (4)</a>
+                                                <a href="javascript:;" class="btn  btn-danger " id="kabid" onclick="cetakPdf('2')">NOTA DINAS KABID (4)</a>
 
-                                                <a href="javascript:;" class="btn  green " id="kadis"onclick="cetakPdf('kadis')">KEPUTUSAN KADIS (5)</a>
+                                                <a href="javascript:;" class="btn  btn-danger " id="kadis"onclick="cetakPdf('kadis')">KEPUTUSAN KADIS (5)</a>
 
-                                                <a href="javascript:;" class="btn  green " id="submit">SUBMIT</a>
-
-                                                <a href="javascript:;" style="display: none" class="btn  green " id="disposisi">SIMPAN</a>
-
-                                                <a href="javascript:;" style="display: none" class="btn  green " id="disposisi">SIMPAN</a>
-
-                                                <a href="javascript:;" style="display: none" class="btn  green " id="disposisi">HAPUS</a>
-
-                                                <a href="javascript:;" style="display: none" class="btn  green " id="disposisi">BATAL</a>
+                                                <a href="javascript:;" onclick="backform()" class="btn  green " id="submit">KEMBALI</a>
                                                 
                                             </div>
                                         </div>
@@ -723,8 +501,13 @@
 <!-- First Load -->
 <script type="text/javascript">
     var lembar_cetak = $('#pilih_lembar_cetak').val();
-    $("#opsi_a2").html("");
-    $("#opsi_b7").html("");
+    //alert(lembar_cetak);
+    // $("#opsi_a2").html("");
+    // $("#opsi_b7").html("");
+
+    //$('#p_bphtb_legal_doc_type_id').disabled();
+    
+
 
     var a2_val = $("#a2_val").val();
     var b7_val = $("#b7_val").val();
@@ -885,10 +668,23 @@
     $(".formatRight").css("text-align", "right");
 
     $.ajax({
+            url: "<?php echo base_url().'bphtb_registration/load_combo_dok_pendukung/'; ?>" ,
+            type: "POST",            
+            data: {},
+            success: function (data) {
+                $( "#comboDocPendukung" ).html( data );
+            },
+            error: function (xhr, status, error) {
+                swal({title: "Error!", text: xhr.responseText, html: true, type: "error"});
+            }
+    });
+
+    $.ajax({
         url: "<?php echo base_url().'transaksi/petugas_administrator_combo/'; ?>" ,
         type: "POST",
         success: function (data) {
             $( "#administrator" ).html( data );
+
         },
         error: function (xhr, status, error) {
             swal({title: "Error!", text: xhr.responseText, html: true, type: "error"});
@@ -907,17 +703,20 @@
     });
 
 
+    t_customer_order_id = "<?php echo $_POST['CURR_DOC_ID']; ?>";
 
     $.ajax({
             url: '<?php echo WS_JQGRID."transaksi_wf.t_bphtb_registration_pengurangan_controller/read"; ?>',
             type: "POST",
             dataType: "json",
             data: {
-                t_customer_order_id: 513211
+                t_customer_order_id: t_customer_order_id
             },
             success: function (data) {
                 if(data.success){
                     var dt = data.rows[0];
+
+                    //alert(dt.pemeriksa_id);
 
                     $('#t_bphtb_registration_id').val(dt.t_bphtb_registration_id);
                     $('#wp_name').val(dt.wp_name);
@@ -971,6 +770,7 @@
                     $('#building_area_real').val(dt.building_area_real);
                     $('#building_price_real').val(dt.building_price_real);
                     $('#pilih_lembar_cetak').val(dt.pilihan_lembar_cetak);
+
                     $('#opsi_a2').val(dt.opsi_a2);
                     $('#opsi_a2_keterangan').val(dt.opsi_a2_keterangan);
                     $('#opsi_b7').val(dt.opsi_b7);
@@ -981,13 +781,53 @@
                     $('#nomor_berita_acara').val(dt.nomor_berita_acara);
                     $('#keterangan_opsi_c_gono_gini').val(dt.keterangan_opsi_c);
                     $('#tgl_berita_acara').val(dt.tanggal_berita_acara);
-                    $('#administrator').val(dt.administrator_id);
-                    $('#pemeriksa').val(dt.pemeriksa_id);
+                    $('#administrator_id').val(dt.administrator_id);
+                    $('#pemeriksa_id').val(dt.pemeriksa_id);
                     $('#dasar_pengurang').val(dt.dasar_pengurang);
                     $('#analisa_pengurangan').val(dt.analisa_penguranan);
 
-                    
+                    $('#p_bphtb_legal_doc_type_id').attr('disabled', true);
+                    $('#administrator_id').attr('disabled', true);
+                    $('#pemeriksa_id').attr('disabled', true);
 
+                    selected_val = $("#pilih_lembar_cetak").val();
+                    var arrA2Option = getArrOptA2(selected_val);
+                    var arrB7Option = getArrOptB7(selected_val);
+
+                    $("#opsi_a2").html("");
+                    $("#opsi_b7").html("");
+
+                    if(selected_val == '4' || selected_val == '7') { //gono-gini
+                        $("#keterangan-gono-gini").css('display','');
+
+                    }else {
+                        $("#keterangan_opsi_c_gono_gini").html("");
+                        $("#keterangan-gono-gini").css('display','none');
+                    }
+
+                    for (i = 0; i < arrA2Option.length; i++){
+                        $('<option/>').val(arrA2Option[i]).html(arrA2Option[i]).appendTo('#opsi_a2');
+                    }
+
+                    for (i = 0; i < arrB7Option.length; i++){
+                        $('<option/>').val(arrB7Option[i]).html(arrB7Option[i]).appendTo('#opsi_b7');
+                    }
+
+                    /*analisa pengurangan*/
+                    $("#analisa_pengurangan").html("");
+                    if(selected_val != "") {
+                        if(selected_val == '4' || selected_val == '6' || selected_val == '7'){
+                            $("#analisa_pengurangan").html("Setelah diteliti secara administratif Permohonan Pengurangan Waris untuk Tanah dan Bangunan sebagaimana yang diajukan oleh Pemohon dapat dipertimbangkan");            
+                        }else{
+                            $("#analisa_pengurangan").html("Setelah diteliti secara administratif Permohonan Pengurangan "+ $("#pilih_lembar_cetak option:selected").text() +" untuk Tanah dan Bangunan sebagaimana yang diajukan oleh Pemohon dapat dipertimbangkan");
+                        }
+                    }
+                    
+                    $("#dasar_pengurang").html("");
+                    if(selected_val != "") {
+                        $("#dasar_pengurang").html(getDasarPengurangan(selected_val));
+                    }
+                    
                    
                 }
                 // console.log(dt.product_name);
@@ -995,7 +835,11 @@
             error: function (xhr, status, error) {
                 swal({title: "Error!", text: xhr.responseText, html: true, type: "error"});
             }
-        });
+    });
+
+    
+
+//alert($('#pilih_lembar_cetak').val());
 </script>
 <!-- /First Load -->
 
@@ -1377,31 +1221,129 @@
         var url          = "<?php echo base_url(); ?>";
         //alert(params);return;
 
-        /*if(lembar_cetak == '' || lembar_cetak == null){
-            swal ( "Oopss" ,  "Pilih Lembar Cetakan Harus Dipilih!" ,  "error" );
-        }else{*/
-            if(aksi == 'perhitungan'){
-                //if(lembar_cetak == '4' || lembar_cetak == '7'){    
-                    url += "cetak_rep_pengurangan_bphtb_gono_gini/pageCetak_perhitungan?";
-                    url += "t_bphtb_registration_id=" + params;        
-
-                    openInNewTab(url);
-                //}
-            }else if(aksi == 'disposisi'){
-
-            }else if(aksi == 'acara'){
-
-            }else if(aksi == 'kasi'){
-
-            }else if(aksi == 'kabid'){
-
-            }else if(aksi == 'kabid'){
-
+        if(aksi == 'perhitungan'){
+            if(lembar_cetak == '4' || lembar_cetak == '7'){    
+                url += "cetak_rep_pengurangan_bphtb_gono_gini/pageCetak_perhitungan?";
+                url += "t_bphtb_registration_id=" + params;                    
+            }else{
+                url += "cetak_rep_pengurangan_bphtb/pageCetak?";
+                url += "t_bphtb_registration_id=" + params;
             }
+        }else if(aksi == 'disposisi'){
+            url += "cetak_rep_pengurangan_bphtb_lembar_disposisi/pageCetak?";
+            url += "t_bphtb_registration_id=" + params;
+
+        }else if(aksi == 'acara'){
+            if(lembar_cetak == '2' || lembar_cetak == '3' || lembar_cetak == '4' || lembar_cetak == '7') {
+            url += "cetak_rep_pengurangan_bphtb_berita_acara/pageCetak?";
+            url += "t_bphtb_registration_id=" + params;
+            }else {                    
+            url += "cetak_rep_pengurangan_bphtb_berita_acara_v2/pageCetak?";
+            url += "t_bphtb_registration_id=" + params;
+            
+            }
+        }else if(aksi == '1'){
+            var pejabat = 1;
+
+            url += "cetak_rep_pengurangan_bphtb_nota_dinas/pageCetak?";
+            url += "t_bphtb_registration_id=" + params + "&pejabat=" + pejabat;
+        }else if(aksi == '2'){
+            var pejabat = 2;
+
+            url += "cetak_rep_pengurangan_bphtb_nota_dinas/pageCetak?";
+            url += "t_bphtb_registration_id=" + params + "&pejabat=" + pejabat;
+
+        }else if(aksi == 'kadis'){
+            url += "cetak_rep_pengurangan_bphtb_surat_keputusan/pageCetak?";
+            url += "t_bphtb_registration_id=" + params;
+        }
+
+            PopupCenter(url,"Cetak PDF ",500,500);
         //}
 
         
     }
+</script>
+
+<script type="text/javascript">
+
+    params_back_summary = {};
+    params_back_summary.ELEMENT_ID = $('#TEMP_ELEMENT_ID').val();
+    params_back_summary.PROFILE_TYPE = $('#TEMP_PROFILE_TYPE').val();
+    params_back_summary.P_W_DOC_TYPE_ID = $('#TEMP_P_W_DOC_TYPE_ID').val();
+    params_back_summary.P_W_PROC_ID = $('#TEMP_P_W_PROC_ID').val();
+    params_back_summary.USER_ID = $('#TEMP_USER_ID').val();
+    params_back_summary.FSUMMARY = $('#TEMP_FSUMMARY').val();
+
+    function backform(){
+        loadContentWithParams( $('#TEMP_FSUMMARY').val() , params_back_summary );
+
+
+    };
+</script>
+
+<script type="text/javascript">
+    $('#tab-1').on('click', function(event){
+        var idelement;
+
+        if (idelement = $('#t_customer_order_id'))
+        {
+            
+            //console.log(idelement);
+            var pid=idelement.val();
+            //console.log($('#t_customer_order_id').val());
+            var req_code=$('#rqst_type_code').val();
+            var id_req=$('#p_rqst_type_id').val();
+            var id_vat=$('#t_bphtb_registration_id').val();
+            if (pid != 0)
+            {
+                //loadContentWithParams('transaksi_wf.t_cust_order_legal_doc_ro', {t_bphtb_registration_id:id_vat,rqst_type_code:req_code,p_rqst_type_id:id_req,t_customer_order_id:pid});
+
+                loadContentWithParams("transaksi_wf.t_cust_order_legal_doc_ro_outbox", { //model yang ketiga
+                t_customer_order_id: $( "#CURR_DOC_ID" ).val(),
+                t_bphtb_registration_id:$('#t_bphtb_registration_id').val(),
+                rqst_type_code:$('#rqst_type_code').val(),
+                order_no: $('#order_no').val(),
+                order_date:$('#registration_date').val(),
+                p_rqst_type_id: $("#p_rqst_type_id").val(),
+                t_vat_registration_id: $( "#t_vat_registration_id" ).val(),
+                ELEMENT_ID : $('#TEMP_ELEMENT_ID').val(),
+                PROFILE_TYPE : $('#TEMP_PROFILE_TYPE').val(),
+                P_W_DOC_TYPE_ID : $('#TEMP_P_W_DOC_TYPE_ID').val(),
+                P_W_PROC_ID : $('#TEMP_P_W_PROC_ID').val(),
+                USER_ID : $('#TEMP_USER_ID').val(),
+                FSUMMARY : $('#TEMP_FSUMMARY').val(),
+                CURR_DOC_ID : $('#CURR_DOC_ID').val(),
+                CURR_DOC_TYPE_ID : $('#CURR_DOC_TYPE_ID').val(),
+                CURR_PROC_ID : $('#CURR_PROC_ID').val(),
+                CURR_CTL_ID : $('#CURR_CTL_ID').val(),
+                USER_ID_DOC : $('#USER_ID_DOC').val(),
+                USER_ID_DONOR : $('#USER_ID_DONOR').val(),
+                USER_ID_LOGIN : $('#USER_ID_LOGIN').val(),
+                USER_ID_TAKEN : $('#USER_ID_TAKEN').val(),
+                IS_CREATE_DOC : $('#IS_CREATE_DOC').val(),
+                IS_MANUAL : $('#IS_MANUAL').val(),
+                CURR_PROC_STATUS : $('#CURR_PROC_STATUS').val(),
+                CURR_DOC_STATUS : $('#CURR_DOC_STATUS').val(),
+                PREV_DOC_ID : $('#PREV_DOC_ID').val(),
+                PREV_DOC_TYPE_ID : $('#PREV_DOC_TYPE_ID').val(),
+                PREV_PROC_ID : $('#PREV_PROC_ID').val(),
+                PREV_CTL_ID : $('#PREV_CTL_ID').val(),
+                SLOT_1 : $('#SLOT_1').val(),
+                SLOT_2 : $('#SLOT_2').val(),
+                SLOT_3 : $('#SLOT_3').val(),
+                SLOT_4 : $('#SLOT_4').val(),
+                SLOT_5 : $('#SLOT_5').val(),
+                MESSAGE : $('#MESSAGE').val(),
+                PROFILE_TYPE : $('#PROFILE_TYPE').val(),
+                ACTION_STATUS : $('#ACTION_STATUS').val()});
+            } else {
+                swal({title: "Error!", text: "Pilih salah satu ORDER!", html: true, type: "error"});
+            }
+        } else {
+            swal({title: "Error!", text: "Pilih salah satu ORDER!!!", html: true, type: "error"});
+        }
+    });
 </script>
 
 <!-- Action -->
