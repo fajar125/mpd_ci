@@ -115,7 +115,7 @@ class cetak_rep_pengurangan_bphtb_berita_acara extends CI_Controller{
 			$this->barisBaru($pdf,"", "6 Kelurahan", ": " . $data["object_kelurahan"]);
 			$this->barisBaru($pdf,"", "7 Kecamatan", ": " . $data["object_kecamatan"]);
 			$this->barisBaru($pdf,"", "8 Kabupaten/Kota", ": " . $data["object_region"]);
-			$this->barisBaru_special($pdf,"", "Akta/ Risalah Lelang/ Keputusan Pemberian Hak/ Putusan Hakim/ Dokumen", ": SK Kepala Kantor Pertanahan Kota Bandung");
+			$this->barisBaru_special($pdf,"", "Akta/ Risalah Lelang/ Keputusan Pemberian Hak/ Putusan Hakim/ Dokumen", ": SK Kepala Kantor Pertanahan Kabupaten Lombok Utara");
 			$this->barisBaru($pdf,"", "- Nomor", ": " . $data['opsi_b7_keterangan']);
 			$this->barisBaru($pdf,"", "- Tanggal", ": " . $this->beautyDate($data['tanggal_sk']));
 			$this->barisBaru($pdf,"", "NJOP", ": Rp." . number_format($data['npop'], 0, ",", "."));
