@@ -438,7 +438,7 @@ $("#tab-4").on("click", function(event) {
                                 text: "Target vs Realisasi Tahunan"
                         },
                         subtitle: {
-                                text: "Disyanjak Kota Bandung"
+                                text: "Bapenda Lombok Utara"
                         },
                         xAxis: {
                                 categories: vat_code
