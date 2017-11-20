@@ -272,7 +272,7 @@ class pdf_lap_penerimaan_pertahun_sts extends CI_Controller{
         $pdf->Cell($this->lengthCell, $this->height, "", "", 0, 'L');
         $pdf->Ln();
         $pdf->Cell($lbody3 - 10, $this->height, "", "", 0, 'L');
-        $pdf->Cell($lbody1 + 10, $this->height, "Bandung, " . date("d F Y") /*. $data["tanggal"]*/, "", 0, 'C');
+        $pdf->Cell($lbody1 + 10, $this->height, "Lombok, " . date("d F Y") /*. $data["tanggal"]*/, "", 0, 'C');
         $pdf->Ln();
         $pdf->Cell($lbody3 - 10, $this->height, "", "", 0, 'L');
         $nama_pajak = strtoupper(substr($data[0]["jenis_pajak"], 5));
