@@ -207,7 +207,7 @@ class cetak_formulir_parkir_pdf extends CI_Controller{
 		$pdf->Cell($per2+$per3, $this->height, "Diberi v pada kotak yang tersedia untuk jawaban yang diberikan;", "BR", 0, 'L');
 		$pdf->Ln();
 		$pdf->Cell($per1, $this->height, "3. ", "TBL", 0, 'C');
-		$pdf->Cell($per2+$per3, $this->height, "Setelah Formulir Pendaftaran ini diisi dan ditanda tangani,  harap diserahkan kembali Kepada Badan Pengelolaan Pendapatan Daerah", "BR", 0, 'L');
+		$pdf->Cell($per2+$per3, $this->height, "Setelah Formulir Pendaftaran ini diisi dan ditanda tangani,  harap diserahkan kembali Kepada Badan Pendapatan Daerah", "BR", 0, 'L');
 		$pdf->Ln();
 		$pdf->Cell($per1, $this->height, "", "TBL", 0, 'L');
 		$pdf->Cell($per2+$per3, $this->height, "Lombok Utara langsung atau dikirim melalui Pos paling lambat tanggal .......................", "BR", 0, 'L');

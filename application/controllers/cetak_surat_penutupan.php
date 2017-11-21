@@ -349,7 +349,7 @@ class cetak_surat_penutupan extends CI_Controller{
         $pdf->Ln();
         
         $pdf->Cell($sigLen1, $this->height, "", 0, 0, 'C');
-        $pdf->Cell($sigLen1, $this->height, "Kepala Badan Pengelolaan Pendapatan Daerah", 0, 0, 'C');
+        $pdf->Cell($sigLen1, $this->height, "Kepala Badan Pendapatan Daerah", 0, 0, 'C');
         $pdf->Ln();
         $pdf->Ln();
         $pdf->Ln();

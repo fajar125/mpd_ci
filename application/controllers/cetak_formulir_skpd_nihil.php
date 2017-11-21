@@ -378,7 +378,7 @@ class cetak_formulir_skpd_nihil extends CI_Controller{
 		$pdf->Ln();
 		
 		$pdf->Cell($lbody3 - 10, $this->height, "", "L", 0, 'L');
-		$pdf->Cell($lbody1 + 10, $this->height, "a.n KEPALA BADAN PENGELOLAAN PENDAPATAN DAERAH", "R", 0, 'C');
+		$pdf->Cell($lbody1 + 10, $this->height, "a.n KEPALA BADAN PENDAPATAN DAERAH", "R", 0, 'C');
 		$pdf->Ln();
 
 		$pdf->Cell($lbody3 - 10, $this->height, "", "L", 0, 'L');
