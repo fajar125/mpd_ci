@@ -613,6 +613,18 @@
 <!-- First Load -->
 <script>
 
+    $.ajax({
+            url: "<?php echo base_url().'bphtb_registration/load_combo_dok_pendukung/'; ?>" ,
+            type: "POST",            
+            data: {},
+            success: function (data) {
+                $( "#comboDocPendukung" ).html( data );
+            },
+            error: function (xhr, status, error) {
+                swal({title: "Error!", text: xhr.responseText, html: true, type: "error"});
+            }
+    });
+
     t_customer_order_id= "<?php echo $_POST['CURR_DOC_ID']; ?>";
     //t_customer_order_id = 420749;
     if(t_customer_order_id!=null || t_customer_order_id!=''){
@@ -903,17 +915,7 @@
         modal_lov_kelurahan_show('object_p_region_id_kel','object_kelurahan',kec);
     });
 
-    $.ajax({
-            url: "<?php echo base_url().'bphtb_registration/load_combo_dok_pendukung/'; ?>" ,
-            type: "POST",            
-            data: {},
-            success: function (data) {
-                $( "#comboDocPendukung" ).html( data );
-            },
-            error: function (xhr, status, error) {
-                swal({title: "Error!", text: xhr.responseText, html: true, type: "error"});
-            }
-    });
+    
 </script>
 <!-- /LOV -->
 

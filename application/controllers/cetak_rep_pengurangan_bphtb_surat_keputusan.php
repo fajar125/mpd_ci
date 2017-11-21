@@ -63,8 +63,8 @@ class cetak_rep_pengurangan_bphtb_surat_keputusan extends CI_Controller{
 			$pdf->SetAligns(array("C"));
 			$pdf->RowMultiBorderWithHeight(
 				array
-				(	"PEMERINTAH KABUPATEN LOMBOK \nKEPUTUSAN KEPALA BADAN PENGELOLAAN PENDAPATAN DAERAH \nNOMOR : "."                                   ".
-					"\nPEMBERIAN PENGURANGAN \nBEA PEROLEHAN HAK ATAS TANAH DAN BANGUNAN \nYANG TERUTANG \nKEPALA BADAN PENGELOLAAN PENDAPATAN DAERAH KABUPATEN LOMBOK"
+				(	getValByCode('INSTANSI_1')." \nKEPUTUSAN KEPALA ".strtoupper(getValByCode('INSTANSI_2'))." \nNOMOR : "."                                   ".
+					"\nPEMBERIAN PENGURANGAN \nBEA PEROLEHAN HAK ATAS TANAH DAN BANGUNAN \nYANG TERUTANG \nKEPALA ".strtoupper(getValByCode('INSTANSI_3'))
 				),
 				array
 				(
@@ -187,7 +187,7 @@ class cetak_rep_pengurangan_bphtb_surat_keputusan extends CI_Controller{
 				array
 				(	"",
 					" 2.",
-					"Peraturan Walikota Nomor 308 Tahun 2013 tentang Tata Cara Pemungutan dan Standar Operasional Prosedur Bea Perolehan Hak atas Tanah dan Bangunan"
+					"Peraturan Bupati Nomor 308 Tahun 2013 tentang Tata Cara Pemungutan dan Standar Operasional Prosedur Bea Perolehan Hak atas Tanah dan Bangunan"
 				),
 				array
 				(
@@ -216,7 +216,7 @@ class cetak_rep_pengurangan_bphtb_surat_keputusan extends CI_Controller{
 			$pdf->RowMultiBorderWithHeight(
 				array
 				(	"Menetapkan",":",
-					"KEPUTUSAN KEPALA BADAN PENGELOLAAN PENDAPATAN DAERAH KABUPATEN LOMBOK TENTANG PEMBERIAN PENGURANGAN BEA PEROLEHAN HAK ATAS TANAH DAN BANGUNAN YANG TERUTANG"
+					"KEPUTUSAN KEPALA ".strtoupper(getValByCode('INSTANSI_3'))." TENTANG PEMBERIAN PENGURANGAN BEA PEROLEHAN HAK ATAS TANAH DAN BANGUNAN YANG TERUTANG"
 				),
 				array
 				(
@@ -339,7 +339,7 @@ class cetak_rep_pengurangan_bphtb_surat_keputusan extends CI_Controller{
 			$pdf->RowMultiBorderWithHeight(
 				array
 				(	"","  b.",
-					"Salinan Keputusan ini disimpan sebagai arsip Badan Pengelolaan Pendapatan Daerah Kabupaten Lombok"
+					"Salinan Keputusan ini disimpan sebagai arsip ".strtoupper(getValByCode('INSTANSI_3'))
 				),
 				array
 				(
@@ -357,7 +357,7 @@ class cetak_rep_pengurangan_bphtb_surat_keputusan extends CI_Controller{
 			$pdf->RowMultiBorderWithHeight(
 				array
 				(	"",
-					"Ditetapkan di Lombok \npada tanggal "
+					"Ditetapkan di ".strtoupper(getValByCode('ALAMAT_3'))." \npada tanggal "
 				),
 				array
 				(
@@ -384,7 +384,7 @@ class cetak_rep_pengurangan_bphtb_surat_keputusan extends CI_Controller{
 				$pdf->RowMultiBorderWithHeight(
 				array
 				(	"",
-					"KEPALA BADAN PENGELOLAAN PENDAPATAN DAERAH \n\n\n\n\nDrs. H. Ema Sumarna, M. Si\nPembina Utama Muda IV/C\nNIP. 19661207 198603 1 006"
+					"KEPALA ".strtoupper(getValByCode('INSTANSI_2'))." \n\n\n\n\nDrs. H. Ema Sumarna, M. Si\nPembina Utama Muda IV/C\nNIP. 19661207 198603 1 006"
 				),
 				array
 				(
@@ -406,9 +406,9 @@ class cetak_rep_pengurangan_bphtb_surat_keputusan extends CI_Controller{
 			$pdf->SetAligns(array("L"));
 			$pdf->RowMultiBorderWithHeight(
 				array
-				(	"1. Bapak Bupati Kabupaten Lombok Utara (sebagai laporan)\n".
-					"2. Bapak Wakil Bupati Kabupaten Lombok Utara (sebagai laporan)\n".
-					"3. Bapak Sekretaris Kabupaten Lombok Utara (sebagai laporan)\n".
+				(	"1. Bapak Bupati Kabupaten ".getValByCode('ALAMAT_3')." (sebagai laporan)\n".
+					"2. Bapak Wakil Bupati Kabupaten ".getValByCode('ALAMAT_3')." (sebagai laporan)\n".
+					"3. Bapak Sekretaris Kabupaten ".getValByCode('ALAMAT_3')." (sebagai laporan)\n".
 					"4. Arsip"
 				),
 				array

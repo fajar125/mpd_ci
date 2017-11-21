@@ -611,7 +611,7 @@
             }
     });
 
-     //t_customer_order_id= "<?php //echo $_POST['CURR_DOC_ID']; ?>";
+     t_customer_order_id= "<?php echo $_POST['CURR_DOC_ID']; ?>";
      //t_customer_order_id = 420748;
 
     if (t_customer_order_id!=null || t_customer_order_id!=''){
@@ -620,7 +620,7 @@
             type: "POST",
             dataType: "json",
             data: {
-               t_customer_order_id: 420748
+               t_customer_order_id: t_customer_order_id
             },
             success: function (data) {
                 if(data.success){
