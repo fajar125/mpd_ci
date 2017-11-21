@@ -42,7 +42,7 @@
     .logo-cam {
         position:fixed;
         top:12px;
-        left:255px;
+        left:10%;
         z-index:15;
     }
 </style>

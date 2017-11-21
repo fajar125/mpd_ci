@@ -134,6 +134,8 @@
             $(this).addClass("active");
             $(this).parent("ul").parent("li").addClass("active");
 
+            $('.page-sidebar.navbar-collapse').attr('aria-expanded', 'false');
+            $('.page-sidebar.navbar-collapse').removeClass('in');
             loadContentWithParams(nav,{p_app_menu_id:p_app_menu_id});
         }
 

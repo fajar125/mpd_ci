@@ -26,7 +26,7 @@
 
     <body class="page-header-fixed page-sidebar-closed-hide-logo page-content-white">
         <div class="logo-cam">
-            <img src="<?php echo base_url().'assets/image/logo-mpd.png'; ?>" height="25px">
+            <img src="<?php echo base_url().'assets/image/logo-mpd.png'; ?>" width="320px">
         </div>
         <!-- BEGIN HEADER -->
         <div class="page-header navbar navbar-fixed-top">
@@ -37,11 +37,7 @@
                     <img src="<?php echo base_url().'assets/image/logo-2.png'; ?>" height="50" width="50">
                 </div>
                 <!-- END LOGO -->
-                <!-- BEGIN RESPONSIVE MENU TOGGLER -->
-                <a href="javascript:;" class="menu-toggler responsive-toggler" data-toggle="collapse" data-target=".navbar-collapse">
-                    <span></span>
-                </a>
-                <!-- END RESPONSIVE MENU TOGGLER -->
+
                 <!-- BEGIN TOP NAVIGATION MENU -->
                 <div class="top-menu">
                     <ul class="nav navbar-nav pull-right">

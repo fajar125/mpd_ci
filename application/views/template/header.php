@@ -21,7 +21,7 @@
     <body class="page-header-fixed page-sidebar-closed-hide-logo page-content-white page-md page-header-fixed page-sidebar-fixed">
         <!-- BEGIN HEADER -->
         <div class="logo-cam">
-            <img src="<?php echo base_url().'assets/image/logo-mpd.png'; ?>" height="25px">
+            <img src="<?php echo base_url().'assets/image/logo-mpd.png'; ?>" width="320px">
         </div>
         <div class="page-header navbar navbar-fixed-top">
             <!-- BEGIN HEADER INNER -->
