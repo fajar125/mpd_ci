@@ -31,9 +31,6 @@
                     <a href="<?php base_url();?>">
                         <img src="<?php echo base_url().'assets/image/logo-2.png'; ?>" height="50" width="50">
                     </a>
-                    <div class="menu-toggler sidebar-toggler">
-                        <span></span>
-                    </div>
                 </div>
                 <!-- END LOGO -->
                 <!-- BEGIN RESPONSIVE MENU TOGGLER -->
