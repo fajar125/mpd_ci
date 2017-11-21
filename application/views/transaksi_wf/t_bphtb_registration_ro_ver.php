@@ -508,7 +508,7 @@
                                         <label class="control-label col-md-2">Pemeriksa
                                         </label>
                                         <div class="col-md-3">
-                                            <input type="text" class="form-control" name="vericated_by" id="vericated_by" value="<?php echo $this->session->userdata('full_name');?>">
+                                            <input type="text" class="form-control" name="verificated_by" id="verificated_by" value="<?php echo $this->session->userdata('full_name');?>">
                                         </div>
                                     </div>
 
@@ -516,7 +516,7 @@
                                         <label class="control-label col-md-2">NIP
                                         </label>
                                         <div class="col-md-3">
-                                            <input type="text" class="form-control" name="vericated_nip" id="vericated_nip">
+                                            <input type="text" class="form-control" name="verificated_nip" id="verificated_nip">
                                         </div>
                                     </div>
 
