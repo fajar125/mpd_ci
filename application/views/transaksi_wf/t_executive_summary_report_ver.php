@@ -28,7 +28,7 @@
     <input type="hidden" id="rqst_type_code" value="<?php echo $this->input->post('rqst_type_code'); ?>" />
 
 
-    <input type="hidden" class="form-control" name="t_customer_order_id" id="t_customer_order_id">
+    <input type="hidden" class="form-control" name="t_customer_order_id" id="t_customer_order_id"/>
 
     <input type="hidden" id="TEMP_ELEMENT_ID" value="<?php echo $this->input->post('ELEMENT_ID'); ?>" />
     <input type="hidden" id="TEMP_PROFILE_TYPE" value="<?php echo $this->input->post('PROFILE_TYPE'); ?>" />
@@ -251,9 +251,9 @@
 <?php $this->load->view('workflow/lov_submitter.php'); ?>
 
 <script type="text/javascript">
-    t_customer_order_id = "<?php echo $_POST['CURR_DOC_ID']; ?>";
+    var t_customer_order_id = "<?php echo $_POST['CURR_DOC_ID']; ?>";
 
-    //t_customer_order_id= 506636
+    //var t_customer_order_id= 506636;
     if(t_customer_order_id!=null || t_customer_order_id!=''){
         $.ajax({
             url: '<?php echo WS_JQGRID."transaksi_wf.t_executive_summary_report_ver_controller/read"; ?>',

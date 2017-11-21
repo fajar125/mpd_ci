@@ -28,7 +28,7 @@
     <input type="hidden" id="rqst_type_code" value="<?php echo $this->input->post('rqst_type_code'); ?>" />
 
 
-    <input type="hidden" class="form-control" name="t_customer_order_id" id="t_customer_order_id">
+    <input type="hidden" class="form-control" name="t_customer_order_id" id="t_customer_order_id"/>
 
     <input type="hidden" id="TEMP_ELEMENT_ID" value="<?php echo $this->input->post('ELEMENT_ID'); ?>" />
     <input type="hidden" id="TEMP_PROFILE_TYPE" value="<?php echo $this->input->post('PROFILE_TYPE'); ?>" />
@@ -95,48 +95,43 @@
     </div>
 </div>
 <div class="tab-content no-border">
-            <div class="row">
-                <div class="col-md-12">
-                    <button class="btn btn-danger" type="submit" id="btn-tambah" onclick="showLOVUpload()"><i class="fa fa-plus"></i> Tambah Data</button>
-                    <button class="btn btn-success" type="submit" id="btn-delete" onclick="deleteUpload()"><i class="fa fa-pencil"></i> Delete Data</button>
-                </div>
-            </div>
+    <div class="row">
+        <div class="col-md-12">
+            <button class="btn btn-danger" type="submit" id="btn-tambah" onclick="showLOVUpload()"><i class="fa fa-plus"></i> Tambah Data</button>
+            <button class="btn btn-success" type="submit" id="btn-delete" onclick="deleteUpload()"><i class="fa fa-pencil"></i> Delete Data</button>
+        </div>
+    </div>
 
-            <div class="space-2"></div>
-            <div class="row">
-                <div class="col-md-12">
-                    <table id="grid-table"></table>
-                    <div id="grid-pager"></div>
-                </div>
-            </div>
-            
-            <div class="space-2"></div>
-            <div class="row">
-                <div class="col-md-offset-5">
-                    <button class="btn btn-danger" type="submit" id="btn-cetak" onclick="cetak()"><i class="fa fa-print"></i>Cetak Tanda Terima</button>
-                </div>
-            </div>
+    <div class="space-2"></div>
+    <div class="row">
+        <div class="col-md-12">
+            <table id="grid-table"></table>
+            <div id="grid-pager"></div>
+        </div>
+    </div>
+    
+    <div class="space-2"></div>
+    <div class="row">
+        <div class="col-md-offset-5">
+            <button class="btn btn-danger" type="submit" id="btn-cetak" onclick="cetak()"><i class="fa fa-print"></i>Cetak Tanda Terima</button>
         </div>
     </div>
 </div>
+<?php 
+    $this->load->view('lov/lov_legaldoc.php'); 
+?>
 
 <script type="text/javascript">
     function cetak(){
+        var t_customer_order_id = "<?php echo $_POST['t_customer_order_id'];?>";        
 
-        var t_customer_order_id = <?php echo $_POST['t_customer_order_id'];?>;
-
-        var url = "<?php echo base_url(); ?>"+"cetak_formulir_tanda_terima_pdf/pageCetak?t_customer_order_id="+t_customer_order_id;
+        
+        var url = "<?php //echo base_url(); ?>"+"cetak_formulir_tanda_terima_pdf/pageCetak?t_customer_order_id="+t_customer_order_id;
 
         PopupCenter(url,"Kartu Tanda Terima",500,500);
     } 
 </script>
 
-
-
-
-<?php 
-    $this->load->view('lov/lov_legaldoc.php'); 
-?>
 <script>
     $(function($) {
         var grid_selector = "#grid-table";
@@ -145,7 +140,7 @@
         $("#grid-table").jqGrid({
             url: '<?php echo WS_JQGRID."transaksi.t_cust_order_legal_doc_controller/crud"; ?>',
             datatype: "json",
-            postData:{t_customer_order_id:<?php echo $this->input->post('t_customer_order_id'); ?>},
+            postData:{t_customer_order_id:'<?php echo $this->input->post('t_customer_order_id'); ?>'},
             mtype: "POST",
             colModel: [
                 {label: 'ID', name: 't_cust_order_legal_doc_id', key: true, width: 5, sorttype: 'number', hidden: true},

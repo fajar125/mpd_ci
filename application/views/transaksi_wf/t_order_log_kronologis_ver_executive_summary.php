@@ -124,7 +124,7 @@
         $("#grid-table").jqGrid({
             url: '<?php echo WS_JQGRID."transaksi.t_order_log_kronologis_controller/read"; ?>',
             datatype: "json",
-            postData:{t_customer_order_id:<?php echo $this->input->post('t_customer_order_id'); ?>},
+            postData:{t_customer_order_id:'<?php echo $this->input->post('t_customer_order_id'); ?>'},
             //postData:{t_customer_order_id:698431},
             mtype: "POST",
             colModel: [
