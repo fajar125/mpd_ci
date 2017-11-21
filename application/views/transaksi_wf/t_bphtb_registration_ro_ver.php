@@ -721,7 +721,7 @@
 
     function update(){
         var t_bphtb_registration_id     = $('#t_bphtb_registration_id').val();
-        var updated_by                  = $('#vericated_by').val();
+        //var updated_by                  = $('#vericated_by').val();
         var wp_p_region_id              = $('#wp_p_region_id').val();
         var wp_p_region_id_kel          = $('#wp_p_region_id_kel').val();
         var wp_name                     = $('#wp_name').val();
