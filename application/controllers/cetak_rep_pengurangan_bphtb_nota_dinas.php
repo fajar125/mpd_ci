@@ -30,7 +30,7 @@ class cetak_rep_pengurangan_bphtb_nota_dinas extends CI_Controller{
 
 	function pageCetak(){
 		$t_bphtb_registration_id = getVarClean('t_bphtb_registration_id','int',0);
-		$pejabat 				 = getVarClean('pejabar','int',0);
+		$pejabat 				 = getVarClean('pejabat','int',0);
 
 		$data = $this->getDataNotaDinas($t_bphtb_registration_id);
 
