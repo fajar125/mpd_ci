@@ -517,7 +517,7 @@
                                         <div class="space-2"></div>
                                         <div class="row">
                                             <div class="col-md-6 col-md-offset-5">
-                                                <button class="btn btn-success" type="submit" id="submit"onclick="">SUBMIT</button>
+                                                <button class="btn btn-success" type="submit" id="submit" onclick="submitform()">SUBMIT</button>
 
                                                 <button class="btn btn-success" style="display: none" type="submit" id="insert" onclick="">SIMPAN</button>
 
