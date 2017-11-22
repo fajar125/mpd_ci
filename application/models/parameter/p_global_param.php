@@ -17,7 +17,7 @@ class p_global_param extends Abstract_model {
                                 'value'      => array('nullable' => true, 'type' => 'str', 'unique' => false, 'display' => 'Nilai 1'),
                                 'type_1'    => array('nullable' => false, 'type' => 'str', 'unique' => false, 'display' => 'Type'),
                                 'is_range'    => array('nullable' => false, 'type' => 'str', 'unique' => false, 'display' => 'Range'),
-                                'value_2'      => array('nullable' => false, 'type' => 'str', 'unique' => false, 'display' => 'Nilai 2'),
+                                'value_2'      => array('nullable' => true, 'type' => 'str', 'unique' => false, 'display' => 'Nilai 2'),
                                 'description'     => array('nullable' => true, 'type' => 'str', 'unique' => false, 'display' => 'Keterangan'),
 
                                 'creation_date'  => array('nullable' => true, 'type' => 'date', 'unique' => false, 'display' => 'Created Date'),
