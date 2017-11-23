@@ -129,8 +129,7 @@ class p_app_menu extends Abstract_model {
 
         $html[] = '<li class="nav-item start active" data-source="dashboard">
                         <a href="javascript:;" class="nav-link nav-toggle">
-
-                            <span class="title">'.$app['code'].'</span>
+                            <span class="title red"><strong>'.$app['code'].'</strong></span>
                         </a>
                    </li>';
 
