@@ -351,44 +351,40 @@ $(function() {
 <script>
 function responsive_jqgrid(grid_selector) {
 
-        var parent_column = $(grid_selector).closest('[class*="col-"]');
-        $(grid_selector).jqGrid('setGridWidth', $(".form-body").width());
-        //$(pager_selector).jqGrid('setGridWidth', parent_column.width());
-
-    }
+    var parent_column = $(grid_selector).closest('[class*="col-"]');
+    $(grid_selector).jqGrid('setGridWidth', $(".form-body").width());
+    //$(pager_selector).jqGrid('setGridWidth', parent_column.width());
+}
 
 function showLOVCustAcc(id, code, name, id_vat, vat_code, id_dtl, vat_dtl) {
     modal_cust_account_show(id, code, name, id_vat, vat_code, id_dtl, vat_dtl);
 }
-function showLOVYearPeriod(id, code) {
 
+function showLOVYearPeriod(id, code) {
     modal_year_period_show(id, code);
 }
+
 function showLOVFinancePeriod(id, code, start_date,end_date) {
     if ($('#form_year_period_id').val()=='' || $('#form_year_period_id').val()==0 ) {
         swal('Informasi','Periode Tahun Harus Diisi','info');
         return false;
     } else {
         //swal('Informasi', $('#form_year_period_id').val(),'info');
-
         modal_finance_period_show(id, code, $('#form_year_period_id').val(), start_date,end_date);
     }
-
 }
+
 function showLOVVatType(id, code) {
     modal_lov_vat_show(id, code);
 }
+
 function showLOVTypeDtl(id, code) {
     if ($('#form_vat_type_id').val()=='' || $('#form_vat_type_id').val()==0 ) {
         swal('Informasi','Ayat Pajak Harus Diisi','info');
         return false;
     } else {
         //swal('Informasi', $('#form_year_period_id').val(),'info');
-
         modal_lov_vat_dtl_show(id, code,$('#form_vat_type_id').val());
     }
-
 }
-
-
 </script>
