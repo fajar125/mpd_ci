@@ -134,4 +134,24 @@ class Bphtb_registration extends CI_Controller
         
     }
 
+    function tahun_period_combo(){
+        try {
+            $sql = "SELECT * FROM p_year_period 
+                    order by year_code DESC";
+            $query = $this->db->query($sql);
+
+            $items = $query->result_array();
+            echo '<select id="year_code" name="year_code" class="FormElement form-control"> <option value="">--Pilih Tahun--</option>';
+            foreach($items  as $item ){
+                echo '<option value="'.$item['year_code'].'">'.$item['year_code'].'</option>';
+            }
+            echo '</select>';
+            exit;
+        } catch (Exception $e) {
+            echo $e->getMessage();
+            exit;
+        }
+        
+    }
+
 }
