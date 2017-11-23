@@ -106,6 +106,12 @@ class p_app_menu extends Abstract_model {
 
     function htmlp_app_menuideBar($p_application_id) {
 
+        $ci =& get_instance();
+        $ci->load->model('administration/p_application');
+        $p_application = $ci->p_application;
+
+        $app = $p_application->get($p_application_id);
+
         $root_id = 0;
         $html = array();
         $items = $this->menuItems($p_application_id);
@@ -123,8 +129,8 @@ class p_app_menu extends Abstract_model {
 
         $html[] = '<li class="nav-item start active" data-source="dashboard">
                         <a href="javascript:;" class="nav-link nav-toggle">
-                            <i class="icon-home"></i>
-                            <span class="title">Home</span>
+
+                            <span class="title">'.$app['code'].'</span>
                         </a>
                    </li>';
 
