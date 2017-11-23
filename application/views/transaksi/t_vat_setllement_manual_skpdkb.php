@@ -7,7 +7,7 @@
         <li>
             <span>PELAPORAN PAJAK MANUAL SKPDKB</span>
         </li>
-    </ul> 
+    </ul>
 </div>
 <div class="space-4"></div>
 <div class="row">
@@ -33,7 +33,7 @@
                     <label class="control-label col-md-3">Nama</label>
                     <div class="col-md-5">
                         <div class="input-group">
-                            <input type="text" class="form-control" name="company_brand" id="company_brand" readonly style="width: 410px">                 
+                            <input type="text" class="form-control" name="company_brand" id="company_brand" readonly style="width: 410px">
                         </div>
                     </div>
                 </div>
@@ -72,9 +72,9 @@
                     <label class="control-label col-md-3">Masa Pajak</label>
                     <div class="col-md-5">
                         <div class="input-group">
-                            <input type="text" class="form-control" id="valid_from">  
-                            <label class="control-label col-md-3">s/d</label>    
-                            <input type="text" class="form-control" id="valid_to">             
+                            <input type="text" class="form-control" id="valid_from">
+                            <label class="control-label col-md-3">s/d</label>
+                            <input type="text" class="form-control" id="valid_to">
                         </div>
                     </div>
                 </div>
@@ -128,7 +128,7 @@
                     <label class="control-label col-md-3">Jumlah Omset</label>
                     <div class="col-md-5">
                         <div class="input-group">
-                            <input type="number" class="form-control" name="total_trans_amount" id="total_trans_amount">                 
+                            <input type="number" class="form-control" name="total_trans_amount" id="total_trans_amount">
                         </div>
                     </div>
                 </div>
@@ -137,7 +137,7 @@
                     <label class="control-label col-md-3">Jumlah Kamar/Kursi Terjual</label>
                     <div class="col-md-5">
                         <div class="input-group">
-                            <input type="number" class="form-control" name="qty_room_sold" id="qty_room_sold">                 
+                            <input type="number" class="form-control" name="qty_room_sold" id="qty_room_sold">
                         </div>
                     </div>
                 </div>
@@ -147,21 +147,22 @@
                 </div>
             </div>
         </div>
-        
-        
+
+
     </div>
-    <?php $this->load->view('lov/lov_cust_account'); ?>
-    <?php $this->load->view('lov/lov_year_period'); ?>
-    <?php $this->load->view('lov/lov_finance_period'); ?>
-    <?php $this->load->view('lov/lov_vat_type'); ?>
-    <?php $this->load->view('lov/lov_vat_type_dtl'); ?>
-    <?php $this->load->view('lov/lov_ayat_class'); ?>
-    
+
 </div>
+
+<?php $this->load->view('lov/lov_cust_account'); ?>
+<?php $this->load->view('lov/lov_year_period'); ?>
+<?php $this->load->view('lov/lov_finance_period'); ?>
+<?php $this->load->view('lov/lov_vat_type'); ?>
+<?php $this->load->view('lov/lov_vat_type_dtl'); ?>
+<?php $this->load->view('lov/lov_ayat_class'); ?>
 
 
 <!-- <script type="text/javascript">
-    
+
     jQuery(function ($) {
         var grid_selector = "#grid-table-piutang";
         jQuery("#grid-table-piutang").jqGrid({
@@ -182,11 +183,11 @@
             multiboxonly: true,
             caption: "Informasi Pajak Belum Bayar"
         });
-        
-    });    
+
+    });
 </script> -->
 
-<script> 
+<script>
     $('#valid_from').datepicker({ // mengambil dari class datepicker
       autoclose: true,
       format : 'dd-mm-yyyy',
@@ -203,41 +204,41 @@
 
 <script type="text/javascript">
 
-    
+
 
     function save(){
 
         var cust_acc_id = $('#form_cust_account_id').val();
         var npwpd = $('#form_npwpd').val();
-        var nama = $('#company_brand').val();        
+        var nama = $('#company_brand').val();
         var year_period = $('#form_year_period_id').val();
         var finance_period = $('#form_finance_period_id').val();
         var ayat = $('#form_vat_id').val();
         var tipe_ayat = $('#form_vat_dtl_id').val();
-        var kelas = $('#form_class_id').val();    
+        var kelas = $('#form_class_id').val();
         var jml_omset = $('#total_trans_amount').val();
-        var jml_kamar = $('#qty_room_sold').val();    
+        var jml_kamar = $('#qty_room_sold').val();
         var start_period = $('#valid_from').val();
         var end_period = $('#valid_to').val();
         //alert(tipe_ayat);return;
         if (cust_acc_id == "" || cust_acc_id == 0 || cust_acc_id == false || cust_acc_id == undefined ||  cust_acc_id == null){
-            swal('Informasi',"NPWPD harus diisi",'info'); 
+            swal('Informasi',"NPWPD harus diisi",'info');
             return;
         }
         if (finance_period == "" || finance_period == 0 || finance_period == false || finance_period == undefined ||  finance_period == null){
-            swal('Informasi',"Periode Pelaporan Pajak harus diisi",'info'); 
+            swal('Informasi',"Periode Pelaporan Pajak harus diisi",'info');
             return;
         }
         if (tipe_ayat == "" || tipe_ayat == 0 || tipe_ayat == false || tipe_ayat == undefined ||  tipe_ayat == null){
-            swal('Informasi',"Tipe Ayat harus diisi",'info'); 
+            swal('Informasi',"Tipe Ayat harus diisi",'info');
             return;
         }
         if (jml_omset == "" || jml_omset == 0 || jml_omset == false || jml_omset == undefined ||  jml_omset == null){
-            swal('Informasi',"Jumlah Omset harus diisi",'info'); 
+            swal('Informasi',"Jumlah Omset harus diisi",'info');
             return;
         }
         if (jml_kamar == "" || jml_kamar == 0 || jml_kamar == false || jml_kamar == undefined ||  jml_kamar == null){
-            swal('Informasi',"Jumlah Kamar/Kursi Terjual harus diisi",'info'); 
+            swal('Informasi',"Jumlah Kamar/Kursi Terjual harus diisi",'info');
             return;
         }
 
@@ -256,25 +257,25 @@
         var_url += "&p_vat_type_dtl_cls_id=" + kelas;
 
         //window.location = var_url;
-        
+
         $.getJSON(var_url, function( items ) {
-                
-            //swal('Informasi',items.rows.o_mess,'info'); 
+
+            //swal('Informasi',items.rows.o_mess,'info');
             if(items.rows.o_cust_order_id == 0||items.rows.o_cust_order_id == "0" || items.rows.o_cust_order_id == ""){
-                swal('Informasi',items.rows.o_mess,'info');               
-                      
+                swal('Informasi',items.rows.o_mess,'info');
+
            }else{
-                swal('Informasi',items.rows.o_mess,'info'); 
+                swal('Informasi',items.rows.o_mess,'info');
                 url = '<?php echo base_url(); ?>'+'cetak_formulir_sptpd/pageCetak?t_cust_order_id='+items.rows.o_cust_order_id;
                 openInNewTab(url);
 
            }
 
-            
+
 
 
         })
-        
+
     }
 
 </script>
@@ -304,7 +305,7 @@ function showLOVFinancePeriod(id, code, start_date,end_date) {
 
         modal_finance_period_show(id, code, $('#form_year_period_id').val(), start_date,end_date);
     }
-    
+
 }
 function showLOVVatType(id, code) {
     modal_lov_vat_show(id, code);
@@ -318,7 +319,7 @@ function showLOVTypeDtl(id, code) {
 
         modal_lov_vat_dtl_show(id, code,$('#form_vat_type_id').val());
     }
-    
+
 }
 function showLOVClass(id, code, parent) {
     if ($('#form_vat_dtl_id').val()=='' || $('#form_vat_dtl_id').val()==0 ) {
@@ -330,7 +331,7 @@ function showLOVClass(id, code, parent) {
         modal_vat_type_dtl_cls_show(id, code,$('#form_vat_dtl_id').val());
     }
 }
-    
+
 function openInNewTab(url) {
     // window.open("../report/cetak_rep_lap_harian_bdhr.php?tgl_penerimaan='" + tgl_penerimaan + "'&kabid=T"+ "&kode_bank="+kode_bank, '_blank', 'location=yes,height=570,width=520,scrollbars=yes,status=yes');
   window.open(url, 'No Payment', 'left=0,top=0,width=500,height=500,toolbar=no,scrollbars=yes,resizable=yes');
