@@ -5,28 +5,33 @@
             <i class="fa fa-circle"></i>
         </li>
         <li>
-            <span>Cetak SKPD Duplikat</span>
+            <span>Migrasi Data Tuutap</span>
         </li>
     </ul>
 </div>
-<!-- end breadcrumb -->
 <div class="space-4"></div>
 <div class="row">
     <div class="col-md-12">
         <div class="portlet light bordered">
             <div class="portlet-title">
                 <div class="caption">                    
-                    <span class="caption-subject font-blue bold uppercase"> Cetak SKPD Duplikat
+                    <span class="caption-subject font-blue bold uppercase"> Migrasi Data Tuutap
                     </span>
                 </div>
             </div>
             <!-- CONTENT  value="2015-09-01" -->
             <div class="form-body">
-                <div class="row col-md-offset-3">                    
-                    <label class="control-label col-md-2">Nama WP/ NPWD / No Kohir :</label>
+                <div class="row col-md-offset-2">                    
+                    <label class="control-label col-md-1">NPWD :</label>
                     <div class="col-md-3">
                         <div class="input-group">
-                            <input type="text" class="form-control" name="s_keyword" id="s_keyword">                 
+                            <input type="text" class="form-control" name="npwd" id="npwd">                 
+                        </div>
+                    </div>
+                    <label class="control-label col-md-1">Tahun :</label>
+                    <div class="col-md-2">
+                        <div class="input-group">
+                            <input type="text" class="form-control" name="tahun" id="tahun">                 
                         </div>
                     </div>
                     <button class="btn btn-primary" type="button" onclick="toTampil()">Cari</button>
@@ -47,38 +52,47 @@
 </div>
 
 <script type="text/javascript">
-    var s_keyword = $('#s_keyword').val();
-    $('#table').css('display', 'none');
+    var npwd 	= $('#npwd').val();
+    var tahun   = $('#tahun').val();
+
     jQuery(function($) {
         var grid_selector = "#grid-table";
         var pager_selector = "#grid-pager";
 
         jQuery("#grid-table").jqGrid({
-            url: '<?php echo WS_JQGRID."transaksi.t_vat_setllement_cetak_skpd_controller/read"; ?>',
+            url: '<?php echo WS_JQGRID."transaksi.t_restore_tuutap_controller/read"; ?>',
             //postData: { s_keyword :s_keyword },
             datatype: "json",
             mtype: "POST",
             colModel: [
+            	{label: 'NPWPD',name: 'npwpd_gab',width: 250, align: "left"},
+                {label: 'Nama',name: 'judul_gab',width: 150, align: "left"},
+                {label: 'Tahun',name: 'periode_gab',width: 250, align: "left"},
+                {label: 'Bulan',width: 180, align: "left",
+                	formatter:function(cellvalue, options, rowObject) {
 
-                {label: 'Nama WP',name: 'wp_name',width: 250, align: "left"},
-                {label: 'NPWPD',name: 'npwd',width: 250, align: "left"},
-                {label: 'Periode',name: 'finance_period_code',width: 180, align: "left"},
-                {label: 'Jenis Ketetapan',name: 'sett_code',width: 150, align: "left"},
-                {label: 'Total Transaksi',name: 'total_trans_amount',width: 150, summaryTpl:"{0}",summaryType:"sum", formatter:'integer', formatoptions: {prefix:"", thousandsSeparator:',', defaultValue:'0'},align: "right"},
-                {label: 'Total Pajak',name: 'total_vat_amount',width: 150, summaryTpl:"{0}",summaryType:"sum", formatter:'integer', formatoptions: {prefix:"", thousandsSeparator:',', defaultValue:'0'},align: "right"},
-                {label: 'Denda',name: 'total_penalty_amount',width: 100, summaryTpl:"{0}",summaryType:"sum", formatter:'integer', formatoptions: {prefix:"", thousandsSeparator:',', defaultValue:'0'},align: "right"},
+                        var bulan_text 	= rowObject['bulan_text'];
+                        var thn_bln 	= rowObject['thn_bln'];
+                        
+                        return '<div>'+bulan_text+' ('+thn_bln+')</div>';
+
+                    }
+            	},
+                {label: 'Tanggal Penetapan',name: 'tanggal_tap',width: 250, align: "left"},
+                {label: 'Jumlah',name: 'jumlah_gab',width: 150, summaryTpl:"{0}",summaryType:"sum", formatter:'integer', formatoptions: {prefix:"", thousandsSeparator:',', defaultValue:'0'},align: "right"},
                 {label: 'No Kohir',name: 'no_kohir',width: 100, align: "right"},
                 {name: 'Cetak SKPD',width: 200, align: "center",
                     formatter:function(cellvalue, options, rowObject) {
 
-                        var t_vat_setllement_id = rowObject['t_vat_setllement_id'];
+                        var npwpd_gab 	= rowObject['npwpd_gab'];
+                        var periode_gab = rowObject['periode_gab'];
+                        var thn_bln 	= rowObject['thn_bln'];
+                        var no_kohir 	= rowObject['no_kohir'];
                         
-                        return '<button class="btn btn-xs btn-danger" type="button" onclick="showCetak('+t_vat_setllement_id+')">Cetak</button>';
+                        return '<button class="btn btn-xs btn-primary" type="button" onclick="doMigration(\''+npwpd_gab+'\',\''+periode_gab+'\',\''+thn_bln+'\',\''+no_kohir+'\')">Migrasikan Data</button>';
 
                     }
                 }               
-
-               
             ],
             height: '100%',
             autowidth: true,
@@ -104,7 +118,7 @@
             },
             
             
-            caption: "DAFTAR SKPD (Pelaporan Pajak)"
+            caption: "DAFTAR TUUTAP"
 
         });
 
@@ -250,10 +264,11 @@
 
 <script type="text/javascript">
     function toTampil(){
-        var s_keyword = $('#s_keyword').val();
+        var npwd  = $('#npwd').val();
+        var tahun = $('#tahun').val();
         
-        if(s_keyword == ''){
-            swal ( "Oopss" ,  "Kolom Pencarian Harus Diisi!" ,  "error" );
+        if(npwd == ''){
+            swal ( "Oopss" ,  "Kolom NPWPD Harus Diisi!" ,  "error" );
             return;
         }else{
             $('#table').css('display', '');
@@ -261,27 +276,75 @@
                 var grid_selector = "#grid-table";
 
                 jQuery("#grid-table").jqGrid('setGridParam',{
-                    url: '<?php echo WS_JQGRID."transaksi.t_vat_setllement_cetak_skpd_controller/read"; ?>',
-                    postData: {s_keyword:s_keyword}
+                    url: '<?php echo WS_JQGRID."transaksi.t_restore_tuutap_controller/read"; ?>',
+                    postData: {npwd:npwd, tahun:tahun}
                 });
-                $("#grid-table").jqGrid("setCaption", "DAFTAR SKPD (Pelaporan Pajak)");
+                $("#grid-table").jqGrid("setCaption", "DAFTAR TUUTAP");
                 $("#grid-table").trigger("reloadGrid");
             });
         } 
-    }    
-</script>
+    } 
 
-<script type="text/javascript">
-    function showCetak(t_vat_setllement_id){
-        var url = "<?php echo base_url(); ?>"+"cetak_formulir_skpd/pageCetak?";
-        url += "t_vat_setllement_id=" + t_vat_setllement_id;
+    function doMigration(npwpd_gab,periode_gab,thn_bln,no_kohir){
+    	var npwd     = $('#npwd').val();        
+        var tahun    = $('#tahun').val();
 
-        openInNewTab(url);
-        
-    }
+        //alert(npwpd_gab+","+periode_gab+","+thn_bln+","+no_kohir);return;
 
-    function openInNewTab(url) {       
-      window.open(url, '_blank', 'location=yes,height=570,width=820,scrollbars=yes,status=yes');
+    	swal({
+           title: 'Apakah anda yakin untuk migrasikan data yang dipilih?',
+              type: 'info',
+              html: true,
+              text: 'Anda Tidak Akan Bisa Mengembalikan Aksi Ini!',
+             showCancelButton: true,
+          confirmButtonColor: "#DD6B55",
+          confirmButtonText: "Ya",
+          cancelButtonText: "Tidak",
+          confirmButtonClass: 'btn btn-success',
+          cancelButtonClass: 'btn btn-danger'
+        },
+        function(){
+            $.ajax({
+                    url: '<?php echo WS_JQGRID."transaksi.t_restore_tuutap_controller/doMigration"; ?>',
+                    type: "POST",
+                    data: {npwpd_gab: npwpd_gab, periode_gab:periode_gab, thn_bln:thn_bln, no_kohir:no_kohir},
+                    success: function (data) {
+                        if(data.result == 1){
+                            //alert('anggi//');return;
 
-    }
+                            //swal('BPHTB telah diverifikasi dengan nomor : '+data.result);
+                            swal({
+                              position: 'center',
+                              type: 'success',
+                              title: 'Migrasi Data Berhasil',
+                              showConfirmButton: false,
+                              timer: 800
+                            });
+
+                            $('#table').css('display', '');
+                            jQuery(function($) {
+                                var grid_selector = "#grid-table";
+
+                                jQuery("#grid-table").jqGrid('setGridParam',{
+                                    url: '<?php echo WS_JQGRID."transaksi.t_restore_tuutap_controller/read"; ?>',
+                                    postData: {npwd:npwd,
+                                                tahun:tahun}
+                                });
+                                $("#grid-table").jqGrid("setCaption", "DAFTAR TUUTAP");
+                                $("#grid-table").trigger("reloadGrid");
+                            });
+
+                            
+                        }else{
+                            swal({title: "Error!", text: 'Maaf, Gagal Migrasikan Data.', html: true, type: "error"});
+                        }
+                        // console.log(dt.product_name);
+                    },
+                    error: function (xhr, status, error) {
+                        swal({title: "Error!", text: xhr.responseText, html: true, type: "error"});
+                    }
+                });
+           
+        });
+    }   
 </script>

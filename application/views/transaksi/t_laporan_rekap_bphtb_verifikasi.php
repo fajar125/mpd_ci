@@ -221,7 +221,7 @@
                               type: 'success',
                               title: 'BPHTB telah diverifikasi dengan nomor : '+data.result,
                               showConfirmButton: false,
-                              timer: 500
+                              timer: 800
                             });
 
                             $('#table').css('display', '');
