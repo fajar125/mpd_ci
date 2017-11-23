@@ -29,6 +29,8 @@ class T_rep_lap_bpps_terakhir_bayar_controller {
 
             $count = count($result);
 
+            //print_r($count); exit();
+
             if ($count > 0) $total_pages = ceil($count / $limit);
             else $total_pages = 1;
 

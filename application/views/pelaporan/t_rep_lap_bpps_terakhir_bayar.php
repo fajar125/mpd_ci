@@ -60,8 +60,7 @@
 
 <script type="text/javascript">
     $('#gview_grid-table-history').hide();
-    function showData(){
-        $('#gview_grid-table-history').show();
+    
         jQuery(function ($) {
             var grid_selector = "#grid-table-history";
             jQuery("#grid-table-history").jqGrid({
@@ -89,7 +88,6 @@
                 altRows: true,
                 shrinkToFit: false,
                 multiboxonly: true,
-                footerrow: true,
                 caption: "LAPORAN TERAKHIR BAYAR PER JENIS PAJAK"
 
             });
@@ -220,6 +218,23 @@
                 }
             );  
 
+        });
+
+    function showData(){
+        $('#gview_grid-table-history').show();
+
+        jQuery(function($) {
+        var grid_selector = "#grid-table-history";
+        //var pager_selector = "#grid-pager-bpps2";
+
+            jQuery("#grid-table-history").jqGrid('setGridParam',{
+                url: '<?php echo WS_JQGRID . "pelaporan.t_rep_lap_bpps_terakhir_bayar_controller/readData"; ?>',
+                postData: {
+                            p_vat_type_id : $('#form_vat_type_id').val()
+                        }
+
+            });
+            $("#grid-table-history").trigger("reloadGrid");
         });
 
     }
