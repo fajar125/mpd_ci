@@ -5,7 +5,7 @@
             <i class="fa fa-circle"></i>
         </li>
         <li>
-            <span>Cetak SKPD Duplikat</span>
+            <span>Cetak SKPDKB Tambahan Duplikat</span>
         </li>
     </ul>
 </div>
@@ -16,7 +16,7 @@
         <div class="portlet light bordered">
             <div class="portlet-title">
                 <div class="caption">                    
-                    <span class="caption-subject font-blue bold uppercase"> Cetak SKPD Duplikat
+                    <span class="caption-subject font-blue bold uppercase"> Cetak SKPDKB Tambahan Duplikat
                     </span>
                 </div>
             </div>
@@ -36,6 +36,7 @@
     </div>
 </div>
 <div class="space-4"></div>  
+
 <div class="tab-content no-border" id="table">
     <div class="row">
         <div class="col-xs-12">
@@ -50,7 +51,6 @@
 </div>
 <div class="space-4"></div>  
 
-
 <script type="text/javascript">
     var s_keyword = $('#s_keyword').val();
     $('#table').css('display', 'none');
@@ -59,26 +59,26 @@
         var pager_selector = "#grid-pager";
 
         jQuery("#grid-table").jqGrid({
-            url: '<?php echo WS_JQGRID."transaksi.t_vat_setllement_cetak_skpd_controller/read"; ?>',
+            url: '<?php echo WS_JQGRID."transaksi.t_vat_setllement_cetak_skpd_tambahan_controller/read"; ?>',
             //postData: { s_keyword :s_keyword },
             datatype: "json",
             mtype: "POST",
             colModel: [
 
-                {label: 'Nama WP',name: 'wp_name',width: 250, align: "left"},
-                {label: 'NPWPD',name: 'npwd',width: 250, align: "left"},
-                {label: 'Periode',name: 'finance_period_code',width: 180, align: "left"},
+                {label: 'Nama WP',name: 'wp_name',width: 220, align: "left"},
+                {label: 'NPWPD',name: 'npwd',width: 130, align: "left"},
+                {label: 'Periode',name: 'finance_period_code',width: 120, align: "left"},
                 {label: 'Jenis Ketetapan',name: 'sett_code',width: 150, align: "left"},
-                {label: 'Total Transaksi',name: 'total_trans_amount',width: 150, summaryTpl:"{0}",summaryType:"sum", formatter:'integer', formatoptions: {prefix:"", thousandsSeparator:',', defaultValue:'0'},align: "right"},
-                {label: 'Total Pajak',name: 'total_vat_amount',width: 150, summaryTpl:"{0}",summaryType:"sum", formatter:'integer', formatoptions: {prefix:"", thousandsSeparator:',', defaultValue:'0'},align: "right"},
-                {label: 'Denda',name: 'total_penalty_amount',width: 100, summaryTpl:"{0}",summaryType:"sum", formatter:'integer', formatoptions: {prefix:"", thousandsSeparator:',', defaultValue:'0'},align: "right"},
-                {label: 'No Kohir',name: 'no_kohir',width: 100, align: "right"},
-                {name: 'Cetak SKPD',width: 200, align: "center",
+                {label: 'Total Transaksi',name: 'total_trans_amount',width: 130, summaryTpl:"{0}",summaryType:"sum", formatter:'integer', formatoptions: {prefix:"", thousandsSeparator:',', defaultValue:'0'},align: "right"},
+                {label: 'Total Pajak',name: 'total_vat_amount',width: 120, summaryTpl:"{0}",summaryType:"sum", formatter:'integer', formatoptions: {prefix:"", thousandsSeparator:',', defaultValue:'0'},align: "right"},
+                {label: 'Denda',name: 'total_penalty_amount',width: 80, summaryTpl:"{0}",summaryType:"sum", formatter:'integer', formatoptions: {prefix:"", thousandsSeparator:',', defaultValue:'0'},align: "right"},
+                {label: 'No Kohir',name: 'no_kohir',width: 80, align: "right"},
+                {name: 'Cetak SKPD Penelitian',width: 170, align: "center",
                     formatter:function(cellvalue, options, rowObject) {
 
                         var t_vat_setllement_id = rowObject['t_vat_setllement_id'];
                         
-                        return '<button class="btn btn-xs btn-danger" type="button" onclick="showCetak('+t_vat_setllement_id+')">Cetak</button>';
+                        return '<button class="btn btn-xs btn-danger" type="button" onclick="showCetak('+t_vat_setllement_id+')">Cetak SKPD Penelitian</button>';
 
                     }
                 }               
@@ -109,7 +109,7 @@
             },
             
             
-            caption: "DAFTAR SKPD (Pelaporan Pajak)"
+            caption: "DAFTAR SKPDKB (Pelaporan Pajak)"
 
         });
 
@@ -246,14 +246,8 @@
 
     });
 
-    function responsive_jqgrid(grid_selector, pager_selector) {
-        var parent_column = $(grid_selector).closest('[class*="col-"]');
-        $(grid_selector).jqGrid( 'setGridWidth', $(".page-content").width() );
-        $(pager_selector).jqGrid( 'setGridWidth', parent_column.width() );
-    }
-</script>
+    
 
-<script type="text/javascript">
     function toTampil(){
         var s_keyword = $('#s_keyword').val();
         
@@ -266,22 +260,32 @@
                 var grid_selector = "#grid-table";
 
                 jQuery("#grid-table").jqGrid('setGridParam',{
-                    url: '<?php echo WS_JQGRID."transaksi.t_vat_setllement_cetak_skpd_controller/read"; ?>',
+                    url: '<?php echo WS_JQGRID."transaksi.t_vat_setllement_cetak_skpd_tambahan_controller/read"; ?>',
                     postData: {s_keyword:s_keyword}
                 });
-                $("#grid-table").jqGrid("setCaption", "DAFTAR SKPD (Pelaporan Pajak)");
+                $("#grid-table").jqGrid("setCaption", "DAFTAR SKPDKB Tambahan (Pelaporan Pajak)");
                 $("#grid-table").trigger("reloadGrid");
             });
         } 
-    }    
+    }
+
+    function responsive_jqgrid(grid_selector, pager_selector) {
+        var parent_column = $(grid_selector).closest('[class*="col-"]');
+        $(grid_selector).jqGrid( 'setGridWidth', $(".page-content").width() );
+        $(pager_selector).jqGrid( 'setGridWidth', parent_column.width() );
+    }  
 </script>
 
 <script type="text/javascript">
     function showCetak(t_vat_setllement_id){
-        var url = "<?php echo base_url(); ?>"+"cetak_formulir_skpd/pageCetak?";
+
+        //alert(t_vat_setllement_id);return;
+        var url = "<?php echo base_url(); ?>"+"cetak_formulir_skpdkb_tambahan2/pageCetak?";
         url += "t_vat_setllement_id=" + t_vat_setllement_id;
 
-        openInNewTab(url);
+        alert(url);
+
+        //openInNewTab(url);
         
     }
 
