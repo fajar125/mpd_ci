@@ -365,7 +365,7 @@ class cetak_formulir_skpdkb_pdf extends CI_Controller{
       $pdf->Cell($lbody3, $this->height, ": ".$data["wp_address_name"], "R", 0, 'L');
       $pdf->Ln();
       $pdf->Cell($lbody3 - 10, $this->height, "", "L", 0, 'L');
-      $pdf->Cell($lbody1 + 10, $this->height, "Bandung, " . date("d F Y"), "R", 0, 'C');
+      $pdf->Cell($lbody1 + 10, $this->height, getValByCode('ALAMAT_3').", " . date("d F Y"), "R", 0, 'C');
       $pdf->Ln();
       $pdf->Cell($lbody3 - 10, $this->height, "", "L", 0, 'L');
       $pdf->Cell($lbody1 + 10, $this->height, "Yang menerima, ", "R", 0, 'C');

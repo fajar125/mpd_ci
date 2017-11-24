@@ -440,8 +440,6 @@ class pdf_lap_harian_penerimaan_detail extends CI_Controller{
         
         
         $pdf->Ln();
-        $this->newLine();
-        $this->newLine();
         
         $lbody = $this->lengthCell / 4;
         $lbody1 = $lbody * 1;
@@ -452,16 +450,13 @@ class pdf_lap_harian_penerimaan_detail extends CI_Controller{
         $pdf->Cell($this->lengthCell, $this->height, "", "", 0, 'L');
         $pdf->Ln();
         $pdf->Cell($lbody3 - 10, $this->height, "", "", 0, 'L');
-        $pdf->Cell($lbody1 + 10, $this->height, "Lombok, " . date("d F Y") /*. $data["tanggal"]*/, "", 0, 'C');
+        $pdf->Cell($lbody1 + 10, $this->height, getValByCode('ALAMAT_3').", " . date("d F Y") /*. $data["tanggal"]*/, "", 0, 'C');
         $pdf->Ln();
-        //$this->Cell($lbody3 - 10, $this->height, "", "", 0, 'L');
-        //$this->Cell($lbody1 + 10, $this->height, "BENDAHARA PENERIMAAN, ", "", 0, 'C');
         $pdf->SetWidtHs(array($lbody3 - 10,$lbody1 + 10));
         $pdf->SetAligns(array("C", "C","C","C","C"));
         $pdf->RowMultiBorderWithHeight(array("","KEPALA SEKSI VERIFIKASI OTORISASI DAN PEMBUKUAN"),array("",""),$this->height);
         $pdf->Ln();
         $pdf->Cell($lbody3 - 10, $this->height, "", "", 0, 'L');
-        //$this->Cell($lbody1 + 10, $this->height, "KOTA BANDUNG", "", 0, 'C');
         $pdf->Ln();
         $pdf->Ln();
         $pdf->Ln();

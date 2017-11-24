@@ -216,9 +216,7 @@
     function toTampil(){
     	var nop 	= $('#nop_search').val();
     	var tahun   = $('#year_code').val();
-
-    	//alert(nop+" - "+tahun);return;
-
+        
     	if (nop !='' && tahun !=''){
     		$.ajax({
 	            url: '<?php echo WS_JQGRID."transaksi.inquery_bphtb_ws_controller/read"; ?>',

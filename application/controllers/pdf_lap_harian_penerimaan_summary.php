@@ -33,7 +33,7 @@ class pdf_lap_harian_penerimaan_summary extends CI_Controller{
 
 
     function save_pdf_t_rep_harian_penerimaan_summary($start_date, $end_date) {
-        //echo $start_date." ".$end_date;exit();
+        
         $data = array();
         $sql = "select * from f_rep_harian_murni(?, ?) order by nomor_ayat";  
 
@@ -41,21 +41,9 @@ class pdf_lap_harian_penerimaan_summary extends CI_Controller{
         $items = $output->result_array();
 
         if($items == '' || $items == null)
-            $items = 'no result';
-
-        //print_r($items);exit();
-        
-
-        /*print_r($tgl_penerimaan); 
-        print_r($kode_bank);*/
-        //print_r($flag_bdhr);       exit;
-
-        //print_r($items); exit;
+            $items = 'no result';       
 
         $pdf = new FPDF();
-        //$pdf->AddPage();
-        //$pdf->SetFont('Arial','B',16);
-        //$pdf->Cell(40,10,'Hello World! '.$angka1.' -> '.$angka2);
         $pdf->AliasNbPages();
         $pdf->AddPage("L");
         $pdf->SetFont('Arial', '', 10);
@@ -411,7 +399,7 @@ class pdf_lap_harian_penerimaan_summary extends CI_Controller{
         $pdf->Cell($this->lengthCell, $this->height, "", "", 0, 'L');
         $pdf->Ln();
         $pdf->Cell($lbody3 - 10, $this->height, "", "", 0, 'L');
-        $pdf->Cell($lbody1 + 10, $this->height, "Lombok, " . date("d F Y") /*. $data["tanggal"]*/, "", 0, 'C');
+        $pdf->Cell($lbody1 + 10, $this->height, getValByCode('ALAMAT_3').", " . date("d F Y") /*. $data["tanggal"]*/, "", 0, 'C');
         $pdf->Ln();
         //$this->Cell($lbody3 - 10, $this->height, "", "", 0, 'L');
         //$this->Cell($lbody1 + 10, $this->height, "BENDAHARA PENERIMAAN, ", "", 0, 'C');

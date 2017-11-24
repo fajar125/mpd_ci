@@ -40,18 +40,10 @@ class pdf_lap_bdhr extends CI_Controller{
 
         if($items == null || $items == '')
             $items = 'no result';
-        
-
-        /*print_r($tgl_penerimaan); 
-        print_r($kode_bank);*/
-        //print_r($flag_bdhr);       exit;
-
-        //print_r($items); exit;
+      
 
         $pdf = new FPDF();
-        //$pdf->AddPage();
-        //$pdf->SetFont('Arial','B',16);
-        //$pdf->Cell(40,10,'Hello World! '.$angka1.' -> '.$angka2);
+        
         $pdf->AliasNbPages();
         $pdf->AddPage("L");
         $pdf->SetFont('Arial', '', 10);
@@ -295,17 +287,13 @@ class pdf_lap_bdhr extends CI_Controller{
         $pdf->Ln();
         
         $pdf->Cell($lbody3 - 10, $this->height, "", "", 0, 'L');
-        $pdf->Cell($lbody1 + 10, $this->height, "Lombok, " . date("d F Y") /*. $data["tanggal"]*/, "", 0, 'C');
+        $pdf->Cell($lbody1 + 10, $this->height, getValByCode('ALAMAT_3').", " . date("d F Y") /*. $data["tanggal"]*/, "", 0, 'C');
         $pdf->Ln();
         $pdf->Cell($lbody3 - 10, $this->height, "", "", 0, 'L');
         $pdf->Cell($lbody1 + 10, $this->height, "BENDAHARA PENERIMAAN, ", "", 0, 'C');
         $pdf->Ln();
         $pdf->Cell($lbody3 - 10, $this->height, "", "", 0, 'L');
-        //$this->Cell($lbody1 + 10, $this->height, "KOTA BANDUNG", "", 0, 'C');
         $pdf->Ln();
-        $this->newLine();
-        $this->newLine();
-        $this->newLine();
         $pdf->Ln();
         $pdf->Ln();
         $pdf->Ln();
