@@ -50,7 +50,7 @@ class cetak_formulir_skpdkb_tambahan extends CI_Controller{
 		$query = $this->db->query($sql);
 		$item = $query->row_array();
 
-		$t_vat_setllement_id = $item['t_vat_setllement_id']; 
+		$t_vat_setllement_id = getVarClean('t_vat_setllement_id','int',0);
 
 		if($t_vat_setllement_id > 0){
 			$sql="SELECT *, to_char(settlement_date,'DD Month YYYY') AS tgl_setllement,
