@@ -34,26 +34,12 @@ class cetak_formulir_sptpd extends CI_Controller{
 	
 	function pageCetak() {
 		
-		$t_customer_order_id = getVarClean('t_cust_order_id','int',0);
-		$mode = getVarClean('mode','int',0);
-		$p_finance_period_id = getVarClean('p_finance_period_id','int',0);
-		$p_finance_period_id1 = getVarClean('p_finance_period_id1','int',0);
-		$p_vat_type_id = getVarClean('p_vat_type_id','int',0);
-		//$status_bayar = getVarClean('ListBox1');
-		$npwpd = getVarClean('npwpd','int',0);
+		$t_vat_setllement_id = getVarClean('t_vat_setllement_id','int',0);
 
 		$sql = "";
-		if ($t_customer_order_id != 0) {
-			$sql = "select t_vat_setllement_id from t_vat_setllement where t_customer_order_id = ".$t_customer_order_id;
-			
-		}
-		$query = $this->db->query($sql);
-		$item = $query->row_array();
-
-		$t_vat_setllement_id = $item['t_vat_setllement_id']; 
 
 		if($t_vat_setllement_id > 0){
-			$sql="SELECT *, to_char(settlement_date,'DD Month YYYY') AS tgl_setllement,
+			$sql = "SELECT *, to_char(settlement_date,'DD Month YYYY') AS tgl_setllement,
 				to_char(settlement_date+15,'DD Month YYYY') AS tgl_jatuh_tempo 
 				FROM v_vat_setllement WHERE t_vat_setllement_id = " . $t_vat_setllement_id;
 		}
@@ -119,7 +105,7 @@ class cetak_formulir_sptpd extends CI_Controller{
 		
 		
 		$pdf->Cell($lheader1, $this->height + 1, "", "L", 0, 'C');	
-		$pdf->Cell($lheader2, $this->height + 1, "DINAS PELAYANAN PAJAK", "R", 0, 'C');
+		$pdf->Cell($lheader2, $this->height + 1, getValByCode('INSTANSI_2'), "R", 0, 'C');
 		$pdf->Cell($lheader3, $this->height + 1, "     Masa Pajak    : ".$data["finance_period_code"], "R", 0, 'L');
 		$pdf->Cell($lheader2, $this->height + 1, "", "R", 0, 'C');
 		$pdf->Ln($this->height - 4);
@@ -146,7 +132,7 @@ class cetak_formulir_sptpd extends CI_Controller{
 		*/
 		$pdf->Cell($lheader1, $this->height-1, "", "L", 0, 'C');	
 		$pdf->SetFont('Arial', '', 8);
-		$pdf->Cell($lheader2, $this->height-1, "Jalan Wastukancana No.2", "R", 0, 'C');
+		$pdf->Cell($lheader2, $this->height-1, getValByCode('ALAMAT_1'), "R", 0, 'C');
 		$pdf->SetFont('Arial', '', 10);
 		$pdf->Cell($lheader3, $this->height-1, "     Tahun Pajak   : ".$data["tahun"], "R", 0, 'L');
 		$pdf->Cell($lheader2, $this->height-1, "No.Bayar", "R", 0, 'C');
@@ -215,9 +201,9 @@ class cetak_formulir_sptpd extends CI_Controller{
 		$pdf->Cell($lbody3, $this->height, ": ".$data["tgl_jatuh_tempo"], "BR", 0, 'L');
 		
 		$pdf->Ln();
-		//$this->tulis("I. Berdasarkan Pasal 65 ayat (2) dan (3) Peraturan Daerah Kota LOMBOK UTARA Nomor 20 Tahun 2011 tentang Pajak Daerah, telah dilakukan", "L");
+		//$this->tulis("I. Berdasarkan Pasal 65 ayat (2) dan (3) Peraturan Daerah Kabupaten Lombok Utara Nomor 20 Tahun 2011 tentang Pajak Daerah, telah dilakukan", "L");
 		$pdf->Cell(5, $this->height+2, "", "L", 0, 'C');
-		$pdf->Cell($this->lengthCell - 10, $this->height+2, "I. Berdasarkan Pasal 65 ayat (2) dan (3) Peraturan Daerah Kota LOMBOK UTARA Nomor 20 Tahun 2011 tentang Pajak Daerah, telah dilakukan", "", 0, "L");
+		$pdf->Cell($this->lengthCell - 10, $this->height+2, "I. Berdasarkan Pasal 65 ayat (2) dan (3) Peraturan Daerah Kabupaten Lombok Utara Nomor 20 Tahun 2011 tentang Pajak Daerah, telah dilakukan", "", 0, "L");
 		$pdf->Cell(5, $this->height+2, "", "R", 0, 'C');
 		$pdf->Ln();
 		
@@ -391,7 +377,7 @@ class cetak_formulir_sptpd extends CI_Controller{
 		$pdf->Ln();
 		
 		$pdf->Cell($lbody3 - 10, $this->height, "", "L", 0, 'L');
-		$pdf->Cell($lbody1 + 10, $this->height, "a.n KEPALA DINAS PELAYANAN PAJAK", "R", 0, 'C');
+		$pdf->Cell($lbody1 + 10, $this->height, "a.n KEPALA BADAN PENDAPATAN DAERAH", "R", 0, 'C');
 		$pdf->Ln();
 
 		$pdf->Cell($lbody3 - 10, $this->height, "", "L", 0, 'L');
@@ -399,7 +385,7 @@ class cetak_formulir_sptpd extends CI_Controller{
 		$pdf->Ln();
 		
 		$pdf->Cell($lbody3 - 10, $this->height, "", "L", 0, 'L');
-		$pdf->Cell($lbody1 + 10, $this->height, "KOTA LOMBOK UTARA", "R", 0, 'C');
+		$pdf->Cell($lbody1 + 10, $this->height, "Kabupaten Lombok Utara", "R", 0, 'C');
 		$this->newLine();
 		$pdf->Cell($this->lengthCell, $this->height, "", "LR", 0, 'L');
 		$pdf->Ln();

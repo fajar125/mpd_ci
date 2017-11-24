@@ -41,8 +41,8 @@
                 {label: 'Total Pajak',name:'total_vat_amount',width: 200, align: "right",formatter:'currency', formatoptions: {prefix:"", thousandsSeparator:'.'}},
                 {name: 'Options',width: 200, align: "center",
                     formatter:function(cellvalue, options, rowObject) {
-                        var val = rowObject['t_customer_order_id'];
-                        var url = '<?php echo base_url(); ?>'+'cetak_formulir_sptpd/pageCetak?t_cust_order_id='+val;
+                        var val = rowObject['t_vat_setllement_id'];
+                        var url = '<?php echo base_url(); ?>'+'cetak_formulir_sptpd/pageCetak?t_vat_setllement_id='+val;
                         return '<a class="btn btn-danger btn-xs" href="#" onclick="PopupCenter(\''+url+'\',\'SKPDKB Jabatan\',500,500);"><i class="fa fa-print"></i>Print</a>';
 
                     }

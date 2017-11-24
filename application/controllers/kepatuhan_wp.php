@@ -159,7 +159,7 @@ class kepatuhan_wp extends CI_Controller
             }
             $s_result .= '],';
         }
-        $s_result = substr($s_result, 0, -1)  ;      
+        $s_result = substr($s_result, 0, -1)  ;     
         $s_result = str_replace(',]', ']', $s_result)  ;  
 
         $s_result = $s_result . "]";

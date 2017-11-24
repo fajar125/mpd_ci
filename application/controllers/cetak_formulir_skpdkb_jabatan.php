@@ -33,94 +33,16 @@ class cetak_formulir_skpdkb_jabatan extends CI_Controller{
 	
 	
 	function pageCetak() {
-		
-		$t_customer_order_id = getVarClean('t_cust_order_id','int',0);
-		$mode = getVarClean('mode','int',0);
-		$p_finance_period_id = getVarClean('p_finance_period_id','int',0);
-		$p_finance_period_id1 = getVarClean('p_finance_period_id1','int',0);
-		$p_vat_type_id = getVarClean('p_vat_type_id','int',0);
-		//$status_bayar = getVarClean('ListBox1');
-		$npwpd = getVarClean('npwpd','int',0);
 
 		$sql = "";
-		if ($t_customer_order_id != 0) {
-			$sql = "select t_vat_setllement_id from t_vat_setllement where t_customer_order_id = ".$t_customer_order_id;
-			
-		}
-		$query = $this->db->query($sql);
-		$item = $query->row_array();
 
-		$t_vat_setllement_id = $item['t_vat_setllement_id']; 
+		$t_vat_setllement_id = getVarClean('t_vat_setllement_id','int',0); 
 
 		if($t_vat_setllement_id > 0){
-			$sql="select t.vat_code as jenis_pajak, t.code as vat_code1,
-				nvl(u.vat_code,t.code) as vat_codes,a.payment_key as no_bayar,
-				upper(to_char(A.due_date,'dd-mon-yyyy')) as due_date_2,
-				a.npwd as npwd_2, z.code as fin_code,w.year_code as tahun, 
-				to_char(a.settlement_date,'DD-MM-YYYY') AS tgl_setllement,* from t_vat_setllement a
-				left join t_cust_account x on x.t_cust_account_id=a.t_cust_account_id
-				left join t_payment_receipt y on y.t_vat_setllement_id=a.t_vat_setllement_id
-				left join p_finance_period z on z.p_finance_period_id=a.p_finance_period_id
-				left join p_year_period w on w.p_year_period_id=z.p_year_period_id
-				left join t_customer_order v on v.t_customer_order_id=a.t_customer_order_id
-				left join p_vat_type_dtl u on u.p_vat_type_dtl_id=a.p_vat_type_dtl_id
-				left join p_vat_type t on t.p_vat_type_id=x.p_vat_type_id
-				where a.t_vat_setllement_id=".$t_vat_setllement_id;
+			$sql = "SELECT *, to_char(settlement_date,'DD-MM-YYYY') AS tgl_setllement FROM v_vat_setllement_skpd_kb_jabatan WHERE t_vat_setllement_id = " . $t_vat_setllement_id;
 		}
 		else{
-			if ($mode==2){
-				$sql="select t.vat_code as jenis_pajak,upper(to_char(A.due_date,'dd-mon-yyyy')) as due_date_2, t.code as vat_code1,
-				 nvl(u.vat_code,t.code) as vat_codes,a.npwd as npwd_2, z.code as fin_code,w.year_code as tahun, a.payment_key as no_bayar,
-				to_char(a.settlement_date,'DD-MM-YYYY') AS tgl_setllement,* from t_vat_setllement a
-					left join t_cust_account x on x.t_cust_account_id=a.t_cust_account_id
-					left join t_payment_receipt y on y.t_vat_setllement_id=a.t_vat_setllement_id
-					left join p_finance_period z on z.p_finance_period_id=a.p_finance_period_id
-					left join p_year_period w on w.p_year_period_id=z.p_year_period_id
-					left join t_customer_order v on v.t_customer_order_id=a.t_customer_order_id
-					left join p_vat_type_dtl u on u.p_vat_type_dtl_id=a.p_vat_type_dtl_id
-					left join p_vat_type t on t.p_vat_type_id=x.p_vat_type_id
-					where p_settlement_type_id = 4 
-					and a.p_finance_period_id in(
-						select p_finance_period_id 
-						from p_finance_period
-						where 
-							start_date >= (select start_date from p_finance_period
-								where p_finance_period_id = ".$p_finance_period_id.") 
-							and end_date <= (select end_date from p_finance_period
-								where p_finance_period_id = ".$p_finance_period_id1.") 
-					)
-					and a.p_vat_type_dtl_id in (select p_vat_type_dtl_id from p_vat_type_dtl where p_vat_type_id =".$p_vat_type_id.")
-					and a.p_vat_type_dtl_id not in (11, 15, 41, 12, 42, 43, 30, 17, 21, 27, 31)
-					and x.p_account_status_id = 1";
-			}else{
-				$sql="select t.vat_code as jenis_pajak, upper(to_char(A.due_date,'dd-mon-yyyy')) as due_date_2, a.payment_key as no_bayar,
-				nvl(u.vat_code,t.code) as vat_codes,a.npwd as npwd_2, z.code as fin_code,w.year_code as tahun, 
-				to_char(a.settlement_date,'DD-MM-YYYY') AS tgl_setllement,* from t_vat_setllement a
-					left join t_cust_account x on x.t_cust_account_id=a.t_cust_account_id
-					left join t_payment_receipt y on y.t_vat_setllement_id=a.t_vat_setllement_id
-					left join p_finance_period z on z.p_finance_period_id=a.p_finance_period_id
-					left join p_year_period w on w.p_year_period_id=z.p_year_period_id
-					left join t_customer_order v on v.t_customer_order_id=a.t_customer_order_id
-					left join p_vat_type_dtl u on u.p_vat_type_dtl_id=a.p_vat_type_dtl_id
-					left join p_vat_type t on t.p_vat_type_id=x.p_vat_type_id
-					where p_settlement_type_id = 4
-					and a.p_vat_type_dtl_id in (select p_vat_type_dtl_id from p_vat_type_dtl where p_vat_type_id =".$p_vat_type_id.")
-					and a.p_vat_type_dtl_id not in (11, 15, 41, 12, 42, 43, 30, 17, 21, 27, 31)
-					and x.p_account_status_id = 1
-					and a.npwd ilike '%".$npwpd."%'";
-			}
-			if ($p_finance_period_id!=''){
-				$query.="and a.p_finance_period_id =".$p_finance_period_id;
-			}
-			if ($status_bayar==2){
-				$sql.="and receipt_no is not null ORDER BY wp_name";
-			}else{
-				if ($status_bayar==3){
-					$sql.="and receipt_no is null ORDER BY wp_name";
-				}else{
-					$sql.="ORDER BY wp_name,start_period";
-				}
-			}
+			$sql = "SELECT *, to_char(settlement_date,'DD-MM-YYYY') AS tgl_setllement FROM v_vat_setllement_skpd_kb_jabatan WHERE settlement_type = " . $settlement_type;
 		}
 
 		$data = array();  
@@ -184,8 +106,8 @@ class cetak_formulir_skpdkb_jabatan extends CI_Controller{
 		
 		
 		$pdf->Cell($lheader1, $this->height + 1, "", "L", 0, 'C');	
-		$pdf->Cell($lheader2, $this->height + 1, "DINAS PELAYANAN PAJAK", "R", 0, 'C');
-		$pdf->Cell($lheader3, $this->height + 1, "     Masa Pajak    : ".$data['fin_code'], "R", 0, 'L');
+		$pdf->Cell($lheader2, $this->height + 1, getValByCode('INSTANSI_2'), "R", 0, 'C');
+		$pdf->Cell($lheader3, $this->height + 1, "     Masa Pajak    : ".$data['finance_period_code'], "R", 0, 'L');
 		$pdf->Cell($lheader2, $this->height + 1, "", "R", 0, 'C');
 		$pdf->Ln($this->height - 4);
 		
@@ -228,7 +150,7 @@ class cetak_formulir_skpdkb_jabatan extends CI_Controller{
 		$pdf->Cell($lheader2, $this->height+1, "Telp. 022-4235052 - LOMBOK UTARA", "BR", 0, 'C');
 		$pdf->SetFont('Arial', '', 10);
 		$pdf->Cell($lheader3, $this->height+1, "", "BR", 0, 'L');
-		$pdf->Cell($lheader2, $this->height+1, $data["no_bayar"], "BR", 0, 'C');;
+		$pdf->Cell($lheader2, $this->height+1, $data["payment_key"], "BR", 0, 'C');;
 		$pdf->Ln();
 
 		$lbody = $this->lengthCell / 4;
@@ -253,7 +175,7 @@ class cetak_formulir_skpdkb_jabatan extends CI_Controller{
 		$pdf->Ln($this->height-4);
 		
 		$pdf->Cell($lbody1 + 3, $this->height, ":", "L", 0, 'R');
-		$rep_npwd = str_replace(".", "", $data["npwd_2"]);
+		$rep_npwd = str_replace(".", "", $data["npwd"]);
 		$arr1 = str_split($rep_npwd);
 		
 		$this->kotak(1, 34, 1,$arr1[0], $pdf);
@@ -277,14 +199,14 @@ class cetak_formulir_skpdkb_jabatan extends CI_Controller{
 		
 		$pdf->Cell(5, $this->height, "", "BL", 0, 'L');
 		$pdf->Cell($lbody1 - 5, $this->height, "Tanggal jatuh tempo", "B", 0, 'L');
-		$pdf->Cell($lbody3, $this->height, ": ".$data["due_date_2"], "BR", 0, 'L');
+		$pdf->Cell($lbody3, $this->height, ": ".$data["due_date"], "BR", 0, 'L');
 		/*$pdf->Cell($lbody1 - 5, $this->height, "", "B", 0, 'L');
 		$pdf->Cell($lbody3, $this->height, "", "BR", 0, 'L');*/
 		
 		$pdf->Ln();
-		//$this->tulis("I. Berdasarkan Pasal 65 ayat (2) dan (3) Peraturan Daerah Kota LOMBOK UTARA Nomor 20 Tahun 2011 tentang Pajak Daerah, telah dilakukan", "L");
+		//$this->tulis("I. Berdasarkan Pasal 65 ayat (2) dan (3) Peraturan Daerah Kabupaten Lombok Utara Nomor 20 Tahun 2011 tentang Pajak Daerah, telah dilakukan", "L");
 		$pdf->Cell(5, $this->height+2, "", "L", 0, 'C');
-		$pdf->Cell($this->lengthCell - 10, $this->height+2, "I. Berdasarkan Pasal 65 ayat (2) dan (3) Peraturan Daerah Kota LOMBOK UTARA Nomor 20 Tahun 2011 tentang Pajak Daerah, telah dilakukan", "", 0, "L");
+		$pdf->Cell($this->lengthCell - 10, $this->height+2, "I. Berdasarkan Pasal 65 ayat (2) dan (3) Peraturan Daerah Kabupaten Lombok Utara Nomor 20 Tahun 2011 tentang Pajak Daerah, telah dilakukan", "", 0, "L");
 		$pdf->Cell(5, $this->height+2, "", "R", 0, 'C');
 		$pdf->Ln();
 		
@@ -472,7 +394,7 @@ class cetak_formulir_skpdkb_jabatan extends CI_Controller{
 		$pdf->Ln();
 		
 		$pdf->Cell($lbody3 - 10, $this->height, "", "L", 0, 'L');
-		$pdf->Cell($lbody1 + 10, $this->height, "a.n KEPALA DINAS PELAYANAN PAJAK", "R", 0, 'C');
+		$pdf->Cell($lbody1 + 10, $this->height, "a.n KEPALA BADAN PENDAPATAN DAERAH", "R", 0, 'C');
 		$pdf->Ln();
 
 		$pdf->Cell($lbody3 - 10, $this->height, "", "L", 0, 'L');
@@ -480,7 +402,7 @@ class cetak_formulir_skpdkb_jabatan extends CI_Controller{
 		$pdf->Ln();
 		
 		$pdf->Cell($lbody3 - 10, $this->height, "", "L", 0, 'L');
-		$pdf->Cell($lbody1 + 10, $this->height, "KOTA LOMBOK UTARA", "R", 0, 'C');
+		$pdf->Cell($lbody1 + 10, $this->height, "Kabupaten Lombok Utara", "R", 0, 'C');
 		$this->newLine();
 		$pdf->Cell($this->lengthCell, $this->height, "", "LR", 0, 'L');
 		$pdf->Ln();
@@ -528,8 +450,8 @@ class cetak_formulir_skpdkb_jabatan extends CI_Controller{
 		$pdf->Ln($this->height-2);
 		
 		$pdf->Cell($lheader1, $this->height-2, "", "L", 0, 'C');	
-		$pdf->Cell($lheader2, $this->height-2, "DINAS PELAYANAN PAJAK", "R", 0, 'C');
-		$pdf->Cell($lheader3, $this->height-2, "     Masa Pajak    : ".$data["fin_code"], "R", 0, 'L');
+		$pdf->Cell($lheader2, $this->height-2, getValByCode('INSTANSI_2'), "R", 0, 'C');
+		$pdf->Cell($lheader3, $this->height-2, "     Masa Pajak    : ".$data["finance_period_code"], "R", 0, 'L');
 		$pdf->Cell($lheader2, $this->height-2, "", "R", 0, 'C');
 		$pdf->Ln($this->height -2);
 		
@@ -549,7 +471,7 @@ class cetak_formulir_skpdkb_jabatan extends CI_Controller{
 		
 		$pdf->Cell($lheader1, $this->height-1, "", "L", 0, 'C');	
 		$pdf->SetFont('Arial', '', 8);
-		$pdf->Cell($lheader2, $this->height-1, "Jalan Wastukancana No.2", "R", 0, 'C');
+		$pdf->Cell($lheader2, $this->height-1, getValByCode('ALAMAT_6'), "R", 0, 'C');
 		$pdf->SetFont('Arial', '', 8);
 		$pdf->Cell($lheader3, $this->height-1, "     Tahun Pajak   : ".$data["tahun"], "R", 0, 'L');
 		$pdf->Cell($lheader2, $this->height-1, "", "R", 0, 'C');
@@ -557,7 +479,7 @@ class cetak_formulir_skpdkb_jabatan extends CI_Controller{
 		
 		$pdf->Cell($lheader1, $this->height-1, "", "BL", 0, 'C');	
 		$pdf->SetFont('Arial', '', 8);
-		$pdf->Cell($lheader2, $this->height-1, "Telp. 022-4235052 - LOMBOK UTARA", "BR", 0, 'C');
+		$pdf->Cell($lheader2, $this->height-1, getValByCode('ALAMAT_3'), "BR", 0, 'C');
 		$pdf->SetFont('Arial', '', 8);
 		$pdf->Cell($lheader3, $this->height-1, "", "BR", 0, 'L');
 		$pdf->Cell($lheader2, $this->height-1, "", "BR", 0, 'C');
@@ -580,12 +502,12 @@ class cetak_formulir_skpdkb_jabatan extends CI_Controller{
 		
 		$pdf->Cell(5, $this->height, "", "L", 0, 'L');
 		$pdf->Cell($lbody1 - 5, $this->height, "NPWPD", "", 0, 'L');
-		$pdf->Cell($lbody3, $this->height, ": " . $data["npwd_2"], "R", 0, 'L');
+		$pdf->Cell($lbody3, $this->height, ": " . $data["npwd"], "R", 0, 'L');
 		$pdf->Ln($this->height-2);
 		
 		$pdf->Cell(5, $this->height, "", "L", 0, 'L');
 		$pdf->Cell($lbody1 - 5, $this->height, "Tanggal jatuh tempo", "", 0, 'L');
-		$pdf->Cell($lbody3-$lbody1 - 10, $this->height, ": ".$data["due_date_2"], "", 0, 'L');
+		$pdf->Cell($lbody3-$lbody1 - 10, $this->height, ": ".$data["due_date"], "", 0, 'L');
 		$tgl = getVarClean('start_date','str','');
 		if ($tgl == ''){
 			$pdf->Cell($lbody1 + 10, $this->height, "LOMBOK UTARA, " . $data["tgl_setllement"], "R", 0, 'C');

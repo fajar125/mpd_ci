@@ -34,22 +34,16 @@ class cetak_formulir_skpd_nihil extends CI_Controller{
 	
 	function pageCetak() {
 		
-		$t_customer_order_id = getVarClean('t_cust_order_id','int',0);
+		$t_vat_setllement_id = getVarClean('t_vat_setllement_id','int',0);
 
 		$sql = "";
-		if ($t_customer_order_id != 0) {
-			$sql = "select t_vat_setllement_id from t_vat_setllement where t_customer_order_id = ".$t_customer_order_id;
+		if ($t_vat_setllement_id > 0) {
+			$sql = "SELECT *, to_char(settlement_date,'DD Month YYYY') AS tgl_setllement FROM v_vat_setllement WHERE t_vat_setllement_id = " . $t_vat_setllement_id;
 			
 		}
 		$query = $this->db->query($sql);
-		$item = $query->row_array();
+		$data = $query->row_array();
 
-		$t_vat_setlement_id = $item['t_vat_setllement_id']; 
-
-		$data = array();
-        $sql = "SELECT *, to_char(settlement_date,'DD Month YYYY') AS tgl_setllement FROM v_vat_setllement WHERE t_vat_setllement_id = ?";      
-        $output = $this->db->query($sql, array($t_vat_setlement_id));
-        $data = $output->row_array();
 
 		$pdf = new FPDF();
 
