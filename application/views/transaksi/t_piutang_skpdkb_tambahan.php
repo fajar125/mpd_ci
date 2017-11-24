@@ -42,7 +42,7 @@
                 {name: 'Options',width: 200, align: "center",
                     formatter:function(cellvalue, options, rowObject) {
                         var val = rowObject['t_customer_order_id'];
-                        var url = '<?php echo base_url(); ?>'+'cetak_formulir_skpdkb_tambahan2/pageCetak?t_vat_setllement_id='+rowObject['t_vat_setllement_id'];
+                        var url = '<?php echo base_url(); ?>'+'cetak_formulir_skpdkb_tambahan/pageCetak?t_vat_setllement_id='+rowObject['t_vat_setllement_id'];
                         return '<a class="btn btn-danger btn-xs" href="#" onclick="PopupCenter(\''+url+'\',\'SKPDKB Tambahan\',500,500);"><i class="fa fa-print"></i>Print</a>';
 
                     }

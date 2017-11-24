@@ -43,12 +43,6 @@ class cetak_formulir_skpdkb_tambahan extends CI_Controller{
 		$npwpd = getVarClean('npwpd','int',0);
 
 		$sql = "";
-		if ($t_customer_order_id != 0) {
-			$sql = "select t_vat_setllement_id from t_vat_setllement where t_customer_order_id = ".$t_customer_order_id;
-			
-		}
-		$query = $this->db->query($sql);
-		$item = $query->row_array();
 
 		$t_vat_setllement_id = getVarClean('t_vat_setllement_id','int',0);
 
@@ -56,6 +50,9 @@ class cetak_formulir_skpdkb_tambahan extends CI_Controller{
 			$sql="SELECT *, to_char(settlement_date,'DD Month YYYY') AS tgl_setllement,
 				to_char(settlement_date+15,'DD Month YYYY') AS tgl_jatuh_tempo 
 				FROM v_vat_setllement WHERE t_vat_setllement_id = " . $t_vat_setllement_id;
+		} else{
+			echo "DATA TIDAK ADA";
+			exit();
 		}
 		
 
@@ -89,7 +86,7 @@ class cetak_formulir_skpdkb_tambahan extends CI_Controller{
 		$pdf->Ln();
 		
 		$pdf->SetFont('Arial', '', 10);
-		$pdf->Image('images/logo_lombok.png',12,15,20,20);
+		$pdf->Image(getValByCode('LOGO'),12,15,20,20);
 		$pdf->Cell($lheader1, $this->height, "", "L", 0, 'C');			
 		$pdf->Cell($lheader2, $this->height, "PEMERINTAH KABUPATEN", "R", 0, 'C');
 		$pdf->SetFont('Arial', '', 12);
@@ -120,7 +117,7 @@ class cetak_formulir_skpdkb_tambahan extends CI_Controller{
 		
 		
 		$pdf->Cell($lheader1, $this->height + 1, "", "L", 0, 'C');	
-		$pdf->Cell($lheader2, $this->height + 1, "DINAS PELAYANAN PAJAK", "R", 0, 'C');
+		$pdf->Cell($lheader2, $this->height + 1, getValByCode('INSTANSI_2'), "R", 0, 'C');
 		$pdf->SetFont('Arial', '', 9);
 		$pdf->Cell($lheader3, $this->height + 1, "Kurang Bayar Tambahan)", "R", 0, 'C');
 		$pdf->Cell($lheader2, $this->height + 1, "", "R", 0, 'C');
@@ -148,7 +145,7 @@ class cetak_formulir_skpdkb_tambahan extends CI_Controller{
 		*/
 		$pdf->Cell($lheader1, $this->height-1, "", "L", 0, 'C');	
 		$pdf->SetFont('Arial', '', 8);
-		$pdf->Cell($lheader2, $this->height-1, "Jalan Wastukancana No.2", "R", 0, 'C');
+		$pdf->Cell($lheader2, $this->height-1, getValByCode('ALAMAT_1'), "R", 0, 'C');
 		$pdf->SetFont('Arial', '', 10);
 		$pdf->Cell($lheader3, $this->height-1, "     Masa Pajak    : ".$data["finance_period_code"], "R", 0, 'L');
 		$pdf->Cell($lheader2, $this->height-1, "No.Bayar", "R", 0, 'C');
@@ -160,8 +157,8 @@ class cetak_formulir_skpdkb_tambahan extends CI_Controller{
 		// $pdf->Ln();
 		
 		$pdf->Cell($lheader1, $this->height+1, "", "BL", 0, 'C');	
-		$pdf->SetFont('Arial', '', 8);
-		$pdf->Cell($lheader2, $this->height+1, "Telp. 022-4235052 - LOMBOK UTARA", "BR", 0, 'C');
+		$pdf->SetFont('Arial', '', 6);
+		$pdf->Cell($lheader2, $this->height+1, getValByCode('ALAMAT_2'), "BR", 0, 'C');
 		$pdf->SetFont('Arial', '', 10);
 		$pdf->Cell($lheader3, $this->height+1, "     Tahun Pajak   : ".$data["tahun"], "BR", 0, 'L');
 		$pdf->Cell($lheader2, $this->height+1, $data["payment_key"], "BR", 0, 'C');
@@ -217,9 +214,9 @@ class cetak_formulir_skpdkb_tambahan extends CI_Controller{
 		$pdf->Cell($lbody3, $this->height, ": ".$data["tgl_jatuh_tempo"], "BR", 0, 'L');
 		
 		$pdf->Ln();
-		//$this->tulis("I. Berdasarkan Pasal 65 ayat (2) dan (3) Peraturan Daerah Kota LOMBOK UTARA Nomor 20 Tahun 2011 tentang Pajak Daerah, telah dilakukan", "L");
+		//$this->tulis("I. Berdasarkan Pasal 65 ayat (2) dan (3) Peraturan Daerah Kabupaten Lombok UTARA Nomor 20 Tahun 2011 tentang Pajak Daerah, telah dilakukan", "L");
 		$pdf->Cell(5, $this->height+2, "", "L", 0, 'C');
-		$pdf->Cell($this->lengthCell - 10, $this->height+2, "I. Berdasarkan Pasal 65 ayat (2) dan (3) Peraturan Daerah Kota LOMBOK UTARA Nomor 20 Tahun 2011 tentang Pajak Daerah, telah dilakukan", "", 0, "L");
+		$pdf->Cell($this->lengthCell - 10, $this->height+2, "I. Berdasarkan Pasal 65 ayat (2) dan (3) Peraturan Daerah Kabupaten LOMBOK UTARA Nomor 20 Tahun 2011 tentang Pajak Daerah, telah dilakukan", "", 0, "L");
 		$pdf->Cell(5, $this->height+2, "", "R", 0, 'C');
 		$pdf->Ln();
 		
@@ -399,7 +396,7 @@ class cetak_formulir_skpdkb_tambahan extends CI_Controller{
 		$pdf->Ln();
 		
 		$pdf->Cell($lbody3 - 10, $this->height, "", "L", 0, 'L');
-		$pdf->Cell($lbody1 + 10, $this->height, "a.n KEPALA DINAS PELAYANAN PAJAK", "R", 0, 'C');
+		$pdf->Cell($lbody1 + 10, $this->height, "a.n KEPALA BADAN PENDAPATAN DAERAH", "R", 0, 'C');
 		$pdf->Ln();
 
 		$pdf->Cell($lbody3 - 10, $this->height, "", "L", 0, 'L');
@@ -407,7 +404,7 @@ class cetak_formulir_skpdkb_tambahan extends CI_Controller{
 		$pdf->Ln();
 		
 		$pdf->Cell($lbody3 - 10, $this->height, "", "L", 0, 'L');
-		$pdf->Cell($lbody1 + 10, $this->height, "KOTA LOMBOK UTARA", "R", 0, 'C');
+		$pdf->Cell($lbody1 + 10, $this->height, "Kabupaten Lombok UTARA", "R", 0, 'C');
 		$this->newLine();
 		$pdf->Cell($this->lengthCell, $this->height, "", "LR", 0, 'L');
 		$pdf->Ln();
