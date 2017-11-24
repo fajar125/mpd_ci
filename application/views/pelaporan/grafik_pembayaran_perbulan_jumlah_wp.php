@@ -155,15 +155,28 @@
 
             for (var j = 0; j <items[0].length; j++) {
 
-                if(items[0].length==59){
-                    if (j>=0 && j < 30){
+                if(items[0].length==57){
+                    if (j>0 && j < 29){
                         realisasi1.push(items[0][j]);
                         realisasi2.push(items[1][j]);
                         realisasi3.push(items[2][j]);
                         realisasi4.push(items[3][j]);
                     }
 
-                    if (j>=29) {
+                    if (j>28) {
+                        tanggal.push(items[0][j]);
+                    }        
+                }
+
+                if(items[0].length==59){
+                    if (j>0 && j < 30){
+                        realisasi1.push(items[0][j]);
+                        realisasi2.push(items[1][j]);
+                        realisasi3.push(items[2][j]);
+                        realisasi4.push(items[3][j]);
+                    }
+
+                    if (j>29) {
                         tanggal.push(items[0][j]);
                     }        
                 }
@@ -175,7 +188,7 @@
                         realisasi3.push(items[2][j]);
                         realisasi4.push(items[3][j]);
                     }
-                    if (j>=30) {
+                    if (j>30) {
                         tanggal.push(items[0][j]);
                     }
                 }
@@ -244,16 +257,16 @@
                     }
                 },
                 series: [{
-                    name: 'Pajak Hotel',
+                    name: items[0][0],
                     data: realisasi1
                 }, {
-                    name: 'Pajak Restoran',
+                    name: items[1][0],
                     data: realisasi2
                 }, {
-                    name: 'Pajak Hiburan',
+                    name: items[2][0],
                     data: realisasi3
                 }, {
-                    name: 'Pajak Parkir',
+                    name: items[3][0],
                     data: realisasi4
                 }]
             });
@@ -272,64 +285,6 @@
         
     }
 
-    function reloadChart1(p_finance_period_id){
-        $.getJSON( "<?php echo base_url(); ?>"+"pembayaran_per_bulan/showData/?p_finance_period_id="+p_finance_period_id+"&p_vat_type_id=1", function( items ) {
-
-                var tanggal = [];
-                var realisasi = [];
-                for (var i =0;i<items.length;i++){
-                        tanggal.push(items[i][0]);
-                        realisasi.push(parseFloat(items[i][1]));
-                }
-                var theseries;
-                var color=['#fe0000','#56b945','#0000fe']
-                    Highcharts.setOptions({
-                                                    lang:{
-                                                            numericSymbols: [" Ribu"," Juta"," Milyar"," Triliun"," Biliun"," Seliun"]
-                                                    }
-                                            });
-                    $("#container").highcharts({
-                    chart: {
-                            type: "line"
-                    },
-                    title: {
-                            text: "Grafik Pembayaran Bulan"+$('#form_code').val()
-                    },
-                    subtitle: {
-                            text: "Pajak Hotel"
-                    },
-                    tooltip: {
-                            
-                    },
-                    xAxis: {
-                            categories: tanggal,
-                            title: {
-                                    text: 'Tanggal'
-                                }
-                    },
-                    yAxis: {
-                            title: {
-                                        text: 'Realisasi'
-                                    }
-                    },
-                    plotOptions: {
-                            headerFormat: '<span style="font-size:10px">{point.key}</span><table>',
-                            pointFormat: '<tr><td style="color:{series.color};padding:0">{series.name}: </td>' +
-                                    '<td style="padding:0"><b>{point.y}</b></td></tr>',
-                            footerFormat: '</table>',
-                            shared: true,
-                            useHTML: true
-                    },
-                    series: [{
-                                name: 'Realisasi Pajak Hotel',
-                                data: realisasi
-                            }]
-            });
-
-                                
-
-        });
-    }
 
     
 
