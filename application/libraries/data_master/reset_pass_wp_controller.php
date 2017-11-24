@@ -1,25 +1,25 @@
 <?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 
-class t_customer_create_uname_controller {
+class reset_pass_wp_controller {
 
     function read() {
 
         $page = getVarClean('page','int',1);
         $limit = getVarClean('rows','int',5);
-        //$sidx = getVarClean('sidx','str','b.t_customer_id');
-        //$sord = getVarClean('sord','str','desc');
+        $sidx = getVarClean('sidx','str','user_name');
+        $sord = getVarClean('sord','str','asc');
 
         $data = array('rows' => array(), 'page' => 1, 'records' => 0, 'total' => 1, 'success' => false, 'message' => '');
 
         try {
 
             $ci = & get_instance();
-            $ci->load->model('data_master/t_customer_create_uname');
-            $table = $ci->t_customer_create_uname;
+            $ci->load->model('data_master/reset_pass_wp');
+            $table = $ci->reset_pass_wp;
 
             $req_param = array(
-                "sort_by" =>null, // tidak di sort by 
-                "sord" => null,// tidak di sord
+                "sort_by" =>$sidx, // tidak di sort by 
+                "sord" => $sord,// tidak di sord
                 "limit" => null,
                 "field" => null,
                 "where" => null,
@@ -34,8 +34,8 @@ class t_customer_create_uname_controller {
             // Filter Table
             $req_param['where'] = array();
 
-            $table->setCriteria("b.t_customer_id NOT IN (select t_customer_id from t_customer_user)");
-            $table->setCriteria("b.p_account_status_id = 1");
+            $table->setCriteria("b.p_user_status_id =1");
+            $table->setCriteria("is_employee = 'N'");
 
             $table->setJQGridParam($req_param);
             $count = $table->countAll();
@@ -69,9 +69,9 @@ class t_customer_create_uname_controller {
         return $data;
     }
 
-    function generate_uname() {
+    function reset_pass() {
 
-        $t_customer_id = getVarClean('t_customer_id', 'int', 0);
+        $p_app_user_id = getVarClean('p_app_user_id', 'int', 0);
 
         //exit;
 
@@ -80,10 +80,10 @@ class t_customer_create_uname_controller {
         try {
 
             $ci = & get_instance();
-            $ci->load->model('data_master/t_customer_create_uname');
-            $table = $ci->t_customer_create_uname;
+            $ci->load->model('data_master/reset_pass_wp');
+            $table = $ci->reset_pass_wp;
 
-            $message = $table->generate_uname($t_customer_id);
+            $message = $table->reset_pass($p_app_user_id);
 
             //print_r($message['hasil']);exit;
 

@@ -6,7 +6,7 @@
             <i class="fa fa-circle"></i>
         </li>
         <li>
-            <span>Generate Username & Password Wajib Pajak</span>
+            <span>Reset Password Wajib Pajak</span>
         </li>
     </ul>
 </div>
@@ -19,7 +19,7 @@
                 <li class="active">
                     <a href="javascript:;" data-toggle="tab" aria-expanded="true" id="tab-1">
                         <i class="blue"></i>
-                        <strong> Customer </strong>
+                        <strong> ADMINISTRASI USER </strong>
                     </a>
                 </li>
             </ul>
@@ -39,26 +39,30 @@
 </div>
 <script>
 
+    $.ajax({
+            url: "<?php echo base_url().'reset_pass_wp/load_combo_status_readonly/'; ?>" ,
+            type: "POST",            
+            data: {},
+            success: function (data) {
+                $( "#comboStatus" ).html( data );
+            },
+            error: function (xhr, status, error) {
+                swal({title: "Error!", text: xhr.responseText, html: true, type: "error"});
+            }
+    });
+
     jQuery(function($) {
         var grid_selector = "#grid-table";
         var pager_selector = "#grid-pager";
 
         jQuery("#grid-table").jqGrid({
-            url: '<?php echo WS_JQGRID."data_master.t_customer_create_uname_controller/read"; ?>',
+            url: '<?php echo WS_JQGRID."data_master.reset_pass_wp_controller/read"; ?>',
             datatype: "json",
             mtype: "POST",
             colModel: [
-                {label: 'ID', name: 't_customer_id', key: true, width: 5, sorttype: 'number', editable: true, hidden: true},
-
-                {label: 'Generate',width: 150, align: "left",editable: false,
-                    formatter:function(cellvalue, options, rowObject) {
-                        var t_customer_id = rowObject['t_customer_id'];
-                            return '<a class="btn btn-primary btn-xs" href="#" onclick="genUname('+t_customer_id+');">Generate</a>';
-                        
-                    }
-                },
+                {label: 'ID', name: 'p_app_user_id', key: true, width: 5, sorttype: 'number', editable: true, hidden: true},
                 
-                {label: 'Nama Pemilik/Pengelola',name: 'company_owner',width: 150, align: "left",editable: false,
+                {label: 'Nama User',name: 'app_user_name',width: 150, align: "left",editable: false,
                     editoptions: {
                         size: 30,
                         maxlength:32
@@ -67,64 +71,36 @@
                 },
                 
 
-                {label: 'Alamat WP',name: 'alamat_lengkap',width: 200, align: "left",editable: false,
+                {label: 'NPWPD',name: 'npwd',width: 200, align: "left",editable: false,
                     editoptions: {
                         size: 30,
                         maxlength:32
                     }
                 },
 
-                {label: 'Merek Dagang',name: 'company_brand',width: 200, align: "left",editable: false,
+                {label: 'Nama Lengkap',name: 'full_name',width: 200, align: "left",editable: false,
                     editoptions: {
                         size: 60,
                         maxlength:255
                     }
                 },
-                {label: 'Alamat Merek Dagang',name: 'brand_address_name',width: 200, align: "left",editable: false,
+                {label: 'Deskripsi',name: 'description',width: 200, align: "left",editable: false,
                     editoptions: {
                         size: 60,
                         maxlength:255
                     }
                 },
-
-                {label: 'Jenis Pajak',name: 'vat_code',width: 200, align: "left",editable: false,
-                    editoptions: {
-                        size: 60,
-                        maxlength:255
-                    }
-                },
-
-                {label: 'No Seluler',name: 'mobile_no_owner',width: 150, align: "left",editable: false,
-                    editoptions: {
-                        size: 30,
-                        maxlength:32
-                    }
-                },
-
-                {label: 'Email',name: 'email_address',width: 150, align: "left",editable: false,
-                    editoptions: {
-                        size: 30,
-                        maxlength:32
-                    }
-                },
-
 
                 // Kebutuhan untuk form
-                {label: 't_cust_account_id',name: 't_cust_account_id',width: 200, align: "left",hidden:true},
-                {label: 'nama_jabatan',name: 'nama_jabatan',width: 200, align: "left",hidden:true},
-                {label: 'address_name_owner',name: 'address_name_owner',width: 200, align: "left",hidden:true},
-                {label: 'address_no_owner',name: 'address_no_owner',width: 200, align: "left",hidden:true},
-                {label: 'address_rt_owner',name: 'address_rt_owner',width: 200, align: "left",hidden:true},
-                {label: 'address_rw_owner',name: 'address_rw_owner',width: 200, align: "left",hidden:true},
-                {label: 'nama_kota',name: 'nama_kota',width: 200, align: "left",hidden:true},
-                {label: 'nama_kelurahan',name: 'nama_kelurahan',width: 200, align: "left",hidden:true},
-                {label: 'nama_kecamatan',name: 'nama_kecamatan',width: 200, align: "left",hidden:true},
-                {label: 'phone_no_owner',name: 'phone_no_owner',width: 200, align: "left",hidden:true},
-                {label: 'fax_no_owner',name: 'fax_no_owner',width: 200, align: "left",hidden:true},
-                {label: 'mobile_no_owner',name: 'mobile_no_owner',width: 200, align: "left",hidden:true},
-                {label: 'email_address',name: 'email_address',width: 200, align: "left",hidden:true},
-                {label: 'zip_code_owner',name: 'zip_code_owner',width: 200, align: "left",hidden:true}
-
+                {label: 'Email',name: 'email_address',width: 200, align: "left",hidden:true},
+                {label: 'Status',name: 'p_user_status_id',width: 200, align: "left",hidden:true},
+                {label: 'Employee',name: 'is_employee',width: 200, align: "left",hidden:true},
+                {label: 'Description',name: 'description',width: 200, align: "left",hidden:true},
+                {label: 'ip_address_v4',name: 'ip_address_v4',width: 200, align: "left",hidden:true},
+                {label: 'ip_address_v6',name: 'ip_address_v6',width: 200, align: "left",hidden:true},
+                {label: 'expired_user',name: 'expired_user',width: 200, align: "left",hidden:true},
+                {label: 'expired_pwd',name: 'expired_pwd',width: 200, align: "left",hidden:true},
+                {label: 'last_login_time',name: 'last_login_time',width: 200, align: "left",hidden:true}
             ],
             height: '100%',
             autowidth: true,
@@ -137,6 +113,9 @@
             shrinkToFit: true,
             multiboxonly: true,
             onSelectRow: function (rowid) {
+                /*do something when selected*/
+                //alert(rowid);
+                
                 setDaftar_customer(rowid);
                 
 
@@ -158,8 +137,8 @@
 
             },
             //memanggil controller jqgrid yang ada di controller crud
-            editurl: '<?php echo WS_JQGRID."data_master.t_customer_create_uname_controller/read"; ?>',
-            caption: "Daftar Customer"
+            editurl: '<?php echo WS_JQGRID."data_master.reset_pass_wp_controller/read"; ?>',
+            caption: "ADMINISTRASI USER"
 
         });
 
@@ -305,42 +284,35 @@
     }
 
     function setDaftar_customer(rowid){
-        var t_customer_id = $('#grid-table').jqGrid('getCell', rowid, 't_customer_id');
-        var t_cust_account_id = $('#grid-table').jqGrid('getCell', rowid, 't_cust_account_id');
-        var company_owner = $('#grid-table').jqGrid('getCell', rowid, 'company_owner');
-        var nama_jabatan = $('#grid-table').jqGrid('getCell', rowid, 'nama_jabatan');
-        var address_name_owner = $('#grid-table').jqGrid('getCell', rowid, 'address_name_owner');
-        var address_no_owner = $('#grid-table').jqGrid('getCell', rowid, 'address_no_owner');
-        var address_rt_owner = $('#grid-table').jqGrid('getCell', rowid, 'address_rt_owner');
-        var address_rw_owner = $('#grid-table').jqGrid('getCell', rowid, 'address_rw_owner');
-        var nama_kota = $('#grid-table').jqGrid('getCell', rowid, 'nama_kota');
-        var nama_kelurahan = $('#grid-table').jqGrid('getCell', rowid, 'nama_kelurahan');
-        var nama_kecamatan = $('#grid-table').jqGrid('getCell', rowid, 'nama_kecamatan');
-        var phone_no_owner = $('#grid-table').jqGrid('getCell', rowid, 'phone_no_owner');
-        var mobile_no_owner = $('#grid-table').jqGrid('getCell', rowid, 'mobile_no_owner');
-        var fax_no_owner = $('#grid-table').jqGrid('getCell', rowid, 'fax_no_owner');
+        var p_app_user_id = $('#grid-table').jqGrid('getCell', rowid, 'p_app_user_id');
+        var app_user_name = $('#grid-table').jqGrid('getCell', rowid, 'app_user_name');
+        var full_name = $('#grid-table').jqGrid('getCell', rowid, 'full_name');
         var email_address = $('#grid-table').jqGrid('getCell', rowid, 'email_address');
-        var zip_code_owner = $('#grid-table').jqGrid('getCell', rowid, 'zip_code_owner');
-
-        $('#t_customer_id').val(t_customer_id);
-        $('#t_cust_account_id').val(t_cust_account_id);
-        $('#company_owner').val(company_owner);
-        $('#code').val(nama_jabatan);
-        $('#address_name_owner').val(address_name_owner);
-        $('#address_no_owner').val(address_no_owner);
-        $('#address_rt_owner').val(address_rt_owner);
-        $('#address_rw_owner').val(address_rw_owner);
-        $('#kota').val(nama_kota);
-        $('#kelurahan').val(nama_kelurahan);
-        $('#kecamatan').val(nama_kecamatan);
-        $('#phone_no_owner').val(phone_no_owner);
-        $('#fax_no_owner').val(fax_no_owner);
-        $('#mobile_no_owner').val(mobile_no_owner);
+        var p_user_status_id = $('#grid-table').jqGrid('getCell', rowid, 'p_user_status_id');
+        var is_employee = $('#grid-table').jqGrid('getCell', rowid, 'is_employee');
+        var description = $('#grid-table').jqGrid('getCell', rowid, 'description');
+        var ip_address_v4 = $('#grid-table').jqGrid('getCell', rowid, 'ip_address_v4');
+        var ip_address_v6 = $('#grid-table').jqGrid('getCell', rowid, 'ip_address_v6');
+        var expired_user = $('#grid-table').jqGrid('getCell', rowid, 'expired_user');
+        var expired_pwd = $('#grid-table').jqGrid('getCell', rowid, 'expired_pwd');
+        var last_login_time = $('#grid-table').jqGrid('getCell', rowid, 'last_login_time');
+        
+        $('#p_app_user_id').val(p_app_user_id);
+        $('#app_user_name').val(app_user_name);
+        $('#full_name').val(full_name);
         $('#email_address').val(email_address);
-        $('#zip_code_owner').val(zip_code_owner);
+        $('#p_user_status_id').val(p_user_status_id);
+        $('#is_employee').val(is_employee);
+        $('#description').val(description);
+        $('#ip_address_v4').val(ip_address_v4);
+        $('#ip_address_v6').val(ip_address_v6);
+        $('#expired_user').val(expired_user);
+        $('#expired_pwd').val(expired_pwd);
+        $('#last_login_time').val(last_login_time);
     }
 
-    function genUname(t_customer_id){
+    function resetPass(){
+        var p_app_user_id = $('#p_app_user_id').val();
         swal({
             title: 'Apakah Anda Yakin?',
             type: 'info',
@@ -355,13 +327,13 @@
         },
         function(){
             $.ajax({
-                url: '<?php echo WS_JQGRID."data_master.t_customer_create_uname_controller/generate_uname"; ?>',
+                url: '<?php echo WS_JQGRID."data_master.reset_pass_wp_controller/reset_pass"; ?>',
                 type: "POST",
                 dataType: "json",
-                data: {t_customer_id: t_customer_id},
+                data: {p_app_user_id: p_app_user_id},
                 success: function (data) {
                     if (data.success){
-                        swal({title: "Informasi!", text: data.message, html: true, type: "info"});
+                        swal({title: "Password berhasil diubah!", text: "dengan password baru : "+data.message, html: true, type: "info"});
                     }else{
                         swal({title: "Error!", text: data.message, html: true, type: "error"});
                     }
@@ -373,7 +345,6 @@
             });
         });
     }
-
 </script>
 <div class="space-4"></div>
 <div class="panel panel-primary">
@@ -381,118 +352,122 @@
     <div class="panel-body">
         <div class="form-body">
             <div class="row">
-                <label class="control-label col-md-3">Nama Pemilik/Pengelola</label>
+                <label class="control-label col-md-3">Nama User</label>
                 <div class="col-md-3">
                     <div class="input-group">
                         <div class="input-group">
-                            <input type="text" class="form-control" name="company_owner" id="company_owner" style="width: 560px;" readonly="true">                 
+                            <input type="hidden" class="form-control" name="p_app_user_id" id="p_app_user_id" readonly="true"> 
+                            <input type="text" class="form-control" name="app_user_name" id="app_user_name" readonly="true">                 
                         </div>
                     </div>
                 </div>
             </div>
             <div class="space-2"></div>
             <div class="row">
-                <label class="control-label col-md-3">Jabatan</label>
-                <div class="col-md-3">
-                    <div class="input-group">
-                        <input type="text" class="form-control" name="code" id="code" style="width: 560px;" readonly="true">                 
+                <label class="control-label col-md-3">Nama Lengkap</label>
+                <div class="col-md-7">
+                    <div class="input-group col-md-7">
+                        <input type="text" class="form-control" name="full_name" id="full_name"  readonly="true">
                     </div>
                 </div>
             </div>
             <div class="space-2"></div>
             <div class="row">
-                <label class="control-label col-md-3">Alamat</label>
+                <label class="control-label col-md-3">Email</label>
                 <div class="col-md-3">
                     <div class="input-group">
-                        <textarea class="form-control" name="address_name_owner" id="address_name_owner" style="width: 560px;" readonly="true"></textarea>
+                        <input type="text" class="form-control" name="email_address" id="email_address"  readonly="true">
                     </div>
                 </div>
             </div>
             <div class="space-2"></div>
             <div class="row">
-                <label class="control-label col-md-3">No</label>
-                <div class="col-md-1">
+                <label class="control-label col-md-3">Status</label>
+                <div class="col-md-3">
                     <div class="input-group">
-                        <input type="text" class="form-control" name="address_no_owner" id="address_no_owner" readonly="true">                            
+                        <div id="comboStatus"></div>                           
                     </div>
                 </div>
-                <label class="control-label col-sm-1">RT</label>
-                <div class="col-md-1">
+            </div>
+
+            <div class="space-2"></div>
+            <div class="row">
+                <label class="control-label col-md-3">Employee ?</label>
+                <div class="col-md-3">
                     <div class="input-group">
-                        <input type="text" class="form-control" name="address_rt_owner" id="address_rt_owner" readonly="true">                            
+                        <select  name="is_employee" id="is_employee" disabled class="form-control">
+                            <option value='' >Pilih</option>
+                            <option value='Y' >Ya</option>
+                            <option value='N' >Tidak</option>
+                        </select>
                     </div>
                 </div>
-                <label class="control-label col-sm-1">RW</label>
-                <div class="col-md-1">
+            </div>
+
+            <div class="space-2"></div>
+            <div class="row">
+                <label class="control-label col-md-3">Deskripsi</label>
+                <div class="col-md-3">
                     <div class="input-group">
-                        <input type="text" class="form-control" name="address_rw_owner" id="address_rw_owner" readonly="true">                            
+                        <input type="text" class="form-control" name="description" id="description" readonly="true">
+                    </div>
+                </div>
+            </div>
+
+            <div class="space-2"></div>
+            <div class="row">
+                <label class="control-label col-md-3">IP Address v4</label>
+                <div class="col-md-3">
+                    <div class="input-group">
+                        <input type="text" class="form-control" name="ip_address_v4" id="ip_address_v4" readonly="true">
                     </div>
                 </div>
             </div>
             <div class="space-2"></div>
             <div class="row">
-                <label class="control-label col-md-3">Kota</label>
+                <label class="control-label col-md-3">IP Address v6</label>
                 <div class="col-md-3">
                     <div class="input-group">
-                        <input type="text" class="form-control" name="kota" id="kota" readonly="true">
+                        <input type="text" class="form-control" name="ip_address_v6" id="ip_address_v6" readonly="true">
                     </div>
                 </div>
+            </div>
             
-            
-                <label class="control-label col-md-1">Kecamatan</label>
-                <div class="col-md-3">
-                    <div class="input-group">
-                        <input type="text" class="form-control" name="kecamatan" id="kecamatan" readonly="true">
-                    </div>
-                </div>
-            </div>
             <div class="space-2"></div>
             <div class="row">
-                <label class="control-label col-md-3">Kelurahan</label>
+                <label class="control-label col-md-3">Expired User</label>
                 <div class="col-md-3">
                     <div class="input-group">
-                        <input type="text" class="form-control" name="kelurahan" id="kelurahan" readonly="true">
+                        <input type="text" class="form-control" name="expired_user" id="expired_user" readonly="true">
                     </div>
                 </div>
             </div>
+
             <div class="space-2"></div>
             <div class="row">
-                <label class="control-label col-md-3">No Telepon</label>
+                <label class="control-label col-md-3">Expired Pwd</label>
                 <div class="col-md-3">
                     <div class="input-group">
-                        <input type="text" class="form-control" name="phone_no_owner" id="phone_no_owner" readonly="true">
+                        <input type="text" class="form-control" name="expired_pwd" id="expired_pwd" readonly="true">
                     </div>
-                </div>
-            
-                <label class="control-label col-md-1">No Fax</label>
-                <div class="col-md-3">
-                    <div class="input-group">
-                        <input type="text" class="form-control" name="fax_no_owner" id="fax_no_owner" readonly="true">
-                    </div>
-                </div>
+                </div>   
             </div>
+
             <div class="space-2"></div>
             <div class="row">
-                <label class="control-label col-md-3">No Seluler</label>
+                <label class="control-label col-md-3">Terakhir Login</label>
                 <div class="col-md-3">
                     <div class="input-group">
-                        <input type="text" class="form-control" name="mobile_no_owner" id="mobile_no_owner" readonly="true">
-                    </div>
-                </div>               
-            
-                <label class="control-label col-md-1">Email</label>
-                <div class="col-md-3">
-                    <div class="input-group">
-                        <input type="text" class="form-control" name="email_address" id="email_address" readonly="true">
+                        <input type="text" class="form-control" name="last_login_time" id="last_login_time" readonly="true">
                     </div>
                 </div>
             </div>
-             <div class="space-2"></div>
+
+            <div class="space-2"></div>
             <div class="row">
-                <label class="control-label col-md-3">Kode Pos</label>
-                <div class="col-md-3">
+                <div class="col-md-2 col-md-offset-5">
                     <div class="input-group">
-                        <input type="text" class="form-control" name="zip_code_owner" id="zip_code_owner" readonly="true">
+                        <a class="btn btn-success" href="#" onclick="resetPass();">Reset Password</a>
                     </div>
                 </div>
             </div>
