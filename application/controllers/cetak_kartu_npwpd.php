@@ -30,19 +30,19 @@ class cetak_kartu_npwpd extends CI_Controller{
         $pdf->Cell($this->lengthCell, $this->height, "", "", 0, 'L');
         $pdf->Ln();
     }
-	
-	
+
+
 	function pageCetak() {
-		
+
 		$t_customer_order_id = getVarClean('t_customer_order_id','int',0);
 
 
 		$sql="";
 		if ($t_customer_order_id != 0) {
-			$sql .= "select b.vat_code,to_char(a.registration_date,'dd Mon yyyy') as registration_date_2,company_owner,a.* from t_vat_registration a 
+			$sql .= "select b.vat_code,to_char(a.registration_date,'dd Mon yyyy') as registration_date_2,company_owner,a.* from t_vat_registration a
 		left join p_vat_type_dtl b on a.p_vat_type_dtl_id = b.p_vat_type_dtl_id
 		where t_customer_order_id = ".$t_customer_order_id;
-			
+
 		}
 		//echo ($sql);exit;
 		$query = $this->db->query($sql);
@@ -52,7 +52,7 @@ class cetak_kartu_npwpd extends CI_Controller{
 		$pdf = new FPDF();
 
 
-		
+
 		$_HEIGHT = 4;
 		$_BORDER = 0;
 		$_FONT = 'Times';
@@ -101,7 +101,7 @@ class cetak_kartu_npwpd extends CI_Controller{
 		$pdf->SetAligns(array("L", "L","C", "L"));
 		$pdf->RowMultiBorderWithHeight(
 			array
-			(	
+			(
 				"",
 				"",
 				"*",
@@ -123,7 +123,7 @@ class cetak_kartu_npwpd extends CI_Controller{
 		$pdf->SetAligns(array("L", "L","C", "L"));
 		$pdf->RowMultiBorderWithHeight(
 			array
-			(	
+			(
 				"",
 				"",
 				"*",
@@ -145,7 +145,7 @@ class cetak_kartu_npwpd extends CI_Controller{
 		$pdf->SetAligns(array("L", "L","C", "L"));
 		$pdf->RowMultiBorderWithHeight(
 			array
-			(	
+			(
 				"",
 				"",
 				"*",
@@ -201,7 +201,7 @@ class cetak_kartu_npwpd extends CI_Controller{
 		$pdf->Ln();
 		$pdf->Cell(90, 5, "", "LR", 0, 'C');
 		$pdf->Cell(10, 5, "", "", 0, 'C');
-		$pdf->Cell(90, 5, "www.disyanjak.LOMBOK UTARA.go.id", "LR", 0, 'C');
+		$pdf->Cell(90, 5, "www.bapendalombokutara.go.id", "LR", 0, 'C');
 		$pdf->Ln();
 		$pdf->SetFont('Arial', '', 6);
 		$pdf->Cell(45, 5, 'TERDAFTAR : '. $data['registration_date'], "L", 0, 'L');
@@ -209,7 +209,7 @@ class cetak_kartu_npwpd extends CI_Controller{
 		$pdf->Cell(10, 5, "", "", 0, 'C');
 		$pdf->Cell(90, 3, "BAYAR PAJAK MUDAH! LOMBOK UTARA JUARA!", "LR", 0, 'C');
 		$pdf->Ln(1);
-		$pdf->Cell(90, 5, "", "BLR", 0, 'C');	
+		$pdf->Cell(90, 5, "", "BLR", 0, 'C');
 		$pdf->Cell(10, 5, "", "", 0, 'C');
 		$pdf->Cell(90, 5, "", "BLR", 0, 'C');
 
@@ -218,7 +218,7 @@ class cetak_kartu_npwpd extends CI_Controller{
 		$pdf->SetAligns(array("C"));
 		$pdf->RowMultiBorderWithHeight(
 			array
-			(	
+			(
 				"--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------"
 			),
 			array
@@ -232,7 +232,7 @@ class cetak_kartu_npwpd extends CI_Controller{
 		$pdf->SetFont('Arial', 'B', 14);
 		$pdf->RowMultiBorderWithHeight(
 			array
-			(	
+			(
 				"\nTANDA TERIMA KARTU NPWPD\n"
 			),
 			array
@@ -246,13 +246,13 @@ class cetak_kartu_npwpd extends CI_Controller{
 		$pdf->SetAligns(array("L","L","L","L"));
 		$pdf->RowMultiBorderWithHeight(
 			array
-			(	
+			(
 				"",
 				"\nNPWPD
 				\nMerk Dagang
 				\nAlamat
 				",
-				
+
 				"\n: ".$data['npwpd']."
 				\n: ".$data['company_brand']."
 				\n: ".$data['brand_address_name']."
@@ -273,7 +273,7 @@ class cetak_kartu_npwpd extends CI_Controller{
 		$pdf->SetAligns(array("L","C"));
 		$pdf->RowMultiBorderWithHeight(
 			array
-			(	
+			(
 				"",
 				"LOMBOK UTARA, ".date('d-m-Y')."
 				\nYang menerima
@@ -296,7 +296,7 @@ class cetak_kartu_npwpd extends CI_Controller{
 			try{
 				$dbConn->query("INSERT INTO t_print_queue(t_customer_order_id, file_name, status) VALUES (".$t_customer_order_id.",'".$name_of_file."', 'SAVED');");
 				$dbConn->next_record();
-				
+
 				$pdf->Output('D:\work\list_pdf\\'.$name_of_file,'F');
 			}catch(Exception $e){
 				@unlink('D:\work\list_pdf\\'.$name_of_file);
@@ -312,14 +312,14 @@ class cetak_kartu_npwpd extends CI_Controller{
 		$pdf->Cell(5, $this->height, "", "R", 0, 'C');
 		$pdf->Ln();
 	}
-	
+
 	function kotakKosong($pembilang, $penyebut, $jumlahKotak, $pdf){
 		$lkotak = $pembilang / $penyebut * $this->lengthCell;
 		for($i = 0; $i < $jumlahKotak; $i++){
 			$pdf->Cell($lkotak, $this->height, "", "LR", 0, 'L');
 		}
 	}
-	
+
 	function kotak($pembilang, $penyebut, $jumlahKotak, $isi, $pdf){
 		$lkotak = $pembilang / $penyebut * $this->lengthCell;
 		for($i = 0; $i < $jumlahKotak; $i++){
@@ -327,7 +327,7 @@ class cetak_kartu_npwpd extends CI_Controller{
 		}
 	}
 
-	
+
 
 }
 
