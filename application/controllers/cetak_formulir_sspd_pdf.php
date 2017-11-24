@@ -405,8 +405,11 @@ class cetak_formulir_sspd_pdf extends CI_Controller{
 		$pdf->Cell($lowTable1, $this->height + 2, "", "LR", 0, 'C');
 
 		$nomor_urut = explode("-",$data["no_urut"]);
-		if(count($nomor_urut) < 1) {
+
+		if(!isset($nomor_urut[0])) {
 			$nomor_urut[0] = '';
+		}
+		if(!isset($nomor_urut[1])) {
 			$nomor_urut[1] = '';
 		}
 
