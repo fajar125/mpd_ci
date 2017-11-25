@@ -44,7 +44,7 @@ class Sendmail extends CI_Controller
 
 
         // echo $html;
-        sendEmail($email, $name, 'Pendaftaran WP', $html);
+        sendEmail($email, $uname, 'Pendaftaran WP', $html);
         exit;
     }
 

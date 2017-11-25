@@ -235,7 +235,7 @@
                 <div class="row">
                     <label class="control-label col-md-3">Kode Pos</label>
                     <div class="input-group col-md-4">
-                            <input type="text" class="form-control" name="wp_zip_code" id="brand_zip_code" readonly="true">
+                            <input type="text" class="form-control" name="wp_zip_code" id="wp_zip_code" readonly="true">
                     </div>
                 </div>
             </div>
@@ -318,23 +318,23 @@
                 <div class="row">
                     <label class="control-label col-md-3">No. Telepon</label>
                     <div class="input-group col-md-4">
-                            <input type="text" class="form-control" name="wp_phone_no" id="wp_phone_no" readonly="true">
+                            <input type="text" class="form-control" name="phone_no" id="phone_no" readonly="true">
                             <span class="input-group-addon">No. Seluler </span>
-                            <input type="text" class="form-control" name="wp_mobile_no" id="wp_mobile_no" readonly="true">
+                            <input type="text" class="form-control" name="mobile_no" id="mobile_no" readonly="true">
                     </div>
                 </div>
                 <div class="space-2"></div>
                 <div class="row">
                     <label class="control-label col-md-3">No. Fax</label>
                     <div class="input-group col-md-4">
-                            <input type="text" class="form-control" name="brand_fax_no" id="brand_fax_no" readonly="true">
+                            <input type="text" class="form-control" name="fax_no" id="fax_no" readonly="true">
                     </div>
                 </div>
                 <div class="space-2"></div>
                 <div class="row">
                     <label class="control-label col-md-3">Kode Pos</label>
                     <div class="input-group col-md-4">
-                            <input type="text" class="form-control" name="brand_zip_code" id="brand_zip_code" readonly="true">
+                            <input type="text" class="form-control" name="zip_code" id="zip_code" readonly="true">
                     </div>
                 </div>
             </div>
@@ -418,9 +418,9 @@
                 <div class="row">
                     <label class="control-label col-md-3">No. Telepon</label>
                     <div class="input-group col-md-4">
-                            <input type="text" class="form-control" name="wp_phone_no" id="wp_phone_no" readonly="true">
+                            <input type="text" class="form-control" name="brand_phone_no" id="brand_phone_no" readonly="true">
                             <span class="input-group-addon">No. Seluler </span>
-                            <input type="text" class="form-control" name="wp_mobile_no" id="wp_mobile_no" readonly="true">
+                            <input type="text" class="form-control" name="brand_mobile_no" id="brand_mobile_no" readonly="true">
                     </div>
                 </div>
                 <div class="space-2"></div>
@@ -593,14 +593,14 @@
                 <div class="row">
                     <label class="control-label col-md-3">Input Nomor Surat </label>
                     <div class="input-group col-md-4">
-                        <input type="text" class="form-control" name="reg_letter_no" id="reg_letter_no">
+                        <input type="text" class="form-control required" name="reg_letter_no" id="reg_letter_no" required>
                     </div>
                 </div>
                 <div class="space-2"></div>
                 <div class="row">
                     <label class="control-label col-md-3">NPWPD</label>
                     <div class="input-group col-md-4">
-                            <input id="npwpd" readonly type="text" class="FormElement form-control" placeholder="NPWPD">
+                            <input id="npwpd" readonly type="text" class="FormElement form-control required" placeholder="NPWPD"  required>
                             <span class="input-group-btn">
                                 <button class="btn btn-success" type="button" id="btn-gen" onclick="">Generate NPWPD</button>
                             </span>
@@ -876,7 +876,7 @@
                 $('#t_vat_registration_id').val(data1.t_vat_registration_id);
                 $('#order_no').val(data1.order_no);
                 $('#registration_date').val(data1.registration_date);
-                $('#p_vat_type_dtl').val(data1.p_vat_type_dtl_id);
+                // $('#p_vat_type_dtl').val(data1.p_vat_type_dtl_id);
 
                 $('#wp_user_name').val(data1.wp_user_name);
                 $('#wp_user_pwd').val(data1.wp_user_pwd);
@@ -949,7 +949,11 @@
                 $('#fax_no_owner').val(data1.fax_no_owner);
                 $('#zip_code_owner').val(data1.zip_code_owner);
 
-                $('#p_private_question_id').val(data1.p_private_question_id);
+                // $('#p_private_question_id').val(data1.p_private_question_id);
+                setTimeout(function(){
+                    $('#p_private_question_id').val(data1.p_private_question_id);
+                }, 500); 
+
                 $('#private_answer').val(data1.private_answer);
 
                 $( "#p_rqst_type_id" ).val(data1.p_rqst_type_id);
@@ -962,6 +966,10 @@
                     data: {p_rqst_type_id:  data1.p_rqst_type_id },
                     success: function (data) {
                         $( "#namaAyat" ).html( data );
+
+                        setTimeout(function(){
+                            $('#p_vat_type_dtl').val(data1.p_vat_type_dtl_id);
+                        }, 500);
                     },
                     error: function (xhr, status, error) {
                         swal({title: "Error!", text: xhr.responseText, html: true, type: "error"});
@@ -1023,6 +1031,17 @@
     }
 
     function submitform(){
+        if ($('#reg_letter_no').val() == ''){
+            swal('Informasi', 'Input Nomor Surat belum diisi','info');
+            return;
+        } 
+
+        if ($('#npwpd').val() == ''){
+            swal('Informasi', 'NPWPD belum digenerate','info');
+            return;
+        } 
+
+
         var params_submit = {};
 
         params_submit.CURR_DOC_ID         = $('#CURR_DOC_ID').val();
