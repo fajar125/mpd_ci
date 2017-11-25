@@ -176,7 +176,7 @@ class Wf_controller {
 
         //$sql = "SELECT * FROM TABLE (PACK_TASK_PROFILE.USER_TASK_LIST (".$p_w_doc_type_id.",".$p_w_proc_id.",'".$profile_type."','".$user_name."',''))";
         $sql = "SELECT * FROM sikp.pack_task_profile.user_task_list(".$p_w_doc_type_id.",".$p_w_proc_id.",'".$profile_type."','".$user_name."','') AS tbl (ty_workflow_ctl)";
-
+        // print_r($sql);
         $req_param = array (
             "table" => $sql,
             "sort_by" => $sort,
@@ -365,8 +365,8 @@ class Wf_controller {
 
         $curr_ctl_id = $ci->input->post('curr_ctl_id');
         $curr_doc_type_id = $ci->input->post('curr_doc_type_id');
-        $user_name = strtoupper($userinfo['app_user_name']);
-
+        // $user_name = strtoupper($userinfo['app_user_name']);
+        $user_name = $userinfo['app_user_name'];
         $curr_doc_type_id = empty($curr_doc_type_id) ? NULL : $curr_doc_type_id;
 
         try {

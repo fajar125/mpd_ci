@@ -879,7 +879,10 @@
                 $('#fax_no_owner').val(data1.fax_no_owner);
                 $('#zip_code_owner').val(data1.zip_code_owner);
 
-                $('#p_private_question_id').val(data1.p_private_question_id);
+                setTimeout(function(){
+                    $('#p_private_question_id').val(data1.p_private_question_id);
+                }, 500); 
+
                 $('#private_answer').val(data1.private_answer);
 
                 $( "#p_rqst_type_id" ).val(data1.p_rqst_type_id);
