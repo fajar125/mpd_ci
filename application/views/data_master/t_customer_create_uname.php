@@ -58,55 +58,19 @@
                     }
                 },
                 
-                {label: 'Nama Pemilik/Pengelola',name: 'company_owner',width: 150, align: "left",editable: false,
-                    editoptions: {
-                        size: 30,
-                        maxlength:32
-                    },
-                    editrules: {required: true}
-                },
+                {label: 'Nama Pemilik/Pengelola',name: 'company_owner',width: 150, align: "left",editable: false},
                 
+                {label: 'Alamat WP',name: 'alamat_lengkap',width: 200, align: "left",editable: false},
 
-                {label: 'Alamat WP',name: 'alamat_lengkap',width: 200, align: "left",editable: false,
-                    editoptions: {
-                        size: 30,
-                        maxlength:32
-                    }
+                {label: 'Merek Dagang',name: 'company_brand',width: 200, align: "left",editable: false},
+                {label: 'Alamat Merek Dagang',name: 'brand_address_name',width: 200, align: "left",editable: false
                 },
 
-                {label: 'Merek Dagang',name: 'company_brand',width: 200, align: "left",editable: false,
-                    editoptions: {
-                        size: 60,
-                        maxlength:255
-                    }
-                },
-                {label: 'Alamat Merek Dagang',name: 'brand_address_name',width: 200, align: "left",editable: false,
-                    editoptions: {
-                        size: 60,
-                        maxlength:255
-                    }
-                },
+                {label: 'Jenis Pajak',name: 'vat_code',width: 200, align: "left",editable: false},
 
-                {label: 'Jenis Pajak',name: 'vat_code',width: 200, align: "left",editable: false,
-                    editoptions: {
-                        size: 60,
-                        maxlength:255
-                    }
-                },
+                {label: 'No Seluler',name: 'mobile_no_owner',width: 150, align: "left",editable: false},
 
-                {label: 'No Seluler',name: 'mobile_no_owner',width: 150, align: "left",editable: false,
-                    editoptions: {
-                        size: 30,
-                        maxlength:32
-                    }
-                },
-
-                {label: 'Email',name: 'email_address',width: 150, align: "left",editable: false,
-                    editoptions: {
-                        size: 30,
-                        maxlength:32
-                    }
-                },
+                {label: 'Email',name: 'email_address',width: 150, align: "left",editable: false},
 
 
                 // Kebutuhan untuk form
