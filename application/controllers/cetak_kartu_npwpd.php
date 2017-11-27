@@ -70,22 +70,22 @@ class cetak_kartu_npwpd extends CI_Controller{
 
 		$pdf->SetAutoPageBreak(false,0);
 		$pdf->Ln(0);
-		$pdf->Image('images/logo_lombok.png',12,11,13,13);
+		$pdf->Image(getValByCode('LOGO'),12,11,13,13);
 		$pdf->SetFont('Arial', 'B', 6);
 		$pdf->Cell(10, 5, "", "TL", 0, 'L');
-		$pdf->Cell(80, 5, "PEMERINTAH KABUPATEN LOMBOK UTARA", "TR", 0, 'C');
+		$pdf->Cell(80, 5, getValByCode('INSTANSI_1'), "TR", 0, 'C');
 		$pdf->Cell(10, 5, "", "", 0, 'L');
 		$pdf->Cell(90, 5, "", "TLR", 0, 'L');
 		$pdf->Ln();
 		$pdf->SetFont('Arial', 'B', 10);
 		$pdf->Cell(10, 5, "", "L", 0, 'L');
-		$pdf->Cell(80, 5, "DINAS PELAYANAN PAJAK", "R", 0, 'C');
+		$pdf->Cell(80, 5, getValByCode('INSTANSI_2'), "R", 0, 'C');
 		$pdf->Cell(10, 5, "", "", 0, 'L');
 		$pdf->Cell(90, 5, "PERHATIAN", "LR", 0, 'C');
 		$pdf->Ln();
 		$pdf->SetFont('Arial', '', 6);
 		$pdf->Cell(10, 5, "", "L", 0, 'L');
-		$pdf->Cell(80, 5, "Jalan Wastukencana No. 2 Telp/Fax (022) 4235052", "R", 0, 'C');
+		$pdf->Cell(80, 5, getValByCode('ALAMAT_5'), "R", 0, 'C');
 		$pdf->Cell(10, 5, "", "", 0, 'L');
 		$pdf->Cell(90, 5, "", "LR", 0, 'C');
 		$pdf->Ln(1);
@@ -105,7 +105,7 @@ class cetak_kartu_npwpd extends CI_Controller{
 				"",
 				"",
 				"*",
-				"NPWPD ini merupakan tanda pengenal diri atau identitas wajib Pajak dalam melakukan hak dan kewajiban perpajakan daerah di kota LOMBOK UTARA.",
+				"NPWPD ini merupakan tanda pengenal diri atau identitas wajib Pajak dalam melakukan hak dan kewajiban perpajakan daerah di Kabupaten Lombok Utara.",
 				""
 			),
 			array
@@ -176,7 +176,7 @@ class cetak_kartu_npwpd extends CI_Controller{
 		$pdf->SetFont('Arial', '', 6);
 		$pdf->Cell(10, 5, "", "", 0, 'C');
 		$pdf->Cell(10, 3, "", "L", 0, 'C');
-		$pdf->Cell(75, 3, "data kepemilikan, agar segera melapor ke kantor Dinas Pelayanan Pajak", "", 0, 'J');
+		$pdf->Cell(75, 3, "data kepemilikan, agar segera melapor ke kantor Badan Pendapatan Daerah", "", 0, 'J');
 		$pdf->Cell(5, 5, "", "R", 0, 'C');
 		$pdf->Ln(3);
 		$pdf->SetFont('Arial', '', 6);
@@ -184,7 +184,7 @@ class cetak_kartu_npwpd extends CI_Controller{
 		$pdf->SetFont('Arial', '', 6);
 		$pdf->Cell(10, 5, "", "", 0, 'C');
 		$pdf->Cell(10, 3, "", "L", 0, 'C');
-		$pdf->Cell(75, 3, "Kota LOMBOK UTARA.", "", 0, 'J');
+		$pdf->Cell(75, 3, "Kabupaten Lombok Utara.", "", 0, 'J');
 		$pdf->Cell(5, 5, "", "R", 0, 'C');
 		$pdf->Ln(3);
 		$pdf->SetFont('Arial', 'B', 8);
