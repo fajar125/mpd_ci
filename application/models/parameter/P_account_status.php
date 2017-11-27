@@ -4,7 +4,7 @@
  * Account Status Model
  *
  */
-class p_account_status extends Abstract_model {
+class P_account_status extends Abstract_model {
 
     public $table           = "p_account_status";
     public $pkey            = "p_account_status_id";

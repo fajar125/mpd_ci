@@ -1,10 +1,10 @@
 <?php
 
 /**
- * t_rep_bpps2 Model
+ * t_rep_lap_harian Model
  *
  */
-class t_rep_bpps2 extends Abstract_model {
+class T_rep_lap_harian extends Abstract_model {
 
     public $table           = "";
     public $pkey            = "";
@@ -21,19 +21,13 @@ class t_rep_bpps2 extends Abstract_model {
         parent::__construct();
     }
 
-    function getBpps2($p_vat_type_id, $tgl_penerimaan, $i_flag_setoran, $kode_bank, $status){
-        $sql = "select b.payment_key, a.*, kode_jns_pajak||kode_ayat as no_ayat 
-                    from sikp.f_rep_bpps_mod_4(?, 0, ?,?,?,?) a 
-                    left join sikp.t_vat_setllement b 
-                    on b.t_vat_setllement_id=a.t_vat_setllement_id 
-                    order by kode_jns_trans, kode_jns_pajak, kode_ayat";
-        //return $sql;
-        $output = $this->db->query($sql, array($p_vat_type_id, $tgl_penerimaan, $i_flag_setoran, $kode_bank, $status));
+    function getLapHarian($tgl_penerimaan, $kode_bank){
+        $sql = "select * from f_rep_lap_harian_bdhr_mod_2(?,?) order by nomor_ayat";
+        
+        $output = $this->db->query($sql, array($tgl_penerimaan, $kode_bank));
         //echo "vat_type->".$p_vat_type_id." tgl ->".$tgl_penerimaan." setoran->".$i_flag_setoran."kode bank -> ".$kode_bank." status->".$status;exit;
         $items = $output->result_array();
-
-        if ($items == null || $items == '')
-            $items = 'no result';
+        //print_r($items); exit;
         
         return $items;
     }
@@ -64,4 +58,4 @@ class t_rep_bpps2 extends Abstract_model {
 
 }
 
-/* End of file p_bank.php */
+/* End of file t_rep_lap_harian.php */

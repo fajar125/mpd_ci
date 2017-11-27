@@ -4,7 +4,7 @@
  * Role Menu Model
  *
  */
-class p_app_role_menu extends Abstract_model {
+class P_app_role_menu extends Abstract_model {
 
     public $table           = "p_app_role_menu";
     public $pkey            = "p_app_role_menu_id";

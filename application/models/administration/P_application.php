@@ -4,7 +4,7 @@
  * p_application Model
  *
  */
-class p_application extends Abstract_model {
+class P_application extends Abstract_model {
 
     public $table           = "p_application";
     public $pkey            = "p_application_id";

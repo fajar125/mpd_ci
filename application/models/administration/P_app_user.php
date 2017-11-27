@@ -4,7 +4,7 @@
  * p_app_user Model
  *
  */
-class p_app_user extends Abstract_model {
+class P_app_user extends Abstract_model {
 
     public $table           = "p_app_user";
     public $pkey            = "p_app_user_id";

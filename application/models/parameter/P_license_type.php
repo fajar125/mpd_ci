@@ -1,18 +1,18 @@
 <?php
 
 /**
- * Order Status Model
+ * License Type Model
  *
  */
-class p_order_status extends Abstract_model {
+class P_license_type extends Abstract_model {
 
-    public $table           = "p_order_status";
-    public $pkey            = "p_order_status_id";
-    public $alias           = "os";
+    public $table           = "p_license_type";
+    public $pkey            = "p_license_type_id";
+    public $alias           = "lt";
 
     public $fields          = array(
-                                'p_order_status_id'       => array('pkey' => true, 'type' => 'int', 'nullable' => true, 'unique' => true, 'display' => 'Order Status ID'),
-                                'code'    => array('nullable' => true, 'type' => 'str', 'unique' => true, 'display' => 'Status Permohonan'),
+                                'p_license_type_id'       => array('pkey' => true, 'type' => 'int', 'nullable' => true, 'unique' => true, 'display' => 'License Type ID'),
+                                'code'    => array('nullable' => true, 'type' => 'str', 'unique' => true, 'display' => 'Jenis Perizinan'),
                                 'description'     => array('nullable' => true, 'type' => 'str', 'unique' => false, 'display' => 'Deskripsi'),
 
                                 'creation_date'  => array('nullable' => true, 'type' => 'date', 'unique' => false, 'display' => 'Created Date'),
@@ -22,8 +22,8 @@ class p_order_status extends Abstract_model {
 
                             );
 
-    public $selectClause    = "os.*,to_char(updated_date, 'dd-Mon-yyyy') as updated_date_str";
-    public $fromClause      = "p_order_status os";
+    public $selectClause    = "lt.*,to_char(updated_date, 'dd-Mon-yyyy') as updated_date_str";
+    public $fromClause      = "p_license_type lt";
 
     public $refs            = array();
 
@@ -58,4 +58,4 @@ class p_order_status extends Abstract_model {
 
 }
 
-/* End of file p_account_status.php */
+/* End of file p_license_type.php */

@@ -4,7 +4,7 @@
  * p_app_menu Model
  *
  */
-class p_app_menu extends Abstract_model {
+class P_app_menu extends Abstract_model {
 
     public $table           = "p_app_menu";
     public $pkey            = "p_app_menu_id";

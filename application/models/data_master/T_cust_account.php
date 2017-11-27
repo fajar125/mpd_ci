@@ -4,9 +4,9 @@
  * t_cust_account.php Model
  *
  */
-class t_cust_account extends Abstract_model {
+class T_cust_account extends Abstract_model {
 
-     public $table           = "v_cust_account_update";
+    public $table           = "v_cust_account_update";
     public $pkey            = "t_cust_account_id";
     public $alias           = "cust";
 

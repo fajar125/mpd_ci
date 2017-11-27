@@ -4,7 +4,7 @@
  * Bank Model
  *
  */
-class p_bank extends Abstract_model {
+class P_bank extends Abstract_model {
 
     public $table           = "p_bank";
     public $pkey            = "p_bank_id";

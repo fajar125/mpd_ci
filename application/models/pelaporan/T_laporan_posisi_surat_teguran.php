@@ -1,10 +1,10 @@
 <?php
 
 /**
- * t_rep_lap_harian_per_ketetapan Model
+ * t_laporan_posisi_surat_teguran Model
  *
  */
-class t_rep_lap_harian_per_ketetapan extends Abstract_model {
+class T_laporan_posisi_surat_teguran extends Abstract_model {
 
     public $table           = "";
     public $pkey            = "";
@@ -21,15 +21,25 @@ class t_rep_lap_harian_per_ketetapan extends Abstract_model {
         parent::__construct();
     }
 
-    function getLapHarianPerKetetapan($tgl_penerimaan, $kode_bank){
-        $sql = "select * from f_rep_lap_harian_per_ketetapan(?,?) order by nomor_ayat";
+    function getLaporanPosisi($p_vat_type_id, $p_finance_period_id, $tanggal){
+        $sql = "select b.company_brand,regexp_replace(b.brand_address_name, '\r|\n', '', 'g')||' '||b.brand_address_no as alamat_merk_dagang,a.*, 
+        '' as surat_teguran1,
+        '' as surat_teguran2,
+        '' as surat_teguran3
+            from f_posisi_surat_teguran_test_2(?,?,?) a
+            left join t_cust_account b on a.npwpd = b.npwd
+            ORDER BY company_brand,npwpd, surat_teguran_3,surat_teguran_2,surat_teguran_1";
         
-        $output = $this->db->query($sql, array($tgl_penerimaan, $kode_bank));
+        $output = $this->db->query($sql, array($p_vat_type_id, $p_finance_period_id, $tanggal));
         //echo "vat_type->".$p_vat_type_id." tgl ->".$tgl_penerimaan." setoran->".$i_flag_setoran."kode bank -> ".$kode_bank." status->".$status;exit;
+
         $items = $output->result_array();
         //print_r($items); exit;
-        if ($items == null || $items == '')
+
+        if($items == null || $items == '')
             $items = 'no result';
+
+
         return $items;
     }
 
@@ -59,4 +69,4 @@ class t_rep_lap_harian_per_ketetapan extends Abstract_model {
 
 }
 
-/* End of file t_rep_lap_harian_per_ketetapan.php */
+/* End of file t_laporan_posisi_surat_teguran.php */

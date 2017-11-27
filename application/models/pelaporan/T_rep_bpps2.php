@@ -1,10 +1,10 @@
 <?php
 
 /**
- * t_laporan_posisi_surat_teguran Model
+ * t_rep_bpps2 Model
  *
  */
-class t_laporan_posisi_surat_teguran extends Abstract_model {
+class T_rep_bpps2 extends Abstract_model {
 
     public $table           = "";
     public $pkey            = "";
@@ -21,25 +21,20 @@ class t_laporan_posisi_surat_teguran extends Abstract_model {
         parent::__construct();
     }
 
-    function getLaporanPosisi($p_vat_type_id, $p_finance_period_id, $tanggal){
-        $sql = "select b.company_brand,regexp_replace(b.brand_address_name, '\r|\n', '', 'g')||' '||b.brand_address_no as alamat_merk_dagang,a.*, 
-        '' as surat_teguran1,
-        '' as surat_teguran2,
-        '' as surat_teguran3
-            from f_posisi_surat_teguran_test_2(?,?,?) a
-            left join t_cust_account b on a.npwpd = b.npwd
-            ORDER BY company_brand,npwpd, surat_teguran_3,surat_teguran_2,surat_teguran_1";
-        
-        $output = $this->db->query($sql, array($p_vat_type_id, $p_finance_period_id, $tanggal));
+    function getBpps2($p_vat_type_id, $tgl_penerimaan, $i_flag_setoran, $kode_bank, $status){
+        $sql = "select b.payment_key, a.*, kode_jns_pajak||kode_ayat as no_ayat 
+                    from sikp.f_rep_bpps_mod_4(?, 0, ?,?,?,?) a 
+                    left join sikp.t_vat_setllement b 
+                    on b.t_vat_setllement_id=a.t_vat_setllement_id 
+                    order by kode_jns_trans, kode_jns_pajak, kode_ayat";
+        //return $sql;
+        $output = $this->db->query($sql, array($p_vat_type_id, $tgl_penerimaan, $i_flag_setoran, $kode_bank, $status));
         //echo "vat_type->".$p_vat_type_id." tgl ->".$tgl_penerimaan." setoran->".$i_flag_setoran."kode bank -> ".$kode_bank." status->".$status;exit;
-
         $items = $output->result_array();
-        //print_r($items); exit;
 
-        if($items == null || $items == '')
+        if ($items == null || $items == '')
             $items = 'no result';
-
-
+        
         return $items;
     }
 
@@ -69,4 +64,4 @@ class t_laporan_posisi_surat_teguran extends Abstract_model {
 
 }
 
-/* End of file t_laporan_posisi_surat_teguran.php */
+/* End of file p_bank.php */

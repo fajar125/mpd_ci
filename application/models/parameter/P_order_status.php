@@ -1,24 +1,19 @@
 <?php
 
 /**
- * Global Param Model
+ * Order Status Model
  *
  */
-class p_global_param extends Abstract_model {
+class P_order_status extends Abstract_model {
 
-    public $table           = "p_global_param";
-    public $pkey            = "p_global_param_id";
-    public $alias           = "gb";
+    public $table           = "p_order_status";
+    public $pkey            = "p_order_status_id";
+    public $alias           = "os";
 
     public $fields          = array(
-                                'p_global_param_id'       => array('pkey' => true, 'type' => 'int', 'nullable' => true, 'unique' => true, 'display' => 'Parameter ID'),
-
-                                'code'    => array('nullable' => true, 'type' => 'str', 'unique' => true, 'display' => 'Code'),
-                                'value'      => array('nullable' => true, 'type' => 'str', 'unique' => false, 'display' => 'Nilai 1'),
-                                'type_1'    => array('nullable' => false, 'type' => 'str', 'unique' => false, 'display' => 'Type'),
-                                'is_range'    => array('nullable' => false, 'type' => 'str', 'unique' => false, 'display' => 'Range'),
-                                'value_2'      => array('nullable' => true, 'type' => 'str', 'unique' => false, 'display' => 'Nilai 2'),
-                                'description'     => array('nullable' => true, 'type' => 'str', 'unique' => false, 'display' => 'Keterangan'),
+                                'p_order_status_id'       => array('pkey' => true, 'type' => 'int', 'nullable' => true, 'unique' => true, 'display' => 'Order Status ID'),
+                                'code'    => array('nullable' => true, 'type' => 'str', 'unique' => true, 'display' => 'Status Permohonan'),
+                                'description'     => array('nullable' => true, 'type' => 'str', 'unique' => false, 'display' => 'Deskripsi'),
 
                                 'creation_date'  => array('nullable' => true, 'type' => 'date', 'unique' => false, 'display' => 'Created Date'),
                                 'created_by'    => array('nullable' => true, 'type' => 'str', 'unique' => false, 'display' => 'Created By'),
@@ -27,8 +22,8 @@ class p_global_param extends Abstract_model {
 
                             );
 
-    public $selectClause    = "gb.*";
-    public $fromClause      = "sikp.p_global_param gb";
+    public $selectClause    = "os.*,to_char(updated_date, 'dd-Mon-yyyy') as updated_date_str";
+    public $fromClause      = "p_order_status os";
 
     public $refs            = array();
 
@@ -61,15 +56,6 @@ class p_global_param extends Abstract_model {
         return true;
     }
 
-	function getValByCode($code) {
-		$sql = "SELECT * FROM sikp.p_global_param WHERE upper(code) = ?";
-		$result = $this->db->query($sql, array(strtoupper($code)));
-		$item = $result->row_array();
-
-		if(count($item) == 0) return '';
-		return $item['value'];
-	}
-
 }
 
-/* End of file p_global_param.php */
+/* End of file p_account_status.php */

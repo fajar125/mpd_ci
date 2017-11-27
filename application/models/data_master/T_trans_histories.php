@@ -4,7 +4,7 @@
  * t_trans_histories Model
  *
  */
-class t_trans_histories extends Abstract_model {
+class T_trans_histories extends Abstract_model {
 
     public $table           = "t_vat_setllement";
     public $pkey            = "";

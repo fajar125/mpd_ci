@@ -1,10 +1,10 @@
 <?php
 
 /**
- * t_rep_lap_harian Model
+ * t_rep_lap_harian_per_ketetapan Model
  *
  */
-class t_rep_lap_harian extends Abstract_model {
+class T_rep_lap_harian_per_ketetapan extends Abstract_model {
 
     public $table           = "";
     public $pkey            = "";
@@ -21,14 +21,15 @@ class t_rep_lap_harian extends Abstract_model {
         parent::__construct();
     }
 
-    function getLapHarian($tgl_penerimaan, $kode_bank){
-        $sql = "select * from f_rep_lap_harian_bdhr_mod_2(?,?) order by nomor_ayat";
+    function getLapHarianPerKetetapan($tgl_penerimaan, $kode_bank){
+        $sql = "select * from f_rep_lap_harian_per_ketetapan(?,?) order by nomor_ayat";
         
         $output = $this->db->query($sql, array($tgl_penerimaan, $kode_bank));
         //echo "vat_type->".$p_vat_type_id." tgl ->".$tgl_penerimaan." setoran->".$i_flag_setoran."kode bank -> ".$kode_bank." status->".$status;exit;
         $items = $output->result_array();
         //print_r($items); exit;
-        
+        if ($items == null || $items == '')
+            $items = 'no result';
         return $items;
     }
 
@@ -58,4 +59,4 @@ class t_rep_lap_harian extends Abstract_model {
 
 }
 
-/* End of file t_rep_lap_harian.php */
+/* End of file t_rep_lap_harian_per_ketetapan.php */
