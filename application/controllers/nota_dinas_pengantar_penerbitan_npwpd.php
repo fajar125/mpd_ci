@@ -99,7 +99,7 @@ class nota_dinas_pengantar_penerbitan_npwpd extends CI_Controller{
         //header nota
         $pdf->SetFont('Times', '', 12);
         $pdf->Cell($lengthJudul1, $this->height, "Kepada         :", "", 0, 'L');
-        $pdf->Cell($lengthJudul2, $this->height, "Yth. Bapak Kepala Dinas Pelayanan Pajak Kabupaten Lombok Utara", "", 0, 'L');
+        $pdf->Cell($lengthJudul2, $this->height, "Yth. Bapak Kepala Badan Pendapatan Daerah Kabupaten Lombok Utara", "", 0, 'L');
         $pdf->Ln(6);
 
         $pdf->Cell($lengthJudul1, $this->height, "Dari              :", "", 0, 'L');
