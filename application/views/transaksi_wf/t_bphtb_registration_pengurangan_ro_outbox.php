@@ -317,8 +317,8 @@
                                         </div>
                                         
                                     </div>
-                                    <div class="form-group" style="background: #45f442">
-                                        <label class="control-label col-md-5 " > DATA DIBAWAH INI KHUSUS UNTUK LEMBAR CETAKAN :
+                                    <div class="form-group" >
+                                        <label class="control-label col-md-5 " ><b><font color="green"> DATA DIBAWAH INI KHUSUS UNTUK LEMBAR CETAKAN :</font></b>
                                         </label>
                                     </div>
                                     <div class="form-group">
