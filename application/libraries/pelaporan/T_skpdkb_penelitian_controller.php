@@ -4,7 +4,7 @@
 * @class t_skpdkb_penelitian_controller
 * @version 07/05/2015 12:18:00
 */
-class t_skpdkb_penelitian_controller {
+class T_skpdkb_penelitian_controller {
 
 	function read()
     {

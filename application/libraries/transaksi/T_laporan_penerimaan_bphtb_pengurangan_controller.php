@@ -4,7 +4,7 @@
 * @class t_laporan_penerimaan_bphtb_pengurangan_controller
 * @version 07/05/2015 12:18:00
 */
-class t_laporan_penerimaan_bphtb_pengurangan_controller {
+class T_laporan_penerimaan_bphtb_pengurangan_controller {
 
     function excel()
     {

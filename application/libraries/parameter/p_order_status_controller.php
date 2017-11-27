@@ -4,7 +4,7 @@
 * @class p_order_status_controller
 * @version 07/05/2015 12:18:00
 */
-class p_order_status_controller {
+class P_order_status_controller {
 
     function read() {
 

@@ -4,7 +4,7 @@
 * @class vats_controller
 * @version 07/05/2015 12:18:00
 */
-class t_vat_setllement_ro_modifikasi_ubah_register_controller {
+class T_vat_setllement_ro_modifikasi_ubah_register_controller {
 
     function read() {
 

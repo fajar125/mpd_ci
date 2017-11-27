@@ -4,7 +4,7 @@
 * @class p_rqst_type_controller
 * @version 07/05/2015 12:18:00
 */
-class p_rqst_type_controller {
+class P_rqst_type_controller {
 
     function read() {
 

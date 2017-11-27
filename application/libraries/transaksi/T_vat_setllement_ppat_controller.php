@@ -4,7 +4,7 @@
 * @class t_vat_setllement_ppat_controller
 * @version 07/05/2015 12:18:00
 */
-class t_vat_setllement_ppat_controller {
+class T_vat_setllement_ppat_controller {
 
     function submit(){
         $t_ppat_id               = getVarClean('t_ppat_id','str',''); 

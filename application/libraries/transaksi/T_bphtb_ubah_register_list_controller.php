@@ -4,7 +4,7 @@
 * @class vats_controller
 * @version 07/05/2015 12:18:00
 */
-class t_bphtb_ubah_register_list_controller {
+class T_bphtb_ubah_register_list_controller {
 
     function read() {
 

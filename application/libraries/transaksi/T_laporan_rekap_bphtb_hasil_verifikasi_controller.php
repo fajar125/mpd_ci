@@ -4,7 +4,7 @@
 * @class t_laporan_rekap_bphtb_hasil_verifikasi_controller
 * @version 07/05/2015 12:18:00
 */
-class t_laporan_rekap_bphtb_hasil_verifikasi_controller {
+class T_laporan_rekap_bphtb_hasil_verifikasi_controller {
 
     function read()
     {

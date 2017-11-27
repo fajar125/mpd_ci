@@ -4,7 +4,7 @@
 * @class p_global_param_controller
 * @version 07/05/2015 12:18:00
 */
-class p_global_param_controller {
+class P_global_param_controller {
 
     function read() {
 

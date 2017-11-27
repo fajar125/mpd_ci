@@ -4,7 +4,7 @@
 * @class p_vat_type_controller
 * @version 07/05/2015 12:18:00
 */
-class p_private_question_controller {
+class P_private_question_controller {
 
     function readLov() {
 
