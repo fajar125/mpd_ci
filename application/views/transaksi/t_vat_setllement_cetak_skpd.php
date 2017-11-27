@@ -65,15 +65,15 @@
             mtype: "POST",
             colModel: [
 
-                {label: 'Nama WP',name: 'wp_name',width: 250, align: "left"},
-                {label: 'NPWPD',name: 'npwd',width: 250, align: "left"},
-                {label: 'Periode',name: 'finance_period_code',width: 180, align: "left"},
-                {label: 'Jenis Ketetapan',name: 'sett_code',width: 150, align: "left"},
-                {label: 'Total Transaksi',name: 'total_trans_amount',width: 150, summaryTpl:"{0}",summaryType:"sum", formatter:'integer', formatoptions: {prefix:"", thousandsSeparator:',', defaultValue:'0'},align: "right"},
-                {label: 'Total Pajak',name: 'total_vat_amount',width: 150, summaryTpl:"{0}",summaryType:"sum", formatter:'integer', formatoptions: {prefix:"", thousandsSeparator:',', defaultValue:'0'},align: "right"},
-                {label: 'Denda',name: 'total_penalty_amount',width: 100, summaryTpl:"{0}",summaryType:"sum", formatter:'integer', formatoptions: {prefix:"", thousandsSeparator:',', defaultValue:'0'},align: "right"},
-                {label: 'No Kohir',name: 'no_kohir',width: 100, align: "right"},
-                {name: 'Cetak SKPD',width: 200, align: "center",
+                {label: 'Nama WP',name: 'wp_name',width: 220, align: "left"},
+                {label: 'NPWPD',name: 'npwd',width: 120, align: "left"},
+                {label: 'Periode',name: 'finance_period_code',width: 120, align: "left"},
+                {label: 'Jenis Ketetapan',name: 'sett_code',width: 120, align: "left"},
+                {label: 'Total Transaksi',name: 'total_trans_amount',width: 120, summaryTpl:"{0}",summaryType:"sum", formatter:'integer', formatoptions: {prefix:"", thousandsSeparator:',', defaultValue:'0'},align: "right"},
+                {label: 'Total Pajak',name: 'total_vat_amount',width: 120, summaryTpl:"{0}",summaryType:"sum", formatter:'integer', formatoptions: {prefix:"", thousandsSeparator:',', defaultValue:'0'},align: "right"},
+                {label: 'Denda',name: 'total_penalty_amount',width: 80, summaryTpl:"{0}",summaryType:"sum", formatter:'integer', formatoptions: {prefix:"", thousandsSeparator:',', defaultValue:'0'},align: "right"},
+                {label: 'No Kohir',name: 'no_kohir',width: 80, align: "right"},
+                {name: 'Cetak SKPD',width: 100, align: "center",
                     formatter:function(cellvalue, options, rowObject) {
 
                         var t_vat_setllement_id = rowObject['t_vat_setllement_id'];
@@ -88,7 +88,7 @@
             height: '100%',
             autowidth: true,
             viewrecords: true,
-            rowNum: 10,
+            rowNum: 5,
             rowList: [10,20,50],
             rownumbers: true, // show row numbers
             rownumWidth: 35, // the width of the row numbers columns

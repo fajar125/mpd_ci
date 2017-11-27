@@ -22,13 +22,13 @@
             <!-- CONTENT  value="2015-09-01" -->
             <div class="form-body">
                 <div class="row col-md-offset-2">                    
-                    <label class="control-label col-md-1">NPWD :</label>
+                    <label class="control-label col-md-2">NPWD :</label>
                     <div class="col-md-3">
                         <div class="input-group">
                             <input type="text" class="form-control" name="npwd" id="npwd">                 
                         </div>
                     </div>
-                    <label class="control-label col-md-1">Tahun :</label>
+                    <label class="control-label col-md-2">Tahun :</label>
                     <div class="col-md-2">
                         <div class="input-group">
                             <input type="text" class="form-control" name="tahun" id="tahun">                 
@@ -42,9 +42,13 @@
 </div>
 <div class="tab-content no-border" id="table">
     <div class="row">
-        <div class="col-md-12">
-            <table id="grid-table"></table>
-            <div id="grid-pager"></div>
+        <<div class="col-xs-12">
+            <div id="gbox_grid-table" class="ui-jqgrid">
+                <div id="gview_grid-table" class="ui-jqgrid-view table-responsive" role="grid">
+                    <table id="grid-table"></table>
+                    <div id="grid-pager"></div>
+                </div>
+            </div>            
         </div>
     </div>
     <div class="space-4"></div>  
@@ -55,6 +59,7 @@
     var npwd 	= $('#npwd').val();
     var tahun   = $('#tahun').val();
 
+    $('#table').css('display', 'none');
     jQuery(function($) {
         var grid_selector = "#grid-table";
         var pager_selector = "#grid-pager";
@@ -65,9 +70,9 @@
             datatype: "json",
             mtype: "POST",
             colModel: [
-            	{label: 'NPWPD',name: 'npwpd_gab',width: 250, align: "left"},
-                {label: 'Nama',name: 'judul_gab',width: 150, align: "left"},
-                {label: 'Tahun',name: 'periode_gab',width: 250, align: "left"},
+            	{label: 'NPWPD',name: 'npwpd_gab',width: 120, align: "left"},
+                {label: 'Nama',name: 'judul_gab',width: 100, align: "left"},
+                {label: 'Tahun',name: 'periode_gab',width: 70, align: "left"},
                 {label: 'Bulan',width: 180, align: "left",
                 	formatter:function(cellvalue, options, rowObject) {
 
@@ -78,8 +83,8 @@
 
                     }
             	},
-                {label: 'Tanggal Penetapan',name: 'tanggal_tap',width: 250, align: "left"},
-                {label: 'Jumlah',name: 'jumlah_gab',width: 150, summaryTpl:"{0}",summaryType:"sum", formatter:'integer', formatoptions: {prefix:"", thousandsSeparator:',', defaultValue:'0'},align: "right"},
+                {label: 'Tanggal Penetapan',name: 'tanggal_tap',width: 150, align: "left"},
+                {label: 'Jumlah',name: 'jumlah_gab',width: 100, summaryTpl:"{0}",summaryType:"sum", formatter:'integer', formatoptions: {prefix:"", thousandsSeparator:',', defaultValue:'0'},align: "right"},
                 {label: 'No Kohir',name: 'no_kohir',width: 100, align: "right"},
                 {name: 'Cetak SKPD',width: 200, align: "center",
                     formatter:function(cellvalue, options, rowObject) {
@@ -97,7 +102,7 @@
             height: '100%',
             autowidth: true,
             viewrecords: true,
-            rowNum: 10,
+            rowNum: 5,
             rowList: [10,20,50],
             rownumbers: true, // show row numbers
             rownumWidth: 35, // the width of the row numbers columns
