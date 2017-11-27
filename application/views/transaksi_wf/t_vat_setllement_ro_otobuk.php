@@ -94,216 +94,209 @@
 </div>
 <div class="space-4"></div>
 <div class="row">
-    <div class="col-xs-9">
-        <div class="tab-content no-border">
-            <div class="row">
-                <div class="col-md-12">
-                    <div class="portlet blue box menu-panel">
-                        <div class="portlet-title">
-                            <div class="caption">INFORMASI</div>
-                            <div class="tools">
-                                <a class="collapse" href="javascript:;" data-original-title="" title=""> </a>
+    <div class="col-xs-12">
+        <div class="portlet blue box menu-panel">
+            <div class="portlet-title">
+                <div class="caption">INFORMASI</div>
+                <div class="tools">
+                    <a class="collapse" href="javascript:;" data-original-title="" title=""> </a>
+                </div>
+            </div>
+            <div class="portlet-body">
+                <div class="form-horizontal">
+                    <div class="row">
+                        <div class="form-group">
+                            <label class="control-label col-md-4">No Order
+                            </label>
+                            <div class="col-md-5">
+                                <input id="order_no" class="form-control"  readonly  name="order_no">
                             </div>
                         </div>
-                        <div class="portlet-body">
-                            <div class="form-horizontal">
-                                <div class="row">
-                                    <div class="form-group">
-                                        <label class="control-label col-md-4">No Order
-                                        </label>
-                                        <div class="col-md-5">
-                                            <input id="order_no" class="form-control"  readonly  name="order_no">
-                                        </div>
-                                    </div>
-                                    <div class="form-group">
-                                        <label class="control-label col-md-4">Jenis Pajak
-                                        </label>
-                                        <div class="col-md-5">
-                                            <input type="text" class="form-control" readonly  name="jenis_pajak" id="jenis_pajak">
-                                        </div>
-                                    </div>
-                                    <div class="form-group">
-                                        <label class="control-label col-md-4">NPWPD
-                                        </label>
-                                        <div class="col-md-5">
-                                            <input type="text" class="form-control" readonly  name="npwd" id="npwd">
-                                        </div>
-                                    </div>
-                                    <div class="form-group">
-                                        <label class="control-label col-md-4">Nama WP
-                                        </label>
-                                        <div class="col-md-5">
-                                            <input type="text" class="form-control" readonly name="wp_name" id="wp_name">
-                                        </div>
-                                    </div>
 
-                                    <div class="form-group">
-                                        <label class="control-label col-md-4">Alamt WP
-                                        </label>
-                                        <div class="col-md-5">
-                                            <div class="input-group ">
-                                                <textarea rows="4" cols="50" class="form-control" readonly maxlength="256"  name="wp_address_name" id="wp_address_name"></textarea>
-                                            </div>
-                                        </div>
-                                    </div>
+                        <div class="form-group">
+                            <label class="control-label col-md-4">Jenis Pajak
+                            </label>
+                            <div class="col-md-5">
+                                <input type="text" class="form-control" readonly  name="jenis_pajak" id="jenis_pajak">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label col-md-4">NPWPD
+                            </label>
+                            <div class="col-md-5">
+                                <input type="text" class="form-control" readonly  name="npwd" id="npwd">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label col-md-4">Nama WP
+                            </label>
+                            <div class="col-md-5">
+                                <input type="text" class="form-control" readonly name="wp_name" id="wp_name">
+                            </div>
+                        </div>
 
-                                    <div class="form-group">
-                                        <label class="control-label col-md-4">Periode
-                                        </label>
-                                        <div class="col-md-5">
-                                            <div class="input-group ">
-                                                <input type="text" class="form-control" readonly   name="finance_period_code" id="finance_period_code">
-                                            </div>
-                                        </div>
-                                    </div>
-
-                                    <div class="form-group">
-                                        <label class="control-label col-md-4">Masa Pajak
-                                        </label>
-                                        <div class="col-md-5">
-                                            <div class="input-group ">
-                                                <input type="text" class="form-control" name="start_period" readonly id="start_period">
-                                                <span class="input-group-addon"> s/d </span>
-                                                <input type="text" class="form-control"  readonly name="end_period" id="end_period">
-                                            </div>
-                                        </div>
-                                    </div>
-
-                                    <div class="form-group">
-                                        <label class="control-label col-md-4">Total Transaksi
-                                        </label>
-                                        <div class="col-md-5">
-                                            <input type="text" class="form-control priceformat" readonly name="total_trans_amount" id="total_trans_amount">
-                                        </div>
-                                    </div>
-
-                                    <div class="form-group">
-                                        <label class="control-label col-md-4">Total Pakak
-                                        </label>
-                                        <div class="col-md-5">
-                                            <input type="text" class="form-control priceformat" readonly name="total_vat_amount" id="total_vat_amount">
-                                        </div>
-                                    </div>
-
-                                    <div class="form-group">
-                                        <label class="control-label col-md-4">Tanggal Jatuh Tempo
-                                        </label>
-                                        <div class="col-md-5">
-                                            <input type="text" class="form-control " readonly name="due_date" id="due_date">
-                                        </div>
-                                    </div>
-
-                                    <div class="form-group">
-                                        <label class="control-label col-md-4">Dasar Pengenaan
-                                        </label>
-                                        <div class="col-md-5">
-                                            <input type="text" class="form-control priceformat" readonly name="debt_vat_amt" id="debt_vat_amt">
-                                        </div>
-                                    </div>
-
-                                    <div class="form-group">
-                                        <label class="control-label col-md-4">Pajak yang Terutang
-                                        </label>
-                                        <div class="col-md-5">
-                                            <input type="text" class="form-control priceformat" readonly name="terutang" id="terutang">
-                                        </div>
-                                    </div>
-
-                                    <div class="form-group">
-                                        <label class="control-label col-md-4">Kompensasi kelebihan dari tahun sebelumnya
-                                        </label>
-                                        <div class="col-md-5">
-                                            <input type="text" class="form-control priceformat" readonly name="cr_adjustment" id="cr_adjustment">
-                                        </div>
-                                    </div>
-
-                                    <div class="form-group">
-                                        <label class="control-label col-md-4">Setoran yang dilakukan
-                                        </label>
-                                        <div class="col-md-5">
-                                            <input type="text" class="form-control priceformat" readonly name="cr_payment" id="cr_payment">
-                                        </div>
-                                    </div>
-
-                                    <div class="form-group">
-                                        <label class="control-label col-md-4">Lain-lain
-                                        </label>
-                                        <div class="col-md-5">
-                                            <input type="text" class="form-control priceformat" readonly name="cr_others" id="cr_others">
-                                        </div>
-                                    </div>
-
-                                    <div class="form-group">
-                                        <label class="control-label col-md-4">STP (Pokok)
-                                        </label>
-                                        <div class="col-md-5">
-                                            <input type="text" class="form-control priceformat" readonly name="cr_stp" id="cr_stp">
-                                        </div>
-                                    </div>
-
-                                    <div class="form-group">
-                                        <label class="control-label col-md-4">Bunga (Pasal 65 ayat(2))
-                                        </label>
-                                        <div class="col-md-5">
-                                            <input type="text" class="form-control priceformat" readonly name="db_interest_charge" id="db_interest_charge">
-                                        </div>
-                                    </div>
-
-                                    <div class="form-group">
-                                        <label class="control-label col-md-4">Kenaikan (Pasal 65 ayat (3))
-                                        </label>
-                                        <div class="col-md-5">
-                                            <input type="text" class="form-control priceformat" readonly name="db_increasing_charge" id="db_increasing_charge">
-                                        </div>
-                                    </div>
-
-                                    <div class="form-group">
-                                        <label class="control-label col-md-4">Anomali ?
-                                        </label>
-                                        <div class="col-md-5">
-                                            <select  name="is_anomali" id="is_anomali" class="form-control required">
-                                                <option value='N' >TIDAK</option>
-                                                <option value='Y' >YA</option>
-                                            </select>
-
-                                            <input type="hidden" class="form-control " readonly name="t_customer_order_id" id="t_customer_order_id">
-                                        </div>
-                                    </div>
-
-                                    <div class="form-group">
-                                        <label class="control-label col-md-4">Nomor Kohir
-                                        </label>
-                                        <div class="col-md-5">
-                                            <input type="text" class="form-control required" readonly name="no_kohir" id="no_kohir">
-
-                                            <button class="btn btn-danger" type="button" style="DISPLAY: none" id="btn-gen" onclick="">Generate Code</button>
-                                        </div>
-
-                                    </div>
-
-
-                                    <div class="form-actions">
-                                        <div class="row">
-                                            <div class="col-md-offset-5 col-md-12">
-
-                                                <input type="hidden" class="form-control " readonly name="payment_key" id="payment_key">
-
-                                                <a class="btn green" id="print_pembayaran" onClick="printPembayaran();"> Print No Pembayaran
-                                                </a>
-
-                                                <a href="javascript:;" style="DISPLAY: none" class="btn green" id="Update"  > SIMPAN
-                                                </a>
-
-                                                <input type="hidden" class="form-control " readonly name="t_vat_setllement_id" id="t_vat_setllement_id">
-
-                                                <input type="hidden" class="form-control " readonly name="t_cust_account_id" id="t_cust_account_id">
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <!-- End Objek -->
+                        <div class="form-group">
+                            <label class="control-label col-md-4">Alamt WP
+                            </label>
+                            <div class="col-md-5">
+                                <div class="input-group ">
+                                    <textarea rows="4" cols="50" class="form-control" readonly maxlength="256"  name="wp_address_name" id="wp_address_name"></textarea>
                                 </div>
                             </div>
                         </div>
+
+                        <div class="form-group">
+                            <label class="control-label col-md-4">Periode
+                            </label>
+                            <div class="col-md-5">
+                                <div class="input-group ">
+                                    <input type="text" class="form-control" readonly   name="finance_period_code" id="finance_period_code">
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="control-label col-md-4">Masa Pajak
+                            </label>
+                            <div class="col-md-5">
+                                <div class="input-group ">
+                                    <input type="text" class="form-control" name="start_period" readonly id="start_period">
+                                    <span class="input-group-addon"> s/d </span>
+                                    <input type="text" class="form-control"  readonly name="end_period" id="end_period">
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="control-label col-md-4">Total Transaksi
+                            </label>
+                            <div class="col-md-5">
+                                <input type="text" class="form-control priceformat" readonly name="total_trans_amount" id="total_trans_amount">
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="control-label col-md-4">Total Pakak
+                            </label>
+                            <div class="col-md-5">
+                                <input type="text" class="form-control priceformat" readonly name="total_vat_amount" id="total_vat_amount">
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="control-label col-md-4">Tanggal Jatuh Tempo
+                            </label>
+                            <div class="col-md-5">
+                                <input type="text" class="form-control " readonly name="due_date" id="due_date">
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="control-label col-md-4">Dasar Pengenaan
+                            </label>
+                            <div class="col-md-5">
+                                <input type="text" class="form-control priceformat" readonly name="debt_vat_amt" id="debt_vat_amt">
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="control-label col-md-4">Pajak yang Terutang
+                            </label>
+                            <div class="col-md-5">
+                                <input type="text" class="form-control priceformat" readonly name="terutang" id="terutang">
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="control-label col-md-4">Kompensasi kelebihan dari tahun sebelumnya
+                            </label>
+                            <div class="col-md-5">
+                                <input type="text" class="form-control priceformat" readonly name="cr_adjustment" id="cr_adjustment">
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="control-label col-md-4">Setoran yang dilakukan
+                            </label>
+                            <div class="col-md-5">
+                                <input type="text" class="form-control priceformat" readonly name="cr_payment" id="cr_payment">
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="control-label col-md-4">Lain-lain
+                            </label>
+                            <div class="col-md-5">
+                                <input type="text" class="form-control priceformat" readonly name="cr_others" id="cr_others">
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="control-label col-md-4">STP (Pokok)
+                            </label>
+                            <div class="col-md-5">
+                                <input type="text" class="form-control priceformat" readonly name="cr_stp" id="cr_stp">
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="control-label col-md-4">Bunga (Pasal 65 ayat(2))
+                            </label>
+                            <div class="col-md-5">
+                                <input type="text" class="form-control priceformat" readonly name="db_interest_charge" id="db_interest_charge">
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="control-label col-md-4">Kenaikan (Pasal 65 ayat (3))
+                            </label>
+                            <div class="col-md-5">
+                                <input type="text" class="form-control priceformat" readonly name="db_increasing_charge" id="db_increasing_charge">
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="control-label col-md-4">Anomali ?
+                            </label>
+                            <div class="col-md-5">
+                                <select  name="is_anomali" id="is_anomali" class="form-control required">
+                                    <option value='N' >TIDAK</option>
+                                    <option value='Y' >YA</option>
+                                </select>
+
+                                <input type="hidden" class="form-control " readonly name="t_customer_order_id" id="t_customer_order_id">
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="control-label col-md-4">Nomor Kohir
+                            </label>
+                            <div class="col-md-5">
+                                <input type="text" class="form-control required" readonly name="no_kohir" id="no_kohir">
+
+                                <button class="btn btn-danger" type="button" style="DISPLAY: none" id="btn-gen" onclick="">Generate Code</button>
+                            </div>
+
+                        </div>
+
+                        <div class="form-actions">
+                            <div class="row">
+                                <div class="col-md-offset-5 col-md-7">
+
+                                    <input type="hidden" class="form-control " readonly name="payment_key" id="payment_key">
+
+                                    <a class="btn green" id="print_pembayaran" onClick="printPembayaran();"> Print No Pembayaran
+                                    </a>
+
+                                    <a href="javascript:;" style="DISPLAY: none" class="btn green" id="Update"  > SIMPAN
+                                    </a>
+
+                                    <input type="hidden" class="form-control " readonly name="t_vat_setllement_id" id="t_vat_setllement_id">
+
+                                    <input type="hidden" class="form-control " readonly name="t_cust_account_id" id="t_cust_account_id">
+                                </div>
+                            </div>
+                        </div>                        
                     </div>
                 </div>
             </div>
