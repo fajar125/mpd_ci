@@ -144,7 +144,7 @@
             altRows: true,
             shrinkToFit: false,
             multiboxonly: true,
-            footerrow: true,
+            footerrow: false,
             //pager: '#grid-pager',
             loadComplete: function (response) {
                 if(response.success == false) {
