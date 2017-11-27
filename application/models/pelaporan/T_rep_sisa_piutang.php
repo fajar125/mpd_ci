@@ -4,7 +4,7 @@
  * t_rep_sisa_piutang Model
  *
  */
-class t_rep_sisa_piutang extends Abstract_model {
+class T_rep_sisa_piutang extends Abstract_model {
 	public $table           = "";
     public $pkey            = "";
     public $alias           = "";

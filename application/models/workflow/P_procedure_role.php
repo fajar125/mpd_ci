@@ -4,7 +4,7 @@
  * Pembuatan schema Model
  *
  */
-class p_procedure_role extends Abstract_model {
+class P_procedure_role extends Abstract_model {
 
     public $table           = "p_procedure_role";
     public $pkey            = "p_procedure_role_id";

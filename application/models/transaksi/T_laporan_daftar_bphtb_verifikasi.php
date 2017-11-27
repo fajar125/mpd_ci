@@ -4,7 +4,7 @@
  * T_laporan_daftar_bphtb_verifikasi Model
  *
  */
-class t_laporan_daftar_bphtb_verifikasi extends Abstract_model {
+class T_laporan_daftar_bphtb_verifikasi extends Abstract_model {
 
     public $table           = "";
     public $pkey            = "";

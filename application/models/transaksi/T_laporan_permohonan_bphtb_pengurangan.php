@@ -4,7 +4,7 @@
  * t_laporan_permohonan_bphtb_pengurangan Model
  *
  */
-class t_laporan_permohonan_bphtb_pengurangan extends Abstract_model {
+class T_laporan_permohonan_bphtb_pengurangan extends Abstract_model {
 
     public $table           = "";
     public $pkey            = "";

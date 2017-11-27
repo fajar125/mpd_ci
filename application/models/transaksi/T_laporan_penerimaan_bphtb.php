@@ -4,7 +4,7 @@
  * T_laporan_penerimaan_bphtb Model
  *
  */
-class t_laporan_penerimaan_bphtb extends Abstract_model {
+class T_laporan_penerimaan_bphtb extends Abstract_model {
 
     public $table           = "";
     public $pkey            = "";

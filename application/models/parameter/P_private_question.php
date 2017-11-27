@@ -4,7 +4,7 @@
  * p_vat_type Model
  *
  */
-class p_private_question extends Abstract_model {
+class P_private_question extends Abstract_model {
 
     public $table           = "p_private_question";
     public $pkey            = "p_private_question_id";

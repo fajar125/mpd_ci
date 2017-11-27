@@ -4,7 +4,7 @@
  * t_laporan_teguran_bphtb Model
  *
  */
-class t_laporan_teguran_bphtb extends Abstract_model {
+class T_laporan_teguran_bphtb extends Abstract_model {
 
     public $table           = "";
     public $pkey            = "";

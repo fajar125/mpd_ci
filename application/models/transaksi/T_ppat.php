@@ -4,7 +4,7 @@
  * t_ppat Model
  *
  */
-class t_ppat extends Abstract_model {
+class T_ppat extends Abstract_model {
 
     public $table           = "";
     public $pkey            = "";

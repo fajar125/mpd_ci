@@ -4,7 +4,7 @@
  * t_rep_bulanan_target_vs_realisasi Model
  *
  */
-class t_rep_bulanan_target_vs_realisasi extends Abstract_model {
+class T_rep_bulanan_target_vs_realisasi extends Abstract_model {
 
     public $table           = "";
     public $pkey            = "";

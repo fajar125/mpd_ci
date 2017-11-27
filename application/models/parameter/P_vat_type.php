@@ -4,7 +4,7 @@
  * p_vat_type Model
  *
  */
-class p_vat_type extends Abstract_model {
+class P_vat_type extends Abstract_model {
 
     public $table           = "p_vat_type";
     public $pkey            = "p_vat_type_id";

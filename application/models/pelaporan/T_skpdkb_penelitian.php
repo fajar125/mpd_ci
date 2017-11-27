@@ -4,7 +4,7 @@
  * t_skpdkb_penelitian Model
  *
  */
-class t_skpdkb_penelitian extends Abstract_model {
+class T_skpdkb_penelitian extends Abstract_model {
 
     public $table           = "";
     public $pkey            = "";
