@@ -680,7 +680,7 @@
     });
 
     $.ajax({
-        url: "<?php echo base_url().'transaksi/petugas_administrator_combo/'; ?>" ,
+        url: "<?php echo base_url().'bphtb_registration/petugas_administrator_combo/'; ?>" ,
         type: "POST",
         success: function (data) {
             $( "#administrator" ).html( data );
@@ -692,7 +692,7 @@
     });
 
     $.ajax({
-        url: "<?php echo base_url().'transaksi/petugas_pemeriksa_combo/'; ?>" ,
+        url: "<?php echo base_url().'bphtb_registration/petugas_pemeriksa_combo/'; ?>" ,
         type: "POST",
         success: function (data) {
             $( "#pemeriksa" ).html( data );
