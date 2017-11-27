@@ -1,25 +1,23 @@
 <?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
-/**
-* Json library
-* @class p_app_user_controller
-* @version 07/05/2015 12:18:00
-*/
-class p_app_user_controller {
+
+class T_customer_update_controller {
 
     function read() {
 
         $page = getVarClean('page','int',1);
         $limit = getVarClean('rows','int',5);
-        $sidx = getVarClean('sidx','str','p_app_user_id');
-        $sord = getVarClean('sord','str','desc');
+        $sidx = getVarClean('sidx','str','t_customer_id');
+        $sord = getVarClean('sord','str','t_customer_id');
+
+        $t_customer_id = getVarClean('t_customer_id','int',0);
 
         $data = array('rows' => array(), 'page' => 1, 'records' => 0, 'total' => 1, 'success' => false, 'message' => '');
 
         try {
 
             $ci = & get_instance();
-            $ci->load->model('administration/p_app_user');
-            $table = $ci->p_app_user;
+            $ci->load->model('data_master/t_customer_update');
+            $table = $ci->t_customer_update;
 
             $req_param = array(
                 "sort_by" => $sidx,
@@ -37,6 +35,10 @@ class p_app_user_controller {
 
             // Filter Table
             $req_param['where'] = array();
+
+            if(!empty($t_customer_id)) {
+                $req_param['where'][] = 't_customer_id = '.$t_customer_id;
+            }
 
             $table->setJQGridParam($req_param);
             $count = $table->countAll();
@@ -62,7 +64,43 @@ class p_app_user_controller {
 
             $data['rows'] = $table->getAll();
             $data['success'] = true;
-            logging('view data user');
+            logging('view data customer');
+        }catch (Exception $e) {
+            $data['message'] = $e->getMessage();
+        }
+
+        return $data;
+    }
+
+    function readLov() {
+
+        $start = getVarClean('current','int',0);
+        $limit = getVarClean('rowCount','int',5);
+
+        $sort = getVarClean('sort','str','t_customer_id');
+        $dir  = getVarClean('dir','str','asc');
+
+        $searchPhrase = getVarClean('searchPhrase', 'str', '');
+
+        $data = array('rows' => array(), 'success' => false, 'message' => '', 'current' => $start, 'rowCount' => $limit, 'total' => 0);
+
+        try {
+
+            $ci = & get_instance();
+            $ci->load->model('data_master/t_customer_update');
+            $table = $ci->t_customer_update;
+
+            if(!empty($searchPhrase)) {
+                $table->setCriteria("upper(a.company_owner) like upper('%".$searchPhrase."%') and upper(b.npwd) like upper('%".$searchPhrase."%') and upper(b.wp_name) like upper('%".$searchPhrase."%') and upper(b.company_name) like upper('%".$searchPhrase."%') and upper(b.company_brand) like upper('%".$searchPhrase."%') and upper(b.address_name_owner) like upper('%".$searchPhrase."%')");
+            }
+
+            $start = ($start-1) * $limit;
+            $items = $table->getAll($start, $limit, $sort, $dir);
+            $totalcount = $table->countAll();
+
+            $data['rows'] = $items;
+            $data['success'] = true;
+            $data['total'] = $totalcount;
 
         }catch (Exception $e) {
             $data['message'] = $e->getMessage();
@@ -71,28 +109,28 @@ class p_app_user_controller {
         return $data;
     }
 
-    function crud() {
+    /*function crud() {
 
         $data = array();
         $oper = getVarClean('oper', 'str', '');
         switch ($oper) {
             case 'add' :
-                permission_check('can-add-user');
+                permission_check('can-add-bank');
                 $data = $this->create();
             break;
 
             case 'edit' :
-                permission_check('can-edit-user');
+                permission_check('can-edit-bank');
                 $data = $this->update();
             break;
 
             case 'del' :
-                permission_check('can-delete-user');
+                permission_check('can-delete-bank');
                 $data = $this->destroy();
             break;
 
-            default:
-                permission_check('can-view-user');
+            default :
+                permission_check('can-view-bank');
                 $data = $this->read();
             break;
         }
@@ -100,12 +138,11 @@ class p_app_user_controller {
         return $data;
     }
 
-
     function create() {
 
         $ci = & get_instance();
-        $ci->load->model('administration/p_app_user');
-        $table = $ci->p_app_user;
+        $ci->load->model('data_master/t_customer');
+        $table = $ci->t_customer;
 
         $data = array('rows' => array(), 'page' => 1, 'records' => 0, 'total' => 1, 'success' => false, 'message' => '');
 
@@ -159,7 +196,8 @@ class p_app_user_controller {
 
                 $data['success'] = true;
                 $data['message'] = 'Data added successfully';
-                logging('create data user');
+                logging('create data bank');
+
             }catch (Exception $e) {
                 $table->db->trans_rollback(); //Rollback Trans
 
@@ -175,8 +213,8 @@ class p_app_user_controller {
     function update() {
 
         $ci = & get_instance();
-        $ci->load->model('administration/p_app_user');
-        $table = $ci->p_app_user;
+        $ci->load->model('data_master/t_customer');
+        $table = $ci->t_customer;
 
         $data = array('rows' => array(), 'page' => 1, 'records' => 0, 'total' => 1, 'success' => false, 'message' => '');
 
@@ -230,8 +268,7 @@ class p_app_user_controller {
 
                 $data['success'] = true;
                 $data['message'] = 'Data update successfully';
-                logging('update data user');
-
+                logging('update data bank');
                 $data['rows'] = $table->get($items[$table->pkey]);
             }catch (Exception $e) {
                 $table->db->trans_rollback(); //Rollback Trans
@@ -243,12 +280,12 @@ class p_app_user_controller {
         }
         return $data;
 
-    }
+    }*/
 
     function destroy() {
         $ci = & get_instance();
-        $ci->load->model('administration/p_app_user');
-        $table = $ci->p_app_user;
+        $ci->load->model('data_master/t_customer_update');
+        $table = $ci->t_customer_update;
 
         $data = array('rows' => array(), 'page' => 1, 'records' => 0, 'total' => 1, 'success' => false, 'message' => '');
 
@@ -262,7 +299,6 @@ class p_app_user_controller {
             if (is_array($items)){
                 foreach ($items as $key => $value){
                     if (empty($value)) throw new Exception('Empty parameter');
-
                     $table->remove($value);
                     $data['rows'][] = array($table->pkey => $value);
                     $total++;
@@ -272,7 +308,6 @@ class p_app_user_controller {
                 if (empty($items)){
                     throw new Exception('Empty parameter');
                 }
-
                 $table->remove($items);
                 $data['rows'][] = array($table->pkey => $items);
                 $data['total'] = $total = 1;
@@ -280,8 +315,7 @@ class p_app_user_controller {
 
             $data['success'] = true;
             $data['message'] = $total.' Data deleted successfully';
-            logging('delete data user');
-
+            logging('delete data bank');
             $table->db->trans_commit(); //Commit Trans
 
         }catch (Exception $e) {
@@ -292,55 +326,7 @@ class p_app_user_controller {
         }
         return $data;
     }
-
-
-    function updateProfile() {
-
-        $data = array('rows' => array(), 'page' => 1, 'records' => 0, 'total' => 1, 'success' => false, 'message' => '');
-        $id = getVarClean('id','int',0);
-        $email = getVarClean('email','str','');
-        $password = getVarClean('password','str','');
-        $password_confirmation = getVarClean('password_confirmation','str','');
-
-        try {
-            $ci = & get_instance();
-            $ci->load->model('administration/p_app_user');
-            $table = $ci->p_app_user;
-
-            if(empty($id)) throw new Exception('ID tidak boleh kosong');
-            if(empty($email)) throw new Exception('Email tidak boleh kosong');
-
-            $item = $table->get($id);
-            if($item == null) throw new Exception('ID tidak ditemukan');
-
-            $record = array();
-            if(!empty($password) and $ci->session->userdata('ldap_status') == 'NO') {
-                if(strlen($password) < 4) throw new Exception('Min.Password 4 Karakter');
-                if($password != $password_confirmation) throw new Exception('Password tidak cocok');
-
-                $record['password'] = md5($password);
-            }
-            $record['email_address'] = $email;
-            $record['p_app_user_id'] = $id;
-
-            $table->actionType = 'UPDATE';
-            $table->db->trans_begin(); //Begin Trans
-                $table->setRecord($record);
-                $table->update();
-            $table->db->trans_commit(); //Commit Trans
-
-            $ci->session->set_userdata('email_address',$email);
-
-            $data['success'] = true;
-            $data['message'] = 'Data profile berhasil diupdate';
-            logging('update data profile');
-        }catch (Exception $e) {
-            $table->db->trans_rollback(); //Rollback Trans
-            $data['message'] = $e->getMessage();
-        }
-
-        return $data;
-    }
 }
 
-/* End of file p_app_user_controller.php */
+    
+

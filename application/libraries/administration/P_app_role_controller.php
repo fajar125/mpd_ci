@@ -4,7 +4,7 @@
 * @class p_app_role_controller
 * @version 07/05/2015 12:18:00
 */
-class p_app_role_controller {
+class P_app_role_controller {
 
     function read() {
 

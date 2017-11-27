@@ -1,25 +1,28 @@
 <?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 /**
 * Json library
-* @class p_bank_controller
+* @class p_app_menu_controller
 * @version 07/05/2015 12:18:00
 */
-class p_bank_controller {
+class P_app_menu_controller {
 
     function read() {
 
         $page = getVarClean('page','int',1);
         $limit = getVarClean('rows','int',5);
-        $sidx = getVarClean('sidx','str','p_bank_id');
-        $sord = getVarClean('sord','str','desc');
+        $sidx = getVarClean('sidx','str','mn.listing_no');
+        $sord = getVarClean('sord','str','asc');
 
         $data = array('rows' => array(), 'page' => 1, 'records' => 0, 'total' => 1, 'success' => false, 'message' => '');
+
+        $parent_id = getVarClean('parent_id','int',0);
+        $p_application_id = getVarClean('p_application_id','int',0);
 
         try {
 
             $ci = & get_instance();
-            $ci->load->model('parameter/p_bank');
-            $table = $ci->p_bank;
+            $ci->load->model('administration/p_app_menu');
+            $table = $ci->p_app_menu;
 
             $req_param = array(
                 "sort_by" => $sidx,
@@ -35,8 +38,17 @@ class p_bank_controller {
                 "search_str" => isset($_REQUEST['searchString']) ? $_REQUEST['searchString'] : null
             );
 
-            // Filter Table
             $req_param['where'] = array();
+            // Filter Table
+            if(empty($parent_id)) {
+                $req_param['where'][] = 'parent_id is null';
+            }else {
+                $req_param['where'][] = 'parent_id = '.$parent_id;
+            }
+
+            if(!empty($p_application_id)) {
+                $req_param['where'][] = 'p_application_id = '.$p_application_id;
+            }
 
             $table->setJQGridParam($req_param);
             $count = $table->countAll();
@@ -62,44 +74,7 @@ class p_bank_controller {
 
             $data['rows'] = $table->getAll();
             $data['success'] = true;
-            logging('view data status akun');
-        }catch (Exception $e) {
-            $data['message'] = $e->getMessage();
-        }
-
-        return $data;
-    }
-
-    function readLov() {
-
-        $start = getVarClean('current','int',0);
-        $limit = getVarClean('rowCount','int',5);
-
-        $sort = getVarClean('sort','str','p_bank_id');
-        $dir  = getVarClean('dir','str','asc');
-
-        $searchPhrase = getVarClean('searchPhrase', 'str', '');
-
-        $data = array('rows' => array(), 'success' => false, 'message' => '', 'current' => $start, 'rowCount' => $limit, 'total' => 0);
-
-        try {
-
-            $ci = & get_instance();
-            $ci->load->model('parameter/p_bank');
-            $table = $ci->p_bank;
-
-            if(!empty($searchPhrase)) {
-                $table->setCriteria("upper(code) like upper('%".$searchPhrase."%')");
-            }
-
-            $start = ($start-1) * $limit;
-            $items = $table->getAll($start, $limit, $sort, $dir);
-            $totalcount = $table->countAll();
-
-            $data['rows'] = $items;
-            $data['success'] = true;
-            $data['total'] = $totalcount;
-
+            logging('view data menu');
         }catch (Exception $e) {
             $data['message'] = $e->getMessage();
         }
@@ -114,22 +89,22 @@ class p_bank_controller {
         $oper = getVarClean('oper', 'str', '');
         switch ($oper) {
             case 'add' :
-                permission_check('can-add-bank');
+                permission_check('can-add-menu');
                 $data = $this->create();
             break;
 
             case 'edit' :
-                permission_check('can-edit-bank');
+                permission_check('can-edit-menu');
                 $data = $this->update();
             break;
 
             case 'del' :
-                permission_check('can-delete-bank');
+                permission_check('can-delete-menu');
                 $data = $this->destroy();
             break;
 
             default :
-                permission_check('can-view-bank');
+                permission_check('can-view-menu');
                 $data = $this->read();
             break;
         }
@@ -141,8 +116,8 @@ class p_bank_controller {
     function create() {
 
         $ci = & get_instance();
-        $ci->load->model('parameter/p_bank');
-        $table = $ci->p_bank;
+        $ci->load->model('administration/p_app_menu');
+        $table = $ci->p_app_menu;
 
         $data = array('rows' => array(), 'page' => 1, 'records' => 0, 'total' => 1, 'success' => false, 'message' => '');
 
@@ -196,8 +171,7 @@ class p_bank_controller {
 
                 $data['success'] = true;
                 $data['message'] = 'Data added successfully';
-                logging('create data bank');
-
+                logging('create data menu');
             }catch (Exception $e) {
                 $table->db->trans_rollback(); //Rollback Trans
 
@@ -213,8 +187,8 @@ class p_bank_controller {
     function update() {
 
         $ci = & get_instance();
-        $ci->load->model('parameter/p_bank');
-        $table = $ci->p_bank;
+        $ci->load->model('administration/p_app_menu');
+        $table = $ci->p_app_menu;
 
         $data = array('rows' => array(), 'page' => 1, 'records' => 0, 'total' => 1, 'success' => false, 'message' => '');
 
@@ -268,7 +242,7 @@ class p_bank_controller {
 
                 $data['success'] = true;
                 $data['message'] = 'Data update successfully';
-                logging('update data bank');
+                logging('update data menu');
                 $data['rows'] = $table->get($items[$table->pkey]);
             }catch (Exception $e) {
                 $table->db->trans_rollback(); //Rollback Trans
@@ -284,8 +258,8 @@ class p_bank_controller {
 
     function destroy() {
         $ci = & get_instance();
-        $ci->load->model('parameter/p_bank');
-        $table = $ci->p_bank;
+        $ci->load->model('administration/p_app_menu');
+        $table = $ci->p_app_menu;
 
         $data = array('rows' => array(), 'page' => 1, 'records' => 0, 'total' => 1, 'success' => false, 'message' => '');
 
@@ -299,6 +273,7 @@ class p_bank_controller {
             if (is_array($items)){
                 foreach ($items as $key => $value){
                     if (empty($value)) throw new Exception('Empty parameter');
+
                     $table->remove($value);
                     $data['rows'][] = array($table->pkey => $value);
                     $total++;
@@ -308,6 +283,7 @@ class p_bank_controller {
                 if (empty($items)){
                     throw new Exception('Empty parameter');
                 }
+
                 $table->remove($items);
                 $data['rows'][] = array($table->pkey => $items);
                 $data['total'] = $total = 1;
@@ -315,7 +291,7 @@ class p_bank_controller {
 
             $data['success'] = true;
             $data['message'] = $total.' Data deleted successfully';
-            logging('delete data bank');
+            logging('delete data menu');
             $table->db->trans_commit(); //Commit Trans
 
         }catch (Exception $e) {
@@ -326,6 +302,54 @@ class p_bank_controller {
         }
         return $data;
     }
+
+
+    public function tree_json() {
+
+        $ci = & get_instance();
+        $ci->load->model('administration/p_app_menu');
+        $table = $ci->p_app_menu;
+
+        $code = getVarClean('code','str','System');
+        $p_application_id = getVarClean('p_application_id','int',-999);
+
+        $table->setCriteria('p_application_id = '.$p_application_id);
+        $items = $table->getAll(0,-1,'listing_no','asc');
+        $data = array();
+        $data[] = array('id' => 0,
+                  'parentid' => -1,
+                  'text' => $code,
+                  'expanded' => true,
+                  'selected' => true,
+                  'icon' => base_url('images/home.png'));
+
+        foreach($items as $item) {
+
+            if( $table->emptyChildren($item['p_app_menu_id']) ) {
+                $data[] = array(
+                            'id' => $item['p_app_menu_id'],
+                            'parentid' => empty($item['parent_id']) ? 0 : $item['parent_id'],
+                            'text' => $item['code'],
+                            'expanded' => false,
+                            'selected' => false,
+                            'icon' => base_url('images/file-icon.png')
+                          );
+            }else {
+                $data[] = array(
+                            'id' => $item['p_app_menu_id'],
+                            'parentid' => empty($item['parent_id']) ? 0 : $item['parent_id'],
+                            'text' => $item['code'],
+                            'expanded' => false,
+                            'selected' => false,
+                            'icon' => base_url('images/folder-close.png')
+                          );
+            }
+        }
+
+        echo json_encode($data);
+        exit;
+    }
+
 }
 
-/* End of file p_bank_controller.php */
+/* End of file p_app_menu_controller.php */

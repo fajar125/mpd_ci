@@ -1,26 +1,25 @@
 <?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 /**
 * Json library
-* @class p_application_role_controller
+* @class p_account_status_controller
 * @version 07/05/2015 12:18:00
 */
-class p_application_role_controller {
+class P_account_status_controller {
 
     function read() {
 
         $page = getVarClean('page','int',1);
         $limit = getVarClean('rows','int',5);
-        $sidx = getVarClean('sidx','str','rm.p_application_id');
-        $sord = getVarClean('sord','str','asc');
+        $sidx = getVarClean('sidx','str','p_account_status_id');
+        $sord = getVarClean('sord','str','desc');
 
         $data = array('rows' => array(), 'page' => 1, 'records' => 0, 'total' => 1, 'success' => false, 'message' => '');
 
-        $p_app_role_id = getVarClean('p_app_role_id','int',0);
         try {
 
             $ci = & get_instance();
-            $ci->load->model('administration/p_application_role');
-            $table = $ci->p_application_role;
+            $ci->load->model('parameter/p_account_status');
+            $table = $ci->p_account_status;
 
             $req_param = array(
                 "sort_by" => $sidx,
@@ -37,7 +36,7 @@ class p_application_role_controller {
             );
 
             // Filter Table
-            $req_param['where'] = array("rm.p_app_role_id = ".$p_app_role_id);
+            $req_param['where'] = array();
 
             $table->setJQGridParam($req_param);
             $count = $table->countAll();
@@ -63,7 +62,7 @@ class p_application_role_controller {
 
             $data['rows'] = $table->getAll();
             $data['success'] = true;
-            logging('view role module');
+            logging('view data status akun');
         }catch (Exception $e) {
             $data['message'] = $e->getMessage();
         }
@@ -71,28 +70,66 @@ class p_application_role_controller {
         return $data;
     }
 
+    function readLov() {
+
+        $start = getVarClean('current','int',0);
+        $limit = getVarClean('rowCount','int',5);
+
+        $sort = getVarClean('sort','str','p_account_status_id');
+        $dir  = getVarClean('dir','str','asc');
+
+        $searchPhrase = getVarClean('searchPhrase', 'str', '');
+
+        $data = array('rows' => array(), 'success' => false, 'message' => '', 'current' => $start, 'rowCount' => $limit, 'total' => 0);
+
+        try {
+
+            $ci = & get_instance();
+            $ci->load->model('parameter/p_account_status');
+            $table = $ci->p_account_status;
+
+            if(!empty($searchPhrase)) {
+                $table->setCriteria("upper(code) like upper('%".$searchPhrase."%')");
+            }
+
+            $start = ($start-1) * $limit;
+            $items = $table->getAll($start, $limit, $sort, $dir);
+            $totalcount = $table->countAll();
+
+            $data['rows'] = $items;
+            $data['success'] = true;
+            $data['total'] = $totalcount;
+
+        }catch (Exception $e) {
+            $data['message'] = $e->getMessage();
+        }
+
+        return $data;
+    }
+
+
     function crud() {
 
         $data = array();
         $oper = getVarClean('oper', 'str', '');
         switch ($oper) {
             case 'add' :
-                permission_check('can-add-role');
+                permission_check('can-add-account-status');
                 $data = $this->create();
             break;
 
             case 'edit' :
-                permission_check('can-edit-role');
+                permission_check('can-edit-account-status');
                 $data = $this->update();
             break;
 
             case 'del' :
-                permission_check('can-delete-role');
+                permission_check('can-delete-account-status');
                 $data = $this->destroy();
             break;
 
             default :
-                permission_check('can-view-role');
+                permission_check('can-view-account-status');
                 $data = $this->read();
             break;
         }
@@ -104,8 +141,8 @@ class p_application_role_controller {
     function create() {
 
         $ci = & get_instance();
-        $ci->load->model('administration/p_application_role');
-        $table = $ci->p_application_role;
+        $ci->load->model('parameter/p_account_status');
+        $table = $ci->p_account_status;
 
         $data = array('rows' => array(), 'page' => 1, 'records' => 0, 'total' => 1, 'success' => false, 'message' => '');
 
@@ -150,15 +187,17 @@ class p_application_role_controller {
         }else {
 
             try{
-
                 $table->db->trans_begin(); //Begin Trans
+
                     $table->setRecord($items);
                     $table->create();
+
                 $table->db->trans_commit(); //Commit Trans
 
                 $data['success'] = true;
                 $data['message'] = 'Data added successfully';
-                logging('create role module');
+                logging('create data status akun');
+
             }catch (Exception $e) {
                 $table->db->trans_rollback(); //Rollback Trans
 
@@ -174,8 +213,8 @@ class p_application_role_controller {
     function update() {
 
         $ci = & get_instance();
-        $ci->load->model('administration/p_application_role');
-        $table = $ci->p_application_role;
+        $ci->load->model('parameter/p_account_status');
+        $table = $ci->p_account_status;
 
         $data = array('rows' => array(), 'page' => 1, 'records' => 0, 'total' => 1, 'success' => false, 'message' => '');
 
@@ -189,40 +228,64 @@ class p_application_role_controller {
 
         $table->actionType = 'UPDATE';
 
-        try{
-            $table->db->trans_begin(); //Begin Trans
+        if (isset($items[0])){
+            $errors = array();
+            $numItems = count($items);
+            for($i=0; $i < $numItems; $i++){
+                try{
+                    $table->db->trans_begin(); //Begin Trans
 
-                /*$code = explode('.', $items['id']);
-                $p_app_role_id = $code[0];
-                $p_application_id = $code[1];*/
-				$p_application_role_id = $items['id'];
+                        $table->setRecord($items[$i]);
+                        $table->update();
 
-                $sql = "update p_application_role set p_application_id = ?
-                            where p_application_role_id = ? ";
+                    $table->db->trans_commit(); //Commit Trans
 
-                $table->db->query($sql, array($items['p_application_id'], $p_application_role_id));
+                    $items[$i] = $table->get($items[$i][$table->pkey]);
+                }catch(Exception $e){
+                    $table->db->trans_rollback(); //Rollback Trans
 
-            $table->db->trans_commit(); //Commit Trans
+                    $errors[] = $e->getMessage();
+                }
+            }
 
-            $data['success'] = true;
-            $data['message'] = 'Data update successfully';
-            logging('update role module');
-            //$data['rows'] = $table->get($items[$table->pkey]);
-        }catch (Exception $e) {
-            $table->db->trans_rollback(); //Rollback Trans
+            $numErrors = count($errors);
+            if ($numErrors > 0){
+                $data['message'] = $numErrors." from ".$numItems." record(s) failed to be saved.<br/><br/><b>System Response:</b><br/>- ".implode("<br/>- ", $errors)."";
+            }else{
+                $data['success'] = true;
+                $data['message'] = 'Data update successfully';
+            }
+            $data['rows'] =$items;
+        }else {
 
-            $data['message'] = $e->getMessage();
-            $data['rows'] = $items;
+            try{
+                $table->db->trans_begin(); //Begin Trans
+
+                    $table->setRecord($items);
+                    $table->update();
+
+                $table->db->trans_commit(); //Commit Trans
+
+                $data['success'] = true;
+                $data['message'] = 'Data update successfully';
+                logging('update data status akun');
+                $data['rows'] = $table->get($items[$table->pkey]);
+            }catch (Exception $e) {
+                $table->db->trans_rollback(); //Rollback Trans
+
+                $data['message'] = $e->getMessage();
+                $data['rows'] = $items;
+            }
+
         }
-
         return $data;
 
     }
 
     function destroy() {
         $ci = & get_instance();
-        $ci->load->model('administration/p_application_role');
-        $table = $ci->p_application_role;
+        $ci->load->model('parameter/p_account_status');
+        $table = $ci->p_account_status;
 
         $data = array('rows' => array(), 'page' => 1, 'records' => 0, 'total' => 1, 'success' => false, 'message' => '');
 
@@ -236,26 +299,23 @@ class p_application_role_controller {
             if (is_array($items)){
                 foreach ($items as $key => $value){
                     if (empty($value)) throw new Exception('Empty parameter');
-
-                    $table->removeItem($value);
+                    $table->remove($value);
                     $data['rows'][] = array($table->pkey => $value);
                     $total++;
                 }
             }else{
-                $items = $items;
+                $items = (int) $items;
                 if (empty($items)){
                     throw new Exception('Empty parameter');
                 }
-
-                $table->removeItem($items);
+                $table->remove($items);
                 $data['rows'][] = array($table->pkey => $items);
                 $data['total'] = $total = 1;
             }
 
             $data['success'] = true;
             $data['message'] = $total.' Data deleted successfully';
-            logging('delete role module');
-
+            logging('delete data status akun');
             $table->db->trans_commit(); //Commit Trans
 
         }catch (Exception $e) {
@@ -266,34 +326,6 @@ class p_application_role_controller {
         }
         return $data;
     }
-
-
-    function html_select_options_p_application() {
-        try {
-            $ci = & get_instance();
-            $ci->load->model('administration/p_application');
-            $table = $ci->p_application;
-
-            $p_application_id = getVarClean('p_application_id','int',0);
-            $p_app_role_id = getVarClean('p_app_role_id','int',0);
-
-            if(empty($p_application_id))
-                $table->setCriteria('mod.p_application_id NOT IN (SELECT p_application_id FROM p_application_role WHERE p_app_role_id = '.$p_app_role_id.')');
-            else
-                $table->setCriteria('mod.p_application_id NOT IN (SELECT p_application_id FROM p_application_role WHERE p_app_role_id = '.$p_app_role_id.' AND p_application_id != '.$p_application_id.')');
-
-            $items = $table->getAll(0,-1);
-            echo '<select>';
-            foreach($items  as $item ){
-                echo '<option value="'.$item['p_application_id'].'">'.$item['code'].'</option>';
-            }
-            echo '</select>';
-            exit;
-        }catch (Exception $e) {
-            echo $e->getMessage();
-            exit;
-        }
-    }
 }
 
-/* End of file p_application_role_controller.php */
+/* End of file p_account_stasu_controller.php */

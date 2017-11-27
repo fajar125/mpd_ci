@@ -1,23 +1,26 @@
 <?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
-
-class t_customer_update_controller {
+/**
+* Json library
+* @class p_application_role_controller
+* @version 07/05/2015 12:18:00
+*/
+class P_application_role_controller {
 
     function read() {
 
         $page = getVarClean('page','int',1);
         $limit = getVarClean('rows','int',5);
-        $sidx = getVarClean('sidx','str','t_customer_id');
-        $sord = getVarClean('sord','str','t_customer_id');
-
-        $t_customer_id = getVarClean('t_customer_id','int',0);
+        $sidx = getVarClean('sidx','str','rm.p_application_id');
+        $sord = getVarClean('sord','str','asc');
 
         $data = array('rows' => array(), 'page' => 1, 'records' => 0, 'total' => 1, 'success' => false, 'message' => '');
 
+        $p_app_role_id = getVarClean('p_app_role_id','int',0);
         try {
 
             $ci = & get_instance();
-            $ci->load->model('data_master/t_customer_update');
-            $table = $ci->t_customer_update;
+            $ci->load->model('administration/p_application_role');
+            $table = $ci->p_application_role;
 
             $req_param = array(
                 "sort_by" => $sidx,
@@ -34,11 +37,7 @@ class t_customer_update_controller {
             );
 
             // Filter Table
-            $req_param['where'] = array();
-
-            if(!empty($t_customer_id)) {
-                $req_param['where'][] = 't_customer_id = '.$t_customer_id;
-            }
+            $req_param['where'] = array("rm.p_app_role_id = ".$p_app_role_id);
 
             $table->setJQGridParam($req_param);
             $count = $table->countAll();
@@ -64,7 +63,7 @@ class t_customer_update_controller {
 
             $data['rows'] = $table->getAll();
             $data['success'] = true;
-            logging('view data customer');
+            logging('view role module');
         }catch (Exception $e) {
             $data['message'] = $e->getMessage();
         }
@@ -72,65 +71,28 @@ class t_customer_update_controller {
         return $data;
     }
 
-    function readLov() {
-
-        $start = getVarClean('current','int',0);
-        $limit = getVarClean('rowCount','int',5);
-
-        $sort = getVarClean('sort','str','t_customer_id');
-        $dir  = getVarClean('dir','str','asc');
-
-        $searchPhrase = getVarClean('searchPhrase', 'str', '');
-
-        $data = array('rows' => array(), 'success' => false, 'message' => '', 'current' => $start, 'rowCount' => $limit, 'total' => 0);
-
-        try {
-
-            $ci = & get_instance();
-            $ci->load->model('data_master/t_customer_update');
-            $table = $ci->t_customer_update;
-
-            if(!empty($searchPhrase)) {
-                $table->setCriteria("upper(a.company_owner) like upper('%".$searchPhrase."%') and upper(b.npwd) like upper('%".$searchPhrase."%') and upper(b.wp_name) like upper('%".$searchPhrase."%') and upper(b.company_name) like upper('%".$searchPhrase."%') and upper(b.company_brand) like upper('%".$searchPhrase."%') and upper(b.address_name_owner) like upper('%".$searchPhrase."%')");
-            }
-
-            $start = ($start-1) * $limit;
-            $items = $table->getAll($start, $limit, $sort, $dir);
-            $totalcount = $table->countAll();
-
-            $data['rows'] = $items;
-            $data['success'] = true;
-            $data['total'] = $totalcount;
-
-        }catch (Exception $e) {
-            $data['message'] = $e->getMessage();
-        }
-
-        return $data;
-    }
-
-    /*function crud() {
+    function crud() {
 
         $data = array();
         $oper = getVarClean('oper', 'str', '');
         switch ($oper) {
             case 'add' :
-                permission_check('can-add-bank');
+                permission_check('can-add-role');
                 $data = $this->create();
             break;
 
             case 'edit' :
-                permission_check('can-edit-bank');
+                permission_check('can-edit-role');
                 $data = $this->update();
             break;
 
             case 'del' :
-                permission_check('can-delete-bank');
+                permission_check('can-delete-role');
                 $data = $this->destroy();
             break;
 
             default :
-                permission_check('can-view-bank');
+                permission_check('can-view-role');
                 $data = $this->read();
             break;
         }
@@ -138,11 +100,12 @@ class t_customer_update_controller {
         return $data;
     }
 
+
     function create() {
 
         $ci = & get_instance();
-        $ci->load->model('data_master/t_customer');
-        $table = $ci->t_customer;
+        $ci->load->model('administration/p_application_role');
+        $table = $ci->p_application_role;
 
         $data = array('rows' => array(), 'page' => 1, 'records' => 0, 'total' => 1, 'success' => false, 'message' => '');
 
@@ -187,17 +150,15 @@ class t_customer_update_controller {
         }else {
 
             try{
-                $table->db->trans_begin(); //Begin Trans
 
+                $table->db->trans_begin(); //Begin Trans
                     $table->setRecord($items);
                     $table->create();
-
                 $table->db->trans_commit(); //Commit Trans
 
                 $data['success'] = true;
                 $data['message'] = 'Data added successfully';
-                logging('create data bank');
-
+                logging('create role module');
             }catch (Exception $e) {
                 $table->db->trans_rollback(); //Rollback Trans
 
@@ -213,8 +174,8 @@ class t_customer_update_controller {
     function update() {
 
         $ci = & get_instance();
-        $ci->load->model('data_master/t_customer');
-        $table = $ci->t_customer;
+        $ci->load->model('administration/p_application_role');
+        $table = $ci->p_application_role;
 
         $data = array('rows' => array(), 'page' => 1, 'records' => 0, 'total' => 1, 'success' => false, 'message' => '');
 
@@ -228,64 +189,40 @@ class t_customer_update_controller {
 
         $table->actionType = 'UPDATE';
 
-        if (isset($items[0])){
-            $errors = array();
-            $numItems = count($items);
-            for($i=0; $i < $numItems; $i++){
-                try{
-                    $table->db->trans_begin(); //Begin Trans
+        try{
+            $table->db->trans_begin(); //Begin Trans
 
-                        $table->setRecord($items[$i]);
-                        $table->update();
+                /*$code = explode('.', $items['id']);
+                $p_app_role_id = $code[0];
+                $p_application_id = $code[1];*/
+				$p_application_role_id = $items['id'];
 
-                    $table->db->trans_commit(); //Commit Trans
+                $sql = "update p_application_role set p_application_id = ?
+                            where p_application_role_id = ? ";
 
-                    $items[$i] = $table->get($items[$i][$table->pkey]);
-                }catch(Exception $e){
-                    $table->db->trans_rollback(); //Rollback Trans
+                $table->db->query($sql, array($items['p_application_id'], $p_application_role_id));
 
-                    $errors[] = $e->getMessage();
-                }
-            }
+            $table->db->trans_commit(); //Commit Trans
 
-            $numErrors = count($errors);
-            if ($numErrors > 0){
-                $data['message'] = $numErrors." from ".$numItems." record(s) failed to be saved.<br/><br/><b>System Response:</b><br/>- ".implode("<br/>- ", $errors)."";
-            }else{
-                $data['success'] = true;
-                $data['message'] = 'Data update successfully';
-            }
-            $data['rows'] =$items;
-        }else {
+            $data['success'] = true;
+            $data['message'] = 'Data update successfully';
+            logging('update role module');
+            //$data['rows'] = $table->get($items[$table->pkey]);
+        }catch (Exception $e) {
+            $table->db->trans_rollback(); //Rollback Trans
 
-            try{
-                $table->db->trans_begin(); //Begin Trans
-
-                    $table->setRecord($items);
-                    $table->update();
-
-                $table->db->trans_commit(); //Commit Trans
-
-                $data['success'] = true;
-                $data['message'] = 'Data update successfully';
-                logging('update data bank');
-                $data['rows'] = $table->get($items[$table->pkey]);
-            }catch (Exception $e) {
-                $table->db->trans_rollback(); //Rollback Trans
-
-                $data['message'] = $e->getMessage();
-                $data['rows'] = $items;
-            }
-
+            $data['message'] = $e->getMessage();
+            $data['rows'] = $items;
         }
+
         return $data;
 
-    }*/
+    }
 
     function destroy() {
         $ci = & get_instance();
-        $ci->load->model('data_master/t_customer_update');
-        $table = $ci->t_customer_update;
+        $ci->load->model('administration/p_application_role');
+        $table = $ci->p_application_role;
 
         $data = array('rows' => array(), 'page' => 1, 'records' => 0, 'total' => 1, 'success' => false, 'message' => '');
 
@@ -299,23 +236,26 @@ class t_customer_update_controller {
             if (is_array($items)){
                 foreach ($items as $key => $value){
                     if (empty($value)) throw new Exception('Empty parameter');
-                    $table->remove($value);
+
+                    $table->removeItem($value);
                     $data['rows'][] = array($table->pkey => $value);
                     $total++;
                 }
             }else{
-                $items = (int) $items;
+                $items = $items;
                 if (empty($items)){
                     throw new Exception('Empty parameter');
                 }
-                $table->remove($items);
+
+                $table->removeItem($items);
                 $data['rows'][] = array($table->pkey => $items);
                 $data['total'] = $total = 1;
             }
 
             $data['success'] = true;
             $data['message'] = $total.' Data deleted successfully';
-            logging('delete data bank');
+            logging('delete role module');
+
             $table->db->trans_commit(); //Commit Trans
 
         }catch (Exception $e) {
@@ -326,7 +266,34 @@ class t_customer_update_controller {
         }
         return $data;
     }
+
+
+    function html_select_options_p_application() {
+        try {
+            $ci = & get_instance();
+            $ci->load->model('administration/p_application');
+            $table = $ci->p_application;
+
+            $p_application_id = getVarClean('p_application_id','int',0);
+            $p_app_role_id = getVarClean('p_app_role_id','int',0);
+
+            if(empty($p_application_id))
+                $table->setCriteria('mod.p_application_id NOT IN (SELECT p_application_id FROM p_application_role WHERE p_app_role_id = '.$p_app_role_id.')');
+            else
+                $table->setCriteria('mod.p_application_id NOT IN (SELECT p_application_id FROM p_application_role WHERE p_app_role_id = '.$p_app_role_id.' AND p_application_id != '.$p_application_id.')');
+
+            $items = $table->getAll(0,-1);
+            echo '<select>';
+            foreach($items  as $item ){
+                echo '<option value="'.$item['p_application_id'].'">'.$item['code'].'</option>';
+            }
+            echo '</select>';
+            exit;
+        }catch (Exception $e) {
+            echo $e->getMessage();
+            exit;
+        }
+    }
 }
 
-    
-
+/* End of file p_application_role_controller.php */

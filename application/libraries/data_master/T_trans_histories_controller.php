@@ -4,7 +4,7 @@
 * @class t_cust_customer_controller
 * @version 07/05/2015 12:18:00
 */
-class t_trans_histories_controller {
+class T_trans_histories_controller {
 
     function read() {
 

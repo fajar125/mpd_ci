@@ -1,6 +1,6 @@
 <?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 
-class reset_pass_wp_controller {
+class Reset_pass_wp_controller {
 
     function read() {
 

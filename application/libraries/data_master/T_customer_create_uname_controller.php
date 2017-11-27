@@ -1,6 +1,6 @@
 <?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 
-class t_customer_create_uname_controller {
+class T_customer_create_uname_controller {
 
     function read() {
 

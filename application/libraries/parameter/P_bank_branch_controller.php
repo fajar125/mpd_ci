@@ -1,25 +1,26 @@
 <?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 /**
 * Json library
-* @class p_application_controller
+* @class p_bank_branch_controller
 * @version 07/05/2015 12:18:00
 */
-class p_application_controller {
+class P_bank_branch_controller {
 
     function read() {
 
         $page = getVarClean('page','int',1);
         $limit = getVarClean('rows','int',5);
-        $sidx = getVarClean('sidx','str','p_application_id');
+        $sidx = getVarClean('sidx','str','p_bank_branch_id');
         $sord = getVarClean('sord','str','desc');
 
         $data = array('rows' => array(), 'page' => 1, 'records' => 0, 'total' => 1, 'success' => false, 'message' => '');
+        $p_bank_id = getVarClean('p_bank_id','int',0);
 
         try {
 
             $ci = & get_instance();
-            $ci->load->model('administration/p_application');
-            $table = $ci->p_application;
+            $ci->load->model('parameter/p_bank_branch');
+            $table = $ci->p_bank_branch;
 
             $req_param = array(
                 "sort_by" => $sidx,
@@ -38,6 +39,11 @@ class p_application_controller {
             // Filter Table
             $req_param['where'] = array();
 
+            if(!empty($p_bank_id)) {
+                $req_param['where'][] = 'p_bank_id = '.$p_bank_id;
+            }
+
+            
             $table->setJQGridParam($req_param);
             $count = $table->countAll();
 
@@ -62,7 +68,43 @@ class p_application_controller {
 
             $data['rows'] = $table->getAll();
             $data['success'] = true;
-            logging('view data module');
+            logging('view data vat');
+        }catch (Exception $e) {
+            $data['message'] = $e->getMessage();
+        }
+        return $data;
+    }
+
+    function readLov() {
+
+        $start = getVarClean('current','int',0);
+        $limit = getVarClean('rowCount','int',5);
+
+        $sort = getVarClean('sort','str','p_bank_id');
+        $dir  = getVarClean('dir','str','asc');
+
+        $searchPhrase = getVarClean('searchPhrase', 'str', '');
+
+        $data = array('rows' => array(), 'success' => false, 'message' => '', 'current' => $start, 'rowCount' => $limit, 'total' => 0);
+
+        try {
+
+            $ci = & get_instance();
+            $ci->load->model('parameter/p_bank_branch');
+            $table = $ci->p_bank_branch;
+
+            if(!empty($searchPhrase)) {
+                $table->setCriteria("upper(code) like upper('%".$searchPhrase."%')");
+            }
+
+            $start = ($start-1) * $limit;
+            $items = $table->getAll($start, $limit, $sort, $dir);
+            $totalcount = $table->countAll();
+
+            $data['rows'] = $items;
+            $data['success'] = true;
+            $data['total'] = $totalcount;
+
         }catch (Exception $e) {
             $data['message'] = $e->getMessage();
         }
@@ -70,28 +112,29 @@ class p_application_controller {
         return $data;
     }
 
+
     function crud() {
 
         $data = array();
         $oper = getVarClean('oper', 'str', '');
         switch ($oper) {
             case 'add' :
-                permission_check('can-add-module');
+                permission_check('can-add-bank-branch');
                 $data = $this->create();
             break;
 
             case 'edit' :
-                permission_check('can-edit-module');
+                permission_check('can-edit-bank-branch');
                 $data = $this->update();
             break;
 
             case 'del' :
-                permission_check('can-delete-module');
+                permission_check('can-delete-bank-branch');
                 $data = $this->destroy();
             break;
 
             default :
-                permission_check('can-view-module');
+                permission_check('can-view-bank-branch');
                 $data = $this->read();
             break;
         }
@@ -103,8 +146,8 @@ class p_application_controller {
     function create() {
 
         $ci = & get_instance();
-        $ci->load->model('administration/p_application');
-        $table = $ci->p_application;
+        $ci->load->model('parameter/p_bank_branch');
+        $table = $ci->p_bank_branch;
 
         $data = array('rows' => array(), 'page' => 1, 'records' => 0, 'total' => 1, 'success' => false, 'message' => '');
 
@@ -158,7 +201,8 @@ class p_application_controller {
 
                 $data['success'] = true;
                 $data['message'] = 'Data added successfully';
-                logging('create data module');
+                logging('create data bank branch');
+
             }catch (Exception $e) {
                 $table->db->trans_rollback(); //Rollback Trans
 
@@ -174,8 +218,8 @@ class p_application_controller {
     function update() {
 
         $ci = & get_instance();
-        $ci->load->model('administration/p_application');
-        $table = $ci->p_application;
+        $ci->load->model('parameter/p_bank_branch');
+        $table = $ci->p_bank_branch;
 
         $data = array('rows' => array(), 'page' => 1, 'records' => 0, 'total' => 1, 'success' => false, 'message' => '');
 
@@ -229,8 +273,7 @@ class p_application_controller {
 
                 $data['success'] = true;
                 $data['message'] = 'Data update successfully';
-                logging('update data module');
-
+                logging('update data bank branch');
                 $data['rows'] = $table->get($items[$table->pkey]);
             }catch (Exception $e) {
                 $table->db->trans_rollback(); //Rollback Trans
@@ -246,8 +289,8 @@ class p_application_controller {
 
     function destroy() {
         $ci = & get_instance();
-        $ci->load->model('administration/p_application');
-        $table = $ci->p_application;
+        $ci->load->model('parameter/p_bank_branch');
+        $table = $ci->p_bank_branch;
 
         $data = array('rows' => array(), 'page' => 1, 'records' => 0, 'total' => 1, 'success' => false, 'message' => '');
 
@@ -261,7 +304,7 @@ class p_application_controller {
             if (is_array($items)){
                 foreach ($items as $key => $value){
                     if (empty($value)) throw new Exception('Empty parameter');
-					$table->remove($value);
+                    $table->remove($value);
                     $data['rows'][] = array($table->pkey => $value);
                     $total++;
                 }
@@ -270,15 +313,14 @@ class p_application_controller {
                 if (empty($items)){
                     throw new Exception('Empty parameter');
                 }
-				$table->remove($items);
+                $table->remove($items);
                 $data['rows'][] = array($table->pkey => $items);
                 $data['total'] = $total = 1;
             }
 
             $data['success'] = true;
             $data['message'] = $total.' Data deleted successfully';
-            logging('delete data module');
-
+            logging('delete data bank branch');
             $table->db->trans_commit(); //Commit Trans
 
         }catch (Exception $e) {
@@ -291,4 +333,4 @@ class p_application_controller {
     }
 }
 
-/* End of file p_application_controller.php */
+/* End of file vats_controller.php */

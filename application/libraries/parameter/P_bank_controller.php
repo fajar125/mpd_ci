@@ -1,16 +1,16 @@
 <?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 /**
 * Json library
-* @class p_account_status_controller
+* @class p_bank_controller
 * @version 07/05/2015 12:18:00
 */
-class p_account_status_controller {
+class P_bank_controller {
 
     function read() {
 
         $page = getVarClean('page','int',1);
         $limit = getVarClean('rows','int',5);
-        $sidx = getVarClean('sidx','str','p_account_status_id');
+        $sidx = getVarClean('sidx','str','p_bank_id');
         $sord = getVarClean('sord','str','desc');
 
         $data = array('rows' => array(), 'page' => 1, 'records' => 0, 'total' => 1, 'success' => false, 'message' => '');
@@ -18,8 +18,8 @@ class p_account_status_controller {
         try {
 
             $ci = & get_instance();
-            $ci->load->model('parameter/p_account_status');
-            $table = $ci->p_account_status;
+            $ci->load->model('parameter/p_bank');
+            $table = $ci->p_bank;
 
             $req_param = array(
                 "sort_by" => $sidx,
@@ -75,7 +75,7 @@ class p_account_status_controller {
         $start = getVarClean('current','int',0);
         $limit = getVarClean('rowCount','int',5);
 
-        $sort = getVarClean('sort','str','p_account_status_id');
+        $sort = getVarClean('sort','str','p_bank_id');
         $dir  = getVarClean('dir','str','asc');
 
         $searchPhrase = getVarClean('searchPhrase', 'str', '');
@@ -85,8 +85,8 @@ class p_account_status_controller {
         try {
 
             $ci = & get_instance();
-            $ci->load->model('parameter/p_account_status');
-            $table = $ci->p_account_status;
+            $ci->load->model('parameter/p_bank');
+            $table = $ci->p_bank;
 
             if(!empty($searchPhrase)) {
                 $table->setCriteria("upper(code) like upper('%".$searchPhrase."%')");
@@ -114,22 +114,22 @@ class p_account_status_controller {
         $oper = getVarClean('oper', 'str', '');
         switch ($oper) {
             case 'add' :
-                permission_check('can-add-account-status');
+                permission_check('can-add-bank');
                 $data = $this->create();
             break;
 
             case 'edit' :
-                permission_check('can-edit-account-status');
+                permission_check('can-edit-bank');
                 $data = $this->update();
             break;
 
             case 'del' :
-                permission_check('can-delete-account-status');
+                permission_check('can-delete-bank');
                 $data = $this->destroy();
             break;
 
             default :
-                permission_check('can-view-account-status');
+                permission_check('can-view-bank');
                 $data = $this->read();
             break;
         }
@@ -141,8 +141,8 @@ class p_account_status_controller {
     function create() {
 
         $ci = & get_instance();
-        $ci->load->model('parameter/p_account_status');
-        $table = $ci->p_account_status;
+        $ci->load->model('parameter/p_bank');
+        $table = $ci->p_bank;
 
         $data = array('rows' => array(), 'page' => 1, 'records' => 0, 'total' => 1, 'success' => false, 'message' => '');
 
@@ -196,7 +196,7 @@ class p_account_status_controller {
 
                 $data['success'] = true;
                 $data['message'] = 'Data added successfully';
-                logging('create data status akun');
+                logging('create data bank');
 
             }catch (Exception $e) {
                 $table->db->trans_rollback(); //Rollback Trans
@@ -213,8 +213,8 @@ class p_account_status_controller {
     function update() {
 
         $ci = & get_instance();
-        $ci->load->model('parameter/p_account_status');
-        $table = $ci->p_account_status;
+        $ci->load->model('parameter/p_bank');
+        $table = $ci->p_bank;
 
         $data = array('rows' => array(), 'page' => 1, 'records' => 0, 'total' => 1, 'success' => false, 'message' => '');
 
@@ -268,7 +268,7 @@ class p_account_status_controller {
 
                 $data['success'] = true;
                 $data['message'] = 'Data update successfully';
-                logging('update data status akun');
+                logging('update data bank');
                 $data['rows'] = $table->get($items[$table->pkey]);
             }catch (Exception $e) {
                 $table->db->trans_rollback(); //Rollback Trans
@@ -284,8 +284,8 @@ class p_account_status_controller {
 
     function destroy() {
         $ci = & get_instance();
-        $ci->load->model('parameter/p_account_status');
-        $table = $ci->p_account_status;
+        $ci->load->model('parameter/p_bank');
+        $table = $ci->p_bank;
 
         $data = array('rows' => array(), 'page' => 1, 'records' => 0, 'total' => 1, 'success' => false, 'message' => '');
 
@@ -315,7 +315,7 @@ class p_account_status_controller {
 
             $data['success'] = true;
             $data['message'] = $total.' Data deleted successfully';
-            logging('delete data status akun');
+            logging('delete data bank');
             $table->db->trans_commit(); //Commit Trans
 
         }catch (Exception $e) {
@@ -328,4 +328,4 @@ class p_account_status_controller {
     }
 }
 
-/* End of file p_account_stasu_controller.php */
+/* End of file p_bank_controller.php */

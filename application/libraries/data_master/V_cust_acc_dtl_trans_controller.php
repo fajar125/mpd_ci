@@ -4,7 +4,7 @@
 * @class v_cust_acc_dtl_trans_controller
 * @version 07/05/2015 12:18:00
 */
-class v_cust_acc_dtl_trans_controller {
+class V_cust_acc_dtl_trans_controller {
 
     function read() {
 

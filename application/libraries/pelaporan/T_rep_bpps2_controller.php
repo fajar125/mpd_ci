@@ -4,7 +4,7 @@
 * @class t_rep_bpps2_controller
 * @version 07/05/2015 12:18:00
 */
-class t_rep_bpps2_controller {
+class T_rep_bpps2_controller {
  
     function read() {
 
