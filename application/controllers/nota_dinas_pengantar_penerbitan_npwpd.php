@@ -234,7 +234,7 @@ class nota_dinas_pengantar_penerbitan_npwpd extends CI_Controller{
         $pdf->Cell($lengthCell, $this->height, " disampaikan kepada Yth. :", "", 0, 'L');
         $pdf->Ln(6);
         $pdf->SetFont('Times', '', 12);
-        $pdf->Cell($lengthCell, $this->height, "1. Sekretaris Dinas Pelayanan Pajak;", "", 0, 'L');
+        $pdf->Cell($lengthCell, $this->height, "1. Sekretaris Badan Pendapatan Daerah;", "", 0, 'L');
         $pdf->Ln(6);
         $pdf->Cell($lengthCell, $this->height, "2. Kepala Bidang Perencanaan;", "", 0, 'L');
         $pdf->Ln(6);
