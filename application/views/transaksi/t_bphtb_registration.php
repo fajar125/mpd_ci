@@ -162,8 +162,17 @@
                                     <div class="form-group">
                                         <label class="control-label col-md-2">No Objek Pajak
                                         </label>
-                                        <div class="col-md-3">
-                                            <input type="text" class="form-control" maxlength="48" name="njop_pbb" id="njop_pbb">
+                                        <div class="col-md-4">
+                                            <div class="input-group ">
+                                                <input type="text" class="form-control" maxlength="48" name="njop_pbb" id="njop_pbb">
+                                                <input type="hidden" class="form-control"  name="t_bphtb_registration_id_old" id="t_bphtb_registration_id_old">
+                                                (Pilih Data BPHTB Sebelumnya)
+                                                <span class="input-group-btn">
+                                                    <button class="btn btn-success" type="button" id="btn-lov-njop-old">PILIH
+                                                    </button>
+                                                </span>
+                                            </div>
+
                                         </div>
                                     </div>
 
@@ -483,7 +492,7 @@
                                         <div class="col-md-3">
                                             <div class="input-group ">
                                                 <span class="input-group-addon">Rp.</span>
-                                                <input type="text" class="form-control priceformat" maxlength="16" name="bphtb_amt_final" id="bphtb_amt_final">
+                                                <input type="text" class="form-control priceformat" maxlength="16" name="bphtb_amt_final" readonly id="bphtb_amt_final">
                                             </div> 
                                         </div>
                                         
@@ -520,6 +529,7 @@
 <?php $this->load->view('lov/lov_kota'); ?>
 <?php $this->load->view('lov/lov_kec'); ?>
 <?php $this->load->view('lov/lov_kel'); ?>
+<?php $this->load->view('lov/lov_bphtb_ws'); ?>
 <!-- First Load -->
 <script>
 
@@ -743,6 +753,11 @@
              return;
         }
         modal_lov_kelurahan_show('object_p_region_id_kel','object_kelurahan',kec);
+    });
+
+
+    $('#btn-lov-njop-old').on('click',function(){
+        modal_lov_bphtb_ws_show();
     });
 </script>
 <!-- /LOV -->

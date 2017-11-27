@@ -311,6 +311,24 @@ class T_bphtb_registration_list extends Abstract_model {
         return $item;
     }
 
+    function getDataWS($nop_search,$year_code){
+
+        $ws_data = file_get_contents('http://45.118.112.232:81/webservice-pbb/trans/bphtb_webservice.php?method=bphtb&param='.$nop_search.$year_code);
+        $ws_data = json_decode($ws_data);       
+            
+        return $ws_data;
+    }
+
+    function getDataRegion($region_op){
+
+        $sql = "SELECT * FROM f_get_region_nascode('".$region_op."')";
+        $query = $this->db->query($sql);
+        $item = $query->row_array();
+        
+            
+        return $item[0];
+    }
+
     
 }
 

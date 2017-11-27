@@ -477,4 +477,61 @@ class T_bphtb_registration_list_controller {
         exit;
 
     }
+
+    function read_ws() {
+
+        $nop_search = getVarClean('nop_search','str','');
+        $year_code = getVarClean('year_code','str','');
+
+        $data = array('rows' => array(), 'page' => 1, 'records' => 0, 'total' => 1, 'success' => false, 'message' => '');
+
+        try {
+
+            $ci = & get_instance();
+            $ci->load->model('transaksi/t_bphtb_registration_list');
+            $table = $ci->t_bphtb_registration_list;
+
+            $ws_data = $table->getDataWS($nop_search,$year_code);
+            $arr_status = array(0=>'Belum Dibayar', 1=>'Sudah Dibayar');
+            $new_data = array();
+            if($ws_data->success){
+                $items = $ws_data->items;
+                $new_data['NOP']  = $items->NOP;
+                $new_data['kota'] = $items->KOTA_OP;
+                $new_data['kecamatan'] = $items->KEC_OP;
+                $new_data['kelurahan'] = $items->KEL_OP;
+
+                $kota = $table->getDataRegion($items->KOTA_OP);
+                $new_data['nama_kota'] = $kota['region_name'];
+                $new_data['id_kota'] = $kota['p_region_id'];
+
+                $kecamatan = $table->getDataRegion($items->KEC_OP);
+                $new_data['nama_kecamatan'] = $kecamatan['region_name'];
+                $new_data['id_kecamatan'] = $kecamatan['p_region_id'];
+
+                $kelurahan = $table->getDataRegion($items->KEL_OP);
+                $new_data['nama_kelurahan'] = $kelurahan['region_name'];
+                $new_data['id_kelurahan'] = $kelurahan['p_region_id'];
+
+                $new_data['jalan'] = $items->JALAN_OP;
+                $new_data['rt'] = $items->RT_OP;
+                $new_data['rw'] = $items->RW_OP;
+                $new_data['luas_bumi'] = $items->LUAS_BUMI;
+                $new_data['luas_bangunan'] = $items->LUAS_BANG;
+                $new_data['njop_bangunan'] = $items->NJOP_BANG;  
+                $new_data['njop_bumi'] = $items->NJOP_BUMI; 
+                $new_data['njop_pbb'] = $items->NJOP_PBB;  
+                $new_data['pbb_terhutang'] = $items->PBB_TERHUTANG;  
+                $new_data['status_bayar'] = $items->STATUS_BAYAR;   
+            }
+
+            $data['items'] = $new_data;
+            $data['success'] = $ws_data->success;
+            $data['message'] = $ws_data->message;
+        }catch (Exception $e) {
+            $data['message'] = $e->getMessage();
+        }
+
+        return $data;
+    }
 }
