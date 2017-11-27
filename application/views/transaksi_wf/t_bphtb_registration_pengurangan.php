@@ -304,7 +304,7 @@
                                         <div class="col-md-3">
                                             <div class="input-group ">
                                                 <span class="input-group-addon">Rp.</span>
-                                                <input type="text" class="form-control priceformat" maxlength="16"  name="bphtb_amt" id="bphtb_amt">
+                                                <input type="text" class="form-control priceformat" maxlength="16"  name="bphtb_amt" id="bphtb_amt" readonly>
                                             </div> 
                                         </div>
                                     </div>
@@ -315,11 +315,11 @@
                                         <div class="col-md-3">
                                             <div class="input-group ">
                                                 <span class="input-group-addon">Rp.</span>
-                                                <input type="text" class="form-control priceformat" maxlength="16"  name="bphtb_discount" id="bphtb_discount">
+                                                <input type="text" class="form-control priceformat" maxlength="16"  name="bphtb_discount" id="bphtb_discount" readonly>
                                             </div> 
                                         </div>
                                         <div class="col-md-3">
-                                            <input type="text" class="form-control" name="description" id="description">
+                                            <input type="text" class="form-control" name="description" id="description" readonly>
                                         </div>
                                         
                                         
@@ -344,7 +344,7 @@
                                         <div class="col-md-3">
                                             <div class="input-group ">
                                                 <span class="input-group-addon">Rp.</span>
-                                                <input type="text" class="form-control priceformat" maxlength="16" name="bphtb_amt_final" id="bphtb_amt_final">
+                                                <input type="text" class="form-control priceformat" maxlength="16" name="bphtb_amt_final" id="bphtb_amt_final" readonly>
                                             </div> 
                                         </div>
                                         

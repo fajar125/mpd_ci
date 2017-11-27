@@ -475,7 +475,7 @@
                                     <div id="div-harus-bayar" class="form-group" style="display: none">
                                         <label class="control-label col-md-2 " class="control-label col-md-2 ">Bea Perolehan Hak atas Tanah dan Bangunan yang harus dibayar </label>
                                         <div class="col-md-3">
-                                            <input type="text" class="form-control" name="bphtb_amt_final_old" id="bphtb_amt_final_old">
+                                            <input type="text" class="form-control" name="bphtb_amt_final_old" id="bphtb_amt_final_old" readonly>
                                         </div>
                                     </div>
 

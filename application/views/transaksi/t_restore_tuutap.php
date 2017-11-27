@@ -31,7 +31,7 @@
                     <label class="control-label col-md-2">Tahun :</label>
                     <div class="col-md-2">
                         <div class="input-group">
-                            <input type="text" class="form-control" name="tahun" id="tahun">                 
+                            <input type="text" class="form-control numberformat" name="tahun" id="tahun" maxlength="4">                 
                         </div>
                     </div>
                     <button class="btn btn-primary" type="button" onclick="toTampil()">Cari</button>
@@ -56,6 +56,9 @@
 </div>
 
 <script type="text/javascript">
+    $(".numberformat").number( true, 0 , '','');
+    $(".numberformat").css("text-align", "left");
+
     var npwd 	= $('#npwd').val();
     var tahun   = $('#tahun').val();
 

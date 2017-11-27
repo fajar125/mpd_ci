@@ -493,7 +493,7 @@
                                         <div class="col-md-3">
                                             <div class="input-group ">
                                                 <span class="input-group-addon">Rp.</span>
-                                                <input type="text" class="form-control priceformat" maxlength="16" name="bphtb_amt_final" id="bphtb_amt_final">
+                                                <input type="text" class="form-control priceformat" maxlength="16" name="bphtb_amt_final" id="bphtb_amt_final" readonly>
                                             </div> 
                                         </div>
                                         
@@ -522,7 +522,7 @@
 
                                     <div class="form-actions">
                                         <div class="row">
-                                            <div class="col-md-offset-4 col-md-9">
+                                            <div class="col-md-offset-4 col-md-8">
                                                
                                                 <button class="btn btn-danger" id="print"  > CETAK NOTA VERIFIKASI</button>                                                    
                                                 <button class="btn btn-success" id="submit" onClick="submitform()"> Submit                                                   
