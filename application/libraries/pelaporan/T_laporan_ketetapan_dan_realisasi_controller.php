@@ -40,20 +40,6 @@ class T_laporan_ketetapan_dan_realisasi_controller {
             $i2=0;
             $before=0;
             $new=0;
-            $item['jan']=0;
-            $item['feb']=0;
-            $item['mar']=0;
-            $item['apr']=0;
-            $item['mei']=0;
-            $item['jun']=0;
-            $item['jul']=0;
-            $item['ags']=0;
-            $item['sep']=0;
-            $item['okt']=0;
-            $item['nov']=0;
-            $item['des_past']=0;
-            $item['before_des']=0;
-            $item['after_nov']=0;
             $tgl_bayar_jan= '';
             $tgl_bayar_feb= '';
             $tgl_bayar_mar= '';
@@ -96,8 +82,6 @@ class T_laporan_ketetapan_dan_realisasi_controller {
             $jumlah_des_per_ayat= 0;
             $jumlah_xdes_per_ayat=0;
             $jumlah_xnov_per_ayat=0;
-            $item['jumlah_per_wp'] = 0;
-            $item['jumlah_bulan_bayar'] = 0;
             $ketetapan_realisasi = 0; 
 
             for ($i=0; $i < count($result) ; $i++) {        
@@ -110,7 +94,7 @@ class T_laporan_ketetapan_dan_realisasi_controller {
                     switch ($bln) {
                         case "01":
                             $result[$i]['jan']=$result[$i]['jan']+$result[$i]["jumlah_terima"];
-                            $item['jumlah_per_wp'] = $item['jumlah_per_wp'] + $result[$i]["jumlah_terima"];
+                            $result[$i]['jumlah_per_wp'] = $result[$i]['jumlah_per_wp'] + $result[$i]["jumlah_terima"];
                             if ($result[$i]["jumlah_terima"] > 0){
                                 $result[$i]["jumlah_bulan_bayar"] = $result[$i]["jumlah_bulan_bayar"] + 1;
                             }
@@ -314,6 +298,18 @@ class T_laporan_ketetapan_dan_realisasi_controller {
             startExcel("laporan_ketetapan_dan_realisasi.xls");
         
             $output = '';
+    
+            $output .='<table id="table-piutang" class="grid-table-container" border="0" cellspacing="0" cellpadding="0" width="100%">
+                        <tr>
+                            <td valign="top">';
+
+            $output .='<table class="grid-table" border="0" cellspacing="0" cellpadding="0">
+                            <tr>
+                                <td class="HeaderLeft"><img border="0" alt="" src="../Styles/sikp/Images/Spacer.gif"></td> 
+                                <td class="th"><strong>LAPORAN KETETAPAN DAN REALISASI</strong></td> 
+                                <td class="HeaderRight"><img border="0" alt="" src="../Styles/sikp/Images/Spacer.gif"></td>
+                            </tr>
+                            </table>';
             
             $output .= '<h2>LAPORAN KETETAPAN DAN REALISASI</h2>';
             //$output .= '<h2>TANGGAL : '.dateToString($date_start, "-")." s/d ".dateToString($date_end, "-").'</h2> <br/>';
@@ -360,6 +356,20 @@ class T_laporan_ketetapan_dan_realisasi_controller {
             $i2=0;
             $before=0;
             $new=0;
+            $jan=0;
+            $feb=0;
+            $mar=0;
+            $apr=0;
+            $mei=0;
+            $jun=0;
+            $jul=0;
+            $agu=0;
+            $sep=0;
+            $okt=0;
+            $nov=0;
+            $des=0;
+            $xdes=0;
+            $xnov=0;
             $tgl_bayar_jan= '';
             $tgl_bayar_feb= '';
             $tgl_bayar_mar= '';
@@ -402,11 +412,12 @@ class T_laporan_ketetapan_dan_realisasi_controller {
             $jumlah_des_per_ayat= 0;
             $jumlah_xdes_per_ayat=0;
             $jumlah_xnov_per_ayat=0;
+            $jumlah_per_wp = 0;
+            $jumlah_bulan_bayar = 0;
             $ketetapan_realisasi = 0; //jumlah pembayaran
             foreach($result as $item) {
                 $bln = substr($item["masa_pajak"],-7,2);
                 $thn = substr($item["masa_pajak"],-4,4);
-
                 if ($new == 0){
                     $output .= '<tr>';
                     $output .= '<td align="center">'.($i+1).'</td>';
@@ -418,127 +429,125 @@ class T_laporan_ketetapan_dan_realisasi_controller {
                     $output .= '<td align="left">'.$item['active_date2'].'</td>';
                     $output .= '<td align="left">'.$item['npwpd'].'</td>';
                     //$before = $item;
-
                     if ($thn == $year_date && $bln != 12){
                         switch ($bln) {
                             case "01":
-                                $item['jan']=$item['jan']+$item["jumlah_terima"];
-                                $item['jumlah_per_wp'] = $item['jumlah_per_wp'] + $item["jumlah_terima"];
+                                $jan=$jan+$item["jumlah_terima"];
+                                $jumlah_per_wp = $jumlah_per_wp + $item["jumlah_terima"];
                                 if ($item["jumlah_terima"] > 0){
-                                    $item['jumlah_bulan_bayar'] = $item['jumlah_bulan_bayar'] + 1;
+                                    $jumlah_bulan_bayar = $jumlah_bulan_bayar + 1;
                                 }
                                 $jumlah_jan=$jumlah_jan+$item["jumlah_terima"];
                                 $jumlah_jan_per_ayat=$jumlah_jan_per_ayat+$item["jumlah_terima"];
                                 $tgl_bayar_jan=$item["payment_date"];
                                 break;
                             case "02":
-                                $item['feb']=$item['feb']+$item["jumlah_terima"];
-                                $item['jumlah_per_wp'] = $item['jumlah_per_wp'] + $item["jumlah_terima"];
+                                $feb=$feb+$item["jumlah_terima"];
+                                $jumlah_per_wp = $jumlah_per_wp + $item["jumlah_terima"];
                                 if ($item["jumlah_terima"] > 0){
-                                    $item['jumlah_bulan_bayar'] = $item['jumlah_bulan_bayar'] + 1;
+                                    $jumlah_bulan_bayar = $jumlah_bulan_bayar + 1;
                                 }
                                 $jumlah_feb=$jumlah_feb+$item["jumlah_terima"];
                                 $jumlah_feb_per_ayat=$jumlah_feb_per_ayat+$item["jumlah_terima"];
                                 $tgl_bayar_feb=$item["payment_date"];
                                 break;
                             case "03":
-                                $item['mar']=$item['mar']+$item["jumlah_terima"];
-                                $item['jumlah_per_wp'] = $item['jumlah_per_wp'] + $item["jumlah_terima"];
+                                $mar=$mar+$item["jumlah_terima"];
+                                $jumlah_per_wp = $jumlah_per_wp + $item["jumlah_terima"];
                                 if ($item["jumlah_terima"] > 0){
-                                    $item['jumlah_bulan_bayar'] = $item['jumlah_bulan_bayar'] + 1;
+                                    $jumlah_bulan_bayar = $jumlah_bulan_bayar + 1;
                                 }
                                 $jumlah_mar=$jumlah_mar+$item["jumlah_terima"];
                                 $jumlah_mar_per_ayat=$jumlah_mar_per_ayat+$item["jumlah_terima"];
                                 $tgl_bayar_mar=$item["payment_date"];
                                 break;
                             case "04":
-                                $item['apr']=$item['apr']+$item["jumlah_terima"];
-                                $item['jumlah_per_wp'] = $item['jumlah_per_wp'] + $item["jumlah_terima"];
+                                $apr=$apr+$item["jumlah_terima"];
+                                $jumlah_per_wp = $jumlah_per_wp + $item["jumlah_terima"];
                                 if ($item["jumlah_terima"] > 0){
-                                    $item['jumlah_bulan_bayar'] = $item['jumlah_bulan_bayar'] + 1;
+                                    $jumlah_bulan_bayar = $jumlah_bulan_bayar + 1;
                                 }
                                 $jumlah_apr=$jumlah_apr+$item["jumlah_terima"];
                                 $jumlah_apr_per_ayat=$jumlah_apr_per_ayat+$item["jumlah_terima"];
                                 $tgl_bayar_apr=$item["payment_date"];
                                 break;
                             case "05":
-                                $item['mei']=$item['mei']+$item["jumlah_terima"];
-                                $item['jumlah_per_wp'] = $item['jumlah_per_wp'] + $item["jumlah_terima"];
+                                $mei=$mei+$item["jumlah_terima"];
+                                $jumlah_per_wp = $jumlah_per_wp + $item["jumlah_terima"];
                                 if ($item["jumlah_terima"] > 0){
-                                    $item['jumlah_bulan_bayar'] = $item['jumlah_bulan_bayar'] + 1;
+                                    $jumlah_bulan_bayar = $jumlah_bulan_bayar + 1;
                                 }
                                 $jumlah_mei=$jumlah_mei+$item["jumlah_terima"];
                                 $jumlah_mei_per_ayat=$jumlah_mei_per_ayat+$item["jumlah_terima"];
                                 $tgl_bayar_mei=$item["payment_date"];
                                 break;
                             case "06":
-                                $item['jun']=$item['jun']+$item["jumlah_terima"];
-                                $item['jumlah_per_wp'] = $item['jumlah_per_wp'] + $item["jumlah_terima"];
+                                $jun=$jun+$item["jumlah_terima"];
+                                $jumlah_per_wp = $jumlah_per_wp + $item["jumlah_terima"];
                                 if ($item["jumlah_terima"] > 0){
-                                    $item['jumlah_bulan_bayar'] = $item['jumlah_bulan_bayar'] + 1;
+                                    $jumlah_bulan_bayar = $jumlah_bulan_bayar + 1;
                                 }
                                 $jumlah_jun=$jumlah_jun+$item["jumlah_terima"];
                                 $jumlah_jun_per_ayat=$jumlah_jun_per_ayat+$item["jumlah_terima"];
                                 $tgl_bayar_jun=$item["payment_date"];
                                 break;
                             case "07":
-                                $item['jul']=$item['jul']+$item["jumlah_terima"];
-                                $item['jumlah_per_wp'] = $item['jumlah_per_wp'] + $item["jumlah_terima"];
+                                $jul=$jul+$item["jumlah_terima"];
+                                $jumlah_per_wp = $jumlah_per_wp + $item["jumlah_terima"];
                                 if ($item["jumlah_terima"] > 0){
-                                    $item['jumlah_bulan_bayar'] = $item['jumlah_bulan_bayar'] + 1;
+                                    $jumlah_bulan_bayar = $jumlah_bulan_bayar + 1;
                                 }
                                 $jumlah_jul=$jumlah_jul+$item["jumlah_terima"];
                                 $jumlah_jul_per_ayat=$jumlah_jul_per_ayat+$item["jumlah_terima"];
                                 $tgl_bayar_jul=$item["payment_date"];
                                 break;
                             case "08":
-                                $item['ags']=$item['ags']+$item["jumlah_terima"];
-                                $item['jumlah_per_wp'] = $item['jumlah_per_wp'] + $item["jumlah_terima"];
+                                $agu=$agu+$item["jumlah_terima"];
+                                $jumlah_per_wp = $jumlah_per_wp + $item["jumlah_terima"];
                                 if ($item["jumlah_terima"] > 0){
-                                    $item['jumlah_bulan_bayar'] = $item['jumlah_bulan_bayar'] + 1;
+                                    $jumlah_bulan_bayar = $jumlah_bulan_bayar + 1;
                                 }
                                 $jumlah_agu=$jumlah_agu+$item["jumlah_terima"];
                                 $jumlah_agu_per_ayat=$jumlah_agu_per_ayat+$item["jumlah_terima"];
                                 $tgl_bayar_agu=$item["payment_date"];
                                 break;
                             case "09":
-                                $item['sep']=$item['sep']+$item["jumlah_terima"];
-                                $item['jumlah_per_wp'] = $item['jumlah_per_wp'] + $item["jumlah_terima"];
+                                $sep=$sep+$item["jumlah_terima"];
+                                $jumlah_per_wp = $jumlah_per_wp + $item["jumlah_terima"];
                                 if ($item["jumlah_terima"] > 0){
-                                    $item['jumlah_bulan_bayar'] = $item['jumlah_bulan_bayar'] + 1;
+                                    $jumlah_bulan_bayar = $jumlah_bulan_bayar + 1;
                                 }
                                 $jumlah_sep=$jumlah_sep+$item["jumlah_terima"];
                                 $jumlah_sep_per_ayat=$jumlah_sep_per_ayat+$item["jumlah_terima"];
                                 $tgl_bayar_sep=$item["payment_date"];
                                 break;
                             case "10":
-                                $item['okt']=$item['okt']+$item["jumlah_terima"];
-                                $item['jumlah_per_wp'] = $item['jumlah_per_wp'] + $item["jumlah_terima"];
+                                $okt=$okt+$item["jumlah_terima"];
+                                $jumlah_per_wp = $jumlah_per_wp + $item["jumlah_terima"];
                                 if ($item["jumlah_terima"] > 0){
-                                    $item['jumlah_bulan_bayar'] = $item['jumlah_bulan_bayar'] + 1;
+                                    $jumlah_bulan_bayar = $jumlah_bulan_bayar + 1;
                                 }
                                 $jumlah_okt=$jumlah_okt+$item["jumlah_terima"];
                                 $jumlah_okt_per_ayat=$jumlah_okt_per_ayat+$item["jumlah_terima"];
                                 $tgl_bayar_okt=$item["payment_date"];
                                 break;
                             case "11":
-                                $item['nov']=$item['nov']+$item["jumlah_terima"];
-                                $item['jumlah_per_wp'] = $item['jumlah_per_wp'] + $item["jumlah_terima"];
+                                $nov=$nov+$item["jumlah_terima"];
+                                $jumlah_per_wp = $jumlah_per_wp + $item["jumlah_terima"];
                                 if ($item["jumlah_terima"] > 0){
-                                    $item['jumlah_bulan_bayar'] = $item['jumlah_bulan_bayar'] + 1;
+                                    $jumlah_bulan_bayar = $jumlah_bulan_bayar + 1;
                                 }
                                 $jumlah_nov=$jumlah_nov+$item["jumlah_terima"];
                                 $jumlah_nov_per_ayat=$jumlah_nov_per_ayat+$item["jumlah_terima"];
                                 $tgl_bayar_nov=$item["payment_date"];
                                 break;
                         }
-
                     }else{
                         if ($thn == ($year_date - 1) && $bln == 12){
-                            $item['des_past']=$item['des_past']+$item["jumlah_terima"];
-                            $item['jumlah_per_wp'] = $item['jumlah_per_wp'] + $item["jumlah_terima"];
+                            $des=$des+$item["jumlah_terima"];
+                            $jumlah_per_wp = $jumlah_per_wp + $item["jumlah_terima"];
                             if ($item["jumlah_terima"] > 0){
-                                $item['jumlah_bulan_bayar'] = $item['jumlah_bulan_bayar'] + 1;
+                                $jumlah_bulan_bayar = $jumlah_bulan_bayar + 1;
                             }
                             $jumlah_des=$jumlah_des+$item["jumlah_terima"];
                             $jumlah_des_per_ayat=$jumlah_des_per_ayat+$item["jumlah_terima"];
@@ -546,14 +555,14 @@ class T_laporan_ketetapan_dan_realisasi_controller {
                         }
                         else{
                             if ($thn < $year_date){
-                                $item['before_des']=$item['before_des']+$item["jumlah_terima"];
+                                $xdes=$xdes+$item["jumlah_terima"];
                                 $jumlah_xdes=$jumlah_xdes+$item["jumlah_terima"];
                                 $jumlah_xdes_per_ayat=$jumlah_xdes_per_ayat+$item["jumlah_terima"];
                                 $tgl_bayar_xdes=$item["payment_date"];
                             }
                             else{
                                 if (($thn == $year_date && $bln == 12)||($thn > $year_date)){
-                                        $item['after_nov']=$item['after_nov']+$item["jumlah_terima"];
+                                        $xnov=$xnov+$item["jumlah_terima"];
                                         $jumlah_xnov=$jumlah_xnov+$item["jumlah_terima"];
                                         $jumlah_xnov_per_ayat=$jumlah_xnov_per_ayat+$item["jumlah_terima"];
                                         $tgl_bayar_xnov=$item["payment_date"];
@@ -569,118 +578,116 @@ class T_laporan_ketetapan_dan_realisasi_controller {
                     $jumlahtemp += $item["jumlah_terima"];
                     $new =1;
                     $i = $i+1;
-
                     //$i2 = $i2 + 1;
                 }else{
-
                     if ($before['npwpd']==$item['npwpd']){              
                         if ($thn == $year_date && $bln != 12){
                             switch ($bln) {
                                 case "01":
-                                    $item['jan']=$item['jan']+$item["jumlah_terima"];
-                                    $item['jumlah_per_wp'] = $item['jumlah_per_wp'] + $item["jumlah_terima"];
+                                    $jan=$jan+$item["jumlah_terima"];
+                                    $jumlah_per_wp = $jumlah_per_wp + $item["jumlah_terima"];
                                     if ($item["jumlah_terima"] > 0){
-                                        $item['jumlah_bulan_bayar'] = $item['jumlah_bulan_bayar'] + 1;
+                                        $jumlah_bulan_bayar = $jumlah_bulan_bayar + 1;
                                     }
                                     $jumlah_jan=$jumlah_jan+$item["jumlah_terima"];
                                     $jumlah_jan_per_ayat=$jumlah_jan_per_ayat+$item["jumlah_terima"];
                                     $tgl_bayar_jan=$item["payment_date"];
                                     break;
                                 case "02":
-                                    $item['feb']=$item['feb']+$item["jumlah_terima"];
-                                    $item['jumlah_per_wp'] = $item['jumlah_per_wp'] + $item["jumlah_terima"];
+                                    $feb=$feb+$item["jumlah_terima"];
+                                    $jumlah_per_wp = $jumlah_per_wp + $item["jumlah_terima"];
                                     if ($item["jumlah_terima"] > 0){
-                                        $item['jumlah_bulan_bayar'] = $item['jumlah_bulan_bayar'] + 1;
+                                        $jumlah_bulan_bayar = $jumlah_bulan_bayar + 1;
                                     }
                                     $jumlah_feb=$jumlah_feb+$item["jumlah_terima"];
                                     $jumlah_feb_per_ayat=$jumlah_feb_per_ayat+$item["jumlah_terima"];
                                     $tgl_bayar_feb=$item["payment_date"];
                                     break;
                                 case "03":
-                                    $item['mar']=$item['mar']+$item["jumlah_terima"];
-                                    $item['jumlah_per_wp'] = $item['jumlah_per_wp'] + $item["jumlah_terima"];
+                                    $mar=$mar+$item["jumlah_terima"];
+                                    $jumlah_per_wp = $jumlah_per_wp + $item["jumlah_terima"];
                                     if ($item["jumlah_terima"] > 0){
-                                        $item['jumlah_bulan_bayar'] = $item['jumlah_bulan_bayar'] + 1;
+                                        $jumlah_bulan_bayar = $jumlah_bulan_bayar + 1;
                                     }
                                     $jumlah_mar=$jumlah_mar+$item["jumlah_terima"];
                                     $jumlah_mar_per_ayat=$jumlah_mar_per_ayat+$item["jumlah_terima"];
                                     $tgl_bayar_mar=$item["payment_date"];
                                     break;
                                 case "04":
-                                    $item['apr']=$item['apr']+$item["jumlah_terima"];
-                                    $item['jumlah_per_wp'] = $item['jumlah_per_wp'] + $item["jumlah_terima"];
+                                    $apr=$apr+$item["jumlah_terima"];
+                                    $jumlah_per_wp = $jumlah_per_wp + $item["jumlah_terima"];
                                     if ($item["jumlah_terima"] > 0){
-                                        $item['jumlah_bulan_bayar'] = $item['jumlah_bulan_bayar'] + 1;
+                                        $jumlah_bulan_bayar = $jumlah_bulan_bayar + 1;
                                     }
                                     $jumlah_apr=$jumlah_apr+$item["jumlah_terima"];
                                     $jumlah_apr_per_ayat=$jumlah_apr_per_ayat+$item["jumlah_terima"];
                                     $tgl_bayar_apr=$item["payment_date"];
                                     break;
                                 case "05":
-                                    $item['mei']=$item['mei']+$item["jumlah_terima"];
-                                    $item['jumlah_per_wp'] = $item['jumlah_per_wp'] + $item["jumlah_terima"];
+                                    $mei=$mei+$item["jumlah_terima"];
+                                    $jumlah_per_wp = $jumlah_per_wp + $item["jumlah_terima"];
                                     if ($item["jumlah_terima"] > 0){
-                                        $item['jumlah_bulan_bayar'] = $item['jumlah_bulan_bayar'] + 1;
+                                        $jumlah_bulan_bayar = $jumlah_bulan_bayar + 1;
                                     }
                                     $jumlah_mei=$jumlah_mei+$item["jumlah_terima"];
                                     $jumlah_mei_per_ayat=$jumlah_mei_per_ayat+$item["jumlah_terima"];
                                     $tgl_bayar_mei=$item["payment_date"];
                                     break;
                                 case "06":
-                                    $item['jun']=$item['jun']+$item["jumlah_terima"];
-                                    $item['jumlah_per_wp'] = $item['jumlah_per_wp'] + $item["jumlah_terima"];
+                                    $jun=$jun+$item["jumlah_terima"];
+                                    $jumlah_per_wp = $jumlah_per_wp + $item["jumlah_terima"];
                                     if ($item["jumlah_terima"] > 0){
-                                        $item['jumlah_bulan_bayar'] = $item['jumlah_bulan_bayar'] + 1;
+                                        $jumlah_bulan_bayar = $jumlah_bulan_bayar + 1;
                                     }
                                     $jumlah_jun=$jumlah_jun+$item["jumlah_terima"];
                                     $jumlah_jun_per_ayat=$jumlah_jun_per_ayat+$item["jumlah_terima"];
                                     $tgl_bayar_jun=$item["payment_date"];
                                     break;
                                 case "07":
-                                    $item['jul']=$item['jul']+$item["jumlah_terima"];
-                                    $item['jumlah_per_wp'] = $item['jumlah_per_wp'] + $item["jumlah_terima"];
+                                    $jul=$jul+$item["jumlah_terima"];
+                                    $jumlah_per_wp = $jumlah_per_wp + $item["jumlah_terima"];
                                     if ($item["jumlah_terima"] > 0){
-                                        $item['jumlah_bulan_bayar'] = $item['jumlah_bulan_bayar'] + 1;
+                                        $jumlah_bulan_bayar = $jumlah_bulan_bayar + 1;
                                     }
                                     $jumlah_jul=$jumlah_jul+$item["jumlah_terima"];
                                     $jumlah_jul_per_ayat=$jumlah_jul_per_ayat+$item["jumlah_terima"];
                                     $tgl_bayar_jul=$item["payment_date"];
                                     break;
                                 case "08":
-                                    $item['ags']=$item['ags']+$item["jumlah_terima"];
-                                    $item['jumlah_per_wp'] = $item['jumlah_per_wp'] + $item["jumlah_terima"];
+                                    $agu=$agu+$item["jumlah_terima"];
+                                    $jumlah_per_wp = $jumlah_per_wp + $item["jumlah_terima"];
                                     if ($item["jumlah_terima"] > 0){
-                                        $item['jumlah_bulan_bayar'] = $item['jumlah_bulan_bayar'] + 1;
+                                        $jumlah_bulan_bayar = $jumlah_bulan_bayar + 1;
                                     }
                                     $jumlah_agu=$jumlah_agu+$item["jumlah_terima"];
                                     $jumlah_agu_per_ayat=$jumlah_agu_per_ayat+$item["jumlah_terima"];
                                     $tgl_bayar_agu=$item["payment_date"];
                                     break;
                                 case "09":
-                                    $item['sep']=$item['sep']+$item["jumlah_terima"];
-                                    $item['jumlah_per_wp'] = $item['jumlah_per_wp'] + $item["jumlah_terima"];
+                                    $sep=$sep+$item["jumlah_terima"];
+                                    $jumlah_per_wp = $jumlah_per_wp + $item["jumlah_terima"];
                                     if ($item["jumlah_terima"] > 0){
-                                        $item['jumlah_bulan_bayar'] = $item['jumlah_bulan_bayar'] + 1;
+                                        $jumlah_bulan_bayar = $jumlah_bulan_bayar + 1;
                                     }
                                     $jumlah_sep=$jumlah_sep+$item["jumlah_terima"];
                                     $jumlah_sep_per_ayat=$jumlah_sep_per_ayat+$item["jumlah_terima"];
                                     $tgl_bayar_sep=$item["payment_date"];
                                     break;
                                 case "10":
-                                    $item['okt']=$item['okt']+$item["jumlah_terima"];
-                                    $item['jumlah_per_wp'] = $item['jumlah_per_wp'] + $item["jumlah_terima"];
+                                    $okt=$okt+$item["jumlah_terima"];
+                                    $jumlah_per_wp = $jumlah_per_wp + $item["jumlah_terima"];
                                     if ($item["jumlah_terima"] > 0){
-                                        $item['jumlah_bulan_bayar'] = $item['jumlah_bulan_bayar'] + 1;
+                                        $jumlah_bulan_bayar = $jumlah_bulan_bayar + 1;
                                     }
                                     $jumlah_okt=$jumlah_okt+$item["jumlah_terima"];
                                     $jumlah_okt_per_ayat=$jumlah_okt_per_ayat+$item["jumlah_terima"];
                                     $tgl_bayar_okt=$item["payment_date"];
                                     break;
                                 case "11":
-                                    $item['nov']=$item['nov']+$item["jumlah_terima"];
-                                    $item['jumlah_per_wp'] = $item['jumlah_per_wp'] + $item["jumlah_terima"];
+                                    $nov=$nov+$item["jumlah_terima"];
+                                    $jumlah_per_wp = $jumlah_per_wp + $item["jumlah_terima"];
                                     if ($item["jumlah_terima"] > 0){
-                                        $item['jumlah_bulan_bayar'] = $item['jumlah_bulan_bayar'] + 1;
+                                        $jumlah_bulan_bayar = $jumlah_bulan_bayar + 1;
                                     }
                                     $jumlah_nov=$jumlah_nov+$item["jumlah_terima"];
                                     $jumlah_nov_per_ayat=$jumlah_nov_per_ayat+$item["jumlah_terima"];
@@ -689,10 +696,10 @@ class T_laporan_ketetapan_dan_realisasi_controller {
                             }
                         }else{
                             if ($thn == ($year_date - 1) && $bln == 12){
-                                $item['des_past']=$item['des_past']+$item["jumlah_terima"];
-                                $item['jumlah_per_wp'] = $item['jumlah_per_wp'] + $item["jumlah_terima"];
+                                $des=$des+$item["jumlah_terima"];
+                                $jumlah_per_wp = $jumlah_per_wp + $item["jumlah_terima"];
                                 if ($item["jumlah_terima"] > 0){
-                                    $item['jumlah_bulan_bayar'] = $item['jumlah_bulan_bayar'] + 1;
+                                    $jumlah_bulan_bayar = $jumlah_bulan_bayar + 1;
                                 }
                                 $jumlah_des=$jumlah_des+$item["jumlah_terima"];
                                 $jumlah_des_per_ayat=$jumlah_des_per_ayat+$item["jumlah_terima"];
@@ -700,14 +707,14 @@ class T_laporan_ketetapan_dan_realisasi_controller {
                             }
                             else{
                                 if ($thn < $year_date){
-                                    $item['before_des']=$item['before_des']+$item["jumlah_terima"];
+                                    $xdes=$xdes+$item["jumlah_terima"];
                                     $jumlah_xdes=$jumlah_xdes+$item["jumlah_terima"];
                                     $jumlah_xdes_per_ayat=$jumlah_xdes_per_ayat+$item["jumlah_terima"];
                                     $tgl_bayar_xdes=$item["payment_date"];
                                 }
                                 else{
                                     if (($thn == $year_date && $bln == 12)||($thn > $year_date)){
-                                            $item['after_nov']=$item['after_nov']+$item["jumlah_terima"];
+                                            $xnov=$xnov+$item["jumlah_terima"];
                                             $jumlah_xnov=$jumlah_xnov+$item["jumlah_terima"];
                                             $jumlah_xnov_per_ayat=$jumlah_xnov_per_ayat+$item["jumlah_terima"];
                                             $tgl_bayar_xnov=$item["payment_date"];
@@ -719,49 +726,49 @@ class T_laporan_ketetapan_dan_realisasi_controller {
                         $ayat = $item["kode_ayat"];
                     }else{
                         if($tgl_bayar==1){
-                            $output .= '<td align="right">'.number_format($item['before_des'], 2, ',', '.');
+                            $output .= '<td align="right">'.number_format($xdes, 2, ',', '.');
                             $output .= '<br>'.$tgl_bayar_xdes.'</td>';
-                            $output .= '<td align="right">'.number_format($item['des_past'], 2, ',', '.');
+                            $output .= '<td align="right">'.number_format($des, 2, ',', '.');
                             $output .= '<br>'.$tgl_bayar_des.'</td>';
-                            $output .= '<td align="right">'.number_format($item['jan'], 2, ',', '.');
+                            $output .= '<td align="right">'.number_format($jan, 2, ',', '.');
                             $output .= '<br>'.$tgl_bayar_jan.'</td>';
-                            $output .= '<td align="right">'.number_format($item['feb'], 2, ',', '.');
+                            $output .= '<td align="right">'.number_format($feb, 2, ',', '.');
                             $output .= '<br>'.$tgl_bayar_feb.'</td>';
-                            $output .= '<td align="right">'.number_format($item['mar'], 2, ',', '.');
+                            $output .= '<td align="right">'.number_format($mar, 2, ',', '.');
                             $output .= '<br>'.$tgl_bayar_mar.'</td>';
-                            $output .= '<td align="right">'.number_format($item['apr'], 2, ',', '.');
+                            $output .= '<td align="right">'.number_format($apr, 2, ',', '.');
                             $output .= '<br>'.$tgl_bayar_apr.'</td>';
-                            $output .= '<td align="right">'.number_format($item['mei'], 2, ',', '.');
+                            $output .= '<td align="right">'.number_format($mei, 2, ',', '.');
                             $output .= '<br>'.$tgl_bayar_mei.'</td>';
-                            $output .= '<td align="right">'.number_format($item['jun'], 2, ',', '.');
+                            $output .= '<td align="right">'.number_format($jun, 2, ',', '.');
                             $output .= '<br>'.$tgl_bayar_jun.'</td>';
-                            $output .= '<td align="right">'.number_format($item['jul'], 2, ',', '.');
+                            $output .= '<td align="right">'.number_format($jul, 2, ',', '.');
                             $output .= '<br>'.$tgl_bayar_jul.'</td>';
-                            $output .= '<td align="right">'.number_format($item['ags'], 2, ',', '.');
+                            $output .= '<td align="right">'.number_format($agu, 2, ',', '.');
                             $output .= '<br>'.$tgl_bayar_agu.'</td>';
-                            $output .= '<td align="right">'.number_format($item['sep'], 2, ',', '.');
+                            $output .= '<td align="right">'.number_format($sep, 2, ',', '.');
                             $output .= '<br>'.$tgl_bayar_sep.'</td>';
-                            $output .= '<td align="right">'.number_format($item['okt'], 2, ',', '.');
+                            $output .= '<td align="right">'.number_format($okt, 2, ',', '.');
                             $output .= '<br>'.$tgl_bayar_okt.'</td>';
-                            $output .= '<td align="right">'.number_format($item['nov'], 2, ',', '.');
+                            $output .= '<td align="right">'.number_format($nov, 2, ',', '.');
                             $output .= '<br>'.$tgl_bayar_nov.'</td>';
-                            $output .= '<td align="right">'.number_format($item['after_nov'], 2, ',', '.');
+                            $output .= '<td align="right">'.number_format($xnov, 2, ',', '.');
                             $output .= '<br>'.$tgl_bayar_xnov.'</td>';
                         }else{
-                            $output .= '<td align="right">'.number_format($item['before_des'], 2, ',', '.').'</td>';
-                            $output .= '<td align="right">'.number_format($item['des_past'], 2, ',', '.').'</td>';
-                            $output .= '<td align="right">'.number_format($item['jan'], 2, ',', '.').'</td>';
-                            $output .= '<td align="right">'.number_format($item['feb'], 2, ',', '.').'</td>';
-                            $output .= '<td align="right">'.number_format($item['mar'], 2, ',', '.').'</td>';
-                            $output .= '<td align="right">'.number_format($item['apr'], 2, ',', '.').'</td>';
-                            $output .= '<td align="right">'.number_format($item['mei'], 2, ',', '.').'</td>';
-                            $output .= '<td align="right">'.number_format($item['jun'], 2, ',', '.').'</td>';
-                            $output .= '<td align="right">'.number_format($item['jul'], 2, ',', '.').'</td>';
-                            $output .= '<td align="right">'.number_format($item['ags'], 2, ',', '.').'</td>';
-                            $output .= '<td align="right">'.number_format($item['sep'], 2, ',', '.').'</td>';
-                            $output .= '<td align="right">'.number_format($item['okt'], 2, ',', '.').'</td>';
-                            $output .= '<td align="right">'.number_format($item['nov'], 2, ',', '.').'</td>';
-                            $output .= '<td align="right">'.number_format($item['after_nov'], 2, ',', '.').'</td>';
+                            $output .= '<td align="right">'.number_format($xdes, 2, ',', '.').'</td>';
+                            $output .= '<td align="right">'.number_format($des, 2, ',', '.').'</td>';
+                            $output .= '<td align="right">'.number_format($jan, 2, ',', '.').'</td>';
+                            $output .= '<td align="right">'.number_format($feb, 2, ',', '.').'</td>';
+                            $output .= '<td align="right">'.number_format($mar, 2, ',', '.').'</td>';
+                            $output .= '<td align="right">'.number_format($apr, 2, ',', '.').'</td>';
+                            $output .= '<td align="right">'.number_format($mei, 2, ',', '.').'</td>';
+                            $output .= '<td align="right">'.number_format($jun, 2, ',', '.').'</td>';
+                            $output .= '<td align="right">'.number_format($jul, 2, ',', '.').'</td>';
+                            $output .= '<td align="right">'.number_format($agu, 2, ',', '.').'</td>';
+                            $output .= '<td align="right">'.number_format($sep, 2, ',', '.').'</td>';
+                            $output .= '<td align="right">'.number_format($okt, 2, ',', '.').'</td>';
+                            $output .= '<td align="right">'.number_format($nov, 2, ',', '.').'</td>';
+                            $output .= '<td align="right">'.number_format($xnov, 2, ',', '.').'</td>';
                         }
                         //$new=0;
                         //$output .= '<tr>';
@@ -769,18 +776,30 @@ class T_laporan_ketetapan_dan_realisasi_controller {
                 
                         //$output .= '<tr>';
                             //$output .= '<td align="CENTER" colspan=5>JUMLAH PAJAK '.$before["wp_name"].'</td>';
-                            //$output .= '<td align="right">'.number_format($item['jumlah_per_wp'], 2, ',', '.').'</td>';
-                        $output .= '<td align="right">'.number_format($item['jumlah_per_wp'], 2, ',', '.').'</td>';
-                        $output .= '<td align="right">'.$item['jumlah_bulan_bayar'].'</td>';
-                        if($item["jumlah_bulan_bayar"] == 0){
-                            $item['avg_tap'] = 0;
+                            //$output .= '<td align="right">'.number_format($jumlah_per_wp, 2, ',', '.').'</td>';
+                        $output .= '<td align="right">'.number_format($jumlah_per_wp, 2, ',', '.').'</td>';
+                        $output .= '<td align="right">'.$jumlah_bulan_bayar.'</td>';
+                        if ($jumlah_bulan_bayar<1){
+                            $output .= '<td align="right">'.number_format(0, 2, ',', '.').'</td>';
                         }else{
-                            $item['avg_tap'] = $item['jumlah_per_wp']/$item['jumlah_bulan_bayar'];
+                            $output .= '<td align="right">'.number_format($jumlah_per_wp/$jumlah_bulan_bayar, 2, ',', '.').'</td>';
                         }
-                        $output .= '<td align="right">'.number_format($item['avg_tap'], 2, ',', '.').'</td>';
-                        
                         $output .= '</tr>';
                         $jumlahtemp=0;
+                        $jan=0;
+                        $feb=0;
+                        $mar=0;
+                        $apr=0;
+                        $mei=0;
+                        $jun=0;
+                        $jul=0;
+                        $agu=0;
+                        $sep=0;
+                        $okt=0;
+                        $nov=0;
+                        $des=0;
+                        $xdes=0;
+                        $xnov=0;
                         $tgl_bayar_jan= '';
                         $tgl_bayar_feb= '';
                         $tgl_bayar_mar= '';
@@ -797,7 +816,6 @@ class T_laporan_ketetapan_dan_realisasi_controller {
                         $tgl_bayar_xnov='';
                         $ayat = $item["kode_ayat"];
                         $ayatsesudah = $before["kode_ayat"];
-                        //print_r($ayatsesudah); exit();
                         if(($ayat != $ayatsesudah&&count($result)>1)){
                             $output .= '<tr>';
                                 $output .= '<td align="CENTER" colspan=7>JUMLAH PER AYAT</td>';
@@ -831,6 +849,8 @@ class T_laporan_ketetapan_dan_realisasi_controller {
                             $jumlah_xdes_per_ayat=0;
                             $jumlah_xnov_per_ayat=0;
                         }
+                        $jumlah_per_wp = 0;
+                        $jumlah_bulan_bayar = 0;
                         $ketetapan_realisasi = 0; //jumlah pembayaran
                         $output .= '<tr><td align="center">'.($i+1).'</td>';
                         $output .= '<td align="center">'.$item["kode_jns_pajak"]." ".$item["kode_ayat"].'</td>';
@@ -845,110 +865,110 @@ class T_laporan_ketetapan_dan_realisasi_controller {
                         if ($thn == $year_date && $bln != 12){
                             switch ($bln) {
                                 case "01":
-                                    $item['jan']=$item['jan']+$item["jumlah_terima"];
-                                    $item['jumlah_per_wp'] = $item['jumlah_per_wp'] + $item["jumlah_terima"];
+                                    $jan=$jan+$item["jumlah_terima"];
+                                    $jumlah_per_wp = $jumlah_per_wp + $item["jumlah_terima"];
                                     if ($item["jumlah_terima"] > 0){
-                                        $item['jumlah_bulan_bayar'] = $item['jumlah_bulan_bayar'] + 1;
+                                        $jumlah_bulan_bayar = $jumlah_bulan_bayar + 1;
                                     }
                                     $jumlah_jan=$jumlah_jan+$item["jumlah_terima"];
                                     $jumlah_jan_per_ayat=$jumlah_jan_per_ayat+$item["jumlah_terima"];
                                     $tgl_bayar_jan=$item["payment_date"];
                                     break;
                                 case "02":
-                                    $item['feb']=$item['feb']+$item["jumlah_terima"];
-                                    $item['jumlah_per_wp'] = $item['jumlah_per_wp'] + $item["jumlah_terima"];
+                                    $feb=$feb+$item["jumlah_terima"];
+                                    $jumlah_per_wp = $jumlah_per_wp + $item["jumlah_terima"];
                                     if ($item["jumlah_terima"] > 0){
-                                        $item['jumlah_bulan_bayar'] = $item['jumlah_bulan_bayar'] + 1;
+                                        $jumlah_bulan_bayar = $jumlah_bulan_bayar + 1;
                                     }
                                     $jumlah_feb=$jumlah_feb+$item["jumlah_terima"];
                                     $jumlah_feb_per_ayat=$jumlah_feb_per_ayat+$item["jumlah_terima"];
                                     $tgl_bayar_feb=$item["payment_date"];
                                     break;
                                 case "03":
-                                    $item['mar']=$item['mar']+$item["jumlah_terima"];
-                                    $item['jumlah_per_wp'] = $item['jumlah_per_wp'] + $item["jumlah_terima"];
+                                    $mar=$mar+$item["jumlah_terima"];
+                                    $jumlah_per_wp = $jumlah_per_wp + $item["jumlah_terima"];
                                     if ($item["jumlah_terima"] > 0){
-                                        $item['jumlah_bulan_bayar'] = $item['jumlah_bulan_bayar'] + 1;
+                                        $jumlah_bulan_bayar = $jumlah_bulan_bayar + 1;
                                     }
                                     $jumlah_mar=$jumlah_mar+$item["jumlah_terima"];
                                     $jumlah_mar_per_ayat=$jumlah_mar_per_ayat+$item["jumlah_terima"];
                                     $tgl_bayar_mar=$item["payment_date"];
                                     break;
                                 case "04":
-                                    $item['apr']=$item['apr']+$item["jumlah_terima"];
-                                    $item['jumlah_per_wp'] = $item['jumlah_per_wp'] + $item["jumlah_terima"];
+                                    $apr=$apr+$item["jumlah_terima"];
+                                    $jumlah_per_wp = $jumlah_per_wp + $item["jumlah_terima"];
                                     if ($item["jumlah_terima"] > 0){
-                                        $item['jumlah_bulan_bayar'] = $item['jumlah_bulan_bayar'] + 1;
+                                        $jumlah_bulan_bayar = $jumlah_bulan_bayar + 1;
                                     }
                                     $jumlah_apr=$jumlah_apr+$item["jumlah_terima"];
                                     $jumlah_apr_per_ayat=$jumlah_apr_per_ayat+$item["jumlah_terima"];
                                     $tgl_bayar_apr=$item["payment_date"];
                                     break;
                                 case "05":
-                                    $item['mei']=$item['mei']+$item["jumlah_terima"];
-                                    $item['jumlah_per_wp'] = $item['jumlah_per_wp'] + $item["jumlah_terima"];
+                                    $mei=$mei+$item["jumlah_terima"];
+                                    $jumlah_per_wp = $jumlah_per_wp + $item["jumlah_terima"];
                                     if ($item["jumlah_terima"] > 0){
-                                        $item['jumlah_bulan_bayar'] = $item['jumlah_bulan_bayar'] + 1;
+                                        $jumlah_bulan_bayar = $jumlah_bulan_bayar + 1;
                                     }
                                     $jumlah_mei=$jumlah_mei+$item["jumlah_terima"];
                                     $jumlah_mei_per_ayat=$jumlah_mei_per_ayat+$item["jumlah_terima"];
                                     $tgl_bayar_mei=$item["payment_date"];
                                     break;
                                 case "06":
-                                    $item['jun']=$item['jun']+$item["jumlah_terima"];
-                                    $item['jumlah_per_wp'] = $item['jumlah_per_wp'] + $item["jumlah_terima"];
+                                    $jun=$jun+$item["jumlah_terima"];
+                                    $jumlah_per_wp = $jumlah_per_wp + $item["jumlah_terima"];
                                     if ($item["jumlah_terima"] > 0){
-                                        $item['jumlah_bulan_bayar'] = $item['jumlah_bulan_bayar'] + 1;
+                                        $jumlah_bulan_bayar = $jumlah_bulan_bayar + 1;
                                     }
                                     $jumlah_jun=$jumlah_jun+$item["jumlah_terima"];
                                     $jumlah_jun_per_ayat=$jumlah_jun_per_ayat+$item["jumlah_terima"];
                                     $tgl_bayar_jun=$item["payment_date"];
                                     break;
                                 case "07":
-                                    $item['jul']=$item['jul']+$item["jumlah_terima"];
-                                    $item['jumlah_per_wp'] = $item['jumlah_per_wp'] + $item["jumlah_terima"];
+                                    $jul=$jul+$item["jumlah_terima"];
+                                    $jumlah_per_wp = $jumlah_per_wp + $item["jumlah_terima"];
                                     if ($item["jumlah_terima"] > 0){
-                                        $item['jumlah_bulan_bayar'] = $item['jumlah_bulan_bayar'] + 1;
+                                        $jumlah_bulan_bayar = $jumlah_bulan_bayar + 1;
                                     }
                                     $jumlah_jul=$jumlah_jul+$item["jumlah_terima"];
                                     $jumlah_jul_per_ayat=$jumlah_jul_per_ayat+$item["jumlah_terima"];
                                     $tgl_bayar_jul=$item["payment_date"];
                                     break;
                                 case "08":
-                                    $item['ags']=$item['ags']+$item["jumlah_terima"];
-                                    $item['jumlah_per_wp'] = $item['jumlah_per_wp'] + $item["jumlah_terima"];
+                                    $agu=$agu+$item["jumlah_terima"];
+                                    $jumlah_per_wp = $jumlah_per_wp + $item["jumlah_terima"];
                                     if ($item["jumlah_terima"] > 0){
-                                        $item['jumlah_bulan_bayar'] = $item['jumlah_bulan_bayar'] + 1;
+                                        $jumlah_bulan_bayar = $jumlah_bulan_bayar + 1;
                                     }
                                     $jumlah_agu=$jumlah_agu+$item["jumlah_terima"];
                                     $jumlah_agu_per_ayat=$jumlah_agu_per_ayat+$item["jumlah_terima"];
                                     $tgl_bayar_agu=$item["payment_date"];
                                     break;
                                 case "09":
-                                    $item['sep']=$item['sep']+$item["jumlah_terima"];
-                                    $item['jumlah_per_wp'] = $item['jumlah_per_wp'] + $item["jumlah_terima"];
+                                    $sep=$sep+$item["jumlah_terima"];
+                                    $jumlah_per_wp = $jumlah_per_wp + $item["jumlah_terima"];
                                     if ($item["jumlah_terima"] > 0){
-                                        $item['jumlah_bulan_bayar'] = $item['jumlah_bulan_bayar'] + 1;
+                                        $jumlah_bulan_bayar = $jumlah_bulan_bayar + 1;
                                     }
                                     $jumlah_sep=$jumlah_sep+$item["jumlah_terima"];
                                     $jumlah_sep_per_ayat=$jumlah_sep_per_ayat+$item["jumlah_terima"];
                                     $tgl_bayar_sep=$item["payment_date"];
                                     break;
                                 case "10":
-                                    $item['okt']=$item['okt']+$item["jumlah_terima"];
-                                    $item['jumlah_per_wp'] = $item['jumlah_per_wp'] + $item["jumlah_terima"];
+                                    $okt=$okt+$item["jumlah_terima"];
+                                    $jumlah_per_wp = $jumlah_per_wp + $item["jumlah_terima"];
                                     if ($item["jumlah_terima"] > 0){
-                                        $item['jumlah_bulan_bayar'] = $item['jumlah_bulan_bayar'] + 1;
+                                        $jumlah_bulan_bayar = $jumlah_bulan_bayar + 1;
                                     }
                                     $jumlah_okt=$jumlah_okt+$item["jumlah_terima"];
                                     $jumlah_okt_per_ayat=$jumlah_okt_per_ayat+$item["jumlah_terima"];
                                     $tgl_bayar_okt=$item["payment_date"];
                                     break;
                                 case "11":
-                                    $item['nov']=$item['nov']+$item["jumlah_terima"];
-                                    $item['jumlah_per_wp'] = $item['jumlah_per_wp'] + $item["jumlah_terima"];
+                                    $nov=$nov+$item["jumlah_terima"];
+                                    $jumlah_per_wp = $jumlah_per_wp + $item["jumlah_terima"];
                                     if ($item["jumlah_terima"] > 0){
-                                        $item['jumlah_bulan_bayar'] = $item['jumlah_bulan_bayar'] + 1;
+                                        $jumlah_bulan_bayar = $jumlah_bulan_bayar + 1;
                                     }
                                     $jumlah_nov=$jumlah_nov+$item["jumlah_terima"];
                                     $jumlah_nov_per_ayat=$jumlah_nov_per_ayat+$item["jumlah_terima"];
@@ -957,10 +977,10 @@ class T_laporan_ketetapan_dan_realisasi_controller {
                             }
                         }else{
                             if ($thn == ($year_date - 1) && $bln == 12){
-                                $item['des_past']=$item['des_past']+$item["jumlah_terima"];
-                                $item['jumlah_per_wp'] = $item['jumlah_per_wp'] + $item["jumlah_terima"];
+                                $des=$des+$item["jumlah_terima"];
+                                $jumlah_per_wp = $jumlah_per_wp + $item["jumlah_terima"];
                                 if ($item["jumlah_terima"] > 0){
-                                    $item['jumlah_bulan_bayar'] = $item['jumlah_bulan_bayar'] + 1;
+                                    $jumlah_bulan_bayar = $jumlah_bulan_bayar + 1;
                                 }
                                 $jumlah_des=$jumlah_des+$item["jumlah_terima"];
                                 $jumlah_des_per_ayat=$jumlah_des_per_ayat+$item["jumlah_terima"];
@@ -968,14 +988,14 @@ class T_laporan_ketetapan_dan_realisasi_controller {
                             }
                             else{
                                 if ($thn < $year_date){
-                                    $item['before_des']=$item['before_des']+$item["jumlah_terima"];
+                                    $xdes=$xdes+$item["jumlah_terima"];
                                     $jumlah_xdes=$jumlah_xdes+$item["jumlah_terima"];
                                     $jumlah_xdes_per_ayat=$jumlah_xdes_per_ayat+$item["jumlah_terima"];
                                     $tgl_bayar_xdes=$item["payment_date"];
                                 }
                                 else{
                                     if (($thn == $year_date && $bln == 12)||($thn > $year_date)){
-                                            $item['after_nov']=$item['after_nov']+$item["jumlah_terima"];
+                                            $xnov=$xnov+$item["jumlah_terima"];
                                             $jumlah_xnov=$jumlah_xnov+$item["jumlah_terima"];
                                             $jumlah_xnov_per_ayat=$jumlah_xnov_per_ayat+$item["jumlah_terima"];
                                             $tgl_bayar_xnov=$item["payment_date"];
@@ -995,60 +1015,62 @@ class T_laporan_ketetapan_dan_realisasi_controller {
                 {
                     $jumlahperayat += $jumlahtemp;
                     if($tgl_bayar==1){
-                        $output .= '<td align="right">'.number_format($item['before_des'], 2, ',', '.');
+                        $output .= '<td align="right">'.number_format($xdes, 2, ',', '.');
                         $output .= '<br>'.$tgl_bayar_xdes.'</td>';
-                        $output .= '<td align="right">'.number_format($item['des_past'], 2, ',', '.');
+                        $output .= '<td align="right">'.number_format($des, 2, ',', '.');
                         $output .= '<br>'.$tgl_bayar_des.'</td>';
-                        $output .= '<td align="right">'.number_format($item['jan'], 2, ',', '.');
+                        $output .= '<td align="right">'.number_format($jan, 2, ',', '.');
                         $output .= '<br>'.$tgl_bayar_jan.'</td>';
-                        $output .= '<td align="right">'.number_format($item['feb'], 2, ',', '.');
+                        $output .= '<td align="right">'.number_format($feb, 2, ',', '.');
                         $output .= '<br>'.$tgl_bayar_feb.'</td>';
-                        $output .= '<td align="right">'.number_format($item['mar'], 2, ',', '.');
+                        $output .= '<td align="right">'.number_format($mar, 2, ',', '.');
                         $output .= '<br>'.$tgl_bayar_mar.'</td>';
-                        $output .= '<td align="right">'.number_format($item['apr'], 2, ',', '.');
+                        $output .= '<td align="right">'.number_format($apr, 2, ',', '.');
                         $output .= '<br>'.$tgl_bayar_apr.'</td>';
-                        $output .= '<td align="right">'.number_format($item['mei'], 2, ',', '.');
+                        $output .= '<td align="right">'.number_format($mei, 2, ',', '.');
                         $output .= '<br>'.$tgl_bayar_mei.'</td>';
-                        $output .= '<td align="right">'.number_format($item['jun'], 2, ',', '.');
+                        $output .= '<td align="right">'.number_format($jun, 2, ',', '.');
                         $output .= '<br>'.$tgl_bayar_jun.'</td>';
-                        $output .= '<td align="right">'.number_format($item['jul'], 2, ',', '.');
+                        $output .= '<td align="right">'.number_format($jul, 2, ',', '.');
                         $output .= '<br>'.$tgl_bayar_jul.'</td>';
-                        $output .= '<td align="right">'.number_format($item['ags'], 2, ',', '.');
+                        $output .= '<td align="right">'.number_format($agu, 2, ',', '.');
                         $output .= '<br>'.$tgl_bayar_agu.'</td>';
-                        $output .= '<td align="right">'.number_format($item['sep'], 2, ',', '.');
+                        $output .= '<td align="right">'.number_format($sep, 2, ',', '.');
                         $output .= '<br>'.$tgl_bayar_sep.'</td>';
-                        $output .= '<td align="right">'.number_format($item['okt'], 2, ',', '.');
+                        $output .= '<td align="right">'.number_format($okt, 2, ',', '.');
                         $output .= '<br>'.$tgl_bayar_okt.'</td>';
-                        $output .= '<td align="right">'.number_format($item['nov'], 2, ',', '.');
+                        $output .= '<td align="right">'.number_format($nov, 2, ',', '.');
                         $output .= '<br>'.$tgl_bayar_nov.'</td>';
-                        $output .= '<td align="right">'.number_format($item['after_nov'], 2, ',', '.');
+                        $output .= '<td align="right">'.number_format($xnov, 2, ',', '.');
                         $output .= '<br>'.$tgl_bayar_xnov.'</td>';
                     }else{
-                        $output .= '<td align="right">'.number_format($item['before_des'], 2, ',', '.').'</td>';
-                        $output .= '<td align="right">'.number_format($item['des_past'], 2, ',', '.').'</td>';
-                        $output .= '<td align="right">'.number_format($item['jan'], 2, ',', '.').'</td>';
-                        $output .= '<td align="right">'.number_format($item['feb'], 2, ',', '.').'</td>';
-                        $output .= '<td align="right">'.number_format($item['mar'], 2, ',', '.').'</td>';
-                        $output .= '<td align="right">'.number_format($item['apr'], 2, ',', '.').'</td>';
-                        $output .= '<td align="right">'.number_format($item['mei'], 2, ',', '.').'</td>';
-                        $output .= '<td align="right">'.number_format($item['jun'], 2, ',', '.').'</td>';
-                        $output .= '<td align="right">'.number_format($item['jul'], 2, ',', '.').'</td>';
-                        $output .= '<td align="right">'.number_format($item['ags'], 2, ',', '.').'</td>';
-                        $output .= '<td align="right">'.number_format($item['sep'], 2, ',', '.').'</td>';
-                        $output .= '<td align="right">'.number_format($item['okt'], 2, ',', '.').'</td>';
-                        $output .= '<td align="right">'.number_format($item['nov'], 2, ',', '.').'</td>';
-                        $output .= '<td align="right">'.number_format($item['after_nov'], 2, ',', '.').'</td>';
+                        $output .= '<td align="right">'.number_format($xdes, 2, ',', '.').'</td>';
+                        $output .= '<td align="right">'.number_format($des, 2, ',', '.').'</td>';
+                        $output .= '<td align="right">'.number_format($jan, 2, ',', '.').'</td>';
+                        $output .= '<td align="right">'.number_format($feb, 2, ',', '.').'</td>';
+                        $output .= '<td align="right">'.number_format($mar, 2, ',', '.').'</td>';
+                        $output .= '<td align="right">'.number_format($apr, 2, ',', '.').'</td>';
+                        $output .= '<td align="right">'.number_format($mei, 2, ',', '.').'</td>';
+                        $output .= '<td align="right">'.number_format($jun, 2, ',', '.').'</td>';
+                        $output .= '<td align="right">'.number_format($jul, 2, ',', '.').'</td>';
+                        $output .= '<td align="right">'.number_format($agu, 2, ',', '.').'</td>';
+                        $output .= '<td align="right">'.number_format($sep, 2, ',', '.').'</td>';
+                        $output .= '<td align="right">'.number_format($okt, 2, ',', '.').'</td>';
+                        $output .= '<td align="right">'.number_format($nov, 2, ',', '.').'</td>';
+                        $output .= '<td align="right">'.number_format($xnov, 2, ',', '.').'</td>';
                     }
                     
-                    $output .= '<td align="right">'.number_format($item['jumlah_per_wp'], 2, ',', '.').'</td>';
-                    $output .= '<td align="right">'.$item['jumlah_bulan_bayar'].'</td>';
-
-                    if($item["jumlah_bulan_bayar"] == 0){
-                        $item['avg_tap'] = 0;
+                    $output .= '<td align="right">'.number_format($jumlah_per_wp, 2, ',', '.').'</td>';
+                    $output .= '<td align="right">'.$jumlah_bulan_bayar.'</td>';
+                    $avg_tap = 0;
+                    if ($jumlah_bulan_bayar==0) {
+                        $avg_tap = 0;
                     }else{
-                        $item['avg_tap'] = $item['jumlah_per_wp']/$item['jumlah_bulan_bayar'];
+                        $avg_tap = $jumlah_per_wp/$jumlah_bulan_bayar;
                     }
-                    $output .= '<td align="right">'.number_format($item['avg_tap'], 2, ',', '.').'</td>';
+
+                    $output .= '<td align="right">'.number_format($avg_tap, 2, ',', '.').'</td>';
+                    
                     $output .= '</tr>';
                     $output .= '<tr>';
                         $output .= '<td align="CENTER" colspan=7>JUMLAH PER AYAT</td>';
@@ -1090,6 +1112,8 @@ class T_laporan_ketetapan_dan_realisasi_controller {
 
             $output.='</td></tr></table>';
             $output.='</table>';
+
+            //print_r($item['avg_tap']); exit();
             
             echo $output;
                 exit;
