@@ -128,7 +128,7 @@
                 {label: 'BERITA ACARA PEMERIKSAAN',name: 'berita_acara_pemeriksaan',width: 250,sorttype: 'text'},
                 {label: 'DRAFT PENGUKUHAN',name: 'draft_pengukuhan',width: 200,sorttype: 'text'},
                 {label: 'APPROVAL KASI PENDAFTARAN DAN PENDATAAN',name: 'approval_kasi_pendaftaran_dan_pendataan',width: 370,sorttype: 'text'},
-                {label: 'APPROVAL KABID PAJAK PENDAFTARAN',name: 'approval_kabid_pajak_pendaftaran',width: 180,sorttype: 'text'},
+                {label: 'APPROVAL KABID PAJAK PENDAFTARAN',name: 'approval_kabid_pajak_pendaftaran',width: 280,sorttype: 'text'},
                 {label: 'APPROVAL KADIS PELAYANAN PAJAK',name: 'approval_kadis_pelayanan_pajak',width: 280,sorttype: 'text'},
                 {label: 'PENYERAHAN SURAT PENGUKUHAN',name: 'penyerahan_surat_pengukuhan',width: 280,sorttype: 'text'},
                 {label: 'DURASI S/D PENGUKUHAN',name: 'durasi_sd_pengukuhan',width: 200,align: 'right',formatter:'currency', formatoptions: {prefix:"", thousandsSeparator:','}},
