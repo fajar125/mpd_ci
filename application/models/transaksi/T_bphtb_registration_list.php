@@ -312,7 +312,7 @@ class T_bphtb_registration_list extends Abstract_model {
     }
 
     function getDataWS($nop_search,$year_code){
-
+        //print_r($year_code);exit;
         $ws_data = file_get_contents('http://45.118.112.232:81/webservice-pbb/trans/bphtb_webservice.php?method=bphtb&param='.$nop_search.$year_code);
         $ws_data = json_decode($ws_data);       
             
@@ -326,8 +326,10 @@ class T_bphtb_registration_list extends Abstract_model {
         $item = $query->row_array();
         
             
-        return $item[0];
+        return $item;
     }
+
+    
 
     
 }

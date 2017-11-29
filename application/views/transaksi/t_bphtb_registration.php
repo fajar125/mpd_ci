@@ -63,7 +63,7 @@
                                         </label>
                                         <div class="col-md-3">
                                             <input type="hidden" class="form-control" name="t_bphtb_registration_id" id="t_bphtb_registration_id">
-                                            <input type="text" class="form-control" maxlength="64" name="wp_name" id="wp_name">
+                                            <input type="text" class="form-control" maxlength="64" name="wp_name" id="wp_name" >
                                             <input type="hidden" class="form-control" name="p_bphtb_type_id" id="p_bphtb_type_id">
                                         </div>
 
@@ -260,7 +260,7 @@
                                         </label>
                                         <div class="col-md-2">
                                             <div class="input-group ">
-                                                <input type="text" class="form-control formatRight" name="add_disc_percent" onkeyup="hitungTotalTanah();return 1;" id="add_disc_percent">
+                                                <input type="text" class="form-control formatRight" name="add_disc_percent" onkeyup="hitungTotalTanah();return 1;" id="add_disc_percent" value="0" onfocus="changeNull(this)" onfocusout="changeZero(this)">
                                                 <span class="input-group-addon">% </span>
                                             </div> 
                                         </div>
@@ -272,14 +272,14 @@
                                         </label>
                                         <div class="col-md-3">
                                             <div class="input-group ">
-                                                <input type="text" onkeyup="hitungTotalTanah();return 1;" class="form-control formatRight"  readonly="true" maxlength="16" name="land_area_real" id="land_area_real">
-                                                <span class="input-group-addon">m2</span>
+                                                <input type="text" onkeyup="hitungTotalTanah();return 1;" class="form-control formatRight"  readonly="true" maxlength="16" name="land_area_real" id="land_area_real" value="0" >
+                                                <span class="input-group-addon" >m2</span>
                                             </div> 
                                         </div>
                                         <div class="col-md-3">
                                             <div class="input-group ">
                                                 <span class="input-group-addon">Rp.</span>
-                                                <input type="text" onkeyup="hitungTotalTanah();" maxlength="16" class="form-control priceformat" readonly="true" name="land_price_real" id="land_price_real">
+                                                <input type="text" onkeyup="hitungTotalTanah();" maxlength="16" class="form-control priceformat" readonly="true" name="land_price_real" id="land_price_real" value="0" >
                                             </div> 
                                         </div>
                                     </div>
@@ -289,14 +289,14 @@
                                         </label>
                                         <div class="col-md-3">
                                             <div class="input-group ">
-                                                <input type="text" onkeyup="hitungTotalBangunan();" maxlength="16" class="form-control formatRight"  readonly="true" name="building_area_real" id="building_area_real">
-                                                <span class="input-group-addon">m2</span>
+                                                <input type="text" onkeyup="hitungTotalBangunan();" maxlength="16" class="form-control formatRight"  readonly="true" name="building_area_real" id="building_area_real" value="0">
+                                                <span class="input-group-addon" >m2</span>
                                             </div> 
                                         </div>
                                         <div class="col-md-3">
                                             <div class="input-group ">
                                                 <span class="input-group-addon">Rp.</span>
-                                                <input type="text" onkeyup="hitungTotalBangunan();" maxlength="16" class="form-control priceformat" readonly="true" name="building_price_real" id="building_price_real">
+                                                <input type="text" onkeyup="hitungTotalBangunan();" maxlength="16" class="form-control priceformat" readonly="true" name="building_price_real" id="building_price_real" value="0" >
                                             </div> 
                                         </div>
                                     </div>
@@ -306,20 +306,20 @@
                                         </label>
                                         <div class="col-md-3">
                                             <div class="input-group ">
-                                                <input type="text" onkeyup="hitungTotalTanah();return 1;" maxlength="10"  class="form-control formatRight"   name="land_area" id="land_area">
+                                                <input type="text" onkeyup="hitungTotalTanah();return 1;" maxlength="10"  class="form-control formatRight"   name="land_area" id="land_area" value="0" onfocus="changeNull(this)" onfocusout="changeZero(this)">
                                                 <span class="input-group-addon">m2</span>
                                             </div> 
                                         </div>
                                         <div class="col-md-3">
                                             <div class="input-group ">
                                                 <span class="input-group-addon">Rp.</span>
-                                                <input type="text" onkeyup="hitungTotalTanah();" maxlength="10" class="form-control priceformat"  name="land_price_per_m" id="land_price_per_m">
+                                                <input type="text" onkeyup="hitungTotalTanah();" maxlength="10" class="form-control priceformat"  name="land_price_per_m" id="land_price_per_m" value="0" onfocus="changeNull(this)" onfocusout="changeZero(this)">
                                             </div> 
                                         </div>
                                         <div class="col-md-3">
                                             <div class="input-group ">
                                                 <span class="input-group-addon">Rp.</span>
-                                                <input type="text" class="form-control  priceformat"  maxlength="16" name="land_total_price" id="land_total_price">
+                                                <input type="text" class="form-control priceformat"  maxlength="16" name="land_total_price" id="land_total_price" value="0" readonly>
                                             </div> 
                                         </div>
                                         <label class="control-label col-md-5 col-md-offset-2">(Gunakan tanda "."(titik) untuk luas dengan bilangan pecahan)
@@ -331,20 +331,20 @@
                                         </label>
                                         <div class="col-md-3">
                                             <div class="input-group ">
-                                                <input type="text" onkeyup="hitungTotalBangunan();"  maxlength="10" class="form-control formatRight"   name="building_area" id="building_area">
+                                                <input type="text" onkeyup="hitungTotalBangunan();"  maxlength="10" class="form-control formatRight"   name="building_area" id="building_area" value="0" onfocus="changeNull(this)" onfocusout="changeZero(this)">
                                                 <span class="input-group-addon">m2</span>
                                             </div> 
                                         </div>
                                         <div class="col-md-3">
                                             <div class="input-group ">
                                                 <span class="input-group-addon">Rp.</span>
-                                                <input type="text" onkeyup=" hitungTotalBangunan();"  maxlength="10" class="form-control priceformat"  name="building_price_per_m" id="building_price_per_m">
+                                                <input type="text" onkeyup=" hitungTotalBangunan();"  maxlength="10" class="form-control priceformat"  name="building_price_per_m" id="building_price_per_m" value="0" onfocus="changeNull(this)" onfocusout="changeZero(this)">
                                             </div> 
                                         </div>
                                         <div class="col-md-3">
                                             <div class="input-group ">
                                                 <span class="input-group-addon">Rp.</span>
-                                                <input type="text" class="form-control priceformat"  maxlength="16"  name="building_total_price" id="building_total_price">
+                                                <input type="text" class="form-control priceformat"  maxlength="16"  name="building_total_price" id="building_total_price" value="0" readonly>
                                             </div> 
                                         </div>
                                         <label class="control-label col-md-5 col-md-offset-2">(Gunakan tanda "."(titik) untuk luas dengan bilangan pecahan)
@@ -357,7 +357,7 @@
                                         <div class="col-md-3 col-md-offset-4 ">
                                             <div class="input-group ">
                                                 <span class="input-group-addon">Rp</span>
-                                                <input type="text" class="form-control priceformat"   name="total_price" id="total_price">
+                                                <input type="text" class="form-control priceformat"   name="total_price" id="total_price" value="0" readonly>
                                             </div> 
                                         </div>
                                     </div>
@@ -373,7 +373,7 @@
                                         <div class="col-md-3 col-md-offset-3 ">
                                             <div class="input-group ">
                                                 <span class="input-group-addon">Rp</span>
-                                                <input type="text" onkeyup=" getNPOP();" maxlength="16"  class="form-control priceformat"   name="market_price" id="market_price">
+                                                <input type="text" onkeyup=" getNPOP();" maxlength="16"  class="form-control priceformat"   name="market_price" id="market_price" value="0" onfocus="changeNull(this)" onfocusout="changeZero(this)">
                                             </div> 
                                         </div>
                                     </div>
@@ -400,7 +400,7 @@
                                         <div class="col-md-3">
                                             <div class="input-group ">
                                                 <span class="input-group-addon">Rp.</span>
-                                                <input type="text" class="form-control priceformat" maxlength="16" readonly  name="npop" id="npop">
+                                                <input type="text" class="form-control priceformat" maxlength="16" readonly  name="npop" id="npop" value="0">
                                             </div> 
                                         </div>
                                     </div>
@@ -411,7 +411,7 @@
                                         <div class="col-md-3">
                                             <div class="input-group ">
                                                 <span class="input-group-addon">Rp.</span>
-                                                <input type="text" class="form-control priceformat"  name="add_discount" id="add_discount">
+                                                <input type="text" class="form-control priceformat"  name="add_discount" id="add_discount" value="0" onfocus="changeNull(this)" onfocusout="changeZero(this)">
                                             </div> 
                                         </div>
                                     </div>
@@ -422,7 +422,7 @@
                                         <div class="col-md-3">
                                             <div class="input-group ">
                                                 <span class="input-group-addon">Rp.</span>
-                                                <input type="text" class="form-control priceformat" maxlength="16"  name="npop_tkp" id="npop_tkp">
+                                                <input type="text" class="form-control priceformat" maxlength="16"  name="npop_tkp" id="npop_tkp" value="0" onfocus="changeNull(this)" onfocusout="changeZero(this)">
                                             </div> 
                                         </div>
                                     </div>
@@ -433,7 +433,7 @@
                                         <div class="col-md-3">
                                             <div class="input-group ">
                                                 <span class="input-group-addon">Rp.</span>
-                                                <input type="text" class="form-control priceformat" maxlength="16" name="npop_kp" id="npop_kp">
+                                                <input type="text" class="form-control priceformat" maxlength="16" name="npop_kp" id="npop_kp" value="0" onfocus="changeNull(this)" onfocusout="changeZero(this)">
                                             </div> 
                                         </div>
                                     </div>
@@ -444,7 +444,7 @@
                                         <div class="col-md-3">
                                             <div class="input-group ">
                                                 <span class="input-group-addon">Rp.</span>
-                                                <input type="text" class="form-control priceformat" maxlength="16"  name="bphtb_amt" id="bphtb_amt">
+                                                <input type="text" class="form-control priceformat" maxlength="16"  name="bphtb_amt" id="bphtb_amt" value="0" onfocus="changeNull(this)" onfocusout="changeZero(this)">
                                             </div> 
                                         </div>
                                     </div>
@@ -455,7 +455,7 @@
                                         <div class="col-md-3">
                                             <div class="input-group ">
                                                 <span class="input-group-addon">Rp.</span>
-                                                <input type="text" class="form-control priceformat" maxlength="16"  name="bphtb_discount" id="bphtb_discount">
+                                                <input type="text" class="form-control priceformat" maxlength="16"  name="bphtb_discount" id="bphtb_discount" value="0" onfocus="changeNull(this)" onfocusout="changeZero(this)">
                                             </div> 
                                         </div>
                                         <div class="col-md-3">
@@ -492,7 +492,7 @@
                                         <div class="col-md-3">
                                             <div class="input-group ">
                                                 <span class="input-group-addon">Rp.</span>
-                                                <input type="text" class="form-control priceformat" maxlength="16" name="bphtb_amt_final" readonly id="bphtb_amt_final">
+                                                <input type="text" class="form-control priceformat " maxlength="16" name="bphtb_amt_final" readonly value="0" id="bphtb_amt_final" >
                                             </div> 
                                         </div>
                                         
@@ -555,6 +555,44 @@
     $(".numberformat").number( true, 0 , '.','.');
     $(".numberformat").css("text-align", "right");
     $(".formatRight").css("text-align", "right");
+
+    /*$( ".focusFormat" ).focus(function() {
+        if ($(".focusFormat" ).val()==0){
+            $(".focusFormat" ).val(null);
+        }
+    });
+
+    $( ".focusFormat" ).focusout(function() {
+        if ($(".focusFormat" ).val()==null || $(".focusFormat" ).val()=='')
+            $(".focusFormat" ).val(0);
+    });
+*/
+
+    function changeNull(param){
+        //alert (param);
+        var data = param.value;
+        if (data==0)
+            param.value=null;
+    }
+
+    function changeZero(param){
+        var data = param.value;
+        if (data==null || data=='')
+            param.value=0;
+    }
+
+    /*$( ".focusFormat" ).keyup(function() {
+        if ($(".focusFormat" ).val()==null || $(".focusFormat" ).val()=='')
+            $(".focusFormat" ).val(0);
+    });
+
+    $( ".focusFormat" ).keydown(function() {
+        if ($(".focusFormat" ).val()==0)
+            $(".focusFormat" ).val(null);
+    });*/
+
+    
+        
 
     if(FLAG == 'Edit' || FLAG == 'Detail'){
         
@@ -1070,35 +1108,19 @@
     });
 
     $('#insert').on('click', function(event){
+        validasi();
+        
         setNormalValue();
         save();
         //alert('insert');
     });
     
     $('#update').on('click', function(event){
-        var wp_kota = $('#wp_kota').val();
-        var wp_kecamatan = $('#wp_kecamatan').val();
-        var wp_kelurahan = $('#wp_kelurahan').val();
-        var p_bphtb_legal_doc_type_id = $('#p_bphtb_legal_doc_type_id').val();
-        var object_kota = $('#object_kota').val();
-        var object_kecamatan = $('#object_kecamatan').val();
-        var object_kelurahan = $('#object_kelurahan').val();
-        var wp_name = $('#wp_name').val();
+        validasi();
 
         setNormalValue();
-        if(wp_kota == '' || wp_kota == null || object_kota == '' || object_kota == null){
-            swal ( "Oopss" ,  "Kota haru diisi !" ,  "error" );
-        }else if(wp_kecamatan == '' || wp_kecamatan == null || object_kecamatan == '' || object_kecamatan == null){
-            swal ( "Oopss" ,  "Kecamatan haru diisi !" ,  "error" );
-        }else if(wp_kelurahan == '' || wp_kelurahan == null || object_kelurahan == '' || object_kelurahan == null){
-            swal ( "Oopss" ,  "Kelurahan haru diisi !" ,  "error" );
-        }else if(p_bphtb_legal_doc_type_id == '' || p_bphtb_legal_doc_type_id == null){
-            swal ( "Oopss" ,  "Dokumen Pendukung haru diisi !" ,  "error" );
-        }else if(wp_name == '' || wp_name == null){
-            swal ( "Oopss" ,  "Nama WP haru diisi !" ,  "error" );
-        }else{
-            update();
-        }
+        update();
+        
 
         //update();
         //alert('update');
@@ -1128,32 +1150,63 @@
         });
     });
 
-    $('#update').on('click', function(event){
-        var wp_kota = $('#wp_kota').val();
-        var wp_kecamatan = $('#wp_kecamatan').val();
-        var wp_kelurahan = $('#wp_kelurahan').val();
-        var p_bphtb_legal_doc_type_id = $('#p_bphtb_legal_doc_type_id').val();
-        var object_kota = $('#object_kota').val();
-        var object_kecamatan = $('#object_kecamatan').val();
-        var object_kelurahan = $('#object_kelurahan').val();
-        var wp_name = $('#wp_name').val();
+    function validasi(){
+        var wp_name                     = $('#wp_name').val();
+        var npwp                        = $('#npwp').val();
+        var wp_address_name             = $('#wp_address_name').val();
+        var wp_kota                     = $('#wp_p_region_id').val();
+        var wp_kecamatan                = $('#wp_p_region_id_kec').val();
+        var wp_kelurahan                = $('#wp_p_region_id_kel').val();
+        var object_kota                 = $('#object_p_region_id').val();
+        var object_kecamatan            = $('#object_p_region_id_kec').val();
+        var object_kelurahan            = $('#object_p_region_id_kel').val();
+        var p_bphtb_legal_doc_type_id   = $('#p_bphtb_legal_doc_type_id').val();
 
-        setNormalValue();
         if(wp_kota == '' || wp_kota == null || object_kota == '' || object_kota == null){
-            swal ( "Oopss" ,  "Kota haru diisi !" ,  "error" );
-        }else if(wp_kecamatan == '' || wp_kecamatan == null || object_kecamatan == '' || object_kecamatan == null){
-            swal ( "Oopss" ,  "Kecamatan haru diisi !" ,  "error" );
-        }else if(wp_kelurahan == '' || wp_kelurahan == null || object_kelurahan == '' || object_kelurahan == null){
-            swal ( "Oopss" ,  "Kelurahan haru diisi !" ,  "error" );
-        }else if(p_bphtb_legal_doc_type_id == '' || p_bphtb_legal_doc_type_id == null){
-            swal ( "Oopss" ,  "Dokumen Pendukung haru diisi !" ,  "error" );
-        }else if(wp_name == '' || wp_name == null){
-            swal ( "Oopss" ,  "Nama WP haru diisi !" ,  "error" );
-        }else{
-            update();
+            swal ( "Oopss" ,  "Kota harus diisi !" ,  "error" );
+            return true;
         }
-        //alert('update');
-    });
+
+        if(wp_kecamatan == '' || wp_kecamatan == null || object_kecamatan == '' || object_kecamatan == null){
+            swal ( "Oopss" ,  "Kecamatan harus diisi !" ,  "error" );
+            return true;
+        }
+
+        if(wp_kelurahan == '' || wp_kelurahan == null || object_kelurahan == '' || object_kelurahan == null){
+            swal ( "Oopss" ,  "Kelurahan harus diisi !" ,  "error" );
+            return true;
+        }
+
+        if(p_bphtb_legal_doc_type_id == '' || p_bphtb_legal_doc_type_id == null){
+            swal ( "Oopss" ,  "Dokumen Pendukung harus diisi !" ,  "error" );
+            return true;
+        }
+
+        if(wp_name == '' || wp_name == null){
+            swal ( "Oopss" ,  "Nama WP harus diisi !" ,  "error" );
+            return true;
+        }
+
+        if(npwp == '' || npwp == null){
+            swal ( "Oopss" ,  "NPWP harus diisi !" ,  "error" );
+            return true;
+        }
+
+        if( wp_address_name == '' || wp_address_name == null){
+            swal ( "Oopss" ,  "Alamat harus diisi !" ,  "error" );
+            return true;
+        }
+
+        if( wp_address_name == '' || wp_address_name == null){
+            swal ( "Oopss" ,  "Alamat harus diisi !" ,  "error" );
+            return true;
+        }
+
+        if( njop_pbb == '' || njop_pbb == null){
+            swal ( "Oopss" ,  "No Objek Pajak harus diisi !" ,  "error" );
+            return true;
+        }
+    }
 
     function save(){
         var wp_name                     = $('#wp_name').val();
@@ -1203,6 +1256,7 @@
         }else{
             check_potongan = 'N';
         }
+
 
         var var_url = "<?php echo WS_JQGRID . "transaksi.t_bphtb_registration_list_controller/insert/?"; ?>";
         var_url += "<?php echo $this->security->get_csrf_token_name(); ?>=<?php echo $this->security->get_csrf_hash(); ?>";
