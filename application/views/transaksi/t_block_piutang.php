@@ -5,7 +5,7 @@
             <i class="fa fa-circle"></i>
         </li>
         <li>
-            <span>Bolck Piutang</span>
+            <span>Block Piutang</span>
         </li>
     </ul> 
 </div>
