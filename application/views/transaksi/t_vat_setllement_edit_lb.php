@@ -25,14 +25,6 @@
             </div>
             <!-- CONTENT  value="2015-09-01" -->
             <div class="form-body">
-                <div class="row col-md-offset-4">     
-                    <div class="col-md-3">
-                        <div class="input-group">
-                            <input type="text" class="form-control" name="s_keyword" id="s_keyword">                 
-                        </div>
-                    </div>
-                    <button class="btn btn-primary" type="button" onclick="toTampil()">Cari</button>
-                </div> 
                 <div class="space-4"></div>
                 <div class="row">
                     <div class="col-xs-12">
