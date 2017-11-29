@@ -55,6 +55,9 @@
 
                                     <div class="form-group">
                                         <label class="control-label col-md-2"> A. Subjek Pajak </label>
+                                        <div class="col-md-3">
+                                            <input type="text" class="form-control" name="t_bphtb_registration_id" readonly="" id="t_bphtb_registration_id">
+                                        </div>
                                         <label class="control-label col-md-4" style="text-align: left !important;" id="subject_pajak" name="subject_pajak"></label>
                                     </div>
                                     <div class="form-group">
@@ -249,67 +252,39 @@
                                         <label class="control-label col-md-3">Potongan
                                         </label>
                                         <div class="col-md-2">
-                                            <div class="input-group ">
+                                            <input type="hidden" class="form-control" name="nilai_doc" readonly="" id="nilai_doc">
+                                            <!-- <div class="input-group ">
                                                 <input type="text" class="form-control formatRight" name="add_disc_percent" onkeyup="hitungTotalTanah();return 1;" id="add_disc_percent">
                                                 <span class="input-group-addon">% </span>
-                                            </div>
-                                        </div>
-                                        <label class="control-label col-md-6 col-md-offset-2">(Gunakan tanda "."(titik) untuk luas dengan bilangan pecahan)
-                                        </label>
-                                    </div>
-                                    <div class="form-group">
-                                        <label class="control-label col-md-2">Nilai Tanah (Ref)
-                                        </label>
-                                        <div class="col-md-3">
-                                            <div class="input-group ">
-                                                <input type="text" onkeyup="hitungTotalTanah();return 1;" class="form-control formatRight"  readonly="true" maxlength="16" name="land_area_real" id="land_area_real">
-                                                <span class="input-group-addon">m2</span>
-                                            </div>
-                                        </div>
-                                        <div class="col-md-3">
-                                            <div class="input-group ">
-                                                <span class="input-group-addon">Rp.</span>
-                                                <input type="text" onkeyup="hitungTotalTanah();" maxlength="16" class="form-control priceformat" readonly="true" name="land_price_real" id="land_price_real">
-                                            </div>
+                                            </div> -->
+                                            <select name="add_disc_percent" id="add_disc_percent" class="form-control">
+                                                <option value="0">0%</option>
+                                                <option value="0.25">25%</option>
+                                                <option value="0.5">50%</option>
+                                                <option value="0.75">75%</option>
+                                                <option value="1">100%</option>
+                                            </select>
                                         </div>
                                     </div>
-
-                                    <div class="form-group">
-                                        <label class="control-label col-md-2"> Nilai bangunan (Ref)
-                                        </label>
-                                        <div class="col-md-3">
-                                            <div class="input-group ">
-                                                <input type="text" onkeyup="hitungTotalBangunan();" maxlength="16" class="form-control formatRight"  readonly="true" name="building_area_real" id="building_area_real">
-                                                <span class="input-group-addon">m2</span>
-                                            </div>
-                                        </div>
-                                        <div class="col-md-3">
-                                            <div class="input-group ">
-                                                <span class="input-group-addon">Rp.</span>
-                                                <input type="text" onkeyup="hitungTotalBangunan();" maxlength="16" class="form-control priceformat" readonly="true" name="building_price_real" id="building_price_real">
-                                            </div>
-                                        </div>
-                                    </div>
-
                                     <div class="form-group">
                                         <label class="control-label col-md-2"> Tanah
                                         </label>
                                         <div class="col-md-3">
                                             <div class="input-group ">
-                                                <input type="text" onkeyup="hitungTotalTanah();return 1;" maxlength="10"  class="form-control formatRight"   name="land_area" id="land_area">
+                                                <input type="text" value="0" onfocus="changeNull(this)" onfocusout="changeZero(this)" onkeyup="hitungTotalTanah();return 1;" maxlength="10"  class="form-control formatRight"   name="land_area" id="land_area">
                                                 <span class="input-group-addon">m2</span>
                                             </div>
                                         </div>
                                         <div class="col-md-3">
                                             <div class="input-group ">
                                                 <span class="input-group-addon">Rp.</span>
-                                                <input type="text" onkeyup="hitungTotalTanah();" maxlength="10" class="form-control priceformat"  name="land_price_per_m" id="land_price_per_m">
+                                                <input type="text" value="0" onfocus="changeNull(this)" onfocusout="changeZero(this)" onkeyup="hitungTotalTanah();" maxlength="10" class="form-control priceformat"  name="land_price_per_m" id="land_price_per_m">
                                             </div>
                                         </div>
                                         <div class="col-md-3">
                                             <div class="input-group ">
                                                 <span class="input-group-addon">Rp.</span>
-                                                <input type="text" class="form-control  priceformat"  maxlength="16" name="land_total_price" id="land_total_price">
+                                                <input type="text" readonly="" class="form-control  priceformat"  maxlength="16" name="land_total_price" id="land_total_price">
                                             </div>
                                         </div>
                                         <label class="control-label col-md-5 col-md-offset-2">(Gunakan tanda "."(titik) untuk luas dengan bilangan pecahan)
@@ -321,20 +296,20 @@
                                         </label>
                                         <div class="col-md-3">
                                             <div class="input-group ">
-                                                <input type="text" onkeyup="hitungTotalBangunan();"  maxlength="10" class="form-control formatRight"   name="building_area" id="building_area">
+                                                <input type="text" value="0" onfocus="changeNull(this)" onfocusout="changeZero(this)" onkeyup="hitungTotalBangunan();"  maxlength="10" class="form-control formatRight"   name="building_area" id="building_area">
                                                 <span class="input-group-addon">m2</span>
                                             </div>
                                         </div>
                                         <div class="col-md-3">
                                             <div class="input-group ">
                                                 <span class="input-group-addon">Rp.</span>
-                                                <input type="text" onkeyup=" hitungTotalBangunan();"  maxlength="10" class="form-control priceformat"  name="building_price_per_m" id="building_price_per_m">
+                                                <input type="text" value="0" onfocus="changeNull(this)" onfocusout="changeZero(this)" onkeyup=" hitungTotalBangunan();"  maxlength="10" class="form-control priceformat"  name="building_price_per_m" id="building_price_per_m">
                                             </div>
                                         </div>
                                         <div class="col-md-3">
                                             <div class="input-group ">
                                                 <span class="input-group-addon">Rp.</span>
-                                                <input type="text" class="form-control priceformat"  maxlength="16"  name="building_total_price" id="building_total_price">
+                                                <input type="text" readonly="" class="form-control priceformat"  maxlength="16"  name="building_total_price" id="building_total_price">
                                             </div>
                                         </div>
                                         <label class="control-label col-md-5 col-md-offset-2">(Gunakan tanda "."(titik) untuk luas dengan bilangan pecahan)
@@ -347,7 +322,7 @@
                                         <div class="col-md-3 col-md-offset-4 ">
                                             <div class="input-group ">
                                                 <span class="input-group-addon">Rp</span>
-                                                <input type="text" class="form-control priceformat"   name="total_price" id="total_price">
+                                                <input type="text" readonly="" class="form-control priceformat"   name="total_price" id="total_price">
                                             </div>
                                         </div>
                                     </div>
@@ -363,7 +338,7 @@
                                         <div class="col-md-3 col-md-offset-3 ">
                                             <div class="input-group ">
                                                 <span class="input-group-addon">Rp</span>
-                                                <input type="text" onkeyup=" getNPOP();" maxlength="16"  class="form-control priceformat"   name="market_price" id="market_price">
+                                                <input type="text" value="0" onfocus="changeNull(this)" onfocusout="changeZero(this)" onkeyup=" getNPOP();" maxlength="16"  class="form-control priceformat"   name="market_price" id="market_price">
                                             </div>
                                         </div>
                                     </div>
@@ -390,7 +365,7 @@
                                         <div class="col-md-3">
                                             <div class="input-group ">
                                                 <span class="input-group-addon">Rp.</span>
-                                                <input type="text" class="form-control priceformat" maxlength="16" readonly  name="npop" id="npop">
+                                                <input type="text" readonly="" class="form-control priceformat" maxlength="16" readonly  name="npop" id="npop">
                                             </div>
                                         </div>
                                     </div>
@@ -401,7 +376,7 @@
                                         <div class="col-md-3">
                                             <div class="input-group ">
                                                 <span class="input-group-addon">Rp.</span>
-                                                <input type="text" class="form-control priceformat"  name="add_discount" id="add_discount">
+                                                <input type="text" value="0" onfocus="changeNull(this)" onfocusout="changeZero(this)" class="form-control priceformat"  name="add_discount" id="add_discount">
                                             </div>
                                         </div>
                                     </div>
@@ -412,7 +387,7 @@
                                         <div class="col-md-3">
                                             <div class="input-group ">
                                                 <span class="input-group-addon">Rp.</span>
-                                                <input type="text" class="form-control priceformat" maxlength="16"  name="npop_tkp" id="npop_tkp">
+                                                <input type="text" value="0" onfocus="changeNull(this)" onfocusout="changeZero(this)" class="form-control priceformat" maxlength="16"  name="npop_tkp" id="npop_tkp">
                                             </div>
                                         </div>
                                     </div>
@@ -423,7 +398,7 @@
                                         <div class="col-md-3">
                                             <div class="input-group ">
                                                 <span class="input-group-addon">Rp.</span>
-                                                <input type="text" class="form-control priceformat" maxlength="16" name="npop_kp" id="npop_kp">
+                                                <input type="text" value="0" onfocus="changeNull(this)" onfocusout="changeZero(this)" class="form-control priceformat" maxlength="16" name="npop_kp" id="npop_kp">
                                             </div>
                                         </div>
                                     </div>
@@ -434,13 +409,13 @@
                                         <div class="col-md-3">
                                             <div class="input-group ">
                                                 <span class="input-group-addon">Rp.</span>
-                                                <input type="text" class="form-control priceformat" maxlength="16"  name="bphtb_amt" id="bphtb_amt">
+                                                <input type="text" value="0" onfocus="changeNull(this)" onfocusout="changeZero(this)" class="form-control priceformat" maxlength="16"  name="bphtb_amt" id="bphtb_amt">
                                             </div>
                                         </div>
                                     </div>
 
                                     <div class="form-group" >
-                                        <label class="control-label col-md-2 ">  Potongan
+                                        <label class="control-label col-md-2">  Potongan
                                         </label>
                                         <div class="col-md-3">
                                             <div class="input-group ">
@@ -449,18 +424,8 @@
                                             </div>
                                         </div>
                                         <div class="col-md-3">
-                                            <input type="text" class="form-control" name="description" id="description">
+                                            <input type="text" value="0" onfocus="changeNull(this)" onfocusout="changeZero(this)" class="form-control" name="description" id="description">
                                         </div>
-
-                                        <div class="col-md-3">
-                                            <div class="input-group ">
-                                                <label class="control-label input-group-addon  ">  Cek Potongan :
-                                                </label>
-                                                <span class="input-group-addon"><input type="checkbox" class="form-control" name="check_potongan" id="check_potongan"></span>
-                                            </div>
-                                        </div>
-                                        <label class="control-label col-md-5 col-md-offset-6">(Silahkan cheklis utk pembayaran yg ada potongan)
-                                        </label>
                                     </div>
 
                                     <div id="div-harus-bayar" class="form-group" style="display: none">
@@ -482,7 +447,7 @@
                                         <div class="col-md-3">
                                             <div class="input-group ">
                                                 <span class="input-group-addon">Rp.</span>
-                                                <input type="text" class="form-control priceformat" maxlength="16" name="bphtb_amt_final" id="bphtb_amt_final">
+                                                <input type="text" readonly="" class="form-control priceformat" maxlength="16" name="bphtb_amt_final" id="bphtb_amt_final">
                                             </div>
                                         </div>
 
@@ -723,6 +688,20 @@
 <!-- PERHITUNGAN -->
 
 <script>
+
+    function changeNull(param){
+        //alert (param);
+        var data = param.value;
+        if (data==0)
+            param.value=null;
+    }
+
+    function changeZero(param){
+        var data = param.value;
+        if (data==null || data=='')
+            param.value=0;
+    }
+
     function ReplaceNumberWithCommas(yourNumber) {
         var n = yourNumber.toString().split(".");
         n[0] = n[0].replace(/\B(?=(\d{3})+(?!\d))/g, ",");
