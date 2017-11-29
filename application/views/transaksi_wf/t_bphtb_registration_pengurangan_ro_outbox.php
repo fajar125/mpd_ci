@@ -645,20 +645,6 @@
 
 <script>
 
-    $('#tgl_sk').datepicker({ // mengambil dari class datepicker
-      autoclose: true,
-      format : 'dd-mm-yyyy',
-      todayBtn: 'linked',
-      todayHighlight: true
-    });
-
-    $('#tgl_berita_acara').datepicker({ // mengambil dari class datepicker
-      autoclose: true,
-      format : 'dd-mm-yyyy',
-      todayBtn: 'linked',
-      todayHighlight: true
-    });
-
 
     $(".priceformat").number( true, 0 , '.',','); /* price number format */
     $(".priceformat").css("text-align", "right");
