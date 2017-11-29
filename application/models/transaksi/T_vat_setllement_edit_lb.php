@@ -65,6 +65,47 @@ class T_vat_setllement_edit_lb extends Abstract_model {
         return true;
     }
 
+    function saveDataSubmit($cusAccId,$Period,$npwd,$ms_start,$ms_end,$kamar,$tot,$p_vat_type_dtl_id,$p_vat_type_dtl_cls_id){
+
+        $ci =& get_instance();
+        $userdata = $ci->session->userdata;
+        $user = $userdata['app_user_name'];
+
+        $sql = "SELECT * FROM f_vat_settlement_manual_skpdkb_lb(".$cusAccId.",".$Period.",'".$npwd."','".$ms_start."','".$ms_end."',".$kamar.",".$tot.",".$p_vat_type_dtl_id.",".$p_vat_type_dtl_cls_id.",'".$user."')";
+
+        //return $sql;
+
+        $query = $this->db->query($sql);
+        $items = $query->row_array();
+            
+        return $items;
+
+    }
+
+    function getEngine2step($cust_id){
+        $ci =& get_instance();
+        $userdata = $ci->session->userdata;
+        $user = $userdata['app_user_name'];
+
+        $sql = "SELECT * FROM f_first_submit_engine_2step(501,".$cust_id.",'".$user."')";
+
+        $query = $this->db->query($sql);
+        $items = $query->row_array();
+            
+        return $items;
+
+    }
+
+    function getVatSetllement($cust_id){
+
+        $sql = "SELECT t_vat_setllement_id FROM t_vat_setllement WHERE t_customer_order_id = ".$cust_id;
+
+        $query = $this->db->query($sql);
+        $items = $query->row_array();
+            
+        return $items['t_vat_setllement_id'];
+    }
+
 }
 
 /* End of file T_vat_setllement_edit_lb.php */
