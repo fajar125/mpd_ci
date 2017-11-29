@@ -315,8 +315,8 @@
                                         </label>
                                         <div class="col-md-3">
                                             <div class="input-group ">
-                                                <input type="text" onkeyup="hitungTotalTanah();return 1;" maxlength="10"  class="form-control formatRight"   name="land_area" id="land_area">
-                                                <span class="input-group-addon" value="0" onfocus="changeNull(this)" onfocusout="changeZero(this)">m2</span>
+                                                <input type="text" onkeyup="hitungTotalTanah();return 1;" maxlength="10"  class="form-control formatRight"   name="land_area" id="land_area" value="0" onfocus="changeNull(this)" onfocusout="changeZero(this)">
+                                                <span class="input-group-addon" >m2</span>
                                             </div> 
                                         </div>
                                         <div class="col-md-3">
@@ -328,7 +328,7 @@
                                         <div class="col-md-3">
                                             <div class="input-group ">
                                                 <span class="input-group-addon">Rp.</span>
-                                                <input type="text" class="form-control  priceformat"  maxlength="16" name="land_total_price" id="land_total_price" value="0" onfocus="changeNull(this)" onfocusout="changeZero(this)">
+                                                <input type="text" class="form-control  priceformat"  maxlength="16" name="land_total_price" id="land_total_price"  readonly>
                                             </div> 
                                         </div>
                                         <label class="control-label col-md-5 col-md-offset-2">(Gunakan tanda "."(titik) untuk luas dengan bilangan pecahan)
@@ -340,8 +340,8 @@
                                         </label>
                                         <div class="col-md-3">
                                             <div class="input-group ">
-                                                <input type="text" onkeyup="hitungTotalBangunan();"  maxlength="10" class="form-control formatRight"   name="building_area" id="building_area">
-                                                <span class="input-group-addon" value="0" onfocus="changeNull(this)" onfocusout="changeZero(this)">m2</span>
+                                                <input type="text" onkeyup="hitungTotalBangunan();"  maxlength="10" class="form-control formatRight"   name="building_area" id="building_area" value="0" onfocus="changeNull(this)" onfocusout="changeZero(this)">
+                                                <span class="input-group-addon" >m2</span>
                                             </div> 
                                         </div>
                                         <div class="col-md-3">
@@ -353,7 +353,7 @@
                                         <div class="col-md-3">
                                             <div class="input-group ">
                                                 <span class="input-group-addon">Rp.</span>
-                                                <input type="text" class="form-control priceformat"  maxlength="16"  name="building_total_price" id="building_total_price" value="0" onfocus="changeNull(this)" onfocusout="changeZero(this)">
+                                                <input type="text" class="form-control priceformat"  maxlength="16"  name="building_total_price" id="building_total_price" readonly>
                                             </div> 
                                         </div>
                                         <label class="control-label col-md-5 col-md-offset-2">(Gunakan tanda "."(titik) untuk luas dengan bilangan pecahan)
@@ -366,7 +366,7 @@
                                         <div class="col-md-3 col-md-offset-4 ">
                                             <div class="input-group ">
                                                 <span class="input-group-addon">Rp</span>
-                                                <input type="text" class="form-control priceformat"   name="total_price" id="total_price" value="0" onfocus="changeNull(this)" onfocusout="changeZero(this)">
+                                                <input type="text" class="form-control priceformat"   name="total_price" id="total_price" readonly>
                                             </div> 
                                         </div>
                                     </div>
@@ -409,7 +409,7 @@
                                         <div class="col-md-3">
                                             <div class="input-group ">
                                                 <span class="input-group-addon">Rp.</span>
-                                                <input type="text" class="form-control priceformat" maxlength="16" name="npop" id="npop">
+                                                <input type="text" class="form-control priceformat" maxlength="16" name="npop" id="npop" value="0" onfocus="changeNull(this)" onfocusout="changeZero(this)">
                                             </div> 
                                         </div>
                                     </div>
@@ -420,7 +420,7 @@
                                         <div class="col-md-3">
                                             <div class="input-group ">
                                                 <span class="input-group-addon">Rp.</span>
-                                                <input type="text" class="form-control priceformat"  name="add_discount" id="add_discount">
+                                                <input type="text" class="form-control priceformat"  name="add_discount" id="add_discount" value="0" onfocus="changeNull(this)" onfocusout="changeZero(this)">
                                             </div> 
                                         </div>
                                     </div>
