@@ -76,18 +76,18 @@
     jQuery(function($) {
         var grid_selector = "#grid-table";
         //var pager_selector = "#grid-pager";
-
+        $('#table').css('display', 'none');
         jQuery("#grid-table").jqGrid({
             url: '<?php echo WS_JQGRID."transaksi.t_lembar_kontrol_bphtb_controller/read"; ?>',
             datatype: "json",
             mtype: "POST",
             colModel: [
                 //{label: 'ID',name: 't_bphtb_registration_id',hidden:true, width: 180, align: "center"},
-                {label: 'Tanggal',name: 'creation_date',width: 180, align: "center"},
-                {label: 'No Registrasi',name: 'registration_no',width: 200, align: "left"},
-                {label: 'Nama WP',name: 'wp_name',width: 300, align: "left"},
+                {label: 'Tanggal',name: 'creation_date',width: 100, align: "left"},
+                {label: 'No Registrasi',name: 'registration_no',width: 100, align: "left"},
+                {label: 'Nama WP',name: 'wp_name',width: 200, align: "left"},
                 {label: 'NOP',name: 'njop_pbb',width: 150, align: "left"},
-                {label: 'LT/LB',name: 'land_area',width: 120, align: "right"},
+                {label: 'LT/LB',name: 'land_area',width: 80, align: "right"},
                 {label: 'Nilai Pajak Yang Harus Dibayar (Rp)',name: 'bphtb_amt_final',width: 250, summaryTpl:"{0}",summaryType:"sum", formatter:'integer', formatoptions: {prefix:"", thousandsSeparator:',', defaultValue:'0'},align: "right"},
                 {label: 'No Transaksi',name: 'receipt_no',width: 120, align: "right"},
                 {label: 'Tanggal Bayar',name: 'payment_date',width: 120, align: "right"}            

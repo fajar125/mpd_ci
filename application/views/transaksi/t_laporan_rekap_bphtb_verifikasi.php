@@ -91,18 +91,18 @@
             mtype: "POST",
             colModel: [
                 //{label: 'ID',name: 't_bphtb_registration_id',hidden:true, width: 180, align: "center"},
-                {label: 'Tanggal',name: 'creation_date',width: 180, align: "center"},
-                {label: 'No Registrasi',name: 'registration_no',width: 200, align: "left"},
-                {label: 'Nama WP',name: 'wp_name',width: 300, align: "left"},
-                {label: 'Jenis Transaksi',name: 'description',width: 250, align: "left"},
+                {label: 'Tanggal',name: 'creation_date',width: 100, align: "left"},
+                {label: 'No Registrasi',name: 'registration_no',width: 100, align: "left"},
+                {label: 'Nama WP',name: 'wp_name',width: 200, align: "left"},
+                {label: 'Jenis Transaksi',name: 'description',width: 150, align: "left"},
                 {label: 'NOP',name: 'njop_pbb',width: 150, align: "left"},
-                {label: 'LT/LB',name: 'land_area',width: 120, align: "right"},
-                {label: 'HARGA TANAH (Rp)',name: 'land_total_price',width: 250, summaryTpl:"{0}",summaryType:"sum", formatter:'integer', formatoptions: {prefix:"", thousandsSeparator:',', defaultValue:'0'},align: "right"},
-                {label: 'HARGA BANGUNAN (Rp)    ',name: 'building_total_price',width: 250, summaryTpl:"{0}",summaryType:"sum", formatter:'integer', formatoptions: {prefix:"", thousandsSeparator:',', defaultValue:'0'},align: "right"},
-                {label: 'TOTAL NJOP (Rp)',name: 'nilai_njop',width: 250, summaryTpl:"{0}",summaryType:"sum", formatter:'integer', formatoptions: {prefix:"", thousandsSeparator:',', defaultValue:'0'},align: "right"},
+                {label: 'LT/LB',name: 'land_area',width: 80, align: "right"},
+                {label: 'HARGA TANAH (Rp)',name: 'land_total_price',width: 150, summaryTpl:"{0}",summaryType:"sum", formatter:'integer', formatoptions: {prefix:"", thousandsSeparator:',', defaultValue:'0'},align: "right"},
+                {label: 'HARGA BANGUNAN (Rp)    ',name: 'building_total_price',width: 150, summaryTpl:"{0}",summaryType:"sum", formatter:'integer', formatoptions: {prefix:"", thousandsSeparator:',', defaultValue:'0'},align: "right"},
+                {label: 'TOTAL NJOP (Rp)',name: 'nilai_njop',width: 150, summaryTpl:"{0}",summaryType:"sum", formatter:'integer', formatoptions: {prefix:"", thousandsSeparator:',', defaultValue:'0'},align: "right"},
                 {label: 'HARGA PASAR TRANSAKSI LELANG (Rp)',name: 'market_price',width: 280, summaryTpl:"{0}",summaryType:"sum", formatter:'integer', formatoptions: {prefix:"", thousandsSeparator:',', defaultValue:'0'},align: "right"},
-                {label: 'NILAI PAJAK YANG  HARUS DIBAYAR(Rp)',name: 'bphtb_amt_final',width: 320, summaryTpl:"{0}",summaryType:"sum", formatter:'integer', formatoptions: {prefix:"", thousandsSeparator:',', defaultValue:'0'},align: "right"},
-                {name: 'Validasi',width: 200, align: "center",
+                {label: 'NILAI PAJAK YANG  HARUS DIBAYAR(Rp)',name: 'bphtb_amt_final',width: 280, summaryTpl:"{0}",summaryType:"sum", formatter:'integer', formatoptions: {prefix:"", thousandsSeparator:',', defaultValue:'0'},align: "right"},
+                {name: 'Validasi',width: 100, align: "center",
                     formatter:function(cellvalue, options, rowObject) {
 
                         var t_bphtb_registration_id = rowObject['t_bphtb_registration_id'];

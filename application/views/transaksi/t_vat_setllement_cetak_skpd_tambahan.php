@@ -283,9 +283,9 @@
         var url = "<?php echo base_url(); ?>"+"cetak_formulir_skpdkb_tambahan2/pageCetak?";
         url += "t_vat_setllement_id=" + t_vat_setllement_id;
 
-        alert(url);
+        //alert(url);
 
-        //openInNewTab(url);
+        openInNewTab(url);
         
     }
 
