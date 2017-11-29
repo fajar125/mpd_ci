@@ -406,9 +406,9 @@
 
         $('#land_price_per_m').val(luas_bumi);
         $('#building_price_per_m').val(luas_bangunan);
-        $('#land_area_real').val(luas_bumi);
+        
 
-        $('#building_area_real').val(luas_bangunan);
+        
         $('#object_letak_tanah').val(jalan);
         $('#land_price_real').val(njop_bumi1);
 
@@ -416,14 +416,18 @@
 
         if (luas_bumi1 != 0){
             $('#land_area').val(njop_bumi1/luas_bumi1);
+            $('#land_area_real').val(njop_bumi1/luas_bumi1);
         }else{
             $('#land_area').val(0);
+            $('#land_area_real').val(0);
         }
 
         if (luas_bangunan1 != 0){
             $('#building_area').val(njop_bangunan1/luas_bangunan1);
+            $('#building_area_real').val(njop_bangunan1/luas_bangunan1);
         }else{
             $('#building_area').val(0);
+            $('#building_area_real').val(0);
         }
 
         $('#land_total_price').val(njop_bumi1);

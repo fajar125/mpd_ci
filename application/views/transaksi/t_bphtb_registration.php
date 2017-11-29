@@ -556,18 +556,6 @@
     $(".numberformat").css("text-align", "right");
     $(".formatRight").css("text-align", "right");
 
-    /*$( ".focusFormat" ).focus(function() {
-        if ($(".focusFormat" ).val()==0){
-            $(".focusFormat" ).val(null);
-        }
-    });
-
-    $( ".focusFormat" ).focusout(function() {
-        if ($(".focusFormat" ).val()==null || $(".focusFormat" ).val()=='')
-            $(".focusFormat" ).val(0);
-    });
-*/
-
     function changeNull(param){
         //alert (param);
         var data = param.value;
@@ -579,20 +567,7 @@
         var data = param.value;
         if (data==null || data=='')
             param.value=0;
-    }
-
-    /*$( ".focusFormat" ).keyup(function() {
-        if ($(".focusFormat" ).val()==null || $(".focusFormat" ).val()=='')
-            $(".focusFormat" ).val(0);
-    });
-
-    $( ".focusFormat" ).keydown(function() {
-        if ($(".focusFormat" ).val()==0)
-            $(".focusFormat" ).val(null);
-    });*/
-
-    
-        
+    }        
 
     if(FLAG == 'Edit' || FLAG == 'Detail'){
         
@@ -1109,7 +1084,7 @@
 
     $('#insert').on('click', function(event){
         validasi();
-        
+
         setNormalValue();
         save();
         //alert('insert');
