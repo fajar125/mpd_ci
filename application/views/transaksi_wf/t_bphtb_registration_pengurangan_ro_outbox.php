@@ -273,7 +273,7 @@
                                         <div class="col-md-3">
                                             <div class="input-group ">
                                                 <span class="input-group-addon">Rp.</span>
-                                                <input type="text" class="form-control priceformat" maxlength="16"  name="bphtb_amt" id="bphtb_amt" readonly>
+                                                <input type="text" class="form-control priceformat" maxlength="16"  name="bphtb_amt" id="bphtb_amt" readonly value="0" onfocus="changeNull(this)" onfocusout="changeZero(this)">
                                             </div> 
                                         </div>
                                     </div>
@@ -284,7 +284,7 @@
                                         <div class="col-md-3">
                                             <div class="input-group ">
                                                 <span class="input-group-addon">Rp.</span>
-                                                <input type="text" class="form-control priceformat" maxlength="16"  name="bphtb_discount" id="bphtb_discount" readonly>
+                                                <input type="text" class="form-control priceformat" maxlength="16"  name="bphtb_discount" id="bphtb_discount" readonly value="0" onfocus="changeNull(this)" onfocusout="changeZero(this)">
                                             </div> 
                                         </div>
                                         <div class="col-md-3">
@@ -1280,6 +1280,19 @@
 
 
     };
+
+    function changeNull(param){
+        //alert (param);
+        var data = param.value;
+        if (data==0)
+            param.value=null;
+    }
+
+    function changeZero(param){
+        var data = param.value;
+        if (data==null || data=='')
+            param.value=0;
+    }
 </script>
 
 <script type="text/javascript">
