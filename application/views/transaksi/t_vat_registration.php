@@ -194,6 +194,7 @@ $("#tab-1").on("click", function(event) {
 <?php $this->load->view('lov/lov_vat_type_dtl'); ?>
 <?php $this->load->view('lov/lov_job_position'); ?>
 
+
 <div class="row">
     <div class="col-md-12">
         <div class="portlet light bordered">
@@ -224,14 +225,14 @@ $("#tab-1").on("click", function(event) {
                 <div class="row">
                     <label class="control-label col-md-3">Username</label>
                     <div class="input-group col-md-5">
-                            <input type="text" class="form-control" name="wp_user_name" id="wp_user_name">
+                            <input type="text" class="form-control required" name="wp_user_name" id="wp_user_name">
                         </div>
                 </div>
                 <div class="space-2"></div>
                 <div class="row">
                     <label class="control-label col-md-3">Password</label>
                         <div class="input-group col-md-5">
-                            <input type="password" class="form-control" name="wp_user_pwd" id="wp_user_pwd">                            
+                            <input type="password" class="form-control required" name="wp_user_pwd" id="wp_user_pwd">                            
                         </div>
                 </div>
             </div>
@@ -262,11 +263,11 @@ $("#tab-1").on("click", function(event) {
                 <div class="row">
                     <label class="control-label col-md-3">No</label>
                         <div class="input-group col-md-5">
-                            <input type="text" class="form-control" name="wp_address_no" id="wp_address_no">      
+                            <input type="text" class="form-control required" name="wp_address_no" id="wp_address_no">      
                             <span class="input-group-addon"> RT </span> 
-                            <input type="text" class="form-control" name="wp_address_rt" id="wp_address_rt">   
+                            <input type="text" class="form-control" name="wp_address_rt" id="wp_address_rt" maxlength="5">   
                             <span class="input-group-addon"> RW </span> 
-                            <input type="text" class="form-control" name="wp_address_rw" id="wp_address_rw">                            
+                            <input type="text" class="form-control" name="wp_address_rw" id="wp_address_rw" maxlength="5">                            
                         </div>
                 </div>
                 <div class="space-2"></div>
@@ -287,7 +288,7 @@ $("#tab-1").on("click", function(event) {
                     <label class="control-label col-md-3">Kecamatan</label>
                     <div class="input-group col-md-5">
                             <input id="wp_p_region_id_kecamatan" type="text"  style="display:none;">
-                            <input id="wp_kecamatan" readonly type="text" class="FormElement form-control" placeholder="Pilih Kecamatan">
+                            <input id="wp_kecamatan" readonly type="text" class="FormElement form-control required" placeholder="Pilih Kecamatan">
                             <span class="input-group-btn">
                                 <button class="btn btn-success" type="button" onclick="showLOVKec('wp_p_region_id_kecamatan','wp_kecamatan', $('#wp_p_region_id').val())">
                                     <span class="fa fa-search bigger-110"></span>
@@ -301,7 +302,7 @@ $("#tab-1").on("click", function(event) {
                     <label class="control-label col-md-3">Kelurahan</label>
                     <div class="input-group col-md-5">
                         <input id="wp_p_region_id_kelurahan" type="text"  style="display:none;">
-                        <input id="wp_kelurahan" readonly type="text" class="FormElement form-control" placeholder="Pilih Kelurahan">
+                        <input id="wp_kelurahan" readonly type="text" class="FormElement form-control required" placeholder="Pilih Kelurahan">
                         <span class="input-group-btn">
                             <button class="btn btn-success" type="button" onclick="showLOVKel('wp_p_region_id_kelurahan','wp_kelurahan',$('#wp_p_region_id_kecamatan').val())">
                                 <span class="fa fa-search bigger-110"></span>
@@ -338,7 +339,7 @@ $("#tab-1").on("click", function(event) {
                 <div class="row">
                     <label class="control-label col-md-3">Kode Pos</label>
                     <div class="input-group col-md-5">
-                            <input type="text" class="form-control" name="wp_zip_code" id="brand_zip_code">
+                            <input type="text" class="form-control" name="wp_zip_code" id="brand_zip_code" maxlength="6">
                     </div>
                 </div>
             </div>  
@@ -371,9 +372,9 @@ $("#tab-1").on("click", function(event) {
                     <div class="input-group col-md-5">
                             <input type="text" class="form-control required" name="address_no" id="address_no">      
                             <span class="input-group-addon"> RT </span> 
-                            <input type="text" class="form-control" name="address_rt" id="address_rt">   
+                            <input type="text" class="form-control" name="address_rt" id="address_rt" maxlength="5">   
                             <span class="input-group-addon"> RW </span> 
-                            <input type="text" class="form-control" name="address_rw" id="address_rw">
+                            <input type="text" class="form-control" name="address_rw" id="address_rw" maxlength="5">
                     </div>
                 </div>
                 <div class="space-2"></div>
@@ -381,7 +382,7 @@ $("#tab-1").on("click", function(event) {
                     <label class="control-label col-md-3">Kota/Kabupaten</label>
                     <div class="input-group col-md-5">
                             <input id="p_region_id" type="text"  style="display:none;">
-                            <input id="kota_code" readonly type="text" class="FormElement form-control" placeholder="Pilih Kota/Kabupaten">
+                            <input id="kota_code" readonly type="text" class="FormElement form-control required" placeholder="Pilih Kota/Kabupaten">
                             <span class="input-group-btn">
                                 <button class="btn btn-success" type="button" onclick="showLOVKota('p_region_id','kota_code')">
                                     <span class="fa fa-search bigger-110"></span>
@@ -394,7 +395,7 @@ $("#tab-1").on("click", function(event) {
                     <label class="control-label col-md-3">Kecamatan</label>
                     <div class="input-group col-md-5">
                             <input id="p_region_id_kecamatan" type="text"  style="display:none;">
-                            <input id="kecamatan_code" readonly type="text" class="FormElement form-control" placeholder="Pilih Kecamatan">
+                            <input id="kecamatan_code" readonly type="text" class="FormElement form-control required" placeholder="Pilih Kecamatan">
                             <span class="input-group-btn">
                                 <button class="btn btn-success" type="button" onclick="showLOVKec('p_region_id_kecamatan','kecamatan_code', $('#p_region_id').val())">
                                     <span class="fa fa-search bigger-110"></span>
@@ -409,7 +410,7 @@ $("#tab-1").on("click", function(event) {
                     <label class="control-label col-md-3">Kelurahan</label>
                     <div class="input-group col-md-5">
                             <input id="p_region_id_kelurahan" type="text"  style="display:none;">
-                            <input id="kelurahan_code" readonly type="text" class="FormElement form-control" placeholder="Pilih Kelurahan">
+                            <input id="kelurahan_code" readonly type="text" class="FormElement form-control required" placeholder="Pilih Kelurahan">
                             <span class="input-group-btn">
                                 <button class="btn btn-success" type="button" onclick="showLOVKel('p_region_id_kelurahan','kelurahan_code',$('#p_region_id_kecamatan').val())">
                                     <span class="fa fa-search bigger-110"></span>
@@ -437,7 +438,7 @@ $("#tab-1").on("click", function(event) {
                 <div class="row">
                     <label class="control-label col-md-3">Kode Pos</label>
                     <div class="input-group col-md-5">
-                            <input type="text" class="form-control" name="zip_code" id="zip_code">
+                            <input type="text" class="form-control" name="zip_code" id="zip_code" maxlength="6">
                     </div>
                 </div>          
             </div>
@@ -470,9 +471,9 @@ $("#tab-1").on("click", function(event) {
                     <div class="input-group col-md-5">
                             <input type="text" class="form-control required" name="brand_address_no" id="brand_address_no">      
                             <span class="input-group-addon"> RT </span> 
-                            <input type="text" class="form-control" name="brand_address_rt" id="brand_address_rt">   
+                            <input type="text" class="form-control" name="brand_address_rt" id="brand_address_rt" maxlength="5">   
                             <span class="input-group-addon"> RW </span> 
-                            <input type="text" class="form-control" name="brand_address_rw" id="brand_address_rw">
+                            <input type="text" class="form-control" name="brand_address_rw" id="brand_address_rw" maxlength="5">
                     </div>
                    
                 </div>
@@ -494,7 +495,7 @@ $("#tab-1").on("click", function(event) {
                     <label class="control-label col-md-3">Kecamatan</label>
                     <div class="input-group col-md-5">
                             <input id="brand_p_region_id_kec" type="text"  style="display:none;">
-                            <input id="brand_kecamatan" readonly type="text" class="FormElement form-control" placeholder="Pilih Kecamatan">
+                            <input id="brand_kecamatan" readonly type="text" class="FormElement form-control required" placeholder="Pilih Kecamatan">
                             <span class="input-group-btn">
                                 <button class="btn btn-success" type="button" onclick="showLOVKec('brand_p_region_id_kec','brand_kecamatan', $('#brand_p_region_id').val())">
                                     <span class="fa fa-search bigger-110"></span>
@@ -509,7 +510,7 @@ $("#tab-1").on("click", function(event) {
                     <label class="control-label col-md-3">Kelurahan</label>
                     <div class="input-group col-md-5">
                             <input id="brand_p_region_id_kel" type="text"  style="display:none;">
-                            <input id="brand_kelurahan" readonly type="text" class="FormElement form-control" placeholder="Pilih Kelurahan">
+                            <input id="brand_kelurahan" readonly type="text" class="FormElement form-control required" placeholder="Pilih Kelurahan">
                             <span class="input-group-btn">
                                 <button class="btn btn-success" type="button" onclick="showLOVKel('brand_p_region_id_kel','brand_kelurahan',$('#brand_p_region_id_kec').val())">
                                     <span class="fa fa-search bigger-110"></span>
@@ -537,7 +538,7 @@ $("#tab-1").on("click", function(event) {
                 <div class="row">
                     <label class="control-label col-md-3">Kode Pos</label>
                     <div class="input-group col-md-5">
-                            <input type="text" class="form-control" name="brand_zip_code" id="brand_zip_code">
+                            <input type="text" class="form-control" name="brand_zip_code" id="brand_zip_code" maxlength="6">
                     </div>
                 </div>
             </div>  
@@ -554,7 +555,7 @@ $("#tab-1").on("click", function(event) {
                 <div class="row">
                     <label class="control-label col-md-3">Nama Pemilik/Pengelola</label>
                     <div class="input-group col-md-5">
-                            <input type="text" class="form-control" name="company_owner" id="company_owner">
+                            <input type="text" class="form-control required" name="company_owner" id="company_owner">
                     </div>
                 </div>
                 <div class="space-2"></div>
@@ -562,7 +563,7 @@ $("#tab-1").on("click", function(event) {
                     <label class="control-label col-md-3">Jabatan</label>
                     <div class="input-group col-md-5">
                             <input id="p_job_position_id" type="text"  style="display:none;">
-                            <input id="job_position_code" readonly type="text" class="FormElement form-control" placeholder="Pilih Jabatan">
+                            <input id="job_position_code" readonly type="text" class="FormElement form-control required" placeholder="Pilih Jabatan">
                             <span class="input-group-btn">
                                 <button class="btn btn-success" type="button" onclick="showLOVJabatan('p_job_position_id','job_position_code')">
                                     <span class="fa fa-search bigger-110"></span>
@@ -575,18 +576,18 @@ $("#tab-1").on("click", function(event) {
                 <div class="row">
                     <label class="control-label col-md-3">Alamat Pemilik/Pengelola</label>
                     <div class="input-group col-md-5">
-                            <textarea class="form-control" name="address_name_owner" id="address_name_owner"></textarea>
+                            <textarea class="form-control required" name="address_name_owner" id="address_name_owner"></textarea>
                     </div>
                 </div>
                 <div class="space-2"></div>
                 <div class="row">
                     <label class="control-label col-md-3">No.</label>
                     <div class="input-group col-md-5">
-                            <input type="text" class="form-control" name="address_no_owner" id="address_no_owner">      
+                            <input type="text" class="form-control required" name="address_no_owner" id="address_no_owner">      
                             <span class="input-group-addon"> RT </span> 
-                            <input type="text" class="form-control" name="address_rt_owner" id="address_rt_owner">   
+                            <input type="text" class="form-control" name="address_rt_owner" id="address_rt_owner" maxlength="5">   
                             <span class="input-group-addon"> RW </span> 
-                            <input type="text" class="form-control" name="address_rw_owner" id="address_rw_owner">
+                            <input type="text" class="form-control" name="address_rw_owner" id="address_rw_owner" maxlength="5">
                     </div>
                 </div>
                 <div class="space-2"></div>
@@ -607,7 +608,7 @@ $("#tab-1").on("click", function(event) {
                     <label class="control-label col-md-3">Kecamatan</label>
                     <div class="input-group col-md-5">
                             <input id="p_region_id_kec_owner" type="text"  style="display:none;">
-                            <input id="kecamatan_own_code" readonly type="text" class="FormElement form-control" placeholder="Pilih Kecamatan">
+                            <input id="kecamatan_own_code" readonly type="text" class="FormElement form-control required" placeholder="Pilih Kecamatan">
                             <span class="input-group-btn">
                                 <button class="btn btn-success" type="button" onclick="showLOVKec('p_region_id_kec_owner','kecamatan_own_code', $('#p_region_id_owner').val())">
                                     <span class="fa fa-search bigger-110"></span>
@@ -622,7 +623,7 @@ $("#tab-1").on("click", function(event) {
                     <label class="control-label col-md-3">Kelurahan</label>
                     <div class="input-group col-md-5">
                             <input id="p_region_id_kel_owner" type="text"  style="display:none;">
-                            <input id="kelurahan_own_code" readonly type="text" class="FormElement form-control" placeholder="Pilih Kelurahan">
+                            <input id="kelurahan_own_code" readonly type="text" class="FormElement form-control required" placeholder="Pilih Kelurahan">
                             <span class="input-group-btn">
                                 <button class="btn btn-success" type="button" onclick="showLOVKel('p_region_id_kel_owner','kelurahan_own_code',$('#p_region_id_kec_owner').val())">
                                     <span class="fa fa-search bigger-110"></span>
@@ -655,7 +656,7 @@ $("#tab-1").on("click", function(event) {
                 <div class="row">
                     <label class="control-label col-md-3">Kode Pos</label>
                     <div class="input-group col-md-5">
-                            <input type="text" class="form-control" name="zip_code_owner" id="zip_code_owner">
+                            <input type="text" class="form-control" name="zip_code_owner" id="zip_code_owner" maxlength="6">
                     </div>
                 </div>
             </div>  
@@ -679,7 +680,7 @@ $("#tab-1").on("click", function(event) {
                 <div class="row">
                     <label class="control-label col-md-3">Jawaban</label>
                     <div class="input-group col-md-5">
-                        <input type="text" class="form-control" name="private_answer" id="private_answer">
+                        <input type="text" class="form-control required" name="private_answer" id="private_answer">
                     </div>
                 </div>
             </div>  
@@ -697,7 +698,7 @@ $("#tab-1").on("click", function(event) {
                 <div class="row">
                     <label class="control-label col-md-3">No. Seluler</label>
                     <div class="input-group col-md-5">
-                        <input type="text" class="form-control" name="mobile_no_owner" id="mobile_no_owner">
+                        <input type="text" class="form-control required" name="mobile_no_owner" id="mobile_no_owner">
                     </div>
                  
                 </div> 
@@ -867,7 +868,18 @@ $("#tab-1").on("click", function(event) {
             brand_phone_no = "-"; 
         }
 
-        
+        if (p_vat_type_dtl_id == "" || p_vat_type_dtl_id == 0 || p_vat_type_dtl_id == false || p_vat_type_dtl_id == undefined ||  p_vat_type_dtl_id == null){
+            swal('Informasi',"Nama Ayat harus diisi",'info'); 
+            return;
+        }
+        if (wp_user_name == "" || wp_user_name == 0 || wp_user_name == false || wp_user_name == undefined ||  wp_user_name == null){
+            swal('Informasi',"Nama Wajib Pajak harus diisi",'info'); 
+            return;
+        }
+        if (wp_user_pwd == "" || wp_user_pwd == 0 || wp_user_pwd == false || wp_user_pwd == undefined ||  wp_user_pwd == null){
+            swal('Informasi',"Nama Wajib Pajak harus diisi",'info'); 
+            return;
+        }
         if (wp_name == "" || wp_name == 0 || wp_name == false || wp_name == undefined ||  wp_name == null){
             swal('Informasi',"Nama Wajib Pajak harus diisi",'info'); 
             return;
@@ -877,9 +889,24 @@ $("#tab-1").on("click", function(event) {
             return;
         }
         if (wp_p_region_id == "" || wp_p_region_id == 0 || wp_p_region_id == false || wp_p_region_id == undefined ||  wp_p_region_id == null){
-            swal('Informasi',"Kota harus diisi",'info'); 
+            swal('Informasi',"Kota Wajib Pajak harus diisi",'info'); 
             return;
         }
+        if (wp_address_no == "" || wp_address_no == 0 || wp_address_no == false || wp_address_no == undefined ||  wp_address_no == null){
+            swal('Informasi',"No. Alamat Wajib Pajak harus diisi",'info'); 
+            return;
+        }
+        if (wp_p_region_id_kecamatan == "" || wp_p_region_id_kecamatan == 0 || wp_p_region_id_kecamatan == false || wp_p_region_id_kecamatan == undefined ||  wp_p_region_id_kecamatan == null){
+            swal('Informasi',"Kecamatan Wajib Pajak harus diisi",'info'); 
+            return;
+        }
+
+        if (wp_p_region_id_kelurahan == "" || wp_p_region_id_kelurahan == 0 || wp_p_region_id_kelurahan == false || wp_p_region_id_kelurahan == undefined ||  wp_p_region_id_kelurahan == null){
+            swal('Informasi',"Kelurahan Wajib Pajak harus diisi",'info'); 
+            return;
+        }
+
+
         if (company_name == "" || company_name == 0 || company_name == false || company_name == undefined ||  company_name == null){
             swal('Informasi',"Nama Perusahaan/Badan harus diisi",'info'); 
             return;
@@ -892,6 +919,19 @@ $("#tab-1").on("click", function(event) {
             swal('Informasi',"No. Alamat Perusahaan/Badan harus diisi",'info'); 
             return;
         }
+        if (p_region_id == "" || p_region_id == 0 || p_region_id == false || p_region_id == undefined ||  p_region_id == null){
+            swal('Informasi',"Kota Badan harus diisi",'info'); 
+            return;
+        }
+        if (p_region_id_kecamatan == "" || p_region_id_kecamatan == 0 || p_region_id_kecamatan == false || p_region_id_kecamatan == undefined ||  p_region_id_kecamatan == null){
+            swal('Informasi',"Kecamatan Badan harus diisi",'info'); 
+            return;
+        }
+        if (p_region_id_kelurahan == "" || p_region_id_kelurahan == 0 || p_region_id_kelurahan == false || p_region_id_kelurahan == undefined ||  p_region_id_kelurahan == null){
+            swal('Informasi',"Kelurahan Badan harus diisi",'info'); 
+            return;
+        }
+
         if (company_brand == "" || company_brand == 0 || company_brand == false || company_brand == undefined ||  company_brand == null){
             swal('Informasi',"Nama Merk Dagang harus diisi",'info'); 
             return;
@@ -908,8 +948,54 @@ $("#tab-1").on("click", function(event) {
             swal('Informasi',"Kota Merk Dagang harus diisi",'info'); 
             return;
         }
+        if (brand_p_region_id_kecamatan == "" || brand_p_region_id_kecamatan == 0 || brand_p_region_id_kecamatan == false || brand_p_region_id_kecamatan == undefined ||  brand_p_region_id_kecamatan == null){
+            swal('Informasi',"Kecamatan Merk Dagang harus diisi",'info'); 
+            return;
+        }
+        if (brand_p_region_id_kelurahan == "" || brand_p_region_id_kelurahan == 0 || brand_p_region_id_kelurahan == false || brand_p_region_id_kelurahan == undefined || brand_p_region_id_kelurahan == null){
+            swal('Informasi',"Kelurahan Merk Dagang harus diisi",'info'); 
+            return;
+        }
+
+        if (company_owner == "" || company_owner == 0 || company_owner == false || company_owner == undefined ||  company_owner == null){
+            swal('Informasi',"Nama Pemilik/Pengelola harus diisi",'info'); 
+            return;
+        }
+        if (p_job_position_id == "" || p_job_position_id == 0 || p_job_position_id == false || p_job_position_id == undefined ||  p_job_position_id == null){
+            swal('Informasi',"Jabatan harus diisi",'info'); 
+            return;
+        }
+        if (address_name_owner == "" || address_name_owner == 0 || address_name_owner == false || address_name_owner == undefined ||  address_name_owner == null){
+            swal('Informasi',"Alamat Pemilik/Pengelola harus diisi",'info'); 
+            return;
+        }
+        if (address_no_owner == "" || address_no_owner == 0 || address_no_owner == false || address_no_owner == undefined ||  address_no_owner == null){
+            swal('Informasi',"No. Alamat Pemilik/Pengelola harus diisi",'info'); 
+            return;
+        }
         if (p_region_id_owner == "" || p_region_id_owner == 0 || p_region_id_owner == false || p_region_id_owner == undefined ||  p_region_id_owner == null){
             swal('Informasi',"Kota Pemilik/Pengelola harus diisi",'info'); 
+            return;
+        }
+        if (p_region_id_kecamatan_owner == "" || p_region_id_kecamatan_owner == 0 || p_region_id_kecamatan_owner == false || p_region_id_kecamatan_owner == undefined ||  p_region_id_kecamatan_owner == null){
+            swal('Informasi',"Kota Pemilik/Pengelola harus diisi",'info'); 
+            return;
+        }
+        if (p_region_id_kelurahan_owner == "" || p_region_id_kelurahan_owner == 0 || p_region_id_kelurahan_owner == false || p_region_id_kelurahan_owner == undefined ||  p_region_id_kelurahan_owner == null){
+            swal('Informasi',"Kota Pemilik/Pengelola harus diisi",'info'); 
+            return;
+        }
+
+        if (private_answer == "" || private_answer == 0 || private_answer == false || private_answer == undefined ||  private_answer == null){
+            swal('Informasi',"Jawaban harus diisi",'info'); 
+            return;
+        }
+        if (p_private_question_id == "" || p_private_question_id == 0 || p_private_question_id == false || p_private_question_id == undefined ||  p_private_question_id == null){
+            swal('Informasi',"Pertanyaaan harus diisi",'info'); 
+            return;
+        }
+        if (mobile_no_owner == "" || mobile_no_owner == 0 || mobile_no_owner == false || mobile_no_owner == undefined ||  mobile_no_owner == null){
+            swal('Informasi',"No. Selular harus diisi",'info'); 
             return;
         }
 

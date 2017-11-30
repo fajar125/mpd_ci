@@ -146,7 +146,7 @@ class Transaksi extends CI_Controller
             $query = $this->db->query($sql);
 
             $items = $query->result_array();
-            echo '<select id="p_private_question_id" name="p_private_question_id" class="FormElement form-control"> <option value="0">--Pilih Pertanyaan--</option>';
+            echo '<select id="p_private_question_id" name="p_private_question_id" class="FormElement form-control required"> <option value="0">--Pilih Pertanyaan--</option>';
             foreach($items  as $item ){
                 echo '<option value="'.$item['p_private_question_id'].'">'.$item['question_pwd'].'</option>';
             }
@@ -189,7 +189,7 @@ class Transaksi extends CI_Controller
             $query = $this->db->query($sql);
 
             $items = $query->result_array();
-            echo '<select id="p_vat_type_dtl" name="p_vat_type_dtl" class="FormElement form-control"> <option value="0">--Pilih Ayat--</option>';
+            echo '<select id="p_vat_type_dtl" name="p_vat_type_dtl" class="FormElement form-control required"> <option value="0">--Pilih Ayat--</option>';
             foreach($items  as $item ){
                 echo '<option value="'.$item['p_vat_type_dtl_id'].'">'.$item['nama_ayat'].'</option>';
             }

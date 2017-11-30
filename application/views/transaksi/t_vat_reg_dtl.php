@@ -219,6 +219,8 @@ $("#tab-1").on("click", function(event) {
 
 $("#tab-2").on("click", function(event) {
 
+    event.stopPropagation();
+    
     t_customer_order_id = <?php echo $_POST['t_customer_order_id'];?>;
     t_vat_registration_id = <?php echo $_POST['t_vat_registration_id'];?> ;
     p_rqst_type_id = <?php echo $_POST['p_rqst_type_id'];?> ;
