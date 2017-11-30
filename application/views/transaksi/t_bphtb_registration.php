@@ -1004,6 +1004,9 @@
                 } 
                 
                 $('#npop_tkp').val(ReplaceNumberWithCommas(npoptkp));
+                $('#npop_kp').val(0);
+                $('#bphtb_amt').val(0);
+                hitungPembayaran();
             },
             error: function (xhr, status, error) {
                 swal({title: "Error!", text: xhr.responseText, html: true, type: "error"});
@@ -1063,7 +1066,7 @@
         getNPOP();
     });
 
-    $('#bphtb_discount').on('change', function() {
+    $('#bphtb_discount').keyup( function() {
         hitungPembayaran();
     });
 
