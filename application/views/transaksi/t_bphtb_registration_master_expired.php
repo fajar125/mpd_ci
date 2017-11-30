@@ -685,8 +685,6 @@
 </script>
 <!-- /LOV -->
 
-<!-- PERHITUNGAN -->
-
 <script>
 
     function changeNull(param){
@@ -701,157 +699,136 @@
         if (data==null || data=='')
             param.value=0;
     }
+</script>
 
+<!-- PERHITUNGAN -->
+
+<script>
     function ReplaceNumberWithCommas(yourNumber) {
         var n = yourNumber.toString().split(".");
         n[0] = n[0].replace(/\B(?=(\d{3})+(?!\d))/g, ",");
         return n.join(".");
     }
 
-    function hitungNPOPKP(){
-        var npop_tkp     = $('#npop_tkp').val().replace(/,/g ,'');
-        var npop         = $('#npop').val().replace(/,/g ,'');
-        var add_discount = $('#add_discount').val().replace(/,/g ,'');
-        var npop_kp      = $('#npop_kp').val().replace(/,/g ,'');
-        var result       = 0;
 
-        if(npop_tkp == '' || npop_tkp == 'undefined'){
-            npop_tkp = 0;
+    function hitungNPOPKP(){        
+        var npotkp = $('#npop_tkp').val().replace(/,/g ,''); 
+        if(npotkp=='' || npotkp=='undefined'){
+                npotkp=0;
         }
-
-        if(npop == '' || npop == 'undefined'){
-            npop = 0;
+        var npokp = $('#npop').val().replace(/,/g ,''); 
+        if(npokp=='' || npokp=='undefined'){
+                npokp=0;
         }
-
-        if(add_discount == '' || add_discount == 'undefined'){
-            add_discount = 0;
+        var add_discount = $('#add_discount').val().replace(/,/g ,''); 
+        if(add_discount=='' || add_discount=='undefined'){
+            add_discount=0;
         }
-
-        result = parseFloat(npop_kp)-parseFloat(npop_tkp)-parseFloat(add_discount);
-
-        if(result < 0){
+        if((parseFloat(npokp)-parseFloat(npotkp)-parseFloat(add_discount)) < 0){
             $('#npop_kp').val(ReplaceNumberWithCommas(0));
         }else{
-            $('#npop_kp').val(ReplaceNumberWithCommas(result));
+            var result =ReplaceNumberWithCommas(parseFloat(npokp)-parseFloat(npotkp)-parseFloat(add_discount));
+            $('#npop_kp').val(result);
         }
-
-        hitungTerutang(npop_kp);
+        hitungTerutang($('#npop_kp').val().replace(/,/g ,''));
     }
 
-    function hitungTerutang(nilai){
+
+    function hitungTerutang(nilai){ 
       var terutang = Math.ceil(nilai/100*5);
       $('#bphtb_amt').val(ReplaceNumberWithCommas(terutang));
       hitungPembayaran();
     }
 
+
     function hitungPembayaran(){
-        var bphtb_amt           = $('#bphtb_amt').val().replace(/,/g ,'');
-        var bphtb_discount      = $('#bphtb_discount').val().replace(/,/g ,'');
-        var prev_payment_amount = $('#prev_payment_amount').val().replace(/,/g ,'');
-        var bphtb_amt_final_old = $('#bphtb_amt_final_old').val().replace(/,/g ,'');
-        var p_bphtb_type_id     = $('#p_bphtb_type_id').val();
-        var bphtb_amt_final     = $('#bphtb_amt_final').val();
-        var result              = ReplaceNumberWithCommas(parseInt(bphtb_amt)-parseInt(bphtb_discount));
-        var result_amt_final    = 0;
-
-        if(bphtb_amt == '' || bphtb_amt == 'undefined'){
-            bphtb_amt = 0;
+        var jumlah= $('#bphtb_amt').val().replace(/,/g ,'');
+        var diskon= $('#bphtb_discount').val().replace(/,/g ,''); 
+        if(jumlah=='' || jumlah=='undefined'){
+            jumlah=0;
         }
 
-        if(bphtb_discount == '' || bphtb_discount == 'undefined'){
-            bphtb_discount = 0;
+        if(diskon=='' || diskon=='undefined'){
+            diskon=0;
         }
-
+        var p_bphtb_type_id = $('#p_bphtb_type_id').val();
+        var bphtb_amt_final = $('#bphtb_amt_final').val(); 
         if(p_bphtb_type_id != 3) {
             if(bphtb_amt_final < 0){
                 $('#bphtb_amt_final').val(0);
             }else{
-
+                var result = ReplaceNumberWithCommas(parseInt(jumlah)-parseInt(diskon));
                 $('#bphtb_amt_final').val(result);
             }
         }else {
+            var bphtb_amt_final_old = $('#bphtb_amt_final_old').val(); 
             if(bphtb_amt_final_old < 0){
-                $('#bphtb_amt_final_old').val(0);
+                $('#bphtb_amt_final_old').val(0); 
             }else{
-                $('#bphtb_amt_final_old').val(result);
+                var result = ReplaceNumberWithCommas(parseInt(jumlah)-parseInt(diskon));
+                $('#bphtb_amt_final_old').val(result); 
             }
 
-            result_amt_final = ReplaceNumberWithCommas(parseInt(bphtb_amt_final_old)-parseInt(prev_payment_amount));
-            $('#bphtb_amt_final').val(result_amt_final);
+            var payment_amount = $('#prev_payment_amount').val().replace(/,/g ,'');
+            var nilai_pajak_harus_bayar = $('#bphtb_amt_final_old').val().replace(/,/g ,'');
+
+            var result = ReplaceNumberWithCommas(parseInt(nilai_pajak_harus_bayar)-parseInt(payment_amount));
+            $('#bphtb_amt_final').val(result);
+
         }
     }
 
     function getNPOP(){
-        var waris               = $('#potongan_waris').val();
-        var total_price         = $('#total_price').val().replace(/,/g ,'');
-        var market_price        = $('#market_price').val().replace(/,/g ,'');
-        var nilai_doc           = $('#nilai_doc').val();
-        var npop                = $('#npop').val().replace(/,/g ,'');
-        var add_disc_percent    = $('#add_disc_percent').val()/100;
-
-        var res        = waris.split("/");
-        var components = [];
-        var result     = 0 ;
-
-        if(total_price==''){
-            total_price=0;
-        }
-
-        if(market_price==''){
-            market_price=0;
-        }
-
-
+        var waris = $('#potongan_waris').val();
+        var res = waris.split("/"); 
+        var market_price =$('#market_price').val().replace(/,/g ,'');
+        var total_price =$('#total_price').val().replace(/,/g ,'');
         var total_p  = ReplaceNumberWithCommas(total_price*(res[0]/res[1]));
         var market_p = ReplaceNumberWithCommas(market_price*(res[0]/res[1]));
 
-
-
-        if(parseFloat(total_price)> parseFloat(market_price)){
-          components = total_p.toString().split(".");
+        if(parseFloat(total_price)>parseFloat(market_price)){
+            var components = total_p.toString().split(".");
+            $('#npop').val(components[0]);
         }else{
-          components = market_p.toString().split(".");
+            var components = market_p.toString().split(".");
+            $('#npop').val(components[0]);
+        }    
+        var npotkp_cons = $('#nilai_doc').val();
+        if(npotkp_cons==''){
+            npotkp_cons=0;
         }
-        //alert(components);
-
-        $('#npop').val(components[0]);
-
-        if(nilai_doc==''){
-            nilai_doc=0;
-        }
-
-        if(nilai_doc >= 0 && nilai_doc != ''){
-            result = ReplaceNumberWithCommas(Math.ceil(npop*nilai_doc*res[0]/res[1]));
+        if(npotkp_cons >= 0 && npotkp_cons != ''){
+            var npop = $('#npop').val();
+            var result = ReplaceNumberWithCommas(Math.ceil((npop).replace(/,/g ,'')*npotkp_cons*res[0]/res[1]));
             $('#npop').val(result);
+
         }
-        if(add_disc_percent==''){
-            add_disc_percent=0;
+        var npop = $('#npop').val().replace(/,/g ,'');
+        var persen_kurang = $('#add_disc_percent').val()/100;
+        if(persen_kurang==''){
+                persen_kurang=0;
         }
-        result = ReplaceNumberWithCommas(Math.ceil(npop*add_disc_percent));
+        var result =ReplaceNumberWithCommas(Math.ceil(npop*persen_kurang));
         $('#add_discount').val(result);
-
         hitungNPOPKP();
-
     }
-
 
     function hitungTotalTanah(){
       var hasil                 = 0;
       var r_tot_p               = 0;
       var r_l_tot_p             = 0;
-      var land_area             = $('#land_area').val();
+      var land_area             = $('#land_area').val(); 
       var land_price_per_m      = $('#land_price_per_m').val();
-      var land_total_price      = $('#land_total_price').val().replace(/,/g ,'');
-      var building_total_price  = $('#building_total_price').val().replace(/,/g ,'');
+      var land_total_price      = $('#land_total_price').val().replace(/,/g ,''); 
+      var building_total_price  = $('#building_total_price').val().replace(/,/g ,''); 
 
       if(land_area!=0||land_price_per_m!=0){
         hasil = parseFloat(land_area.replace(/,/g ,''))*parseFloat(land_price_per_m.replace(/,/g ,''));
       }
-
+      
       r_l_tot_p =  ReplaceNumberWithCommas(hasil);
       $('#land_total_price').val(r_l_tot_p);
 
-      // r_tot_p = ReplaceNumberWithCommas(parseFloat(land_total_price)+parseFloat(building_total_price));
       r_tot_p = ReplaceNumberWithCommas(parseFloat(r_l_tot_p.replace(/,/g ,''))+parseFloat(building_total_price));
       $('#total_price').val(r_tot_p);
 
@@ -862,10 +839,10 @@
     function hitungTotalBangunan(){
         var hasil                = 0;
         var result               = 0;
-        var building_area        = $('#building_area').val();
-        var building_price_per_m = $('#building_price_per_m').val();
+        var building_area        = $('#building_area').val();   
+        var building_price_per_m = $('#building_price_per_m').val(); 
         var building_total_price = $('#building_total_price').val();
-        var land_total_price     = $('#land_total_price').val();
+        var land_total_price     = $('#land_total_price').val(); 
 
         if (building_area != 0 || building_price_per_m != 0){
             hasil = parseFloat(building_area.replace(/,/g ,'')) * parseFloat(building_price_per_m.replace(/,/g ,''));
@@ -873,14 +850,14 @@
         hasil = ReplaceNumberWithCommas(hasil);
         $('#building_total_price').val(hasil);
 
-        // result = parseFloat(land_total_price.replace(/,/g ,'')) + parseFloat(building_total_price.replace(/,/g ,''));
         result = ReplaceNumberWithCommas(parseFloat(land_total_price.replace(/,/g ,'')) + parseFloat(hasil.replace(/,/g ,'')));
-        $('#total_price').val(result);
+        $('#total_price').val(result); 
 
-        getNPOP();
+        getNPOP();   
     }
 
 </script>
+
 
 <!-- /PERHITUNGAN -->
 
