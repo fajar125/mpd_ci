@@ -16,6 +16,8 @@
                     <input type="hidden" id="form_wp_email">
                     <input type="hidden" id="form_wp_username">
                     <input type="hidden" id="form_wp_userpwd">
+                    <input type="hidden" id="form_wp_name">
+                    <input type="hidden" id="form_idd">
                     <div class="form-group">
                         <label class="col-sm-3 control-label no-padding-right"> Tanggal :</label>
                         <div class="col-sm-3">
@@ -244,12 +246,15 @@
 
         if(params_back_summary.WP_EMAIL){
             $('#form_wp_email').val(params_back_summary.WP_EMAIL);
-            $('#form_wp_username').val(params_back_summary.WP_NAME);
+            $('#form_wp_username').val(params_back_summary.WP_UNAME);
             $('#form_wp_userpwd').val(params_back_summary.WP_PWD);
+            $('#form_wp_name').val(params_back_summary.WP_NAME);
+            $('#form_idd').val(params_submit.CURR_DOC_ID);
         }else{
             $('#form_wp_email').val('');
             $('#form_wp_username').val('');
             $('#form_wp_userpwd').val('');
+            $('#form_wp_name').val('');
         }
         /*init pekerjaan tersedia*/
         $.ajax({
@@ -305,7 +310,9 @@
             data: {
               email : $('#form_wp_email').val(),
               uname : $('#form_wp_username').val(),
-              upwd : $('#form_wp_userpwd').val()
+              name : $('#form_wp_name').val(),
+              upwd : $('#form_wp_userpwd').val(),
+              idd  : $('#form_idd').val()
             },
             success: function (data) {
 

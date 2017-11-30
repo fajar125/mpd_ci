@@ -9,8 +9,10 @@ class Sendmail extends CI_Controller
 
     function index() {
         $email = $this->input->post('email');
+        $name = $this->input->post('name');
         $uname = $this->input->post('uname');
         $upwd = $this->input->post('upwd');
+        $idd = $this->input->post('idd');
 
         $html = '';
         $html .= '<table border="1" cellspacing="0" cellpadding="0">
@@ -19,9 +21,9 @@ class Sendmail extends CI_Controller
                         <td width="80%" align="center">
                             PEMERINTAH KABUPATEN LOMBOK UTARA <br>
                             BADAN PENGELOLAAN PENDAPATAN DAERAH <br>
-                            JL. Lombok Utara <br>
-                            Telp: 021 xxxxx - Fax: 021 xxxxxx <br>
-                            LOMBOK UTARA
+                            Jalan Raya Tioq Tata Tunaq <br>
+                            Telpn. (0370) <br>
+                            T A N J U N G
                         </td>
                   </tr>
               </table>';
@@ -34,6 +36,12 @@ class Sendmail extends CI_Controller
                         Username : '.$uname.' <br>
                         Password : '.$upwd.' </td>
                   </tr>
+                  <tr>
+                       <td></td>
+                  </tr>
+                  <tr>
+                       <td><a href="http://202.149.77.5:82/mpd_ci/cetak_kartu_npwpd/pageCetak?t_customer_order_id='.$idd.'"> Cetak Kartu NPWPD </a> </td>
+                  </tr>
               </table>'; 
         $html .= '<br><br>';
         $html .= '<table border="0">
@@ -44,7 +52,7 @@ class Sendmail extends CI_Controller
 
 
         // echo $html;
-        sendEmail($email, $uname, 'Pendaftaran WP', $html);
+        sendEmail($email, $name, 'Pendaftaran WP', $html);
         exit;
     }
 

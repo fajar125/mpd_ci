@@ -908,7 +908,8 @@
     params_back_summary.FSUMMARY = $('#TEMP_FSUMMARY').val();
 
     setTimeout(function(){
-        params_back_summary.WP_NAME = $('#wp_user_name').val();
+        params_back_summary.WP_NAME = $('#wp_name').val();
+        params_back_summary.WP_UNAME = $('#wp_user_name').val();
         params_back_summary.WP_PWD = $('#wp_user_pwd').val();
         params_back_summary.WP_EMAIL = $('#wp_email').val(); 
     },3000);
