@@ -46,7 +46,7 @@
         <div class="space-4"></div>
     <!-- parameter untuk kembali ke workflow summary -->
     <input type="hidden" id="order_no" value="<?php echo $this->input->post('order_no'); ?>" />
-    <input type="hidden" id="registration_date" value="<?php echo $this->input->post('registration_date'); ?>" />
+    <input type="hidden" id="order_date" value="<?php echo $this->input->post('order_date'); ?>" />
     <input type="hidden" id="p_rqst_type_id" value="<?php echo $this->input->post('p_rqst_type_id'); ?>" />
     <input type="hidden" id="t_vat_registration_id" value="<?php echo $this->input->post('t_vat_registration_id'); ?>" />
 
@@ -265,7 +265,7 @@ $("#tab-1").on("click", function(event) {
     loadContentWithParams("transaksi_wf.t_vat_registration_ro", { //model yang ketiga
             t_customer_order_id: $( "#CURR_DOC_ID" ).val(),
             order_no: $('#order_no').val(),
-            order_date:$('#registration_date').val(),
+            order_date:$('#order_date').val(),
             p_rqst_type_id: $("#p_rqst_type_id").val(),
             t_vat_registration_id: $( "#t_vat_registration_id" ).val(),
             ELEMENT_ID : $('#TEMP_ELEMENT_ID').val(),
@@ -308,7 +308,7 @@ $("#tab-3").on("click", function(event) {
     loadContentWithParams("transaksi_wf.t_cust_order_legal_doc_ro", { //model yang ketiga
             t_customer_order_id: $( "#CURR_DOC_ID" ).val(),
             order_no: $('#order_no').val(),
-            order_date:$('#registration_date').val(),
+            order_date:$('#order_date').val(),
             p_rqst_type_id: $("#p_rqst_type_id").val(),
             t_vat_registration_id: $( "#t_vat_registration_id" ).val(),
             ELEMENT_ID : $('#TEMP_ELEMENT_ID').val(),
@@ -350,7 +350,7 @@ $("#tab-4").on("click", function(event) {
         loadContentWithParams("transaksi_wf.t_order_log_kronologis_ro", { //model yang ketiga
             t_customer_order_id: $( "#CURR_DOC_ID" ).val(),
             order_no: $('#order_no').val(),
-            order_date:$('#registration_date').val(),
+            order_date:$('#order_date').val(),
             p_rqst_type_id: $("#p_rqst_type_id").val(),
             t_vat_registration_id: $( "#t_vat_registration_id" ).val(),
             ELEMENT_ID : $('#TEMP_ELEMENT_ID').val(),

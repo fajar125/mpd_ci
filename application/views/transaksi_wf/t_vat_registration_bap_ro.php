@@ -96,7 +96,7 @@
             <div class="form-body">
                 <div class="row">
                     <label class="control-label col-md-3">Nomor Order</label>                
-                        <div class="input-group col-md-4 col-md-4">
+                        <div class="input-group col-md-5">
                             <input type="text" class="form-control" name="t_vat_registration_id" id="t_vat_registration_id" style="display:none;">   
                             <input type="text" class="form-control" name="p_rqst_type_id" id="p_rqst_type_id" style="display:none;">   
                             <input type="text" class="form-control" name="order_no" id="order_no" readonly="true">                 
@@ -106,28 +106,28 @@
                 <div class="space-2"></div>
                 <div class="row">
                     <label class="control-label col-md-3">Tanggal Pendaftaran</label>
-                        <div class="input-group col-md-4 col-md-4">
+                        <div class="input-group col-md-5">
                             <input type="text" class="form-control" name="registration_date" id="registration_date" readonly="true">                 
                         </div>                 
                 </div>
                 <div class="space-2"></div>
                 <div class="row">
                     <label class="control-label col-md-3">Nama Ayat</label>
-                    <div class="input-group col-md-4 col-md-4">
+                    <div class="input-group col-md-5">
                         <div id="namaAyat"></div>
                     </div>
                 </div>
                 <div class="space-2"></div>
                 <div class="row">
                     <label class="control-label col-md-3">Username</label>
-                    <div class="input-group col-md-4 col-md-4">
+                    <div class="input-group col-md-5">
                             <input type="text" class="form-control" name="wp_user_name" id="wp_user_name" readonly="true">
                         </div>
                 </div>
                 <div class="space-2"></div>
                 <div class="row">
                     <label class="control-label col-md-3">Password</label>
-                        <div class="input-group col-md-4 col-md-4">
+                        <div class="input-group col-md-5">
                             <input type="password" class="form-control" name="wp_user_pwd" id="wp_user_pwd" readonly="true">                            
                         </div>
                 </div>
@@ -144,21 +144,21 @@
                 <div class="space-2"></div>
                 <div class="row">
                     <label class="control-label col-md-3">Nama Wajib Pajak</label>
-                    <div class="input-group col-md-4">
+                    <div class="input-group col-md-5">
                         <input type="text" class="form-control" name="wp_name" id="wp_name" readonly="true">
                     </div>
                 </div>
                 <div class="space-2"></div>
                 <div class="row">
                     <label class="control-label col-md-3">Alamat Wajib Pajak</label>
-                    <div class="input-group col-md-4">
+                    <div class="input-group col-md-5">
                             <textarea class="form-control" name="wp_address_name" id="wp_address_name" readonly="true"></textarea>
                         </div>
                 </div>
                 <div class="space-2"></div>
                 <div class="row">
                     <label class="control-label col-md-3">No</label>
-                        <div class="input-group col-md-4">
+                        <div class="input-group col-md-5">
                             <input type="text" class="form-control" name="wp_address_no" id="wp_address_no" readonly="true">      
                             <span class="input-group-addon"> RT </span> 
                             <input type="text" class="form-control" name="wp_address_rt" id="wp_address_rt" readonly="true">   
@@ -169,7 +169,7 @@
                 <div class="space-2"></div>
                 <div class="row">                
                     <label class="control-label col-md-3">Kota/Kabupaten</label>
-                    <div class="input-group col-md-4">
+                    <div class="input-group col-md-5">
                             <input id="wp_p_region_id" type="text"  style="display:none;">
                             <input id="wp_kota" readonly type="text" class="FormElement form-control" placeholder="Pilih Kota/Kabupaten">
                             <span class="input-group-btn">
@@ -182,7 +182,7 @@
                 <div class="space-2"></div>
                 <div class="row">
                     <label class="control-label col-md-3">Kecamatan</label>
-                    <div class="input-group col-md-4">
+                    <div class="input-group col-md-5">
                             <input id="wp_p_region_id_kecamatan" type="text"  style="display:none;">
                             <input id="wp_kecamatan" readonly type="text" class="FormElement form-control" placeholder="Pilih Kecamatan">
                             <span class="input-group-btn">
@@ -196,7 +196,7 @@
                 <div class="space-2"></div>
                 <div class="row">
                     <label class="control-label col-md-3">Kelurahan</label>
-                    <div class="input-group col-md-4">
+                    <div class="input-group col-md-5">
                         <input id="wp_p_region_id_kelurahan" type="text"  style="display:none;">
                         <input id="wp_kelurahan" readonly type="text" class="FormElement form-control" placeholder="Pilih Kelurahan">
                         <span class="input-group-btn">
@@ -210,7 +210,7 @@
                 <div class="space-2"></div>
                 <div class="row">
                     <label class="control-label col-md-3">Email</label>
-                    <div class="input-group col-md-4">
+                    <div class="input-group col-md-5">
                             <input type="text" class="form-control" name="wp_email" id="wp_email" readonly="true">
                     </div>
                 </div>
@@ -218,7 +218,7 @@
                 <div class="space-2"></div>
                 <div class="row">
                     <label class="control-label col-md-3">No. Telepon</label>
-                    <div class="input-group col-md-4">
+                    <div class="input-group col-md-5">
                             <input type="text" class="form-control" name="wp_phone_no" id="wp_phone_no" readonly="true">
                             <span class="input-group-addon">No. Seluler </span>
                             <input type="text" class="form-control" name="wp_mobile_no" id="wp_mobile_no" readonly="true">
@@ -227,14 +227,14 @@
                 <div class="space-2"></div>
                 <div class="row">
                     <label class="control-label col-md-3">No. Fax</label>
-                    <div class="input-group col-md-4">
+                    <div class="input-group col-md-5">
                             <input type="text" class="form-control" name="wp_fax_no" id="wp_fax_no" readonly="true">
                     </div>
                 </div>
                 <div class="space-2"></div>
                 <div class="row">
                     <label class="control-label col-md-3">Kode Pos</label>
-                    <div class="input-group col-md-4">
+                    <div class="input-group col-md-5">
                             <input type="text" class="form-control" name="wp_zip_code" id="wp_zip_code" readonly="true">
                     </div>
                 </div>
@@ -251,21 +251,21 @@
                 <div class="space-2"></div>
                 <div class="row">
                     <label class="control-label col-md-3">Nama Badan/Perusahaan</label>
-                    <div class="input-group col-md-4">
+                    <div class="input-group col-md-5">
                             <input type="text" class="form-control" name="company_name" id="company_name" readonly="true">
                     </div>
                 </div>
                 <div class="space-2"></div>
                 <div class="row">
                     <label class="control-label col-md-3">Alamat Badan</label>
-                    <div class="input-group col-md-4">
+                    <div class="input-group col-md-5">
                             <textarea class="form-control" name="address_name" id="address_name" readonly="true"></textarea>
                     </div>
                 </div>
                 <div class="space-2"></div>
                 <div class="row">
                     <label class="control-label col-md-3">No</label>
-                    <div class="input-group col-md-4">
+                    <div class="input-group col-md-5">
                             <input type="text" class="form-control" name="address_no" id="address_no" readonly="true">      
                             <span class="input-group-addon"> RT </span> 
                             <input type="text" class="form-control" name="address_rt" id="address_rt" readonly="true">   
@@ -276,7 +276,7 @@
                 <div class="space-2"></div>
                 <div class="row">                
                     <label class="control-label col-md-3">Kota/Kabupaten</label>
-                    <div class="input-group col-md-4">
+                    <div class="input-group col-md-5">
                             <input id="p_region_id" type="text"  style="display:none;">
                             <input id="kota_code" readonly type="text" class="FormElement form-control" placeholder="Pilih Kota/Kabupaten">
                             <span class="input-group-btn">
@@ -289,7 +289,7 @@
                 <div class="space-2"></div>
                 <div class="row">
                     <label class="control-label col-md-3">Kecamatan</label>
-                    <div class="input-group col-md-4">
+                    <div class="input-group col-md-5">
                             <input id="p_region_id_kecamatan" type="text"  style="display:none;">
                             <input id="kecamatan_code" readonly type="text" class="FormElement form-control" placeholder="Pilih Kecamatan">
                             <span class="input-group-btn">
@@ -304,7 +304,7 @@
                 <div class="space-2"></div>
                 <div class="row">
                     <label class="control-label col-md-3">Kelurahan</label>
-                    <div class="input-group col-md-4">
+                    <div class="input-group col-md-5">
                             <input id="p_region_id_kelurahan" type="text"  style="display:none;">
                             <input id="kelurahan_code" readonly type="text" class="FormElement form-control" placeholder="Pilih Kelurahan">
                             <span class="input-group-btn">
@@ -317,7 +317,7 @@
                 <div class="space-2"></div>
                 <div class="row">
                     <label class="control-label col-md-3">No. Telepon</label>
-                    <div class="input-group col-md-4">
+                    <div class="input-group col-md-5">
                             <input type="text" class="form-control" name="phone_no" id="phone_no" readonly="true">
                             <span class="input-group-addon">No. Seluler </span>
                             <input type="text" class="form-control" name="mobile_no" id="mobile_no" readonly="true">
@@ -326,14 +326,14 @@
                 <div class="space-2"></div>
                 <div class="row">
                     <label class="control-label col-md-3">No. Fax</label>
-                    <div class="input-group col-md-4">
+                    <div class="input-group col-md-5">
                             <input type="text" class="form-control" name="fax_no" id="fax_no" readonly="true">
                     </div>
                 </div>
                 <div class="space-2"></div>
                 <div class="row">
                     <label class="control-label col-md-3">Kode Pos</label>
-                    <div class="input-group col-md-4">
+                    <div class="input-group col-md-5">
                             <input type="text" class="form-control" name="zip_code" id="zip_code" readonly="true">
                     </div>
                 </div>          
@@ -350,21 +350,21 @@
                 <div class="space-2"></div>
                 <div class="row">
                     <label class="control-label col-md-3">Nama Merk Dagang</label>
-                    <div class="input-group col-md-4">
+                    <div class="input-group col-md-5">
                             <input type="text" class="form-control" name="company_brand" id="company_brand" readonly="true">
                     </div>
                 </div>
                 <div class="space-2"></div>
                 <div class="row">
                     <label class="control-label col-md-3">Alamat</label>
-                    <div class="input-group col-md-4">
+                    <div class="input-group col-md-5">
                             <textarea class="form-control" name="brand_address_name" id="brand_address_name" readonly="true"></textarea>
                     </div>
                 </div>
                 <div class="space-2"></div>
                 <div class="row">
                     <label class="control-label col-md-3">No.</label>
-                    <div class="input-group col-md-4">
+                    <div class="input-group col-md-5">
                             <input type="text" class="form-control" name="brand_address_no" id="brand_address_no" readonly="true">      
                             <span class="input-group-addon"> RT </span> 
                             <input type="text" class="form-control" name="brand_address_rt" id="brand_address_rt" readonly="true">   
@@ -376,7 +376,7 @@
                 <div class="space-2"></div>
                 <div class="row">                
                     <label class="control-label col-md-3">Kota/Kabupaten</label>
-                    <div class="input-group col-md-4">
+                    <div class="input-group col-md-5">
                             <input id="brand_p_region_id" type="text"  style="display:none;">
                             <input id="brand_kota" readonly type="text" class="FormElement form-control" placeholder="Pilih Kota/Kabupaten">
                             <span class="input-group-btn">
@@ -389,7 +389,7 @@
                 <div class="space-2"></div>
                 <div class="row">
                     <label class="control-label col-md-3">Kecamatan</label>
-                    <div class="input-group col-md-4">
+                    <div class="input-group col-md-5">
                             <input id="brand_p_region_id_kec" type="text"  style="display:none;">
                             <input id="brand_kecamatan" readonly type="text" class="FormElement form-control" placeholder="Pilih Kecamatan">
                             <span class="input-group-btn">
@@ -404,7 +404,7 @@
                 <div class="space-2"></div>
                 <div class="row">
                     <label class="control-label col-md-3">Kelurahan</label>
-                    <div class="input-group col-md-4">
+                    <div class="input-group col-md-5">
                             <input id="brand_p_region_id_kel" type="text"  style="display:none;">
                             <input id="brand_kelurahan" readonly type="text" class="FormElement form-control" placeholder="Pilih Kelurahan">
                             <span class="input-group-btn">
@@ -417,7 +417,7 @@
                 <div class="space-2"></div>
                 <div class="row">
                     <label class="control-label col-md-3">No. Telepon</label>
-                    <div class="input-group col-md-4">
+                    <div class="input-group col-md-5">
                             <input type="text" class="form-control" name="brand_phone_no" id="brand_phone_no" readonly="true">
                             <span class="input-group-addon">No. Seluler </span>
                             <input type="text" class="form-control" name="brand_mobile_no" id="brand_mobile_no" readonly="true">
@@ -426,14 +426,14 @@
                 <div class="space-2"></div>
                 <div class="row">
                     <label class="control-label col-md-3">No. Fax</label>
-                    <div class="input-group col-md-4">
+                    <div class="input-group col-md-5">
                             <input type="text" class="form-control" name="brand_fax_no" id="brand_fax_no" readonly="true">
                     </div>
                 </div>
                 <div class="space-2"></div>
                 <div class="row">
                     <label class="control-label col-md-3">Kode Pos</label>
-                    <div class="input-group col-md-4">
+                    <div class="input-group col-md-5">
                             <input type="text" class="form-control" name="brand_zip_code" id="brand_zip_code" readonly="true">
                     </div>
                 </div>
@@ -450,14 +450,14 @@
                 <div class="space-2"></div>
                 <div class="row">
                     <label class="control-label col-md-3">Nama Pemilik/Pengelola</label>
-                    <div class="input-group col-md-4">
+                    <div class="input-group col-md-5">
                             <input type="text" class="form-control" name="company_owner" id="company_owner" readonly="true">
                     </div>
                 </div>
                 <div class="space-2"></div>
                 <div class="row">
                     <label class="control-label col-md-3">Jabatan</label>
-                    <div class="input-group col-md-4">
+                    <div class="input-group col-md-5">
                             <input id="p_job_position_id" type="text"  style="display:none;">
                             <input id="job_position_code" readonly type="text" class="FormElement form-control" placeholder="Pilih Jabatan">
                             <span class="input-group-btn">
@@ -471,14 +471,14 @@
                 <div class="space-2"></div>
                 <div class="row">
                     <label class="control-label col-md-3">Alamat Pemilik/Pengelola</label>
-                    <div class="input-group col-md-4">
+                    <div class="input-group col-md-5">
                             <textarea class="form-control" name="address_name_owner" id="address_name_owner" readonly="true"></textarea>
                     </div>
                 </div>
                 <div class="space-2"></div>
                 <div class="row">
                     <label class="control-label col-md-3">No.</label>
-                    <div class="input-group col-md-4">
+                    <div class="input-group col-md-5">
                             <input type="text" class="form-control" name="address_no_owner" id="address_no_owner" readonly="true">      
                             <span class="input-group-addon"> RT </span> 
                             <input type="text" class="form-control" name="address_rt_owner" id="address_rt_owner" readonly="true">   
@@ -489,7 +489,7 @@
                 <div class="space-2"></div>
                 <div class="row">                
                     <label class="control-label col-md-3">Kota/Kabupaten</label>
-                    <div class="input-group col-md-4">
+                    <div class="input-group col-md-5">
                             <input id="p_region_id_owner" type="text"  style="display:none;">
                             <input id="kota_own_code" readonly type="text" class="FormElement form-control" placeholder="Pilih Kota/Kabupaten">
                             <span class="input-group-btn">
@@ -502,7 +502,7 @@
                 <div class="space-2"></div>
                 <div class="row">
                     <label class="control-label col-md-3">Kecamatan</label>
-                    <div class="input-group col-md-4">
+                    <div class="input-group col-md-5">
                             <input id="p_region_id_kec_owner" type="text"  style="display:none;">
                             <input id="kecamatan_own_code" readonly type="text" class="FormElement form-control" placeholder="Pilih Kecamatan">
                             <span class="input-group-btn">
@@ -517,7 +517,7 @@
                 <div class="space-2"></div>
                 <div class="row">
                     <label class="control-label col-md-3">Kelurahan</label>
-                    <div class="input-group col-md-4">
+                    <div class="input-group col-md-5">
                             <input id="p_region_id_kel_owner" type="text"  style="display:none;">
                             <input id="kelurahan_own_code" readonly type="text" class="FormElement form-control" placeholder="Pilih Kelurahan">
                             <span class="input-group-btn">
@@ -530,28 +530,28 @@
                 <div class="space-2"></div>
                 <div class="row">
                     <label class="control-label col-md-3">Email</label>
-                    <div class="input-group col-md-4">
+                    <div class="input-group col-md-5">
                         <input type="text" class="form-control" name="email" id="email" readonly="true">
                     </div>
                 </div>
                 <div class="space-2"></div>
                 <div class="row">
                     <label class="control-label col-md-3">No. Telepon</label>
-                    <div class="input-group col-md-4">
+                    <div class="input-group col-md-5">
                         <input type="text" class="form-control" name="phone_no_owner" id="phone_no_owner" readonly="true">
                     </div>
                 </div>
                 <div class="space-2"></div>
                 <div class="row">
                     <label class="control-label col-md-3">No. Fax</label>
-                    <div class="input-group col-md-4">
+                    <div class="input-group col-md-5">
                             <input type="text" class="form-control" name="fax_no_owner" id="fax_no_owner" readonly="true">
                     </div>
                 </div>
                 <div class="space-2"></div>
                 <div class="row">
                     <label class="control-label col-md-3">Kode Pos</label>
-                    <div class="input-group col-md-4">
+                    <div class="input-group col-md-5">
                             <input type="text" class="form-control" name="zip_code_owner" id="zip_code_owner" readonly="true">
                     </div>
                 </div>
@@ -568,14 +568,14 @@
                 <div class="space-2"></div>
                 <div class="row">
                     <label class="control-label col-md-3">Pilih Pertanyaaan</label>
-                    <div class="input-group col-md-4">                            
+                    <div class="input-group col-md-5">                            
                         <div id="privateQuestion"></div>
                     </div>
                 </div>
                 <div class="space-2"></div>
                 <div class="row">
                     <label class="control-label col-md-3">Jawaban</label>
-                    <div class="input-group col-md-4">
+                    <div class="input-group col-md-5">
                         <input type="text" class="form-control" name="private_answer" id="private_answer" readonly="true">
                     </div>
                 </div>
@@ -593,7 +593,7 @@
                 <div class="space-2"></div>
                 <div class="row">
                     <label class="control-label col-md-3">No. Seluler</label>
-                    <div class="input-group col-md-4">
+                    <div class="input-group col-md-5">
                         <input type="text" class="form-control" name="mobile_no_owner" id="mobile_no_owner" readonly="true">
                     </div>
                  
@@ -613,42 +613,42 @@
                 <div class="space-2"></div>
                 <div class="row">
                     <label class="control-label col-md-3">Nama Petugas 1</label>
-                    <div class="input-group col-md-4"> 
+                    <div class="input-group col-md-5"> 
                         <input type="text" class="form-control" name="bap_employee_name_1" id="bap_employee_name_1">      
                     </div>
                 </div>
                 <div class="space-2"></div>
                 <div class="row">
                     <label class="control-label col-md-3">NIP Petugas 1</label>
-                    <div class="input-group col-md-4">
+                    <div class="input-group col-md-5">
                         <input type="text" class="form-control" name="bap_employee_no_1" id="bap_employee_no_1">
                     </div>
                 </div>
                 <div class="space-2"></div>
                 <div class="row">
                     <label class="control-label col-md-3">Jabatan Petugas 1</label>
-                    <div class="input-group col-md-4">
+                    <div class="input-group col-md-5">
                         <input type="text" class="form-control" name="bap_employee_job_pos_1" id="bap_employee_job_pos_1">
                     </div>
                 </div>
                 <div class="space-2"></div>
                 <div class="row">
                     <label class="control-label col-md-3">Nama Petugas 2</label>
-                    <div class="input-group col-md-4">
+                    <div class="input-group col-md-5">
                         <input type="text" class="form-control" name="bap_employee_name_2" id="bap_employee_name_2">
                     </div>
                 </div>
                 <div class="space-2"></div>
                 <div class="row">
                     <label class="control-label col-md-3">NIP Petugas 2</label>
-                    <div class="input-group col-md-4">
+                    <div class="input-group col-md-5">
                         <input type="text" class="form-control" name="bap_employee_no_2" id="bap_employee_no_2">
                     </div>
                 </div>
                 <div class="space-2"></div>
                 <div class="row">
                     <label class="control-label col-md-3">NIP Petugas 2</label>
-                    <div class="input-group col-md-4">
+                    <div class="input-group col-md-5">
                         <input type="text" class="form-control" name="bap_employee_job_pos_2" id="bap_employee_job_pos_2">
                     </div>
                 </div>
