@@ -100,7 +100,10 @@ $("#tab-1").on("click", function(event) {
                 $('#order_no').val(items.row[0].order_no); 
                 $('#registration_date').val(items.row[0].registration_date); 
 
-                $('#p_vat_type_dtl').val(items.row[0].p_vat_type_dtl_id); 
+                // $('#p_vat_type_dtl').val(items.row[0].p_vat_type_dtl_id); 
+                setTimeout(function(){
+                            $('#p_vat_type_dtl').val(items.row[0].p_vat_type_dtl_id);
+                        }, 500);
                 //alert(p_vat_type_dtl_id);
                 $('#wp_user_name').val(items.row[0].wp_user_name);  
                 $('#wp_user_pwd').val(items.row[0].wp_user_pwd); 
@@ -173,7 +176,10 @@ $("#tab-1").on("click", function(event) {
                 $('#fax_no_owner').val(items.row[0].fax_no_owner); 
                 $('#zip_code_owner').val(items.row[0].zip_code_owner);
 
-                $('#p_private_question_id').val(items.row[0].p_private_question_id);
+                // $('#p_private_question_id').val(items.row[0].p_private_question_id);
+                setTimeout(function(){
+                    $('#p_private_question_id').val(items.row[0].p_private_question_id);
+                }, 500); 
                 $('#private_answer').val(items.row[0].private_answer);
             })
         }
@@ -194,7 +200,7 @@ $("#tab-1").on("click", function(event) {
             <div class="form-body">
                 <div class="row">
                     <label class="control-label col-md-3">Nomor Order</label>                
-                        <div class="input-group col-md-4 col-md-4">
+                        <div class="input-group col-md-5">
                             <input type="hidden" class="form-control" name="t_vat_registration_id" id="t_vat_registration_id">   
                             <input type="text" class="form-control" name="order_no" id="order_no" readonly="true">                 
                         </div>
@@ -203,28 +209,28 @@ $("#tab-1").on("click", function(event) {
                 <div class="space-2"></div>
                 <div class="row">
                     <label class="control-label col-md-3">Tanggal Pendaftaran</label>
-                        <div class="input-group col-md-4 col-md-4">
+                        <div class="input-group col-md-5">
                             <input type="text" class="form-control" name="registration_date" id="registration_date" readonly="true">                 
                         </div>                 
                 </div>
                 <div class="space-2"></div>
                 <div class="row">
                     <label class="control-label col-md-3">Nama Ayat</label>
-                    <div class="input-group col-md-4 col-md-4">
+                    <div class="input-group col-md-5">
                         <div id="namaAyat"></div>
                     </div>
                 </div>
                 <div class="space-2"></div>
                 <div class="row">
                     <label class="control-label col-md-3">Username</label>
-                    <div class="input-group col-md-4 col-md-4">
+                    <div class="input-group col-md-5">
                             <input type="text" class="form-control" name="wp_user_name" id="wp_user_name">
                         </div>
                 </div>
                 <div class="space-2"></div>
                 <div class="row">
                     <label class="control-label col-md-3">Password</label>
-                        <div class="input-group col-md-4 col-md-4">
+                        <div class="input-group col-md-5">
                             <input type="password" class="form-control" name="wp_user_pwd" id="wp_user_pwd">                            
                         </div>
                 </div>
@@ -241,21 +247,21 @@ $("#tab-1").on("click", function(event) {
                 <div class="space-2"></div>
                 <div class="row">
                     <label class="control-label col-md-3">Nama Wajib Pajak</label>
-                    <div class="input-group col-md-4">
+                    <div class="input-group col-md-5">
                         <input type="text" class="form-control required" name="wp_name" id="wp_name">
                     </div>
                 </div>
                 <div class="space-2"></div>
                 <div class="row">
                     <label class="control-label col-md-3">Alamat Wajib Pajak</label>
-                    <div class="input-group col-md-4">
+                    <div class="input-group col-md-5">
                             <textarea class="form-control required" name="wp_address_name" id="wp_address_name"></textarea>
                         </div>
                 </div>
                 <div class="space-2"></div>
                 <div class="row">
                     <label class="control-label col-md-3">No</label>
-                        <div class="input-group col-md-4">
+                        <div class="input-group col-md-5">
                             <input type="text" class="form-control" name="wp_address_no" id="wp_address_no">      
                             <span class="input-group-addon"> RT </span> 
                             <input type="text" class="form-control" name="wp_address_rt" id="wp_address_rt">   
@@ -266,7 +272,7 @@ $("#tab-1").on("click", function(event) {
                 <div class="space-2"></div>
                 <div class="row">                
                     <label class="control-label col-md-3">Kota/Kabupaten</label>
-                    <div class="input-group col-md-4">
+                    <div class="input-group col-md-5">
                             <input id="wp_p_region_id" type="text"  style="display:none;">
                             <input id="wp_kota" readonly type="text" class="FormElement form-control required" placeholder="Pilih Kota/Kabupaten">
                             <span class="input-group-btn">
@@ -279,7 +285,7 @@ $("#tab-1").on("click", function(event) {
                 <div class="space-2"></div>
                 <div class="row">
                     <label class="control-label col-md-3">Kecamatan</label>
-                    <div class="input-group col-md-4">
+                    <div class="input-group col-md-5">
                             <input id="wp_p_region_id_kecamatan" type="text"  style="display:none;">
                             <input id="wp_kecamatan" readonly type="text" class="FormElement form-control" placeholder="Pilih Kecamatan">
                             <span class="input-group-btn">
@@ -293,7 +299,7 @@ $("#tab-1").on("click", function(event) {
                 <div class="space-2"></div>
                 <div class="row">
                     <label class="control-label col-md-3">Kelurahan</label>
-                    <div class="input-group col-md-4">
+                    <div class="input-group col-md-5">
                         <input id="wp_p_region_id_kelurahan" type="text"  style="display:none;">
                         <input id="wp_kelurahan" readonly type="text" class="FormElement form-control" placeholder="Pilih Kelurahan">
                         <span class="input-group-btn">
@@ -307,7 +313,7 @@ $("#tab-1").on("click", function(event) {
                 <div class="space-2"></div>
                 <div class="row">
                     <label class="control-label col-md-3">Email</label>
-                    <div class="input-group col-md-4">
+                    <div class="input-group col-md-5">
                             <input type="text" class="form-control" name="wp_email" id="wp_email">
                     </div>
                 </div>
@@ -315,7 +321,7 @@ $("#tab-1").on("click", function(event) {
                 <div class="space-2"></div>
                 <div class="row">
                     <label class="control-label col-md-3">No. Telepon</label>
-                    <div class="input-group col-md-4">
+                    <div class="input-group col-md-5">
                             <input type="text" class="form-control" name="wp_phone_no" id="wp_phone_no">
                             <span class="input-group-addon">No. Seluler </span>
                             <input type="text" class="form-control" name="wp_mobile_no" id="wp_mobile_no">
@@ -324,14 +330,14 @@ $("#tab-1").on("click", function(event) {
                 <div class="space-2"></div>
                 <div class="row">
                     <label class="control-label col-md-3">No. Fax</label>
-                    <div class="input-group col-md-4">
+                    <div class="input-group col-md-5">
                             <input type="text" class="form-control" name="wp_fax_no" id="wp_fax_no">
                     </div>
                 </div>
                 <div class="space-2"></div>
                 <div class="row">
                     <label class="control-label col-md-3">Kode Pos</label>
-                    <div class="input-group col-md-4">
+                    <div class="input-group col-md-5">
                             <input type="text" class="form-control" name="wp_zip_code" id="brand_zip_code">
                     </div>
                 </div>
@@ -348,21 +354,21 @@ $("#tab-1").on("click", function(event) {
                 <div class="space-2"></div>
                 <div class="row">
                     <label class="control-label col-md-3">Nama Badan/Perusahaan</label>
-                    <div class="input-group col-md-4">
+                    <div class="input-group col-md-5">
                             <input type="text" class="form-control  required" name="company_name" id="company_name">
                     </div>
                 </div>
                 <div class="space-2"></div>
                 <div class="row">
                     <label class="control-label col-md-3">Alamat Badan</label>
-                    <div class="input-group col-md-4">
+                    <div class="input-group col-md-5">
                             <textarea class="form-control  required" name="address_name" id="address_name"></textarea>
                     </div>
                 </div>
                 <div class="space-2"></div>
                 <div class="row">
                     <label class="control-label col-md-3">No</label>
-                    <div class="input-group col-md-4">
+                    <div class="input-group col-md-5">
                             <input type="text" class="form-control required" name="address_no" id="address_no">      
                             <span class="input-group-addon"> RT </span> 
                             <input type="text" class="form-control" name="address_rt" id="address_rt">   
@@ -373,7 +379,7 @@ $("#tab-1").on("click", function(event) {
                 <div class="space-2"></div>
                 <div class="row">                
                     <label class="control-label col-md-3">Kota/Kabupaten</label>
-                    <div class="input-group col-md-4">
+                    <div class="input-group col-md-5">
                             <input id="p_region_id" type="text"  style="display:none;">
                             <input id="kota_code" readonly type="text" class="FormElement form-control" placeholder="Pilih Kota/Kabupaten">
                             <span class="input-group-btn">
@@ -386,7 +392,7 @@ $("#tab-1").on("click", function(event) {
                 <div class="space-2"></div>
                 <div class="row">
                     <label class="control-label col-md-3">Kecamatan</label>
-                    <div class="input-group col-md-4">
+                    <div class="input-group col-md-5">
                             <input id="p_region_id_kecamatan" type="text"  style="display:none;">
                             <input id="kecamatan_code" readonly type="text" class="FormElement form-control" placeholder="Pilih Kecamatan">
                             <span class="input-group-btn">
@@ -401,7 +407,7 @@ $("#tab-1").on("click", function(event) {
                 <div class="space-2"></div>
                 <div class="row">
                     <label class="control-label col-md-3">Kelurahan</label>
-                    <div class="input-group col-md-4">
+                    <div class="input-group col-md-5">
                             <input id="p_region_id_kelurahan" type="text"  style="display:none;">
                             <input id="kelurahan_code" readonly type="text" class="FormElement form-control" placeholder="Pilih Kelurahan">
                             <span class="input-group-btn">
@@ -414,24 +420,24 @@ $("#tab-1").on("click", function(event) {
                 <div class="space-2"></div>
                 <div class="row">
                     <label class="control-label col-md-3">No. Telepon</label>
-                    <div class="input-group col-md-4">
-                            <input type="text" class="form-control" name="wp_phone_no" id="wp_phone_no">
+                    <div class="input-group col-md-5">
+                            <input type="text" class="form-control" name="phone_no" id="phone_no">
                             <span class="input-group-addon">No. Seluler </span>
-                            <input type="text" class="form-control" name="wp_mobile_no" id="wp_mobile_no">
+                            <input type="text" class="form-control" name="mobile_no" id="mobile_no">
                     </div>
                 </div>
                 <div class="space-2"></div>
                 <div class="row">
                     <label class="control-label col-md-3">No. Fax</label>
-                    <div class="input-group col-md-4">
-                            <input type="text" class="form-control" name="brand_fax_no" id="brand_fax_no">
+                    <div class="input-group col-md-5">
+                            <input type="text" class="form-control" name="fax_no" id="fax_no">
                     </div>
                 </div>
                 <div class="space-2"></div>
                 <div class="row">
                     <label class="control-label col-md-3">Kode Pos</label>
-                    <div class="input-group col-md-4">
-                            <input type="text" class="form-control" name="brand_zip_code" id="brand_zip_code">
+                    <div class="input-group col-md-5">
+                            <input type="text" class="form-control" name="zip_code" id="zip_code">
                     </div>
                 </div>          
             </div>
@@ -447,21 +453,21 @@ $("#tab-1").on("click", function(event) {
                 <div class="space-2"></div>
                 <div class="row">
                     <label class="control-label col-md-3">Nama Merk Dagang</label>
-                    <div class="input-group col-md-4">
+                    <div class="input-group col-md-5">
                             <input type="text" class="form-control  required" name="company_brand" id="company_brand">
                     </div>
                 </div>
                 <div class="space-2"></div>
                 <div class="row">
                     <label class="control-label col-md-3">Alamat</label>
-                    <div class="input-group col-md-4">
+                    <div class="input-group col-md-5">
                             <textarea class="form-control  required" name="brand_address_name" id="brand_address_name"></textarea>
                     </div>
                 </div>
                 <div class="space-2"></div>
                 <div class="row">
                     <label class="control-label col-md-3">No.</label>
-                    <div class="input-group col-md-4">
+                    <div class="input-group col-md-5">
                             <input type="text" class="form-control required" name="brand_address_no" id="brand_address_no">      
                             <span class="input-group-addon"> RT </span> 
                             <input type="text" class="form-control" name="brand_address_rt" id="brand_address_rt">   
@@ -473,7 +479,7 @@ $("#tab-1").on("click", function(event) {
                 <div class="space-2"></div>
                 <div class="row">                
                     <label class="control-label col-md-3">Kota/Kabupaten</label>
-                    <div class="input-group col-md-4">
+                    <div class="input-group col-md-5">
                             <input id="brand_p_region_id" type="text"  style="display:none;">
                             <input id="brand_kota" readonly type="text" class="FormElement form-control required" placeholder="Pilih Kota/Kabupaten">
                             <span class="input-group-btn">
@@ -486,7 +492,7 @@ $("#tab-1").on("click", function(event) {
                 <div class="space-2"></div>
                 <div class="row">
                     <label class="control-label col-md-3">Kecamatan</label>
-                    <div class="input-group col-md-4">
+                    <div class="input-group col-md-5">
                             <input id="brand_p_region_id_kec" type="text"  style="display:none;">
                             <input id="brand_kecamatan" readonly type="text" class="FormElement form-control" placeholder="Pilih Kecamatan">
                             <span class="input-group-btn">
@@ -501,7 +507,7 @@ $("#tab-1").on("click", function(event) {
                 <div class="space-2"></div>
                 <div class="row">
                     <label class="control-label col-md-3">Kelurahan</label>
-                    <div class="input-group col-md-4">
+                    <div class="input-group col-md-5">
                             <input id="brand_p_region_id_kel" type="text"  style="display:none;">
                             <input id="brand_kelurahan" readonly type="text" class="FormElement form-control" placeholder="Pilih Kelurahan">
                             <span class="input-group-btn">
@@ -514,23 +520,23 @@ $("#tab-1").on("click", function(event) {
                 <div class="space-2"></div>
                 <div class="row">
                     <label class="control-label col-md-3">No. Telepon</label>
-                    <div class="input-group col-md-4">
-                            <input type="text" class="form-control" name="wp_phone_no" id="wp_phone_no">
+                    <div class="input-group col-md-5">
+                            <input type="text" class="form-control" name="brand_phone_no" id="brand_phone_no">
                             <span class="input-group-addon">No. Seluler </span>
-                            <input type="text" class="form-control" name="wp_mobile_no" id="wp_mobile_no">
+                            <input type="text" class="form-control" name="brand_mobile_no" id="brand_mobile_no">
                     </div>
                 </div>
                 <div class="space-2"></div>
                 <div class="row">
                     <label class="control-label col-md-3">No. Fax</label>
-                    <div class="input-group col-md-4">
+                    <div class="input-group col-md-5">
                             <input type="text" class="form-control" name="brand_fax_no" id="brand_fax_no">
                     </div>
                 </div>
                 <div class="space-2"></div>
                 <div class="row">
                     <label class="control-label col-md-3">Kode Pos</label>
-                    <div class="input-group col-md-4">
+                    <div class="input-group col-md-5">
                             <input type="text" class="form-control" name="brand_zip_code" id="brand_zip_code">
                     </div>
                 </div>
@@ -547,14 +553,14 @@ $("#tab-1").on("click", function(event) {
                 <div class="space-2"></div>
                 <div class="row">
                     <label class="control-label col-md-3">Nama Pemilik/Pengelola</label>
-                    <div class="input-group col-md-4">
+                    <div class="input-group col-md-5">
                             <input type="text" class="form-control" name="company_owner" id="company_owner">
                     </div>
                 </div>
                 <div class="space-2"></div>
                 <div class="row">
                     <label class="control-label col-md-3">Jabatan</label>
-                    <div class="input-group col-md-4">
+                    <div class="input-group col-md-5">
                             <input id="p_job_position_id" type="text"  style="display:none;">
                             <input id="job_position_code" readonly type="text" class="FormElement form-control" placeholder="Pilih Jabatan">
                             <span class="input-group-btn">
@@ -568,14 +574,14 @@ $("#tab-1").on("click", function(event) {
                 <div class="space-2"></div>
                 <div class="row">
                     <label class="control-label col-md-3">Alamat Pemilik/Pengelola</label>
-                    <div class="input-group col-md-4">
+                    <div class="input-group col-md-5">
                             <textarea class="form-control" name="address_name_owner" id="address_name_owner"></textarea>
                     </div>
                 </div>
                 <div class="space-2"></div>
                 <div class="row">
                     <label class="control-label col-md-3">No.</label>
-                    <div class="input-group col-md-4">
+                    <div class="input-group col-md-5">
                             <input type="text" class="form-control" name="address_no_owner" id="address_no_owner">      
                             <span class="input-group-addon"> RT </span> 
                             <input type="text" class="form-control" name="address_rt_owner" id="address_rt_owner">   
@@ -586,7 +592,7 @@ $("#tab-1").on("click", function(event) {
                 <div class="space-2"></div>
                 <div class="row">                
                     <label class="control-label col-md-3">Kota/Kabupaten</label>
-                    <div class="input-group col-md-4">
+                    <div class="input-group col-md-5">
                             <input id="p_region_id_owner" type="text"  style="display:none;">
                             <input id="kota_own_code" readonly type="text" class="FormElement form-control required" placeholder="Pilih Kota/Kabupaten">
                             <span class="input-group-btn">
@@ -599,7 +605,7 @@ $("#tab-1").on("click", function(event) {
                 <div class="space-2"></div>
                 <div class="row">
                     <label class="control-label col-md-3">Kecamatan</label>
-                    <div class="input-group col-md-4">
+                    <div class="input-group col-md-5">
                             <input id="p_region_id_kec_owner" type="text"  style="display:none;">
                             <input id="kecamatan_own_code" readonly type="text" class="FormElement form-control" placeholder="Pilih Kecamatan">
                             <span class="input-group-btn">
@@ -614,7 +620,7 @@ $("#tab-1").on("click", function(event) {
                 <div class="space-2"></div>
                 <div class="row">
                     <label class="control-label col-md-3">Kelurahan</label>
-                    <div class="input-group col-md-4">
+                    <div class="input-group col-md-5">
                             <input id="p_region_id_kel_owner" type="text"  style="display:none;">
                             <input id="kelurahan_own_code" readonly type="text" class="FormElement form-control" placeholder="Pilih Kelurahan">
                             <span class="input-group-btn">
@@ -627,28 +633,28 @@ $("#tab-1").on("click", function(event) {
                 <div class="space-2"></div>
                 <div class="row">
                     <label class="control-label col-md-3">Email</label>
-                    <div class="input-group col-md-4">
+                    <div class="input-group col-md-5">
                         <input type="text" class="form-control" name="email" id="email">
                     </div>
                 </div>
                 <div class="space-2"></div>
                 <div class="row">
                     <label class="control-label col-md-3">No. Telepon</label>
-                    <div class="input-group col-md-4">
+                    <div class="input-group col-md-5">
                         <input type="text" class="form-control" name="phone_no_owner" id="phone_no_owner">
                     </div>
                 </div>
                 <div class="space-2"></div>
                 <div class="row">
                     <label class="control-label col-md-3">No. Fax</label>
-                    <div class="input-group col-md-4">
+                    <div class="input-group col-md-5">
                             <input type="text" class="form-control" name="fax_no_owner" id="fax_no_owner">
                     </div>
                 </div>
                 <div class="space-2"></div>
                 <div class="row">
                     <label class="control-label col-md-3">Kode Pos</label>
-                    <div class="input-group col-md-4">
+                    <div class="input-group col-md-5">
                             <input type="text" class="form-control" name="zip_code_owner" id="zip_code_owner">
                     </div>
                 </div>
@@ -665,14 +671,14 @@ $("#tab-1").on("click", function(event) {
                 <div class="space-2"></div>
                 <div class="row">
                     <label class="control-label col-md-3">Pilih Pertanyaaan</label>
-                    <div class="input-group col-md-4">                            
+                    <div class="input-group col-md-5">                            
                         <div id="privateQuestion"></div>
                     </div>
                 </div>
                 <div class="space-2"></div>
                 <div class="row">
                     <label class="control-label col-md-3">Jawaban</label>
-                    <div class="input-group col-md-4">
+                    <div class="input-group col-md-5">
                         <input type="text" class="form-control" name="private_answer" id="private_answer">
                     </div>
                 </div>
@@ -690,7 +696,7 @@ $("#tab-1").on("click", function(event) {
                 <div class="space-2"></div>
                 <div class="row">
                     <label class="control-label col-md-3">No. Seluler</label>
-                    <div class="input-group col-md-4">
+                    <div class="input-group col-md-5">
                         <input type="text" class="form-control" name="mobile_no_owner" id="mobile_no_owner">
                     </div>
                  
