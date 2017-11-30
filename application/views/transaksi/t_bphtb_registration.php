@@ -903,7 +903,6 @@
       r_l_tot_p =  ReplaceNumberWithCommas(hasil);
       $('#land_total_price').val(r_l_tot_p);
 
-      // r_tot_p = ReplaceNumberWithCommas(parseFloat(land_total_price)+parseFloat(building_total_price));
       r_tot_p = ReplaceNumberWithCommas(parseFloat(r_l_tot_p.replace(/,/g ,''))+parseFloat(building_total_price));
       $('#total_price').val(r_tot_p);
 
@@ -925,7 +924,6 @@
         hasil = ReplaceNumberWithCommas(hasil);
         $('#building_total_price').val(hasil);
 
-        // result = parseFloat(land_total_price.replace(/,/g ,'')) + parseFloat(building_total_price.replace(/,/g ,''));
         result = ReplaceNumberWithCommas(parseFloat(land_total_price.replace(/,/g ,'')) + parseFloat(hasil.replace(/,/g ,'')));
         $('#total_price').val(result); 
 
@@ -951,7 +949,6 @@
             },
             dataType: "json",
             success: function (data) {
-                //console.log(data[0].p_bphtb_legal_doc_type_id);
                 var dt = data[0];
                 console.log (dt);
                 
@@ -962,16 +959,6 @@
                 var npoptkp = dt.npoptkp;
                 
                 if(doc_cons > 0 && doc_cons != '' ){
-                    
-                    //$('#npop_tkp').val(ReplaceNumberWithCommas(doc_cons * npop));
-
-                    /*$('#nilai_doc').val(doc_cons);
-
-                    if (parseFloat(total_price) > parseFloat(market_price)) {
-                        $('#npop').val(ReplaceNumberWithCommas(Math.ceil(total_price*doc_cons)));
-                    }else{
-                        $('#npop').val(ReplaceNumberWithCommas(Math.ceil(market_price*doc_cons)));
-                    }*/
                     var npop = $('#npop').val().replace(/,/g ,'');
                     var result = ReplaceNumberWithCommas(doc_cons*(npop).replace(/,/g ,''));
 
@@ -987,11 +974,6 @@
                     }
 
                 }else{
-                    /*if (parseFloat(total_price) > parseFloat(market_price)) {
-                        $('#npop').val(ReplaceNumberWithCommas(total_price));
-                    }else{
-                        $('#npop').val(ReplaceNumberWithCommas(market_price));
-                    }*/
                     if(parseFloat(total_price)>parseFloat(market_price)){
                         var result = ReplaceNumberWithCommas(Math.ceil(total_price));
                         $('#npop').val(result);
@@ -1001,8 +983,6 @@
                     }
                     $('#nilai_doc').val(null);
                 } 
-
-                
                 $('#npop_tkp').val(ReplaceNumberWithCommas(npoptkp));
                 hitungNPOPKP();
             },
@@ -1013,6 +993,8 @@
             }
         });
     }
+
+
     function openInNewTab(url) {
         window.open(url, 'No Payment', 'left=0,top=0,width=500,height=500,toolbar=no,scrollbars=yes,resizable=yes');
     }
