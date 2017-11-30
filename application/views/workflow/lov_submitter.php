@@ -255,6 +255,7 @@
             $('#form_wp_username').val('');
             $('#form_wp_userpwd').val('');
             $('#form_wp_name').val('');
+            $('#form_idd').val('');
         }
         /*init pekerjaan tersedia*/
         $.ajax({
