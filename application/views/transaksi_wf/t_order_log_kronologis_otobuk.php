@@ -385,6 +385,7 @@
 
 <script type="text/javascript">
     $('#tab-1').on('click', function(event){
+        event.stopPropagation();
         loadContentWithParams("transaksi_wf.t_vat_setllement_ro_otobuk", { //model yang ketiga
             t_vat_setllement_id:$('#t_vat_setllement_id').val(),
             npwd:$('#npwd').val(),
@@ -431,6 +432,7 @@
     });
 
     $('#tab-2').on('click', function(event){
+        event.stopPropagation();
         loadContentWithParams("transaksi_wf.data_potensi_ro_otobuk", { //model yang ketiga
             t_vat_setllement_id:$('#t_vat_setllement_id').val(),
             npwd:$('#npwd').val(),
@@ -477,6 +479,7 @@
     });
 
     $('#tab-4').on('click', function(event){
+        event.stopPropagation();
         loadContentWithParams("transaksi_wf.t_sptpd_legal_doc_ro_otobuk_v2", { //model yang ketiga
             t_vat_setllement_id:$('#t_vat_setllement_id').val(),
             npwd:$('#npwd').val(),

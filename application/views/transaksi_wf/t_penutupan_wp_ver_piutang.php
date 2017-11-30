@@ -80,7 +80,7 @@
 <script>
 
 $("#tab-2").on("click", function(event) {
-        
+        event.stopPropagation();
         loadContentWithParams("transaksi_wf.t_penutupan_wp_ver_piutang_legal_doc", { //model yang ketiga
             t_customer_order_id: $( "#CURR_DOC_ID" ).val(),
             p_rqst_type_code: $('#p_rqst_type_code').val(),
@@ -118,7 +118,7 @@ $("#tab-2").on("click", function(event) {
     });
 
     $("#tab-3").on("click", function(event) {
-
+        event.stopPropagation();
         loadContentWithParams("transaksi_wf.t_penutupan_wp_ver_piutang_log_kronologis", { //model yang ketiga
             t_customer_order_id: $( "#CURR_DOC_ID" ).val(),
             p_rqst_type_code: $('#p_rqst_type_code').val(),

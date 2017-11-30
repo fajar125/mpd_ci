@@ -636,7 +636,7 @@
     });
 
     $("#tab-2").on("click", function(event) {
-        
+        event.stopPropagation();
         loadContentWithParams("transaksi_wf.t_vat_reg_dtl_ro", { //model yang ketiga
             t_customer_order_id: $( "#CURR_DOC_ID" ).val(),
             order_no: $('#order_no').val(),
@@ -720,7 +720,7 @@
     });
 
     $("#tab-4").on("click", function(event) {
-        
+        event.stopPropagation();
         loadContentWithParams("transaksi_wf.t_order_log_kronologis_ro", { //model yang ketiga
             t_customer_order_id: $( "#CURR_DOC_ID" ).val(),
             order_no: $('#order_no').val(),

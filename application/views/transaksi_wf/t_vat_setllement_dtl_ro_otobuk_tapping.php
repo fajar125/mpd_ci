@@ -223,7 +223,7 @@
     });
 
     $("#tab-2").on("click", function(event) {
-        
+        event.stopPropagation();
         loadContentWithParams("transaksi_wf.t_vat_setllement_dtl_ro_otobuk", { //model yang ketiga
                 t_vat_setllement_id:$('#t_vat_setllement_id').val(),
                     npwd:$('#npwd').val(),

@@ -307,7 +307,7 @@
     }
 
     $("#tab-3").on("click", function(event) {
-        
+        event.stopPropagation();
         loadContentWithParams("transaksi_wf.t_vat_setllement_ro", { //model yang ketiga
             t_customer_order_id: $( "#CURR_DOC_ID" ).val(),
             ELEMENT_ID : $('#TEMP_ELEMENT_ID').val(),

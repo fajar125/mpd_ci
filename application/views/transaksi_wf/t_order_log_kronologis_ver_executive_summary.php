@@ -395,6 +395,7 @@
 
 <script type="text/javascript">
     $('#tab-1').on('click', function(event){
+        event.stopPropagation();
         loadContentWithParams("transaksi_wf.t_executive_summary_report_ver", { //model yang ketiga
             t_executive_summary_id:$('#t_executive_summary_id').val(),
             p_vat_type_id:$('#p_vat_type_id').val(),

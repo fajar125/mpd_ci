@@ -433,7 +433,7 @@
     });
 
     $("#tab-3").on("click", function(event) {
-        
+        event.stopPropagation();
         loadContentWithParams("transaksi_wf.t_order_log_kronologis_ver", { //model yang ketiga
             t_customer_order_id: $( "#CURR_DOC_ID" ).val(),
             order_no: $('#order_no').val(),

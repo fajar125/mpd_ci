@@ -273,7 +273,7 @@
     });
 
     $("#tab-2").on("click", function(event) {
-        
+        event.stopPropagation();
         loadContentWithParams("transaksi_wf.t_debt_letter_ro_legal_doc", { //model yang ketiga
             t_customer_order_id: $( "#CURR_DOC_ID" ).val(),
             t_debt_letter_id: $('#t_debt_letter_id').val(),
@@ -311,7 +311,7 @@
     });
 
     $("#tab-3").on("click", function(event) {
-
+        event.stopPropagation();
         //if($( "#CURR_DOC_ID" ).val() != null || $( "#CURR_DOC_ID" ).val()!= 0 || $( "#CURR_DOC_ID" ).val() != '' || empty($( "#CURR_DOC_ID" ).val())){
             loadContentWithParams("transaksi_wf.t_debt_letter_ro_log_kronologis", { //model yang ketiga
                 t_customer_order_id: $( "#CURR_DOC_ID" ).val(),

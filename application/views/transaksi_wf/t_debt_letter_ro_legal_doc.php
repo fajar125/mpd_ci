@@ -389,7 +389,7 @@
     }
 
     $("#tab-1").on("click", function(event) {
-        
+        event.stopPropagation();
         loadContentWithParams("transaksi_wf.t_debt_letter_ro", { //model yang ketiga
             t_customer_order_id: $( "#CURR_DOC_ID" ).val(),
             t_debt_letter_id: $('#t_debt_letter_id').val(),
@@ -428,7 +428,7 @@
     });
 
     $("#tab-3").on("click", function(event) {
-        
+        event.stopPropagation();
         loadContentWithParams("transaksi_wf.t_debt_letter_ro_log_kronologis", { //model yang ketiga
             t_customer_order_id: $( "#CURR_DOC_ID" ).val(),
             t_debt_letter_id: $('#t_debt_letter_id').val(),

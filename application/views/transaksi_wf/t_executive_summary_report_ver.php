@@ -406,6 +406,7 @@
 
 <script type="text/javascript">
     $('#tab-2').on('click', function(event){
+        event.stopPropagation();
         var idelement;
         //alert($('#t_customer_order_id').val());return;
 
