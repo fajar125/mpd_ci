@@ -97,7 +97,7 @@
             type: 'POST',
             url: '<?php echo WS_JQGRID."workflow.wf_controller/summary_list"; ?>',
             data: {P_W_DOC_TYPE_ID : <?php echo $this->input->post('P_W_DOC_TYPE_ID'); ?> , ELEMENT_ID : $("#TEMP_ELEMENT_ID").val()},
-            timeout: 10000,
+            timeout: 1000000,
             success: function(data) {
                  $("#summary-panel").html(data);
                  var element_id = $('input[name=pilih_summary]:checked').val();
