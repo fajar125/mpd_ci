@@ -149,9 +149,9 @@ $("#tab-1").on("click", function(event) {
                 $('#brand_kota').val(items.row[0].brand_kota);
                 $('#brand_p_region_id').val(items.row[0].brand_p_region_id);
                 $('#brand_kecamatan').val(items.row[0].brand_kecamatan); 
-                $('#brand_p_region_id_kecamatan').val(items.row[0].brand_p_region_id_kecamatan);
+                $('#brand_p_region_id_kec').val(items.row[0].brand_p_region_id_kec);
                 $('#brand_kelurahan').val(items.row[0].brand_kelurahan);
-                $('#brand_p_region_id_kelurahan').val(items.row[0].brand_p_region_id_kelurahan); 
+                $('#brand_p_region_id_kel').val(items.row[0].brand_p_region_id_kel); 
                 $('#brand_phone_no').val(items.row[0].brand_phone_no);  
                 $('#brand_mobile_no').val(items.row[0].brand_mobile_no);
                 $('#brand_fax_no').val(items.row[0].brand_fax_no); 
@@ -167,9 +167,9 @@ $("#tab-1").on("click", function(event) {
                 $('#kota_own_code').val(items.row[0].kota_own_code);
                 $('#p_region_id_owner').val(items.row[0].p_region_id_owner);
                 $('#kecamatan_own_code').val(items.row[0].kecamatan_own_code); 
-                $('#p_region_id_kecamatan_owner').val(items.row[0].p_region_id_kecamatan_owner);
+                $('#p_region_id_kec_owner').val(items.row[0].p_region_id_kec_owner);
                 $('#kelurahan_own_code').val(items.row[0].kelurahan_own_code);
-                $('#p_region_id_kelurahan').val(items.row[0].p_region_id_kelurahan_owner); 
+                $('#p_region_id_kel_owner').val(items.row[0].p_region_id_kel_owner); 
                 $('#email').val(items.row[0].email);  
                 $('#phone_no_owner').val(items.row[0].phone_no_owner);  
                 $('#mobile_no_owner').val(items.row[0].mobile_no_owner);
@@ -786,9 +786,9 @@ $("#tab-1").on("click", function(event) {
         var brand_kota = $('#brand_kota').val();
         var brand_p_region_id = $('#brand_p_region_id').val();
         var brand_kecamatan = $('#brand_kecamatan').val(); 
-        var brand_p_region_id_kecamatan = $('#brand_p_region_id_kecamatan').val();
+        var brand_p_region_id_kecamatan = $('#brand_p_region_id_kec').val();
         var brand_kelurahan = $('#brand_kelurahan').val();
-        var brand_p_region_id_kelurahan = $('#brand_p_region_id_kelurahan').val(); 
+        var brand_p_region_id_kelurahan = $('#brand_p_region_id_kel').val(); 
         var brand_phone_no = $('#brand_phone_no').val();  
         var brand_mobile_no = $('#brand_mobile_no').val();
         var brand_fax_no = $('#brand_fax_no').val(); 
@@ -803,9 +803,9 @@ $("#tab-1").on("click", function(event) {
         var kota_own_code = $('#kota_own_code').val();
         var p_region_id_owner = $('#p_region_id_owner').val();
         var kecamatan_own_code = $('#kecamatan_own_code').val(); 
-        var p_region_id_kecamatan_owner = $('#p_region_id_kecamatan_owner').val();
+        var p_region_id_kecamatan_owner = $('#p_region_id_kec_owner').val();
         var kelurahan_own_code = $('#kelurahan_own_code').val();
-        var p_region_id_kelurahan_owner = $('#p_region_id_kelurahan').val(); 
+        var p_region_id_kelurahan_owner = $('#p_region_id_kel_owner').val(); 
         var email = $('#email').val();  
         var phone_no_owner = $('#phone_no_owner').val();  
         var mobile_no_owner = $('#mobile_no_owner').val();
@@ -1008,8 +1008,8 @@ $("#tab-1").on("click", function(event) {
             var_url += '&p_region_id_kecamatan='+p_region_id_kecamatan;
             var_url += '&p_region_id='+p_region_id;
 
-            var_url += '&p_region_id_kel_owner='+p_region_id_kel_owner;
-            var_url += '&p_region_id_kec_owner='+p_region_id_kec_owner;
+            var_url += '&p_region_id_kel_owner='+p_region_id_kelurahan_owner;
+            var_url += '&p_region_id_kec_owner='+p_region_id_kecamatan_owner;
             var_url += '&p_region_id_owner='+p_region_id_owner;
             var_url += '&company_name='+company_name;
             var_url += '&address_name='+address_name;
@@ -1052,8 +1052,8 @@ $("#tab-1").on("click", function(event) {
             var_url += '&brand_address_no='+brand_address_no;
             var_url += '&brand_address_rt='+brand_address_rt ;
             var_url += '&brand_address_rw='+brand_address_rw;
-            var_url += '&brand_p_region_id_kel='+brand_p_region_id_kel;
-            var_url += '&brand_p_region_id_kec='+brand_p_region_id_kec;
+            var_url += '&brand_p_region_id_kel='+brand_p_region_id_kelurahan;
+            var_url += '&brand_p_region_id_kec='+brand_p_region_id_kecamatan;
             var_url += '&brand_p_region_id='+brand_p_region_id;
             var_url += '&brand_phone_no='+brand_phone_no ;
             var_url += '&brand_mobile_no='+brand_mobile_no;
