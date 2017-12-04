@@ -249,16 +249,26 @@ breadcrumb -->
                                         
                                     </div>
                                     <div class="form-group">
-                                        <label class="control-label col-md-3">Pendukung
+                                        <label class="control-label col-md-3">Potongan
                                         </label>
                                         <div class="col-md-2">
+                                            <input type="hidden" class="form-control" name="nilai_doc" readonly="" id="nilai_doc">
+                                            <select name="add_disc_percent" id="add_disc_percent" class="form-control">
+                                                <option value="0">0%</option>
+                                                <option value="0.25">25%</option>
+                                                <option value="0.5">50%</option>
+                                                <option value="0.75">75%</option>
+                                                <option value="1">100%</option>
+                                            </select>
+                                        </div>
+                                        <!-- <div class="col-md-2">
                                             <div class="input-group ">
                                                 <input type="text" class="form-control formatRight" name="add_disc_percent" onkeyup="hitungTotalTanah();return 1;" id="add_disc_percent">
                                                 <span class="input-group-addon">% </span>
                                             </div> 
                                         </div>
                                         <label class="control-label col-md-6 col-md-offset-2">(Gunakan tanda "."(titik) untuk luas dengan bilangan pecahan)
-                                        </label>
+                                        </label> -->
                                     </div>
 
                                     <div class="form-group">
@@ -450,19 +460,17 @@ breadcrumb -->
 
                                     <div class="form-group">
                                         <label class="control-label col-md-2 col-md-offset-2" id="alasan-text"><strong>Alasan Mengubah ???</strong></label>
-                                        <!--<div class="col-md-8">-->
-                                            <div class="input-group ">
-                                                <textarea class="form-control required" name="alasan" id="alasan"></textarea>
-                                                <!--<input type="textarea" class="form-control" name="alasan" id="alasan">-->
-                                            </div> 
-                                        <!--</div>-->
+                                        <div class="col-md-4">
+                                            <textarea class="form-control required" name="alasan" id="alasan"></textarea>
+                                            <!--<input type="textarea" class="form-control" name="alasan" id="alasan">-->
+                                        </div>
                                         
                                     </div>
 
 
                                     <div class="form-actions">
                                         <div class="row">
-                                            <div class="col-md-offset-3 col-md-9">
+                                            <div class="col-md-offset-4 col-md-9">
                                                 <a href="javascript:;" class="btn default button-previous back" id="back">
                                                     <i class="fa fa-angle-left"></i> Back </a>
                                                 
@@ -490,23 +498,18 @@ breadcrumb -->
 <?php $this->load->view('lov/lov_kel'); ?>
 <!-- First Load -->
 <script>
-    function LoadCombo(){
-        $.ajax({
-            url: "<?php echo base_url().'bphtb_registration/load_combo_dok_pendukung/'; ?>" ,
-            type: "POST",            
-            data: {},
-            success: function (data) {
-                $( "#comboDocPendukung" ).html( data );
-            },
-            error: function (xhr, status, error) {
-                swal({title: "Error!", text: xhr.responseText, html: true, type: "error"});
-            }
-        });
-    }
-    
 
-</script>
-<script>
+    $.ajax({
+        url: "<?php echo base_url().'bphtb_registration/load_combo_dok_pendukung/'; ?>" ,
+        type: "POST",            
+        data: {},
+        success: function (data) {
+            $( "#comboDocPendukung" ).html( data );
+        },
+        error: function (xhr, status, error) {
+            swal({title: "Error!", text: xhr.responseText, html: true, type: "error"});
+        }
+    });
 
     //var FLAG            = '<?php echo $_POST['FLAG']; ?>';
     var p_bphtb_type_id = $('#p_bphtb_type_id').val();
@@ -518,7 +521,6 @@ breadcrumb -->
     $(".numberformat").number( true, 0 , '.','.');
     $(".numberformat").css("text-align", "right");
     $(".formatRight").css("text-align", "right");
-                    LoadCombo();
 
     //if(FLAG == 'Edit' || FLAG == 'Detail'){
         $.ajax({

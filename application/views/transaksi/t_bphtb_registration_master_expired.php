@@ -482,9 +482,6 @@
 <!-- First Load -->
 <script>
 
-    var FLAG            = '<?php echo $_POST['FLAG']; ?>';
-    var p_bphtb_type_id = $('#p_bphtb_type_id').val();
-
     $.ajax({
             url: "<?php echo base_url().'bphtb_registration/load_combo_dok_pendukung/'; ?>" ,
             type: "POST",
@@ -496,6 +493,9 @@
                 swal({title: "Error!", text: xhr.responseText, html: true, type: "error"});
             }
     });
+
+    var FLAG            = '<?php echo $_POST['FLAG']; ?>';
+    var p_bphtb_type_id = $('#p_bphtb_type_id').val();
 
 
     $(".priceformat").number( true, 0 , '.',','); /* price number format */
