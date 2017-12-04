@@ -16,9 +16,9 @@ class T_bphtb_registration_list extends Abstract_model {
                                 regis.*
                               ";
 
-    public $fromClause      = "t_bphtb_registration regis 
-                                LEFT JOIN t_customer_order cust_order 
-                                    on regis.t_customer_order_id = cust_order.t_customer_order_id 
+    public $fromClause      = "t_bphtb_registration regis
+                                LEFT JOIN t_customer_order cust_order
+                                    on regis.t_customer_order_id = cust_order.t_customer_order_id
                                  ";
 
     public $refs            = array();
@@ -51,7 +51,7 @@ class T_bphtb_registration_list extends Abstract_model {
                 (a.bphtb_amt - a.bphtb_discount) AS bphtb_amt_final_old,
                 j.payment_vat_amount AS prev_payment_amount
 
-                from t_bphtb_registration as a 
+                from t_bphtb_registration as a
                 left join p_region as b
                     on a.wp_p_region_id = b.p_region_id
                 left join p_region as c
@@ -81,7 +81,7 @@ class T_bphtb_registration_list extends Abstract_model {
         $ci =& get_instance();
         $userdata = $ci->session->userdata;
         $userdata = '\''.$userdata['app_user_name'].'\'';
-        $o_t_bphtb_registration_id      = 0; 
+        $o_t_bphtb_registration_id      = 0;
         $o_mess                         = '\'Message\'';
 
         foreach ($param as $key => $value) {
@@ -116,7 +116,7 @@ class T_bphtb_registration_list extends Abstract_model {
             if ($key == 'p_bphtb_legal_doc_type_id') {
                 ${"$key"} = ($value == ''|| $value == null) ? 'null' : $value;
             }
-            
+
         }
 
         $sql = "SELECT * FROM sikp.f_bphtb_registration (   $wp_name,
@@ -132,7 +132,7 @@ class T_bphtb_registration_list extends Abstract_model {
                                                             $njop_pbb,
                                                             $object_letak_tanah,
                                                             $object_rt,
-                                                            $object_rw,   
+                                                            $object_rw,
                                                             $object_p_region_id,
                                                             $object_p_region_id_kec,
                                                             $object_p_region_id_kel,
@@ -163,12 +163,12 @@ class T_bphtb_registration_list extends Abstract_model {
                                                             $o_t_bphtb_registration_id,
                                                             $o_mess
                                                     )";
-        //return $sql;                                            
+        //return $sql;
         $query = $this->db->query($sql);
         $item = $query->row_array();
-        
-            
-        return $item;      
+
+
+        return $item;
     }
 
     function update($param = array()){
@@ -207,7 +207,7 @@ class T_bphtb_registration_list extends Abstract_model {
             if ($key == 'p_bphtb_legal_doc_type_id') {
                 ${"$key"} = ($value == ''|| $value == null) ? 'null' : $value;
             }
-            
+
         }
 
         $data =  array('wp_name' =>$param['wp_name'],
@@ -222,7 +222,7 @@ class T_bphtb_registration_list extends Abstract_model {
                             'njop_pbb'=>$param['njop_pbb'],
                             'object_address_name'=>$param['object_address_name'],
                             'object_rt'=>$param['object_rt'],
-                            'object_rw'=>$param['object_rw'],   
+                            'object_rw'=>$param['object_rw'],
                             'object_p_region_id'=>$param['object_p_region_id'],
                             'object_p_region_id_kec'=>$param['object_p_region_id_kec'],
                             'object_p_region_id_kel'=>$param['object_p_region_id_kel'],
@@ -250,11 +250,11 @@ class T_bphtb_registration_list extends Abstract_model {
                             'building_price_real'=>$param['building_price_real'],
                             'updated_by'=>$userdata,
                             'updated_date'=>$updated_date);
-        
+
         $this->db->where('t_bphtb_registration_id', $param['t_bphtb_registration_id']);
         $this->db->update('sikp.t_bphtb_registration', $data);
         $item = 'Sukses Update Data';
-            
+
         return $item;
     }
 
@@ -271,9 +271,9 @@ class T_bphtb_registration_list extends Abstract_model {
 
         $this->db->delete('sikp.t_bphtb_registration', array('t_bphtb_registration_id' => $id));
         $this->db->delete('sikp.t_customer_order', array('t_customer_order_id' => $item['t_customer_order_id']));
-        
-            
-        return $item;      
+
+
+        return $item;
     }
 
     function getOrderStatus($t_bphtb_registration_id){
@@ -283,20 +283,20 @@ class T_bphtb_registration_list extends Abstract_model {
                     WHERE a.t_bphtb_registration_id =".$t_bphtb_registration_id;
         $query = $this->db->query($sql);
         $item = $query->row_array();
-        
-            
+
+
         return $item;
     }
 
     function getJumlahProductOrder($t_customer_order_id){
-        $sql = "SELECT count(*) AS jml 
-                FROM t_product_order_control 
+        $sql = "SELECT count(*) AS jml
+                FROM t_product_order_control
                 WHERE doc_id = ".$t_customer_order_id."
                 AND p_w_doc_type_id = 505";
         $query = $this->db->query($sql);
         $item = $query->row_array();
-        
-            
+
+
         return $item;
     }
 
@@ -306,16 +306,16 @@ class T_bphtb_registration_list extends Abstract_model {
         $sql = "SELECT sikp.f_first_submit_engine(505,".$t_customer_order_id.",'".$userdata['app_user_name']."')";
         $query = $this->db->query($sql);
         $item = $query->row_array();
-        
-            
+
+
         return $item;
     }
 
     function getDataWS($nop_search,$year_code){
         //print_r($year_code);exit;
-        $ws_data = file_get_contents('http://45.118.112.232:81/webservice-pbb/trans/bphtb_webservice.php?method=bphtb&param='.$nop_search.$year_code);
-        $ws_data = json_decode($ws_data);       
-            
+        $ws_data = file_get_contents('http://localhost/bapenda-pbb-webservice/client/pbb_api/get_sppt?nop='.$nop_search.'&year='.$year_code);
+        $ws_data = json_decode($ws_data, true);
+
         return $ws_data;
     }
 
@@ -324,13 +324,54 @@ class T_bphtb_registration_list extends Abstract_model {
         $sql = "SELECT * FROM f_get_region_nascode('".$region_op."')";
         $query = $this->db->query($sql);
         $item = $query->row_array();
-        
-            
+
         return $item;
     }
 
-    
+    function getDataKotaKabupaten($region_name) {
+        if(empty($region_name)) return array('region_name' => null,
+                                        'p_region_id' => null);
 
-    
+        $sql = "SELECT * FROM p_region WHERE region_name LIKE '%$region_name'
+                AND rownum < 2";
+        $query = $this->db->query($sql);
+        $item = $query->row_array();
+
+        return $item;
+    }
+
+
+    function getDataKecamatan($region_name, $parent_id) {
+        if(empty($region_name)) return array('region_name' => null,
+                                        'p_region_id' => null);
+
+        $sql = "SELECT * FROM P_REGION
+                    WHERE region_name = ?
+                    and p_region_level_id = 5
+                    and parent_id = ?";
+
+        $query = $this->db->query($sql, array($region_name, $parent_id));
+        $item = $query->row_array();
+
+        return $item;
+    }
+
+    function getDataKelurahan($region_name, $parent_id) {
+        if(empty($region_name)) return array('region_name' => null,
+                                        'p_region_id' => null);
+
+        $sql = "SELECT * FROM P_REGION
+                    WHERE region_name = ?
+                    and p_region_level_id = 6
+                    and parent_id = ?";
+
+        $query = $this->db->query($sql, array($region_name, $parent_id));
+        $item = $query->row_array();
+
+        return $item;
+    }
+
+
+
 }
 

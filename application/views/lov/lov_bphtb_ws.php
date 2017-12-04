@@ -9,7 +9,7 @@
             </div>
 
             <!-- modal body -->
-            <div class="modal-body">
+            <div class="modal-body" style="overflow-y: scroll;height:350px;">
                 <div class="form-body">
                     <div class="row">
                         <label class="control-label col-md-2">NOP</label>
@@ -47,7 +47,7 @@
                                 <label class="control-label col-md-3">NOP</label>
                                 <div class="col-md-3">
                                     <div class="input-group">
-                                        <input type="text" class="form-control" name="lov_NOP" id="lov_NOP" readonly="true">     
+                                        <input type="text" class="form-control" name="lov_NOP" id="lov_NOP" readonly="true">
                                     </div>
                                 </div>
                             </div>
@@ -58,13 +58,13 @@
                                 <label class="control-label col-md-3">KOTA</label>
                                 <div class="col-md-3">
                                     <div class="input-group">
-                                        <input type="text" class="form-control"  name="lov_kota" id="lov_kota" readonly="true">          
+                                        <input type="text" class="form-control"  name="lov_kota" id="lov_kota" readonly="true">
                                     </div>
                                 </div>
                                 <div class="col-md-3">
                                     <div class="input-group">
-                                        <input type="text" class="form-control" name="lov_nama_kota" id="lov_nama_kota"  readonly="true">     
-                                        <input type="hidden" class="form-control" name="lov_id_kota" id="lov_id_kota" readonly="true">            
+                                        <input type="text" class="form-control" name="lov_nama_kota" id="lov_nama_kota"  readonly="true">
+                                        <input type="hidden" class="form-control" name="lov_id_kota" id="lov_id_kota" readonly="true">
                                     </div>
                                 </div>
                             </div>
@@ -75,13 +75,13 @@
                                 <label class="control-label col-md-3">KECAMATAN</label>
                                 <div class="col-md-3">
                                     <div class="input-group">
-                                        <input type="text" class="form-control" name="lov_kecamatan" id="lov_kecamatan" readonly="true">          
+                                        <input type="text" class="form-control" name="lov_kecamatan" id="lov_kecamatan" readonly="true">
                                     </div>
                                 </div>
                                 <div class="col-md-3">
                                     <div class="input-group">
                                         <input type="text" class="form-control" name="lov_nama_kecamatan" id="lov_nama_kecamatan" readonly="true">
-                                        <input type="hidden" class="form-control" name="lov_id_kecamatan" id="lov_id_kecamatan" readonly="true">            
+                                        <input type="hidden" class="form-control" name="lov_id_kecamatan" id="lov_id_kecamatan" readonly="true">
                                     </div>
                                 </div>
                             </div>
@@ -92,13 +92,13 @@
                                 <label class="control-label col-md-3">KELURAHAN</label>
                                 <div class="col-md-3">
                                     <div class="input-group">
-                                        <input type="text" class="form-control"  name="lov_kelurahan" id="lov_kelurahan" readonly="true">          
+                                        <input type="text" class="form-control"  name="lov_kelurahan" id="lov_kelurahan" readonly="true">
                                     </div>
                                 </div>
                                 <div class="col-md-3">
                                     <div class="input-group">
                                         <input type="text" class="form-control" name="lov_nama_kelurahan" id="lov_nama_kelurahan"   readonly="true">
-                                        <input type="hidden" class="form-control" name="lov_id_kelurahan" id="lov_id_kelurahan"  readonly="true">            
+                                        <input type="hidden" class="form-control" name="lov_id_kelurahan" id="lov_id_kelurahan"  readonly="true">
                                     </div>
                                 </div>
                             </div>
@@ -109,112 +109,112 @@
                                 <label class="control-label col-md-3">JALAN</label>
                                 <div class="col-md-3">
                                     <div class="input-group">
-                                        <input type="text" class="form-control" name="lov_jalan" id="lov_jalan"  readonly="true">     
+                                        <input type="text" class="form-control" name="lov_jalan" id="lov_jalan"  readonly="true">
                                     </div>
                                 </div>
                             </div>
 
                             <div class="space-2"></div>
-                            
+
                             <div class="row">
                                 <label class="control-label col-md-3">RT</label>
                                 <div class="col-md-3">
                                     <div class="input-group">
-                                        <input type="text" class="form-control" name="lov_rt" id="lov_rt" readonly="true">     
+                                        <input type="text" class="form-control" name="lov_rt" id="lov_rt" readonly="true">
                                     </div>
                                 </div>
                             </div>
 
                             <div class="space-2"></div>
-                            
+
                             <div class="row">
                                 <label class="control-label col-md-3">RW</label>
                                 <div class="col-md-3">
                                     <div class="input-group">
-                                        <input type="text" class="form-control" name="lov_rw" id="lov_rw" readonly="true">     
+                                        <input type="text" class="form-control" name="lov_rw" id="lov_rw" readonly="true">
                                     </div>
                                 </div>
                             </div>
 
                             <div class="space-2"></div>
-                            
+
                             <div class="row">
                                 <label class="control-label col-md-3">LUAS BUMI</label>
                                 <div class="col-md-3">
                                     <div class="input-group">
                                         <input type="text" class="form-control priceformat" name="lov_luas_bumi" id="lov_luas_bumi"  readonly="true">
-                                        <input type="hidden" class="form-control" name="lov_luas_bumi1" id="lov_luas_bumi1"  readonly="true">     
+                                        <input type="hidden" class="form-control" name="lov_luas_bumi1" id="lov_luas_bumi1"  readonly="true">
                                     </div>
                                 </div>
                             </div>
 
                             <div class="space-2"></div>
-                            
+
                             <div class="row">
                                 <label class="control-label col-md-3">LUAS BANGUNAN</label>
                                 <div class="col-md-3">
                                     <div class="input-group">
                                         <input type="text" class="form-control priceformat" name="lov_luas_bangunan" id="lov_luas_bangunan"  readonly="true">
-                                        <input type="hidden" class="form-control" name="lov_luas_bangunan1" id="lov_luas_bangunan1"  readonly="true">     
+                                        <input type="hidden" class="form-control" name="lov_luas_bangunan1" id="lov_luas_bangunan1"  readonly="true">
                                     </div>
                                 </div>
                             </div>
 
                             <div class="space-2"></div>
-                            
+
                             <div class="row">
                                 <label class="control-label col-md-3">NJOP BANGUNAN</label>
                                 <div class="col-md-3">
                                     <div class="input-group">
                                         <input type="text" class="form-control priceformat" name="lov_njop_bangunan" id="lov_njop_bangunan"  readonly="true">
-                                        <input type="hidden" class="form-control" name="lov_njop_bangunan1" id="lov_njop_bangunan1"  readonly="true">     
+                                        <input type="hidden" class="form-control" name="lov_njop_bangunan1" id="lov_njop_bangunan1"  readonly="true">
                                     </div>
                                 </div>
                             </div>
 
                             <div class="space-2"></div>
-                            
+
                             <div class="row">
                                 <label class="control-label col-md-3">NJOP BUMI</label>
                                 <div class="col-md-3">
                                     <div class="input-group">
                                         <input type="text" class="form-control priceformat" name="lov_njop_bumi" id="lov_njop_bumi"  readonly="true">
-                                        <input type="hidden" class="form-control" name="lov_njop_bumi1" id="lov_njop_bumi1"  readonly="true">     
-                                    </div> 
+                                        <input type="hidden" class="form-control" name="lov_njop_bumi1" id="lov_njop_bumi1"  readonly="true">
+                                    </div>
                                 </div>
                             </div>
 
                             <div class="space-2"></div>
-                            
+
                             <div class="row">
                                 <label class="control-label col-md-3">NJOP PBB</label>
                                 <div class="col-md-3">
                                     <div class="input-group">
                                         <input type="text" class="form-control priceformat" name="lov_njop_pbb" id="lov_njop_pbb"  readonly="true">
-                                        <input type="hidden" class="form-control" name="lov_njop_pbb1" id="lov_njop_pbb1" readonly="true">     
+                                        <input type="hidden" class="form-control" name="lov_njop_pbb1" id="lov_njop_pbb1" readonly="true">
                                     </div>
                                 </div>
                             </div>
 
                             <div class="space-2"></div>
-                            
+
                             <div class="row">
                                 <label class="control-label col-md-3">PBB TERHUTANG</label>
                                 <div class="col-md-3">
                                     <div class="input-group">
                                         <input type="text" class="form-control priceformat" name="lov_pbb_terhutang" id="lov_pbb_terhutang" readonly="true">
-                                        <input type="hidden" class="form-control" name="lov_pbb_terhutang1" id="lov_pbb_terhutang1"  readonly="true">    
+                                        <input type="hidden" class="form-control" name="lov_pbb_terhutang1" id="lov_pbb_terhutang1"  readonly="true">
                                     </div>
                                 </div>
                             </div>
 
                             <div class="space-2"></div>
-                            
+
                             <div class="row">
                                 <label class="control-label col-md-3">STATUS PEMBAYARAN BPHTB</label>
                                 <div class="col-md-3">
                                     <div class="input-group">
-                                        <input type="text" class="form-control" name="lov_status_bayar" id="lov_status_bayar"  readonly="true">   
+                                        <input type="text" class="form-control" name="lov_status_bayar" id="lov_status_bayar"  readonly="true">
                                     </div>
                                 </div>
                             </div>
@@ -257,7 +257,7 @@
     $(".priceformat").css("text-align", "right");
     $.ajax({
             url: "<?php echo base_url().'bphtb_registration/tahun_period_combo_required/'; ?>" ,
-            type: "POST",            
+            type: "POST",
             data: {},
             success: function (data) {
                 $( "#comboTahun" ).html( data );
@@ -268,18 +268,18 @@
     });
 
 
-    
+
 
     function toFind(){
         var nop_search = $('#nop_search').val();
         var year_code = $('#year_code').val();
 
         if ((nop_search== null ||nop_search=='')||(year_code== null ||year_code=='')){
-            swal({title: "Error!", text: "Semuanya Harus Di Isi", html: true, type: "error"});
+            swal({title: "Error!", text: "NOP dan Tahun harus diisi", html: true, type: "error"});
             return true;
         }else{
             //start Hardcode
-
+/*
             $('#lov_NOP').val('327303000200400950');
             $('#lov_kota').val('KABUPATEN xxxxxxxxx');
             $('#lov_nama_kota').val('KABUPATEN xxxxxxxxxx');
@@ -308,13 +308,13 @@
             $('#lov_status_bayar').val('OK');
 
             $('#panel-form').css('display','');
-
+ */
             //END Hardcode
 
 
             //start Call WS
             //ket call ws sudah bisa dan error atau pesan dari ws sudah ke tangkap tetapi kurang yakin karena items selalu kosong atau selalu tidak ada datanya
-            /*
+
             $.ajax({
                 url: '<?php echo WS_JQGRID."transaksi.t_bphtb_registration_list_controller/read_ws"; ?>',
                 type: "POST",
@@ -364,11 +364,11 @@
                     swal({title: "Error!", text: xhr.responseText, html: true, type: "error"});
                 }
             });
-            */
+
             //END Call WS
         }
 
-        
+
     }
 
     $('#btn-pilih').on('click',function(){
@@ -392,7 +392,7 @@
         var status_bayar = $('#lov_status_bayar').val();
 
         //Data get untuk kota,kec,kel
-        /*var kota = $('#lov_kota').val();
+        var kota = $('#lov_kota').val();
         var nama_kota = $('#lov_nama_kota').val();
         var id_kota = $('#lov_id_kota').val();
         var kecamatan = $('#lov_kecamatan').val();
@@ -400,50 +400,50 @@
         var id_kecamatan = $('#lov_id_kecamatan').val();
         var kelurahan = $('#lov_kelurahan').val();
         var nama_kelurahan = $('#lov_nama_kelurahan').val();
-        var id_kelurahan = $('#lov_id_kelurahan').val();*/
+        var id_kelurahan = $('#lov_id_kelurahan').val();
 
 
         $('#njop_pbb').val(NOP);
         $('#object_letak_tanah').val(jalan);
         $('#object_rt').val(rt);
         $('#object_rw').val(rw);
-        
-        $('#land_price_real').val(njop_bumi1);
-        $('#building_price_real').val(njop_bangunan1);
+
+        $('#land_price_real').val(njop_bumi1/luas_bumi1);
+        $('#building_price_real').val(njop_bangunan1/luas_bangunan1);
 
         //$('#land_price_per_m').val(luas_bumi);
         //$('#building_price_per_m').val(luas_bangunan);
 
         if (luas_bumi1 != 0){
-            //$('#land_area').val(njop_bumi1/luas_bumi1);
-            $('#land_area_real').val(njop_bumi1/luas_bumi1);
+            $('#land_area_real').val(luas_bumi1);
+            //$('#land_area_real').val(njop_bumi1/luas_bumi1);
         }else{
             //$('#land_area').val(0);
             $('#land_area_real').val(0);
         }
 
         if (luas_bangunan1 != 0){
-            //$('#building_area').val(njop_bangunan1/luas_bangunan1);
-            $('#building_area_real').val(njop_bangunan1/luas_bangunan1);
+            $('#building_area_real').val(luas_bangunan1);
+            //$('#building_area_real').val(njop_bangunan1/luas_bangunan1);
         }else{
             //$('#building_area').val(0);
             $('#building_area_real').val(0);
         }
 
-        /*$('#land_total_price').val(njop_bumi1);
-        $('#building_total_price').val(njop_bangunan1);
-        $('#total_price').val(parseFloat(njop_bangunan1)+parseFloat(njop_bumi1));
-        $('#npop').val(parseFloat(njop_bangunan1)+parseFloat(njop_bumi1));
-        $('#market_price').val(0);*/
+        //$('#land_total_price').val(njop_bumi1);
+        //$('#building_total_price').val(njop_bangunan1);
+        //$('#total_price').val(parseFloat(njop_bangunan1)+parseFloat(njop_bumi1));
+        //$('#npop').val(parseFloat(njop_bangunan1)+parseFloat(njop_bumi1));
+        //$('#market_price').val(0);
 
 
         //Data set untuk kota,kec,kel
-        /*$('#object_p_region_id').val(id_kota);
+        $('#object_p_region_id').val(id_kota);
         $('#object_p_region_id_kec').val(id_kecamatan);
         $('#object_p_region_id_kel').val(id_kelurahan);
         $('#object_kota').val(nama_kota);
         $('#object_kecamatan').val(nama_kecamatan);
-        $('#object_kelurahan').val(nama_kelurahan);*/
+        $('#object_kelurahan').val(nama_kelurahan);
 
 
         $('#modal_lov_bphtb_ws').modal('hide');
