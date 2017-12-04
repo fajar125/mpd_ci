@@ -408,33 +408,34 @@
         $('#object_rt').val(rt);
         $('#object_rw').val(rw);
 
-        $('#land_price_real').val(njop_bumi1/luas_bumi1);
-        $('#building_price_real').val(njop_bangunan1/luas_bangunan1);
-
-        //$('#land_price_per_m').val(luas_bumi);
-        //$('#building_price_per_m').val(luas_bangunan);
+        $('#land_price_real').val(njop_bumi1);
+        $('#building_price_real').val(njop_bangunan1);
 
         if (luas_bumi1 != 0){
+            $('#land_area').val(luas_bumi1);
             $('#land_area_real').val(luas_bumi1);
-            //$('#land_area_real').val(njop_bumi1/luas_bumi1);
+            $('#land_price_per_m').val(njop_bumi1/luas_bumi1);
         }else{
-            //$('#land_area').val(0);
+            $('#land_area').val(0);
             $('#land_area_real').val(0);
+            $('#land_price_per_m').val(0);
         }
 
         if (luas_bangunan1 != 0){
+            $('#building_area').val(luas_bangunan1);
             $('#building_area_real').val(luas_bangunan1);
-            //$('#building_area_real').val(njop_bangunan1/luas_bangunan1);
+            $('#building_price_per_m').val(njop_bangunan1/luas_bangunan1);
         }else{
-            //$('#building_area').val(0);
+            $('#building_area').val(0);
             $('#building_area_real').val(0);
+            $('#building_price_per_m').val(0);
         }
 
-        //$('#land_total_price').val(njop_bumi1);
-        //$('#building_total_price').val(njop_bangunan1);
-        //$('#total_price').val(parseFloat(njop_bangunan1)+parseFloat(njop_bumi1));
-        //$('#npop').val(parseFloat(njop_bangunan1)+parseFloat(njop_bumi1));
-        //$('#market_price').val(0);
+        $('#land_total_price').val(njop_bumi1);
+        $('#building_total_price').val(njop_bangunan1);
+        $('#total_price').val(parseFloat(njop_bangunan1)+parseFloat(njop_bumi1));
+        $('#npop').val(parseFloat(njop_bangunan1)+parseFloat(njop_bumi1));
+        $('#market_price').val(0);
 
 
         //Data set untuk kota,kec,kel
@@ -450,9 +451,9 @@
     });
 
     function modal_lov_bphtb_ws_show() {
-        $('#nop_search').val(null);
-        $('#year_code').val(null);
-        $('#panel-form').css('display','none');
+        //$('#nop_search').val(null);
+        //$('#year_code').val(null);
+        //$('#panel-form').css('display','none');
 
         $("#modal_lov_bphtb_ws").modal({backdrop: 'static'});
     }
