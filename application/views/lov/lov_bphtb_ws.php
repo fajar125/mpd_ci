@@ -373,18 +373,10 @@
 
     $('#btn-pilih').on('click',function(){
         var NOP = $('#lov_NOP').val();
-        var kota = $('#lov_kota').val();
-        var nama_kota = $('#lov_nama_kota').val();
-        var id_kota = $('#lov_id_kota').val();
-        var kecamatan = $('#lov_kecamatan').val();
-        var nama_kecamatan = $('#lov_nama_kecamatan').val();
-        var id_kecamatan = $('#lov_id_kecamatan').val();
-        var kelurahan = $('#lov_kelurahan').val();
-        var nama_kelurahan = $('#lov_nama_kelurahan').val();
-        var id_kelurahan = $('#lov_id_kelurahan').val();
         var jalan = $('#lov_jalan').val();
         var rt = $('#lov_rt').val();
         var rw = $('#lov_rw').val();
+
         var luas_bumi = $('#lov_luas_bumi').val();
         var luas_bumi1 = $('#lov_luas_bumi1').val();
         var luas_bangunan = $('#lov_luas_bangunan').val();
@@ -399,50 +391,59 @@
         var pbb_terhutang1 = $('#lov_pbb_terhutang1').val();
         var status_bayar = $('#lov_status_bayar').val();
 
+        //Data get untuk kota,kec,kel
+        /*var kota = $('#lov_kota').val();
+        var nama_kota = $('#lov_nama_kota').val();
+        var id_kota = $('#lov_id_kota').val();
+        var kecamatan = $('#lov_kecamatan').val();
+        var nama_kecamatan = $('#lov_nama_kecamatan').val();
+        var id_kecamatan = $('#lov_id_kecamatan').val();
+        var kelurahan = $('#lov_kelurahan').val();
+        var nama_kelurahan = $('#lov_nama_kelurahan').val();
+        var id_kelurahan = $('#lov_id_kelurahan').val();*/
+
 
         $('#njop_pbb').val(NOP);
+        $('#object_letak_tanah').val(jalan);
         $('#object_rt').val(rt);
         $('#object_rw').val(rw);
-
-        $('#land_price_per_m').val(luas_bumi);
-        $('#building_price_per_m').val(luas_bangunan);
         
-
-        
-        $('#object_letak_tanah').val(jalan);
         $('#land_price_real').val(njop_bumi1);
-
         $('#building_price_real').val(njop_bangunan1);
 
+        //$('#land_price_per_m').val(luas_bumi);
+        //$('#building_price_per_m').val(luas_bangunan);
+
         if (luas_bumi1 != 0){
-            $('#land_area').val(njop_bumi1/luas_bumi1);
+            //$('#land_area').val(njop_bumi1/luas_bumi1);
             $('#land_area_real').val(njop_bumi1/luas_bumi1);
         }else{
-            $('#land_area').val(0);
+            //$('#land_area').val(0);
             $('#land_area_real').val(0);
         }
 
         if (luas_bangunan1 != 0){
-            $('#building_area').val(njop_bangunan1/luas_bangunan1);
+            //$('#building_area').val(njop_bangunan1/luas_bangunan1);
             $('#building_area_real').val(njop_bangunan1/luas_bangunan1);
         }else{
-            $('#building_area').val(0);
+            //$('#building_area').val(0);
             $('#building_area_real').val(0);
         }
 
-        $('#land_total_price').val(njop_bumi1);
+        /*$('#land_total_price').val(njop_bumi1);
         $('#building_total_price').val(njop_bangunan1);
         $('#total_price').val(parseFloat(njop_bangunan1)+parseFloat(njop_bumi1));
+        $('#npop').val(parseFloat(njop_bangunan1)+parseFloat(njop_bumi1));
+        $('#market_price').val(0);*/
 
-        $('#object_p_region_id').val(id_kota);
+
+        //Data set untuk kota,kec,kel
+        /*$('#object_p_region_id').val(id_kota);
         $('#object_p_region_id_kec').val(id_kecamatan);
         $('#object_p_region_id_kel').val(id_kelurahan);
-
         $('#object_kota').val(nama_kota);
         $('#object_kecamatan').val(nama_kecamatan);
-        $('#object_kelurahan').val(nama_kelurahan);
-        $('#npop').val(parseFloat(njop_bangunan1)+parseFloat(njop_bumi1));
-        $('#market_price').val(0);
+        $('#object_kelurahan').val(nama_kelurahan);*/
 
 
         $('#modal_lov_bphtb_ws').modal('hide');
