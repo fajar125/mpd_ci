@@ -1011,6 +1011,25 @@ class Wf_controller {
         exit;
     }
 
+    public function order_list() {
+        $ci =& get_instance();
+        $ci->load->model('workflow/wf');
+        $table = $ci->wf;
+
+        $sql = "SELECT * FROM p_order_status where p_order_status_id in (2,3) ORDER BY p_order_status_id";
+        $query = $table->db->query($sql);
+
+        $items = $query->result_array();
+        $opt_status = '';
+
+        foreach ($items as $item) {
+            $opt_status .= '<option value="'.$item['p_order_status_id'].'"> '.$item['code'].' </option>';
+        }
+
+        echo json_encode( array('opt_status' => $opt_status ) );
+        exit;
+    }
+
      public function save_petugas_bap(){
         $ci =& get_instance();
         $userinfo = $ci->session->userdata;

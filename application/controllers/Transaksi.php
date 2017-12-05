@@ -303,7 +303,7 @@ class Transaksi extends CI_Controller
     }
     
 
-    public function getMonitoring($id, $query){
+    public function getMonitoring($query){
         $result = array();
         $sql = $this->db->query($query);
         if($sql->num_rows() > 0)
@@ -317,7 +317,7 @@ class Transaksi extends CI_Controller
 
         $query = "SELECT 'H|NO. URUT|NOMOR ORDER|NPWPD|NAMA'||f_flow_header(".$p_workflow_id.", null)||'|LAMA PROSES' as hasil FROM dual";
 
-        $result = $this->getMonitoring($p_workflow_id, $query);
+        $result = $this->getMonitoring($query);
         foreach ($result as $rowH) {
             $exp = explode('|', $rowH->hasil);
             $data['header'] = $exp;
@@ -325,7 +325,29 @@ class Transaksi extends CI_Controller
         }
 
         $queryD = "SELECT rs_output FROM f_monitor_tipro_new(".$p_workflow_id.") AS tbl (rs_output)";
-        $resultD = $this->getMonitoring($p_workflow_id, $queryD);
+        $resultD = $this->getMonitoring($queryD);
+
+        $data['datamon'] = $resultD;
+
+        $this->load->view('workflow/monitoring_grid',$data);
+
+    }
+
+    public function processMonitoringPendWP(){
+
+        $p_order_status_id = $this->input->post('p_order_status_id');
+
+        $query = "select 'H|NO. URUT|NOMOR ORDER|NPWPD|NAMA'||f_flow_header(1, null)||'|DURASI S/D PENGUKUHAN|DURASI S/D PENYERAHAN' as hasil from dual";
+
+        $result = $this->getMonitoring($query);
+        foreach ($result as $rowH) {
+            $exp = explode('|', $rowH->hasil);
+            $data['header'] = $exp;
+
+        }
+
+        $queryD = "select rs_output from f_monitor_tipro_daftar_new(1,".$p_order_status_id.") AS tbl (rs_output)";
+        $resultD = $this->getMonitoring($queryD);
 
         $data['datamon'] = $resultD;
 
