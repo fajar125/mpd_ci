@@ -141,9 +141,9 @@
             $.ajax({
                 url: '<?php echo site_url('transaksi/processMonitoringPendWPNew');?>',                
                 data: {
-                    p_vat_type_id : p_vat_type_id,
-                    p_finance_period_id : p_finance_period_id,
-                    status : status
+                    p_vat_type_id : $('#p_vat_type_id').val(),
+                    p_finance_period_id : $('#p_finance_period_id').val(),
+                    status : $('#status').val()
                   },
                 type: 'POST',
                 success: function (data) {
