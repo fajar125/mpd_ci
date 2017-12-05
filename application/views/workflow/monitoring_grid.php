@@ -14,7 +14,7 @@
                         <?php 
                             
                             for ($i=1; $i <count($header); $i++) {
-                              echo "<td>".$header[$i]."</td>";
+                              echo "<td nowrap>".$header[$i]."</td>";
                             }
                         ?>
                       </tr>
