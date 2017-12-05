@@ -330,9 +330,9 @@ class Transaksi extends CI_Controller
         // $data['data'] = array();
         foreach ($resultD as $rowD) {
             $exp = explode('|', $rowD->rs_output);
-            if($exp == 'D'){
-                $data['data'] = $exp;
-            }
+            // if($exp == 'D'){
+                $data['datamon'] = $exp;
+            // }
 
         }
         
