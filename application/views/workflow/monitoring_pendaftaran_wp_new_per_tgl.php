@@ -95,11 +95,10 @@
         }
     });
 
-    $('.datepicker').datetimepicker({
-        format: 'YYYY-MM-DD',
-        // defaultDate: new Date()
+    $('#valid_from').datepicker({ // mengambil dari class datepicker
+      autoclose: true,
+      format : 'yyyy-mm-dd',
     });
-
   $(document).ready(function(){
 
         $('#findFilter').click(function(){
