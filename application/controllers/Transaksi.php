@@ -386,7 +386,7 @@ class Transaksi extends CI_Controller
         $end_date = $this->input->post('end_date');
         $status = $this->input->post('status');
 
-        $query = "select 'H|NO. URUT|NOMOR ORDER|NPWPD|NAMA|ALAMAT|TANGGAL DIBUAT'||f_flow_header(i_p_wf_id, null)||'|DURASI S/D PENGUKUHAN|DURASI S/D PENYERAHAN' as hasil from dual";
+        $query = "select 'H|NO. URUT|NOMOR ORDER|NPWPD|NAMA|ALAMAT|TANGGAL DIBUAT'||f_flow_header(1, null)||'|DURASI S/D PENGUKUHAN|DURASI S/D PENYERAHAN' as hasil from dual";
 
         $result = $this->getMonitoring($query);
         foreach ($result as $rowH) {
