@@ -1,19 +1,3 @@
-<?php
-  // print_r($datamon);
-  // exit;
-
-  for ($i=1; $i < count($datamon); $i++) { 
-      $exp = explode('|', $datamon[$i]->rs_output);
-
-      for ($j=0; $j < count($exp); $j++) { 
-          echo $exp[$j]."<br>";
-      }
-      exit;
-
-
-  }
-
-?>
 <div class="col-md-12">
       <div class="portlet light bordered" id="form_wizard_1">
              <div class="portlet-title">
@@ -36,7 +20,23 @@
                       </tr>
                     </thead>
                     <tbody>                      
+                        <?php
+                        
+                        for ($i=1; $i < count($datamon); $i++) { 
 
+                            echo "<tr>";
+                            $exp = explode('|', $datamon[$i]->rs_output);
+
+                            for ($j=0; $j < count($exp); $j++) { 
+                                echo "<td>".$exp[$j]."</td>";
+                            }
+                            
+                            echo "</tr>";
+
+
+                        }
+
+                      ?>
                     </tbody>
                 </table>
             </div>
