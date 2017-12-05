@@ -137,13 +137,6 @@
   $(document).ready(function(){
 
         $('#findFilter').click(function(){
-            var workflow = $("#workflow").val();
-            //var skeyword = $("#skeyword").val();
-
-            if(!workflow){
-                swal("Informasi", "Order belum dipilih", "info");
-                return false;
-            }
 
             $.ajax({
                 url: '<?php echo site_url('transaksi/processMonitoringPendWPNew');?>',                
