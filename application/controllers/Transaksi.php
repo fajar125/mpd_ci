@@ -379,6 +379,31 @@ class Transaksi extends CI_Controller
 
     }
 
+    public function processMonitoringPendWPNewTgl(){
+
+        $p_vat_type_id = $this->input->post('p_vat_type_id');
+        $start_date = $this->input->post('start_date');
+        $end_date = $this->input->post('end_date');
+        $status = $this->input->post('status');
+
+        $query = "select 'H|NO. URUT|NOMOR ORDER|NPWPD|NAMA|ALAMAT|TANGGAL DIBUAT'||f_flow_header(i_p_wf_id, null)||'|DURASI S/D PENGUKUHAN|DURASI S/D PENYERAHAN' as hasil from dual";
+
+        $result = $this->getMonitoring($query);
+        foreach ($result as $rowH) {
+            $exp = explode('|', $rowH->hasil);
+            $data['header'] = $exp;
+
+        }
+
+        $queryD = "select rs_output from f_monitor_tipro_daftar_per_tanggal_new(1,".$status.",'".$start_date."','".$end_date."',".$p_vat_type_id.") AS tbl (rs_output)";
+        $resultD = $this->getMonitoring($queryD);
+
+        $data['datamon'] = $resultD;
+
+        $this->load->view('workflow/monitoring_grid',$data);
+
+    }
+
     function paymentType(){
         try {
             $sql = "select p_payment_type_id,code from p_payment_type";
