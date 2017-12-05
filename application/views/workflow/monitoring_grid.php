@@ -27,7 +27,7 @@
                             echo "<tr>";
                             $exp = explode('|', $datamon[$i]->rs_output);
 
-                            for ($j=0; $j < count($exp); $j++) { 
+                            for ($j=1; $j < count($exp); $j++) { 
                                 echo "<td>".$exp[$j]."</td>";
                             }
                             
