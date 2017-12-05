@@ -328,17 +328,18 @@ class Transaksi extends CI_Controller
         $resultD = $this->getMonitoring($p_workflow_id, $queryD);
 
         // $data['data'] = array();
-        // for ($i=0; $i < count($resultD); $i++) { 
+        $k = 0;
+        for ($i=0; $i < count($resultD); $i++) { 
 
-
-            // if($i > 0){
-                //foreach ($resultD[$i] as $rowD) {
-                  //  $exp = explode('|', $rowD->rs_output);
-                    $data['datamon'] = $resultD;
-                //}
-            // }
+            if($i > 0){
+                foreach ($resultD[$i]->rs_output as $rowD) {
+                   $exp = explode('|', $rowD);
+                   $data['datamon'][$k] = $exp;
+                }
+            }
             
-        // }
+            $k++;
+        }
 
         
         
