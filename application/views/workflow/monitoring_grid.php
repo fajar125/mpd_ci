@@ -1,3 +1,8 @@
+<?php
+  var_dump($data);
+  exit;
+
+?>
 <div class="col-md-12">
       <div class="portlet light bordered" id="form_wizard_1">
              <div class="portlet-title">
@@ -12,43 +17,19 @@
                     <thead>
                       <tr>
                         <?php 
-                            $i = 0;
-                            foreach ($header as $rowH) {
-                                $dt = "data".$i;
-                                if($i == 0){
-                                    echo "<th data-column-id=$dt data-visible='false'>".$rowH."</th>";
-                                }else{
-                                    echo "<th data-column-id=$dt>".$rowH."</th>";
-                                }
-                                $i++;
+                            
+                            for ($i=1; $i <count($header); $i++) {
+                              echo "<td>".$header[$i]."</td>";
                             }
                         ?>
                       </tr>
                     </thead>
+                    <tbody>                      
+
+                    </tbody>
                 </table>
             </div>
          </div>
     </div>
 </div>
-<script>
-    jQuery(function($) {
-        $("#grid-basic").bootgrid({
-            rowCount:[5,10],
-            ajax: true,
-            post: function ()
-            {
-                return {
-                    "p_workflow_id": "<?php echo $p_workflow_id?>",
-                    "skeyword": "<?php echo $skeyword?>"
-                };
-            },
-            url: "<?php echo site_url('transaksi/getMonProcess');?>",
-            selection: true,
-            sorting:true,
-            templates: {
-                header: "<div id=\"{{ctx.id}}\" class=\"{{css.header}}\"><div class=\"row\"><div class=\"col-sm-12 actionBar\" style=\"display:none\"><p class=\"{{css.actions}}\"></p></div></div></div>"
-            }
-        });
-    });
 
-</script>

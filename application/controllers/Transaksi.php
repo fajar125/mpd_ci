@@ -303,9 +303,9 @@ class Transaksi extends CI_Controller
     }
     
 
-    public function getMonitoring($id, $search, $tmp){
+    public function getMonitoring($id, $query){
         $result = array();
-        $sql = $this->db->query("SELECT * FROM TABLE(F_MONITOR_TIPRO(".$id.", '".$search."')) WHERE WF_MONITOR LIKE '".$tmp."%' ");
+        $sql = $this->db->query($query);
         if($sql->num_rows() > 0)
             $result = $sql->result();
         return $result;
@@ -314,93 +314,31 @@ class Transaksi extends CI_Controller
     public function processMonitoring(){
 
         $p_workflow_id = $this->input->post('p_workflow_id');
-        $skeyword = $this->input->post('skeyword');
 
-        $result = $this->getMonitoring($p_workflow_id, $skeyword,'H');
+        $query = "SELECT 'H|NO. URUT|NOMOR ORDER|NPWPD|NAMA'||f_flow_header(".$p_workflow_id.", null)||'|LAMA PROSES' as hasil FROM dual";
+
+        $result = $this->getMonitoring($p_workflow_id, $query);
         foreach ($result as $rowH) {
-            $exp = explode('|', $rowH->wf_monitor);
-            if($exp[0] == 'H'){
-                $data['header'] = $exp;
-            }
+            $exp = explode('|', $rowH->hasil);
+            $data['header'] = $exp;
 
         }
 
-        $data['p_workflow_id'] = $p_workflow_id;
-        $data['skeyword'] = $skeyword;
+        $queryD = "SELECT rs_output FROM f_monitor_tipro_new(".$p_workflow_id.") AS tbl (rs_output)";
+        $resultD = $this->getMonitoring($p_workflow_id, $queryD);
+        $j = 0;
+        $data['data'] = array();
+        foreach ($resultD as $rowD) {
+            $exp = explode('|', $rowD->rs_output);
+            if($exp[$j] == 'D'){
+                $data['data'][] = $exp[$j];
+            }
+
+            $j++;
+        }
 
         $this->load->view('workflow/monitoring_grid',$data);
 
-    }
-
-     public function getMonProcess(){
-        $page = intval($this->input->post('current')) ;
-        $limit = $this->input->post('rowCount');
-        $sort = $this->input->post('sort');
-        $dir = $this->input->post('dir');
-
-        $p_workflow_id = $this->input->post('p_workflow_id');
-        $skeyword = $this->input->post('skeyword');
-
-        $result = $this->getMonitoring($p_workflow_id, $skeyword,'D');
-
-        $data = array();
-        $hasil = array();
-        $no = 1;
-        foreach ($result as $row) {
-            $exp = explode('|', $row->wf_monitor);
-            if($exp[0] == 'D'){
-                $tmp = array();
-
-                for($i=0; $i<count($exp); $i++){
-                    if($i==0){
-                        $tmp = array("urutan" => $no);
-                    }
-                    $tmp = array_merge($tmp, array("data".$i => $exp[$i]));
-                }
-
-                if ($page == 0) {
-                    $hasil['current'] = 1;
-                } else {
-                    $hasil['current'] = $page;
-                }
-
-                $jmlCount[] = $tmp;
-
-                if($hasil['current'] == 1){
-                    $start = $hasil['current'];
-                    $end = $limit;
-                }else{
-                    $end = ($limit * $hasil['current']);
-                    $start = $end - ($limit - 1);
-                }
-                // print_r($start);
-                // exit;
-                if(($tmp['urutan'] >= $start) && ($tmp['urutan'] <= $end)){
-                    $data[] = $tmp;
-                }
-
-                $hasil['total'] = count($jmlCount);
-                $hasil['rowCount'] = $limit;
-                $hasil['success'] = true;
-                $hasil['message'] = 'Berhasil';
-                $hasil['rows'] = $data;
-
-            }
-
-            $no++;
-        }
-
-        if(count($hasil) == 0) {
-            $hasil['current'] = 1;
-            $hasil['total'] = 1;
-            $hasil['rowCount'] = 1;
-            $hasil['success'] = true;
-            $hasil['message'] = 'Berhasil';
-            $hasil['rows'] = array();
-        }
-
-        echo(json_encode($hasil));
-        exit;
     }
 
     function paymentType(){

@@ -36,16 +36,18 @@
                 <div class="col-sm-5">
                    <select class="form-control" id="workflow" name="workflow"></select>
                 </div>
+                <a id="findFilter" class="fm-button ui-state-default ui-corner-all fm-button-icon-right ui-reset btn btn-sm btn-info">
+                      <span class="ace-icon fa fa-search"></span> Find</a>
               </div>  
               <br>
-              <div class="form-group">
-                  <label class="col-sm-2 control-label no-padding-right" for="form-field-1-1"> No. Order </label>
+              <!-- <div class="form-group"> -->
+                  <!-- <label class="col-sm-2 control-label no-padding-right" for="form-field-1-1"> No. Order </label>
                   <div class="col-sm-5">
                       <input class="form-control" type="text" id="skeyword" name="skeyword" placeholder="Nomor Order" />
-                  </div>
-                  <a id="findFilter" class="fm-button ui-state-default ui-corner-all fm-button-icon-right ui-reset btn btn-sm btn-info">
-                      <span class="ace-icon fa fa-search"></span> Find</a>
-              </div>
+                  </div> -->
+                  <!-- <a id="findFilter" class="fm-button ui-state-default ui-corner-all fm-button-icon-right ui-reset btn btn-sm btn-info">
+                      <span class="ace-icon fa fa-search"></span> Find</a> -->
+              <!-- </div> -->
             </div>
               
             </div>  
@@ -75,7 +77,7 @@
 
         $('#findFilter').click(function(){
             var workflow = $("#workflow").val();
-            var skeyword = $("#skeyword").val();
+            //var skeyword = $("#skeyword").val();
 
             if(!workflow){
                 swal("Informasi", "Workflow belum dipilih", "info");
@@ -84,7 +86,8 @@
 
             $.ajax({
                 url: '<?php echo site_url('transaksi/processMonitoring');?>',
-                data: {p_workflow_id : workflow, skeyword: skeyword},
+                // data: {p_workflow_id : workflow, skeyword: skeyword},
+                data: {p_workflow_id : workflow},
                 type: 'POST',
                 success: function (data) {
                     $('#tab-content').html(data);
