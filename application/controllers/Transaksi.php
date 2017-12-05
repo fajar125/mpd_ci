@@ -326,15 +326,14 @@ class Transaksi extends CI_Controller
 
         $queryD = "SELECT rs_output FROM f_monitor_tipro_new(".$p_workflow_id.") AS tbl (rs_output)";
         $resultD = $this->getMonitoring($p_workflow_id, $queryD);
-        $j = 0;
+        
         $data['data'] = array();
         foreach ($resultD as $rowD) {
             $exp = explode('|', $rowD->rs_output);
-            if($exp[$j] == 'D'){
-                $data['data'][] = $exp[$j];
+            if($exp == 'D'){
+                $data['data'][] = $exp;
             }
 
-            $j++;
         }
 
         $this->load->view('workflow/monitoring_grid',$data);
