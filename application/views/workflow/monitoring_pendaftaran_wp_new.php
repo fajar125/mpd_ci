@@ -103,6 +103,20 @@
         success: function(data) {
             var response = JSON.parse(data);
             $("#p_year_period_id").html( response.opt_status );
+
+            setTimeout(function(){
+              $.ajax({
+                  type: 'POST',
+                  datatype: "json",
+                  data: {p_year_period_id : $("#p_year_period_id").val() },
+                  url: '<?php echo WS_JQGRID."workflow.wf_controller/p_finance_period_list"; ?>',
+                  timeout: 10000,
+                  success: function(data) {
+                      var response = JSON.parse(data);
+                      $("#p_finance_period_id").html( response.opt_status );
+                  }
+              });
+            }, 500);  
         }
     });
 
