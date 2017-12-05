@@ -26,7 +26,8 @@ class T_vat_setllement_ro_order_controller {
 
                 $t_customer_order_id = $table->getCustomerOrderId($s_keyword);
 
-                $final_result = $table->getData($t_customer_order_id);
+                //$final_result = $table->getData($t_customer_order_id);
+                $final_result = $table->getData2($t_customer_order_id);
 
                 $final_result['total_total'] = $final_result['total_vat_amount'] + $final_result['total_penalty_amount'];
 
@@ -44,5 +45,55 @@ class T_vat_setllement_ro_order_controller {
         }
 
         return $data;
+    }
+
+    function payment() {
+        $t_customer_order_id = getVarClean('t_customer_order_id','int',0);
+
+        $data = array('rows' => array(), 'page' => 1, 'records' => 0, 'total' => 1, 'success' => false, 'message' => '');
+
+        try {
+
+            $ci = & get_instance();
+            $ci->load->model('transaksi/t_vat_setllement_ro_order');
+            $table = $ci->t_vat_setllement_ro_order;
+
+            $items = $table->payment($t_customer_order_id);
+
+            $data['message'] = $items;
+            $data['success'] = true;
+            //$data['total'] = $totalcount;
+
+        }catch (Exception $e) {
+            $data['message'] = $e->getMessage();
+        }
+
+        echo json_encode($data);
+        exit;
+    }
+
+    function cetak_register() {
+        $t_customer_order_id = getVarClean('t_customer_order_id','int',0);
+
+        $data = array('rows' => array(), 'page' => 1, 'records' => 0, 'total' => 1, 'success' => false, 'message' => '');
+
+        try {
+
+            $ci = & get_instance();
+            $ci->load->model('transaksi/t_vat_setllement_ro_order');
+            $table = $ci->t_vat_setllement_ro_order;
+
+            $items = $table->cetak_register($t_customer_order_id);
+
+            $data['message'] = $items;
+            $data['success'] = true;
+            //$data['total'] = $totalcount;
+
+        }catch (Exception $e) {
+            $data['message'] = $e->getMessage();
+        }
+
+        echo json_encode($data);
+        exit;
     }
 }

@@ -74,6 +74,8 @@ class T_laporan_permohonan_bphtb_pengurangan_controller {
                 $data['rows'] = $table->getAll(0, 0, 'b.creation_date', 'asc');
             }
             $data['success'] = true;
+
+            //print_r($data);exit;
             return $data;
         } catch (Exception $e) {
             $data['message'] = $e->getMessage();
