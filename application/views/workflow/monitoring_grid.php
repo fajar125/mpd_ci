@@ -9,7 +9,7 @@
              </div>
              <div class="table-responsive">
                 <table  id="grid-basic" class="table table-striped table-bordered table-hover">
-                    <thead>
+                    <thead style="overflow-x: scroll;">
                       <tr>
                         <?php 
                             
