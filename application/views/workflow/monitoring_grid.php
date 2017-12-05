@@ -3,8 +3,10 @@
   // exit;
 
   for ($i=1; $i < count($datamon); $i++) { 
-      print_r($datamon[$i]);
+      print_r($datamon[$i]->rs_output);
       exit;
+
+
   }
 
 ?>
