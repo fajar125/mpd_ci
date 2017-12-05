@@ -10,7 +10,7 @@
              <div class="table-responsive" style="max-height: 400px;overflow-y: scroll;">
                 <table  id="grid-basic" class="table table-striped table-bordered table-hover">
                     <thead>
-                      <tr>
+                      <tr class="background: #AEAEAE;">
                         <?php 
                             
                             for ($i=1; $i <count($header); $i++) {
