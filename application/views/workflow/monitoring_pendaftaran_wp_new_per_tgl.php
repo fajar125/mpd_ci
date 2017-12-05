@@ -95,7 +95,7 @@
         }
     });
 
-    $('#valid_from').datepicker({ // mengambil dari class datepicker
+    $('.datepicker').datepicker({ // mengambil dari class datepicker
       autoclose: true,
       format : 'yyyy-mm-dd',
     });
