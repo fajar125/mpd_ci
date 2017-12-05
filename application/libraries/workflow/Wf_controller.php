@@ -997,7 +997,7 @@ class Wf_controller {
         $ci->load->model('workflow/wf');
         $table = $ci->wf;
 
-        $sql = "select * from p_workflow";
+        $sql = "select * from p_workflow ordre by p_workflow_id asc";
         $query = $table->db->query($sql);
 
         $items = $query->result_array();
