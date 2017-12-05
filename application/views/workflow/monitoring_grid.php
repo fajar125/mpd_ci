@@ -7,8 +7,8 @@
                      </span>
                  </div>
              </div>
-             <div class="table-responsive">
-                <table  id="grid-basic" class="table table-striped table-bordered table-hover" style="max-height: 300px;overflow-y: scroll;">
+             <div class="table-responsive" style="max-height: 400px;overflow-y: scroll;">
+                <table  id="grid-basic" class="table table-striped table-bordered table-hover">
                     <thead>
                       <tr>
                         <?php 
