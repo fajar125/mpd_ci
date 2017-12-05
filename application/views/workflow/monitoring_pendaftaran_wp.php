@@ -10,7 +10,7 @@
             <i class="fa fa-circle"></i>
         </li>
         <li>
-            <span>Monitoring</span>
+            <span>Monitoring Pendaftaran WP</span>
         </li>
     </ul>
 </div>
