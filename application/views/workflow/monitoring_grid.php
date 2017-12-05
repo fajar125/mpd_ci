@@ -3,7 +3,11 @@
   // exit;
 
   for ($i=1; $i < count($datamon); $i++) { 
-      print_r($datamon[$i]->rs_output);
+      $exp = explode('|', $datamon[$i]->rs_output);
+
+      for ($j=0; $j < count($exp); $j++) { 
+          echo $exp[$j]."<br>";
+      }
       exit;
 
 
