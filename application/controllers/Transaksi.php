@@ -334,7 +334,7 @@ class Transaksi extends CI_Controller
                 //foreach ($resultD[$i] as $rowD) {
                   //  $exp = explode('|', $rowD->rs_output);
                     $data['datamon'][$i] = $resultD->rs_output;
-                }//
+                //}
             }
             
         }
