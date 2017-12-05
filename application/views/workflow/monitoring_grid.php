@@ -8,8 +8,8 @@
                  </div>
              </div>
              <div class="table-responsive">
-                <table  id="grid-basic" class="table table-striped table-bordered table-hover">
-                    <thead style="overflow-x: scroll;">
+                <table  id="grid-basic" class="table table-striped table-bordered table-hover" style="max-height: 300px;overflow-y: scroll;">
+                    <thead>
                       <tr>
                         <?php 
                             
