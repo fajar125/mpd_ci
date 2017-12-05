@@ -1,6 +1,11 @@
 <?php
-  print_r($datamon);
-  exit;
+  // print_r($datamon);
+  // exit;
+
+  for ($i=1; $i < count($datamon); $i++) { 
+      print_r($datamon[$i]);
+      exit;
+  }
 
 ?>
 <div class="col-md-12">
