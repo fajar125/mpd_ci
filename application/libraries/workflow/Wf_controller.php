@@ -1030,6 +1030,73 @@ class Wf_controller {
         exit;
     }
 
+    public function p_vat_type_list() {
+        $ci =& get_instance();
+        $ci->load->model('workflow/wf');
+        $table = $ci->wf;
+
+        $sql = "select p_vat_type_id, vat_code, description 
+                from p_vat_type
+                order by p_vat_type_id asc";
+        $query = $table->db->query($sql);
+
+        $items = $query->result_array();
+        $opt_status = '';
+
+        foreach ($items as $item) {
+            $opt_status .= '<option value="'.$item['p_vat_type_id'].'"> '.$item['vat_code'].' </option>';
+        }
+
+        echo json_encode( array('opt_status' => $opt_status ) );
+        exit;
+    }
+
+
+    public function p_year_period_list() {
+        $ci =& get_instance();
+        $ci->load->model('workflow/wf');
+        $table = $ci->wf;
+
+        $sql = "select *
+                from p_year_period
+                order by start_date desc";
+        $query = $table->db->query($sql);
+
+        $items = $query->result_array();
+        $opt_status = '';
+
+        foreach ($items as $item) {
+            $opt_status .= '<option value="'.$item['p_year_period_id'].'"> '.$item['year_code'].' </option>';
+        }
+
+        echo json_encode( array('opt_status' => $opt_status ) );
+        exit;
+    }
+
+    public function p_finance_period_list() {
+        $ci =& get_instance();
+        $ci->load->model('workflow/wf');
+        $table = $ci->wf;
+
+        $p_year_period_id = $ci->input->post('p_year_period_id');
+
+        $sql = "select p_finance_period_id, code
+                from p_finance_period
+                where p_year_period_id = ".$p_year_period_id."
+                order by p_finance_period_id asc";
+        $query = $table->db->query($sql);
+
+        $items = $query->result_array();
+        $opt_status = '';
+
+        foreach ($items as $item) {
+            $opt_status .= '<option value="'.$item['p_finance_period_id'].'"> '.$item['code'].' </option>';
+        }
+
+        echo json_encode( array('opt_status' => $opt_status ) );
+        exit;
+    }
+
      public function save_petugas_bap(){
         $ci =& get_instance();
         $userinfo = $ci->session->userdata;
