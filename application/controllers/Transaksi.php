@@ -327,22 +327,7 @@ class Transaksi extends CI_Controller
         $queryD = "SELECT rs_output FROM f_monitor_tipro_new(".$p_workflow_id.") AS tbl (rs_output)";
         $resultD = $this->getMonitoring($p_workflow_id, $queryD);
 
-        // $data['data'] = array();
-        $k = 0;
-        for ($i=0; $i < count($resultD); $i++) { 
-
-            if($i > 0){
-                foreach ($resultD[$i]->rs_output as $rowD) {
-                   $exp = explode('|', $rowD);
-                   $data['datamon'][$k] = $exp;
-                }
-            }
-            
-            $k++;
-        }
-
-        
-        
+        $data['datamon'] = $resultD;
 
         $this->load->view('workflow/monitoring_grid',$data);
 
