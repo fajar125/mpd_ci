@@ -75,6 +75,7 @@ class P_rqst_type_controller {
         $start = getVarClean('current','int',0);
         $limit = getVarClean('rowCount','int',5);
 
+        $sidx = getVarClean('sidx','str','p_rqst_type_id');
         $sort = getVarClean('sort','str','p_rqst_type_id');
         $dir  = getVarClean('dir','str','asc');
 
@@ -87,6 +88,25 @@ class P_rqst_type_controller {
             $ci = & get_instance();
             $ci->load->model('parameter/p_rqst_type');
             $table = $ci->p_rqst_type;
+
+            $req_param = array(
+                "sort_by" => $sidx,
+                "sord" => $sort,
+                "limit" => null,
+                "field" => null,
+                "where" => null,
+                "where_in" => null,
+                "where_not_in" => null,
+                "search" => null,
+                "search_field" => isset($_REQUEST['searchField']) ? $_REQUEST['searchField'] : null,
+                "search_operator" => isset($_REQUEST['searchOper']) ? $_REQUEST['searchOper'] : null,
+                "search_str" => isset($_REQUEST['searchString']) ? $_REQUEST['searchString'] : null
+            );
+
+            $req_param['where'] = array();
+            $req_param['where'][] = " p_rqst_type_id in (1,2,3,4,5)";
+
+            $table->setJQGridParam($req_param);
 
             if(!empty($searchPhrase)) {
                 $table->setCriteria("upper(code) like upper('%".$searchPhrase."%')");
