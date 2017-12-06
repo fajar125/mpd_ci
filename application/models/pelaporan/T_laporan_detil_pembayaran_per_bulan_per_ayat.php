@@ -53,9 +53,6 @@ class T_laporan_detil_pembayaran_per_bulan_per_ayat extends Abstract_model {
             /*die($sql);
             exit;*/
             $items = $query->result_array();
-
-            if ($items == null || $items == '')
-                $items = 'no result';
             // print_r($items);
             // exit();
             return $items;

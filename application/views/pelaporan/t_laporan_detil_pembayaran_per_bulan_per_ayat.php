@@ -152,7 +152,7 @@
                 altRows: true,
                 shrinkToFit: false,
                 multiboxonly: true,
-                footerrow: true,
+                footerrow: false,
                 gridComplete: function() {
                     var $grid = $('#grid-table');
 

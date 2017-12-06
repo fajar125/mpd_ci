@@ -85,10 +85,7 @@ class T_laporan_pembayaran_berdasarkan_cara_bayar_dan_ketetapan extends Abstract
             $items = $query->result_array();
             //$items['total_bayar'] = $this->getTotalBayar($items['total_vat_amount'], $items['total_penalty_amount']);
             //$items['sisa'] = $this->getSisa($items['total_bayar'], $items['payment_amount']);
-
-
-            if ($items == null || $items == '')
-                $items = 'no result';
+        
             // print_r($items);
             // exit();
             return $items;
