@@ -1115,6 +1115,7 @@
 
     function validasi(){
         var wp_name                     = $('#wp_name').val();
+        var njop_pbb                    = $('#njop_pbb').val();
         var npwp                        = $('#npwp').val();
         var wp_address_name             = $('#wp_address_name').val();
         var wp_kota                     = $('#wp_p_region_id').val();
@@ -1149,6 +1150,7 @@
             swal ( "Oopss" ,  "Nama WP harus diisi !" ,  "error" );
             return true;
         }
+        
 
         if(npwp == '' || npwp == null){
             swal ( "Oopss" ,  "NPWP harus diisi !" ,  "error" );
