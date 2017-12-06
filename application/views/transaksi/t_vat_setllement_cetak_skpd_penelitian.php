@@ -73,7 +73,8 @@
             var pager_selector = "#grid-pager";
 
             jQuery("#grid-table").jqGrid({
-                url: '',
+                url: '<?php echo WS_JQGRID."transaksi.t_vat_setllement_cetak_skpd_penelitian_controller/read_data"; ?>',
+                postData:{s_keyword : $('#s_keyword').val()},
                 datatype: "json",
                 mtype: "POST",
                 colModel: [
@@ -105,7 +106,6 @@
                 altRows: true,
                 shrinkToFit: false,
                 multiboxonly: true,
-                footerrow: true,
                 loadComplete: function (response) {
                     if(response.success == false) {
                         swal({title: 'Attention', text: response.message, html: true, type: "warning"});

@@ -69,8 +69,8 @@ class T_vat_setllement_cetak_skpd_penelitian extends Abstract_model {
         $items = $query->result_array();
 
 
-        if ($items == null || $items == '')
-            $items = 'no result';
+        /*if ($items == null || $items == '')
+            $items = 'no result';*/
         // print_r($items);
         // exit();
         return $items;
