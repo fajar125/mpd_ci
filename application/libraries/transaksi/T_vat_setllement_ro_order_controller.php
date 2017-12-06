@@ -25,10 +25,18 @@ class T_vat_setllement_ro_order_controller {
                 $table = $ci->t_vat_setllement_ro_order;
 
                 $t_customer_order_id = $table->getCustomerOrderId($s_keyword);
+                if (empty($t_customer_order_id)){
+                    $data['message'] = 'No Kohir Tidak Ditemukan';
+                    $data['success'] = false;
+                    return $data;
+                }
 
                 //$final_result = $table->getData($t_customer_order_id);
                 $final_result = $table->getData2($t_customer_order_id);
 
+                if (empty($final_result))
+                    $final_result = $table->getData($t_customer_order_id);
+                
                 $final_result['total_total'] = $final_result['total_vat_amount'] + $final_result['total_penalty_amount'];
 
                 //print_r($final_result);exit();

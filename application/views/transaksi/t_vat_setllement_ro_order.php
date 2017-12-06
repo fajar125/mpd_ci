@@ -71,7 +71,7 @@
 </div>
 
 
-<div class="tab-content no-border changeNone">
+<div class="tab-content no-border changeNone" id="informasi">
     <div class="row">
         <div class="col-md-12">
             <div class="portlet red box menu-panel">
@@ -227,6 +227,7 @@
 
     $(".priceformat").number( true, 0 , '.',','); /* price number format */
     $(".priceformat").css("text-align", "right");
+    $("#informasi").css("display", "none");
 
     function toTampil(){
         var s_keyword = $('#s_keyword').val();
@@ -244,6 +245,7 @@
                 success: function (data) {
                     //console.log(data);
                     if(data.success){
+                        $("#informasi").css("display", "");
                         //alert(data.result);
                         var dt = data.items;
                         //alert(data.items);return;
@@ -267,6 +269,8 @@
                         $('#no_kohir').val(dt.no_kohir);
 
 
+                    }else{
+                        swal({title: "Error!", text: data.message, html: true, type: "error"});
                     }
                     //console.log(data);
                     
