@@ -74,7 +74,7 @@ class T_bphtb_registration_ro_ver_controller {
 
     function update(){
 
-
+        /*
         $t_bphtb_registration_id        = getVarClean('t_bphtb_registration_id','int',0);
         $wp_p_region_id                 = getVarClean('wp_p_region_id','int',0);
         $wp_p_region_id_kel             = getVarClean('wp_p_region_id_kel','int',0);
@@ -109,12 +109,53 @@ class T_bphtb_registration_ro_ver_controller {
         $object_p_region_id_kel         = getVarClean('object_p_region_id_kel','int',0);
         $bphtb_legal_doc_description    = getVarClean('bphtb_legal_doc_description','str','');
         $add_disc_percent               = getVarClean('add_disc_percent','int',0);
+        */
+
+        // print_r(getVarClean('object_p_region_id', 'int', 0));
+
 
         $data = array('rows' => array(), 'page' => 1, 'records' => 0, 'total' => 1, 'success' => false, 'message' => '');
         
         try {
 
             $ci = & get_instance();
+
+            $t_bphtb_registration_id        = $ci->input->post('t_bphtb_registration_id',0);
+            $wp_p_region_id                 = $ci->input->post('wp_p_region_id',0);
+            $wp_p_region_id_kel             = $ci->input->post('wp_p_region_id_kel',0);
+            $wp_name                        = $ci->input->post('wp_name','');
+            $wp_address_name                = $ci->input->post('wp_address_name','');
+            $npwp                           = $ci->input->post('npwp','');
+            $object_p_region_id_kec         = $ci->input->post('object_p_region_id_kec',0);
+            $object_p_region_id             = $ci->input->post('object_p_region_id',0);
+            $land_area                      = $ci->input->post('land_area','');
+            $land_price_per_m               = $ci->input->post('land_price_per_m',0);
+            $land_total_price               = $ci->input->post('land_total_price',0);
+            $building_area                  = $ci->input->post('building_area',0);
+            $building_price_per_m           = $ci->input->post('building_price_per_m',0);
+            $building_total_price           = $ci->input->post('building_total_price',0);
+            $wp_rt                          = $ci->input->post('wp_rt','');
+            $wp_rw                          = $ci->input->post('wp_rw','');
+            $object_rt                      = $ci->input->post('object_rt','');
+            $object_rw                      = $ci->input->post('object_rw','');
+            $njop_pbb                       = $ci->input->post('njop_pbb','');
+            $object_address_name            = $ci->input->post('object_address_name','');
+            $p_bphtb_legal_doc_type_id      = $ci->input->post('p_bphtb_legal_doc_type_id',0);
+            $npop                           = $ci->input->post('npop','');
+            $npop_tkp                       = $ci->input->post('npop_tkp','');
+            $npop_kp                        = $ci->input->post('npop_kp','');
+            $bphtb_amt                      = $ci->input->post('bphtb_amt',0);
+            $bphtb_amt_final                = $ci->input->post('bphtb_amt_final',0);
+            $bphtb_discount                 = $ci->input->post('bphtb_discount',0);
+            $description                    = $ci->input->post('description','');
+            $market_price                   = $ci->input->post('market_price',0);
+            $mobile_phone_no                = $ci->input->post('mobile_phone_no','');
+            $wp_p_region_id_kec             = $ci->input->post('wp_p_region_id_kec',0);
+            $object_p_region_id_kel         = $ci->input->post('object_p_region_id_kel',0);
+            $bphtb_legal_doc_description    = $ci->input->post('bphtb_legal_doc_description','');
+            $add_disc_percent               = $ci->input->post('add_disc_percent',0);
+
+
             $ci->load->model('transaksi_wf/t_bphtb_registration_ro_ver');
             $table = $ci->t_bphtb_registration_ro_ver;
 
