@@ -24,26 +24,26 @@ class T_bphtb_registration_ro_ver extends Abstract_model {
                     (a.bphtb_amt - a.bphtb_discount) AS bphtb_amt_final_old,
                     j.payment_vat_amount AS prev_payment_amount
 ";
-    public $fromClause      = "t_bphtb_registration as a 
-                    left join p_region as b
+    public $fromClause      = "t_bphtb_registration a 
+                    left join p_region b
                         on a.wp_p_region_id = b.p_region_id
-                    left join p_region as c
+                    left join p_region c
                         on a.wp_p_region_id_kec = c.p_region_id
-                    left join p_region as d
+                    left join p_region d
                         on a.wp_p_region_id_kel = d.p_region_id
-                    left join p_region as e
+                    left join p_region e
                         on a.object_p_region_id = e.p_region_id
-                    left join p_region as f
+                    left join p_region f
                         on a.object_p_region_id_kec = f.p_region_id
-                    left join p_region as g
+                    left join p_region g
                         on a.object_p_region_id_kel = g.p_region_id
-                    left join p_bphtb_legal_doc_type as h
+                    left join p_bphtb_legal_doc_type h
                         on a.p_bphtb_legal_doc_type_id = h.p_bphtb_legal_doc_type_id
-                    left join t_customer_order as cust_order
+                    left join t_customer_order cust_order
                         on cust_order.t_customer_order_id = a.t_customer_order_id
-                    left join t_bphtb_registration as i
+                    left join t_bphtb_registration i
                         on a.registration_no_ref = i.registration_no
-                    left join t_payment_receipt_bphtb as j
+                    left join t_payment_receipt_bphtb j
                         on i.t_bphtb_registration_id = j.t_bphtb_registration_id";
 
     public $refs            = array();
@@ -99,7 +99,7 @@ class T_bphtb_registration_ro_ver extends Abstract_model {
                 verificated_nip='$verificated_nip'
                 WHERE  t_bphtb_registration_id = $t_bphtb_registration_id";
 
-        // echo $sql;exit();
+        echo $sql;exit();
 
         $query = $this->db->query($sql);
 
