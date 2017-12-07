@@ -207,7 +207,7 @@ class Cetak_kartu_npwpd extends CI_Controller{
 		$pdf->Cell(45, 5, 'TERDAFTAR : '. $data['registration_date'], "L", 0, 'L');
 		$pdf->Cell(45, 5, $data['vat_code'], "R", 0, 'R');
 		$pdf->Cell(10, 5, "", "", 0, 'C');
-		$pdf->Cell(90, 3, "BAYAR PAJAK MUDAH! LOMBOK UTARA JUARA!", "LR", 0, 'C');
+		$pdf->Cell(90, 3, "BAYAR PAJAK MUDAH! LOMBOK UTARA TIOQ TATA TUNAQ!", "LR", 0, 'C');
 		$pdf->Ln(1);
 		$pdf->Cell(90, 5, "", "BLR", 0, 'C');
 		$pdf->Cell(10, 5, "", "", 0, 'C');
