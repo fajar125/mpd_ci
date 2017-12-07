@@ -172,7 +172,7 @@ $("#tab-4").on("click", function(event) {
         function(){
             setTimeout(function(){
             $.getJSON(var_url, function( items ) {
-                swal(items.rows.o_result_msg);
+                swal("Informasi",items.rows.o_result_msg, "info");
                 loadContentWithParams("transaksi.t_customer_order", {});
             });
         }, 3000);

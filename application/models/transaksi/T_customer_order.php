@@ -93,7 +93,6 @@ class T_customer_order extends Abstract_model {
                         set npwpd = '".$tmp."'
                         where t_customer_order_id =".$t_customer_order_id;
                 $query = $this->db->query($sql);
-                $query->result();
             }
         }
         */
