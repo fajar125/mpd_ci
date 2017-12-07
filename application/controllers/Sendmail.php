@@ -22,7 +22,7 @@ class Sendmail extends CI_Controller
                             PEMERINTAH KABUPATEN LOMBOK UTARA <br>
                             BADAN PENGELOLAAN PENDAPATAN DAERAH <br>
                             Jalan Raya Tioq Tata Tunaq <br>
-                            Telpn. (0370) <br>
+                            Telpn. (0370) 6141728 <br>
                             T A N J U N G
                         </td>
                   </tr>

@@ -367,6 +367,8 @@ class Wf_controller {
         $curr_doc_type_id = $ci->input->post('curr_doc_type_id');
         // $user_name = strtoupper($userinfo['app_user_name']);
         $user_name = $userinfo['app_user_name'];
+        print_r($user_name);
+        exit;
         $curr_doc_type_id = empty($curr_doc_type_id) ? NULL : $curr_doc_type_id;
 
         try {
