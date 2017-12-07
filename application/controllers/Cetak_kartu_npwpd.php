@@ -85,7 +85,7 @@ class Cetak_kartu_npwpd extends CI_Controller{
 		$pdf->Ln();
 		$pdf->SetFont('Arial', '', 6);
 		$pdf->Cell(10, 5, "", "L", 0, 'L');
-		$pdf->Cell(80, 5, getValByCode('ALAMAT_5'), "R", 0, 'C');
+		$pdf->Cell(80, 5, getValByCode('ALAMAT_6').". Telp ".getValByCode('ALAMAT_2')." - ".getValByCode('ALAMAT_3'), "R", 0, 'C');
 		$pdf->Cell(10, 5, "", "", 0, 'L');
 		$pdf->Cell(90, 5, "", "LR", 0, 'C');
 		$pdf->Ln(1);
