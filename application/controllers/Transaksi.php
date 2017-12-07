@@ -301,6 +301,26 @@ class Transaksi extends CI_Controller
         }
         
     }
+
+    function message_type_combo(){
+        try {
+            $sql = "select p_message_type.p_message_type_id,p_message_type.message_type from p_message_type LEFT JOIN p_msg_type_role_map on p_message_type.p_message_type_id = p_msg_type_role_map.p_message_type_id
+                where p_app_role_id_for = 26";
+            $query = $this->db->query($sql);
+
+            $items = $query->result_array();
+            echo '<select id="p_message_type" name="p_message_type" class="FormElement form-control"> <option value="0" selected>--Pilih Jenis Pesan--</option>';
+            foreach($items  as $item ){
+                echo '<option value="'.$item['p_message_type_id'].'">'.$item['message_type'].'</option>';
+            }
+            echo '</select>';
+            exit;
+        } catch (Exception $e) {
+            echo $e->getMessage();
+            exit;
+        }
+        
+    }
     
 
     public function getMonitoring($query){
