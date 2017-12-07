@@ -99,7 +99,8 @@
 
         $.getJSON(var_url, function( items ) {
             var pesan = items.rows.pesan;
-            swal('Informasi',items.rows.pesan,'info'); 
+            var json = JSON.parse(pesan);
+            swal('Informasi',json.message,'info'); 
             return; 
         }) 
 
