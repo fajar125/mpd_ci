@@ -76,12 +76,13 @@ class T_customer_order extends Abstract_model {
     function submit($t_customer_order_id){
         $ci =& get_instance();
         $userdata = $ci->session->userdata;
+/*
         $sql = "select npwpd from t_vat_registration where t_customer_order_id =".$t_customer_order_id;
 
         $query = $this->db->query($sql);
         $item1 = $query->row_array();
         $npwpd = $item1['npwpd'];
-/*
+
         if ($npwpd == "" || empty($npwpd) || $npwpd == null){
             $sql = "select f_gen_npwpd(".$t_customer_order_id.")as npwpd from dual";
             $query = $this->db->query($sql);
