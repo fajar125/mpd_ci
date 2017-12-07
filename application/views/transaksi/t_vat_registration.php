@@ -34,6 +34,12 @@
                         <strong> DATA IZIN DAN POTENSI </strong>
                     </a>
                 </li>
+                <li class="">
+                    <a href="javascript:;" data-toggle="tab" aria-expanded="true" id="tab-4">
+                        <i class="blue"></i>
+                        <strong> DOKUMEN PENDUKUNG </strong>
+                    </a>
+                </li>
             </ul>
         </div>
 
@@ -339,7 +345,7 @@ $("#tab-1").on("click", function(event) {
                 <div class="row">
                     <label class="control-label col-md-3">Kode Pos</label>
                     <div class="input-group col-md-5">
-                            <input type="text" class="form-control" name="wp_zip_code" id="brand_zip_code" maxlength="6">
+                            <input type="text" class="form-control" name="wp_zip_code" id="wp_zip_code" maxlength="6">
                     </div>
                 </div>
             </div>  
@@ -696,7 +702,7 @@ $("#tab-1").on("click", function(event) {
             <div class="form-body">
                 <div class="space-2"></div>
                 <div class="row">
-                    <label class="control-label col-md-3">No. Seluler</label>
+                    <label class="control-label col-md-3">No. Telepon</label>
                     <div class="input-group col-md-5">
                         <input type="text" class="form-control required" name="mobile_no_owner" id="mobile_no_owner">
                     </div>
@@ -999,6 +1005,8 @@ $("#tab-1").on("click", function(event) {
             return;
         }
 
+        //alert(brand_zip_code); return;
+
          //alert(brand_address_name);
         var var_url = "<?php echo WS_JQGRID . "transaksi.t_vat_registration_controller/insertUpdate/?"; ?>";
             var_url += "<?php echo $this->security->get_csrf_token_name(); ?>=<?php echo $this->security->get_csrf_hash(); ?>";
@@ -1087,32 +1095,58 @@ $("#tab-1").on("click", function(event) {
     }
 
     $("#tab-3").on("click", function(event) {
-    event.stopPropagation();
-    //alert($('#t_vat_registration_id').val());
+        event.stopPropagation();
+        //alert($('#t_vat_registration_id').val());
 
-    t_vat_registration_id = $('#t_vat_registration_id').val();
-    p_rqst_type_id = <?php echo $_POST['p_rqst_type_id'];?> ;
-    t_customer_order_id = <?php echo $_POST['t_customer_order_id'];?> ;
-    order_date = '<?php echo $_POST['order_date'];?>' ;
-    var order_no = $('#order_no').val();
-    //alert(p_rqst_type_id);
-    // t_vat_reg_employee_id = $('#t_vat_reg_employee_id').val() ;
-    // t_vat_reg_dtl_restaurant_id = $('#t_vat_reg_dtl_restaurant_id').val() ;
-    // t_license_letter_id = $('#t_license_letter_id').val() ;
-    if(t_vat_registration_id == null || t_vat_registration_id == 0 || t_vat_registration_id == ""){
-        swal('Peringatan','Isi Formulir Pendaftaran Terlebih Dahulu!','error');
-        return false;
-    }
+        t_vat_registration_id = $('#t_vat_registration_id').val();
+        p_rqst_type_id = <?php echo $_POST['p_rqst_type_id'];?> ;
+        t_customer_order_id = <?php echo $_POST['t_customer_order_id'];?> ;
+        order_date = '<?php echo $_POST['order_date'];?>' ;
+        var order_no = $('#order_no').val();
+        //alert(p_rqst_type_id);
+        // t_vat_reg_employee_id = $('#t_vat_reg_employee_id').val() ;
+        // t_vat_reg_dtl_restaurant_id = $('#t_vat_reg_dtl_restaurant_id').val() ;
+        // t_license_letter_id = $('#t_license_letter_id').val() ;
+        if(t_vat_registration_id == null || t_vat_registration_id == 0 || t_vat_registration_id == ""){
+            swal('Peringatan','Isi Formulir Pendaftaran Terlebih Dahulu!','error');
+            return false;
+        }
 
-    loadContentWithParams("transaksi.t_vat_reg_dtl", { //model yang ketiga
-        t_customer_order_id: t_customer_order_id,
-        order_no:order_no,
-        order_date:order_date,
-        p_rqst_type_id: p_rqst_type_id,
-        t_vat_registration_id: t_vat_registration_id
-        
+        loadContentWithParams("transaksi.t_vat_reg_dtl", { //model yang ketiga
+            t_customer_order_id: t_customer_order_id,
+            order_no:order_no,
+            order_date:order_date,
+            p_rqst_type_id: p_rqst_type_id,
+            t_vat_registration_id: t_vat_registration_id
+            
+        });
     });
-});
+
+    $("#tab-4").on("click", function(event) {
+    
+        event.stopPropagation();
+        
+        t_vat_registration_id = $('#t_vat_registration_id').val();
+        p_rqst_type_id = <?php echo $_POST['p_rqst_type_id'];?> ;
+        t_customer_order_id = <?php echo $_POST['t_customer_order_id'];?> ;
+        order_date = '<?php echo $_POST['order_date'];?>' ;
+        var order_no = $('#order_no').val();
+        
+        
+        if(t_vat_registration_id == null || t_vat_registration_id == 0 || t_vat_registration_id == ""){
+            swal('Peringatan','Isi Formulir Pendaftaran Terlebih Dahulu!','error');
+            return false;
+        }
+
+
+        loadContentWithParams("transaksi.t_cust_order_legal_doc", {
+            t_customer_order_id: t_customer_order_id,
+            order_no:order_no,
+            order_date:order_date,
+            p_rqst_type_id:p_rqst_type_id,
+            t_vat_registration_id:t_vat_registration_id
+        });
+    });
 </script>
 
 

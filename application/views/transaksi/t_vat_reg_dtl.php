@@ -34,6 +34,12 @@
                         <strong> DATA IZIN DAN POTENSI </strong>
                     </a>
                 </li>
+                <li class="">
+                    <a href="javascript:;" data-toggle="tab" aria-expanded="true" id="tab-4">
+                        <i class="blue"></i>
+                        <strong> DOKUMEN PENDUKUNG </strong>
+                    </a>
+                </li>
             </ul>
         </div>
 
@@ -238,6 +244,31 @@ $("#tab-2").on("click", function(event) {
     });
 });
 
+$("#tab-4").on("click", function(event) {
+    
+    event.stopPropagation();
+    t_customer_order_id = <?php echo $_POST['t_customer_order_id'];?>;
+    p_rqst_type_id = <?php echo $_POST['p_rqst_type_id'];?> ;
+    order_no = <?php echo $_POST['order_no'];?> ;
+    order_date = '<?php echo $this->input->post('order_date'); ?>' ;
+    t_vat_registration_id = <?php echo $_POST['t_vat_registration_id'];?> ;
+    
+    
+    if(t_customer_order_id == null) {
+        swal('Informasi','Silahkan pilih salah satu Permintaan Pelanggan','info');
+        return false;
+    }
+
+
+    loadContentWithParams("transaksi.t_cust_order_legal_doc", {
+        t_customer_order_id: t_customer_order_id,
+        order_no:order_no,
+        order_date:order_date,
+        p_rqst_type_id:p_rqst_type_id,
+        t_vat_registration_id:t_vat_registration_id
+    });
+});
+
 </script>
 
 <?php $this->load->view('lov/lov_p_license_type'); ?>
@@ -309,6 +340,7 @@ $("#tab-2").on("click", function(event) {
                     }
                 },
                 {label: 'Berlaku Dari ',name: 'valid_from',width: 150, align: "left",editable: true,
+                    editrules: {required: true},
                     editoptions: {
                          dataInit: function (element) {
                                 $(element).datepicker({

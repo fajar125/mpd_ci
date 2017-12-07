@@ -4,7 +4,7 @@
             <!-- modal title -->
             <div class="modal-header no-padding">
                 <div class="table-header">
-                    <span class="form-add-edit-title"> Data Kode Wilayah</span>
+                    <span class="form-add-edit-title"> Data Jabatan</span>
                 </div>
             </div>
             <input type="hidden" id="modal_lov_p_job_position_id_val" value="" />
