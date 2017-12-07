@@ -692,7 +692,10 @@
                         $('#building_area_real').val(dt.building_area_real);
                         $('#building_price_real').val(dt.building_price_real);
                         
-                        $('#verificated_by').val(dt.verificated_by);
+                        if(dt.verificated_by){
+                            $('#verificated_by').val(dt.verificated_by);
+                        }
+                        
                         $('#verificated_nip').val(dt.verificated_nip);                        
 
                        
