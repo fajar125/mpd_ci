@@ -157,7 +157,8 @@ class T_bphtb_registration_ro_ver_controller {
             $verificated_by                 = $ci->input->post('verificated_by','');
             $verificated_nip                = $ci->input->post('verificated_nip','');
 
-
+            print_r($p_bphtb_legal_doc_type_id);
+            exit;
             $ci->load->model('transaksi_wf/t_bphtb_registration_ro_ver');
             $table = $ci->t_bphtb_registration_ro_ver;
 
