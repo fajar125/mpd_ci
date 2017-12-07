@@ -76,7 +76,7 @@ $("#tab-1").on("click", function(event) {
                 {label: 'pic_id',name: 'pic_id', key: true, width: 5, sorttype: 'number', editable: false, hidden: true},
                 {label: 'Longitude',name: 'longitude',width: 300,sorttype: 'text'},
                 {label: 'Latitude',name: 'latitude',width: 300,sorttype: 'number'},
-                {label: 'Alamat Object',name: 'alamat',width: 410,sorttype: 'text'}
+                {label: 'Alamat Objek',name: 'alamat',width: 410,sorttype: 'text'}
             ],
             height: '100%',
             autowidth: true,
