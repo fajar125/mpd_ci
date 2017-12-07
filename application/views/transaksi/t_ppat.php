@@ -44,7 +44,7 @@
         <div class="form-body">
             <div class="row">
                 <label class="control-label col-md-3">Nama PPAT</label>
-                <div class="col-md-3">
+                <div class="col-md-5">
                     <input type="hidden" class="form-control" name="t_ppat_id" id="t_ppat_id" readonly="true">
                     <input type="text" class="form-control required" required name="ppat_name" id="ppat_name" >   
                 </div>
@@ -53,7 +53,7 @@
             <div class="space-2"></div>
             <div class="row">
                 <label class="control-label col-md-3">Alamat Lokasi</label>
-                <div class="col-md-3">
+                <div class="col-md-5">
                     <!-- <input type="text" class="form-control required" required name="address_name" id="address_name" > -->
                     <textarea rows="4" cols="50" class="form-control required" required  name="address_name" id="address_name"></textarea>
                 </div>
@@ -61,14 +61,14 @@
             <div class="space-2"></div>
             <div class="row">
                 <label class="control-label col-md-3">No Lokasi</label>
-                <div class="col-md-3">
+                <div class="col-md-5">
                     <input type="text" class="form-control required" required name="address_no" id="address_no" >   
                 </div>
             </div>
             <div class="space-2"></div>
             <div class="row">
                 <label class="control-label col-md-3">RT/RW</label>
-                <div class="col-md-2">
+                <div class="col-md-3">
                     <div class="input-group ">
                         <input type="text" class="form-control" name="address_rt" id="address_rt">
                         <span class="input-group-addon"> / </span>
@@ -125,7 +125,7 @@
             <div class="space-2"></div>
             <div class="row">
                 <label class="control-label col-md-3">No Identifikasi</label>
-                <div class="col-md-3">
+                <div class="col-md-2">
                    <div id="comboDoc"></div>
                 </div>
                 <div class="col-md-3">
@@ -136,7 +136,7 @@
             <div class="space-2"></div>
             <div class="row">
                 <label class="control-label col-md-3">No. Telpon</label>
-                <div class="col-md-3">
+                <div class="col-md-5">
                     <input type="text" class="form-control "  name="phone_no" id="phone_no" >   
                 </div>
             </div>
@@ -144,7 +144,7 @@
             <div class="space-2"></div>
             <div class="row">
                 <label class="control-label col-md-3">No. Handphone</label>
-                <div class="col-md-3">
+                <div class="col-md-5">
                     <input type="text" class="form-control required" required name="mobile_no" id="mobile_no" >   
                 </div>
             </div>
@@ -152,7 +152,7 @@
             <div class="space-2"></div>
             <div class="row">
                 <label class="control-label col-md-3">No. Fax</label>
-                <div class="col-md-3">
+                <div class="col-md-5">
                     <input type="text" class="form-control "  name="fax_no" id="fax_no" >   
                 </div>
             </div>
@@ -160,7 +160,7 @@
             <div class="space-2"></div>
             <div class="row">
                 <label class="control-label col-md-3">Kode Pos</label>
-                <div class="col-md-3">
+                <div class="col-md-5">
                     <input type="text" class="form-control "  name="zip_code" id="zip_code" >   
                 </div>
             </div>
@@ -168,7 +168,7 @@
             <div class="space-2"></div>
             <div class="row">
                 <label class="control-label col-md-3">Email</label>
-                <div class="col-md-3">
+                <div class="col-md-5">
                     <input type="text" class="form-control "  name="email_address" id="email_address" >   
                 </div>
             </div>
