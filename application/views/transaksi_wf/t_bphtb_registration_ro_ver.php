@@ -770,6 +770,7 @@
         var bphtb_legal_doc_description = $('#bphtb_legal_doc_description').val();
         var add_disc_percent            = $('#add_disc_percent').val();
 
+        // alert(verificated_by+' '+verificated_nip);
         //alert(p_bphtb_legal_doc_type_id);return;
         // mau diproses ke update button simpan
         $.ajax({
@@ -810,7 +811,9 @@
                         wp_p_region_id_kec :wp_p_region_id_kec,
                         object_p_region_id_kel :object_p_region_id_kel,
                         bphtb_legal_doc_description :bphtb_legal_doc_description,
-                        add_disc_percent :add_disc_percent
+                        add_disc_percent :add_disc_percent,
+                        verificated_by : verificated_by,
+                        verificated_nip : verificated_nip
                     },
             success: function (data) {
                 var data1 = data.rows;

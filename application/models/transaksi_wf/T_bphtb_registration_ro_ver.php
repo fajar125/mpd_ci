@@ -52,7 +52,7 @@ class T_bphtb_registration_ro_ver extends Abstract_model {
         parent::__construct();
     }
 
-    function updateDataRover($wp_p_region_id,$wp_p_region_id_kel,$wp_name,$wp_address_name,$npwp,$object_p_region_id_kec,$object_p_region_id,$land_area,$land_price_per_m,$land_total_price,$building_area,$building_price_per_m,$building_total_price,$wp_rt,$wp_rw,$object_rt,$object_rw,$njop_pbb,$object_address_name,$p_bphtb_legal_doc_type_id,$npop,$npop_tkp,$npop_kp,$bphtb_amt,$bphtb_amt_final,$bphtb_discount,$description,$market_price,$mobile_phone_no,$wp_p_region_id_kec,$object_p_region_id_kel,$bphtb_legal_doc_description,$add_disc_percent,$t_bphtb_registration_id){
+    function updateDataRover($wp_p_region_id,$wp_p_region_id_kel,$wp_name,$wp_address_name,$npwp,$object_p_region_id_kec,$object_p_region_id,$land_area,$land_price_per_m,$land_total_price,$building_area,$building_price_per_m,$building_total_price,$wp_rt,$wp_rw,$object_rt,$object_rw,$njop_pbb,$object_address_name,$p_bphtb_legal_doc_type_id,$npop,$npop_tkp,$npop_kp,$bphtb_amt,$bphtb_amt_final,$bphtb_discount,$description,$market_price,$mobile_phone_no,$wp_p_region_id_kec,$object_p_region_id_kel,$bphtb_legal_doc_description,$add_disc_percent,$t_bphtb_registration_id,$verificated_by,$verificated_nip){
 
         $ci =& get_instance();
         $userdata = $ci->session->userdata;
@@ -94,10 +94,12 @@ class T_bphtb_registration_ro_ver extends Abstract_model {
                 wp_p_region_id_kec=$wp_p_region_id_kec, 
                 object_p_region_id_kel=$object_p_region_id_kel, 
                 bphtb_legal_doc_description='$bphtb_legal_doc_description', 
-                add_disc_percent=$add_disc_percent 
+                add_disc_percent=$add_disc_percent,
+                verificated_by='$verificated_by',
+                verificated_nip='$verificated_nip'
                 WHERE  t_bphtb_registration_id = $t_bphtb_registration_id";
 
-        //echo $sql;exit();
+        // echo $sql;exit();
 
         $query = $this->db->query($sql);
 

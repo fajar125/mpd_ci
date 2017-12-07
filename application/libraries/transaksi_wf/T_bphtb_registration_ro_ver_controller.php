@@ -154,12 +154,14 @@ class T_bphtb_registration_ro_ver_controller {
             $object_p_region_id_kel         = $ci->input->post('object_p_region_id_kel',0);
             $bphtb_legal_doc_description    = $ci->input->post('bphtb_legal_doc_description','');
             $add_disc_percent               = $ci->input->post('add_disc_percent',0);
+            $verificated_by                 = $ci->input->post('verificated_by','');
+            $verificated_nip                = $ci->input->post('verificated_nip','');
 
 
             $ci->load->model('transaksi_wf/t_bphtb_registration_ro_ver');
             $table = $ci->t_bphtb_registration_ro_ver;
 
-            $result = $table->updateDataRover($wp_p_region_id,$wp_p_region_id_kel,$wp_name,$wp_address_name,$npwp,$object_p_region_id_kec,$object_p_region_id,$land_area,$land_price_per_m,$land_total_price,$building_area,$building_price_per_m,$building_total_price,$wp_rt,$wp_rw,$object_rt,$object_rw,$njop_pbb,$object_address_name,$p_bphtb_legal_doc_type_id,$npop,$npop_tkp,$npop_kp,$bphtb_amt,$bphtb_amt_final,$bphtb_discount,$description,$market_price,$mobile_phone_no,$wp_p_region_id_kec,$object_p_region_id_kel,$bphtb_legal_doc_description,$add_disc_percent,$t_bphtb_registration_id);
+            $result = $table->updateDataRover($wp_p_region_id,$wp_p_region_id_kel,$wp_name,$wp_address_name,$npwp,$object_p_region_id_kec,$object_p_region_id,$land_area,$land_price_per_m,$land_total_price,$building_area,$building_price_per_m,$building_total_price,$wp_rt,$wp_rw,$object_rt,$object_rw,$njop_pbb,$object_address_name,$p_bphtb_legal_doc_type_id,$npop,$npop_tkp,$npop_kp,$bphtb_amt,$bphtb_amt_final,$bphtb_discount,$description,$market_price,$mobile_phone_no,$wp_p_region_id_kec,$object_p_region_id_kel,$bphtb_legal_doc_description,$add_disc_percent,$t_bphtb_registration_id,$verificated_by,$verificated_nip);
 
             $count = count($result);
 
