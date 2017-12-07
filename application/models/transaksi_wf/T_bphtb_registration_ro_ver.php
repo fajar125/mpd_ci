@@ -81,7 +81,7 @@ class T_bphtb_registration_ro_ver extends Abstract_model {
                 object_rw='$object_rw', 
                 njop_pbb='$njop_pbb', 
                 object_address_name='$object_address_name', 
-                p_bphtb_legal_doc_type_id=nvl($p_bphtb_legal_doc_type_id,0),
+                p_bphtb_legal_doc_type_id=$p_bphtb_legal_doc_type_id,
                 npop=$npop, 
                 npop_tkp=$npop_tkp, 
                 npop_kp=$npop_kp,
@@ -99,7 +99,7 @@ class T_bphtb_registration_ro_ver extends Abstract_model {
                 verificated_nip='$verificated_nip'
                 WHERE  t_bphtb_registration_id = $t_bphtb_registration_id";
 
-        // echo $sql;exit();
+        echo $sql;exit();
 
         $query = $this->db->query($sql);
 
