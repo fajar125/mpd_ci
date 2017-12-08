@@ -306,7 +306,7 @@ $("#tab-2").on("click", function(event) {
                     <label class="control-label col-md-3">No Urut</label>
                     <div class="col-md-3">
                         <div class="input-group">
-                            <input type="text" class="form-control required " name="listing_no" id="listing_no" style="width: 560px;">                 
+                            <input type="text" class="form-control required " name="listing_no" id="listing_no" style="width: 560px;" maxlength="2">                 
                         </div>
                     </div>
                 </div>

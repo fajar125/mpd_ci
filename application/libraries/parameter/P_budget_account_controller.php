@@ -81,8 +81,8 @@ class P_budget_account_controller {
         $page = getVarClean('page','int',1);
         $limit = getVarClean('rows','int',5);
 
-        $code                     = getVarClean('code','str','');
-        $listing_no               = getVarClean('listing_no','int',0);
+        $code                     = getVarClean('coa_code','str','');
+        $p_budget_type_id         = getVarClean('p_budget_type_id','int',0);
         $description              = getVarClean('description','str','');
 
         $data = array('rows' => array(), 'page' => 1, 'records' => 0, 'total' => 1, 'success' => false, 'message' => '');
@@ -92,11 +92,9 @@ class P_budget_account_controller {
             $ci = & get_instance();
             $ci->load->model('parameter/p_budget_account');
             $table = $ci->p_budget_account;
-            $p_budget_account_id = $table->generate_id('p_budget_account', 'p_budget_account_id');
 
-            $param =  array('p_budget_account_id'=>$p_budget_account_id,
-                            'code'=>$code,
-                            'listing_no'=>$listing_no,
+            $param =  array('p_budget_type_id'=>$p_budget_type_id,
+                            'coa_code'=>$code,
                             'description'=>$description);
             //print_r($param);exit;
             $result = $table->insert($param) ;
@@ -120,8 +118,7 @@ class P_budget_account_controller {
         $limit = getVarClean('rows','int',5);
 
         $p_budget_account_id       = getVarClean('p_budget_account_id','int',0);
-        $code                   = getVarClean('code','str','');
-        $listing_no             = getVarClean('listing_no','int',0);
+        $code                   = getVarClean('coa_code','str','');
         $description            = getVarClean('description','str','');
 
         $data = array('rows' => array(), 'page' => 1, 'records' => 0, 'total' => 1, 'success' => false, 'message' => '');
@@ -133,8 +130,7 @@ class P_budget_account_controller {
             $table = $ci->p_budget_account;
 
             $param =  array('p_budget_account_id' =>$p_budget_account_id,
-                            'code'=>$code,
-                            'listing_no'=>$listing_no,
+                            'coa_code'=>$code,
                             'description'=>$description);
 
 

@@ -4,7 +4,7 @@
             <!-- modal title -->
             <div class="modal-header no-padding">
                 <div class="table-header">
-                    <span class="form-add-edit-title">KODE MASTER AKUN</span>
+                    <span class="form-add-edit-title"> Kode Master Akun</span>
                 </div>
             </div>
             <input type="hidden" id="modal_lov_coa_id_val" value="" />
@@ -21,11 +21,11 @@
                 <table id="modal_coa_grid_selection" class="table table-striped table-bordered table-hover">
                 <thead>
                   <tr>
-                     <th data-column-id="coa_id" data-sortable="false" data-visible="false">ID Status</th>
-                     <th data-header-align="center" data-align="center" data-formatter="opt-edit" data-sortable="false" data-width="100">Options</th>
+                     <th data-column-id="coa_id" data-sortable="false" data-visible="false">ID Coa</th>
+                     <th data-header-align="center" data-align="center" data-formatter="opt-edit" data-sortable="false" data-width="75">Options</th>
                      <th data-column-id="coa_code">Kode Master Akun</th>
                      <th data-column-id="coa_name">Nama Master Akun</th>
-                     <th data-column-id="description">Description </th>
+                      <th data-column-id="description">Deskripsi</th>
                   </tr>
                 </thead>
                 </table>
@@ -51,32 +51,33 @@
         $("#modal_coa_btn_blank").on('click', function() {
             $("#"+ $("#modal_lov_coa_id_val").val()).val("");
             $("#"+ $("#modal_lov_coa_code_val").val()).val("");
+            $("#"+ $("#modal_lov_coa_name_val").val()).val("");
             $("#modal_coa").modal("toggle");
         });
     });
 
-    function modal_coa_show(the_id_field, the_code_field, the_name_field) {
-        modal_coa_set_field_value(the_id_field, the_code_field, the_name_field);
+    function modal_coa_show(the_id_field, the_code_field, name) {
+        modal_coa_set_field_value(the_id_field, the_code_field, name);
         $("#modal_coa").modal({backdrop: 'static'});
         modal_coa_prepare_table();
     }
 
 
-    function modal_coa_set_field_value(the_id_field, the_code_field, the_name_field) {
+    function modal_coa_set_field_value(the_id_field, the_code_field, name) {
          $("#modal_lov_coa_id_val").val(the_id_field);
          $("#modal_lov_coa_code_val").val(the_code_field);
-         $("#modal_lov_coa_name_val").val(the_name_field);
+         $("#modal_lov_coa_name_val").val(name);
     }
 
-    function modal_coa_set_value(the_id_val, the_code_val, the_name_field) {
-         $("#"+ $("#modal_lov_coa_id_val").val()).val(the_id_val);
-         $("#"+ $("#modal_lov_coa_code_val").val()).val(the_code_val);
-         $("#"+ $("#modal_lov_coa_name_val").val()).val(the_name_field);
-         $("#modal_coa").modal("toggle");
+    function modal_coa_set_value(the_id_val, the_code_val, name) {
+        $("#"+ $("#modal_lov_coa_id_val").val()).val(the_id_val);
+        $("#"+ $("#modal_lov_coa_code_val").val()).val(the_code_val);
+        $("#"+ $("#modal_lov_coa_name_val").val()).val(name);
+        $("#modal_coa").modal("toggle");
 
-         $("#"+ $("#modal_lov_coa_id_val").val()).change();
-         $("#"+ $("#modal_lov_coa_code_val").val()).change();
-         $("#"+ $("#modal_lov_coa_name_val").val()).change();
+        $("#"+ $("#modal_lov_coa_id_val").val()).change();
+        $("#"+ $("#modal_lov_coa_code_val").val()).change();
+        $("#"+ $("#modal_lov_coa_name_val").val()).change();
     }
 
     function modal_coa_prepare_table() {

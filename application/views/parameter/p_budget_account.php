@@ -66,25 +66,12 @@
 </div>
 <?php $this->load->view('lov/lov_coa'); ?>
 <script>
-$("#tab-2").on("click", function(event) {
+$("#tab-1").on("click", function(event) {
 
     event.stopPropagation();
     var grid = $('#grid-table');
 
-    /*p_budget_type_id = grid.jqGrid ('getGridParam', 'selrow');
-    id_budget_type = grid.jqGrid ('getCell', p_budget_type_id, 'p_budget_type_id');*/
-
-    //alert(" p_budget_type_id = "+id_budget_type);
-
-    /*if(p_budget_type_id == null) {
-        swal('Informasi','Silahkan pilih salah satu JENIS ANGGARAN !','info');
-        return false;
-    }*/
-
-    loadContentWithParams("parameter.p_budget_type", {
-        //p_budget_type_id: p_budget_type_id,
-        
-    });
+    loadContentWithParams("parameter.p_budget_type", {});
 });
 </script>
 <script>
@@ -101,7 +88,9 @@ $("#tab-2").on("click", function(event) {
             mtype: "POST",
             colModel: [
                 {label: 'ID', name: 'p_budget_account_id', key: true, width: 5, sorttype: 'number', editable: false, hidden: true},
-                {label: 'Kode Anggaran',name: 'coa_code',width: 300,sorttype: 'text'},
+                {label: 'Kode Anggaran',name: 'coa_name',width: 300,sorttype: 'text', hidden:true},
+                {label: 'Kode Anggaran',name: 'coa_code',width: 300,sorttype: 'text', hidden:true},
+                {label: 'Kode Anggaran',name: 'coa_code1',width: 300,sorttype: 'text'},
                 {label: 'Deskripsi',name: 'description',width: 300,sorttype: 'text'}
             ],
             height: '100%',
@@ -127,7 +116,12 @@ $("#tab-2").on("click", function(event) {
             loadComplete: function (response) {
                 if(response.success == false) {
                     swal({title: 'Attention', text: response.message, html: true, type: "warning"});
+
                 }
+
+                setTimeout(function(){
+                      $("#grid-table").setSelection($("#grid-table").getDataIDs()[0],true);
+                    },500);
 
             },
             caption: "DAFTAR AKUN ANGGARAN || JENIS ANGGARAN : "+code_anggaran
@@ -168,6 +162,7 @@ $("#tab-2").on("click", function(event) {
         $('#coa_code').val(coa_code);
         $('#coa_name').val(coa_name);
         $('#description').val(description);
+        $('#p_budget_account_id').val(rowid);
     }
 
     $('#add-pic').on('click', function(event){
@@ -178,28 +173,35 @@ $("#tab-2").on("click", function(event) {
         $('#coa_id').val('');
         $('#coa_id').val('');
         $('#coa_code').val('');
+        $('#coa_name').val('');
         $('#description').val('');
 
         $('#grid-table').jqGrid('resetSelection');
 
     });
 
-    $("#btn-lov-coa").on('click', function() {   
-        modal_coa_show('coa_id','coa_code', 'coa_name');
-    });
+    
 </script>
 <script type="text/javascript">
     function cancel(){
-        //loadContentWithParams("parameter.t_pic_object", 
-                    //{t_cust_account_id : <?php echo $this->input->post('t_cust_account_id'); ?>});
+        var p_budget_type_id = <?php echo $this->input->post('p_budget_type_id'); ?>;
+        var code_anggaran = '<?php echo $this->input->post('code_anggaran'); ?>';
+        
+        loadContentWithParams("parameter.p_budget_account", { 
+                        p_budget_type_id : p_budget_type_id, 
+                        code_anggaran : code_anggaran
+                    });
     }
 
     function insert(){
-        //var t_cust_account_id          = <?php echo $this->input->post('t_cust_account_id'); ?>;
+        //var t_cust_account_id          = <?php //echo $this->input->post('t_cust_account_id'); ?>;
         //var coa_id                   = $('#coa_id').val();
         var p_budget_type_id         = <?php echo $this->input->post('p_budget_type_id'); ?>;
         var coa_code                 = $('#coa_code').val();
         var description              = $('#description').val();
+
+        var p_budget_type_id = <?php echo $this->input->post('p_budget_type_id'); ?>;
+        var code_anggaran = '<?php echo $this->input->post('code_anggaran'); ?>';
 
         if(validasi() != true){
             var var_url = "<?php echo WS_JQGRID . "parameter.p_budget_account_controller/insert/?"; ?>";
@@ -213,8 +215,10 @@ $("#tab-2").on("click", function(event) {
              $.getJSON(var_url, function( items ) {
                 if(items.rows=="sukses"){
                     swal('Informasi','Sukses Simpan Data','info');
-                    //loadContentWithParams("parameter.t_pic_object", 
-                       // {t_cust_account_id : <?php echo $this->input->post('t_cust_account_id'); ?>});
+                    loadContentWithParams("parameter.p_budget_account", { 
+                        p_budget_type_id : p_budget_type_id, 
+                        code_anggaran : code_anggaran
+                    });
                 }else{
                     swal('Informasi','Tolong Periksa Inputan Anda Kembali','info');
                 }
@@ -223,25 +227,31 @@ $("#tab-2").on("click", function(event) {
     }
 
     function update(){
-        //var t_cust_account_id          = <?php echo $this->input->post('t_cust_account_id'); ?>;
-        var coa_id                  = $('#coa_id').val();
-        var coa_code                   = $('#coa_code').val();
-        var coa_name                     = $('#coa_name').val();
+        //var t_cust_account_id          = <?php //echo $this->input->post('t_cust_account_id'); ?>;
+        var p_budget_account_id = $('#p_budget_account_id').val();
+        var coa_code = $('#coa_code').val();
+        var coa_name = $('#coa_name').val();
+        var description = $('#description').val();
+
+        var p_budget_type_id = <?php echo $this->input->post('p_budget_type_id'); ?>;
+        var code_anggaran = '<?php echo $this->input->post('code_anggaran'); ?>';
 
         if(validasi() != true){
             var var_url = "<?php echo WS_JQGRID . "parameter.p_budget_account_controller/update/?"; ?>";
             var_url += "<?php echo $this->security->get_csrf_token_name(); ?>=<?php echo $this->security->get_csrf_hash(); ?>";
 
-             var_url += "&description=" + description;
-             var_url += "&coa_id=" + coa_id;
-             var_url += "&coa_code=" + coa_code;
-             var_url += "&coa_name=" + coa_name;
+            var_url += "&p_budget_account_id=" + p_budget_account_id; 
+            var_url += "&description=" + description;
+            var_url += "&coa_code=" + coa_code;
 
              $.getJSON(var_url, function( items ) {
                 if(items.rows=="sukses"){
                     swal('Informasi','Sukses Update Data','info');
-                    //loadContentWithParams("parameter.t_pic_object", 
-                        //{t_cust_account_id : <?php echo $this->input->post('t_cust_account_id'); ?>});
+                    
+                    loadContentWithParams("parameter.p_budget_account", { 
+                        p_budget_type_id : p_budget_type_id, 
+                        code_anggaran : code_anggaran
+                    });
                 }else{
                     swal('Informasi','Tolong Periksa Inputan Anda Kembali','info');
                 }
@@ -251,6 +261,9 @@ $("#tab-2").on("click", function(event) {
 
     function hapus(){
         var p_budget_account_id                     = $('#p_budget_account_id').val();
+
+        var p_budget_type_id = <?php echo $this->input->post('p_budget_type_id'); ?>;
+        var code_anggaran = '<?php echo $this->input->post('code_anggaran'); ?>';
 
         var var_url = "<?php echo WS_JQGRID . "parameter.p_budget_account_controller/delete/?"; ?>";
          var_url += "&id=" + p_budget_account_id;
@@ -269,8 +282,10 @@ $("#tab-2").on("click", function(event) {
             $.getJSON(var_url, function( items ) {
                 if(items.rows=="sukses"){
                     swal("Delete finished!");
-                    //loadContentWithParams("parameter.t_pic_object", 
-                    //{t_cust_account_id : <?php echo $this->input->post('t_cust_account_id'); ?>});
+                    loadContentWithParams("parameter.p_budget_account", { 
+                        p_budget_type_id : p_budget_type_id, 
+                        code_anggaran : code_anggaran
+                    });
                 }else{
                     swal("Delete Failed!");
                 }
@@ -299,8 +314,7 @@ $("#tab-2").on("click", function(event) {
     <div class="col-xs-12">
         <div class="portlet light bordered">
             <div class="form-body">
-                <input type="hidden" class="form-control" name="t_cust_account_id" id="t_cust_account_id" value="" style="width: 560px;"> 
-                <input type="hidden" class="form-control" name="coa_name" id="coa_name" style="width: 560px;">  
+                <input type="hidden" class="form-control" name="p_budget_account_id" id="p_budget_account_id" value="">
                 <div class="row">
                     <label class="control-label col-md-3">Jenis Anggaran </label>
                     <div class="col-md-5">
@@ -308,7 +322,7 @@ $("#tab-2").on("click", function(event) {
                             <input type="hidden" class="form-control required" maxlength="8" name="coa_id" id="coa_id" readonly>
                             <input type="text" class="form-control required" name="coa_code" id="coa_code" readonly>
                             <span class="input-group-btn">
-                                <button class="btn btn-success" type="button" id="btn-lov-coa">
+                                <button class="btn btn-success" type="button" id="btn-lov-coa" onclick="showLOVCoa('coa_id', 'coa_code','coa_name')">
                                 <i class="fa fa-search"></i>
                             </span>
                         </div>
@@ -351,3 +365,9 @@ $("#tab-2").on("click", function(event) {
         </div>       
     </div>   
 </div>
+<script type="text/javascript">
+    function showLOVCoa(id,code,name){   
+        modal_coa_show(id,code,name);
+       // alert($('#coa_name').val());
+    }
+</script>

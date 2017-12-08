@@ -22,9 +22,10 @@ class P_budget_account extends Abstract_model {
 
                             )*/"";
 
-    public $selectClause    ="a.p_budget_type_id, 
-                              a.coa_code || ' ' ||c.coa_name coa_code, 
-                              a.description, 
+    public $selectClause    ="a.p_budget_type_id, a.p_budget_account_id,
+                              a.coa_code,
+                              a.coa_code || ' ' ||c.coa_name as coa_code1, 
+                              a.description, c.coa_name,
                               a.p_budget_account_id,
                               to_char(a.creation_date, 'DD-MON-YYYY') creation_date, 
                               a.created_by,
@@ -46,17 +47,20 @@ class P_budget_account extends Abstract_model {
         $userdata = $userdata['app_user_name'];
         $date = date('Y-m-d');
 
-        $data =  array('code' =>$param['code'],
-                        'p_budget_type_id' =>$param['p_budget_type_id'],
-                        'description'=>$param['description'],
-                        'listing_no'=>$param['listing_no'],
-                        'created_by'=>$userdata,
-                        'creation_date'=>$date,
-                        'updated_by'=>$userdata,
-                        'updated_date'=>$date);
+
+
+        $data =  array(
+                        'p_budget_account_id' => $this->generate_id('p_budget_account', 'p_budget_account_id'),
+                        'description' => $param['description'], 
+                        'created_by' => $userdata, 
+                        'updated_by' => $userdata, 
+                        'creation_date' => $date, 
+                        'updated_date' => $date, 
+                        'coa_code' => $param['coa_code'], 
+                        'p_budget_type_id' => $param['p_budget_type_id']);
 
         //$query = $this->db->query($sql);
-        $this->db->insert('p_budget_type',$data);
+        $this->db->insert('p_budget_account',$data);
         $item = 'sukses';
 
         return $item;
@@ -68,13 +72,13 @@ class P_budget_account extends Abstract_model {
         $userdata = $userdata['app_user_name'];
         $updated_date = date('Y-m-d');
 
-        $data =  array('code' =>$param['code'],
-                        'listing_no'=>$param['listing_no'],
-                        'p_budget_type_id'=>$param['p_budget_type_id'],
-                        'description'=>$param['description']);
+        $data =  array('coa_code' =>$param['coa_code'],
+                        'description'=>$param['description'],
+                        'updated_by'=>$userdata,
+                        'updated_date'=>$updated_date);
 
-        $this->db->where('p_budget_type_id', $param['p_budget_type_id']);
-        $this->db->update('sikp.p_budget_type', $data);
+        $this->db->where('p_budget_account_id', $param['p_budget_account_id']);
+        $this->db->update('sikp.p_budget_account', $data);
         $item = 'sukses';
 
         return $item;
@@ -83,7 +87,7 @@ class P_budget_account extends Abstract_model {
     function delete($id){
         $ci =& get_instance();
 
-        $this->db->delete('sikp.p_budget_type', array('p_budget_type_id' => $id));
+        $this->db->delete('sikp.p_budget_account', array('p_budget_account_id' => $id));
         $item = 'sukses';
         return $item;
     }
