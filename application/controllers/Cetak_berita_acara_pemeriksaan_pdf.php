@@ -36,10 +36,11 @@ class Cetak_berita_acara_pemeriksaan_pdf extends CI_Controller{
 		
 		$t_customer_order_id = getVarClean('t_customer_order_id','int',0);
 
-		$sql="";
+		$sql = "";
+
 		if ($t_customer_order_id != 0) {
 			$sql .= "SELECT a.p_vat_type_dtl_id,a.t_vat_registration_id,c.vat_code,
-			a.company_brand, a.brand_address_name, a.brand_address_no, a.wp_name, a.wp_address_name, a.company_name, a.address_name, b.code as job_name, a.bap_employee_no_1, a.bap_employee_name_1, a.bap_employee_no_2, a.bap_employee_name_2, a.bap_employee_job_pos_1, a.bap_employee_job_pos_2 " .
+			a.company_brand, a.brand_address_name, a.brand_address_no, a.wp_name, a.wp_address_name, a.wp_phone_no, a.company_name, a.address_name, b.code as job_name, a.bap_employee_no_1, a.bap_employee_name_1, a.bap_employee_no_2, a.bap_employee_name_2, a.bap_employee_job_pos_1, a.bap_employee_job_pos_2 " .
 			"FROM t_vat_registration a " .
 			"join p_job_position b " .
 			"on a.p_job_position_id = b.p_job_position_id " .
@@ -51,20 +52,15 @@ class Cetak_berita_acara_pemeriksaan_pdf extends CI_Controller{
 		$query = $this->db->query($sql);
 		$data = $query->row_array();
 
+		//print_r($data);exit;
+
 		if (empty($data)){
 			echo "Data BAP Tidak Ada";
 			exit();
 		}
-		
-
-
-
-		
 
 		$pdf = new FPDF('P', 'mm', array(203.2,330.2));
-
-
-		
+	
 		$pdf->AliasNbPages();
 		$pdf->AddPage("P");
 		$pdf->SetFont('Arial', '', 10);
