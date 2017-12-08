@@ -321,7 +321,7 @@ $("#tab-1").on("click", function(event) {
                 <div class="row">
                     <label class="control-label col-md-3">Email</label>
                     <div class="input-group col-md-5">
-                            <input type="text" class="form-control" name="wp_email" id="wp_email">
+                            <input type="email" class="form-control required" name="wp_email" id="wp_email">
                     </div>
                 </div>
 
@@ -641,7 +641,7 @@ $("#tab-1").on("click", function(event) {
                 <div class="row">
                     <label class="control-label col-md-3">Email</label>
                     <div class="input-group col-md-5">
-                        <input type="text" class="form-control" name="email" id="email">
+                        <input type="email" class="form-control" name="email" id="email">
                     </div>
                 </div>
                 <div class="space-2"></div>
@@ -835,6 +835,7 @@ $("#tab-1").on("click", function(event) {
             zip_code_owner = "-"; 
         }
 
+
         if (wp_address_rt == "" || wp_address_rt == 0 || wp_address_rt == false || wp_address_rt == undefined ||  wp_address_rt == null){
             wp_address_rt = "-"; 
         }
@@ -874,6 +875,10 @@ $("#tab-1").on("click", function(event) {
             brand_phone_no = "-"; 
         }
 
+        if (wp_email == "" || wp_email == 0 || wp_email == false || wp_email == undefined ||  wp_email == null){
+            swal('Informasi',"Email WP harus diisi",'info'); 
+            return;
+        }
         if (p_vat_type_dtl_id == "" || p_vat_type_dtl_id == 0 || p_vat_type_dtl_id == false || p_vat_type_dtl_id == undefined ||  p_vat_type_dtl_id == null){
             swal('Informasi',"Nama Ayat harus diisi",'info'); 
             return;
