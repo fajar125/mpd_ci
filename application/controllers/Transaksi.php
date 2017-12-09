@@ -94,6 +94,26 @@ class Transaksi extends CI_Controller
 
     }
 
+    function getComboNamaTugas(){
+        check_login();
+        $sql = "SELECT * 
+                FROM p_assignment_type
+                ORDER BY p_assignment_type_id ASC";
+        $query = $this->db->query($sql);
+        $items = $query->result_array();
+        $html = "";
+        $html.="<select name='p_assignment_type_id' id='p_assignment_type_id' class='form-control required'>";
+        $html.="<option value='' >-- Pilih Nama Tugas --</option>";
+        foreach ($items as $data) {
+          $html .=" <option value='" . $data['p_assignment_type_id'] . "'>" . $data['assignment_name'] . "</option>";
+        }
+        $html .= "</select>";
+
+        echo $html;
+        exit;
+        
+    }
+
     function payment_type_combo(){
         try {
             $sql = "SELECT * 
