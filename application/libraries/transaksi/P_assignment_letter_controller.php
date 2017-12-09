@@ -79,7 +79,7 @@ class P_assignment_letter_controller {
         $limit = getVarClean('rows','int',5);
 
         $letter_no                = getVarClean('letter_no','str','');
-        $letter_body              = getVarClean('letter_body','str','');
+        $letter_body              = $_POST['letter_body'];
         $letter_date              = getVarClean('letter_date','str','');
         $p_assignment_type_id     = getVarClean('p_assignment_type_id','int',0);
         $description              = getVarClean('description','str','');
@@ -115,15 +115,20 @@ class P_assignment_letter_controller {
     }
 
     function update(){
+
         $page = getVarClean('page','int',1);
         $limit = getVarClean('rows','int',5);
 
         $letter_no                = getVarClean('letter_no','str','');
-        $letter_body              = getVarClean('letter_body','str','');
+        // $letter_body              = getVarClean('letter_body','str','');
+        $letter_body              = $_POST['letter_body'];
+
         $letter_date              = getVarClean('letter_date','str','');
         $p_assignment_type_id     = getVarClean('p_assignment_type_id','int',0);
         $p_assignment_letter_id   = getVarClean('p_assignment_letter_id','int',0);
         $description              = getVarClean('description','str','');
+
+        // print_r($letter_body); exit;
 
         $data = array('rows' => array(), 'page' => 1, 'records' => 0, 'total' => 1, 'success' => false, 'message' => '');
 

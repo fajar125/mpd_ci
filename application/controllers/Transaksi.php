@@ -103,7 +103,7 @@ class Transaksi extends CI_Controller
         $items = $query->result_array();
         $html = "";
         $html.="<select name='p_assignment_type_id' id='p_assignment_type_id' class='form-control required'>";
-        $html.="<option value='' >-- Pilih Nama Tugas --</option>";
+        $html.="<option value='' >-- Pilih Jenis Surat Tugas --</option>";
         foreach ($items as $data) {
           $html .=" <option value='" . $data['p_assignment_type_id'] . "'>" . $data['assignment_name'] . "</option>";
         }
