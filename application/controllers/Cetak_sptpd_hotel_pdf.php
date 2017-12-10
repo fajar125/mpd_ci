@@ -42,31 +42,13 @@ class Cetak_sptpd_hotel_pdf extends CI_Controller{
 		$data = array();
 
 		//get global param
-		$sql = "select value from p_global_param where code = 'ALAMAT_1'";
-		$output = $this->db->query($sql);
-        $ALAMAT_1 = $output->row_array()['value'];
-        
-        $sql = "select value from p_global_param where code = 'ALAMAT_2'";
-		$output = $this->db->query($sql);
-        $ALAMAT_2 = $output->row_array()['value'];
-
-        $sql = "select value from p_global_param where code = 'ALAMAT_3'";
-		$output = $this->db->query($sql);
-        $ALAMAT_3 = $output->row_array()['value'];
-        
-        $sql = "select value from p_global_param where code = 'LOGO'";
-		$output = $this->db->query($sql);
-        $LOGO = $output->row_array()['value'];
-        
-        $sql = "select value from p_global_param where code = 'INSTANSI_1'";
-		$output = $this->db->query($sql);
-        $INSTANSI_1 = $output->row_array()['value'];
-        
-        $sql = "select value from p_global_param where code = 'INSTANSI_2'";
-		$output = $this->db->query($sql);
-        $INSTANSI_2 = $output->row_array()['value'];
-        
-		
+		$ALAMAT_1 = getValByCode('ALAMAT_1');
+        $ALAMAT_2 = getValByCode('ALAMAT_2');
+        $ALAMAT_3 = getValByCode('ALAMAT_3');
+        $LOGO = getValByCode('LOGO');
+        $INSTANSI_1 = getValByCode('INSTANSI_1');
+        $INSTANSI_2 = getValByCode('INSTANSI_2');
+        		
         $sql = "SELECT a.*, wp_kota FROM v_vat_setllement a 
 				LEFT JOIN v_cust_account_update b on a.t_cust_account_id=b.t_cust_account_id
 				WHERE t_vat_setllement_id = ?";      
@@ -107,14 +89,14 @@ class Cetak_sptpd_hotel_pdf extends CI_Controller{
 		$pdf->Cell($leng1, $this->height, " Masa Pajak", 0, 0, 'L');
 		$pdf->Cell($leng2, $this->height, ": ".$data["finance_period_code"], "R", 0, 'L');
 		$pdf->Ln();
-		$pdf->SetFont('Arial', '', 8);
+		$pdf->SetFont('Arial', '', 7);
 		$pdf->Cell($lengthJudul1, $this->height, "", "L", 0, 'C');
 		$pdf->Cell($lengthJudul2, $this->height, $ALAMAT_1, "R", 0, 'C');
 		$pdf->SetFont('Arial', '', 10);
 		$pdf->Cell($leng1, $this->height, " Tahun Pajak", 0, 0, 'L');
 		$pdf->Cell($leng2, $this->height, ": ".$data["tahun"], "R", 0, 'L');
 		$pdf->Ln();
-		$pdf->SetFont('Arial', '', 8);
+		$pdf->SetFont('Arial', '', 7);
 		$pdf->Cell($lengthJudul1, $this->height, "", "L", 0, 'C');
 		$pdf->Cell($lengthJudul2, $this->height, $ALAMAT_2, "R", 0, 'C');
 		$pdf->Cell($lengthJudul3, $this->height, "", "R", 0, 'R');

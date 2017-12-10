@@ -13,29 +13,12 @@ class Cetak_no_bayar extends CI_Controller{
 		$data = array();
 
 		//get global param
-		$sql = "select value from p_global_param where code = 'ALAMAT_1'";
-		$output = $this->db->query($sql);
-        $ALAMAT_1 = $output->row_array()['value'];
-        
-        $sql = "select value from p_global_param where code = 'ALAMAT_2'";
-		$output = $this->db->query($sql);
-        $ALAMAT_2 = $output->row_array()['value'];
-
-        $sql = "select value from p_global_param where code = 'ALAMAT_3'";
-		$output = $this->db->query($sql);
-        $ALAMAT_3 = $output->row_array()['value'];
-        
-        $sql = "select value from p_global_param where code = 'LOGO'";
-		$output = $this->db->query($sql);
-        $LOGO = $output->row_array()['value'];
-        
-        $sql = "select value from p_global_param where code = 'INSTANSI_1'";
-		$output = $this->db->query($sql);
-        $INSTANSI_1 = $output->row_array()['value'];
-        
-        $sql = "select value from p_global_param where code = 'INSTANSI_2'";
-		$output = $this->db->query($sql);
-        $INSTANSI_2 = $output->row_array()['value'];
+		$ALAMAT_1 = getValByCode('ALAMAT_1');
+        $ALAMAT_2 = getValByCode('ALAMAT_2');
+        $ALAMAT_3 = getValByCode('ALAMAT_3');
+        $LOGO = getValByCode('LOGO');
+        $INSTANSI_1 = getValByCode('INSTANSI_1');
+        $INSTANSI_2 = getValByCode('INSTANSI_2');
         
 		
         $sql = "select x.company_brand,x.brand_address_name,x.brand_address_no,to_char(a.settlement_date,'dd-mm-yyyy') as settlement_date,
@@ -99,7 +82,7 @@ class Cetak_no_bayar extends CI_Controller{
 		$pdf->Cell(40, 6, 'JENIS PAJAK', "", 0, 'l');
 		$pdf->Cell(4, 6, ':', "", 0, 'L');
 		$pdf->Cell(80, 6, $items['vat_code'], "", 0, 'L');
-		$pdf->SetFont('helvetica', 'B',26);
+		$pdf->SetFont('helvetica', 'B',22);
 		$pdf->SetTextColor(255,0,0);
 		$pdf->Cell(70, 15, $no_bayar, "BLTR", 0, 'C');
 		$pdf->SetFont('helvetica', '',12);
