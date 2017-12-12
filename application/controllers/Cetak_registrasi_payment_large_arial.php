@@ -117,7 +117,7 @@ class Cetak_registrasi_payment_large_arial extends CI_Controller{
 					array
 					(	
 					    "",
-						"DISYANJAK",
+						getValByCode('INSTANSI_4'),
 						"JAM CETAK : ".date('H:i:s')
 					),
 					array
