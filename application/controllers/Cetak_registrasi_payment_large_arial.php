@@ -117,7 +117,7 @@ class Cetak_registrasi_payment_large_arial extends CI_Controller{
 					array
 					(	
 					    "",
-						getValByCode('INSTANSI_4'),
+						strtoupper(getValByCode('INSTANSI_4')),
 						"JAM CETAK : ".date('H:i:s')
 					),
 					array
@@ -151,7 +151,7 @@ class Cetak_registrasi_payment_large_arial extends CI_Controller{
 					array
 					(	
 					    "",
-						"PEMERINTAH KOTA BANDUNG",
+						getValByCode('INSTANSI_1'),
 						" "
 					),
 					array
