@@ -33,7 +33,7 @@ class Cetak_registrasi_payment_large_arial extends CI_Controller{
 	
 	
 	function pageCetak() {
-		$payment_key = getVarClean('payment_key','str','');
+		$payment_key = getVarClean('codeline','str','');
 		
 		$sql = "SELECT t_customer_order_id FROM t_vat_setllement WHERE payment_key='".$payment_key."'";
         $query = $this->db->query($sql);
