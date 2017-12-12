@@ -82,6 +82,8 @@ class Cetak_duplikat_kwitansi_bphtb extends CI_Controller{
 
       $pdf->Ln(5);
       $pdf->Ln();
+      $pdf->Output();
+
     }
 
     function isiSurat($pdf,$data){
