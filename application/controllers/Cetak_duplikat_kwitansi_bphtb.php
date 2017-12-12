@@ -38,6 +38,7 @@ class Cetak_duplikat_kwitansi_bphtb extends CI_Controller{
         $pecah =  explode(":", $data[0]);
         $kuitansi = $pecah[1];
 
+
         $encImageData = $this->getDataEncript($kuitansi);
 
         $pdf = new FPDF("L", "mm", array(241.3, 139.7));
@@ -54,7 +55,10 @@ class Cetak_duplikat_kwitansi_bphtb extends CI_Controller{
     function kopSurat($pdf,$encImageData){
       $pdf->AddPage();
       $pdf->Image(getValByCode('LOGO'),37,13,25,25);
-      //$pdf->Image(base_url().'/qrcode/generate-qr.php?param='.$encImageData,179,13,25,25,'PNG');
+      if($encImageData){
+        $pdf->Image(base_url().'/qrcode/generate-qr.php?param='.$encImageData,179,13,25,25,'PNG');
+      }
+      
       
       $pdf->SetFont('Arial', '', 11);
 
