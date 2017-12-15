@@ -24,8 +24,6 @@
                             </span>  
                         </div>
                     
-                    
-                    
                 </div>
             </div>
         </div>
@@ -205,6 +203,14 @@
                             </div>
                         
                     </div>
+					<div class="space-2"></div>
+                    <div class="row">
+                        <label class="control-label col-md-2">Status Pembayaran</label>
+                        
+                        <div class="input-group col-md-5">
+							<input type="text" class="form-control" name="status_bayar" id="status_bayar" readonly>                 
+                        </div>
+                    </div>
                     <div class="space-2"></div>
                     <div class="row col-md-offset-3">
                         <button class="btn btn-success" type="submit" id="btn-submit" onclick="save()">Simpan</button>
@@ -260,6 +266,9 @@ function showData(){
             $('#payment_type').val(items.rows[0].p_payment_type_id); 
             $('#is_anomali').val(items.rows[0].is_anomali); 
             $('#no_kohir').val(items.rows[0].no_kohir);  
+			
+			if(items.rows[0].is_settled == 'Y') $('#status_bayar').val('Lunas');
+			else $('#status_bayar').val('Belum Bayar');
 
         })
 }
