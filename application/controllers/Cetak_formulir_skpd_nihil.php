@@ -104,9 +104,10 @@ class Cetak_formulir_skpd_nihil extends CI_Controller{
 		$pdf->Cell($lheader2, $this->height, "No. Urut", "R", 0, 'C');
 		$pdf->Ln();*/
 		
-		
+		$pdf->SetFont('Arial', '', 9);
 		$pdf->Cell($lheader1, $this->height + 1, "", "L", 0, 'C');	
 		$pdf->Cell($lheader2, $this->height + 1, getValByCode('INSTANSI_2'), "R", 0, 'C');
+		$pdf->SetFont('Arial', '', 10);
 		$pdf->Cell($lheader3, $this->height + 1, "     Masa Pajak    : ".$data["finance_period_code"], "R", 0, 'L');
 		$pdf->Cell($lheader2, $this->height + 1, "", "R", 0, 'C');
 		$pdf->Ln($this->height - 4);
