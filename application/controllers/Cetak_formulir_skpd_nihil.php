@@ -34,8 +34,14 @@ class Cetak_formulir_skpd_nihil extends CI_Controller{
 	
 	function pageCetak() {
 		
-		$t_vat_setllement_id = getVarClean('t_vat_setllement_id','int',0);
-
+		$t_cust_order_id = getVarClean('t_cust_order_id','int',0);
+		
+		$sql_vat_setllement = "SELECT t_vat_setllement_id FROM t_vat_setllement WHERE t_customer_order_id = ?";
+		$query = $this->db->query($sql_vat_setllement, array($t_cust_order_id));
+		$result = $query->row_array();
+		
+		$t_vat_setllement_id = $result['t_vat_setllement_id'];
+		
 		$sql = "";
 		if ($t_vat_setllement_id > 0) {
 			$sql = "SELECT *, to_char(settlement_date,'DD Month YYYY') AS tgl_setllement FROM v_vat_setllement WHERE t_vat_setllement_id = " . $t_vat_setllement_id;
