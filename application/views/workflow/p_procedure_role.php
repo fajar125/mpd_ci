@@ -185,7 +185,7 @@
                 if (rowid != null) {
                     grid_detail.jqGrid('setGridParam', {
                         url: '<?php echo WS_JQGRID."administration.p_app_user_role_controller/showUserList"; ?>',
-                        postData: {p_app_role_id: rowid}
+                        postData: {p_app_role_id: celValue}
                     });
                     var strCaption = 'Daftar User :: ' + celCode;
                     grid_detail.jqGrid('setCaption', strCaption);
