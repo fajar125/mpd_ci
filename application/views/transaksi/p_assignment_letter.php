@@ -46,9 +46,11 @@
                         </div>
                     </div>
                 </div> -->
+                <div class="space-4"></div>
                 <div class="row">
                      <div class="col-xs-12">
                         <button class="btn btn-danger" id="add-anggaran"> <i class="fa fa-plus"></i>Tambah</button>
+                        <button class="btn btn-primary" id="save-pdf">Save to PDF</button>
                         <div id="gbox_grid-table" class="ui-jqgrid">
                             <div id="gview_grid-table" class="" role="grid">
                                 <table id="grid-table"></table>
@@ -61,6 +63,10 @@
         </div>
     </div>
 </div>
+<?php
+    
+    $url = base_url()."cetak_surat_tugas_pdf/pageCetak?p_assignment_letter_id=";
+?>
 <script>
 $(function () {  
   CKEDITOR.replace( 'letter_body' );
@@ -486,6 +492,21 @@ $("#tab-2").on("click", function(event) {
             return true;
         }
     }
+
+    $('#save-pdf').on('click', function(){
+        // alert('test');
+        var letter_body  = CKEDITOR.instances.letter_body.getData();
+        var p_assignment_letter_id  = $('#p_assignment_letter_id').val();
+
+        if(letter_body == ''){
+            swal('Oops','Anda belum memilih data yang akan dicetak','error');
+            return;
+        }else{
+
+            window.open("<?php echo $url;?>"+p_assignment_letter_id,'savepdf','directories=no,titlebar=no,toolbar=no,location=no,status=no,menubar=no,scrollbars=yes,resizable=no,width=800,height=600');
+        }
+
+    });
 </script>
 <br>
 <label class="control-label col-md-5"><b>INFORMASI SURAT TUGAS</b></label>
