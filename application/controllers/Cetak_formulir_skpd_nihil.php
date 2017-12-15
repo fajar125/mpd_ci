@@ -74,7 +74,7 @@ class Cetak_formulir_skpd_nihil extends CI_Controller{
 		$pdf->Cell($lheader2, $this->height-2, "", "TR", 0, 'C');
 		$pdf->Ln();
 		
-		$pdf->SetFont('Arial', '', 8);
+		$pdf->SetFont('Arial', '', 9);
 		$pdf->Image(getValByCode('LOGO'),12,15,20,20);
 		$pdf->Cell($lheader1, $this->height, "", "L", 0, 'C');			
 		$pdf->Cell($lheader2, $this->height, "PEMERINTAH KABUPATEN", "R", 0, 'C');
@@ -90,7 +90,7 @@ class Cetak_formulir_skpd_nihil extends CI_Controller{
 		$pdf->Cell($lheader2, $this->height, "No. Urut", "R", 0, 'C');
 		$pdf->Ln();*/		
 		
-		$pdf->SetFont('Arial', '', 8);
+		$pdf->SetFont('Arial', '', 9);
 		$pdf->Cell($lheader1, $this->height-2, "", "L", 0, 'C');			
 		$pdf->Cell($lheader2, $this->height-2, strtoupper(getValByCode('ALAMAT_3')), "R", 0, 'C');
 		$pdf->SetFont('Arial', '', 9);
