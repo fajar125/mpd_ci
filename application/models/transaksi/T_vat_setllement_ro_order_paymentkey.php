@@ -60,9 +60,9 @@ class T_vat_setllement_ro_order_paymentkey extends Abstract_model {
         $ci =& get_instance();
         $userdata = $ci->session->userdata;
 
-        $sql = "SELECT * FROM f_payment_manual_paymentkey_v3(?,?,?)";
+        $sql = "SELECT * FROM f_payment_manual_paymentkey_v3(?,?,?,?)";
 
-        $query = $this->db->query($sql, array($cust_order_id,$userdata['app_user_name'],$p_payment_type_id));
+        $query = $this->db->query($sql, array($cust_order_id,$userdata['app_user_name'],$p_payment_type_id, getRealIpAddr()));
         $item = $query->row_array();
         
             
