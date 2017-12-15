@@ -134,7 +134,7 @@ class Cetak_formulir_skpd_nihil extends CI_Controller{
 		*/
 		$pdf->Cell($lheader1, $this->height-1, "", "L", 0, 'C');	
 		$pdf->SetFont('Arial', '', 8);
-		$pdf->Cell($lheader2, $this->height-1, getValByCode('ALAMAT_1'), "R", 0, 'C');
+		$pdf->Cell($lheader2, $this->height-1, /*getValByCode('ALAMAT_1')*/ '', "R", 0, 'C');
 		$pdf->SetFont('Arial', '', 10);
 		$pdf->Cell($lheader3, $this->height-1, "     Tahun Pajak   : ".$data["tahun"], "R", 0, 'L');
 		$pdf->Cell($lheader2, $this->height-1, "No.Bayar", "R", 0, 'C');
@@ -147,7 +147,7 @@ class Cetak_formulir_skpd_nihil extends CI_Controller{
 		
 		$pdf->Cell($lheader1, $this->height+1, "", "BL", 0, 'C');	
 		$pdf->SetFont('Arial', '', 8);
-		$pdf->Cell($lheader2, $this->height+1, getValByCode('ALAMAT_4'), "BR", 0, 'C');
+		$pdf->Cell($lheader2, $this->height+1, /*getValByCode('ALAMAT_4')*/ '', "BR", 0, 'C');
 		$pdf->SetFont('Arial', '', 10);
 		$pdf->Cell($lheader3, $this->height+1, "", "BR", 0, 'L');
 		$pdf->Cell($lheader2, $this->height+1, $data["payment_key"], "BR", 0, 'C');
