@@ -98,7 +98,7 @@ class Cetak_no_bayar extends CI_Controller{
 		$pdf->SetAligns(array("L","L","L"));
 		$pdf->SetWidths(array(40,4,80));
 
-		$pdf->RowMultiBorderWithHeight(array("TERBILANG",":",ucwords($items['dengan_huruf'].' rupiah')),array('','',''),6);
+		$pdf->RowMultiBorderWithHeight(array("TERBILANG",":",ucwords($items['dengan_huruf'])),array('','',''),6);
 		//$pdf->RowMultiBorderWithHeight(array("BATAS WAKTU PEMBAYARAN",":",$items['items'][0]['pay_due_date']),array('','',''),6);
 
 		$pdf->SetWidths(array(200));
