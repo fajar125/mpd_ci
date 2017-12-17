@@ -50,32 +50,35 @@ class SendNotification extends CI_Controller
       $output = $this->db->query($sql);
       $data = $output->result_array();
 
+      if(count($data) > 0){
+        for ($i=0; $i < count($data); $i++) { 
+            $t_notification_pool_id = $data[$i]['t_notification_pool_id'];
+            $chatid = $data[$i]['messager_id'];
+            $message = $data[$i]['message_body'];
+            $pool_id = $data[$i]['t_notification_pool_id'];
 
-      for ($i=0; $i < count($data); $i++) { 
-          $t_notification_pool_id = $data[$i]['t_notification_pool_id'];
-          $chatid = $data[$i]['messager_id'];
-          $message = $data[$i]['message_body'];
-          $pool_id = $data[$i]['t_notification_pool_id'];
+            if(isset($TOKEN) && isset($chatid) && isset($message)){
 
-          if(isset($TOKEN) && isset($chatid) && isset($message)){
+              $status = json_decode($this->send_reply($TOKEN, $chatid,5,$message));
 
-            $status = json_decode($this->send_reply($TOKEN, $chatid,5,$message));
+              if($status->ok){
+                 echo 'Berhasil';
+                 $sqlupdate = "update t_notification_pool
+                            set send_date = now()
+                            where t_notification_pool_id = ?";
 
-            if($status->ok){
-               echo 'Berhasil';
-               $sqlupdate = "update t_notification_pool
-                          set send_date = now()
-                          where t_notification_pool_id = ?";
+                 $this->db->query($sqlupdate, array($pool_id));
+              }else{
+                echo 't_notification_pool : '.$pool_id.' Gagal';
+              }
 
-               $this->db->query($sqlupdate, array($pool_id));
             }else{
-              echo 't_notification_pool : '.$pool_id.' Gagal';
+              echo 'Failed, missing some parameter';
             }
 
-          }else{
-            echo 'Failed, missing some parameter';
-          }
-
+        }
+      }else{
+        echo 'Data tidak ada';
       }
       
 
@@ -92,27 +95,31 @@ class SendNotification extends CI_Controller
       $output = $this->db->query($sql);
       $data = $output->result_array();
 
-      for ($i=0; $i < count($data); $i++) { 
-        $email = $data[$i]['messager_id'];
-        $subject = $data[$i]['message_subject'];
-        $message = $data[$i]['message_body'];
-        $pool_id = $data[$i]['t_notification_pool_id'];
+      if(count($data) > 0){
+        for ($i=0; $i < count($data); $i++) { 
+          $email = $data[$i]['messager_id'];
+          $subject = $data[$i]['message_subject'];
+          $message = $data[$i]['message_body'];
+          $pool_id = $data[$i]['t_notification_pool_id'];
 
 
-        $result = sendEmail($email, 'Notifikasi', $subject, $message);
+          $result = sendEmail($email, 'Notifikasi', $subject, $message);
 
-        if($result){
-            echo 'Berhasil';
+          if($result){
+              echo 'Berhasil';
 
-            $sqlupdate = "update t_notification_pool
-                          set send_date = now()
-                          where t_notification_pool_id = ?";
+              $sqlupdate = "update t_notification_pool
+                            set send_date = now()
+                            where t_notification_pool_id = ?";
 
-            $this->db->query($sqlupdate, array($pool_id));
-        }else{
-          echo 't_notification_pool : '.$pool_id.' Gagal';
+              $this->db->query($sqlupdate, array($pool_id));
+          }else{
+            echo 't_notification_pool : '.$pool_id.' Gagal';
+          }
+
         }
-
+      }else{
+        echo 'Data tidak ada';
       }
     }
 
