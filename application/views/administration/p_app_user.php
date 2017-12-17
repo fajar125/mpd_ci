@@ -171,7 +171,7 @@ $("#tab-3").on("click", function(event) {
             },
             //memanggil controller jqgrid yang ada di controller crud
             editurl: '<?php echo WS_JQGRID."administration.p_app_user_controller/crud"; ?>',
-            caption: "p_app_user"
+            caption: "User"
 
         });
 
