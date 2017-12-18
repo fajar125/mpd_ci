@@ -723,7 +723,35 @@ $("#tab-1").on("click", function(event) {
     </div>
 </div>
 
+<script type="text/javascript">
+    $('#wp_p_region_id').on('change', function() {
+        $('#wp_p_region_id_kecamatan').val('');
+        $('#wp_kecamatan').val('');
+        $('#wp_p_region_id_kelurahan').val('');
+        $('#wp_kelurahan').val('');
+    });
 
+    $('#brand_p_region_id').on('change', function() {
+        $('#brand_p_region_id_kec').val('');
+        $('#brand_kecamatan').val('');
+        $('#brand_p_region_id_kel').val('');
+        $('#brand_kelurahan').val('');
+    });
+
+    $('#p_region_id').on('change', function() {
+        $('#p_region_id_kecamatan').val('');
+        $('#kecamatan_code').val('');
+        $('#p_region_id_kelurahan').val('');
+        $('#kelurahan_code').val('');
+    });
+
+    $('#p_region_id_owner').on('change', function() {
+        $('#p_region_id_kec_owner').val('');
+        $('#kecamatan_own_code').val('');
+        $('#p_region_id_kel_owner').val('');
+        $('#kecamatan_own_code').val('');
+    });
+</script>
 
 <script type="text/javascript">
     var t_vat_reg_id = "<?php echo $this->input->post('t_vat_registration_id');?>"; 
@@ -1084,6 +1112,15 @@ $("#tab-1").on("click", function(event) {
                 $('#t_vat_registration_id').val(t_vat_reg);
 
                 if (items.rows.f_crud_vat_reg_new > 0 ){
+                    loadContentWithParams("transaksi.t_vat_registration", {
+
+                        t_customer_order_id: <?php echo $_POST['t_customer_order_id'];?>,
+                        order_no:order_no,
+                        order_date:order_date,
+                        p_rqst_type_id:p_rqst_type_id,
+                        t_vat_registration_id:t_vat_reg
+
+                    });
                     swal('Informasi','Sukses','info');  
                     return;
                 } else {
