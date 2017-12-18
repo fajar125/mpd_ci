@@ -26,7 +26,7 @@ class T_vat_reg_dtl_hotel extends Abstract_model {
 
                             );
 
-    public $selectClause    = "a.*, round(service_charge_wd, 0) as service_charge_we";
+    public $selectClause    = "a.*, round(service_charge_we, 0) as service_charge_we";
     public $fromClause      = "v_vat_reg_dtl_hotel a";
     public $refs            = array();
 

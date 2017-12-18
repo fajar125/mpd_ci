@@ -70,13 +70,15 @@ class Cetak_laporan_penerimaan_pajak extends CI_Controller{
 		$sql="";
 
 		if($jenis_tahun=='pajak'){
-			$sql="select * from sikp.f_laporan_per_thn_pajak(".$p_vat_type_id.",0,'".$start_date."', '".$end_date."')";
+			$sql = "select * from sikp.f_laporan_per_thn_pajak(".$p_vat_type_id.",0,'".$start_date."', '".$end_date."')";
 		}else if($jenis_tahun=='bayar'){
 			$sql = "select * from sikp.f_laporan_per_thn_bayar(".$p_vat_type_id.",2013,'".$start_date."', '".$end_date."')";
 		}
 
 		$query = $this->db->query($sql);
+
 		$items=$query->result_array();
+
 
 		$pdf->SetFont('helvetica', '',8);
 		$pdf->ln(2);

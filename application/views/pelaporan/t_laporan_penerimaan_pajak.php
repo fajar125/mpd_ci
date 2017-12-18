@@ -115,6 +115,7 @@
             url += "p_vat_type_id="+p_vat_type_id;
             url += "&start_date="+start_date;
             url += "&end_date="+end_date;
+            url += "&jenis_tahun=bayar";
 
         PopupCenter(url,"Laporan Penerimaan Denda Harian",500,500);
     }

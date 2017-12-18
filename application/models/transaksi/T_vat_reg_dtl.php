@@ -41,7 +41,7 @@ class T_vat_reg_dtl extends Abstract_model {
             //do something
             // example :
             if ($this->record['valid_to'] == '' || $this->record['valid_to'] == null || $this->record['valid_to'] = 0){
-                $this->record['valid_to'] = null;
+                $this->db->set('valid_to',"null",false);
             }
             $this->record['creation_date'] = date('Y-m-d');
             $this->record['created_by'] = $userdata['app_user_name'];

@@ -41,7 +41,7 @@ class T_laporan_penerimaan_pajak_controller {
                     <tr>
                         <td class="th"><strong></strong></td>
                         <td class="th"><strong>TANGGAL</strong></td> 
-                        <td class="th"><strong>: '.dateToString($start_date).' s/d '.dateToString($end_date).'</strong></td> 
+                        <td class="th"><strong>: '.$start_date.' s/d '.$end_date.'</strong></td> 
                     </tr>
                     <tr>
                     </tr>
