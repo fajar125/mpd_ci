@@ -176,7 +176,7 @@ $("#tab-4").on("click", function(event) {
                 loadContentWithParams("transaksi.t_customer_order", {});
             });
         }, 3000);
-            PopupCenter(url,"Kartu NPWPD",500,500);
+            // PopupCenter(url,"Kartu NPWPD",500,500);
            
         });
         
