@@ -159,6 +159,8 @@ class T_bphtb_registration_ro_ver_controller {
 
             // print_r($p_bphtb_legal_doc_type_id);
             // exit;
+
+            
             $ci->load->model('transaksi_wf/t_bphtb_registration_ro_ver');
             $table = $ci->t_bphtb_registration_ro_ver;
 
