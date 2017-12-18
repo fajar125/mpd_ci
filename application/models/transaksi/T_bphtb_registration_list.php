@@ -313,7 +313,7 @@ class T_bphtb_registration_list extends Abstract_model {
 
     function getDataWS($nop_search,$year_code){
         //print_r($year_code);exit;
-        $ws_data = file_get_contents('http://localhost/bapenda-pbb-webservice/client/pbb_api/get_sppt?nop='.$nop_search.'&year='.$year_code);
+        $ws_data = file_get_contents('http://172.16.1.9/bapenda-pbb-webservice/client/pbb_api/get_sppt?nop='.$nop_search.'&year='.$year_code);
         $ws_data = json_decode($ws_data, true);
 
         return $ws_data;
