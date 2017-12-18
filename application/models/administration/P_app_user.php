@@ -11,13 +11,13 @@ class P_app_user extends Abstract_model {
     public $alias           = "usr";
 
     public $fields          = array(
-                                'p_app_user_id'           => array('pkey' => true, 'type' => 'int', 'nullable' => true, 'unique' => true, 'display' => 'ID User'),
+                                'p_app_user_id'         => array('pkey' => true, 'type' => 'int', 'nullable' => true, 'unique' => true, 'display' => 'ID User'),
                                 'app_user_name'         => array('nullable' => false, 'type' => 'str', 'unique' => true, 'display' => 'User Name'),
-                                'full_name'    => array('nullable' => true, 'type' => 'str', 'unique' => false, 'display' => 'Full Name'),
-                                'email_address'        => array('nullable' => false, 'type' => 'str', 'unique' => false, 'display' => 'Email'),
-                                'user_pwd'     => array('nullable' => true, 'type' => 'str', 'unique' => false, 'display' => 'Password'),
-                                'p_user_status_id'       => array('nullable' => true, 'type' => 'int', 'unique' => false, 'display' => 'Status'),
-
+                                'full_name'    			=> array('nullable' => true, 'type' => 'str', 'unique' => false, 'display' => 'Full Name'),
+                                'email_address'        	=> array('nullable' => false, 'type' => 'str', 'unique' => false, 'display' => 'Email'),
+                                'user_pwd'     			=> array('nullable' => true, 'type' => 'str', 'unique' => false, 'display' => 'Password'),
+                                'p_user_status_id'      => array('nullable' => true, 'type' => 'int', 'unique' => false, 'display' => 'Status'),
+								'is_employee'        => array('nullable' => true, 'type' => 'str', 'unique' => false, 'display' => 'Pegawai?'),
                                 'creation_date'      => array('nullable' => true, 'type' => 'date', 'unique' => false, 'display' => 'Created Date'),
                                 'created_by'        => array('nullable' => true, 'type' => 'str', 'unique' => false, 'display' => 'Created By'),
                                 'updated_date'      => array('nullable' => true, 'type' => 'date', 'unique' => false, 'display' => 'Updated Date'),
@@ -56,6 +56,7 @@ class P_app_user extends Abstract_model {
                 $this->record['user_pwd'] = md5($this->record['user_pwd']);
             }
 
+			$this->record['is_employee'] = 'Y';
             $this->record[$this->pkey] = $this->generate_id($this->table, $this->pkey);
 
         }else {
