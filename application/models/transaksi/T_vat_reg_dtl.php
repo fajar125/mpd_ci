@@ -40,8 +40,9 @@ class T_vat_reg_dtl extends Abstract_model {
         if($this->actionType == 'CREATE') {
             //do something
             // example :
-            if ($this->record['valid_to'] == '' || $this->record['valid_to'] == null || $this->record['valid_to'] = 0){
-                $this->db->set('valid_to',"null",false);
+            if ($this->record['valid_to'] == '' || $this->record['valid_to'] == null || $this->record['valid_to'] == 0){
+                //$this->db->set('valid_to',null,false);
+                unset($this->record['valid_to']);
             }
             $this->record['creation_date'] = date('Y-m-d');
             $this->record['created_by'] = $userdata['app_user_name'];
@@ -53,6 +54,9 @@ class T_vat_reg_dtl extends Abstract_model {
         }else {
             //do something
             //example:
+            if ($this->record['valid_to'] == '' || $this->record['valid_to'] == null || $this->record['valid_to'] == 0){
+                unset($this->record['valid_to']);
+            }
             $this->record['updated_date'] = date('Y-m-d');
             $this->record['updated_by'] = $userdata['app_user_name'];
             //if false please throw new Exception

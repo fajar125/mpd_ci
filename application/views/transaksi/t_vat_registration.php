@@ -751,6 +751,27 @@ $("#tab-1").on("click", function(event) {
         $('#p_region_id_kel_owner').val('');
         $('#kecamatan_own_code').val('');
     });
+
+
+    $('#wp_p_region_id_kecamatan').on('change', function() {
+        $('#wp_p_region_id_kelurahan').val('');
+        $('#wp_kelurahan').val('');
+    });
+
+    $('#brand_p_region_id_kec').on('change', function() {
+        $('#brand_p_region_id_kel').val('');
+        $('#brand_kelurahan').val('');
+    });
+
+    $('#p_region_id_kecamatan').on('change', function() {
+        $('#p_region_id_kelurahan').val('');
+        $('#kelurahan_code').val('');
+    });
+
+    $('#p_region_id_kec_owner').on('change', function() {
+        $('#p_region_id_kel_owner').val('');
+        $('#kecamatan_own_code').val('');
+    });
 </script>
 
 <script type="text/javascript">
