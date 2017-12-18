@@ -499,6 +499,8 @@
                                     <div class="form-actions">
                                         <div class="row">
                                             <div class="col-md-offset-3 col-md-9">
+												<a href="javascript:;" class="btn btn-outline green button-next" id="cetak_sspd"  > CETAK SSPD                                                    
+                                                </a>
                                                 <a href="javascript:;" class="btn btn-outline green button-next" id="print"  > CETAK NOTA VERIFIKASI                                                    
                                                 </a>
                                                 <a href="javascript:;" class="btn  green " onClick="submitform()" id="submit"> Submit                                                   
@@ -1058,6 +1060,11 @@
     $('#print').on('click', function(event){
         printLaporan();
     });
+	
+	$('#cetak_sspd').on('click', function(event){
+        cetakSSPD();
+    });
+	
     function printLaporan(){
         //alert(pejabat);
         var params          = $('#t_bphtb_registration_id').val();
@@ -1071,6 +1078,19 @@
             url += "cetak_rep_bphtb/pageCetak?";
             url += "t_bphtb_registration_id=" + params;
         }
+
+        openInNewTab(url);
+    }
+	
+	function cetakSSPD(){
+        //alert(pejabat);
+        var params          = $('#t_bphtb_registration_id').val();
+        var p_bphtb_type_id = $('#p_bphtb_type_id').val();
+        var url = "<?php echo base_url(); ?>";
+
+        url += "cetak_formulir_sspd_bphtb/pageCetak?";
+        url += "t_bphtb_registration_id=" + params;
+        
 
         openInNewTab(url);
     }
