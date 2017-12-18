@@ -99,7 +99,7 @@ class T_bphtb_registration_ro_ver extends Abstract_model {
                 verificated_nip='$verificated_nip'
                 WHERE  t_bphtb_registration_id = $t_bphtb_registration_id";
 
-        echo $sql;exit();
+        // echo $sql;exit();
 
         $query = $this->db->query($sql);
 
