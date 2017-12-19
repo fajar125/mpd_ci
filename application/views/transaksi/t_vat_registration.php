@@ -749,7 +749,7 @@ $("#tab-1").on("click", function(event) {
         $('#p_region_id_kec_owner').val('');
         $('#kecamatan_own_code').val('');
         $('#p_region_id_kel_owner').val('');
-        $('#kecamatan_own_code').val('');
+        $('#kelurahan_own_code').val('');
     });
 
 
@@ -770,7 +770,7 @@ $("#tab-1").on("click", function(event) {
 
     $('#p_region_id_kec_owner').on('change', function() {
         $('#p_region_id_kel_owner').val('');
-        $('#kecamatan_own_code').val('');
+        $('#kelurahan_own_code').val('');
     });
 </script>
 
