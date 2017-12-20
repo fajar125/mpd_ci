@@ -52,7 +52,7 @@ class Cetak_registrasi_payment_large_arial extends CI_Controller{
 			to_char(b.payment_date,'HH24:MI:SS') as jam_transaksi, b.receipt_no, a.payment_key, a.npwd, a.no_kohir,
 			e.wp_name, (e.wp_address_name || '/' || e.wp_address_no) AS alamat_wp,
 			b.payment_vat_amount as total_pokok, a.total_penalty_amount as total_denda, b.payment_vat_amount + nvl(A .total_penalty_amount,0) as total_tagihan,
-			upper(trim(replace(f_terbilang(to_char(round(b.payment_vat_amount + nvl(A .total_penalty_amount,0))),'rp.'), '  ', ' '))) || ' RUPIAH' as dengan_huruf,
+			upper(trim(replace(f_terbilang(to_char(round(nvl(b.payment_vat_amount,0) + nvl(a.total_penalty_amount,0))),'rp.'), '  ', ' '))) || ' RUPIAH' as dengan_huruf,
 			'4'||(d.code || c.code) AS kode_rekening, upper(c.vat_code) as nama_rekening,
 			to_char(a.start_period,'yyyymmdd') as start_period, to_char(a.end_period,'yyyymmdd') as end_period,
 			company_brand,brand_address_name,brand_address_no
