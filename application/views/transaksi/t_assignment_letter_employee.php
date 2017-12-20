@@ -35,7 +35,7 @@
                 {label: 'Nama Tugas',name: 'assignment_name',width: 200, align: "left"},
                 {label: 'Nama Petugas',name: 'name',width: 200, align: "left"},
                 {label: 'NIP',name: 'nip',width: 200, align: "left"},
-                {label: 'Merk Dagang',name: 'company_brand',width: 200, align: "left"}
+                {label: 'Nama WP',name: 'company_brand',width: 200, align: "left"}
 
 
             ],
