@@ -211,7 +211,7 @@
                             <div class="space-2"></div>
 
                             <div class="row">
-                                <label class="control-label col-md-3">STATUS PEMBAYARAN BPHTB</label>
+                                <label class="control-label col-md-3">STATUS PEMBAYARAN PBB</label>
                                 <div class="col-md-3">
                                     <div class="input-group">
                                         <input type="text" class="form-control" name="lov_status_bayar" id="lov_status_bayar"  readonly="true">
