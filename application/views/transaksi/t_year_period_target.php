@@ -6,7 +6,7 @@
             <i class="fa fa-circle"></i>
         </li>
         <li>
-            <span>Piutang SKPDKB Pemeriksaan</span>
+            <span>Target Pendapatan Pajak</span>
         </li>
     </ul>
 </div>
