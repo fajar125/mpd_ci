@@ -40,9 +40,9 @@ class Cetak_formulir_stpd_pdf extends CI_Controller{
 		$sql = "select count(*)as ada from t_vat_penalty where t_vat_setllement_id = ".$t_vat_setllement_id;
 		$output = $this->db->query($sql);
         $ada = $output->row_array()['ada'];
-        if ($ada < 1){
+        /*if ($ada < 1){
         	echo "Tidak ada Denda"; exit;
-        }
+        }*/
 
 		$sql = "select value from p_global_param where code = 'ALAMAT_1'";
 		$output = $this->db->query($sql);
