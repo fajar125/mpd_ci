@@ -11,7 +11,7 @@
 </div>
 <div class="space-4"></div>
 <div class="row">
-    <div class="col-md-8">
+    <div class="col-md-12">
         <div class="portlet light bordered">
             <div class="form-body" id="grid-pager">
                 <div class="row">
