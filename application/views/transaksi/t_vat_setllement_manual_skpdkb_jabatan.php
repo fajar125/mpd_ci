@@ -265,7 +265,7 @@
                       
            }else{
                 swal('Informasi',items.rows.o_mess,'info'); 
-                url = '<?php echo base_url(); ?>'+'cetak_formulir_skpdkb_jabatan/pageCetak?t_cust_order_id='+items.rows.o_cust_order_id;
+                url = '<?php echo base_url(); ?>'+'cetak_formulir_skpdkb_jabatan_v2/pageCetak?t_customer_order_id='+items.rows.o_cust_order_id;
                 openInNewTab(url);
 
            }
