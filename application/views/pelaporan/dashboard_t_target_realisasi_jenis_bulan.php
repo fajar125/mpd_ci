@@ -117,12 +117,12 @@ $("#tab-3").on("click", function(event) {
     
     //code = grid.jqGrid ('getCell', p_vat_group_id, 'year_code');
      p_finance_period_id = grid.jqGrid ('getGridParam', 'selrow');//pake finenace period
-     p_year_period_id = grid.jqGrid ('getCell', p_finance_period_id, 'p_year_period_id');
+     p_year_period_id = "<?php echo $this->input->get('p_year_period_id'); ?>";
      p_vat_group_id = "<?php echo $this->input->get('p_vat_group_id'); ?>";
      p_vat_type_id = "<?php echo $this->input->get('p_vat_type_id'); ?>";
      
 
-    window.location.href = "<?php echo base_url();?>"+"dashboard_target_vs_realisasi/index?p_year_period_id="+p_year_period_id+"&mode=jenis"+"&p_vat_group_id="+p_vat_group_id+"&p_vat_type_id="+p_vat_type_id;
+    window.location.href = "<?php echo base_url();?>"+"dashboard_target_vs_realisasi/index?p_year_period_id="+p_year_period_id+"&mode=jenis"+"&p_vat_group_id="+p_vat_group_id;
 });         
 
 $("#tab-2").on("click", function(event) {
@@ -130,7 +130,8 @@ $("#tab-2").on("click", function(event) {
     event.stopPropagation();
     var grid = $('#grid-table');
     p_finance_period_id = grid.jqGrid ('getGridParam', 'selrow');
-    p_year_period_id = grid.jqGrid ('getCell', p_finance_period_id, 'p_year_period_id');
+    code = "<?php echo $this->input->get('code'); ?>";
+    p_year_period_id = "<?php echo $this->input->get('p_year_period_id'); ?>";
 
     window.location.href = "<?php echo base_url();?>"+"dashboard_target_vs_realisasi/index?p_year_period_id="+p_year_period_id+"&code="+code+"&mode=bidang";
 });

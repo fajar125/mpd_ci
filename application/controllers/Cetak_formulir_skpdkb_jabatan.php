@@ -37,6 +37,7 @@ class Cetak_formulir_skpdkb_jabatan extends CI_Controller{
 		$sql = "";
 
 		$t_vat_setllement_id = getVarClean('t_vat_setllement_id','int',0); 
+		$settlement_type = getVarClean('settlement_type','int',0); 
 
 		if($t_vat_setllement_id > 0){
 			$sql = "SELECT *, to_char(settlement_date,'DD-MM-YYYY') AS tgl_setllement FROM v_vat_setllement_skpd_kb_jabatan WHERE t_vat_setllement_id = " . $t_vat_setllement_id;
