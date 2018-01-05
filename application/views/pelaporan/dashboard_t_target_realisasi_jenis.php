@@ -43,6 +43,21 @@
                 </div>  
                 <div class="col-xs-6">
                     <div DISPLAY: inline-block" id="container2"></div>
+                </div> 
+            </div>
+            <div class="space-4"></div>
+            <div class="row">  
+                <div class="col-xs-6">
+                    <div DISPLAY: inline-block" id="container3"></div>
+                </div>  
+                <div class="col-xs-6">
+                    <div DISPLAY: inline-block" id="container4"></div>
+                </div>  
+            </div>
+            <div class="space-4"></div>
+            <div class="row"> 
+                <div class="col-xs-6">
+                    <div DISPLAY: inline-block" id="container5"></div>
                 </div>  
             </div>
         </div>
@@ -84,69 +99,280 @@
 
     // alert(n);
 
-    reloadChart(n);
-    reloadChart2(n);
+    reloadChart1(n,1);
+    reloadChart2(n,2);
+    reloadChart3(n,3);
+    reloadChart4(n,4);
+    reloadChart5(n,5);
+    //reloadChart2(n);
 
     setTimeout(function() {
-        reloadChart(n);
-        reloadChart2(n);
+        reloadChart1(n,1);
+        reloadChart2(n,2);
+        reloadChart3(n,3);
+        reloadChart4(n,4);
+        reloadChart5(n,5);
+        //reloadChart2(n);
     },100000);
 
 
-    function reloadChart(year_code){
-         $.getJSON("<?php echo base_url('Target_realisasi_dash/target_realisasi_per_tahun?year_code=');?>"+year_code, function(items) {
-        var target_amount, realisasi_amt, vat_code, year_code;
+    function reloadChart1(year_code,p_vat_type_id){
+         $.getJSON("<?php echo base_url('Target_realisasi_dash/target_realisasi_per_tahun?year_code=');?>"+year_code+"&p_vat_type_id="+p_vat_type_id, function(items) {
+            var target_amount, realisasi_amt, vat_code;
 
-        target_amount = items[0][0];
-        realisasi_amt = items[0][1];
-        vat_code = items[0][2];
-        year_code = items[0][3];
-                Highcharts.setOptions({
-                        lang:{
-                                numericSymbols: [" Ribu"," Juta"," Milyar"," Triliun"," Biliun"," Seliun"]
-                        }
-                });
-        $("#container").highcharts({
-            chart: {
-                type: "column"
-            },
-            title: {
-                text: "Target vs Realisasi " + vat_code + " " + year_code
-            },
-            tooltip: {
-                                headerFormat: '<span style="font-size:10px">{point.key}</span><table>',
-                                pointFormat: '<tr><td style="color:{series.color};padding:0">{series.name}: </td>' +
-                                        '<td style="padding:0"><b>{point.y}</b></td></tr>',
-                                footerFormat: '</table>',
-                                shared: true,
-                                useHTML: true
-                        },
-            xAxis: {
-                categories: [year_code]
-            },
-            yAxis: {
+            target_amount = items[0][0];
+            realisasi_amt = items[0][1];
+            vat_code = items[0][2];
+                    Highcharts.setOptions({
+                            lang:{
+                                    numericSymbols: [" Ribu"," Juta"," Milyar"," Triliun"," Biliun"," Seliun"]
+                            }
+                    });
+            $("#container").highcharts({
+                chart: {
+                    type: "column"
+                },
                 title: {
-                    text: ""
-                }
-            },
-            plotOptions: {
-                headerFormat: '<span style="font-size:10px">{point.key}</span><table>',
-                pointFormat: '<tr><td style="color:{series.color};padding:0">{series.name}: </td>' +
-                        '<td style="padding:0"><b>{point.y}</b></td></tr>',
-                footerFormat: '</table>',
-                shared: true,
-                useHTML: true
-            },
-            series: [
-                {showInLegend: true, name: "Target " + year_code, data: [target_amount]},
-                {showInLegend: true, name: "Realisasi " + year_code, data: [realisasi_amt]}
-            ]
+                    text: "Target vs Realisasi Pajak Hotel" + " " + year_code
+                },
+                tooltip: {
+                                    headerFormat: '<span style="font-size:10px">{point.key}</span><table>',
+                                    pointFormat: '<tr><td style="color:{series.color};padding:0">{series.name}: </td>' +
+                                            '<td style="padding:0"><b>{point.y}</b></td></tr>',
+                                    footerFormat: '</table>',
+                                    shared: true,
+                                    useHTML: true
+                            },
+                xAxis: {
+                    categories: [year_code]
+                },
+                yAxis: {
+                    title: {
+                        text: ""
+                    }
+                },
+                plotOptions: {
+                    headerFormat: '<span style="font-size:10px">{point.key}</span><table>',
+                    pointFormat: '<tr><td style="color:{series.color};padding:0">{series.name}: </td>' +
+                            '<td style="padding:0"><b>{point.y}</b></td></tr>',
+                    footerFormat: '</table>',
+                    shared: true,
+                    useHTML: true
+                },
+                series: [
+                    {showInLegend: true, name: "Target " + year_code, data: [target_amount]},
+                    {showInLegend: true, name: "Realisasi " + year_code, data: [realisasi_amt]}
+                ]
+            });
         });
-    });
     }
 
-    function reloadChart2(year_code){
-        $.getJSON( "<?php echo base_url('Target_realisasi_dash/target_realisasi_tahun_per_jenis?year_code=');?>"+year_code, function( items ) {
+    function reloadChart2(year_code,p_vat_type_id){
+         $.getJSON("<?php echo base_url('Target_realisasi_dash/target_realisasi_per_tahun?year_code=');?>"+year_code+"&p_vat_type_id="+p_vat_type_id, function(items) {
+            var target_amount, realisasi_amt, vat_code;
+
+            target_amount = items[0][0];
+            realisasi_amt = items[0][1];
+            year_code = items[0][3];
+                    Highcharts.setOptions({
+                            lang:{
+                                    numericSymbols: [" Ribu"," Juta"," Milyar"," Triliun"," Biliun"," Seliun"]
+                            }
+                    });
+            $("#container2").highcharts({
+                chart: {
+                    type: "column"
+                },
+                title: {
+                    text: "Target vs Realisasi Pajak Restoran" + " " + year_code
+                },
+                tooltip: {
+                                    headerFormat: '<span style="font-size:10px">{point.key}</span><table>',
+                                    pointFormat: '<tr><td style="color:{series.color};padding:0">{series.name}: </td>' +
+                                            '<td style="padding:0"><b>{point.y}</b></td></tr>',
+                                    footerFormat: '</table>',
+                                    shared: true,
+                                    useHTML: true
+                            },
+                xAxis: {
+                    categories: [year_code]
+                },
+                yAxis: {
+                    title: {
+                        text: ""
+                    }
+                },
+                plotOptions: {
+                    headerFormat: '<span style="font-size:10px">{point.key}</span><table>',
+                    pointFormat: '<tr><td style="color:{series.color};padding:0">{series.name}: </td>' +
+                            '<td style="padding:0"><b>{point.y}</b></td></tr>',
+                    footerFormat: '</table>',
+                    shared: true,
+                    useHTML: true
+                },
+                series: [
+                    {showInLegend: true, name: "Target " + year_code, data: [target_amount]},
+                    {showInLegend: true, name: "Realisasi " + year_code, data: [realisasi_amt]}
+                ]
+            });
+        });
+    }
+
+    function reloadChart3(year_code,p_vat_type_id){
+         $.getJSON("<?php echo base_url('Target_realisasi_dash/target_realisasi_per_tahun?year_code=');?>"+year_code+"&p_vat_type_id="+p_vat_type_id, function(items) {
+            var target_amount, realisasi_amt, vat_code;
+
+            target_amount = items[0][0];
+            realisasi_amt = items[0][1];
+            vat_code = items[0][2];
+                    Highcharts.setOptions({
+                            lang:{
+                                    numericSymbols: [" Ribu"," Juta"," Milyar"," Triliun"," Biliun"," Seliun"]
+                            }
+                    });
+            $("#container3").highcharts({
+                chart: {
+                    type: "column"
+                },
+                title: {
+                    text: "Target vs Realisasi Pajak Hiburan" + " " + year_code
+                },
+                tooltip: {
+                                    headerFormat: '<span style="font-size:10px">{point.key}</span><table>',
+                                    pointFormat: '<tr><td style="color:{series.color};padding:0">{series.name}: </td>' +
+                                            '<td style="padding:0"><b>{point.y}</b></td></tr>',
+                                    footerFormat: '</table>',
+                                    shared: true,
+                                    useHTML: true
+                            },
+                xAxis: {
+                    categories: [year_code]
+                },
+                yAxis: {
+                    title: {
+                        text: ""
+                    }
+                },
+                plotOptions: {
+                    headerFormat: '<span style="font-size:10px">{point.key}</span><table>',
+                    pointFormat: '<tr><td style="color:{series.color};padding:0">{series.name}: </td>' +
+                            '<td style="padding:0"><b>{point.y}</b></td></tr>',
+                    footerFormat: '</table>',
+                    shared: true,
+                    useHTML: true
+                },
+                series: [
+                    {showInLegend: true, name: "Target " + year_code, data: [target_amount]},
+                    {showInLegend: true, name: "Realisasi " + year_code, data: [realisasi_amt]}
+                ]
+            });
+        });
+    }
+
+    function reloadChart4(year_code,p_vat_type_id){
+         $.getJSON("<?php echo base_url('Target_realisasi_dash/target_realisasi_per_tahun?year_code=');?>"+year_code+"&p_vat_type_id="+p_vat_type_id, function(items) {
+            var target_amount, realisasi_amt, vat_code;
+
+            target_amount = items[0][0];
+            realisasi_amt = items[0][1];
+            vat_code = items[0][2];
+                    Highcharts.setOptions({
+                            lang:{
+                                    numericSymbols: [" Ribu"," Juta"," Milyar"," Triliun"," Biliun"," Seliun"]
+                            }
+                    });
+            $("#container4").highcharts({
+                chart: {
+                    type: "column"
+                },
+                title: {
+                    text: "Target vs Realisasi Pajak Parkir" + " " + year_code
+                },
+                tooltip: {
+                                    headerFormat: '<span style="font-size:10px">{point.key}</span><table>',
+                                    pointFormat: '<tr><td style="color:{series.color};padding:0">{series.name}: </td>' +
+                                            '<td style="padding:0"><b>{point.y}</b></td></tr>',
+                                    footerFormat: '</table>',
+                                    shared: true,
+                                    useHTML: true
+                            },
+                xAxis: {
+                    categories: [year_code]
+                },
+                yAxis: {
+                    title: {
+                        text: ""
+                    }
+                },
+                plotOptions: {
+                    headerFormat: '<span style="font-size:10px">{point.key}</span><table>',
+                    pointFormat: '<tr><td style="color:{series.color};padding:0">{series.name}: </td>' +
+                            '<td style="padding:0"><b>{point.y}</b></td></tr>',
+                    footerFormat: '</table>',
+                    shared: true,
+                    useHTML: true
+                },
+                series: [
+                    {showInLegend: true, name: "Target " + year_code, data: [target_amount]},
+                    {showInLegend: true, name: "Realisasi " + year_code, data: [realisasi_amt]}
+                ]
+            });
+        });
+    }
+
+    function reloadChart5(year_code,p_vat_type_id){
+         $.getJSON("<?php echo base_url('Target_realisasi_dash/target_realisasi_per_tahun?year_code=');?>"+year_code+"&p_vat_type_id="+p_vat_type_id, function(items) {
+            var target_amount, realisasi_amt, vat_code;
+
+            target_amount = items[0][0];
+            realisasi_amt = items[0][1];
+            vat_code = items[0][2];
+                    Highcharts.setOptions({
+                            lang:{
+                                    numericSymbols: [" Ribu"," Juta"," Milyar"," Triliun"," Biliun"," Seliun"]
+                            }
+                    });
+            $("#container5").highcharts({
+                chart: {
+                    type: "column"
+                },
+                title: {
+                    text: "Target vs Realisasi Pajak PPJ" + " " + year_code
+                },
+                tooltip: {
+                                    headerFormat: '<span style="font-size:10px">{point.key}</span><table>',
+                                    pointFormat: '<tr><td style="color:{series.color};padding:0">{series.name}: </td>' +
+                                            '<td style="padding:0"><b>{point.y}</b></td></tr>',
+                                    footerFormat: '</table>',
+                                    shared: true,
+                                    useHTML: true
+                            },
+                xAxis: {
+                    categories: [year_code]
+                },
+                yAxis: {
+                    title: {
+                        text: ""
+                    }
+                },
+                plotOptions: {
+                    headerFormat: '<span style="font-size:10px">{point.key}</span><table>',
+                    pointFormat: '<tr><td style="color:{series.color};padding:0">{series.name}: </td>' +
+                            '<td style="padding:0"><b>{point.y}</b></td></tr>',
+                    footerFormat: '</table>',
+                    shared: true,
+                    useHTML: true
+                },
+                series: [
+                    {showInLegend: true, name: "Target " + year_code, data: [target_amount]},
+                    {showInLegend: true, name: "Realisasi " + year_code, data: [realisasi_amt]}
+                ]
+            });
+        });
+    }
+
+    function reloadChart6(year_code){
+        $.getJSON( "<?php echo base_url('Target_realisasi_dash/target_realisasi_tahun_per_jenis?year_code=2017');?>", function( items ) {
                 var target_amount = [];
                 var realisasi_amt = [];
                 var vat_code = [];
@@ -163,7 +389,7 @@
                                                 numericSymbols: [" Ribu"," Juta"," Milyar"," Triliun"," Biliun"," Seliun"]
                                         }
                                 });
-                $("#container2").highcharts({
+                $("#container6").highcharts({
                         chart: {
                                 type: "column"
                         },

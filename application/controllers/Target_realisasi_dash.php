@@ -98,9 +98,15 @@ class Target_realisasi_dash extends CI_Controller
         for ($i=0;$i<count($result);$i++){
             $s_result = $s_result . '['.$result[$i]['target_amount'].','.$result[$i]['realisasi_amt'].',"'.$result[$i]['vat_code'].'"],';
         }
-        $s_result = substr($s_result, 0, -1)  ;      
+        $s_result = substr($s_result, 0, -1)  ; 
+
+        
 
         $s_result = $s_result . "]";
+
+        if(count($result) < 1){
+            $s_result ="[[0]]";
+        }     
         echo $s_result;
         exit;
     }
@@ -108,15 +114,61 @@ class Target_realisasi_dash extends CI_Controller
     function target_realisasi_per_tahun() {
 
         $year_code = getVarClean('year_code','int',0);
+        $p_vat_type_id = getVarClean('p_vat_type_id','int',0);
 
         $sql = "SELECT target_amount, realisasi_amt, vat_code, year_code
                 FROM v_revenue_target_vs_realisasi
-                WHERE year_code = ?";
+                WHERE year_code = ?
+                AND p_vat_type_id = ? ";
 
-        $query = $this->db->query($sql, array($year_code));
+        $query = $this->db->query($sql, array($year_code, $p_vat_type_id));
         $result = $query->row_array();
         //echo base_url();exit;
-        echo '[['.$result['target_amount'].','.$result['realisasi_amt'].',"'.$result['vat_code'].'","'.$result['year_code'].'"]]';
+
+
+        $s_result = '[['.$result['target_amount'].','.$result['realisasi_amt'].',"'.$result['vat_code'].'","'.$result['year_code'].'"]]';
+        if(count($result) < 1){
+            $s_result ="[[0]]";
+        } 
+
+        echo $s_result;
+
+        exit;
+    }
+
+    function target_realisasi_perjenis_bulan() {
+
+        $year_code = getVarClean('year_code','int',0);
+        $p_vat_type_id = getVarClean('p_vat_type_id','int',0);
+
+        $sql = "SELECT SUM(target_amount) as target_amount, SUM(realisasi_amt) as realisasi_amt, vat_code, year_code, bulan
+                FROM v_revenue_target_vs_realisasi_month_v2
+                WHERE year_code = ?
+                AND p_vat_type_id = ?
+                GROUP BY vat_code, year_code, bulan,p_finance_period_id
+                order by p_finance_period_id";
+
+        $query = $this->db->query($sql, array($year_code, $p_vat_type_id));
+        $result = $query->result_array();
+        //echo base_url();exit;
+        //print_r($query); exit();
+
+        $s_result ="[";
+        for ($i=0;$i<count($result);$i++){
+
+            $s_result = $s_result . '["'.$result[$i]['bulan'].'","'.$result[$i]['target_amount'].'",'.$result[$i]['realisasi_amt'].',"'.$result[$i]['vat_code'].'","'.$result[$i]['year_code'].'"],';
+        }
+
+        $s_result = substr($s_result, 0, -1)  ;      
+
+        $s_result = $s_result . "]";
+
+        if(count($result) < 1){
+            $s_result ="[[0]]";
+        } 
+
+        echo $s_result;
+
         exit;
     }
 
