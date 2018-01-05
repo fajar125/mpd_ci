@@ -77,7 +77,7 @@ class Target_realisasi_dash extends CI_Controller
 
     function target_realisasi_tahun_per_jenis() {
 
-        $p_year_period_id = getVarClean('p_year_period_id','int',0);
+        $year_code = getVarClean('year_code','int',0);
 
         $sql = "SELECT t_revenue_target_id,
                     p_year_period_id,
@@ -87,10 +87,11 @@ class Target_realisasi_dash extends CI_Controller
                     target_amount,
                     realisasi_amt
                 FROM v_revenue_target_vs_realisasi
-                WHERE p_year_period_id = ?
+                WHERE year_code = ?
+                AND p_vat_type_id IN (1,2,3,4,5)
                 ORDER BY p_vat_type_id";
 
-        $query = $this->db->query($sql, array($p_year_period_id));
+        $query = $this->db->query($sql, array($year_code));
         $result = $query->result_array();
         //print_r($result);exit;
         $s_result ="[";
@@ -106,13 +107,13 @@ class Target_realisasi_dash extends CI_Controller
 
     function target_realisasi_per_tahun() {
 
-        $t_revenue_target_id = getVarClean('t_revenue_target_id','int',0);
+        $year_code = getVarClean('year_code','int',0);
 
         $sql = "SELECT target_amount, realisasi_amt, vat_code, year_code
                 FROM v_revenue_target_vs_realisasi
-                WHERE t_revenue_target_id = ?";
+                WHERE year_code = ?";
 
-        $query = $this->db->query($sql, array($t_revenue_target_id));
+        $query = $this->db->query($sql, array($year_code));
         $result = $query->row_array();
         //echo base_url();exit;
         echo '[['.$result['target_amount'].','.$result['realisasi_amt'].',"'.$result['vat_code'].'","'.$result['year_code'].'"]]';
