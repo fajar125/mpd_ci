@@ -144,7 +144,7 @@ $("#tab-3").on("click", function(event) {
                     }
                 },
                 {label: 'Kode',name: 'target_code',width: 200, align: "left",editable: true, editrules:{required:true}},
-                {label: 'Jumlah',name: 'target_amt',width: 200, align: "left",formatter:'integer', formatoptions: {prefix:"", thousandsSeparator:'.'}
+                {label: 'Jumlah',name: 'target_amount',width: 200, align: "left",formatter:'integer', formatoptions: {prefix:"", thousandsSeparator:'.'}
                 },
                 {label: 'Deskripsi',name: 'description',width: 200, align: "left",editable: true,
                     edittype:'textarea',
