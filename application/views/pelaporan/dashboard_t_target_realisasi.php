@@ -49,6 +49,8 @@
     </div>
 </div>
 
+<script src="<?php echo base_url(); ?>assets/js/highcharts.js"></script>
+
 <script>
     var urlJS = "<?php echo base_url(); ?>assets/js/highcharts.js";
 
