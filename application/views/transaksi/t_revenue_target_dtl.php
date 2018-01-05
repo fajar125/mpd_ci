@@ -180,7 +180,7 @@ $("#tab-2").on("click", function(event) {
                             });
                         }
                     },
-                    formatter:'integer', formatoptions: {prefix:"", thousandsSeparator:'.'}
+                    formatter:'currency', formatoptions: {prefix:"", thousandsSeparator:'.'}
                 },
                 {label: 'Deskripsi',name: 'description',width: 200, align: "left",editable: true,
                     edittype:'textarea',
