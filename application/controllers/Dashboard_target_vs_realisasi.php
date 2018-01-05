@@ -6,7 +6,7 @@ class Dashboard_target_vs_realisasi extends CI_Controller
     function __construct() {
         parent::__construct();
 
-        check_login();
+        // check_login();
         
     }
 
@@ -23,6 +23,10 @@ class Dashboard_target_vs_realisasi extends CI_Controller
             $this->load->view('pelaporan/dashboard_t_target_realisasi');
         }
         
+    }
+
+    public function target_realisasi(){
+        $this->load->view('pelaporan/dashboard_t_target_realisasi');
     }
 
 
