@@ -41,7 +41,7 @@
                 {label: 'Tanggal Awal',name: 'start_date',width: 170, align: "left"},
                 {label: 'Tanggal Akhir',name: 'end_date',width: 200, align: "left"},
                 {label: 'Deskripsi',name: 'description',width: 200, align: "left"},
-                {label: 'Jumlah',name: 'target_amt',width: 200, align: "right",formatter:'currency', formatoptions: {prefix:"",decimalSeparator:",", thousandsSeparator:'.'}}
+                {label: 'Jumlah',name: 'target_amt',width: 200, align: "right",formatter:'currency', formatoptions: {prefix:"",decimalSeparator:",", thousandsSeparator:'.', decimalPlaces: 2}}
 
 
             ],
