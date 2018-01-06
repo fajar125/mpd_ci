@@ -18,137 +18,79 @@
         <script>if (typeof module === 'object') {window.module = module; module = undefined;}</script>
     </head>
 
-   <body class="page-header-fixed page-sidebar-closed-hide-logo page-content-white page-md page-header-fixed page-sidebar-fixed">
-
+   <body class="page-header-fixed page-sidebar-closed-hide-logo page-content-white page-md page-header-fixed page-sidebar-fixed" style="background-color: #64D76B !important;">
 <!-- breadcrumb -->
-
 <!-- end breadcrumb -->
+
 <div class="space-4"></div>
 <div class="row">
     <div class="col-xs-12">
-        <div class="tabbable">
-            <ul class="nav nav-tabs">
-               <li class="">
-                    <a href="javascript:;" data-toggle="tab" aria-expanded="true" id="tab-1">
-                        <i class="blue"></i>
-                        <strong> Target VS Realisasi </strong>
-                    </a>
-                </li>
-                <li class="">
-                    <a href="javascript:;" data-toggle="tab" aria-expanded="true" id="tab-2">
-                        <i class="blue"></i>
-                        <strong> Per Bidang Pajak </strong>
-                    </a>
-                </li>
-                <li class="">
-                    <a href="javascript:;" data-toggle="tab" aria-expanded="true" id="tab-3">
-                        <i class="blue"></i>
-                        <strong> Per Jenis Pajak </strong>
-                    </a>
-                </li>
-                <li class="active">
-                    <a href="javascript:;" data-toggle="tab" aria-expanded="true" id="tab-4">
-                        <i class="blue"></i>
-                        <strong> Bulanan Per Jenis Pajak </strong>
-                    </a>
-                </li>
-            </ul>
-        </div>
 
         <div class="tab-content no-border">
-            <div class="row">
+            <!-- <div class="row">
                 <div class="col-xs-12">
                    <table id="grid-table"></table>
                    <div id="grid-pager"></div>
                 </div>
-            </div>
+            </div> -->
+            <div style="text-align: center;"><img src="<?php echo base_url(); ?>assets/image/logo-2.png" width="50px" height="" alt=""></div>
+            <div style="text-align: center; color: #ffffff; font-weight: bold; font-size: 20px;">PEMERINTAH KABUPATEN LOMBOK UTARA</div>
+            <div style="text-align: center; color: #ffffff; font-weight: bold; font-size: 20px;">BADAN PENDAPATAN DAERAH</div>
             <hr>
+
+            <div class="tab-content no-border">
             <div class="row">
                 <div class="col-xs-12">
-                   <table id="grid-table-detail"></table>
-                   <div id="grid-pager-detail"></div>
+                   <table id="grid-table-hotel"></table>
+                   <div id="grid-pager-hotel"></div>
                 </div>
             </div>
+            
             <div class="row">
-                <div class="col-xs-12" style="display: none;">
-                   <table id="grid-table-tmp"></table>
-                   <div id="grid-pager-tmp"></div>
+                <div class="col-xs-12">
+                   <table id="grid-table-restoran"></table>
+                   <div id="grid-pager-restoran"></div>
                 </div>
             </div>
+
+            <div class="row">
+                <div class="col-xs-12">
+                   <table id="grid-table-hiburan"></table>
+                   <div id="grid-pager-hiburan"></div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-xs-12">
+                   <table id="grid-table-parkir"></table>
+                   <div id="grid-pager-parkir"></div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-xs-12">
+                   <table id="grid-table-ppj"></table>
+                   <div id="grid-pager-ppj"></div>
+                </div>
+            </div>
+        </div>
         </div>
     </div>
 </div>
 
-<script>
-    var urlJS = "<?php echo base_url(); ?>assets/js/highcharts.js";
-
-    if (!isScriptAlreadyIncluded(urlJS)){
-      // DOM: Create the script element
-        var jsElm = document.createElement("script");
-        // set the type attribute
-        jsElm.type = "application/javascript";
-        // make the script element load file
-        jsElm.src = urlJS;
-        // finally insert the element to the body element in order to load the script
-        document.body.appendChild(jsElm);
-    }
-
-    function isScriptAlreadyIncluded(src){
-        var scripts = document.getElementsByTagName("script");
-        for(var i = 0; i < scripts.length; i++) 
-           if(scripts[i].getAttribute('src') == src) return true;
-        return false;
-    }
-</script>
-
 
 <script>
-$("#tab-1").on("click", function(event) {
-    event.stopPropagation();
-     window.location.href = "<?php echo base_url();?>"+"dashboard_target_vs_realisasi/index?mode=target";
-});
-
-$("#tab-3").on("click", function(event) {
-    event.stopPropagation();
-    var grid = $('#grid-table-tmp');
-    
-   
-    //vcode = grid.jqGrid ('getCell', p_vat_group_id, 'group_code');
-    
-    //code = grid.jqGrid ('getCell', p_vat_group_id, 'year_code');
-     p_finance_period_id = grid.jqGrid ('getGridParam', 'selrow');//pake finenace period
-     p_year_period_id = "<?php echo $this->input->get('p_year_period_id'); ?>";
-     p_vat_group_id = "<?php echo $this->input->get('p_vat_group_id'); ?>";
-     p_vat_type_id = "<?php echo $this->input->get('p_vat_type_id'); ?>";
-     
-
-    window.location.href = "<?php echo base_url();?>"+"dashboard_target_vs_realisasi/index?p_year_period_id="+p_year_period_id+"&mode=jenis"+"&p_vat_group_id="+p_vat_group_id;
-});         
-
-$("#tab-2").on("click", function(event) {
-
-    event.stopPropagation();
-    var grid = $('#grid-table');
-    p_finance_period_id = grid.jqGrid ('getGridParam', 'selrow');
-    code = "<?php echo $this->input->get('code'); ?>";
-    p_year_period_id = "<?php echo $this->input->get('p_year_period_id'); ?>";
-
-    window.location.href = "<?php echo base_url();?>"+"dashboard_target_vs_realisasi/index?p_year_period_id="+p_year_period_id+"&code="+code+"&mode=bidang";
-});
-
-</script>
-<script>
-
+    //hotel
     jQuery(function($) {
-        var grid_selector = "#grid-table";
-        var pager_selector = "#grid-pager";
+        var grid_selector = "#grid-table-hotel";
+        var pager_selector = "#grid-pager-hotel";
 
-        jQuery("#grid-table").jqGrid({
+        jQuery("#grid-table-hotel").jqGrid({
             url: '<?php echo WS_JQGRID."pelaporan.t_target_realisasi_controller/readPerBulan"; ?>',
             postData: { 
-                p_year_period_id : "<?php echo $this->input->get('p_year_period_id'); ?>",
-                p_vat_group_id : <?php echo $this->input->get('p_vat_group_id'); ?>,
-                p_vat_type_id : <?php echo $this->input->get('p_vat_type_id'); ?>},
+                p_year_period_id : <?php echo $this->input->post('p_year_period_id'); ?>,
+                p_vat_group_id : <?php echo $this->input->post('p_vat_group_id'); ?>,
+                p_vat_type_id : 1},
             datatype: "json",
             mtype: "POST",
             colModel: [
@@ -228,32 +170,10 @@ $("#tab-2").on("click", function(event) {
             multiboxonly: true,
             onSelectRow: function (rowid) {
                 /*do something when selected*/
-                var celValue = $('#grid-table').jqGrid('getCell', rowid, 'p_finance_period_id');
-                var celCode = $('#grid-table').jqGrid('getCell', rowid, 'bulan');
-                var yearId = $('#grid-table').jqGrid('getCell', rowid, 'p_year_period_id');
-                var typeId = $('#grid-table').jqGrid('getCell', rowid, 'p_vat_type_id');
-
-                var grid_detail = $("#grid-table-detail");
-                if (rowid != null) {
-                    grid_detail.jqGrid('setGridParam', {
-                        url: '<?php echo WS_JQGRID."pelaporan.t_target_realisasi_controller/readPerBulanDetail"; ?>',
-                        postData: {row_id: rowid,
-                                    p_finance_period_id: celValue,
-                                    p_year_period_id: yearId,
-                                    p_vat_type_id: typeId
-                                }
-                    });
-                    var strCaption = 'Daftar Ayat :: ' + celCode;
-                    grid_detail.jqGrid('setCaption', strCaption);
-                    $("#grid-table-detail").trigger("reloadGrid");
-                    $("#detail_placeholder").show();
-
-                    responsive_jqgrid('#grid-table-detail', '#grid-pager-detail');
-                }
 
             },
             sortorder:'',
-            pager: '#grid-pager',
+            pager: '#grid-pager-hotel',
             jsonReader: {
                 root: 'rows',
                 id: 'id',
@@ -267,11 +187,11 @@ $("#tab-2").on("click", function(event) {
             },
             //memanggil controller jqgrid yang ada di controller readPerBidang
             editurl: '<?php echo WS_JQGRID."pelaporan.t_target_realisasi_controller/readPerBulan"; ?>',
-            caption: "Daftar Target VS Realisasi Per Bidang Pajak"
+            caption: "Daftar Target VS Realisasi Pajak Hotel"
 
         });
 
-        jQuery('#grid-table').jqGrid('navGrid', '#grid-pager',
+        jQuery('#grid-table-hotel').jqGrid('navGrid', '#grid-pager-hotel',
             {   //navbar options
                 edit: false,
                 editicon: 'fa fa-pencil blue bigger-120',
@@ -321,13 +241,13 @@ $("#tab-2").on("click", function(event) {
             {
                 editData : {
                     p_year_period_id: function() {
-                        return "<?php echo $this->input->get('p_year_period_id'); ?>";
+                        return <?php echo $this->input->post('p_year_period_id'); ?>;
                     },
                     p_vat_group_id: function() {
-                        return <?php echo $this->input->get('p_vat_group_id'); ?>;
+                        return <?php echo $this->input->post('p_vat_group_id'); ?>;
                     },
                     p_vat_type_id: function() {
-                        return <?php echo $this->input->get('p_vat_type_id'); ?>;
+                        return 1;
                     }
                 },
                 //new record form
@@ -410,21 +330,24 @@ $("#tab-2").on("click", function(event) {
 
     });
 
-    
-    $("#grid-table-detail").jqGrid({
-        url: '<?php echo WS_JQGRID."pelaporan.t_target_realisasi_controller/readPerBulanDetail"; ?>',
-        datatype: "json",
-        postData: { 
-                csrf_tibs_token : "<?php echo $this->security->get_csrf_hash(); ?>", //ngaruh ga?
-                p_year_period_id : "<?php echo $this->input->get('p_year_period_id'); ?>",
-                p_finance_period_id : "<?php echo $this->input->get('p_finance_period_id'); ?>",
-                p_vat_type_id : "<?php echo $this->input->get('p_vat_type_id'); ?>"},
-        mtype: "POST",
-        colModel: [
+    //restoran
+    jQuery(function($) {
+        var grid_selector = "#grid-table-restoran";
+        var pager_selector = "#grid-pager-restoran";
+
+        jQuery("#grid-table-restoran").jqGrid({
+            url: '<?php echo WS_JQGRID."pelaporan.t_target_realisasi_controller/readPerBulan"; ?>',
+            postData: { 
+                p_year_period_id : <?php echo $this->input->post('p_year_period_id'); ?>,
+                p_vat_group_id : <?php echo $this->input->post('p_vat_group_id'); ?>,
+                p_vat_type_id : 2},
+            datatype: "json",
+            mtype: "POST",
+            colModel: [
                 {label: 'ID Tahun', name: 'p_year_period_id',  width: 5, sorttype: 'number', editable: true, hidden: true},
                 {label: 'ID Bulan', name: 'p_finance_period_id',  width: 5, sorttype: 'number', editable: true, hidden: true},
                 {label: 'ID Type', name: 'p_vat_type_id',  width: 5, sorttype: 'number', editable: true, hidden: true},
-                {label: 'Ayat',name: 'ayat',width: 150, align: "left",editable: true,
+                {label: 'Bulan',name: 'bulan',width: 150, align: "left",editable: true,
                     editoptions: {
                         size: 30,
                         maxlength:32
@@ -440,6 +363,20 @@ $("#tab-2").on("click", function(event) {
                     editrules: {required: true}
                 },
                 {label: 'Pokok',name: 'realisasi_amt',width: 200, align: "right",editable: true,
+                    formatter: 'number', formatoptions: { decimalPlaces: 2 },
+                    editoptions: {
+                        size: 30,
+                        maxlength:32
+                    },
+                    editrules: {required: true}
+                },
+                {label: 'Denda Pokok',name: 'denda_pokok',width: 200, align: "right",editable: true, formatter: 'number', formatoptions: { decimalPlaces: 2 },
+                    editoptions: {
+                        rows: 2,
+                        cols:50
+                    }
+                },
+                {label: 'Denda Piutang',name: 'denda_piutang',width: 200, align: "right",editable: true,
                     formatter: 'number', formatoptions: { decimalPlaces: 2 },
                     editoptions: {
                         size: 30,
@@ -468,185 +405,205 @@ $("#tab-2").on("click", function(event) {
                     }
                 }
 
-        ],
-        height: '100%',
-        width:500,
-        autowidth: true,
-        viewrecords: true,
-        rowNum: 10,
-        rowList: [10,20,50],
-        rownumbers: true, // show row numbers
-        rownumWidth: 35, // the width of the row numbers columns
-        altRows: true,
-        shrinkToFit: true,
-        onSelectRow: function (rowid) {
-            /*do something when selected*/
 
-        },
-        sortorder:'',
-        pager: '#grid-pager-detail',
-        jsonReader: {
-            root: 'rows',
-            id: 'id',
-            repeatitems: false
-        },
-        loadComplete: function (response) {
-            if(response.success == false) {
-                swal({title: 'Attention', text: response.message, html: true, type: "warning"});
+                
+            ],
+            height: '100%',
+            autowidth: true,
+            viewrecords: true,
+            rowNum: 10,
+            rowList: [10,20,50],
+            rownumbers: true, // show row numbers
+            rownumWidth: 35, // the width of the row numbers columns
+            altRows: true,
+            shrinkToFit: true,
+            multiboxonly: true,
+            onSelectRow: function (rowid) {
+                /*do something when selected*/
+
+            },
+            sortorder:'',
+            pager: '#grid-pager-restoran',
+            jsonReader: {
+                root: 'rows',
+                id: 'id',
+                repeatitems: false
+            },
+            loadComplete: function (response) {
+                if(response.success == false) {
+                    swal({title: 'Attention', text: response.message, html: true, type: "warning"});
+                }
+
+            },
+            //memanggil controller jqgrid yang ada di controller readPerBidang
+            editurl: '<?php echo WS_JQGRID."pelaporan.t_target_realisasi_controller/readPerBulan"; ?>',
+            caption: "Daftar Target VS Realisasi Pajak Restoran"
+
+        });
+
+        jQuery('#grid-table-restoran').jqGrid('navGrid', '#grid-pager-restoran',
+            {   //navbar options
+                edit: false,
+                editicon: 'fa fa-pencil blue bigger-120',
+                add: false,
+                addicon: 'fa fa-plus-circle purple bigger-120',
+                del: false,
+                delicon: 'fa fa-trash-o red bigger-120',
+                search: true,
+                searchicon: 'fa fa-search orange bigger-120',
+                refresh: true,
+                afterRefresh: function () {
+                    // some code here
+                    jQuery("#detailsPlaceholder").hide();
+                },
+
+                refreshicon: 'fa fa-refresh green bigger-120',
+                view: false,
+                viewicon: 'fa fa-search-plus grey bigger-120'
+            },
+
+            {
+                // options for the Edit Dialog
+                closeAfterEdit: true,
+                closeOnEscape:true,
+                recreateForm: true,
+                serializeEditData: serializeJSON,
+                width: 'auto',
+                errorTextFormat: function (data) {
+                    return 'Error: ' + data.responseText
+                },
+                beforeShowForm: function (e, form) {
+                    var form = $(e[0]);
+                    style_edit_form(form);
+
+                },
+                afterShowForm: function(form) {
+                    form.closest('.ui-jqdialog').center();
+                },
+                afterSubmit:function(response,postdata) {
+                    var response = jQuery.parseJSON(response.responseText);
+                    if(response.success == false) {
+                        return [false,response.message,response.responseText];
+                    }
+                    return [true,"",response.responseText];
+                }
+            },
+            {
+                editData : {
+                    p_year_period_id: function() {
+                        return <?php echo $this->input->post('p_year_period_id'); ?>;
+                    },
+                    p_vat_group_id: function() {
+                        return <?php echo $this->input->post('p_vat_group_id'); ?>;
+                    },
+                    p_vat_type_id: function() {
+                        return 2;
+                    }
+                },
+                //new record form
+                closeAfterAdd: false,
+                clearAfterAdd : true,
+                closeOnEscape:true,
+                recreateForm: true,
+                width: 'auto',
+                errorTextFormat: function (data) {
+                    return 'Error: ' + data.responseText
+                },
+                serializeEditData: serializeJSON,
+                viewPagerButtons: false,
+                beforeShowForm: function (e, form) {
+                    var form = $(e[0]);
+                    style_edit_form(form);
+                },
+                afterShowForm: function(form) {
+                    form.closest('.ui-jqdialog').center();
+                },
+                afterSubmit:function(response,postdata) {
+                    var response = jQuery.parseJSON(response.responseText);
+                    if(response.success == false) {
+                        return [false,response.message,response.responseText];
+                    }
+
+                    $(".tinfo").html('<div class="ui-state-success">' + response.message + '</div>');
+                    var tinfoel = $(".tinfo").show();
+                    tinfoel.delay(3000).fadeOut();
+
+
+                    return [true,"",response.responseText];
+                }
+            },
+            
+            {
+                //delete record form
+                serializeDelData: serializeJSON,
+                recreateForm: true,
+                beforeShowForm: function (e) {
+                    var form = $(e[0]);
+                    style_delete_form(form);
+
+                },
+                afterShowForm: function(form) {
+                    form.closest('.ui-jqdialog').center();
+                },
+                onClick: function (e) {
+                    //alert(1);
+                },
+                afterSubmit:function(response,postdata) {
+                    var response = jQuery.parseJSON(response.responseText);
+                    if(response.success == false) {
+                        return [false,response.message,response.responseText];
+                    }
+                    return [true,"",response.responseText];
+                }
+            },
+            {
+                //search form
+                closeAfterSearch: false,
+                recreateForm: true,
+                afterShowSearch: function (e) {
+                    var form = $(e[0]);
+                    style_search_form(form);
+                    form.closest('.ui-jqdialog').center();
+                },
+                afterRedraw: function () {
+                    style_search_filters($(this));
+                }
+            },
+            {
+                //view record form
+                recreateForm: true,
+                beforeShowForm: function (e) {
+                    var form = $(e[0]);
+                }
             }
-
-        },
-        editurl: '<?php echo WS_JQGRID."pelaporan.t_target_realisasi_controller/readPerBulanDetail"; ?>',
-        caption: "Daftar Ayat"
+        );
 
     });
 
-    $('#grid-table-detail').jqGrid('navGrid', '#grid-pager-detail',
-        {   //navbar options
-            edit: false,
-            editicon: 'fa fa-pencil blue bigger-110',
-            add: false,
-            addicon: 'fa fa-plus-circle purple bigger-110',
-            del: false,
-            delicon: 'fa fa-trash-o red bigger-110',
-            search: true,
-            searchicon: 'fa fa-search orange bigger-110',
-            refresh: true,
-            afterRefresh: function () {
-                // some code here
-            },
+    //hiburan
+    jQuery(function($) {
+        var grid_selector = "#grid-table-hiburan";
+        var pager_selector = "#grid-pager-hiburan";
 
-            refreshicon: 'fa fa-refresh green bigger-110',
-            view: false,
-            viewicon: 'fa fa-search-plus grey bigger-110'
-        },
-
-        {
-            editData: {
-                role_id: function() {
-                    var selRowId =  $("#grid-table").jqGrid ('getGridParam', 'selrow');
-                    var role_id = $("#grid-table").jqGrid('getCell', selRowId, 'p_finance_period_id');
-                    return role_id;
-                }
-            },
-            // options for the Edit Dialog
-            serializeEditData: serializeJSON,
-            closeAfterEdit: true,
-            closeOnEscape:true,
-            recreateForm: true,
-            viewPagerButtons: true,
-            width: 'auto',
-            errorTextFormat: function (data) {
-                return 'Error: ' + data.responseText
-            },
-
-            beforeShowForm: function (e, form) {
-                var form = $(e[0]);
-                style_edit_form(form);
-            },
-            afterShowForm: function(form) {
-                form.closest('.ui-jqdialog').center();
-            },
-            afterSubmit:function(response,postdata) {
-                var response = $.parseJSON(response.responseText);
-                if(response.success == false) {
-                    return [false,response.message,response.responseText];
-                }
-                return [true,"",response.responseText];
-            }
-
-        },
-        {
-            //new record form
-            serializeEditData: serializeJSON,
-            closeAfterAdd: true,
-            clearAfterAdd : true,
-            closeOnEscape:true,
-            recreateForm: true,
-            width: 'auto',
-            errorTextFormat: function (data) {
-                return 'Error: ' + data.responseText
-            },
-            viewPagerButtons: false,
-            beforeShowForm: function (e, form) {
-                var form = $(e[0]);
-                style_edit_form(form);
-            },
-            afterShowForm: function(form) {
-                form.closest('.ui-jqdialog').center();
-            },
-            afterSubmit:function(response,postdata) {
-                var response = $.parseJSON(response.responseText);
-                if(response.success == false) {
-                    return [false,response.message,response.responseText];
-                }
-
-                $(".tinfo").html('<div class="ui-state-success">' + response.message + '</div>');
-                var tinfoel = $(".tinfo").show();
-                tinfoel.delay(3000).fadeOut();
-
-                return [true,"",response.responseText];
-            }
-        },
-        {
-            //delete record form
-            serializeDelData: serializeJSON,
-            recreateForm: true,
-            beforeShowForm: function (e) {
-                var form = $(e[0]);
-                style_delete_form(form);
-            },
-            afterShowForm: function(form) {
-                form.closest('.ui-jqdialog').center();
-            },
-            onClick: function (e) {
-                //alert(1);
-            },
-            afterSubmit:function(response,postdata) {
-                var response = $.parseJSON(response.responseText);
-                if(response.success == false) {
-                    return [false,response.message,response.responseText];
-                }
-                return [true,"",response.responseText];
-            }
-        },
-        {
-            //search form
-            closeAfterSearch: false,
-            recreateForm: true,
-            afterShowSearch: function (e) {
-                var form = $(e[0]);
-                style_search_form(form);
-                form.closest('.ui-jqdialog').center();
-            },
-            afterRedraw: function () {
-                style_search_filters($(this));
-            }
-        },
-        {
-            //view record form
-            recreateForm: true,
-            beforeShowForm: function (e) {
-                var form = $(e[0]);
-            }
-        }
-    );
-
-
-    $("#grid-table-tmp").jqGrid({
-        url: '<?php echo WS_JQGRID."pelaporan.t_target_realisasi_controller/readPerBulanTmp"; ?>',
-        datatype: "json",
-        postData: { 
-                csrf_tibs_token : "<?php echo $this->security->get_csrf_hash(); ?>", //ngaruh ga?
-                p_year_period_id : <?php echo $this->input->get('p_year_period_id'); ?>,
-                t_revenue_target_id : <?php echo $this->input->get('t_revenue_target_id'); ?>},
-        mtype: "POST",
-        colModel: [
+        jQuery("#grid-table-hiburan").jqGrid({
+            url: '<?php echo WS_JQGRID."pelaporan.t_target_realisasi_controller/readPerBulan"; ?>',
+            postData: { 
+                p_year_period_id : <?php echo $this->input->post('p_year_period_id'); ?>,
+                p_vat_group_id : <?php echo $this->input->post('p_vat_group_id'); ?>,
+                p_vat_type_id : 3},
+            datatype: "json",
+            mtype: "POST",
+            colModel: [
                 {label: 'ID Tahun', name: 'p_year_period_id',  width: 5, sorttype: 'number', editable: true, hidden: true},
                 {label: 'ID Bulan', name: 'p_finance_period_id',  width: 5, sorttype: 'number', editable: true, hidden: true},
-                {label: 'ID Type', name: 't_revenue_target_id',  width: 5, sorttype: 'number', editable: true, hidden: true},
-                {label: 'ID Type', name: 'p_vat_group_id',  width: 5, sorttype: 'number', editable: true, hidden: true},
-               
+                {label: 'ID Type', name: 'p_vat_type_id',  width: 5, sorttype: 'number', editable: true, hidden: true},
+                {label: 'Bulan',name: 'bulan',width: 150, align: "left",editable: true,
+                    editoptions: {
+                        size: 30,
+                        maxlength:32
+                    },
+                    editrules: {required: true}
+                },
                 {label: 'Target',name: 'target_amount',width: 200, align: "right",editable: true,
                     formatter: 'number', formatoptions: { decimalPlaces: 2 },
                     editoptions: {
@@ -663,31 +620,715 @@ $("#tab-2").on("click", function(event) {
                     },
                     editrules: {required: true}
                 },
+                {label: 'Denda Pokok',name: 'denda_pokok',width: 200, align: "right",editable: true, formatter: 'number', formatoptions: { decimalPlaces: 2 },
+                    editoptions: {
+                        rows: 2,
+                        cols:50
+                    }
+                },
+                {label: 'Denda Piutang',name: 'denda_piutang',width: 200, align: "right",editable: true,
+                    formatter: 'number', formatoptions: { decimalPlaces: 2 },
+                    editoptions: {
+                        size: 30,
+                        maxlength:32
+                    },
+                    editrules: {required: true}
+                },
                 {label: 'Piutang',name: 'debt_amt',width: 200, align: "right",editable: true,
                     formatter: 'number', formatoptions: { decimalPlaces: 2 },
                     editoptions: {
                         rows: 2,
                         cols:50
                     }
+                },
+                {label: 'Total',name: 'total',width: 200, align: "right",editable: true,
+                    formatter: 'number', formatoptions: { decimalPlaces: 2 },
+                    editoptions: {
+                        rows: 2,
+                        cols:50
+                    }
+                },
+                {label: 'Persentase',name: 'persentase',width: 150, align: "right",editable: true,
+                    editoptions: {
+                        rows: 2,
+                        cols:50
+                    }
                 }
 
-        ],
-        height: '100%',
-        width:500,
-        autowidth: true,
-        viewrecords: true,
-        rowNum: 10,
-        rowList: [10,20,50],
-        rownumbers: true, // show row numbers
-        rownumWidth: 35, // the width of the row numbers columns
-        altRows: true,
-        shrinkToFit: true,
-        onSelectRow: function (rowid) {
-            /*do something when selected*/
 
-        }
+                
+            ],
+            height: '100%',
+            autowidth: true,
+            viewrecords: true,
+            rowNum: 10,
+            rowList: [10,20,50],
+            rownumbers: true, // show row numbers
+            rownumWidth: 35, // the width of the row numbers columns
+            altRows: true,
+            shrinkToFit: true,
+            multiboxonly: true,
+            onSelectRow: function (rowid) {
+                /*do something when selected*/
+
+            },
+            sortorder:'',
+            pager: '#grid-pager-hiburan',
+            jsonReader: {
+                root: 'rows',
+                id: 'id',
+                repeatitems: false
+            },
+            loadComplete: function (response) {
+                if(response.success == false) {
+                    swal({title: 'Attention', text: response.message, html: true, type: "warning"});
+                }
+
+            },
+            //memanggil controller jqgrid yang ada di controller readPerBidang
+            editurl: '<?php echo WS_JQGRID."pelaporan.t_target_realisasi_controller/readPerBulan"; ?>',
+            caption: "Daftar Target VS Realisasi Pajak Hiburan"
+
+        });
+
+        jQuery('#grid-table-hiburan').jqGrid('navGrid', '#grid-pager-hiburan',
+            {   //navbar options
+                edit: false,
+                editicon: 'fa fa-pencil blue bigger-120',
+                add: false,
+                addicon: 'fa fa-plus-circle purple bigger-120',
+                del: false,
+                delicon: 'fa fa-trash-o red bigger-120',
+                search: true,
+                searchicon: 'fa fa-search orange bigger-120',
+                refresh: true,
+                afterRefresh: function () {
+                    // some code here
+                    jQuery("#detailsPlaceholder").hide();
+                },
+
+                refreshicon: 'fa fa-refresh green bigger-120',
+                view: false,
+                viewicon: 'fa fa-search-plus grey bigger-120'
+            },
+
+            {
+                // options for the Edit Dialog
+                closeAfterEdit: true,
+                closeOnEscape:true,
+                recreateForm: true,
+                serializeEditData: serializeJSON,
+                width: 'auto',
+                errorTextFormat: function (data) {
+                    return 'Error: ' + data.responseText
+                },
+                beforeShowForm: function (e, form) {
+                    var form = $(e[0]);
+                    style_edit_form(form);
+
+                },
+                afterShowForm: function(form) {
+                    form.closest('.ui-jqdialog').center();
+                },
+                afterSubmit:function(response,postdata) {
+                    var response = jQuery.parseJSON(response.responseText);
+                    if(response.success == false) {
+                        return [false,response.message,response.responseText];
+                    }
+                    return [true,"",response.responseText];
+                }
+            },
+            {
+                editData : {
+                    p_year_period_id: function() {
+                        return <?php echo $this->input->post('p_year_period_id'); ?>;
+                    },
+                    p_vat_group_id: function() {
+                        return <?php echo $this->input->post('p_vat_group_id'); ?>;
+                    },
+                    p_vat_type_id: function() {
+                        return 3;
+                    }
+                },
+                //new record form
+                closeAfterAdd: false,
+                clearAfterAdd : true,
+                closeOnEscape:true,
+                recreateForm: true,
+                width: 'auto',
+                errorTextFormat: function (data) {
+                    return 'Error: ' + data.responseText
+                },
+                serializeEditData: serializeJSON,
+                viewPagerButtons: false,
+                beforeShowForm: function (e, form) {
+                    var form = $(e[0]);
+                    style_edit_form(form);
+                },
+                afterShowForm: function(form) {
+                    form.closest('.ui-jqdialog').center();
+                },
+                afterSubmit:function(response,postdata) {
+                    var response = jQuery.parseJSON(response.responseText);
+                    if(response.success == false) {
+                        return [false,response.message,response.responseText];
+                    }
+
+                    $(".tinfo").html('<div class="ui-state-success">' + response.message + '</div>');
+                    var tinfoel = $(".tinfo").show();
+                    tinfoel.delay(3000).fadeOut();
+
+
+                    return [true,"",response.responseText];
+                }
+            },
+            
+            {
+                //delete record form
+                serializeDelData: serializeJSON,
+                recreateForm: true,
+                beforeShowForm: function (e) {
+                    var form = $(e[0]);
+                    style_delete_form(form);
+
+                },
+                afterShowForm: function(form) {
+                    form.closest('.ui-jqdialog').center();
+                },
+                onClick: function (e) {
+                    //alert(1);
+                },
+                afterSubmit:function(response,postdata) {
+                    var response = jQuery.parseJSON(response.responseText);
+                    if(response.success == false) {
+                        return [false,response.message,response.responseText];
+                    }
+                    return [true,"",response.responseText];
+                }
+            },
+            {
+                //search form
+                closeAfterSearch: false,
+                recreateForm: true,
+                afterShowSearch: function (e) {
+                    var form = $(e[0]);
+                    style_search_form(form);
+                    form.closest('.ui-jqdialog').center();
+                },
+                afterRedraw: function () {
+                    style_search_filters($(this));
+                }
+            },
+            {
+                //view record form
+                recreateForm: true,
+                beforeShowForm: function (e) {
+                    var form = $(e[0]);
+                }
+            }
+        );
+
     });
 
+    //parkir
+    jQuery(function($) {
+        var grid_selector = "#grid-table-parkir";
+        var pager_selector = "#grid-pager-parkir";
+
+        jQuery("#grid-table-parkir").jqGrid({
+            url: '<?php echo WS_JQGRID."pelaporan.t_target_realisasi_controller/readPerBulan"; ?>',
+            postData: { 
+                p_year_period_id : <?php echo $this->input->post('p_year_period_id'); ?>,
+                p_vat_group_id : <?php echo $this->input->post('p_vat_group_id'); ?>,
+                p_vat_type_id : 4},
+            datatype: "json",
+            mtype: "POST",
+            colModel: [
+                {label: 'ID Tahun', name: 'p_year_period_id',  width: 5, sorttype: 'number', editable: true, hidden: true},
+                {label: 'ID Bulan', name: 'p_finance_period_id',  width: 5, sorttype: 'number', editable: true, hidden: true},
+                {label: 'ID Type', name: 'p_vat_type_id',  width: 5, sorttype: 'number', editable: true, hidden: true},
+                {label: 'Bulan',name: 'bulan',width: 150, align: "left",editable: true,
+                    editoptions: {
+                        size: 30,
+                        maxlength:32
+                    },
+                    editrules: {required: true}
+                },
+                {label: 'Target',name: 'target_amount',width: 200, align: "right",editable: true,
+                    formatter: 'number', formatoptions: { decimalPlaces: 2 },
+                    editoptions: {
+                        size: 30,
+                        maxlength:32
+                    },
+                    editrules: {required: true}
+                },
+                {label: 'Pokok',name: 'realisasi_amt',width: 200, align: "right",editable: true,
+                    formatter: 'number', formatoptions: { decimalPlaces: 2 },
+                    editoptions: {
+                        size: 30,
+                        maxlength:32
+                    },
+                    editrules: {required: true}
+                },
+                {label: 'Denda Pokok',name: 'denda_pokok',width: 200, align: "right",editable: true, formatter: 'number', formatoptions: { decimalPlaces: 2 },
+                    editoptions: {
+                        rows: 2,
+                        cols:50
+                    }
+                },
+                {label: 'Denda Piutang',name: 'denda_piutang',width: 200, align: "right",editable: true,
+                    formatter: 'number', formatoptions: { decimalPlaces: 2 },
+                    editoptions: {
+                        size: 30,
+                        maxlength:32
+                    },
+                    editrules: {required: true}
+                },
+                {label: 'Piutang',name: 'debt_amt',width: 200, align: "right",editable: true,
+                    formatter: 'number', formatoptions: { decimalPlaces: 2 },
+                    editoptions: {
+                        rows: 2,
+                        cols:50
+                    }
+                },
+                {label: 'Total',name: 'total',width: 200, align: "right",editable: true,
+                    formatter: 'number', formatoptions: { decimalPlaces: 2 },
+                    editoptions: {
+                        rows: 2,
+                        cols:50
+                    }
+                },
+                {label: 'Persentase',name: 'persentase',width: 150, align: "right",editable: true,
+                    editoptions: {
+                        rows: 2,
+                        cols:50
+                    }
+                }
+
+
+                
+            ],
+            height: '100%',
+            autowidth: true,
+            viewrecords: true,
+            rowNum: 10,
+            rowList: [10,20,50],
+            rownumbers: true, // show row numbers
+            rownumWidth: 35, // the width of the row numbers columns
+            altRows: true,
+            shrinkToFit: true,
+            multiboxonly: true,
+            onSelectRow: function (rowid) {
+                /*do something when selected*/
+                
+
+            },
+            sortorder:'',
+            pager: '#grid-pager',
+            jsonReader: {
+                root: 'rows',
+                id: 'id',
+                repeatitems: false
+            },
+            loadComplete: function (response) {
+                if(response.success == false) {
+                    swal({title: 'Attention', text: response.message, html: true, type: "warning"});
+                }
+
+            },
+            //memanggil controller jqgrid yang ada di controller readPerBidang
+            editurl: '<?php echo WS_JQGRID."pelaporan.t_target_realisasi_controller/readPerBulan"; ?>',
+            caption: "Daftar Target VS Realisasi Pajak Parkir"
+
+        });
+
+        jQuery('#grid-table-parkir').jqGrid('navGrid', '#grid-pager',
+            {   //navbar options
+                edit: false,
+                editicon: 'fa fa-pencil blue bigger-120',
+                add: false,
+                addicon: 'fa fa-plus-circle purple bigger-120',
+                del: false,
+                delicon: 'fa fa-trash-o red bigger-120',
+                search: true,
+                searchicon: 'fa fa-search orange bigger-120',
+                refresh: true,
+                afterRefresh: function () {
+                    // some code here
+                    jQuery("#detailsPlaceholder").hide();
+                },
+
+                refreshicon: 'fa fa-refresh green bigger-120',
+                view: false,
+                viewicon: 'fa fa-search-plus grey bigger-120'
+            },
+
+            {
+                // options for the Edit Dialog
+                closeAfterEdit: true,
+                closeOnEscape:true,
+                recreateForm: true,
+                serializeEditData: serializeJSON,
+                width: 'auto',
+                errorTextFormat: function (data) {
+                    return 'Error: ' + data.responseText
+                },
+                beforeShowForm: function (e, form) {
+                    var form = $(e[0]);
+                    style_edit_form(form);
+
+                },
+                afterShowForm: function(form) {
+                    form.closest('.ui-jqdialog').center();
+                },
+                afterSubmit:function(response,postdata) {
+                    var response = jQuery.parseJSON(response.responseText);
+                    if(response.success == false) {
+                        return [false,response.message,response.responseText];
+                    }
+                    return [true,"",response.responseText];
+                }
+            },
+            {
+                editData : {
+                    p_year_period_id: function() {
+                        return <?php echo $this->input->post('p_year_period_id'); ?>;
+                    },
+                    p_vat_group_id: function() {
+                        return <?php echo $this->input->post('p_vat_group_id'); ?>;
+                    },
+                    p_vat_type_id: function() {
+                        return 4;
+                    }
+                },
+                //new record form
+                closeAfterAdd: false,
+                clearAfterAdd : true,
+                closeOnEscape:true,
+                recreateForm: true,
+                width: 'auto',
+                errorTextFormat: function (data) {
+                    return 'Error: ' + data.responseText
+                },
+                serializeEditData: serializeJSON,
+                viewPagerButtons: false,
+                beforeShowForm: function (e, form) {
+                    var form = $(e[0]);
+                    style_edit_form(form);
+                },
+                afterShowForm: function(form) {
+                    form.closest('.ui-jqdialog').center();
+                },
+                afterSubmit:function(response,postdata) {
+                    var response = jQuery.parseJSON(response.responseText);
+                    if(response.success == false) {
+                        return [false,response.message,response.responseText];
+                    }
+
+                    $(".tinfo").html('<div class="ui-state-success">' + response.message + '</div>');
+                    var tinfoel = $(".tinfo").show();
+                    tinfoel.delay(3000).fadeOut();
+
+
+                    return [true,"",response.responseText];
+                }
+            },
+            
+            {
+                //delete record form
+                serializeDelData: serializeJSON,
+                recreateForm: true,
+                beforeShowForm: function (e) {
+                    var form = $(e[0]);
+                    style_delete_form(form);
+
+                },
+                afterShowForm: function(form) {
+                    form.closest('.ui-jqdialog').center();
+                },
+                onClick: function (e) {
+                    //alert(1);
+                },
+                afterSubmit:function(response,postdata) {
+                    var response = jQuery.parseJSON(response.responseText);
+                    if(response.success == false) {
+                        return [false,response.message,response.responseText];
+                    }
+                    return [true,"",response.responseText];
+                }
+            },
+            {
+                //search form
+                closeAfterSearch: false,
+                recreateForm: true,
+                afterShowSearch: function (e) {
+                    var form = $(e[0]);
+                    style_search_form(form);
+                    form.closest('.ui-jqdialog').center();
+                },
+                afterRedraw: function () {
+                    style_search_filters($(this));
+                }
+            },
+            {
+                //view record form
+                recreateForm: true,
+                beforeShowForm: function (e) {
+                    var form = $(e[0]);
+                }
+            }
+        );
+
+    });
+
+    //ppj
+    jQuery(function($) {
+        var grid_selector = "#grid-table-ppj";
+        var pager_selector = "#grid-pager-ppj";
+
+        jQuery("#grid-table-ppj").jqGrid({
+            url: '<?php echo WS_JQGRID."pelaporan.t_target_realisasi_controller/readPerBulan"; ?>',
+            postData: { 
+                p_year_period_id : <?php echo $this->input->post('p_year_period_id'); ?>,
+                p_vat_group_id : <?php echo $this->input->post('p_vat_group_id'); ?>,
+                p_vat_type_id : 5},
+            datatype: "json",
+            mtype: "POST",
+            colModel: [
+                {label: 'ID Tahun', name: 'p_year_period_id',  width: 5, sorttype: 'number', editable: true, hidden: true},
+                {label: 'ID Bulan', name: 'p_finance_period_id',  width: 5, sorttype: 'number', editable: true, hidden: true},
+                {label: 'ID Type', name: 'p_vat_type_id',  width: 5, sorttype: 'number', editable: true, hidden: true},
+                {label: 'Bulan',name: 'bulan',width: 150, align: "left",editable: true,
+                    editoptions: {
+                        size: 30,
+                        maxlength:32
+                    },
+                    editrules: {required: true}
+                },
+                {label: 'Target',name: 'target_amount',width: 200, align: "right",editable: true,
+                    formatter: 'number', formatoptions: { decimalPlaces: 2 },
+                    editoptions: {
+                        size: 30,
+                        maxlength:32
+                    },
+                    editrules: {required: true}
+                },
+                {label: 'Pokok',name: 'realisasi_amt',width: 200, align: "right",editable: true,
+                    formatter: 'number', formatoptions: { decimalPlaces: 2 },
+                    editoptions: {
+                        size: 30,
+                        maxlength:32
+                    },
+                    editrules: {required: true}
+                },
+                {label: 'Denda Pokok',name: 'denda_pokok',width: 200, align: "right",editable: true, formatter: 'number', formatoptions: { decimalPlaces: 2 },
+                    editoptions: {
+                        rows: 2,
+                        cols:50
+                    }
+                },
+                {label: 'Denda Piutang',name: 'denda_piutang',width: 200, align: "right",editable: true,
+                    formatter: 'number', formatoptions: { decimalPlaces: 2 },
+                    editoptions: {
+                        size: 30,
+                        maxlength:32
+                    },
+                    editrules: {required: true}
+                },
+                {label: 'Piutang',name: 'debt_amt',width: 200, align: "right",editable: true,
+                    formatter: 'number', formatoptions: { decimalPlaces: 2 },
+                    editoptions: {
+                        rows: 2,
+                        cols:50
+                    }
+                },
+                {label: 'Total',name: 'total',width: 200, align: "right",editable: true,
+                    formatter: 'number', formatoptions: { decimalPlaces: 2 },
+                    editoptions: {
+                        rows: 2,
+                        cols:50
+                    }
+                },
+                {label: 'Persentase',name: 'persentase',width: 150, align: "right",editable: true,
+                    editoptions: {
+                        rows: 2,
+                        cols:50
+                    }
+                }
+
+
+                
+            ],
+            height: '100%',
+            autowidth: true,
+            viewrecords: true,
+            rowNum: 10,
+            rowList: [10,20,50],
+            rownumbers: true, // show row numbers
+            rownumWidth: 35, // the width of the row numbers columns
+            altRows: true,
+            shrinkToFit: true,
+            multiboxonly: true,
+            onSelectRow: function (rowid) {
+                /*do something when selected*/
+            },
+            sortorder:'',
+            pager: '#grid-pager',
+            jsonReader: {
+                root: 'rows',
+                id: 'id',
+                repeatitems: false
+            },
+            loadComplete: function (response) {
+                if(response.success == false) {
+                    swal({title: 'Attention', text: response.message, html: true, type: "warning"});
+                }
+
+            },
+            //memanggil controller jqgrid yang ada di controller readPerBidang
+            editurl: '<?php echo WS_JQGRID."pelaporan.t_target_realisasi_controller/readPerBulan"; ?>',
+            caption: "Daftar Target VS Realisasi PPJ"
+
+        });
+
+        jQuery('#grid-table-ppj').jqGrid('navGrid', '#grid-pager',
+            {   //navbar options
+                edit: false,
+                editicon: 'fa fa-pencil blue bigger-120',
+                add: false,
+                addicon: 'fa fa-plus-circle purple bigger-120',
+                del: false,
+                delicon: 'fa fa-trash-o red bigger-120',
+                search: true,
+                searchicon: 'fa fa-search orange bigger-120',
+                refresh: true,
+                afterRefresh: function () {
+                    // some code here
+                    jQuery("#detailsPlaceholder").hide();
+                },
+
+                refreshicon: 'fa fa-refresh green bigger-120',
+                view: false,
+                viewicon: 'fa fa-search-plus grey bigger-120'
+            },
+
+            {
+                // options for the Edit Dialog
+                closeAfterEdit: true,
+                closeOnEscape:true,
+                recreateForm: true,
+                serializeEditData: serializeJSON,
+                width: 'auto',
+                errorTextFormat: function (data) {
+                    return 'Error: ' + data.responseText
+                },
+                beforeShowForm: function (e, form) {
+                    var form = $(e[0]);
+                    style_edit_form(form);
+
+                },
+                afterShowForm: function(form) {
+                    form.closest('.ui-jqdialog').center();
+                },
+                afterSubmit:function(response,postdata) {
+                    var response = jQuery.parseJSON(response.responseText);
+                    if(response.success == false) {
+                        return [false,response.message,response.responseText];
+                    }
+                    return [true,"",response.responseText];
+                }
+            },
+            {
+                editData : {
+                    p_year_period_id: function() {
+                        return <?php echo $this->input->post('p_year_period_id'); ?>;
+                    },
+                    p_vat_group_id: function() {
+                        return <?php echo $this->input->post('p_vat_group_id'); ?>;
+                    },
+                    p_vat_type_id: function() {
+                        return 5;
+                    }
+                },
+                //new record form
+                closeAfterAdd: false,
+                clearAfterAdd : true,
+                closeOnEscape:true,
+                recreateForm: true,
+                width: 'auto',
+                errorTextFormat: function (data) {
+                    return 'Error: ' + data.responseText
+                },
+                serializeEditData: serializeJSON,
+                viewPagerButtons: false,
+                beforeShowForm: function (e, form) {
+                    var form = $(e[0]);
+                    style_edit_form(form);
+                },
+                afterShowForm: function(form) {
+                    form.closest('.ui-jqdialog').center();
+                },
+                afterSubmit:function(response,postdata) {
+                    var response = jQuery.parseJSON(response.responseText);
+                    if(response.success == false) {
+                        return [false,response.message,response.responseText];
+                    }
+
+                    $(".tinfo").html('<div class="ui-state-success">' + response.message + '</div>');
+                    var tinfoel = $(".tinfo").show();
+                    tinfoel.delay(3000).fadeOut();
+
+
+                    return [true,"",response.responseText];
+                }
+            },
+            
+            {
+                //delete record form
+                serializeDelData: serializeJSON,
+                recreateForm: true,
+                beforeShowForm: function (e) {
+                    var form = $(e[0]);
+                    style_delete_form(form);
+
+                },
+                afterShowForm: function(form) {
+                    form.closest('.ui-jqdialog').center();
+                },
+                onClick: function (e) {
+                    //alert(1);
+                },
+                afterSubmit:function(response,postdata) {
+                    var response = jQuery.parseJSON(response.responseText);
+                    if(response.success == false) {
+                        return [false,response.message,response.responseText];
+                    }
+                    return [true,"",response.responseText];
+                }
+            },
+            {
+                //search form
+                closeAfterSearch: false,
+                recreateForm: true,
+                afterShowSearch: function (e) {
+                    var form = $(e[0]);
+                    style_search_form(form);
+                    form.closest('.ui-jqdialog').center();
+                },
+                afterRedraw: function () {
+                    style_search_filters($(this));
+                }
+            },
+            {
+                //view record form
+                recreateForm: true,
+                beforeShowForm: function (e) {
+                    var form = $(e[0]);
+                }
+            }
+        );
+
+    });
 
 
     function responsive_jqgrid(grid_selector, pager_selector) {
@@ -699,7 +1340,6 @@ $("#tab-2").on("click", function(event) {
     }
 
 </script>
-
 
 </body>
 </html>

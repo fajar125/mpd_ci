@@ -191,7 +191,6 @@ class Target_realisasi_dash extends CI_Controller
         //echo base_url();exit;
         echo '[['.$result['target_amount'].','.$result['realisasi_amt'].',"'.$result['group_code'].'","'.$result['year_code'].'"]]';
         exit;
-    }
-    
+    }    
 
 }

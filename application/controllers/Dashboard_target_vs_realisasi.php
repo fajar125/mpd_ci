@@ -38,8 +38,21 @@ class Dashboard_target_vs_realisasi extends CI_Controller
     }
 
     public function target_realisasi_perjenis_pajak_perbulan(){
+        $_POST["p_year_period_id"]=28;//$this->get_p_year_period_id();
+        $_POST["p_vat_type_id"]=1;
+        $_POST["p_vat_group_id"]=2;
+
         $this->load->view('pelaporan/dashboard_t_target_realisasi_jenis_bulan');
     }
 
+    public function get_p_year_period_id() {
+
+        $sql = "select p_year_period_id from p_year_period where trunc(sysdate) between start_date and end_date";
+
+        $query = $this->db->query($sql, array());
+        $result = $query->row_array();
+        //echo base_url();exit;
+        return $result['p_year_period_id'];
+    }
 
 }
