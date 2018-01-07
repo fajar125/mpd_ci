@@ -29,11 +29,11 @@ class Dashboard_target_vs_realisasi extends CI_Controller
         $this->load->view('pelaporan/dashboard_t_target_realisasi');
     }
 
-    public function target_realisasi_perjenis_pajak(){
+    public function dash1(){
         $this->load->view('pelaporan/dashboard_t_target_realisasi_jenis');
     }
 
-    public function target_realisasi_perjenis_pajak_bulanan(){
+    public function dash2(){
         $this->load->view('pelaporan/dashboard_t_target_realisasi_perjenis_bulanan');
     }
 
