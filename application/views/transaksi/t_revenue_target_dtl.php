@@ -170,7 +170,7 @@ $("#tab-2").on("click", function(event) {
                         }
                     }
                 },
-                {label: 'Jumlah',name: 'target_amt',width: 200, align: "left", editable: true,
+                {label: 'Jumlah',name: 'target_amt',width: 200, align: "left", editable: true,editrules: {required: true},
                     editoptions:{
                         dataInit: function(element) {
                             $(element).keypress(function(e){
