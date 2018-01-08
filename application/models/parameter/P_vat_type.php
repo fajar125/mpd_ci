@@ -12,7 +12,8 @@ class P_vat_type extends Abstract_model {
 
     public $fields          = array(
                                 'p_vat_type_id'       => array('pkey' => true, 'type' => 'int', 'nullable' => true, 'unique' => true, 'display' => 'Account Status ID'),
-                                'vat_code'    => array('nullable' => true, 'type' => 'str', 'unique' => true, 'display' => 'Jenis Pajak'),
+                                'code'    => array('nullable' => true, 'type' => 'str', 'unique' => true, 'display' => 'Kode Pajak'),
+                                'vat_code'    => array('nullable' => true, 'type' => 'str', 'unique' => false, 'display' => 'Jenis Pajak'),
                                 'description'     => array('nullable' => true, 'type' => 'str', 'unique' => false, 'display' => 'Deskripsi'),
 
                                 'creation_date'  => array('nullable' => true, 'type' => 'date', 'unique' => false, 'display' => 'Created Date'),
