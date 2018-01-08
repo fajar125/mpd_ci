@@ -100,19 +100,17 @@
     // alert(n);
 
     //reloadChart(n);
-    reloadChart1(n, 1);
-    reloadChart2(n, 2);
-    reloadChart3(n, 3);
-    reloadChart4(n, 4);
-    //reloadChart5(n, 5);
+    reloadChart1(n, 5);
+    reloadChart2(n, 6);
+    reloadChart3(n, 8);
+    reloadChart4(n, 9);
 
     setTimeout(function() {
        // reloadChart(n);
-        reloadChart1(n, 1);
-        reloadChart2(n, 2);
-        reloadChart3(n, 3);
-        reloadChart4(n, 4);
-        //reloadChart5(n, 5);
+        reloadChart1(n, 5);
+        reloadChart2(n, 6);
+        reloadChart3(n, 8);
+        reloadChart4(n, 9);
     },100000);
 
 
@@ -185,7 +183,7 @@
                                 type: "column"
                         },
                         title: {
-                                text: "Target vs Realisasi Bulanan Pajak Hotel",
+                                text: "Target vs Realisasi Bulanan Pajak PPJ",
                                 style: {"color":"#006400"}
                         },
                         subtitle: {
@@ -246,7 +244,7 @@
                                 
                         },
                         title: {
-                                text: "Target vs Realisasi Bulanan Pajak Restoran",
+                                text: "Target vs Realisasi Bulanan Pajak BPHTB",
                                 style: {"color":"#006400"}
                         },
                         subtitle: {
@@ -306,7 +304,7 @@
                                 type: "column"
                         },
                         title: {
-                                text: "Target vs Realisasi Bulanan Pajak Hiburan",
+                                text: "Target vs Realisasi Bulanan Pajak Bumi dan Bangunan",
                                 style: {"color":"#006400"}
                         },
                         subtitle: {
@@ -366,7 +364,7 @@
                                 type: "column"
                         },
                         title: {
-                                text: "Target vs Realisasi Bulanan Pajak Parkir",
+                                text: "Target vs Realisasi Bulanan Pajak Reklame",
                                 style: {"color":"#006400"}
                         },
                         subtitle: {

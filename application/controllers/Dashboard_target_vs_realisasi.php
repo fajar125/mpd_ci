@@ -37,6 +37,10 @@ class Dashboard_target_vs_realisasi extends CI_Controller
         $this->load->view('pelaporan/dashboard_t_target_realisasi_perjenis_bulanan');
     }
 
+    public function dash3(){
+        $this->load->view('pelaporan/dashboard_t_target_realisasi_perjenis_bulanan_v2');
+    }
+
     public function target_realisasi_perjenis_pajak_perbulan(){
         $_POST["p_year_period_id"]=28;//$this->get_p_year_period_id();
         $_POST["p_vat_type_id"]=1;
