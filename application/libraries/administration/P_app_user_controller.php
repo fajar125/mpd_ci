@@ -318,7 +318,7 @@ class P_app_user_controller {
                 if(strlen($password) < 4) throw new Exception('Min.Password 4 Karakter');
                 if($password != $password_confirmation) throw new Exception('Password tidak cocok');
 
-                $record['password'] = md5($password);
+                $record['user_pwd'] = md5($password);
             }
             $record['email_address'] = $email;
             $record['p_app_user_id'] = $id;
