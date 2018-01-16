@@ -36,7 +36,7 @@ class P_app_user_controller {
             );
 
             // Filter Table
-            $req_param['where'] = array();
+            $req_param['where'] = array("usr.is_employee = 'Y'");
 
             $table->setJQGridParam($req_param);
             $count = $table->countAll();
