@@ -130,7 +130,7 @@ class Pdf_t_laporan_global_per_wp_per_wilayah extends CI_Controller{
     */
 
     function getDataPDF($param = array()){
-         $sql = "SELECT a.*, 
+         /*$sql = "SELECT a.*, 
                         f_get_wilayah(b.npwd) as kode_wilayah , 
                         to_char(b.active_date,'dd-mm-yyyy') as active_date,
                         b.brand_address_name ||' '|| nvl(b.brand_address_no,'') as alamat_new
@@ -141,7 +141,21 @@ class Pdf_t_laporan_global_per_wp_per_wilayah extends CI_Controller{
                 LEFT JOIN t_cust_account b on a.npwpd = b.npwd
                 WHERE f_get_wilayah_id(b.npwd) = ".$param['kode_wilayah']. " 
                 ORDER BY jenis_pajak,TRIM(company_brand)
+                  ";*/
+
+        $sql = "SELECT a.*, 
+                        f_get_wilayah(b.npwd) as kode_wilayah , 
+                        to_char(b.active_date,'dd-mm-yyyy') as active_date,
+                        b.brand_address_name ||' '|| nvl(b.brand_address_no,'') as alamat_new
+                FROM    sikp.f_laporan_global_wp2(".
+                                                    $param['p_rqst_type_id'].",'".
+                                                    $param['date_start']."', '".
+                                                    $param['date_end']."') a
+                LEFT JOIN t_cust_account b on a.npwpd = b.npwd
+                WHERE b.kode_wilayah = '".$param['kode_wilayah']."'
+                ORDER BY jenis_pajak,TRIM(company_brand)
                   ";
+                  
         $output = $this->db->query($sql);
         $items = $output->result_array();
         
