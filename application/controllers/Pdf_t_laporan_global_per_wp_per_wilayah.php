@@ -116,7 +116,7 @@ class Pdf_t_laporan_global_per_wp_per_wilayah extends CI_Controller{
         $pdf->ln(5);
         $pdf->SetWidtHs(array(200,70));
         $pdf->SetAligns(array("C", "C","C","C","C"));
-        $pdf->RowMultiBorderWithHeight(array("","KEPALA SEKSI VERIFIKASI OTORISASI DAN PEMBUKUAN\n\n\n\n\n(Drs. H. UGAS RAHMANSYAH, SAP, MAP)\n(NIP 19640127 199703 1001)"),array("",""),5);
+        $pdf->RowMultiBorderWithHeight(array("","KEPALA SEKSI VERIFIKASI OTORISASI DAN PEMBUKUAN\n\n\n\n\n(".getValByCode('TTD_KEPSEK_VER_OTOBUK').")\n(NIP ".getValByCode('NIP_KEPSEK_VER_OTOBUK').")"),array("",""),5);
         
         $pdf->Output("","I");
     } 
@@ -155,7 +155,7 @@ class Pdf_t_laporan_global_per_wp_per_wilayah extends CI_Controller{
                 WHERE b.kode_wilayah = '".$param['kode_wilayah']."'
                 ORDER BY jenis_pajak,TRIM(company_brand)
                   ";
-                  
+
         $output = $this->db->query($sql);
         $items = $output->result_array();
         
