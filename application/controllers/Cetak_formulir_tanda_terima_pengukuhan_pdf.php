@@ -153,11 +153,11 @@ class Cetak_formulir_tanda_terima_pengukuhan_pdf extends CI_Controller{
       
           $pdf->cell($ttdKolom1, $this->height, '', 'L', 0,'L');
           if ($tgl == ''){
-        //$this->cell($ttdKolom2, $this->height, 'Bandung, '. date('d F Y'), 'R', 0,'C');
-        $pdf->cell($ttdKolom2, $this->height, 'Bandung, ....................................................', 'R', 0,'C');
+        //$this->cell($ttdKolom2, $this->height, 'Lombok Utara, '. date('d F Y'), 'R', 0,'C');
+        $pdf->cell($ttdKolom2, $this->height, 'Lombok Utara, ....................................................', 'R', 0,'C');
       }else{
-        //$this->cell($ttdKolom2, $this->height, 'Bandung, '. $tgl, 'R', 0,'C');
-        $pdf->cell($ttdKolom2, $this->height, 'Bandung, ....................................................', 'R', 0,'C');
+        //$this->cell($ttdKolom2, $this->height, 'Lombok Utara, '. $tgl, 'R', 0,'C');
+        $pdf->cell($ttdKolom2, $this->height, 'Lombok Utara, ....................................................', 'R', 0,'C');
       }
           $pdf->Ln();
           $pdf->cell($ttdKolom1, $this->height, '', 'L', 0,'C');
