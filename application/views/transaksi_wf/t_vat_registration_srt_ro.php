@@ -615,6 +615,7 @@
     <div class="col-xs-12">
         <div class="row">
             <div style="text-align: center;">
+                <button class="btn btn-success" type="button" id="btn-ctk2" onclick="cetak2();">CETAK KARTU NPWPD</button>
                 <button class="btn btn-success" type="button" id="btn-ctk2" onclick="cetak1();">CETAK TANDA TERIMA</button>
                 <button class="btn btn-danger" type="button" id="btn-sub" onclick="submitform();">SUBMIT</button>
                 <button class="btn btn-danger" type="button" id="btn-kel" onclick="backform();">KEMBALI</button>
@@ -628,6 +629,14 @@
         var t_customer_order_id = $('#CURR_DOC_ID').val();
 
         var url = "<?php echo base_url(); ?>"+"cetak_formulir_tanda_terima_pengukuhan_pdf/save_pdf?t_customer_order_id="+t_customer_order_id;
+
+        PopupCenter(url,"Tanda Terima",500,500);
+    } 
+
+    function cetak2(){
+        var t_customer_order_id = $('#CURR_DOC_ID').val();
+
+        var url = "<?php echo base_url(); ?>"+"cetak_kartu_npwpd/pageCetak?t_customer_order_id="+t_customer_order_id;
 
         PopupCenter(url,"Tanda Terima",500,500);
     }    
