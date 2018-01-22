@@ -345,14 +345,14 @@ class Cetak_rep_bphtb_kb extends CI_Controller{
 			$pdf->Cell(202, $this->height - 4, "NIP : ".$data['verificated_nip']." ", "", 0, 'C');
 		}else{
 			//$pdf->Cell($lbody1 + 10, $this->height - 4, "(ZAENAL MANSUR)", "", 0, 'C');
-			$pdf->Cell($lbody1 + 10, $this->height - 4, "( )", "", 0, 'C');
+			$pdf->Cell($lbody1 + 10, $this->height - 4, "(".getValByCode('KOOR_PEMERIKSA_BPHTB').")", "", 0, 'C');
 			$pdf->Cell(202, $this->height - 4, "( ".$data['verificated_by']." )", "", 0, 'C');
 			$pdf->Ln();
 			$pdf->Ln();
 			$pdf->Ln();
 			$pdf->Ln();
 			//$pdf->Cell($lbody1 + 10, $this->height - 4, "NIP : 19630817.1989.01.1.006 ", "", 0, 'C');
-			$pdf->Cell($lbody1 + 10, $this->height - 4, "NIP : ", "", 0, 'C');
+			$pdf->Cell($lbody1 + 10, $this->height - 4, "NIP : ".getValByCode('NIP_KOOR_PEMERIKSA_BPHTB'), "", 0, 'C');
 			$pdf->Cell(202, $this->height - 4, "NIP : ".$data['verificated_nip']." ", "", 0, 'C');
 		}
 

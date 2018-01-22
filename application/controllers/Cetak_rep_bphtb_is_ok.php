@@ -386,10 +386,10 @@ class Cetak_rep_bphtb_is_ok extends CI_Controller{
 		$this->newLine($pdf);				
 		//$this->Cell($lbody3 - 10, $this->height, "", "", 0, 'L');
 		//$this->Cell($lbody1 + 10, $this->height, "(....................................)", "", 0, 'C');
-		$pdf->Cell($lbody1 + 10, $this->height - 4, "(ZAENAL MANSUR)", "", 0, 'C');
+		$pdf->Cell($lbody1 + 10, $this->height - 4, "(".getValByCode('KOOR_PEMERIKSA_BPHTB').")", "", 0, 'C');
 		$pdf->Cell(202, $this->height - 4, "( ".$data['verificated_by']." )", "", 0, 'C');
 		$this->newLine($pdf);
-		$pdf->Cell($lbody1 + 10, $this->height - 4, "NIP : 19630817.1989.01.1.006 ", "", 0, 'C');
+		$pdf->Cell($lbody1 + 10, $this->height - 4, "NIP : ".getValByCode('NIP_KOOR_PEMERIKSA_BPHTB'), "", 0, 'C');
 		$pdf->Cell(202, $this->height - 4, "NIP : ".$data['verificated_nip']." ", "", 0, 'C');
 		
 		
