@@ -600,7 +600,7 @@
                 <div class="row">
                     <label class="control-label col-md-3">NPWPD</label>
                     <div class="input-group col-md-5">
-                            <input id="npwpd" readonly type="text" class="FormElement form-control required" placeholder="NPWPD"  required>
+                            <input id="npwpd" type="text" class="FormElement form-control required" placeholder="NPWPD"  required>
                             <span class="input-group-btn">
                                 <button class="btn btn-success" type="button" id="btn-gen" onclick="">Generate NPWPD</button>
                             </span>
