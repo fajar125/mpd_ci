@@ -386,7 +386,7 @@ class Cetak_surat_pengukuhan_pdf extends CI_Controller{
 		$pdf->Ln();
 
 		$pdf->Cell($sigLen1, $this->height, "", 0, 0, 'C');
-		$pdf->Cell($sigLen1, $this->height, "Drs. PRIANA WIRASAPUTRA, MM", 0, 0, 'C');
+		$pdf->Cell($sigLen1, $this->height, getValByCode('KABAN'), 0, 0, 'C');
 		$pdf->Ln();
 
 		$pdf->Cell($sigLen1, $this->height, "", 0, 0, 'C');
@@ -395,7 +395,7 @@ class Cetak_surat_pengukuhan_pdf extends CI_Controller{
 		$pdf->Ln();
 
 		$pdf->Cell($sigLen1, $this->height, "", 0, 0, 'C');
-		$pdf->Cell($sigLen1, $this->height, "NIP. 19600308 198503 1 007", 0, 0, 'C');
+		$pdf->Cell($sigLen1, $this->height, "NIP. ".getValByCode('NIP_KABAN'), 0, 0, 'C');
 
 		// Tembusan
 
