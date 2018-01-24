@@ -182,7 +182,7 @@ class Nota_dinas_pdf extends CI_Controller{
 
         $pdf->Cell($lengthJudul1, $this->height, "", "", 0, 'L');
         $pdf->Cell($lengWP1, $this->height, "", "", "", 'L');
-        $pdf->Cell($lengWP2, $this->height, "OKKY DATUSUATI, S.STP", "", "", 'C');
+        $pdf->Cell($lengWP2, $this->height, getValByCode('KASI_DAFDA'), "", "", 'C');
         $pdf->Ln(6);
         $pdf->SetFont('Times', '', 12);
         $pdf->Cell($lengthJudul1, $this->height, "", "", 0, 'L');
@@ -191,7 +191,7 @@ class Nota_dinas_pdf extends CI_Controller{
         $pdf->Ln(6);
         $pdf->Cell($lengthJudul1, $this->height, "", "", 0, 'L');
         $pdf->Cell($lengWP1, $this->height, "", "", "", 'L');
-        $pdf->Cell($lengWP2, $this->height, "NIP. 19780927 199703 2 001", "", "", 'C');
+        $pdf->Cell($lengWP2, $this->height, "NIP. ".getValByCode('NIP_KASI_DAFDA'), "", "", 'C');
         $pdf->Ln(6);
 
         $pdf->Output();
