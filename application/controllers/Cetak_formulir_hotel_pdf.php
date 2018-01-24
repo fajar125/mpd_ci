@@ -284,11 +284,11 @@ class Cetak_formulir_hotel_pdf extends CI_Controller{
 		$zipCodeOwn = str_split($data["o_wp_zip_code"]);
 		$pdf->Cell($per1+$per2, $this->height, "", 0, 0, 'C');
 		$pdf->Cell($spasi-4, $this->height, "", 0, 0, 'C'); //spasi kode pos
-		$pdf->Cell($zip1, $this->height, $zipCodeOwn[0], 1, 0, 'C');
-		$pdf->Cell($zip2, $this->height, $zipCodeOwn[1], 1, 0, 'C');
-		$pdf->Cell($zip3, $this->height, $zipCodeOwn[2], 1, 0, 'C');
-		$pdf->Cell($zip4, $this->height, $zipCodeOwn[3], 1, 0, 'C');
-		$pdf->Cell($zip5, $this->height, $zipCodeOwn[4], 1, 0, 'C');
+		$pdf->Cell($zip1, $this->height, (isset($zipCodeOwn[0]) ? $zipCodeOwn[0] : ' '), 1, 0, 'C');
+		$pdf->Cell($zip2, $this->height, (isset($zipCodeOwn[1]) ? $zipCodeOwn[1] : ' '), 1, 0, 'C');
+		$pdf->Cell($zip3, $this->height, (isset($zipCodeOwn[2]) ? $zipCodeOwn[2] : ' '), 1, 0, 'C');
+		$pdf->Cell($zip4, $this->height, (isset($zipCodeOwn[3]) ? $zipCodeOwn[3] : ' '), 1, 0, 'C');
+		$pdf->Cell($zip5, $this->height, (isset($zipCodeOwn[4]) ? $zipCodeOwn[4] : ' '), 1, 0, 'C');
 		$pdf->Ln(6);
 		$pdf->Cell($per1, $this->height, "", "TBL", 0, 'C');
 		$pdf->Cell($per2, $this->height, "", "TB", 0, 'L');
@@ -351,11 +351,11 @@ class Cetak_formulir_hotel_pdf extends CI_Controller{
 		// print_r($data);
 		// exit();
 		$pdf->Cell($spasi-4, $this->height, "", 0, 0, 'C'); //spasi kode pos
-		$pdf->Cell($zip1, $this->height, $zipCode[0], 1, 0, 'C');
-		$pdf->Cell($zip2, $this->height, $zipCode[1], 1, 0, 'C');
-		$pdf->Cell($zip3, $this->height, $zipCode[2], 1, 0, 'C');
-		$pdf->Cell($zip4, $this->height, $zipCode[3], 1, 0, 'C');
-		$pdf->Cell($zip5, $this->height, $zipCode[4], 1, 0, 'C');
+		$pdf->Cell($zip1, $this->height, (isset($zipCodeOwn[0]) ? $zipCodeOwn[0] : ' '), 1, 0, 'C');
+		$pdf->Cell($zip2, $this->height, (isset($zipCodeOwn[1]) ? $zipCodeOwn[1] : ' '), 1, 0, 'C');
+		$pdf->Cell($zip3, $this->height, (isset($zipCodeOwn[2]) ? $zipCodeOwn[2] : ' '), 1, 0, 'C');
+		$pdf->Cell($zip4, $this->height, (isset($zipCodeOwn[3]) ? $zipCodeOwn[3] : ' '), 1, 0, 'C');
+		$pdf->Cell($zip5, $this->height, (isset($zipCodeOwn[4]) ? $zipCodeOwn[4] : ' '), 1, 0, 'C');
 		$pdf->Ln(6);
 		$pdf->Cell($per1, $this->height, "", "TBL", 0, 'C');
 		$pdf->Cell($per2, $this->height, "", "TB", 0, 'L');
@@ -419,11 +419,11 @@ class Cetak_formulir_hotel_pdf extends CI_Controller{
 		$zipCodeOwn = str_split($data["o_brand_zip_code"]);
 		$pdf->Cell($per1+$per2, $this->height, "", 0, 0, 'C');
 		$pdf->Cell($spasi-4, $this->height, "", 0, 0, 'C'); //spasi kode pos
-		$pdf->Cell($zip1, $this->height, $zipCodeOwn[0], 1, 0, 'C');
-		$pdf->Cell($zip2, $this->height, $zipCodeOwn[1], 1, 0, 'C');
-		$pdf->Cell($zip3, $this->height, $zipCodeOwn[2], 1, 0, 'C');
-		$pdf->Cell($zip4, $this->height, $zipCodeOwn[3], 1, 0, 'C');
-		$pdf->Cell($zip5, $this->height, $zipCodeOwn[4], 1, 0, 'C');
+		$pdf->Cell($zip1, $this->height, (isset($zipCodeOwn[0]) ? $zipCodeOwn[0] : ' '), 1, 0, 'C');
+		$pdf->Cell($zip2, $this->height, (isset($zipCodeOwn[1]) ? $zipCodeOwn[1] : ' '), 1, 0, 'C');
+		$pdf->Cell($zip3, $this->height, (isset($zipCodeOwn[2]) ? $zipCodeOwn[2] : ' '), 1, 0, 'C');
+		$pdf->Cell($zip4, $this->height, (isset($zipCodeOwn[3]) ? $zipCodeOwn[3] : ' '), 1, 0, 'C');
+		$pdf->Cell($zip5, $this->height, (isset($zipCodeOwn[4]) ? $zipCodeOwn[4] : ' '), 1, 0, 'C');
 		$pdf->Ln(6);
 		$pdf->Cell($per1, $this->height, "", "TBL", 0, 'C');
 		$pdf->Cell($per2, $this->height, "", "TB", 0, 'L');
@@ -520,11 +520,11 @@ class Cetak_formulir_hotel_pdf extends CI_Controller{
 		$zipCodeOwn = str_split($data["o_zip_code_owner"]);
 		$pdf->Cell($per1+$per2, $this->height, "", 0, 0, 'C');
 		$pdf->Cell($spasi-4, $this->height, "", 0, 0, 'C'); //spasi kode pos
-		$pdf->Cell($zip1, $this->height, $zipCodeOwn[0], 1, 0, 'C');
-		$pdf->Cell($zip2, $this->height, $zipCodeOwn[1], 1, 0, 'C');
-		$pdf->Cell($zip3, $this->height, $zipCodeOwn[2], 1, 0, 'C');
-		$pdf->Cell($zip4, $this->height, $zipCodeOwn[3], 1, 0, 'C');
-		$pdf->Cell($zip5, $this->height, $zipCodeOwn[4], 1, 0, 'C');
+		$pdf->Cell($zip1, $this->height, (isset($zipCodeOwn[0]) ? $zipCodeOwn[0] : ' '), 1, 0, 'C');
+		$pdf->Cell($zip2, $this->height, (isset($zipCodeOwn[1]) ? $zipCodeOwn[1] : ' '), 1, 0, 'C');
+		$pdf->Cell($zip3, $this->height, (isset($zipCodeOwn[2]) ? $zipCodeOwn[2] : ' '), 1, 0, 'C');
+		$pdf->Cell($zip4, $this->height, (isset($zipCodeOwn[3]) ? $zipCodeOwn[3] : ' '), 1, 0, 'C');
+		$pdf->Cell($zip5, $this->height, (isset($zipCodeOwn[4]) ? $zipCodeOwn[4] : ' '), 1, 0, 'C');
 		$pdf->Ln(6);
 		$pdf->Cell($lengthCell, $this->height, "", 1, 0, 'C');
 		$pdf->Ln();
