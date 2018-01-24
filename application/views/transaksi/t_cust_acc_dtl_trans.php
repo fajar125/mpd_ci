@@ -264,7 +264,7 @@
                     url: '<?php echo WS_JQGRID."transaksi.t_cust_acc_dtl_trans_controller/read"; ?>',
                     postData: {t_cust_account_id:t_cust_account_id,trans_date:trans_date}
                 });
-                $("#grid-table").jqGrid("setCaption", " Laporan Permohonan BPHTB Pengurangan");
+                $("#grid-table").jqGrid("setCaption", "DAFTAR TRANSAKSI HARIAN WP");
                 $("#grid-table").trigger("reloadGrid");
             }); 
         }
@@ -322,7 +322,7 @@
                             url: '<?php echo WS_JQGRID."transaksi.t_cust_acc_dtl_trans_controller/read"; ?>',
                             postData: {t_cust_account_id:t_cust_account_id,trans_date:trans_date}
                         });
-                        $("#grid-table").jqGrid("setCaption", " Laporan Permohonan BPHTB Pengurangan");
+                        $("#grid-table").jqGrid("setCaption", "DAFTAR TRANSAKSI HARIAN WP");
                         $("#grid-table").trigger("reloadGrid");
                     });
                 }
