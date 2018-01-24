@@ -354,6 +354,7 @@ $("#tab-1").on("click", function(event) {
 </div>
 
 <label class="control-label col-md-5"><b>Keterangan Perusahaan atau Badan</b></label>
+<div style="text-align: right;"><button class="btn btn-success" type="button" onclick="copyBadan()">COPY ALAMAT WP</button></div>
 <div class="row">
     <div class="col-xs-12">
         <div class="portlet light bordered">
@@ -453,6 +454,7 @@ $("#tab-1").on("click", function(event) {
 </div>
 
 <label class="control-label col-md-5"><b>Keterangan Merk Dagang</b></label>
+<div style="text-align: right;"><button class="btn btn-success" type="button" onclick="copyMerkDagang()">COPY ALAMAT WP</button></div>
 <div class="row">
     <div class="col-xs-12">
         <div class="portlet light bordered">
@@ -553,6 +555,7 @@ $("#tab-1").on("click", function(event) {
 </div>
 
 <label class="control-label col-md-5"><b>Keterangan Pemilik/Pengelola</b></label>
+<div style="text-align: right;"><button class="btn btn-success" type="button" onclick="copyPemilik()">COPY ALAMAT WP</button></div>
 <div class="row">
     <div class="col-xs-12">
         <div class="portlet light bordered">
@@ -1240,6 +1243,108 @@ $("#tab-1").on("click", function(event) {
     }
     function showLOVVatTypeDtl(id, code) {
         modal_lov_vat_dtl_show(id, code);
+    }
+
+    function copyBadan(){
+        var wp_address_name = $('#wp_address_name').val();
+        var wp_address_no = $('#wp_address_no').val();
+        var wp_address_rt = $('#wp_address_rt').val();
+        var wp_address_rw = $('#wp_address_rw').val();
+        var wp_kota = $('#wp_kota').val();
+        var wp_p_region_id = $('#wp_p_region_id').val();
+        var wp_kecamatan = $('#wp_kecamatan').val();
+        var wp_p_region_id_kecamatan = $('#wp_p_region_id_kecamatan').val();
+        var wp_kelurahan = $('#wp_kelurahan').val();
+        var wp_p_region_id_kelurahan = $('#wp_p_region_id_kelurahan').val();
+        var wp_email = $('#wp_email').val();
+        var wp_phone_no = $('#wp_phone_no').val();
+        var wp_mobile_no = $('#wp_mobile_no').val();
+        var wp_fax_no = $('#wp_fax_no').val();
+        var wp_zip_code = $('#wp_zip_code').val();
+
+
+        $('#address_name').val(wp_address_name);
+        $('#address_no').val(wp_address_no);
+        $('#address_rt').val(wp_address_rt);
+        $('#address_rw').val(wp_address_rw);
+        $('#kota_code').val(wp_kota);
+        $('#p_region_id').val(wp_p_region_id);
+        $('#kecamatan_code').val(wp_kecamatan);
+        $('#p_region_id_kecamatan').val(wp_p_region_id_kecamatan);
+        $('#kelurahan_code').val(wp_kelurahan);
+        $('#p_region_id_kelurahan').val(wp_p_region_id_kelurahan);
+        $('#phone_no').val(wp_phone_no);
+        $('#mobile_no').val(wp_mobile_no);
+        $('#fax_no').val(wp_fax_no);
+        $('#zip_code').val(wp_zip_code);
+
+
+    }
+
+    function copyMerkDagang(){
+        var wp_address_name = $('#wp_address_name').val();
+        var wp_address_no = $('#wp_address_no').val();
+        var wp_address_rt = $('#wp_address_rt').val();
+        var wp_address_rw = $('#wp_address_rw').val();
+        var wp_kota = $('#wp_kota').val();
+        var wp_p_region_id = $('#wp_p_region_id').val();
+        var wp_kecamatan = $('#wp_kecamatan').val();
+        var wp_p_region_id_kecamatan = $('#wp_p_region_id_kecamatan').val();
+        var wp_kelurahan = $('#wp_kelurahan').val();
+        var wp_p_region_id_kelurahan = $('#wp_p_region_id_kelurahan').val();
+        var wp_email = $('#wp_email').val();
+        var wp_phone_no = $('#wp_phone_no').val();
+        var wp_mobile_no = $('#wp_mobile_no').val();
+        var wp_fax_no = $('#wp_fax_no').val();
+        var wp_zip_code = $('#wp_zip_code').val();
+
+        $('#brand_address_name').val(wp_address_name);
+        $('#brand_address_no').val(wp_address_no);
+        $('#brand_address_rt').val(wp_address_rt);
+        $('#brand_address_rw').val(wp_address_rw);
+        $('#brand_kota').val(wp_kota);
+        $('#brand_p_region_id').val(wp_p_region_id);
+        $('#brand_kecamatan').val(wp_kecamatan);
+        $('#brand_p_region_id_kec').val(wp_p_region_id_kecamatan);
+        $('#brand_kelurahan').val(wp_kelurahan);
+        $('#brand_p_region_id_kel').val(wp_p_region_id_kelurahan);
+        $('#brand_phone_no').val(wp_phone_no);
+        $('#brand_mobile_no').val(wp_mobile_no);
+        $('#brand_fax_no').val(wp_fax_no);
+        $('#brand_zip_code').val(wp_zip_code);
+    }
+
+    function copyPemilik(){
+        var wp_address_name = $('#wp_address_name').val();
+        var wp_address_no = $('#wp_address_no').val();
+        var wp_address_rt = $('#wp_address_rt').val();
+        var wp_address_rw = $('#wp_address_rw').val();
+        var wp_kota = $('#wp_kota').val();
+        var wp_p_region_id = $('#wp_p_region_id').val();
+        var wp_kecamatan = $('#wp_kecamatan').val();
+        var wp_p_region_id_kecamatan = $('#wp_p_region_id_kecamatan').val();
+        var wp_kelurahan = $('#wp_kelurahan').val();
+        var wp_p_region_id_kelurahan = $('#wp_p_region_id_kelurahan').val();
+        var wp_email = $('#wp_email').val();
+        var wp_phone_no = $('#wp_phone_no').val();
+        var wp_mobile_no = $('#wp_mobile_no').val();
+        var wp_fax_no = $('#wp_fax_no').val();
+        var wp_zip_code = $('#wp_zip_code').val();
+
+        $('#address_name_owner').val(wp_address_name);
+        $('#address_no_owner').val(wp_address_no);
+        $('#address_rt_owner').val(wp_address_rt);
+        $('#address_rw_owner').val(wp_address_rw);
+        $('#kota_own_code').val(wp_kota);
+        $('#p_region_id_owner').val(wp_p_region_id);
+        $('#kecamatan_own_code').val(wp_kecamatan);
+        $('#p_region_id_kec_owner').val(wp_p_region_id_kecamatan);
+        $('#kelurahan_own_code').val(wp_kelurahan);
+        $('#p_region_id_kel_owner').val(wp_p_region_id_kelurahan);
+        $('#phone_no_owner').val(wp_phone_no);
+        $('#email').val(wp_email);
+        $('#fax_no_owner').val(wp_fax_no);
+        $('#zip_code_owner').val(wp_zip_code);
     }
 </script>
 
