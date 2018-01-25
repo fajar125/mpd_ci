@@ -246,7 +246,7 @@ class Cetak_rep_bphtb extends CI_Controller{
 		$this->barisBaru2($lbody1, "Nilai Perolehan Objek Pajak (NPOP)", "", "Rp", $data["npop"], $pdf);
 		$this->barisBaru2($lbody1, "Nilai Perolehan Objek Pajak Tidak Kena Pajak (NPOPTKP)", "", "Rp", $data["npop_tkp"], $pdf);
 		if($data["npop_kp"]==0){
-			$this->barisBaruStr($lbody1, "Nilai Perolehan Objek Pajak Kena Pajak (NPOPKP)", "", "Rp","NIHIL");
+			$this->barisBaruStr($lbody1, "Nilai Perolehan Objek Pajak Kena Pajak (NPOPKP)", "", "Rp","NIHIL", $pdf);
 		}else{
 			$this->barisBaru2($lbody1, "Nilai Perolehan Objek Pajak Kena Pajak (NPOPKP)", "", "Rp", $data["npop_kp"], $pdf);
 		}
