@@ -146,8 +146,8 @@ class Pdf_lap_penerimaan_bphtb extends CI_Controller{
         if ($date_start_laporan==''){
           //$pdf->RowMultiBorderWithHeight( array("Mengetahui, \n Kepala Seksi Penyelesaian Piutang \n\n\n\n\n\n\n\n DIN KAMADIANTINI S.IP, MM ","\n Admin Penerimaan BPHTB"."\n\n\n\n\n\n\n\n INDRA WISNU, SE. "), array("",""), 4 );
           //$pdf->RowMultiBorderWithHeight( array("(NIP : 19710320.199803.2.006)","(NIP : 19731031.2009.1.1001)"), array("",""), 1 );
-			$pdf->RowMultiBorderWithHeight( array("Mengetahui, \n Bendahara Penerimaan BPHTB \n\n\n\n\n\n\n\n Dewi Cahyaning Candra, S.Adm ",""), array("",""), 4 );
-			$pdf->RowMultiBorderWithHeight( array("(NIP : xxx)",""), array("",""), 1 );
+			$pdf->RowMultiBorderWithHeight( array("Mengetahui, \n Bendahara Penerimaan BPHTB \n\n\n\n\n\n\n\n ".getValByCode('BENDAHARA_PENERIMAAN')." ",""), array("",""), 4 );
+			$pdf->RowMultiBorderWithHeight( array("(NIP : ".getValByCode('NIP_BENDAHARA_PENERIMAAN').")",""), array("",""), 1 );
 		}else{
           /*if (date (strtotime($date_start_laporan)) < date (strtotime('01-06-2015'))){
             $pdf->RowMultiBorderWithHeight( array("Mengetahui, \n Kepala Seksi Penyelesaian Piutang \n\n\n\n\n\n\n\n RACHMAT SATIADI, S.IP, M.Si  ","\n Admin Penerimaan BPHTB"."\n\n\n\n\n\n\n\n INDRA WISNU, SE.  "), array("",""), 4 );
@@ -156,8 +156,8 @@ class Pdf_lap_penerimaan_bphtb extends CI_Controller{
             $pdf->RowMultiBorderWithHeight( array("Mengetahui, \n Kepala Seksi Penyelesaian Piutang \n\n\n\n\n\n\n\n DIN KAMADIANTINI S.IP, MM  ","\n Admin Penerimaan BPHTB"."\n\n\n\n\n\n\n\n INDRA WISNU, SE. "), array("",""), 4 );
             $pdf->RowMultiBorderWithHeight( array("(NIP : 19710320.199803.2.006)","(NIP : 19731031.2009.1.1001)"), array("",""), 1 );
           }*/
-		  $pdf->RowMultiBorderWithHeight( array("Mengetahui, \n Bendahara Penerimaan BPHTB \n\n\n\n\n\n\n\n Dewi Cahyaning Candra, S.Adm ",""), array("",""), 4 );
-		  $pdf->RowMultiBorderWithHeight( array("(NIP : xxx)",""), array("",""), 1 );
+		  $pdf->RowMultiBorderWithHeight( array("Mengetahui, \n Bendahara Penerimaan BPHTB \n\n\n\n\n\n\n\n ".getValByCode('BENDAHARA_PENERIMAAN')." ",""), array("",""), 4 );
+		  $pdf->RowMultiBorderWithHeight( array("(NIP : ".getValByCode('NIP_BENDAHARA_PENERIMAAN').")",""), array("",""), 1 );
         }
 
         $pdf->Output("","I");
