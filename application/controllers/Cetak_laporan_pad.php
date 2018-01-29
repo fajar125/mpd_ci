@@ -8,8 +8,8 @@ class Cetak_laporan_pad extends CI_Controller{
     var $fontFam = 'Arial';
     var $yearId = 0;
     var $yearCode="";
-    var $paperWSize = 210;
-    var $paperHSize = 297;
+    var $paperWSize = 410;
+    var $paperHSize = 255;
     var $height = 5;
     var $currX;
     var $currY;
@@ -21,8 +21,8 @@ class Cetak_laporan_pad extends CI_Controller{
         //$this->formCetak();
         $pdf = new FPDF();
         $this->startY = $pdf->GetY();
-        $this->startX = $this->paperWSize-42;
-        $this->lengthCell = $this->paperHSize+40;
+        $this->startX = $this->paperWSize-12;
+        $this->lengthCell = $this->paperHSize+10;
     }
 
     function newLine(){
@@ -40,21 +40,21 @@ class Cetak_laporan_pad extends CI_Controller{
 		$_BORDER = 0;
 		$_FONT = 'Times';
 		$_FONTSIZE = 10;
-	    $pdf = new FPDF('L','mm',array(216 ,356));
+	    $pdf = new FPDF();
 		$pdf->AliasNbPages();
-	    $pdf->AddPage('Landscape', 'Legal');
+	    $pdf->AddPage('Landscape', 'Letter');
 	    $pdf->SetFont('helvetica', '', $_FONTSIZE);
 		$pdf->SetRightMargin(5);
 		$pdf->SetLeftMargin(9);
 		$pdf->SetAutoPageBreak(false,0);
 
 		$pdf->SetFont('helvetica', 'B',12);
-		$pdf->SetWidths(array(320));
+		$pdf->SetWidths(array(260));
 		$pdf->SetAligns('C');
 		$pdf->ln(1);
 	    $pdf->RowMultiBorderWithHeight(array("DAFTAR PENERIMAAN PAD BERDASARKAN JENIS PENERIMAAN"),array('',''),4);
 		//$pdf->ln(8);
-		$pdf->SetWidths(array(320,320));
+		$pdf->SetWidths(array(260,260));
 		$pdf->ln(3);
 		$pdf->RowMultiBorderWithHeight(array("TAHUN ".$year_code,""),array('',''),6);
 
@@ -90,7 +90,7 @@ class Cetak_laporan_pad extends CI_Controller{
 				$pdf->SetFont('arial', '',8);
 				$rc_pad = $items[$i]['rc_pad'];
 			}
-			$pdf->RowMultiBorderWithHeight(array($rc_pad,$items[$i]['target'],$items[$i]['januari'],$items[$i]['februari'],$items[$i]['maret'],$items[$i]['april'],$items[$i]['mei'],$items[$i]['juni'],$items[$i]['juli'],$items[$i]['agustus'],$items[$i]['september'],$items[$i]['oktober'],$items[$i]['november'],$items[$i]['desember'], $items[$i]['total'], $items[$i]['persentasi']),array('LTB','LTB','LTB','LTB','LTB','LTB','LTB','LTB','LTB','LTB','LTB','LTB','LTB','LTB','LTB','LTBR'),6);
+			$pdf->RowMultiBorderWithHeight(array($rc_pad,number_format($items[$i]['target'], 2, ',', '.'),number_format($items[$i]['januari'], 2, ',', '.'),number_format($items[$i]['februari'], 2, ',', '.'),number_format($items[$i]['maret'], 2, ',', '.'),number_format($items[$i]['april'], 2, ',', '.'),number_format($items[$i]['mei'], 2, ',', '.'),number_format($items[$i]['juni'], 2, ',', '.'),number_format($items[$i]['juli'], 2, ',', '.'),number_format($items[$i]['agustus'], 2, ',', '.'),number_format($items[$i]['september'], 2, ',', '.'),number_format($items[$i]['oktober'], 2, ',', '.'),number_format($items[$i]['november'], 2, ',', '.'),number_format($items[$i]['desember'], 2, ',', '.'), number_format($items[$i]['total'], 2, ',', '.'), number_format($items[$i]['persentasi'], 2, ',', '.')),array('LTB','LTB','LTB','LTB','LTB','LTB','LTB','LTB','LTB','LTB','LTB','LTB','LTB','LTB','LTB','LTBR'),6);
 		}
 		
 

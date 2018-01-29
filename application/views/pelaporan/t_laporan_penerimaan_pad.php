@@ -74,8 +74,8 @@ $ ("#gview_grid-table-history").hide();
             datatype: "json",
             mtype: "POST",
             colModel: [
-                {label: 'Jenis Penerimaan',name: 'rc_pad_formated',width: 150, align: "center"},
-                {label: 'Target',name: 'target',width: 200, align: "left"},
+                {label: 'Jenis Penerimaan',name: 'rc_pad_formated',width: 150, align: "left"},
+                {label: 'Target',name: 'target',width: 200, align: "right"},
 
                 {label: 'Januari',name: 'januari',width: 150, align: "right", summaryTpl:"{0}",summaryType:"sum",formatter:'currency', formatoptions: {prefix:"", thousandsSeparator:','}},
                 {label: 'Februari',name: 'februari',width: 150, align: "right", summaryTpl:"{0}",summaryType:"sum",formatter:'currency', formatoptions: {prefix:"", thousandsSeparator:','}},
