@@ -275,7 +275,6 @@
         },
         function(){
             
-
             $.ajax({
                 url: '<?php echo WS_JQGRID."transaksi.t_bphtb_registration_list_controller/SubmitTable"; ?>',
                 type: "POST",
@@ -289,9 +288,9 @@
                     var msg = data.message;
                     swal({title: "Informasi!", text: msg, html: true, type: "info"});
                     if (data.success){
-                        loadContentWithParams("transaksi.t_bphtb_registration_list", {});
+                        $('#grid-table').trigger("reloadGrid");
                     }
-                        
+					                        
                 },
                 error: function (xhr, status, error) {
                     swal({title: "Error!", text: xhr.responseText, html: true, type: "error"});

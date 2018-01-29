@@ -464,7 +464,7 @@ class T_bphtb_registration_list_controller {
                 $f_first_submit_engine = $items['f_first_submit_engine'];
 
                 $data['message'] = $f_first_submit_engine;
-                $sukses = false;
+                $sukses = true;
             }
 
             //$data['result'] = $items;
