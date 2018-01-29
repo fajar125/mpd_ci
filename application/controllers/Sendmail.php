@@ -17,7 +17,7 @@ class Sendmail extends CI_Controller
         $html = '';
         $html .= '<table border="1" cellspacing="0" cellpadding="0">
                   <tr>
-                        <td width="20%"><img src="http://180.250.172.123/smpd/images/logo_lombok.png" width="100px"></td>
+                        <td width="20%"><img src="http://36.89.58.66/smpd/images/logo_lombok.png" width="100px"></td>
                         <td width="80%" align="center">
                             PEMERINTAH KABUPATEN LOMBOK UTARA <br>
                             BADAN PENGELOLAAN PENDAPATAN DAERAH <br>
