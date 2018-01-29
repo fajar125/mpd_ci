@@ -61,7 +61,9 @@ class T_customer_order extends Abstract_model {
             $this->record['updated_date'] = date('Y-m-d');
             $this->record['updated_by'] = $userdata['app_user_name'];
 
-            $this->record[$this->pkey] = $this->generate_id($this->table, $this->pkey);
+            $this->record[$this->pkey] = $this->genid();
+            // $this->record[$this->pkey] = $this->generate_id($this->table, $this->pkey);
+
 
         }else {
             //do something
@@ -114,6 +116,15 @@ class T_customer_order extends Abstract_model {
         } catch (Exception $e) {
             
         }
+    }
+
+    function genid(){
+        $sql = "SELECT generate_id('sikp','t_customer_order','t_customer_order_id') as nilai from dual";
+
+        $query = $this->db->query($sql);
+        $item = $query->row();
+
+        return $item->nilai;
     }
 
 }
