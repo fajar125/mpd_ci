@@ -8,7 +8,8 @@ class Cetak_duplikat_kwitansi_bphtb extends CI_Controller{
     var $yearId = 0;
     var $yearCode="";
     var $paperWSize = 241.3;
-    var $paperHSize = 139.7;
+    var $paperHSize = 155;
+    // var $paperHSize = 139.7;
     var $height = 5;
     var $currX;
     var $currY;
@@ -41,11 +42,13 @@ class Cetak_duplikat_kwitansi_bphtb extends CI_Controller{
 
         $encImageData = $this->getDataEncript($kuitansi);
 
-        $pdf = new FPDF("L", "mm", array(241.3, 139.7));
+        $pdf = new FPDF("L", "mm", array($this->paperWSize, $this->paperHSize));
 
         $this->kopSurat($pdf,$encImageData);
 
         $this->isiSurat($pdf,$data);
+
+        $this->tandatangan($pdf);
 
         
         $pdf->Output();
@@ -98,6 +101,28 @@ class Cetak_duplikat_kwitansi_bphtb extends CI_Controller{
       $pdf->Cell(220, $this->height, "", "B", 0, "C");
     }
 
+
+    function tandatangan($pdf){
+      $pdf->Ln(10);
+
+      $pdf->Cell(60, $this->height, "", "", 0, 'L');
+      $pdf->Cell(101, $this->height, "", "", 0, 'L');
+      $pdf->Cell(60, $this->height, "Lombok Utara, ".date('d-m-Y'), "", 0, 'L');
+      $pdf->Ln();
+      $pdf->Cell(60, $this->height, "", "", 0, 'L');
+      $pdf->Cell(101, $this->height, "", "", 0, 'L');
+      $pdf->Cell(60, $this->height, "Bedahara Penerimaan BPHTB", "", 0, 'L');
+      $pdf->Ln(20);
+
+      $pdf->Cell(60, $this->height, "", "", 0, 'L');
+      $pdf->Cell(101, $this->height, "", "", 0, 'L');
+      $pdf->Cell(60, $this->height, getValByCode('BENDAHARA_PENERIMAAN'), "", 0, 'L');
+      $pdf->Ln();
+      $pdf->Cell(60, $this->height, "", "", 0, 'L');
+      $pdf->Cell(101, $this->height, "", "", 0, 'L');
+      $pdf->Cell(60, $this->height, "NIP. ".getValByCode('NIP_BENDAHARA_PENERIMAAN'), "", 0, 'L');
+
+    }
     
 
 
