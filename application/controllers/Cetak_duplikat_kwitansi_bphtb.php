@@ -111,7 +111,7 @@ class Cetak_duplikat_kwitansi_bphtb extends CI_Controller{
       $pdf->Ln();
       $pdf->Cell(60, $this->height, "", "", 0, 'L');
       $pdf->Cell(101, $this->height, "", "", 0, 'L');
-      $pdf->Cell(60, $this->height, "Bedahara Penerimaan BPHTB", "", 0, 'L');
+      $pdf->Cell(60, $this->height, "Bendahara Penerimaan BPHTB", "", 0, 'L');
       $pdf->Ln(20);
 
       $pdf->Cell(60, $this->height, "", "", 0, 'L');
