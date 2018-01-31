@@ -255,7 +255,7 @@ class Pdf_lap_tanggungjawab_bendahara_skpd extends CI_Controller{
                 $sepertiga/4*1.27,
                 $sepertiga/4*2.13
                 ));
-            $pdf->SetAligns(array("L", "L", 'R','R','R','R','R','R','R','R','R','R','R'));
+            $pdf->SetAligns(array("R", "L", 'R','R','R','R','R','R','R','R','R','R','R'));
             $first_char = substr($items[$i]['rc_pad_jenis_pajak'], 0,1);
             $rc_pad_jenis_pajak = [];
             if ($first_char == '#') {
