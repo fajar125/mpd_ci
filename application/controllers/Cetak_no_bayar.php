@@ -115,7 +115,7 @@ class Cetak_no_bayar extends CI_Controller{
 		$pdf->SetAligns(array("C"));
 		$pdf->RowMultiBorderWithHeight(array($ALAMAT_3.", ".date('d-M-y')),array(''),6);
 		$pdf->SetFont('helvetica', '',12);
-		$pdf->RowMultiBorderWithHeight(array("ORANG BIJAK, TAAT PAJAK"),array(''),6);
+		$pdf->RowMultiBorderWithHeight(array("Terima kasih telah membayar pajak"),array(''),6);
 		$pdf->Image(base_url().'qrcode/generate-qr.php?param='.$no_bayar,175,13,25,25,'PNG');
 		$pdf->Output(time()."_kwitansi_".$no_bayar,"I");
 		exit;
