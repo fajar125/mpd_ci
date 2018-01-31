@@ -15,7 +15,7 @@ class Reset_pass_wp extends Abstract_model {
     public $selectClause    = " b.p_app_user_id, 
                                 app_user_name, 
                                 b.user_pwd, 
-                                full_name, 
+                                c.company_brand, 
                                 email_address, 
                                 b.p_user_status_id, 
                                 b.description, 

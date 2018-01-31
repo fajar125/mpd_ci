@@ -78,7 +78,7 @@
                     }
                 },
 
-                {label: 'Nama Lengkap',name: 'full_name',width: 200, align: "left",editable: false,
+                {label: 'Nama Lengkap',name: 'company_brand',width: 200, align: "left",editable: false,
                     editoptions: {
                         size: 60,
                         maxlength:255
