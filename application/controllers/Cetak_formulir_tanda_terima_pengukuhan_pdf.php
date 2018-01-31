@@ -103,11 +103,11 @@ class Cetak_formulir_tanda_terima_pengukuhan_pdf extends CI_Controller{
       $pdf->Cell($length3, $this->height, "", "R", 0, 'L');
       $pdf->Ln();
       $pdf->Cell($length1, $this->height, "", "L", 0, 'C');
-      $pdf->Cell($length2, $this->height, "Telp. ".getValByCode(' ALAMAT_4'), 0, 0, 'C');
+      $pdf->Cell($length2, $this->height, "Telp. ".getValByCode('ALAMAT_4'), 0, 0, 'C');
       $pdf->Cell($length3, $this->height, "", "R", 0, 'L');
       $pdf->Ln();
       $pdf->Cell($length1, $this->height, "", "L", 0, 'C');
-      $pdf->Cell($length2, $this->height, "Fax. ".getValByCode(' ALAMAT_4'), 0, 0, 'C');
+      $pdf->Cell($length2, $this->height, "Fax. ".getValByCode('ALAMAT_4'), 0, 0, 'C');
       $pdf->Cell($length3, $this->height, "", "R", 0, 'L');
       $pdf->Ln();
       $pdf->Cell($length1, $this->height, "", "L", 0, 'C');
