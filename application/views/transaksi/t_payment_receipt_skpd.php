@@ -374,14 +374,23 @@
                 var grid_selector = "#grid-table-history";
                 //var pager_selector = "#grid-pager-bpps2";
 
-                    jQuery("#grid-table").jqGrid('setGridParam',{
-                        url: '<?php echo WS_JQGRID."transaksi.t_payment_receipt_skpd_controller/read"; ?>'
+                jQuery("#grid-table").jqGrid('setGridParam',{
+                    url: '<?php echo WS_JQGRID."transaksi.t_payment_receipt_skpd_controller/read"; ?>'
 
-                    });
+                });
 
-                    $("#grid-table").jqGrid("setCaption", "Daftar Pajak Manual PAT");
-                    $("#grid-table").trigger("reloadGrid");
-                });           
+                $("#grid-table").jqGrid("setCaption", "Daftar Pajak Manual PAT");
+                $("#grid-table").trigger("reloadGrid");
+
+                $('#form_vat_dtl_id').val('');
+                $('#payment_date').val('');
+                $('#payment_vat_amount').val(''); 
+                $('#form_vat_dtl_code').val('');
+                $('#form_vat_code').val('');
+                $('#form_vat_type_id').val(''); 
+            });       
+
+
         })
         
     }
