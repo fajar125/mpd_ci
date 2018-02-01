@@ -81,7 +81,7 @@
                     },500);
 
             },
-            caption: "Daftar Customer"
+            caption: "Daftar Transaksi"
 
         });
 
