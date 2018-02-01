@@ -453,7 +453,7 @@ $("#tab-1").on("click", function(event) {
                     <div class="col-md-3">
                         <div class="input-group">
                             <div class="input-group">
-                                <input type="text" class="form-control" name="npwd" id="npwd" style="width: 560px;" readonly>                 
+                                <input type="text" class="form-control required" name="npwd" id="npwd" style="width: 560px;">                 
                             </div>
                         </div>
                     </div>
@@ -464,11 +464,11 @@ $("#tab-1").on("click", function(event) {
                     <label class="control-label col-md-3">Jenis Pajak</label>
                     <div class="col-md-3">
                         <div class="input-group">
-                            <input type="text" class="form-control" name="vat_code" id="form_vat_code" readonly style="width: 560px;  background-color: #f4ad42;" >
+                            <input type="text" class="form-control" name="vat_code" id="form_vat_code" readonly style="width: 560px; " >
                             <span class="input-group-btn">
-                                <button class="btn btn-success" type="button" onclick="showLOVVat_type('form_vat_id','form_vat_code')">
+                                <!-- <button class="btn btn-success" type="button" onclick="showLOVVat_type('form_vat_id','form_vat_code')">
                                     <span class="fa fa-search bigger-110"></span>
-                                </button>
+                                </button> -->
                             </span>                 
                         </div>
                     </div>
@@ -479,11 +479,11 @@ $("#tab-1").on("click", function(event) {
                     <label class="control-label col-md-3">Nama Ayat</label>
                     <div class="col-md-3">
                         <div class="input-group">
-                            <input type="text" class="FormElement form-control" name="nama_ayat" id="form_vat_dtl_code" readonly style="width: 560px;  background-color: #f4ad42;" >
+                            <input type="text" class="FormElement form-control" name="nama_ayat" id="form_vat_dtl_code" readonly style="width: 560px; " >
                             <span class="input-group-btn">
-                                <button class="btn btn-success" type="button" onclick="showLOVVatTypeDtl('form_vat_dtl_id','form_vat_dtl_code')">
+                                <!-- <button class="btn btn-success" type="button" onclick="showLOVVatTypeDtl('form_vat_dtl_id','form_vat_dtl_code')">
                                     <span class="fa fa-search bigger-110"></span>
-                                </button>
+                                </button> -->
                             </span>
                         </div>
                     </div>
@@ -502,7 +502,7 @@ $("#tab-1").on("click", function(event) {
                     <label class="control-label col-md-3">No Pengukuhan</label>
                     <div class="col-md-3">
                         <div class="input-group">
-                            <input type="text" class="form-control" name="activation_no" id="activation_no" style="background-color: #f4ad42;" required>                            
+                            <input type="text" class="form-control required" name="activation_no" id="activation_no" required>                            
                         </div>
                     </div>
                     <label class="control-label col-sm-1">Tgl</label>
@@ -545,7 +545,7 @@ $("#tab-1").on("click", function(event) {
                     <label class="control-label col-md-3">Nama Badan/Perusahaan</label>
                     <div class="col-md-3">
                         <div class="input-group">
-                            <input type="text" class="form-control" name="company_name" id="company_name" style="width: 560px; background-color: #f4ad42;" required>
+                            <input type="text" class="form-control required" name="company_name" id="company_name" style="width: 560px;" required>
                         </div>
                     </div>
                 </div>
@@ -554,7 +554,7 @@ $("#tab-1").on("click", function(event) {
                     <label class="control-label col-md-3">Alamat Badan</label>
                     <div class="col-md-3">
                         <div class="input-group">
-                            <input type="text" class="form-control" name="address_name" id="address_name" style="width: 560px; background-color: #f4ad42;" required>
+                            <input type="text" class="form-control required" name="address_name" id="address_name" style="width: 560px;" required>
                         </div>
                     </div>
                 </div>
@@ -563,7 +563,7 @@ $("#tab-1").on("click", function(event) {
                     <label class="control-label col-md-3">No</label>
                     <div class="col-md-1">
                         <div class="input-group">
-                            <input type="text" class="form-control" name="address_no" id="address_no" style="background-color: #f4ad42;" required>                            
+                            <input type="text" class="form-control required" name="address_no" id="address_no" required>                            
                         </div>
                     </div>
                     <label class="control-label col-sm-1">RT</label>
@@ -585,7 +585,7 @@ $("#tab-1").on("click", function(event) {
                     <div class="col-md-3">
                         <div class="input-group">
                             <input id="p_region_id_perusahaan" name="p_region_id_perusahaan" type="text"  style="display:none;">
-                            <input type="text" class="FormElement form-control" name="nama_kota" id="nama_kota" style="background-color: #f4ad42;" required readonly>
+                            <input type="text" class="FormElement form-control required" name="nama_kota" id="nama_kota" required readonly>
                             <span class="input-group-btn">
                                 <button class="btn btn-success" type="button" id="btn-lov-kota-perusahaan">
                                     <span class="fa fa-search bigger-110"></span>
@@ -600,7 +600,7 @@ $("#tab-1").on("click", function(event) {
                     <div class="col-md-3">
                         <div class="input-group">
                             <input id="p_region_id_kecamatan" name="p_region_id_kecamatan" type="text"  style="display:none;">
-                            <input type="text" class="form-control" name="nama_kecamatan" id="nama_kecamatan" style="background-color: #f4ad42;" readonly required>
+                            <input type="text" class="form-control required" name="nama_kecamatan" id="nama_kecamatan" readonly required>
                             <span class="input-group-btn">
                                 <button class="btn btn-success" type="button" id="btn-lov-kecamatan-perusahaan">
                                     <span class="fa fa-search bigger-110"></span>
@@ -613,7 +613,7 @@ $("#tab-1").on("click", function(event) {
                     <div class="col-md-3">
                         <div class="input-group">
                             <input id="p_region_id_kelurahan" name="p_region_id_kelurahan" type="text"  style="display:none;">
-                            <input type="text" class="form-control" name="nama_kelurahan" id="nama_kelurahan" style="background-color: #f4ad42;" required readonly >
+                            <input type="text" class="form-control required" name="nama_kelurahan" id="nama_kelurahan" required readonly >
                             <span class="input-group-btn">
                                 <button class="btn btn-success" type="button" id="btn-lov-kelurahan-perusahaan">
                                     <span class="fa fa-search bigger-110"></span>
@@ -667,7 +667,7 @@ $("#tab-1").on("click", function(event) {
                     <label class="control-label col-md-3">Nama Merk Dagang</label>
                     <div class="col-md-3">
                         <div class="input-group">
-                            <input type="text" class="form-control" name="company_brand" id="company_brand" style="width: 560px; background-color: #f4ad42;" required>
+                            <input type="text" class="form-control required" name="company_brand" id="company_brand" style="width: 560px;" required>
                         </div>
                     </div>
                 </div>
@@ -676,7 +676,7 @@ $("#tab-1").on("click", function(event) {
                     <label class="control-label col-md-3">Alamat</label>
                     <div class="col-md-3">
                         <div class="input-group">
-                            <input type="text" class="form-control" name="brand_address_name" id="brand_address_name" style="width: 560px; background-color: #f4ad42;" required>
+                            <input type="text" class="form-control required" name="brand_address_name" id="brand_address_name" style="width: 560px;" required>
                         </div>
                     </div>
                 </div>
@@ -685,7 +685,7 @@ $("#tab-1").on("click", function(event) {
                     <label class="control-label col-md-3">No</label>
                     <div class="col-md-1">
                         <div class="input-group">
-                            <input type="text" class="form-control" name="brand_address_no" id="brand_address_no" style="background-color: #f4ad42;" required>                            
+                            <input type="text" class="form-control required" name="brand_address_no" id="brand_address_no" required>                            
                         </div>
                     </div>
                     <label class="control-label col-sm-1">RT</label>
@@ -707,7 +707,7 @@ $("#tab-1").on("click", function(event) {
                     <div class="col-md-3">
                         <div class="input-group">
                             <input id="p_region_id_dagang" name="p_region_id_dagang" type="text"  style="display:none;">
-                            <input type="text" class="FormElement form-control" name="nama_kota_dagang" id="nama_kota_dagang" style="background-color: #f4ad42;" required readonly>
+                            <input type="text" class="FormElement form-control required" name="nama_kota_dagang" id="nama_kota_dagang" required readonly>
                             <span class="input-group-btn">
                                 <button class="btn btn-success" type="button" id="btn-lov-kota-dagang">
                                     <span class="fa fa-search bigger-110"></span>
@@ -722,7 +722,7 @@ $("#tab-1").on("click", function(event) {
                     <div class="col-md-3">
                         <div class="input-group">
                             <input id="p_region_id_kecamatan_dagang" name="p_region_id_kecamatan_dagang" type="text"  style="display:none;">
-                            <input type="text" class="form-control" name="nama_kecamatan_dagang" id="nama_kecamatan_dagang" style="background-color: #f4ad42;" readonly required>
+                            <input type="text" class="form-control required" name="nama_kecamatan_dagang" id="nama_kecamatan_dagang" readonly required>
                             <span class="input-group-btn">
                                 <button class="btn btn-success" type="button" id="btn-lov-kecamatan-dagang">
                                     <span class="fa fa-search bigger-110"></span>
@@ -735,7 +735,7 @@ $("#tab-1").on("click", function(event) {
                     <div class="col-md-3">
                         <div class="input-group">
                             <input id="p_region_id_kelurahan_dagang" name="p_region_id_kelurahan_dagang" type="text"  style="display:none;">
-                            <input type="text" class="form-control" name="nama_kelurahan_dagang" id="nama_kelurahan_dagang" style="background-color: #f4ad42;" required readonly >
+                            <input type="text" class="form-control required" name="nama_kelurahan_dagang" id="nama_kelurahan_dagang" required readonly >
                             <span class="input-group-btn">
                                 <button class="btn btn-success" type="button" id="btn-lov-kelurahan-dagang">
                                     <span class="fa fa-search bigger-110"></span>
@@ -789,7 +789,7 @@ $("#tab-1").on("click", function(event) {
                     <label class="control-label col-md-3">Nama Wajib Pajak</label>
                     <div class="col-md-3">
                         <div class="input-group">
-                            <input type="text" class="form-control" name="wp_name" id="wp_name" style="width: 560px; background-color: #f4ad42;" required>
+                            <input type="text" class="form-control required" name="wp_name" id="wp_name" style="width: 560px;" required>
                         </div>
                     </div>
                 </div>
@@ -798,7 +798,7 @@ $("#tab-1").on("click", function(event) {
                     <label class="control-label col-md-3">Alamat Wajib Pajak</label>
                     <div class="col-md-3">
                         <div class="input-group">
-                            <input type="text" class="form-control" name="wp_address_name" id="wp_address_name" style="width: 560px; background-color: #f4ad42;" required>
+                            <input type="text" class="form-control required" name="wp_address_name" id="wp_address_name" style="width: 560px;" required>
                         </div>
                     </div>
                 </div>
@@ -807,7 +807,7 @@ $("#tab-1").on("click", function(event) {
                     <label class="control-label col-md-3">No</label>
                     <div class="col-md-1">
                         <div class="input-group">
-                            <input type="text" class="form-control" name="wp_address_no" id="wp_address_no" style="background-color: #f4ad42;" required>                            
+                            <input type="text" class="form-control required" name="wp_address_no" id="wp_address_no" required>                            
                         </div>
                     </div>
                     <label class="control-label col-sm-1">RT</label>
@@ -829,7 +829,7 @@ $("#tab-1").on("click", function(event) {
                     <div class="col-md-3">
                         <div class="input-group">
                             <input id="p_region_id_wp" name="p_region_id_wp" type="text"  style="display:none;">
-                            <input type="text" class="FormElement form-control" name="nama_kota_wp" id="nama_kota_wp" style="background-color: #f4ad42;" required readonly>
+                            <input type="text" class="FormElement form-control required" name="nama_kota_wp" id="nama_kota_wp" required readonly>
                             <span class="input-group-btn">
                                 <button class="btn btn-success" type="button" id="btn-lov-kota-wp">
                                     <span class="fa fa-search bigger-110"></span>
@@ -844,7 +844,7 @@ $("#tab-1").on("click", function(event) {
                     <div class="col-md-3">
                         <div class="input-group">
                             <input id="p_region_id_kecamatan_wp" name="p_region_id_kecamatan_wp" type="text"  style="display:none;">
-                            <input type="text" class="form-control" name="nama_kecamatan_wp" id="nama_kecamatan_wp" style="background-color: #f4ad42;" readonly required>
+                            <input type="text" class="form-control required" name="nama_kecamatan_wp" id="nama_kecamatan_wp" readonly required>
                             <span class="input-group-btn">
                                 <button class="btn btn-success" type="button" id="btn-lov-kecamatan-wp">
                                     <span class="fa fa-search bigger-110"></span>
@@ -857,7 +857,7 @@ $("#tab-1").on("click", function(event) {
                     <div class="col-md-3">
                         <div class="input-group">
                             <input id="p_region_id_kelurahan_wp" name="p_region_id_kelurahan_wp" type="text"  style="display:none;">
-                            <input type="text" class="form-control" name="nama_kelurahan_wp" id="nama_kelurahan_wp" style="background-color: #f4ad42;" required readonly >
+                            <input type="text" class="form-control required" name="nama_kelurahan_wp" id="nama_kelurahan_wp" required readonly >
                             <span class="input-group-btn">
                                 <button class="btn btn-success" type="button" id="btn-lov-kelurahan-wp">
                                     <span class="fa fa-search bigger-110"></span>
@@ -877,7 +877,7 @@ $("#tab-1").on("click", function(event) {
                     <label class="control-label col-md-1">No Seluler</label>
                     <div class="col-md-3">
                         <div class="input-group">
-                            <input type="text" class="form-control" name="wp_mobile_no" id="wp_mobile_no" style="background-color: #f4ad42;" required>
+                            <input type="text" class="form-control required" name="wp_mobile_no" id="wp_mobile_no" required>
                         </div>
                     </div>
                 </div>
@@ -922,7 +922,7 @@ $("#tab-1").on("click", function(event) {
                     <label class="control-label col-md-3">Nama Pemilik/Pengelola</label>
                     <div class="col-md-3">
                         <div class="input-group">
-                            <input type="text" class="form-control" name="company_owner" id="company_owner" style="width: 560px; background-color: #f4ad42;" required>
+                            <input type="text" class="form-control required" name="company_owner" id="company_owner" style="width: 560px;" required>
                         </div>
                     </div>
                 </div>
@@ -932,7 +932,7 @@ $("#tab-1").on("click", function(event) {
                     <div class="col-md-3">
                         <div class="input-group">
                             <input id="p_job_position_id" name="p_job_position_id" type="text"  style="display:none;">
-                            <input type="text" class="form-control" name="nama_jabatan" id="nama_jabatan" style="width: 560px; background-color: #f4ad42;" required readonly>
+                            <input type="text" class="form-control required" name="nama_jabatan" id="nama_jabatan" style="width: 560px;" required readonly>
                             <span class="input-group-btn">
                                 <button class="btn btn-success" type="button" id="btn-lov-job_position">
                                     <span class="fa fa-search bigger-110"></span>
@@ -946,7 +946,7 @@ $("#tab-1").on("click", function(event) {
                     <label class="control-label col-md-3">Alamat</label>
                     <div class="col-md-3">
                         <div class="input-group">
-                            <input type="text" class="form-control" name="address_name_owner" id="address_name_owner" style="width: 560px; background-color: #f4ad42;" required>
+                            <input type="text" class="form-control required" name="address_name_owner" id="address_name_owner" style="width: 560px;" required>
                         </div>
                     </div>
                 </div>
@@ -955,7 +955,7 @@ $("#tab-1").on("click", function(event) {
                     <label class="control-label col-md-3">No</label>
                     <div class="col-md-1">
                         <div class="input-group">
-                            <input type="text" class="form-control" name="address_no_owner" id="address_no_owner" style="background-color: #f4ad42;" required>                            
+                            <input type="text" class="form-control required" name="address_no_owner" id="address_no_owner" required>                            
                         </div>
                     </div>
                     <label class="control-label col-sm-1">RT</label>
@@ -977,7 +977,7 @@ $("#tab-1").on("click", function(event) {
                     <div class="col-md-3">
                         <div class="input-group">
                             <input id="p_region_id_owner" name="p_region_id_owner" type="text"  style="display:none;">
-                            <input type="text" class="FormElement form-control" name="nama_kota_owner" id="nama_kota_owner" style="background-color: #f4ad42;" required readonly>
+                            <input type="text" class="FormElement form-control required" name="nama_kota_owner" id="nama_kota_owner" required readonly>
                             <span class="input-group-btn">
                                 <button class="btn btn-success" type="button" id="btn-lov-kota-owner">
                                     <span class="fa fa-search bigger-110"></span>
@@ -992,7 +992,7 @@ $("#tab-1").on("click", function(event) {
                     <div class="col-md-3">
                         <div class="input-group">
                             <input id="p_region_id_kecamatan_owner" name="p_region_id_kecamatan_owner" type="text"  style="display:none;">
-                            <input type="text" class="form-control" name="nama_kecamatan_owner" id="nama_kecamatan_owner" style="background-color: #f4ad42;" readonly required>
+                            <input type="text" class="form-control required" name="nama_kecamatan_owner" id="nama_kecamatan_owner" readonly required>
                             <span class="input-group-btn">
                                 <button class="btn btn-success" type="button" id="btn-lov-kecamatan-owner">
                                     <span class="fa fa-search bigger-110"></span>
@@ -1005,7 +1005,7 @@ $("#tab-1").on("click", function(event) {
                     <div class="col-md-3">
                         <div class="input-group">
                             <input id="p_region_id_kelurahan_owner" name="p_region_id_kelurahan_owner" type="text"  style="display:none;">
-                            <input type="text" class="form-control" name="nama_kelurahan_owner" id="nama_kelurahan_owner" style="background-color: #f4ad42;" required readonly >
+                            <input type="text" class="form-control required" name="nama_kelurahan_owner" id="nama_kelurahan_owner" required readonly >
                             <span class="input-group-btn">
                                 <button class="btn btn-success" type="button" id="btn-lov-kelurahan-owner">
                                     <span class="fa fa-search bigger-110"></span>
@@ -1025,7 +1025,7 @@ $("#tab-1").on("click", function(event) {
                     <label class="control-label col-md-1">No Seluler</label>
                     <div class="col-md-3">
                         <div class="input-group">
-                            <input type="text" class="form-control" name="mobile_no_owner" id="mobile_no_owner" style="background-color: #f4ad42;" required>
+                            <input type="text" class="form-control required" name="mobile_no_owner" id="mobile_no_owner" required>
                         </div>
                     </div>
                 </div>
