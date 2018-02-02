@@ -129,7 +129,7 @@ class P_vat_type_controller {
                 $table->setCriteria("upper(vat_code) like upper('%".$searchPhrase."%')");
             }
 
-            $table->setCriteria("p_vat_type_id IN (8,9,10)");
+            $table->setCriteria("p_vat_type_id IN (8,9,10,11)");
 
             $start = ($start-1) * $limit;
             $items = $table->getAll($start, $limit, $sort, $dir);
