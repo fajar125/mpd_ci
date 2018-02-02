@@ -299,11 +299,11 @@ class Pdf_lap_bdhr extends CI_Controller{
         $pdf->Ln();
         $pdf->Ln();
         $pdf->Cell($lbody3 - 10, $this->height, "", "", 0, 'L');
-        $pdf->Cell($lbody1 + 10, $this->height, "(                ABDURACHIM                )", "", 0, 'C');
+        $pdf->Cell($lbody1 + 10, $this->height, "(                ".getValByCode('BENDAHARA_PENERIMAAN')."                )", "", 0, 'C');
         $pdf->Ln();
 
         $pdf->Cell($lbody3 - 10, $this->height, "", "", 0, 'L');
-        $pdf->Cell($lbody1 + 10, $this->height, "NIP. 19590622 198503 1 008", "", 0, 'C');
+        $pdf->Cell($lbody1 + 10, $this->height, "NIP. ".getValByCode('NIP_BENDAHARA_PENERIMAAN'), "", 0, 'C');
         $pdf->Ln();
 
         $pdf->Output();
