@@ -161,12 +161,12 @@
             url += "&year_date=" + year_code;
             url += "&jenis_laporan=" + jenis_laporan;
 
-            if (tgl_penerimaan_last < tgl_penerimaan){
+            /*if (tgl_penerimaan_last < tgl_penerimaan){
                 swal ( "Oopss" ,  "Tanggal akhir harus lebih besar atau sama dari tanggal awal" ,  "error" );
                 return;
-            }else{
+            }else{*/
                 openInNewTab(url);
-            }
+            // }
             
         }
     }

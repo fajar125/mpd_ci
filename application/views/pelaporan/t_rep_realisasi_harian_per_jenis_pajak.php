@@ -144,12 +144,12 @@
             url += "'&tgl_penerimaan_last='" + tgl_penerimaan_last;
             url += "'&jenis_setoran=" + jenis_setoran;
 
-            if (tgl_penerimaan_last < tgl_penerimaan){
+            /*if (tgl_penerimaan_last < tgl_penerimaan){
                 swal ( "Oopss" ,  "Tanggal akhir harus lebih besar atau sama dari tanggal awal" ,  "error" );
                 return;
-            }else{
+            }else{*/
                 openInNewTab(url);
-            }
+            //}
             
         }
     }
