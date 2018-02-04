@@ -131,7 +131,7 @@ class T_vat_setllement_ro_modifikasi_controller {
         $t_vat_setllement_id = getVarClean('t_vat_setllement_id','int',0);
         $keyword = getVarClean('keyword','str','');
         $alasan = getVarClean('alasan','str','');
-        $flag_piutang = getVarClean('alasan','int',0);
+        $flag_piutang = getVarClean('flag_piutang','int',0);
         $i_mode = getVarClean('i_mode','int',0);
 
         $data = array('rows' => array(), 'page' => 1, 'records' => 0, 'total' => 1, 'success' => false, 'message' => '');

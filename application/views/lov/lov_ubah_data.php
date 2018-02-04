@@ -500,7 +500,7 @@
         } else if ($i_mode == 5){
             keyword = $('#nilai_denda').val();
             alasan = $('#alasan_denda').val(); 
-            flag_piutang = $('#flag_piutang').val();
+            flag_piutang = $('#flag_piutang option:selected').val();
         } else if ($i_mode == 6){
             keyword = $i_mode;
             alasan = $('#alasan_hapus').val();
