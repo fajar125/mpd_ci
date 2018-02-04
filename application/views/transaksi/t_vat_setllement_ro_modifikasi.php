@@ -115,7 +115,7 @@
                     formatter:function(cellvalue, options, rowObject) {
                         var val = rowObject['payment_key'];
                         var url = '<?php echo base_url(); ?>'+'cetak_no_bayar/pageCetak?no_bayar='+val;
-                        return '<a class="btn btn-danger btn-xs" href="#" onclick="PopupCenter(\''+url+'\',\'No. Bayar\',500,500);"><i class="fa fa-print"></i>Catak No. Bayar</a>';
+                        return '<a class="btn btn-danger btn-xs" href="#" onclick="PopupCenter(\''+url+'\',\'No. Bayar\',500,500);"><i class="fa fa-print"></i>Cetak No. Bayar</a>';
 
                     }
                 },
