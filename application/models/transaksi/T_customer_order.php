@@ -109,7 +109,7 @@ class T_customer_order extends Abstract_model {
 
     function delete($t_customer_order_id){
         try {
-            $sql = 'DELETE FROM t_customer_order WHERE t_customer_order_id = $t_customer_order_id';
+            $sql = "DELETE FROM t_customer_order WHERE t_customer_order_id = $t_customer_order_id";
             $query = $this->db->query($sql);
             
             return $query;

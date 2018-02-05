@@ -369,7 +369,7 @@ class T_customer_order_controller {
             $ci->load->model('transaksi/t_customer_order');
             $table = $ci->t_customer_order;
 
-            $result = $table->delete($cusorderid) ;
+            $result = $table->delete($cusorderid);
             $count = count($result);
 
             $data['rows'] = $result;
