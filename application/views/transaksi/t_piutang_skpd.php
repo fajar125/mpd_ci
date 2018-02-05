@@ -79,6 +79,8 @@
             colModel: [
                 {label: 'ID',name: 't_vat_setllement_id', hidden: true ,width: 180, align: "left"},
                 {label: 'ID',name: 't_customer_order_id', hidden: true ,width: 180, align: "left"},
+                {label: 'ID',name: 'p_vat_type_id', hidden: true ,width: 180, align: "left"},
+                {label: 'No Bayar',name: 'payment_key', hidden: true ,width: 180, align: "left"},
                 {label: 'No. Order',name: 'order_no',width: 180, align: "left"},
                 {label: 'NAMA WP',name: 'wp_name',width: 230, align: "left"},
                 {label: 'ALAMAT WP',name: 'wp_address_name',width: 230, align: "left"},
@@ -86,14 +88,14 @@
                 {label: 'NPWPD',name: 'npwd',width: 150, align: "left"},
                 {label: 'Periode Tahun',name: 'year_code',width: 150, align: "left"},
                 {label: 'Periode',name: 'finance_period_code',width: 150, align: "left"},
-                {label: 'Masa Pajak',name: 'start_period',width: 150, align: "left"},
+                {label: 'Masa Pajak',name: 'masa_pajak',width: 150, align: "left"},
                 {label: 'Total Transaksi',name: 'total_trans_amount',width: 180, summaryTpl:"{0}" ,summaryType:"sum", formatter:'currency', formatoptions: {prefix:"", thousandsSeparator:',', defaultValue:'0'},align: "right"},
                 {label: 'Total Penalti',name: 'total_penalty_amount',width: 180, summaryTpl:"{0}" ,summaryType:"sum", formatter:'currency', formatoptions: {prefix:"", thousandsSeparator:',', defaultValue:'0'},align: "right"},
                 {label: 'Tanggal Jatuh Tempo',name: 'due_date',width: 150, align: "left"},
                 {label: 'Dasar Pengenaan',name: 'debt_vat_amt',width: 150, align: "left"},
                 {label: 'Total Pajak',name: 'total_vat_amount',width: 180,summaryTpl:"{0}" ,summaryType:"sum", formatter:'currency', formatoptions: {prefix:"", thousandsSeparator:',', defaultValue:'0'},align: "right"},
-                {label: 'Kompensasi kelebihan dari tahun sebelumnya',name: 'cr_adjustment',width: 180, summaryTpl:"{0}" ,summaryType:"sum", formatter:'currency', formatoptions: {prefix:"", thousandsSeparator:',', defaultValue:'0'},align: "right"},
-                {label: 'Setoran yang dilakukan',name: 'cr_payment',width: 180, align: "left"},
+                {label: 'Kompensasi kelebihan dari tahun sebelumnya',name: 'cr_adjustment',width: 200, summaryTpl:"{0}" ,summaryType:"sum", formatter:'currency', formatoptions: {prefix:"", thousandsSeparator:',', defaultValue:'0'},align: "right"},
+                {label: 'Setoran yang dilakukan',name: 'cr_payment',width: 200, align: "left"},
                 {label: 'Lain-lain',name: 'cr_others',width: 180, align: "left"},
                 {label: 'STP (Pokok)',name: 'cr_stp',width: 180, align: "left"},
                 {label: 'Bunga (Pasal 65 ayat(2))',name: 'db_interest_charge',width: 180, align: "left"},
@@ -108,8 +110,10 @@
                 {label: 'Submit',width: 163,align: "center",
                     formatter:function(cellvalue, options, rowObject) {
                         var t_customer_order_id = rowObject['t_customer_order_id'];
-                        var total_penalty_amount = rowObject['total_penalty_amount'];
-                            return '<a class="btn btn-primary btn-xs" href="#" onclick="submit('+t_customer_order_id+');">Submit</a>';
+                        var payment_key = rowObject['payment_key'];
+                        var p_vat_type_id = rowObject['p_vat_type_id'];
+                        var t_vat_setllement_id = rowObject['t_vat_setllement_id'];
+                            return '<a class="btn btn-primary btn-xs" href="#" onclick="submit('+t_customer_order_id+','+payment_key+','+p_vat_type_id+','+t_vat_setllement_id+');">Submit</a>';
                         
                     }
                 }
@@ -216,25 +220,42 @@
         })
     }
 
-    function submit(t_customer_order_id){
+    function submit(t_customer_order_id, payment_key, p_vat_type_id, t_vat_setllement_id){
+
         var url = "<?php echo WS_JQGRID."transaksi.t_piutang_skpd_controller/submit/?"; ?>";
             url += "<?php echo $this->security->get_csrf_token_name(); ?>=<?php echo $this->security->get_csrf_hash(); ?>";
             url += "&t_customer_order_id=" + t_customer_order_id;
+            url += "&payment_key=" + payment_key;
+            url += "&p_vat_type_id=" + p_vat_type_id;
+            url += "&t_vat_setllement_id=" + t_vat_setllement_id;
 
-        $.getJSON(url, function( items ) {
-            
+        swal({
+          title: "Konfirmasi",
+          text: "Apa Anda yakin akan submit data ini ? ",
+          type: "warning",
+          showCancelButton: true,
+          confirmButtonColor: "#DD6B55",
+          confirmButtonText: "Ya",
+          cancelButtonText: "Tidak",
+          closeOnConfirm: false,
+          showLoaderOnConfirm: true
+        },
+        function(){
+          //swal("Deleted!", "Your imaginary file has been deleted.", "success");
+            setTimeout(function(){
+                $.getJSON(url, function( items ) {
+                    if(items.rows.o_result_code != "0"){
+                        swal('Peringatan', items.rows.o_result_msg, 'error');
+                        return;
+                    }else{
+                        swal('Informasi', items.rows.o_result_msg, 'info');
+                        return;
+                    }
+                })
+            }, 2000);
+        });
 
-            if(items.rows.o_result_code != "0"){
-                swal('Peringatan', items.rows.o_result_msg, 'error');
-                return;
-            }else{
-                swal('Informasi', items.rows.o_result_msg, 'info');
-                return;
-            }
-        })
+        
     }
 
-    function openInNewTab(url) {
-      window.open(url, '_blank', 'location=yes,height=570,width=820,scrollbars=yes,status=yes');
-    }
 </script>

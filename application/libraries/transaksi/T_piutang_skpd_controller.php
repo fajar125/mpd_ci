@@ -114,8 +114,11 @@ class T_piutang_skpd_controller {
 
     function submit() {
 
+        $t_vat_setllement_id = getVarClean('t_vat_setllement_id', 'int', 0);
         $t_customer_order_id = getVarClean('t_customer_order_id', 'int', 0);
-        //exit;
+        $p_vat_type_id = getVarClean('p_vat_type_id', 'int', 0);
+        $payment_key = getVarClean('payment_key', 'str', '');
+
 
         $data = array('rows' => array(), 'page' => 1, 'records' => 0, 'total' => 1, 'success' => false, 'message' => '');
 
@@ -125,7 +128,7 @@ class T_piutang_skpd_controller {
             $ci->load->model('transaksi/t_piutang_skpd');
             $table = $ci->t_piutang_skpd;
 
-            $result = $table->submit($t_customer_order_id);
+            $result = $table->submit($t_customer_order_id, $payment_key, $p_vat_type_id, $t_vat_setllement_id);
 
             // print_r($result);
             // exit();
