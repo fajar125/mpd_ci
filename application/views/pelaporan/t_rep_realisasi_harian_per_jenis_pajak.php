@@ -182,12 +182,12 @@
             url += "'&jenis_setoran=" + jenis_setoran;
             url += "&year_date=" + year_code;
 
-            if (tgl_penerimaan_last < tgl_penerimaan){
+           /* if (tgl_penerimaan_last < tgl_penerimaan){
                 swal ( "Oopss" ,  "Tanggal awal harus lebih besar dari tanggal akhir" ,  "error" );
                 return;
-            }else{
+            }else{*/
                 window.location = url;
-            }
+            // }
             
         }
     }

@@ -155,12 +155,12 @@
             url += "&p_account_status_id="+p_account_status_id;
             //alert(url);
 
-            if (end_piutang < start_piutang){
+            /*if (end_piutang < start_piutang){
                 swal ( "Oopss" ,  "Tanggal awal harus lebih besar dari tanggal akhir" ,  "error" );
                 return;
-            }else{
+            }else{*/
                 window.location = url;
-            }
+            // }
         }
 
     }
@@ -186,12 +186,12 @@
             url += "&p_account_status_id="+p_account_status_id ;
            // url += "&FLAG=1" ;
 
-            if (end_piutang < start_piutang){
+            /*if (end_piutang < start_piutang){
                 swal ( "Oopss" ,  "Tanggal awal harus lebih besar dari tanggal akhir" ,  "error" );
                 return;
-            }else{
+            }else{*/
                 openInNewTab(url);
-            }
+            // }
             
 
         }

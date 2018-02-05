@@ -265,12 +265,12 @@
             url += "&p_bphtb_legal_doc_type_id=" + p_bphtb_legal_doc_type_id;
             url += "&verificated_by=" + verificated_by;
 
-            if (date_end_laporan < date_start_laporan){
-                swal ( "Oopss" ,  "Tanggal awal harus lebih besar dari tanggal akhir" ,  "error" );
-                return;
-            }else{
+            // if (date_end_laporan < date_start_laporan){
+            //     swal ( "Oopss" ,  "Tanggal awal harus lebih besar dari tanggal akhir" ,  "error" );
+            //     return;
+            // }else{
                 window.location = url;
-            }
+            // }
 
         }
     }
@@ -318,12 +318,12 @@
             url += "&p_bphtb_legal_doc_type_id=" + p_bphtb_legal_doc_type_id;
             url += "&verificated_by=" + verificated_by;
 
-            if (date_end_laporan < date_start_laporan){
+            /*if (date_end_laporan < date_start_laporan){
                 swal ( "Oopss" ,  "Tanggal awal harus lebih besar dari tanggal akhir" ,  "error" );
                 return;
-            }else{
+            }else{*/
                 openInNewTab(url);
-            }
+            // }
         }
 
 

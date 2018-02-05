@@ -160,10 +160,10 @@
         if(date_start_laporan == "" || date_end_laporan == ""){            
             swal ( "Oopss" ,  "Kolom Tanggal Tidak Boleh Kosong!" ,  "error" );
         }else{
-            if (date_end_laporan < date_start_laporan){
+           /* if (date_end_laporan < date_start_laporan){
                 swal ( "Oopss" ,  "Tanggal awal harus lebih besar dari tanggal akhir" ,  "error" );
                 return;
-            }else{
+            }else{*/
                 $('#table').css('display', '');
                 jQuery(function($) {
                     var grid_selector = "#grid-table";
@@ -175,7 +175,7 @@
                     $("#grid-table").jqGrid("setCaption", "Laporan Konfirmasi Nota Verifikasi BPTHB");
                     $("#grid-table").trigger("reloadGrid");
                 });
-            }
+            // }
             
         }
 
@@ -207,12 +207,12 @@
             //alert(url);
             //return;
 
-            if (date_end_laporan < date_start_laporan){
-                swal ( "Oopss" ,  "Tanggal awal harus lebih besar dari tanggal akhir" ,  "error" );
-                return;
-            }else{
+            // if (date_end_laporan < date_start_laporan){
+            //     swal ( "Oopss" ,  "Tanggal awal harus lebih besar dari tanggal akhir" ,  "error" );
+            //     return;
+            // }else{
                 openInNewTab(url);
-            }
+            // }
             
         }
     }
@@ -230,12 +230,12 @@
             url += "&date_end_laporan=" + date_end_laporan;
            // url += "&FLAG=1" ;
 
-            if (date_end_laporan < date_start_laporan){
+            /*if (date_end_laporan < date_start_laporan){
                 swal ( "Oopss" ,  "Tanggal awal harus lebih besar dari tanggal akhir" ,  "error" );
                 return;
-            }else{
+            }else{*/
                 openInNewTab(url);
-            }
+            // }
             
         }
     }
@@ -254,12 +254,12 @@
             url += "&t_bphtb_registration_id="+t_bphtb_registration_id ;
            // url += "&FLAG=1" ;
 
-            if (date_end_laporan < date_start_laporan){
+            /*if (date_end_laporan < date_start_laporan){
                 swal ( "Oopss" ,  "Tanggal awal harus lebih besar dari tanggal akhir" ,  "error" );
                 return;
-            }else{
+            }else{*/
                 openInNewTab(url);
-            }
+            // }
             
         }
     }

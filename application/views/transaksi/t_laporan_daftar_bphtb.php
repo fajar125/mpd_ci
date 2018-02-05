@@ -76,12 +76,12 @@
             url += "&date_start_laporan=" + date_start_laporan;
             url += "&date_end_laporan=" + date_end_laporan;
 
-            if (date_end_laporan < date_start_laporan){
+            /*if (date_end_laporan < date_start_laporan){
                 swal ( "Oopss" ,  "Tanggal awal harus lebih besar dari tanggal akhir" ,  "error" );
                 return;
-            }else{
+            }else{*/
                 window.location = url;
-            }
+            // }
             
         }
     }

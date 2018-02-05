@@ -33,10 +33,10 @@ class Pdf_lap_harian_penerimaan_detail extends CI_Controller{
 
 
     function save_pdf_t_rep_harian_penerimaan_detail($start_date, $end_date) {
-        //echo $start_date." ".$end_date;exit();
+        //echo $start_date." ".$end_date;//exit();
         $data = array();
         $sql = "select * from f_rep_harian_murni(?, ?) order by nomor_ayat";  
-
+        //echo $sql;exit;
         $output = $this->db->query($sql, array($start_date, $end_date));
         $items = $output->result_array();
 
