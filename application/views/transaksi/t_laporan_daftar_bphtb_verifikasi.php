@@ -74,6 +74,7 @@
     //tanggal
     $('.datepicker1').datetimepicker({
         format: 'YYYY-MM-DD',
+       // minDate: new Date ('2018-02-04')
         // defaultDate: new Date()
     });
 

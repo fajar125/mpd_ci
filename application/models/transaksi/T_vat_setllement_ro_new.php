@@ -12,7 +12,9 @@ class T_vat_setllement_ro_new extends Abstract_model {
 
     public $fields          = array();
 
-    public $selectClause    = " a.no_kohir,d.wp_name, 
+    public $selectClause    = " a.no_kohir,
+                                d.wp_name,
+                                a.payment_key,
                                 a.t_vat_setllement_id, 
                                 a.t_customer_order_id, 
                                 a.total_penalty_amount, 

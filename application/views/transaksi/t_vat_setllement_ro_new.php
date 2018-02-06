@@ -82,6 +82,7 @@
                 {label: 'NPWPD',name: 'npwd',width: 150, align: "left"},
                 {label: 'Periode',name: 'finance_period_code',width: 150, align: "left"},
                 {label: 'No. Order',name: 'order_no',width: 180, align: "left"},
+                {label: 'No. Bayar',name: 'payment_key',width: 180, align: "left"},
                 {label: 'Total Transaksi',name: 'total_trans_amount',width: 180, summaryTpl:"{0}" ,summaryType:"sum", formatter:'currency', formatoptions: {prefix:"", thousandsSeparator:',', defaultValue:'0'},align: "right"},
                 {label: 'Total Pajak',name: 'total_vat_amount',width: 180,summaryTpl:"{0}" ,summaryType:"sum", formatter:'currency', formatoptions: {prefix:"", thousandsSeparator:',', defaultValue:'0'},align: "right"},
                 {label: 'Denda',name: 'total_penalty_amount',width: 180, summaryTpl:"{0}" ,summaryType:"sum", formatter:'currency', formatoptions: {prefix:"", thousandsSeparator:',', defaultValue:'0'},align: "right"},
