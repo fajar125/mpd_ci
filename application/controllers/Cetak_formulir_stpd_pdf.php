@@ -68,7 +68,7 @@ class Cetak_formulir_stpd_pdf extends CI_Controller{
 		$output = $this->db->query($sql);
         $INSTANSI_2 = $output->row_array()['value'];
 
-		$sql1="select b.npwd,
+		$sql1="select b.npwd, b.payment_key,
 					   to_char(a.start_penalty,'YYYY') as tahun,
 				       to_char(a.start_penalty,'DD-MON-YYYY')as start_penalty,
 				       to_char(a.end_penalty,'DD-MON-YYYY')as end_penalty,
@@ -149,7 +149,7 @@ class Cetak_formulir_stpd_pdf extends CI_Controller{
 		$pdf->SetFont('Arial', '', 12);
 		$pdf->Cell($lheader2, $this->height, "STPD", "R", 0, 'C');
 		$pdf->SetFont('Arial', '', 10);
-		$pdf->Cell($lheader2, $this->height, "", "R", 0, 'C');
+		$pdf->Cell($lheader2, $this->height, "No. Urut", "R", 0, 'C');
 		$pdf->Ln();
 
 		$pdf->Cell($lheader1-2, $this->height, "", "L", 0, 'L');
@@ -158,21 +158,12 @@ class Cetak_formulir_stpd_pdf extends CI_Controller{
 		$pdf->SetFont('Arial', '', 8);
 		$pdf->Cell($lheader2, $this->height, "(Surat Tagihan Pajak Daerah)", "R", 0, 'C');
 		$pdf->SetFont('Arial', '', 10);
-		$pdf->Cell($lheader2, $this->height, "No. Urut", "R", 0, 'C');
-		$pdf->Ln();
+		$pdf->Cell($lheader2, $this->height, "", "R", 0, 'C');
+		$pdf->Ln($this->height-5);
 
-		$pdf->Cell($lheader1, $this->height + 2, "", "L", 0, 'L');
-		$pdf->SetFont('Arial', '', 6);
-		$pdf->Cell($lheader3, $this->height + 2, $ALAMAT_1, "R", 0, 'C');
-		$pdf->Cell(2, $this->height + 2, "", "", 0, 'L');
-		$pdf->SetFont('Arial', '', 8);
-		$pdf->Cell($lheader1 - 5, $this->height + 2, "Masa Pajak ", "", 0, 'L');
-		$pdf->Cell($lheader1 + 3, $this->height + 2, ": " . $data["finance_period_code"], "R", 0, 'L');
-		$pdf->SetFont('Arial', '', 10);
-		$pdf->Cell($lheader2, $this->height + 2, "", "R", 0, 'C');
-		$pdf->Ln($this->height-4);
 		// No Urut
 		$pdf->Cell($lheader2 + $lheader4 + 1.5, $this->height, "", "R", 0, 'C');
+
 
 
 		$no_urt = str_split($data["order_no"]);
@@ -187,6 +178,20 @@ class Cetak_formulir_stpd_pdf extends CI_Controller{
 		$pdf->Ln();
 		// =======
 
+		$pdf->Cell($lheader1, $this->height + 2, "", "L", 0, 'L');
+		$pdf->SetFont('Arial', '', 6);
+		$pdf->Cell($lheader3, $this->height + 2, $ALAMAT_1, "R", 0, 'C');
+		$pdf->Cell(2, $this->height + 2, "", "", 0, 'L');
+		$pdf->SetFont('Arial', '', 8);
+		$pdf->Cell($lheader1 - 5, $this->height + 2, "Masa Pajak ", "", 0, 'L');
+		$pdf->Cell($lheader1 + 3, $this->height + 2, ": " . $data["finance_period_code"], "R", 0, 'L');
+
+
+		$pdf->SetFont('Arial', '', 10);
+		$pdf->Cell($lheader2, $this->height + 2, "No. Bayar", "R", 0, 'C');
+		$pdf->Ln();
+		
+
 		$pdf->Cell($lheader1, $this->height, "", "L", 0, 'L');
 		$pdf->SetFont('Arial', '', 7);
 		$pdf->Cell($lheader3, $this->height, $ALAMAT_2, "R", 0, 'C');
@@ -194,8 +199,10 @@ class Cetak_formulir_stpd_pdf extends CI_Controller{
 		$pdf->SetFont('Arial', '', 8);
 		$pdf->Cell($lheader1 - 5, $this->height, "Tahun Pajak ", "", 0, 'L');
 		$pdf->Cell($lheader1, $this->height, ": " . $data["tahun"], "R", 0, 'L');
+		
 		$pdf->SetFont('Arial', '', 10);
-		$pdf->Cell($lheader2, $this->height, "", "R", 0, 'C');
+
+		$pdf->Cell($lheader2, $this->height, $data["payment_key"], "R", 0, 'C');
 		$pdf->Ln();
 
 		$pdf->Cell($lheader1, $this->height, "", "LB", 0, 'L');
