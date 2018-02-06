@@ -4,7 +4,7 @@
  * v_cust_acc_dtl_trans Model
  *
  */
-class v_cust_acc_dtl_trans extends Abstract_model {
+class V_cust_acc_dtl_trans extends Abstract_model {
 
     public $table           = "t_vat_setllement";
     public $pkey            = "";
