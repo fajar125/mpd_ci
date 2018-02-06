@@ -56,6 +56,7 @@ class T_piutang_skpd extends Abstract_model {
         $data = $query->row_array();
         return $data['hasil'];
     }
+   
 
     function submit($t_customer_order_id, $payment_key, $p_vat_type_id, $t_vat_setllement_id){
         $ci =& get_instance();
