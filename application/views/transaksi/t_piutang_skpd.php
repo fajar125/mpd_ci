@@ -1,3 +1,4 @@
+<!-- breadcrumb -->
 <div class="page-bar">
     <ul class="page-breadcrumb">
         <li>
@@ -5,7 +6,7 @@
             <i class="fa fa-circle"></i>
         </li>
         <li>
-            <span>PIUTANG SKPD</span>
+            <span>Piutang SKPD</span>
         </li>
     </ul>
 </div>
@@ -13,79 +14,32 @@
 <div class="space-4"></div>
 <div class="row">
     <div class="col-md-12">
-        <div class="portlet light bordered">
-            <div class="portlet-title">
-                <div class="caption">
-                    <i class=" icon-list font-blue"></i>
-                    <span class="caption-subject font-blue bold uppercase">PIUTANG SKPD
-                    </span>
-                </div>
-            </div>
-            <!-- CONTENT  -->
-            <div class="form-body">
-                <div class="row">                    
-                    <div class="form-group">
-                        <label class="control-label col-md-3">Nama WP/ NPWD/ No Kohir
-                        </label>
-                        <div class="col-md-3">
-                            <div class="input-group">
-                                <input type="text" class="form-control required" name="s_keyword" required  id="s_keyword" >
-                                <span class="input-group-btn">
-                                    <button class="btn btn-primary" type="button" onclick="toTampil()">Cari</button>
-                                </span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
+        <table id="grid-table"></table>
+        <div id="grid-pager"></div>
     </div>
 </div>
 
-<div class="tab-content no-border" id="table">
-    <div class="row">
-        <div class="col-xs-12">
-            <div id="gbox_grid-table" class="ui-jqgrid">
-                <div id="gview_grid-table" class="ui-jqgrid-view table-responsive" role="grid">
-                    <table id="grid-table"></table>
-                    <div id="grid-pager"></div>
-                </div>
-            </div>            
-        </div>
-    </div>
-</div>
-
-
-<script >
-
-    $('#table').css('display', 'none');
-    
-    function changeDenda(t_vat_setllement_id){
-        modal_lov_t_piutang_skpd_show(t_vat_setllement_id);
-    }
-</script>
-
-
-<script type="text/javascript">
-    
-    jQuery(function($) {
+<script>
+    $(function($) {
         var grid_selector = "#grid-table";
         var pager_selector = "#grid-pager";
 
-        jQuery("#grid-table").jqGrid({
+        $("#grid-table").jqGrid({
             url: '<?php echo WS_JQGRID."transaksi.t_piutang_skpd_controller/read"; ?>',
+            postData: {s_keyword:$('#s_keyword').val()},
             datatype: "json",
             mtype: "POST",
             colModel: [
                 {label: 'ID',name: 't_vat_setllement_id', hidden: true ,width: 180, align: "left"},
                 {label: 'ID',name: 't_customer_order_id', hidden: true ,width: 180, align: "left"},
                 {label: 'ID',name: 'p_vat_type_id', hidden: true ,width: 180, align: "left"},
-                {label: 'No Bayar',name: 'payment_key', hidden: true ,width: 180, align: "left"},
+                
                 {label: 'No. Order',name: 'order_no',width: 180, align: "left"},
                 {label: 'NAMA WP',name: 'wp_name',width: 230, align: "left"},
                 {label: 'ALAMAT WP',name: 'wp_address_name',width: 230, align: "left"},
                 {label: 'Jenis Pajak',name: 'jenis_pajak',width: 230, align: "left"},
                 {label: 'NPWPD',name: 'npwd',width: 150, align: "left"},
+                {label: 'No Bayar',name: 'payment_key', width: 180, align: "left"},
                 {label: 'Periode Tahun',name: 'year_code',width: 150, align: "left"},
                 {label: 'Periode',name: 'finance_period_code',width: 150, align: "left"},
                 {label: 'Masa Pajak',name: 'masa_pajak',width: 150, align: "left"},
@@ -113,26 +67,27 @@
                         var payment_key = rowObject['payment_key'];
                         var p_vat_type_id = rowObject['p_vat_type_id'];
                         var t_vat_setllement_id = rowObject['t_vat_setllement_id'];
-                            return '<a class="btn btn-primary btn-xs" href="#" onclick="submit('+t_customer_order_id+','+payment_key+','+p_vat_type_id+','+t_vat_setllement_id+');">Submit</a>';
+                        var display = "disabled";
+                        if(payment_key == null || payment_key == "" || payment_key == 0){
+                            display = "";
+                        }
+
+                        return '<a class="btn btn-primary btn-xs" '+display+' href="#" onclick="submit('+t_customer_order_id+','+payment_key+','+p_vat_type_id+','+t_vat_setllement_id+');">Submit</a>';
                         
                     }
                 }
 
             ],
             height: '100%',
-            autowidth: false,
+            autowidth: true,
             viewrecords: true,
             rowNum: 10,
             rowList: [10,20,50],
             rownumbers: true, // show row numbers
             rownumWidth: 35, // the width of the row numbers columns
             altRows: true,
-            shrinkToFit: true,
+            shrinkToFit: false,
             multiboxonly: true,
-            footerrow: false,
-            gridComplete: function() {
-                
-            },
             onSelectRow: function (rowid) {
                 /*do something when selected*/
 
@@ -144,60 +99,162 @@
                 id: 'id',
                 repeatitems: false
             },
-            beforeProcessing: function (data) {
-
-            },
             loadComplete: function (response) {
                 if(response.success == false) {
                     swal({title: 'Attention', text: response.message, html: true, type: "warning"});
                 }
 
-                setTimeout(function(){
-                      $("#grid-table").setSelection($("#grid-table").getDataIDs()[0],true);
-                },500);
-
             },
-            caption: "DAFTAR SSPD/SPTPD(Pelaporan Pajak)"
+            //memanggil controller jqgrid yang ada di controller read
+            caption: "Daftar Piutang SKPD"
 
         });
 
+        jQuery('#grid-table').jqGrid('navGrid', '#grid-pager',
+            {   //navbar options
+                edit: false,
+                editicon: 'fa fa-pencil blue bigger-120',
+                add: false,
+                addicon: 'fa fa-plus-circle purple bigger-120',
+                del: false,
+                delicon: 'fa fa-trash-o red bigger-120',
+                search: true,
+                searchicon: 'fa fa-search orange bigger-120',
+                refresh: true,
+                afterRefresh: function () {
+                    // some code here
+                    jQuery("#detailsPlaceholder").hide();
+                },
+
+                refreshicon: 'fa fa-refresh green bigger-120',
+                view: false,
+                viewicon: 'fa fa-search-plus grey bigger-120'
+            },
+
+            {
+                // options for the Edit Dialog
+                closeAfterEdit: true,
+                closeOnEscape:true,
+                recreateForm: true,
+                serializeEditData: serializeJSON,
+                width: 'auto',
+                errorTextFormat: function (data) {
+                    return 'Error: ' + data.responseText
+                },
+                beforeShowForm: function (e, form) {
+                    var form = $(e[0]);
+                    style_edit_form(form);
+                    
+                    
+                    
+
+                },
+                afterShowForm: function(form) {
+                    form.closest('.ui-jqdialog').center();
+                },
+                afterSubmit:function(response,postdata) {
+                    var response = jQuery.parseJSON(response.responseText);
+                    if(response.success == false) {
+                        return [false,response.message,response.responseText];
+                    }
+                    //reloadTreeMenu();
+                    return [true,"",response.responseText];
+                }
+            },
+            {
+               
+                //new record form
+                closeAfterAdd: false,
+                clearAfterAdd : true,
+                closeOnEscape:true,
+                recreateForm: true,
+                width: 'auto',
+                errorTextFormat: function (data) {
+                    return 'Error: ' + data.responseText
+                },
+                serializeEditData: serializeJSON,
+                viewPagerButtons: false,
+                beforeShowForm: function (e, form) {
+                    var form = $(e[0]);
+                    style_edit_form(form);
+                    setTimeout(function() {
+                    clearInputRqstType();
+                     },100);
+                },
+                afterShowForm: function(form) {
+                    form.closest('.ui-jqdialog').center();
+                },
+                afterSubmit:function(response,postdata) {
+                    var response = jQuery.parseJSON(response.responseText);
+                    if(response.success == false) {
+                        return [false,response.message,response.responseText];
+                    }
+
+                    $(".tinfo").html('<div class="ui-state-success">' + response.message + '</div>');
+                    var tinfoel = $(".tinfo").show();
+                    tinfoel.delay(3000).fadeOut();
+                    clearInputRqstType();
+                    //reloadTreeMenu();
 
 
-        
+                    return [true,"",response.responseText];
+                }
+            },
+            {
+                //delete record form
+                serializeDelData: serializeJSON,
+                recreateForm: true,
+                beforeShowForm: function (e) {
+                    var form = $(e[0]);
+                    style_delete_form(form);
+
+                },
+                afterShowForm: function(form) {
+                    form.closest('.ui-jqdialog').center();
+                },
+                onClick: function (e) {
+                    //alert(1);
+                },
+                afterSubmit:function(response,postdata) {
+                    var response = jQuery.parseJSON(response.responseText);
+                    if(response.success == false) {
+                        return [false,response.message,response.responseText];
+                    }
+                    return [true,"",response.responseText];
+                }
+            },
+            {
+                //search form
+                closeAfterSearch: false,
+                recreateForm: true,
+                afterShowSearch: function (e) {
+                    var form = $(e[0]);
+                    style_search_form(form);
+                    form.closest('.ui-jqdialog').center();
+                },
+                afterRedraw: function () {
+                    style_search_filters($(this));
+                }
+            },
+            {
+                //view record form
+                recreateForm: true,
+                beforeShowForm: function (e) {
+                    var form = $(e[0]);
+                }
+            }
+        );
 
     });
+</script>
 
-    
-
+<script type="text/javascript">
     function responsive_jqgrid(grid_selector, pager_selector) {
+
         var parent_column = $(grid_selector).closest('[class*="col-"]');
         $(grid_selector).jqGrid( 'setGridWidth', $(".page-content").width() );
         $(pager_selector).jqGrid( 'setGridWidth', parent_column.width() );
-    }
 
-    
-
-    function toTampil(){
-        var s_keyword        = $('#s_keyword').val();        
-        
-        if( s_keyword ==""){            
-            swal ( "Oopss" ,  "TahunHarus Di isi!" ,  "error" );
-            return;
-        }else{
-            $('#table').css('display', '');
-            jQuery(function($) {
-                var grid_selector = "#grid-table";
-
-                jQuery("#grid-table").jqGrid('setGridParam',{
-                    url: '<?php echo WS_JQGRID."transaksi.t_piutang_skpd_controller/read"; ?>',
-                    postData: {s_keyword:s_keyword}
-                });
-                $("#grid-table").jqGrid("setCaption", "DAFTAR SSPD/SPTPD(Pelaporan Pajak)");
-                $("#grid-table").trigger("reloadGrid");
-            });
-            
-            
-        }
     }
 </script>
 
