@@ -93,7 +93,23 @@ $("#tab-2").on("click", function(event) {
                 {label: 'ID', name: 't_customer_id', key: true, width: 5, sorttype: 'number', editable: true, hidden: true},
                 {label: 'ID Cust', name: 't_cust_account_id', key: true, width: 5, sorttype: 'number', editable: false, hidden: true},
                 
-                {label: 'Nama Pemilik/Pengelola',name: 'company_owner',width: 150, align: "left",editable: false,
+				{label: 'NPWD',name: 'npwd',width: 200, align: "left",editable: false,
+                    editoptions: {
+                        size: 30,
+                        maxlength:32
+                    },
+                    editrules: {required: true}
+                },
+				
+				
+                {label: 'Jenis Pajak',name: 'vat_code',width: 200, align: "left",editable: false,
+                    editoptions: {
+                        size: 30,
+                        maxlength:32
+                    }
+                },
+				
+                {label: 'Nama Pemilik/Pengelola',name: 'company_owner',width: 300, align: "left",editable: false,
                     editoptions: {
                         size: 30,
                         maxlength:32
@@ -101,34 +117,29 @@ $("#tab-2").on("click", function(event) {
                     editrules: {required: true}
                 },
                 
-
-                {label: 'Alamat WP',name: 'alamat',width: 200, align: "left",editable: false,
+				
+                {label: 'Merk Dagang',name: 'company_brand',width: 300, align: "left",editable: false,
+                    editoptions: {
+                        size: 30,
+                        maxlength:32
+                    }
+                },
+				
+                {label: 'Alamat WP',name: 'alamat',width: 300, align: "left",editable: false,
                     editoptions: {
                         size: 30,
                         maxlength:32
                     }
                 },
 
-                {label: 'Merk Dagang',name: 'company_brand',width: 200, align: "left",editable: false,
+
+                {label: 'Alamat merk Dagang',name: 'brand_address_name',width: 300, align: "left",editable: false,
                     editoptions: {
                         size: 30,
                         maxlength:32
                     }
                 },
 
-                {label: 'Alamat merk Dagang',name: 'brand_address_name',width: 200, align: "left",editable: false,
-                    editoptions: {
-                        size: 30,
-                        maxlength:32
-                    }
-                },
-
-                {label: 'Jenis Pajak',name: 'vat_code',width: 200, align: "left",editable: false,
-                    editoptions: {
-                        size: 30,
-                        maxlength:32
-                    }
-                },
 
                 {label: 'No Seluler',name: 'mobile_no_owner',width: 200, align: "left",editable: false,
                     editoptions: {
@@ -164,7 +175,7 @@ $("#tab-2").on("click", function(event) {
             rownumbers: true, // show row numbers
             rownumWidth: 35, // the width of the row numbers columns
             altRows: true,
-            shrinkToFit: true,
+            shrinkToFit: false,
             multiboxonly: true,
             onSelectRow: function (rowid) {
                 /*do something when selected*/
