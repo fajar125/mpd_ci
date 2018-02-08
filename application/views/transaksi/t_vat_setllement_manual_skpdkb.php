@@ -128,7 +128,7 @@
                     <label class="control-label col-md-3">Jumlah Omset</label>
                     <div class="col-md-5">
                         <div class="input-group">
-                            <input type="number" class="form-control" name="total_trans_amount" id="total_trans_amount">
+                            <input type="text" class="form-control" style="text-align: right;" name="total_trans_amount" id="total_trans_amount">
                         </div>
                     </div>
                 </div>
@@ -137,7 +137,7 @@
                     <label class="control-label col-md-3">Jumlah Kamar/Kursi Terjual</label>
                     <div class="col-md-5">
                         <div class="input-group">
-                            <input type="number" class="form-control" name="qty_room_sold" id="qty_room_sold">
+                            <input type="text" class="form-control" style="text-align: right;" name="qty_room_sold" id="qty_room_sold">
                         </div>
                     </div>
                 </div>
@@ -202,6 +202,11 @@
     });
 </script>
 
+<script>
+    $("#total_trans_amount").number(true,0,'.',',');
+    $("#qty_room_sold").number(true,0,'.',',');
+</script>
+
 <script type="text/javascript">
 
 
@@ -262,7 +267,14 @@
 
             //swal('Informasi',items.rows.o_mess,'info');
             if(items.rows.o_cust_order_id == 0||items.rows.o_cust_order_id == "0" || items.rows.o_cust_order_id == "" || items.rows.o_cust_order_id == null){
-                swal('Peringatan',items.rows.o_mess,'error');
+                var pesan = "";
+                if (items.rows.o_mess == null || items.rows.o_mess == '' || items.rows.o_mess == false){
+                    pesan = "Data Gagal Ditambahkan/ Disubmit";
+                } else {
+                    pesan = items.rows.o_mess;
+                }
+                swal('Peringatan',pesan,'error');
+                return;
 
            }else{
                 swal('Informasi',items.rows.o_mess,'info');

@@ -67,7 +67,7 @@
                         var payment_key = rowObject['payment_key'];
                         var p_vat_type_id = rowObject['p_vat_type_id'];
                         var t_vat_setllement_id = rowObject['t_vat_setllement_id'];
-                        var display = "disabled";
+                        var display = "style='display:none;'";
                         if(payment_key == null || payment_key == "" || payment_key == 0){
                             display = "";
                         }

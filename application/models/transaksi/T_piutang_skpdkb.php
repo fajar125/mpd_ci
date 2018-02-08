@@ -58,7 +58,7 @@ class T_piutang_skpdkb extends Abstract_model {
     }
 
     function getData($s_keyword){
-        $sql = "SELECT x.npwd, a.code as finance_period_code, x.no_kohir, x.payment_key, x.total_trans_amount, x.total_vat_amount, trim(b.company_brand) as company_brand_name
+        $sql = "SELECT x.npwd, a.code as finance_period_code, x.no_kohir, x.order_no, x.payment_key, x.total_trans_amount, x.total_vat_amount, trim(b.company_brand) as company_brand_name
                 FROM t_vat_setllement x
                 left join p_finance_period a on a.p_finance_period_id = x.p_finance_period_id
                 left join t_cust_account b on b.t_cust_account_id = x.t_cust_account_id
@@ -70,4 +70,17 @@ class T_piutang_skpdkb extends Abstract_model {
         $items = $query->result_array();
         return $items;
     }
+
+    function submit($t_customer_order_id){
+
+        $ci =& get_instance();
+        $userdata = $ci->session->userdata;
+
+        $sql = "SELECT o_result_code, o_result_msg FROM f_first_submit_engine(501,$t_customer_order_id,'".$userdata['app_user_name']."')";
+        $query = $this->db->query($sql);
+        $items = $query->result_array();
+        return $items;
+    }
+
+    
 }
