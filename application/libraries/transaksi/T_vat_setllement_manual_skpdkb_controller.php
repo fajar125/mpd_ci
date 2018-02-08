@@ -28,7 +28,8 @@ class T_vat_setllement_manual_skpdkb_controller {
             $ci->load->model('transaksi/t_vat_setllement_manual_skpdkb');
             $table = $ci->t_vat_setllement_manual_skpdkb;
 
-            $result = $table->insertUpdate($t_cust_account_id,$p_finance_period_id,$npwd,$start_date,$end_date,$qty_room_sold,$trans_amount,$p_vat_type_dtl_id,$p_vat_type_dtl_cls_id ) ;
+            $result = $table->insertUpdate($t_cust_account_id,$p_finance_period_id,$npwd,$start_date,$end_date,$qty_room_sold,$trans_amount,$p_vat_type_dtl_id,$p_vat_type_dtl_cls_id) ;
+            //echo $t_cust_account_id; exit();
             $count = count($result);
 
             $data['rows'] = $result;

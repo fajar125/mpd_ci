@@ -34,7 +34,17 @@ class Cetak_formulir_sptpd extends CI_Controller{
 	
 	function pageCetak() {
 		
-		$t_vat_setllement_id = getVarClean('t_vat_setllement_id','int',0);
+		$t_cust_order_id = getVarClean('t_cust_order_id','int',0);
+
+		if($t_cust_order_id == null || $t_cust_order_id == 0){
+			echo "Data Tidak Ada";
+			exit();
+		}
+
+		$sqlPayment = "select t_vat_setllement_id from t_vat_setllement where t_customer_order_id = ".$t_cust_order_id;
+		$output = $this->db->query($sqlPayment);
+        $item = $output->row_array();
+        $t_vat_setllement_id = $item['t_vat_setllement_id'];
 
 		$sql = "";
 

@@ -35,11 +35,11 @@
                 {label: 'ID',name: 'p_vat_type_id', hidden: true ,width: 180, align: "left"},
                 
                 {label: 'No. Order',name: 'order_no',width: 180, align: "left"},
+                {label: 'No Bayar',name: 'payment_key', width: 180, align: "left"},
                 {label: 'NAMA WP',name: 'wp_name',width: 230, align: "left"},
                 {label: 'ALAMAT WP',name: 'wp_address_name',width: 230, align: "left"},
                 {label: 'Jenis Pajak',name: 'jenis_pajak',width: 230, align: "left"},
                 {label: 'NPWPD',name: 'npwd',width: 150, align: "left"},
-                {label: 'No Bayar',name: 'payment_key', width: 180, align: "left"},
                 {label: 'Periode Tahun',name: 'year_code',width: 150, align: "left"},
                 {label: 'Periode',name: 'finance_period_code',width: 150, align: "left"},
                 {label: 'Masa Pajak',name: 'masa_pajak',width: 150, align: "left"},

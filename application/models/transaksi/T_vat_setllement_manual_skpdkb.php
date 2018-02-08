@@ -62,16 +62,19 @@ class T_vat_setllement_manual_skpdkb extends Abstract_model {
         $ci =& get_instance();
         $userdata = $ci->session->userdata;
 
-        $sql = "SELECT * FROM f_vat_settlement_manual_skpdkb(?,?,?,?,?,?,?,?,?,?)";
+        $sql = "SELECT * FROM f_vat_settlement_manual_skpdkb($cust_acc_id,$period,'$npwd','$ms_start','$ms_end',$kamar,$tot,$p_vat_type_dtl_id,$p_vat_type_dtl_cls_id,'".$userdata['app_user_name']."')";
 
-        $query = $this->db->query($sql, array($cust_acc_id,$period,$npwd,$ms_start,$ms_end,$kamar,$tot,$p_vat_type_dtl_id,$p_vat_type_dtl_cls_id,$userdata['app_user_name']));
+        $query = $this->db->query($sql);
         $item = $query->row_array();
+
         if(!$item['o_cust_order_id'] == 0 && !$item['o_cust_order_id'] == ""){
             $sql2 = "select * from f_first_submit_engine_2step( 501, ".$item['o_cust_order_id'].", '".$userdata['app_user_name']."')";
             $query2 = $this->db->query($sql2);
             $item2 = $query->row_array();
 
         }
+        //print_r($sql);
+        //exit();
         
             
         return $item;

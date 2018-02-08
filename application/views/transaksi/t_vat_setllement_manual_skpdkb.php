@@ -57,7 +57,7 @@
                     <label class="control-label col-md-3">Periode</label>
                     <div class="col-md-5">
                         <div class="input-group">
-                            <input id="form_finance_period_id" type="text"  style="display:none;" onchange="showPiutang($('#form_cust_account_id').val(), $('#form_finance_period_id').val())">
+                            <input id="form_finance_period_id" type="text"  style="display:none;">
                             <input id="form_finance_code" readonly type="text" class="FormElement form-control" placeholder="Pilih Periode">
                             <span class="input-group-btn">
                                 <button class="btn btn-success" type="button" id="btn-lov-period" onclick="showLOVFinancePeriod('form_finance_period_id','form_finance_code', 'valid_from', 'valid_to')">
@@ -261,8 +261,8 @@
         $.getJSON(var_url, function( items ) {
 
             //swal('Informasi',items.rows.o_mess,'info');
-            if(items.rows.o_cust_order_id == 0||items.rows.o_cust_order_id == "0" || items.rows.o_cust_order_id == ""){
-                swal('Informasi',items.rows.o_mess,'info');
+            if(items.rows.o_cust_order_id == 0||items.rows.o_cust_order_id == "0" || items.rows.o_cust_order_id == "" || items.rows.o_cust_order_id == null){
+                swal('Peringatan',items.rows.o_mess,'error');
 
            }else{
                 swal('Informasi',items.rows.o_mess,'info');
