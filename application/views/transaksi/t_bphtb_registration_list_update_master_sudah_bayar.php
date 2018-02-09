@@ -61,9 +61,27 @@
             datatype: "json",
             mtype: "POST",
             colModel: [
-                {label: 'ID', name: 't_bphtb_registration_id',  width: 5, sorttype: 'number', hidden: false},
-                {label: 'Nama Wajib Pajak', name: 'wp_name',  width: 15, sorttype: 'text', hidden: false},
-                {label: 'No Order', name: 'order_no',  width: 7, sorttype: 'text', hidden: false}
+                {label: 'ID', name: 't_bphtb_registration_id',  width: 5, sorttype: 'number', hidden: true},
+				{name: 'Cetak Kuitansi',width: 5, align: "center",
+                    formatter:function(cellvalue, options, rowObject) {
+                        var val = rowObject['registration_no'];
+                        var url = '<?php echo base_url(); ?>'+'cetak_duplikat_kwitansi_bphtb/save_pdf?registration_no='+val;
+                        return '<a class="btn btn-primary btn-xs" href="#" onclick="PopupCenter(\''+url+'\',\'Cetak Kuitansi BPHTB\',500,500);"><i class="fa fa-print"></i>Cetak Kuitansi</a>';
+
+                    }
+                },
+				{name: 'Cetak Verifikasi',width: 5, align: "center",
+                    formatter:function(cellvalue, options, rowObject) {
+                        var val = rowObject['t_bphtb_registration_id'];
+                        var url = '<?php echo base_url(); ?>'+'cetak_rep_bphtb/pageCetak?t_bphtb_registration_id='+val;
+                        return '<a class="btn btn-success btn-xs" href="#" onclick="PopupCenter(\''+url+'\',\'Cetak Verifikasi\',500,500);"><i class="fa fa-print"></i>Cetak Verifikasi</a>';
+
+                    }
+                },
+                {label: 'Nama Wajib Pajak', name: 'wp_name',  width: 10, sorttype: 'text', hidden: false},
+                {label: 'No Order', name: 'order_no',  width: 7, sorttype: 'text', hidden: true},
+				{label: 'No Registrasi', name: 'registration_no',  width: 7, sorttype: 'text', hidden: false},
+				{label: 'No Kwuitansi', name: 'receipt_no',  width: 7, sorttype: 'text', hidden: false}
                
             ],
             height: '100%',
@@ -237,10 +255,6 @@
         $(grid_selector).jqGrid( 'setGridWidth', $(".page-content").width() );
         $(pager_selector).jqGrid( 'setGridWidth', parent_column.width() );
 
-    }
-
-    function PopupCenter(id){
-        alert(id);
     }
 
 </script>

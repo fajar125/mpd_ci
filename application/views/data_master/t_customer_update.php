@@ -91,7 +91,23 @@ $("#tab-2").on("click", function(event) {
             colModel: [
                 {label: 'ID', name: 't_customer_id', key: true, width: 5, sorttype: 'number', editable: true, hidden: true},
                 {label: 'ID Cust', name: 't_cust_account_id', key: true, width: 5, sorttype: 'number', editable: false, hidden: true},
-                
+				
+				{label: 'NPWD',name: 'npwd',width: 150, align: "left",editable: false,
+                    editoptions: {
+                        size: 30,
+                        maxlength:32
+                    },
+                    editrules: {required: true}
+                },
+				
+				{label: 'Nama WP',name: 'wp_name',width: 150, align: "left",editable: false,
+                    editoptions: {
+                        size: 30,
+                        maxlength:32
+                    },
+                    editrules: {required: true}
+                },
+                				
                 {label: 'Nama Pemilik/Pengelola',name: 'company_owner',width: 150, align: "left",editable: false,
                     editoptions: {
                         size: 30,

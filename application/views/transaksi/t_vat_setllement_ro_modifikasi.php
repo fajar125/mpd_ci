@@ -79,6 +79,15 @@
                 {label: 'No. Kohir',name: 'no_kohir',width: 100, align: "left",editable: false},
                 {label: 'No. Bayar',name: 'payment_key',width: 100, align: "left",editable: false},
                 {label: 'Dibuat Oleh',name: 'created_by',width: 100, align: "left",editable: false},
+				{name: 'Cetak No. Bayar',width: 180, align: "center",
+                    formatter:function(cellvalue, options, rowObject) {
+                        var val = rowObject['payment_key'];
+                        var url = '<?php echo base_url(); ?>'+'cetak_no_bayar/pageCetak?no_bayar='+val;
+                        return '<a class="btn btn-success btn-xs" href="#" onclick="PopupCenter(\''+url+'\',\'No. Bayar\',500,500);"><i class="fa fa-print"></i>Cetak No. Bayar</a>';
+
+                    }
+                },
+				
                 {name: 'Hapus Transaksi',width: 160, align: "center",
                     formatter:function(cellvalue, options, rowObject) {
                         var val = rowObject['t_vat_setllement_id'];
@@ -110,16 +119,7 @@
 
                     }
                 },
-
-                {name: 'Cetak No. Bayar',width: 180, align: "center",
-                    formatter:function(cellvalue, options, rowObject) {
-                        var val = rowObject['payment_key'];
-                        var url = '<?php echo base_url(); ?>'+'cetak_no_bayar/pageCetak?no_bayar='+val;
-                        return '<a class="btn btn-danger btn-xs" href="#" onclick="PopupCenter(\''+url+'\',\'No. Bayar\',500,500);"><i class="fa fa-print"></i>Cetak No. Bayar</a>';
-
-                    }
-                },
-
+				
                 {name: 'Ubah Ketetapan',width: 160, align: "center",
                     formatter:function(cellvalue, options, rowObject) {
                         var val = rowObject['t_vat_setllement_id'];

@@ -39,7 +39,7 @@ class T_customer_update extends Abstract_model {
 
                             );
 
-    public $selectClause    = "tc.*, b.t_cust_account_id, d.code, e.region_name as kota, f.region_name as kecamatan, g.region_name as kelurahan, c.vat_code, b.company_brand, b.brand_address_name, tc.address_name_owner||' No.'||tc.address_no_owner||' RT.'||tc.address_rt_owner||' RW.'||tc.address_rw_owner as alamat";
+    public $selectClause    = "tc.*, b.t_cust_account_id, d.code, e.region_name as kota, f.region_name as kecamatan, g.region_name as kelurahan, c.vat_code, b.company_brand, b.brand_address_name, tc.address_name_owner||' No.'||tc.address_no_owner||' RT.'||tc.address_rt_owner||' RW.'||tc.address_rw_owner as alamat, b.npwd, b.wp_name";
     public $fromClause      = "t_customer tc LEFT JOIN t_cust_account b ON tc.t_customer_id = b.t_customer_id 
         LEFT JOIN p_vat_type c 
         ON b.p_vat_type_id = c.p_vat_type_id 

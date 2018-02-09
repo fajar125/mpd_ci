@@ -11,23 +11,19 @@ class T_bphtb_registration_list_update_master extends Abstract_model {
     public $alias           = "regis";
 
     public $fields          = array(
-                                'wp_name'          => array('nullable' => false, 'type' => 'str', 'unique' => false, 'display' => 'Nama WP'),
-                                'wp_kota'            => array('nullable' => false, 'type' => 'str', 'unique' => false, 'display' => 'Kota'),
-                                'wp_kecamatan'            => array('nullable' => false, 'type' => 'str', 'unique' => false, 'display' => 'Kecamatan'),
-                                'wp_kelurahan'            => array('nullable' => false, 'type' => 'str', 'unique' => false, 'display' => 'Kelurahan'),
-                                'object_region'            => array('nullable' => false, 'type' => 'str', 'unique' => false, 'display' => 'Kota/Kabupaten'),
-                                'object_kecamatan'            => array('nullable' => false, 'type' => 'str', 'unique' => false, 'display' => 'Kecamatan'),
-                                'object_kelurahan'            => array('nullable' => false, 'type' => 'str', 'unique' => false, 'display' => 'Kelurahan'),
-                                'alasan'            => array('nullable' => false, 'type' => 'str', 'unique' => false, 'display' => 'Alasan Mengubah')
+                                
                             );
 
     public $selectClause    = " cust_order.*,
-                                regis.*
+                                regis.*,
+								payment_bphtb.receipt_no
                               ";
 
     public $fromClause      = "t_bphtb_registration regis 
                                 LEFT JOIN t_customer_order cust_order 
                                     on regis.t_customer_order_id = cust_order.t_customer_order_id 
+								LEFT JOIN t_payment_receipt_bphtb payment_bphtb
+									on regis.t_bphtb_registration_id = payment_bphtb.t_bphtb_registration_id
                                  ";
 
     public $refs            = array();
