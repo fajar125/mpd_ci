@@ -141,7 +141,7 @@ class Transaksi extends CI_Controller
                     FROM p_app_user_role a
                     left join p_app_user b on a.p_app_user_id=b.p_app_user_id
                     WHERE a.p_app_role_id=11
-                    or b.p_app_user_id = 2058
+                    and b.p_user_status_id = 1
                     order by b.app_user_name";
             $query = $this->db->query($sql);
 
