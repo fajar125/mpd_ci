@@ -9,15 +9,15 @@ class T_vat_setllement_ro_new_controller {
 	function read()
     {
         $s_keyword  = getVarClean('s_keyword', 'str', '');
-        $sidx 	    = getVarClean('sidx','str','d.wp_name');
-        $sord 	    = getVarClean('sord','str','asc');
+        $sidx 	    = getVarClean('sidx','str','a.t_vat_setllement_id');
+        $sord 	    = getVarClean('sord','str','desc');
         $page	    = getVarClean('page','int',1);
         $limit 	    = getVarClean('rows','int',10);
 
         $data = array('rows' => array(), 'page' => 1, 'records' => 0, 'total' => 1, 'success' => false, 'message' => '');
         
         try {
-            if (!empty($s_keyword)){
+            
             	$ci = & get_instance();
                 $ci->load->model('transaksi/t_vat_setllement_ro_new');
                 $table = $ci->t_vat_setllement_ro_new;
@@ -76,7 +76,7 @@ class T_vat_setllement_ro_new_controller {
                 $data['rows'] = $table->getAll();
                 $data['success'] = true;
                 
-            }
+            
             $data['success'] = true;
             return $data;
         } catch (Exception $e) {

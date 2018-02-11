@@ -43,12 +43,12 @@
 </div>
 
 <script type="text/javascript">
-    var s_keyword = $('#s_keyword').val();
+    /*var s_keyword = $('#s_keyword').val();
     if (s_keyword == "" || s_keyword == 0 || s_keyword == false || s_keyword == undefined ||  s_keyword == null){
         $ ("#tabel_id").hide();
     }else{
         $ ("#tabel_id").show();
-    }
+    }*/
     
 </script>
  
@@ -68,6 +68,14 @@
             colModel: [
                 {label: 'ID', name: 't_vat_setllement_id', key: true, width: 5, sorttype: 'number', editable: true, hidden: true},
                 {label: 'ID CUST', name: 't_customer_order_id',  width: 5, sorttype: 'number', hidden: true},
+				{label: 'receipt no',name: 'receipt_no', hidden: true ,width: 20, align: "left"},
+				{label: 'Status Bayar',width: 163,align: "center",
+                    formatter:function(cellvalue, options, rowObject) {
+                        var receipt_no = rowObject['receipt_no'];
+                        if(receipt_no == '' || receipt_no == null) return '<span class="red"><strong>Belum Bayar</strong></span>';
+						return '<span class="green"><strong>Sudah Bayar</strong></span>';                        
+                    }
+                },
                 {label: 'Merk Dagang',name: 'company_brand',width: 200, align: "left"},
                 {label: 'NPWPD',name: 'npwd',width: 110, align: "left"},
                 {label: 'No Order',name: 'order_no',width: 80, align: "left"},
@@ -79,11 +87,22 @@
                 {label: 'No. Kohir',name: 'no_kohir',width: 100, align: "left",editable: false},
                 {label: 'No. Bayar',name: 'payment_key',width: 100, align: "left",editable: false},
                 {label: 'Dibuat Oleh',name: 'created_by',width: 100, align: "left",editable: false},
-				{name: 'Cetak No. Bayar',width: 180, align: "center",
+				{name: 'Cetak No. Bayar',width: 150, align: "center",
                     formatter:function(cellvalue, options, rowObject) {
                         var val = rowObject['payment_key'];
                         var url = '<?php echo base_url(); ?>'+'cetak_no_bayar/pageCetak?no_bayar='+val;
                         return '<a class="btn btn-success btn-xs" href="#" onclick="PopupCenter(\''+url+'\',\'No. Bayar\',500,500);"><i class="fa fa-print"></i>Cetak No. Bayar</a>';
+
+                    }
+                },
+				{name: 'Cetak Kuitansi',width: 150, align: "center",
+                    formatter:function(cellvalue, options, rowObject) {
+                        var val = rowObject['receipt_no'];
+						if(val == '' || val == null) return '';
+						
+						var payment_key = rowObject['payment_key'];
+                        var url = '<?php echo base_url(); ?>'+'cetak_registrasi_payment_large_arial/pageCetak?payment_key='+payment_key;
+                        return '<a class="btn btn-success btn-xs" href="#" onclick="PopupCenter(\''+url+'\',\'No. Kuitansi\',500,500);"><i class="fa fa-print"></i>Cetak Kuitansi</a>';
 
                     }
                 },
@@ -137,7 +156,7 @@
                 }
             ],
             height: '100%',
-            autowidth: true,
+            autowidth: false,
             viewrecords: true,
             rowNum: 7,
             rowList: [10,20,50],
@@ -306,14 +325,14 @@
 
     function showData(){
         var s_keyword = $('#s_keyword').val();
-
+		/*
         if (s_keyword==''){
             swal('Informasi','Masukan Nama WP/ NPWD / No Kohir / No.Pembayaran','info');
             $ ("#tabel_id").hide();
             return;
         }else{
             $("#tabel_id").show();
-        }
+        }*/
 
         jQuery(function($) {
             var grid_selector = "#grid-table-history";

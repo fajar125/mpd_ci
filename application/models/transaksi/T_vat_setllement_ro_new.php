@@ -29,14 +29,19 @@ class T_vat_setllement_ro_new extends Abstract_model {
                                 c.p_rqst_type_id, 
                                 e.code as rqst_type_code, 
                                 d.p_vat_type_id,
+								f.receipt_no,
+								sett_type.code as sett_code,
                                 (select count(*)as ada 
                                     from t_vat_penalty 
                                 where t_vat_setllement_id = a.t_vat_setllement_id)";
-    public $fromClause      = " t_vat_setllement a, 
-                                p_finance_period b, 
-                                t_customer_order c, 
-                                t_cust_account d, 
-                                p_rqst_type e";
+    public $fromClause      = " t_vat_setllement a 
+                                inner join p_finance_period b on a.p_finance_period_id = b.p_finance_period_id 
+                                inner join t_customer_order c on a.t_customer_order_id = c.t_customer_order_id
+                                inner join t_cust_account d on a.t_cust_account_id = d.t_cust_account_id
+                                inner join p_rqst_type e on c.p_rqst_type_id = e.p_rqst_type_id
+								left join p_settlement_type sett_type on sett_type.p_settlement_type_id = a.p_settlement_type_id
+								left join t_payment_receipt f on a.t_vat_setllement_id = f.t_vat_setllement_id
+								";
 
     public $refs            = array();
 

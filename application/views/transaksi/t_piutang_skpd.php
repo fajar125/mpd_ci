@@ -33,8 +33,16 @@
                 {label: 'ID',name: 't_vat_setllement_id', hidden: true ,width: 180, align: "left"},
                 {label: 'ID',name: 't_customer_order_id', hidden: true ,width: 180, align: "left"},
                 {label: 'ID',name: 'p_vat_type_id', hidden: true ,width: 180, align: "left"},
+				{label: 'receipt no',name: 'receipt_no', hidden: true ,width: 20, align: "left"},
+				{label: 'Status Bayar',width: 163,align: "center",
+                    formatter:function(cellvalue, options, rowObject) {
+                        var receipt_no = rowObject['receipt_no'];
+                        if(receipt_no == '' || receipt_no == null) return '<span class="red"><strong>Belum Bayar</strong></span>';
+						return '<span class="green"><strong>Sudah Bayar</strong></span>';                        
+                    }
+                },
                 
-                {label: 'No. Order',name: 'order_no',width: 180, align: "left"},
+                {label: 'No. Order',name: 'order_no',width: 120, align: "left"},
                 {label: 'No Bayar',name: 'payment_key', width: 180, align: "left"},
                 {label: 'NAMA WP',name: 'wp_name',width: 230, align: "left"},
                 {label: 'ALAMAT WP',name: 'wp_address_name',width: 230, align: "left"},
@@ -67,12 +75,12 @@
                         var payment_key = rowObject['payment_key'];
                         var p_vat_type_id = rowObject['p_vat_type_id'];
                         var t_vat_setllement_id = rowObject['t_vat_setllement_id'];
-                        var display = "style='display:none;'";
-                        if(payment_key == null || payment_key == "" || payment_key == 0){
-                            display = "";
+                        
+                        if(payment_key != null || payment_key != ""){
+                            return 'Telah Disubmit';
                         }
 
-                        return '<a class="btn btn-primary btn-xs" '+display+' href="#" onclick="submit('+t_customer_order_id+','+payment_key+','+p_vat_type_id+','+t_vat_setllement_id+');">Submit</a>';
+                        return '<a class="btn btn-primary btn-xs" href="#" onclick="submit('+t_customer_order_id+','+payment_key+','+p_vat_type_id+','+t_vat_setllement_id+');">Submit</a>';
                         
                     }
                 }

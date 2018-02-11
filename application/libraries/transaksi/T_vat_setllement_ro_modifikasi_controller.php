@@ -17,7 +17,7 @@ class T_vat_setllement_ro_modifikasi_controller {
 
         $data = array('rows' => array(), 'page' => 1, 'records' => 0, 'total' => 1, 'success' => true, 'message' => '');
 
-        if ($s_keyword != "") {
+        
             try {
 
                 $ci = & get_instance();
@@ -96,7 +96,7 @@ class T_vat_setllement_ro_modifikasi_controller {
             }catch (Exception $e) {
                 $data['message'] = $e->getMessage();
             }
-        }       
+        
 
         return $data;
     }

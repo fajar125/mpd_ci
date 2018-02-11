@@ -29,7 +29,7 @@
                         </label>
                         <div class="col-md-3">
                             <div class="input-group">
-                                <input type="text" class="form-control required" name="s_keyword" required  id="s_keyword" >
+                                <input type="text" class="form-control" name="s_keyword" id="s_keyword" >
                                 <span class="input-group-btn">
                                     <button class="btn btn-primary" type="button" onclick="toTampil()">Cari</button>
                                 </span>
@@ -59,7 +59,7 @@
 
 <script >
 
-    $('#table').css('display', 'none');
+    //$('#table').css('display', 'none');
     
     function changeDenda(t_vat_setllement_id){
         modal_lov_t_vat_setllement_ro_new_show(t_vat_setllement_id);
@@ -78,6 +78,15 @@
             datatype: "json",
             mtype: "POST",
             colModel: [
+				{label: 'receipt no',name: 'receipt_no', hidden: true ,width: 20, align: "left"},
+				{label: 'Status Bayar',width: 163,align: "center",
+                    formatter:function(cellvalue, options, rowObject) {
+                        var receipt_no = rowObject['receipt_no'];
+                        if(receipt_no == '' || receipt_no == null) return '<span class="red"><strong>Belum Bayar</strong></span>';
+						return '<span class="green"><strong>Sudah Bayar</strong></span>';                        
+                    }
+                },
+				{label: 'Jenis Ketetapan',name: 'sett_code',width: 120, align: "left",editable: false},
                 {label: 'NAMA WP',name: 'wp_name',width: 230, align: "left"},
                 {label: 'NPWPD',name: 'npwd',width: 150, align: "left"},
                 {label: 'Periode',name: 'finance_period_code',width: 150, align: "left"},
@@ -127,14 +136,14 @@
 
             ],
             height: '100%',
-            autowidth: true,
+            autowidth: false,
             viewrecords: true,
             rowNum: 10,
             rowList: [10,20,50],
             rownumbers: true, // show row numbers
             rownumWidth: 35, // the width of the row numbers columns
             altRows: true,
-            shrinkToFit: true,
+            shrinkToFit: false,
             multiboxonly: true,
             footerrow: false,
             gridComplete: function() {
@@ -187,10 +196,7 @@
     function toTampil(){
         var s_keyword        = $('#s_keyword').val();        
         
-        if( s_keyword ==""){            
-            swal ( "Oopss" ,  "TahunHarus Di isi!" ,  "error" );
-            return;
-        }else{
+        
             $('#table').css('display', '');
             jQuery(function($) {
                 var grid_selector = "#grid-table";
@@ -202,9 +208,7 @@
                 $("#grid-table").jqGrid("setCaption", "DAFTAR SSPD/SPTPD(Pelaporan Pajak)");
                 $("#grid-table").trigger("reloadGrid");
             });
-            
-            
-        }
+        
     }
 </script>
 

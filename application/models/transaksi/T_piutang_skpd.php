@@ -12,8 +12,9 @@ class T_piutang_skpd extends Abstract_model {
 
     public $fields          = array();
 
-    public $selectClause    = " a.*, a.start_period||'-'||a.end_period as masa_pajak";
-    public $fromClause      = " v_vat_setllement_skpd_kb_jabatan a";
+    public $selectClause    = " a.*, a.start_period||'-'||a.end_period as masa_pajak, b.receipt_no";
+    public $fromClause      = " v_vat_setllement_skpd_kb_jabatan a
+								left join t_payment_receipt b on a.t_vat_setllement_id = b.t_vat_setllement_id";
 
     public $refs            = array();
 
