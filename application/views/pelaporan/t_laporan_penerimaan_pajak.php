@@ -5,7 +5,7 @@
             <i class="fa fa-circle"></i>
         </li>
         <li>
-            <span>LAPORAN PENERIMAAN TUNGGAKAN</span>
+            <span>LAPORAN PENERIMAAN PAJAK</span>
         </li>
     </ul> 
 </div>
@@ -20,7 +20,6 @@
                         <div class="input-group">
                             <div class="input-group">
                                 <input id="form_vat_id" type="text"  style="display:none;">
-                                <input id="kode_ayat" type="text"  style="display:none;">
                                 <input id="vat_code" readonly type="text" class="FormElement form-control" placeholder="Pilih Jenis Pajak">
                                 <span class="input-group-btn">
                                     <button class="btn btn-success" type="button" id="btn-lov-period" onclick="showLOVVat_type('form_vat_id','vat_code')">
@@ -109,15 +108,17 @@
 
     function toPDF(){
         var p_vat_type_id = $('#form_vat_id').val();
+		var vat_code = $('#vat_code').val();
         var start_date = $('#start_date_laporan').val();
         var end_date = $('#end_date_laporan').val();
         var url = "<?php echo base_url(); ?>"+"cetak_laporan_penerimaan_pajak/pageCetak?";
             url += "p_vat_type_id="+p_vat_type_id;
+			url += "&vat_code="+vat_code;
             url += "&start_date="+start_date;
             url += "&end_date="+end_date;
             url += "&jenis_tahun=bayar";
 
-        PopupCenter(url,"Laporan Penerimaan Denda Harian",500,500);
+        PopupCenter(url,"Laporan Penerimaan Pajak",500,500);
     }
 
 </script>

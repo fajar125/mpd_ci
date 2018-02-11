@@ -104,7 +104,7 @@ class Cetak_laporan_penerimaan_pajak extends CI_Controller{
 		$pdf->SetWidtHs(array(130,70));
 		$pdf->SetAligns(array("C", "C","C","C","C"));
 		//$pdf->RowMultiBorderWithHeight(array("","KEPALA SEKSI VERIFIKASI OTORISASI DAN PEMBUKUAN\n\n\n\n\n(Drs. H. UGAS RAHMANSYAH, SAP, MAP)\n(NIP 19640127 199703 1001)"),array("",""),5);
-		$pdf->RowMultiBorderWithHeight(array("","KEPALA SEKSI VERIFIKASI OTORISASI DAN PEMBUKUAN\n\n\n\n\n(Drs. H. Deden Saepulloh, MM.)\n(NIP 19681210 199010 001)"),array("",""),5);
+		$pdf->RowMultiBorderWithHeight(array("","BENDAHARA PENERIMAAN\n\n\n\n\n(".getValByCode('BENDAHARA_PENERIMAAN').")\n(NIP ".getValByCode('NIP_BENDAHARA_PENERIMAAN').")"),array("",""),5);
 		//$pdf->RowMultiBorderWithHeight(array("","KASIE VOP"),array('','','','','','',''),6);
 		$pdf->Output("","I");
 	}

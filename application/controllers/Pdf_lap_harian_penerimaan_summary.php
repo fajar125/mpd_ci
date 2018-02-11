@@ -405,7 +405,7 @@ class Pdf_lap_harian_penerimaan_summary extends CI_Controller{
         //$this->Cell($lbody1 + 10, $this->height, "BENDAHARA PENERIMAAN, ", "", 0, 'C');
         $pdf->SetWidtHs(array($lbody3 - 10,$lbody1 + 10));
         $pdf->SetAligns(array("C", "C","C","C","C"));
-        $pdf->RowMultiBorderWithHeight(array("","KEPALA SEKSI VERIFIKASI OTORISASI DAN PEMBUKUAN"),array("",""),$this->height);
+        $pdf->RowMultiBorderWithHeight(array("","BENDAHARA PENERIMAAN"),array("",""),$this->height);
         $pdf->Ln();
         $pdf->Cell($lbody3 - 10, $this->height, "", "", 0, 'L');
         //$this->Cell($lbody1 + 10, $this->height, "KOTA BANDUNG", "", 0, 'C');
@@ -414,10 +414,10 @@ class Pdf_lap_harian_penerimaan_summary extends CI_Controller{
         $pdf->Ln();
         //$this->newLine();
         $pdf->Cell($lbody3 - 10, $this->height, "", "", 0, 'L');
-        $pdf->Cell($lbody1 + 10, $this->height, "(".getValByCode('TTD_KEPSEK_VER_OTOBUK').")", "", 0, 'C');
+        $pdf->Cell($lbody1 + 10, $this->height, "(".getValByCode('BENDAHARA_PENERIMAAN').")", "", 0, 'C');
         $pdf->Ln();
         $pdf->Cell($lbody3 - 10, $this->height, "", "", 0, 'L');
-        $pdf->Cell($lbody1 + 10, $this->height, "(NIP ".getValByCode('NIP_KEPSEK_VER_OTOBUK').")", "", 0, 'C');
+        $pdf->Cell($lbody1 + 10, $this->height, "(NIP ".getValByCode('NIP_BENDAHARA_PENERIMAAN').")", "", 0, 'C');
 
         $pdf->Output();
     }   
