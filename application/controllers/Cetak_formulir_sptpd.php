@@ -83,7 +83,7 @@ class Cetak_formulir_sptpd extends CI_Controller{
 		$pdf->Cell($lheader2, $this->height-2, "", "TR", 0, 'C');
 		$pdf->Ln();
 		
-		$pdf->SetFont('Arial', '', 10);
+		$pdf->SetFont('Arial', '', 9);
 		$pdf->Image('images/logo_lombok.png',12,15,20,20);
 		$pdf->Cell($lheader1, $this->height, "", "L", 0, 'C');			
 		$pdf->Cell($lheader2, $this->height, "PEMERINTAH KABUPATEN", "R", 0, 'C');
@@ -99,7 +99,7 @@ class Cetak_formulir_sptpd extends CI_Controller{
 		$pdf->Cell($lheader2, $this->height, "No. Urut", "R", 0, 'C');
 		$pdf->Ln();*/		
 		
-		$pdf->SetFont('Arial', '', 10);
+		$pdf->SetFont('Arial', '', 9);
 		$pdf->Cell($lheader1, $this->height-2, "", "L", 0, 'C');			
 		$pdf->Cell($lheader2, $this->height-2, "LOMBOK UTARA", "R", 0, 'C');
 		$pdf->SetFont('Arial', '', 9);
@@ -113,9 +113,10 @@ class Cetak_formulir_sptpd extends CI_Controller{
 		$pdf->Cell($lheader2, $this->height, "No. Urut", "R", 0, 'C');
 		$pdf->Ln();*/
 		
-		
+		$pdf->SetFont('Arial', '', 9);
 		$pdf->Cell($lheader1, $this->height + 1, "", "L", 0, 'C');	
 		$pdf->Cell($lheader2, $this->height + 1, getValByCode('INSTANSI_2'), "R", 0, 'C');
+		$pdf->SetFont('Arial', '', 10);
 		$pdf->Cell($lheader3, $this->height + 1, "     Masa Pajak    : ".$data["finance_period_code"], "R", 0, 'L');
 		$pdf->Cell($lheader2, $this->height + 1, "", "R", 0, 'C');
 		$pdf->Ln($this->height - 4);
@@ -141,7 +142,7 @@ class Cetak_formulir_sptpd extends CI_Controller{
 		$pdf->Cell($lheader2, $this->height + 2, "", "BR", 0, 'C');
 		*/
 		$pdf->Cell($lheader1, $this->height-1, "", "L", 0, 'C');	
-		$pdf->SetFont('Arial', '', 8);
+		$pdf->SetFont('Arial', '', 4);
 		$pdf->Cell($lheader2, $this->height-1, getValByCode('ALAMAT_1'), "R", 0, 'C');
 		$pdf->SetFont('Arial', '', 10);
 		$pdf->Cell($lheader3, $this->height-1, "     Tahun Pajak   : ".$data["tahun"], "R", 0, 'L');
@@ -154,7 +155,7 @@ class Cetak_formulir_sptpd extends CI_Controller{
 		// $pdf->Ln();
 		
 		$pdf->Cell($lheader1, $this->height+1, "", "BL", 0, 'C');	
-		$pdf->SetFont('Arial', '', 8);
+		$pdf->SetFont('Arial', '', 6);
 		$pdf->Cell($lheader2, $this->height+1, "Telp. 022-4235052 - LOMBOK UTARA", "BR", 0, 'C');
 		$pdf->SetFont('Arial', '', 10);
 		$pdf->Cell($lheader3, $this->height+1, "", "BR", 0, 'L');
@@ -378,7 +379,7 @@ class Cetak_formulir_sptpd extends CI_Controller{
 		$pdf->Ln();
 		$pdf->SetFont('Arial', '', 8);
 		$this->tulis("1. Harap penyetoran dilakukan melalui Kas Daerah atau tempat lain yang ditunjuk dengan menggunakan Surat Setoran Pajak Daerah (SSPD)", "L",$pdf);
-		$this->tulis("2. Apabila SKPDKB ini tidak atau kurang dibayar setelah lewat waktu paling lama 15 hari kalender sejak SKPDKB ini diterbitkan dikenakan", "L",$pdf);
+		$this->tulis("2. Apabila SKPDKB ini tidak atau kurang dibayar setelah lewat waktu paling lama 20 hari kalender sejak SKPDKB ini diterbitkan dikenakan", "L",$pdf);
 		$this->tulis("    sanksi administrasi berupa bunga sebesar 2% per bulan.", "L",$pdf);
 		
 		$pdf->Cell($lbody3 - 10, $this->height, "", "L", 0, 'L');

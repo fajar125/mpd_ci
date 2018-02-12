@@ -76,11 +76,10 @@
                         var p_vat_type_id = rowObject['p_vat_type_id'];
                         var t_vat_setllement_id = rowObject['t_vat_setllement_id'];
                         
-                        if(payment_key != null || payment_key != ""){
-                            return 'Telah Disubmit';
+                        if(payment_key == null || payment_key == ""){
+                            return '<a class="btn btn-primary btn-xs" href="#" onclick="submit('+t_customer_order_id+','+payment_key+','+p_vat_type_id+','+t_vat_setllement_id+');">Submit</a>';
                         }
-
-                        return '<a class="btn btn-primary btn-xs" href="#" onclick="submit('+t_customer_order_id+','+payment_key+','+p_vat_type_id+','+t_vat_setllement_id+');">Submit</a>';
+						return 'Telah Disubmit';
                         
                     }
                 }
