@@ -1,5 +1,5 @@
 <!-- BEGIN GLOBAL MANDATORY STYLES -->
-<link href="http://fonts.googleapis.com/css?family=Open+Sans:400,300,600,700&subset=all" rel="stylesheet"
+<link href="<?php echo base_url(); ?>assets/global/plugins/font-awesome/css/OpenSans.css" rel="stylesheet"
       type="text/css"/>
 <link href="<?php echo base_url(); ?>assets/global/plugins/simple-line-icons/simple-line-icons.min.css" rel="stylesheet"
       type="text/css"/>
