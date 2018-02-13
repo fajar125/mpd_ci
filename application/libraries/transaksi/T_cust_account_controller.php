@@ -89,11 +89,12 @@ class T_cust_account_controller {
             $table = $ci->t_cust_account;
 
             if(!empty($searchPhrase)) {
-                $table->setCriteria("upper(npwd) like upper('%".$searchPhrase."%') OR 
-                                      upper(company_brand) like upper('%".$searchPhrase."%') OR upper(brand_address_name) like upper('%".$searchPhrase."%')");
+                $table->setCriteria("(upper(npwd) like upper('%".$searchPhrase."%') OR 
+                                      upper(company_brand) like upper('%".$searchPhrase."%') OR upper(brand_address_name) like upper('%".$searchPhrase."%'))");
             }
 			
 			$table->setCriteria("pp.p_account_status_id = 1");
+			
 			
             $start = ($start-1) * $limit;
             $items = $table->getAll($start, $limit, $sort, $dir);
