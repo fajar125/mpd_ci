@@ -242,12 +242,7 @@
             swal('Informasi',"Jumlah Omset harus diisi",'info');
             return;
         }
-        if (jml_kamar == "" || jml_kamar == 0 || jml_kamar == false || jml_kamar == undefined ||  jml_kamar == null){
-            swal('Informasi',"Jumlah Kamar/Kursi Terjual harus diisi",'info');
-            return;
-        }
-
-
+        
 
         var var_url = "<?php echo WS_JQGRID . "transaksi.t_vat_setllement_manual_skpdkb_controller/insertUpdate/?"; ?>";
         var_url += "<?php echo $this->security->get_csrf_token_name(); ?>=<?php echo $this->security->get_csrf_hash(); ?>";
@@ -282,9 +277,6 @@
                 openInNewTab(url);
 
            }
-
-
-
 
         })
 
