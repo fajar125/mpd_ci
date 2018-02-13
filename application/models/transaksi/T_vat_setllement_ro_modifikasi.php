@@ -125,16 +125,16 @@ class T_vat_setllement_ro_modifikasi extends Abstract_model {
     //     return $item;
     // }
 
-    // function ubahTgl($t_vat_setllement_id, $settlement_date_new, $alasan){
-    //     $ci =& get_instance();
-    //     $userdata = $ci->session->userdata;
-    //     $uname = $userdata['app_user_name'];
+    //function ubahTgl($t_vat_setllement_id, $settlement_date_new, $alasan){
+    //    $ci =& get_instance();
+    //    $userdata = $ci->session->userdata;
+    //    $uname = $userdata['app_user_name'];
 
-    //     $sql = "SELECT f_update_tgl_trans($t_vat_setllement_id,'$settlement_date_new','$alasan','$uname') AS msg";
-    //     $query = $this->db->query($sql);
+    //    $sql = "SELECT f_update_tgl_trans($t_vat_setllement_id,'$settlement_date_new','$alasan','$uname') AS msg";
+    //    $query = $this->db->query($sql);
 
-    //     $item =$query->row_array();
-    //     return $item;
-    // }
+    //    $item =$query->row_array();
+    //    return $item;
+    //}
     
 }

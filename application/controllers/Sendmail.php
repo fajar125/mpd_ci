@@ -40,7 +40,7 @@ class Sendmail extends CI_Controller
                        <td></td>
                   </tr>
                   <tr>
-                       <td><a href="http://180.250.172.123/smpd/cetak_kartu_npwpd/pageCetak?t_customer_order_id='.$idd.'"> Cetak Kartu NPWPD </a> </td>
+                       <td><a href="http://36.89.58.66/smpd/cetak_kartu_npwpd/pageCetak?t_customer_order_id='.$idd.'"> Cetak Kartu NPWPD </a> </td>
                   </tr>
               </table>'; 
         $html .= '<br><br>';
@@ -52,7 +52,7 @@ class Sendmail extends CI_Controller
 
 
         // echo $html;
-        sendEmail($email, $name, 'Pendaftaran WP', $html);
+        //sendEmail($email, $name, 'Pendaftaran WP', $html);
         exit;
     }
 
