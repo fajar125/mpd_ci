@@ -251,10 +251,10 @@ $(function() {
             return;
         }
         
-		if (jml_omset == "" || jml_omset == false || jml_omset == undefined ||  jml_omset == null){
+		/*if (jml_omset == "" || jml_omset == false || jml_omset == undefined ||  jml_omset == null){
             swal('Informasi',"Jumlah Omset harus diisi",'info');
             return;
-        }
+        }*/
 
 
         var var_url = "<?php echo WS_JQGRID . "transaksi.t_vat_setlement_manual_controller/insertUpdate/?"; ?>";
