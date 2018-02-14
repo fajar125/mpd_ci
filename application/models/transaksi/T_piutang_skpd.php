@@ -83,7 +83,6 @@ class T_piutang_skpd extends Abstract_model {
 
             //$data = $query->row_array();
 
-
         }
 
 
