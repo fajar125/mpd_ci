@@ -392,7 +392,7 @@ class Cetak_formulir_sptpd extends CI_Controller{
 		$pdf->Ln();
 
 		$pdf->Cell($lbody3 - 10, $this->height, "", "L", 0, 'L');
-		$pdf->Cell($lbody1 + 10, $this->height, "KEPALA BIDANG PAJAK PENDAFTARAN", "R", 0, 'C');
+		$pdf->Cell($lbody1 + 10, $this->height, "KEPALA BIDANG PENDAPATAN", "R", 0, 'C');
 		$pdf->Ln();
 		
 		$pdf->Cell($lbody3 - 10, $this->height, "", "L", 0, 'L');
@@ -407,12 +407,12 @@ class Cetak_formulir_sptpd extends CI_Controller{
 		
 		$pdf->Cell($lbody3 - 10, $this->height, "", "L", 0, 'L');
 		//$pdf->Cell($lbody1 + 10, $this->height, "H. SONI BAKHTIYAR, S.Sos, M.Si", "R", 0, 'C');
-		$pdf->Cell($lbody1+10, $this->height, "Drs. H. GUN GUN SUMARYANA", "R", 0, 'C');
+		$pdf->Cell($lbody1+10, $this->height, getValByCode('KABID_PENDAPATAN'), "R", 0, 'C');
 		$pdf->Ln();
 
 		$pdf->Cell($lbody3 - 10, $this->height, "", "BL", 0, 'L');
 		//$pdf->Cell($lbody1 + 8, $this->height, "NIP. 19750625 199403 1 001", "BT", 0, 'C'); //isi nip
-		$pdf->Cell($lbody1 + 8, $this->height, "NIP. 19700806 199101 1 001", "BT", 0, 'C'); //isi nip
+		$pdf->Cell($lbody1 + 8, $this->height, getValByCode('NIP_KABID_PENDAPATAN'), "BT", 0, 'C'); //isi nip
 		$pdf->Cell(2, $this->height, "", "BR", 0, 'L');
 		$pdf->Ln($this->height + 4);
 		
