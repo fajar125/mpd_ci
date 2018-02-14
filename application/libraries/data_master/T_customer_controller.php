@@ -38,8 +38,8 @@ class T_customer_controller {
 
             if(!empty($t_customer_id)) {
                 $req_param['where'][] = 't_customer_id = '.$t_customer_id;
-				$req_param['where'][] = 'b.p_account_status_id = 1';
             }
+			$req_param['where'][] = 'b.p_account_status_id = 1';
 
             $table->setJQGridParam($req_param);
             $count = $table->countAll();
