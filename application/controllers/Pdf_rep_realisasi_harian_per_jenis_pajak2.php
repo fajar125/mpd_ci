@@ -150,7 +150,7 @@ class Pdf_rep_realisasi_harian_per_jenis_pajak2 extends CI_Controller{
       $jumlahtemp = 0;
       $i=0;
       $total=0;
-
+      $temp = 0;
       if(!empty($data)){
         foreach($data as $item) {
           $pdf->RowMultiBorderWithHeight(array($no,
@@ -181,25 +181,29 @@ class Pdf_rep_realisasi_harian_per_jenis_pajak2 extends CI_Controller{
           $total+= $item["jumlah_terima"];
 
           $ayat = $item["kode_ayat"];
-          
-          if($i<=count( $data[$i] )){
+
+          if ($i==count($data)-1){
+            $ayatsesudah = $data[$i]["kode_ayat"];
+          }else{
             $ayatsesudah = $data[$i+1]["kode_ayat"];
-            if(($ayat != $ayatsesudah&&count($data)>1)||empty($data[$i+1])){
-              $jumlahperayat[] = $jumlahtemp;
-              $pdf->Cell($ltable22+($ltable3/3)+32, $this->height + 2, "JUMLAH PAJAK ".$item["nama_ayat"], "TBLR", 0, 'C');
-              $pdf->Cell($ltable4-($ltable3/3), $this->height + 2, number_format($jumlahtemp, 0, ',', '.'), "TBLR", 0, 'R');
-              $pdf->Ln();
-              $jumlahtemp = 0;
-              
-            }
           }
           
+            
+          if(($ayat != $ayatsesudah&&count($data)>1)||empty($data[$i+1])){
+            $jumlahperayat[] = $jumlahtemp;
+            $pdf->Cell($ltable22+($ltable3/3)+32, $this->height + 2, "JUMLAH PAJAK ".$item["nama_ayat"], "TBLR", 0, 'C');
+            $pdf->Cell($ltable4-($ltable3/3), $this->height + 2, number_format($jumlahtemp, 0, ',', '.'), "TBLR", 0, 'R');
+            $pdf->Ln();
+            $jumlahtemp = 0;
+          }
+          
+          $temp++;
           $i++;
         }
         
-        $pdf->Cell($ltable22+($ltable3/3)+32, $this->height + 2, "JUMLAH PAJAK ".$item["nama_ayat"], "TBLR", 0, 'C');
+        /*$pdf->Cell($ltable22+($ltable3/3)+32, $this->height + 2, "JUMLAH PAJAK ".$item["nama_ayat"], "TBLR", 0, 'C');
         $pdf->Cell($ltable4-($ltable3/3), $this->height + 2, number_format($jumlahtemp, 0, ',', '.'), "TBLR", 0, 'R');
-        $pdf->Ln();
+        $pdf->Ln();*/
         $pdf->Cell($ltable22+($ltable3/3)+32, $this->height + 2, "TOTAL " . strtoupper($item["jns_pajak"]), "TBLR", 0, 'C');
         $pdf->Cell($ltable4-($ltable3/3), $this->height + 2, number_format($total, 0, ',', '.'), "TBLR", 0, 'R');
       }else{
