@@ -85,7 +85,7 @@ class Cetak_formulir_skpdkb_tambahan extends CI_Controller{
 		$pdf->Cell($lheader2, $this->height-2, "", "TR", 0, 'C');
 		$pdf->Ln();
 		
-		$pdf->SetFont('Arial', '', 10);
+		$pdf->SetFont('Arial', '', 9);
 		$pdf->Image(getValByCode('LOGO'),12,15,20,20);
 		$pdf->Cell($lheader1, $this->height, "", "L", 0, 'C');			
 		$pdf->Cell($lheader2, $this->height, "PEMERINTAH KABUPATEN", "R", 0, 'C');
@@ -101,7 +101,7 @@ class Cetak_formulir_skpdkb_tambahan extends CI_Controller{
 		$pdf->Cell($lheader2, $this->height, "No. Urut", "R", 0, 'C');
 		$pdf->Ln();*/		
 		
-		$pdf->SetFont('Arial', '', 10);
+		$pdf->SetFont('Arial', '', 9);
 		$pdf->Cell($lheader1, $this->height-2, "", "L", 0, 'C');			
 		$pdf->Cell($lheader2, $this->height-2, "LOMBOK UTARA", "R", 0, 'C');
 		$pdf->SetFont('Arial', '', 9);
@@ -115,7 +115,7 @@ class Cetak_formulir_skpdkb_tambahan extends CI_Controller{
 		$pdf->Cell($lheader2, $this->height, "No. Urut", "R", 0, 'C');
 		$pdf->Ln();*/
 		
-		
+		$pdf->SetFont('Arial', '', 9);
 		$pdf->Cell($lheader1, $this->height + 1, "", "L", 0, 'C');	
 		$pdf->Cell($lheader2, $this->height + 1, getValByCode('INSTANSI_2'), "R", 0, 'C');
 		$pdf->SetFont('Arial', '', 9);
@@ -144,7 +144,7 @@ class Cetak_formulir_skpdkb_tambahan extends CI_Controller{
 		$pdf->Cell($lheader2, $this->height + 2, "", "BR", 0, 'C');
 		*/
 		$pdf->Cell($lheader1, $this->height-1, "", "L", 0, 'C');	
-		$pdf->SetFont('Arial', '', 8);
+		$pdf->SetFont('Arial', '', 4);
 		$pdf->Cell($lheader2, $this->height-1, getValByCode('ALAMAT_1'), "R", 0, 'C');
 		$pdf->SetFont('Arial', '', 10);
 		$pdf->Cell($lheader3, $this->height-1, "     Masa Pajak    : ".$data["finance_period_code"], "R", 0, 'L');
@@ -400,7 +400,7 @@ class Cetak_formulir_skpdkb_tambahan extends CI_Controller{
 		$pdf->Ln();
 
 		$pdf->Cell($lbody3 - 10, $this->height, "", "L", 0, 'L');
-		$pdf->Cell($lbody1 + 10, $this->height, "KEPALA BIDANG PAJAK PENDAFTARAN", "R", 0, 'C');
+		$pdf->Cell($lbody1 + 10, $this->height, "KEPALA BIDANG PENDAPATAN", "R", 0, 'C');
 		$pdf->Ln();
 		
 		$pdf->Cell($lbody3 - 10, $this->height, "", "L", 0, 'L');
@@ -415,12 +415,12 @@ class Cetak_formulir_skpdkb_tambahan extends CI_Controller{
 		
 		$pdf->Cell($lbody3 - 10, $this->height, "", "L", 0, 'L');
 		//$pdf->Cell($lbody1 + 10, $this->height, "H. SONI BAKHTIYAR, S.Sos, M.Si", "R", 0, 'C');
-		$pdf->Cell($lbody1+10, $this->height, "Drs. H. GUN GUN SUMARYANA", "R", 0, 'C');
+		$pdf->Cell($lbody1+10, $this->height, getValByCode('KABID_PENDAPATAN'), "R", 0, 'C');
 		$pdf->Ln();
 
 		$pdf->Cell($lbody3 - 10, $this->height, "", "BL", 0, 'L');
 		//$pdf->Cell($lbody1 + 8, $this->height, "NIP. 19750625 199403 1 001", "BT", 0, 'C'); //isi nip
-		$pdf->Cell($lbody1 + 8, $this->height, "NIP. 19700806 199101 1 001", "BT", 0, 'C'); //isi nip
+		$pdf->Cell($lbody1 + 8, $this->height, "NIP. ".getValByCode('NIP_KABID_PENDAPATAN'), "BT", 0, 'C'); //isi nip
 		$pdf->Cell(2, $this->height, "", "BR", 0, 'L');
 		$pdf->Ln($this->height + 4);
 		

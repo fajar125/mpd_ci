@@ -138,8 +138,8 @@
             height: '100%',
             autowidth: false,
             viewrecords: true,
-            rowNum: 10,
-            rowList: [10,20,50],
+            rowNum: 7,
+            rowList: [7,20,50],
             rownumbers: true, // show row numbers
             rownumWidth: 35, // the width of the row numbers columns
             altRows: true,
