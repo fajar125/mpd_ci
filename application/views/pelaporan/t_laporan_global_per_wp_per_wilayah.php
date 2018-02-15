@@ -67,13 +67,13 @@
                         <label class="control-label col-md-2">Wilayah
                         </label>
                         <div class="col-md-3">
-                            <!-- <div id="comboWilayah"></div> -->
-                            <select name='kode_wilayah' id='kode_wilayah' class='form-control required' required>
+                            <div id="comboWilayah"></div>
+                            <!-- <select name='kode_wilayah' id='kode_wilayah' class='form-control required' required>
                                 <option  value="">Select Value</option>
                                 <option  value="GLTRW">Gili terawangan</option>
                                 <option  value="GLMNO">Gili Meno</option>
                                 <option  value="GLAIR">Gili Air</option>
-                            </select>
+                            </select> -->
                         </div>
                     </div>
                 </div>
@@ -98,7 +98,7 @@
         // defaultDate: new Date()
     });
 
-    /*$.ajax({
+    $.ajax({
         url: "<?php echo WS_JQGRID."pelaporan.t_laporan_global_per_wp_per_wilayah_controller/readDataCombo"; ?>" ,
         type: "POST",
         dataType: "json",
@@ -109,7 +109,7 @@
         error: function (xhr, status, error) {
             swal({title: "Error!", text: xhr.responseText, html: true, type: "error"});
         }
-    });*/
+    });
 
     $("#btn-lov").on('click', function() {
         modal_lov_vat_show('p_rqst_type_id','rqst_type_code');

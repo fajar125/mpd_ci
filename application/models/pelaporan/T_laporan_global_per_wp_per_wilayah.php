@@ -57,7 +57,7 @@ class T_laporan_global_per_wp_per_wilayah extends Abstract_model {
     }
 
     function dataCombo(){
-        $sql = "SELECT p_business_area_id, business_area_name
+        $sql = "SELECT code, business_area_name
                 FROM p_business_area ";
         $query = $this->db->query($sql);
         $items = $query->result_array();

@@ -128,7 +128,7 @@ class T_laporan_global_per_wp_per_wilayah_controller {
             $html.="<select name='kode_wilayah' id='kode_wilayah' class='form-control required' required>";
             $html.="<option value='' >Select Value</option>";
             foreach ($items as $item) {
-              $html .=" <option value='" . $item['p_business_area_id'] . "'>" . $item['business_area_name'] . "</option>";
+              $html .=" <option value='" . $item['code'] . "'>" . $item['business_area_name'] . "</option>";
             }
             $html .= "</select>";
 
