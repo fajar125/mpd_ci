@@ -39,7 +39,7 @@ class Cetak_idx_kepatuhan_wp extends CI_Controller{
 		$status				    = getVarClean('status','int',0);
 
 
-		$sql = "select max(rata_rata_pembayaran), max(rata_rata_pembayaran) / 3 , max(rata_rata_pembayaran) - (max(rata_rata_pembayaran) / 3) as batas_atas, max(rata_rata_pembayaran) - (max(rata_rata_pembayaran) / 3) - (max(rata_rata_pembayaran) / 3) batas_tengah from f_rep_index_kepatuhan(".$p_year_period_id.", ".$p_vat_type_id.", ".$status.")";
+		$sql = "select nvl(max(rata_rata_pembayaran),0), nvl(max(rata_rata_pembayaran) / 3,0) , nvl(max(rata_rata_pembayaran) - (max(rata_rata_pembayaran) / 3),0) as batas_atas, nvl(max(rata_rata_pembayaran) - (max(rata_rata_pembayaran) / 3) - (max(rata_rata_pembayaran) / 3),0) batas_tengah from f_rep_index_kepatuhan(".$p_year_period_id.", ".$p_vat_type_id.", ".$status.")";
 		$query = $this->db->query($sql);
 		$arrBatas = $query->row_array();
 		// print_r( $sql);
@@ -74,8 +74,10 @@ class Cetak_idx_kepatuhan_wp extends CI_Controller{
 		$pdf->Cell($lheader3, $this->height, getValByCode('INSTANSI_2'), "R", 0, 'C');
 		$pdf->Cell($lheader4, $this->height, "TAHUN " . $tahun, "R", 0, 'C');
 		$pdf->Ln();
+		$pdf->SetFont('Arial', '', 8);
 		$pdf->Cell($lheader1, $this->height, "", "L", 0, 'L');
 		$pdf->Cell($lheader3, $this->height, getValByCode('ALAMAT_1'), "R", 0, 'C');
+		$pdf->SetFont('Arial', '', 10);
 		$pdf->Cell($lheader4, $this->height, strtoupper($pajak), "R", 0, 'C');
 		$pdf->Ln();
 		$pdf->Cell($lheader1, $this->height, "", "L", 0, 'L');
