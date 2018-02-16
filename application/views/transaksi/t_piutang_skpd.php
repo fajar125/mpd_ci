@@ -13,11 +13,34 @@
 <!-- end breadcrumb -->
 <div class="space-4"></div>
 <div class="row">
+    <div class="col-md-1">Filter :</div>
+    <div class="col-md-3">
+        <select name="status_bayar" id="status_bayar" class="form-control">
+            <option value="">Semua</option>
+            <option value="belum_bayar">Belum Bayar</option>
+            <option value="sudah_bayar">Sudah Bayar</option>
+        </select>
+    </div>
+</div>
+
+<div class="space-4"></div>
+<div class="row">
     <div class="col-md-12">
         <table id="grid-table"></table>
         <div id="grid-pager"></div>
     </div>
 </div>
+
+<script>
+    $('#status_bayar').change(function() {
+
+        $("#grid-table").jqGrid('setGridParam', {
+            url: '<?php echo WS_JQGRID."transaksi.t_piutang_skpd_controller/read"; ?>',
+            postData: {status_bayar: $(this).val()}
+        });
+        $("#grid-table").trigger("reloadGrid");
+    });
+</script>
 
 <script>
     $(function($) {
@@ -38,10 +61,10 @@
                     formatter:function(cellvalue, options, rowObject) {
                         var receipt_no = rowObject['receipt_no'];
                         if(receipt_no == '' || receipt_no == null) return '<span class="red"><strong>Belum Bayar</strong></span>';
-						return '<span class="green"><strong>Sudah Bayar</strong></span>';                        
+						return '<span class="green"><strong>Sudah Bayar</strong></span>';
                     }
                 },
-                
+
                 {label: 'No. Order',name: 'order_no',width: 120, align: "left"},
                 {label: 'No Bayar',name: 'payment_key', width: 180, align: "left"},
                 {label: 'NAMA WP',name: 'wp_name',width: 230, align: "left"},
@@ -66,7 +89,7 @@
                     formatter:function(cellvalue, options, rowObject) {
                         var t_vat_setllement_id = rowObject['t_vat_setllement_id'];
                             return '<a class="btn btn-danger btn-xs" href="#" onclick="updateDenda('+t_vat_setllement_id+');">Perbaharui Denda</a>';
-                        
+
                     }
                 },
                 {label: 'Submit',width: 163,align: "center",
@@ -75,12 +98,12 @@
                         var payment_key = rowObject['payment_key'];
                         var p_vat_type_id = rowObject['p_vat_type_id'];
                         var t_vat_setllement_id = rowObject['t_vat_setllement_id'];
-                        
+
                         if(payment_key == null || payment_key == ""){
                             return '<a class="btn btn-primary btn-xs" href="#" onclick="submit('+t_customer_order_id+','+payment_key+','+p_vat_type_id+','+t_vat_setllement_id+');">Submit</a>';
                         }
 						return 'Telah Disubmit';
-                        
+
                     }
                 }
 
@@ -151,9 +174,9 @@
                 beforeShowForm: function (e, form) {
                     var form = $(e[0]);
                     style_edit_form(form);
-                    
-                    
-                    
+
+
+
 
                 },
                 afterShowForm: function(form) {
@@ -169,7 +192,7 @@
                 }
             },
             {
-               
+
                 //new record form
                 closeAfterAdd: false,
                 clearAfterAdd : true,
@@ -272,7 +295,7 @@
             url += "&t_vat_setllement_id=" + t_vat_setllement_id;
 
         $.getJSON(url, function( items ) {
-            
+
 
             if(items.rows != "OK"){
                 swal('Peringatan', 'Denda Gagal Diperbaharui', 'error');
@@ -319,7 +342,7 @@
             }, 2000);
         });
 
-        
+
     }
 
 </script>

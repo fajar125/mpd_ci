@@ -48,7 +48,7 @@ class T_customer_order extends Abstract_model {
         $query = $this->db->query($sql);
         $item = $query->row_array();
 
-        
+
 
         if($this->actionType == 'CREATE') {
             //do something
@@ -99,7 +99,13 @@ class T_customer_order extends Abstract_model {
             }
         }
         */
-        $sql = "select o_result_code, o_result_msg from f_first_submit_engine(500,".$t_customer_order_id.",'".$userdata['app_user_name']."')";
+
+        if(getValByCode('FAST_WP_REGISTER') == 'Y') {
+            $sql = "select o_result_code, o_result_msg from f_first_submit_engine_4step(500,".$t_customer_order_id.",'".$userdata['app_user_name']."')";
+        }else {
+            $sql = "select o_result_code, o_result_msg from f_first_submit_engine(500,".$t_customer_order_id.",'".$userdata['app_user_name']."')";
+        }
+
         $query = $this->db->query($sql);
         $item = $query->row_array();
 
@@ -111,10 +117,10 @@ class T_customer_order extends Abstract_model {
         try {
             $sql = "DELETE FROM t_customer_order WHERE t_customer_order_id = $t_customer_order_id";
             $query = $this->db->query($sql);
-            
+
             return $query;
         } catch (Exception $e) {
-            
+
         }
     }
 

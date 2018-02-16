@@ -13,6 +13,8 @@ class T_piutang_skpd_controller {
         $sidx = getVarClean('sidx','str','t_vat_setllement_id');
         $sord = getVarClean('sord','str','desc');
 
+        $status_bayar = getVarClean('status_bayar','str','');
+
         $data = array('rows' => array(), 'page' => 1, 'records' => 0, 'total' => 1, 'success' => false, 'message' => '');
 
         try {
@@ -22,7 +24,7 @@ class T_piutang_skpd_controller {
             $table = $ci->t_piutang_skpd;
 
 
-            
+
             if( isset($_REQUEST['searchField'])){
                 if($_REQUEST['searchField']=='npwd') {
                     $_REQUEST['searchField']='a.npwd';
@@ -38,7 +40,7 @@ class T_piutang_skpd_controller {
                 }
             }
 
-            
+
 
             $req_param = array(
                 "sort_by" => $sidx,
@@ -58,6 +60,14 @@ class T_piutang_skpd_controller {
 
             $req_param['where'] = array();
             $req_param['where'][] = "a.p_settlement_type_id = 7";
+
+            if($status_bayar != "") {
+                if($status_bayar == 'belum_bayar') {
+                    $req_param['where'][] = "b.receipt_no is null";
+                }else {
+                    $req_param['where'][] = "b.receipt_no is not null";
+                }
+            }
 
             $table->setJQGridParam($req_param);
             $count = $table->countAll();
