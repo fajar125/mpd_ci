@@ -1178,10 +1178,23 @@ class Wf_controller {
         $reg_letter_no = $ci->input->post('reg_letter_no', '');
         $t_customer_order_id = $ci->input->post('t_customer_order_id', '');
         $t_vat_registration_id = $ci->input->post('t_vat_registration_id', '');
-
-
+		
+		$result = array('success' => false, 'message' => '');
+		
         try {
-
+			
+			$sql = "SELECT COUNT(1) AS ada, wp_name FROM t_cust_account WHERE npwd = ?
+					GROUP BY wp_name";
+            $q = $table->db->query($sql, array($npwpd));
+			$row = $q->row_array();
+			
+			if(isset($row['ada']) and $row['ada'] > 0) {
+				$result['message'] = 'NPWPD '.$npwpd.' sudah ada dengan nama WP "'.$row['wp_name']. '". Silahkan ganti dengan NPWPD lain atau Generate NPWPD';
+				echo json_encode($result);
+				exit;	
+			}
+			
+			
             $sql = "UPDATE t_vat_registration SET 
                     npwpd = '".$npwpd."',
                     reg_letter_no = '".$reg_letter_no."'

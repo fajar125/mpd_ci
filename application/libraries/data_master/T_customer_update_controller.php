@@ -10,7 +10,8 @@ class T_customer_update_controller {
         $sord = getVarClean('sord','str','t_customer_id');
 
         $t_customer_id = getVarClean('t_customer_id','int',0);
-
+		$status_aktif = getVarClean('status_aktif','str','');
+		
         $data = array('rows' => array(), 'page' => 1, 'records' => 0, 'total' => 1, 'success' => false, 'message' => '');
 
         try {
@@ -39,7 +40,11 @@ class T_customer_update_controller {
             if(!empty($t_customer_id)) {
                 $req_param['where'][] = 't_customer_id = '.$t_customer_id;
             }
-
+			
+			if(!empty($status_aktif)) {
+				$req_param['where'][] = 'b.p_account_status_id = '.$status_aktif;
+			}
+			
             $table->setJQGridParam($req_param);
             $count = $table->countAll();
 

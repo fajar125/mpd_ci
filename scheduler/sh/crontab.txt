@@ -3,12 +3,12 @@
 0 21 * * * /home/mpdklu/scheduler/daily_dump.sh
 
 #cek payment due date tiap jam 8 pagi
-#0 8 * * * /home/mpdklu/scheduler/cek_payment_due_date.sh
+#0 7 * * * /home/mpdklu/scheduler/cek_payment_due_date.sh
 
-#update denda skpdkb jabatan
+#update denda skpdkb jabatan tiap jam 00:01
 #1 0 * * * /home/mpdklu/scheduler/query_update_denda_skpdkb_jabatan.sql
 
-#surat teguran 1 tiap jam 00:01
+#surat teguran 1 tiap jam 01:00
 #0 1 * * * /home/mpdklu/scheduler/surat_teguran_1.sh
 
 #surat teguran 2 tiap jam 03:00

@@ -636,12 +636,18 @@
                 <button class="btn btn-success" type="button" id="btn-ctk2" onclick="cetakNotaDinas();">CETAK NOTA DINAS</button>
                 <button class="btn btn-success" type="button" id="btn-ctk3" onclick="cetakDraftPengukuhan();">CETAK DRAF PENGUKUHAN</button>
                 <button class="btn btn-danger" type="button" id="btn-sub" onclick="saveform();">SAVE</button>
-                <button class="btn btn-danger" type="button" id="btn-sub" onclick="submitform();">SUBMIT</button>
+                <button class="btn btn-danger" type="button" id="btn-submit" onclick="submitform();">SUBMIT</button>
                 <button class="btn btn-danger" type="button" id="btn-kel" onclick="backform();">KEMBALI</button>
             </div>
         </div>
     </div>
 </div>
+
+<script>
+	$(function() {
+		$('#btn-submit').hide();
+	});
+</script>
 
 <script type="text/javascript">
 
@@ -692,8 +698,14 @@
             },
             success: function(data) {
                 var response = JSON.parse(data);
-                 swal('Informasi', response.message,'info');
-                 return false;
+                if(!response.success) {
+					swal('Informasi', response.message,'info');
+					return false;
+				}
+				
+				swal('Informasi', response.message,'info');
+				$('#btn-submit').show();
+				
             }
         });
 
@@ -863,6 +875,8 @@
 </script>
 
 <script type="text/javascript">
+$(function() {
+	
     $.ajax({
         url: "<?php echo WS_JQGRID . "transaksi.t_vat_registration_controller/readro"; ?>" ,
         type: "POST",
@@ -986,6 +1000,7 @@
         }
     });
 
+});
 </script>
 
 <script type="text/javascript">

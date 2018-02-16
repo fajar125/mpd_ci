@@ -33,6 +33,21 @@
         <input type="hidden" name="t_customer_id" id="t_customer_id">
         <input type="hidden" name="t_cust_account_id" id="t_cust_account_id">
         <div class="tab-content no-border">
+		
+			<!-- end breadcrumb -->
+			<div class="space-4"></div>
+			<div class="row">
+				<div class="col-md-2">Filter Status WP :</div>
+				<div class="col-md-3">
+					<select name="status_aktif" id="status_aktif" class="form-control">
+						<option value="">Semua</option>
+						<option value="1">ACTIVE</option>
+						<option value="5">NON-ACTIVE</option>
+					</select>
+				</div>
+			</div>
+			<div class="space-4"></div>
+			
             <div class="row">
                 <div class="col-md-12">
                     <table id="grid-table"></table>
@@ -44,6 +59,17 @@
         </div>
     </div>
 </div>
+
+<script>
+    $('#status_aktif').change(function() {
+
+        $("#grid-table").jqGrid('setGridParam', {
+            url: '<?php echo WS_JQGRID."data_master.t_customer_update_controller/read"; ?>',
+            postData: {status_aktif: $(this).val()}
+        });
+        $("#grid-table").trigger("reloadGrid");
+    });
+</script>
 
 <script>
 $("#tab-2").on("click", function(event) {
@@ -75,7 +101,6 @@ $("#tab-2").on("click", function(event) {
 
 <script>
     
-    
 </script>
 
 <script>
@@ -100,7 +125,22 @@ $("#tab-2").on("click", function(event) {
                     editrules: {required: true}
                 },
 				
-				{label: 'Nama WP',name: 'wp_name',width: 150, align: "left",editable: false,
+				{label: 'Nama WP',name: 'wp_name',width: 200, align: "left",editable: false,
+                    editoptions: {
+                        size: 30,
+                        maxlength:32
+                    },
+                    editrules: {required: true}
+                },
+				
+				{label: 'Jenis Pajak',name: 'vat_code',width: 120, align: "left",editable: false,
+                    editoptions: {
+                        size: 30,
+                        maxlength:32
+                    }
+                },
+				
+				{label: 'Nama Perusahaan',name: 'company_name',width: 300, align: "left",editable: false,
                     editoptions: {
                         size: 30,
                         maxlength:32
@@ -108,7 +148,7 @@ $("#tab-2").on("click", function(event) {
                     editrules: {required: true}
                 },
                 				
-                {label: 'Nama Pemilik/Pengelola',name: 'company_owner',width: 150, align: "left",editable: false,
+                {label: 'Nama Pemilik/Pengelola',name: 'company_owner',width: 300, align: "left",editable: false,
                     editoptions: {
                         size: 30,
                         maxlength:32
@@ -116,6 +156,13 @@ $("#tab-2").on("click", function(event) {
                     editrules: {required: true}
                 },
                 
+				
+                {label: 'Merk Dagang',name: 'company_brand',width: 300, align: "left",editable: false,
+                    editoptions: {
+                        size: 30,
+                        maxlength:32
+                    }
+                },
 
                 {label: 'Alamat WP',name: 'alamat',width: 200, align: "left",editable: false,
                     editoptions: {
@@ -172,7 +219,7 @@ $("#tab-2").on("click", function(event) {
             rownumbers: true, // show row numbers
             rownumWidth: 35, // the width of the row numbers columns
             altRows: true,
-            shrinkToFit: true,
+            shrinkToFit: false,
             multiboxonly: true,
             onSelectRow: function (rowid) {
                 /*do something when selected*/

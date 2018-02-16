@@ -72,12 +72,6 @@ $("#tab-2").on("click", function(event) {
 });
 </script>
 
-
-<script>
-    
-    
-</script>
-
 <script>
 
     jQuery(function($) {
@@ -93,20 +87,34 @@ $("#tab-2").on("click", function(event) {
                 {label: 'ID', name: 't_customer_id', key: true, width: 5, sorttype: 'number', editable: true, hidden: true},
                 {label: 'ID Cust', name: 't_cust_account_id', key: true, width: 5, sorttype: 'number', editable: false, hidden: true},
                 
-				{label: 'NPWD',name: 'npwd',width: 200, align: "left",editable: false,
+				{label: 'NPWD',name: 'npwd',width: 150, align: "left",editable: false,
                     editoptions: {
                         size: 30,
                         maxlength:32
                     },
                     editrules: {required: true}
                 },
-				
-				
-                {label: 'Jenis Pajak',name: 'vat_code',width: 200, align: "left",editable: false,
+				{label: 'Nama WP',name: 'wp_name',width: 200, align: "left",editable: false,
+                    editoptions: {
+                        size: 30,
+                        maxlength:32
+                    },
+                    editrules: {required: true}
+                },
+                				
+                {label: 'Jenis Pajak',name: 'vat_code',width: 120, align: "left",editable: false,
                     editoptions: {
                         size: 30,
                         maxlength:32
                     }
+                },
+				
+				{label: 'Nama Perusahaan',name: 'company_name',width: 300, align: "left",editable: false,
+                    editoptions: {
+                        size: 30,
+                        maxlength:32
+                    },
+                    editrules: {required: true}
                 },
 				
                 {label: 'Nama Pemilik/Pengelola',name: 'company_owner',width: 300, align: "left",editable: false,

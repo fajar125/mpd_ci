@@ -26,8 +26,8 @@ class T_cust_account extends Abstract_model {
     public $selectClause    = "pp.*, pv.vat_code, pt.vat_code as vat_dtl ,(brand_address_name||' '||replace(brand_address_no, '-', '')) as brand_address";
     public $fromClause      = "t_cust_account pp 
                                 left join p_vat_type pv on pp.p_vat_type_id = pv.p_vat_type_id
-                                left join p_vat_type_dtl pt 
-                                on pp.p_vat_type_dtl_id=pt.p_vat_type_dtl_id";
+                                left join p_vat_type_dtl pt on pp.p_vat_type_dtl_id=pt.p_vat_type_dtl_id
+								left join t_customer cust on pp.t_customer_id = cust.t_customer_id";
 
     public $refs            = array();
 
