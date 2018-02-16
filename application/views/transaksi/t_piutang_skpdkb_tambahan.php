@@ -11,6 +11,20 @@
     </ul>
 </div>
 <!-- end breadcrumb -->
+
+<div class="space-4"></div>
+<div class="row">
+    <div class="col-md-1">Filter :</div>
+    <div class="col-md-3">
+        <select name="status_bayar" id="status_bayar" class="form-control">
+            <option value="">Semua</option>
+            <option value="belum_bayar">Belum Bayar</option>
+            <option value="sudah_bayar">Sudah Bayar</option>
+        </select>
+    </div>
+</div>
+
+
 <div class="space-4"></div>
 <div class="row">
     <div class="col-md-12">
@@ -18,6 +32,18 @@
         <div id="grid-pager"></div>
     </div>
 </div>
+
+
+<script>
+    $('#status_bayar').change(function() {
+
+        $("#grid-table").jqGrid('setGridParam', {
+            url: '<?php echo WS_JQGRID."transaksi.t_piutang_skpdkb_tambahan_controller/read"; ?>',
+            postData: {status_bayar: $(this).val()}
+        });
+        $("#grid-table").trigger("reloadGrid");
+    });
+</script>
 
 <script>
 
@@ -32,6 +58,14 @@
             colModel: [
                 {label: 'ID', name: 't_vat_setllement_id', key: true, width: 5, sorttype: 'number', editable: true, hidden: true},
                 {label: 'ID CUST', name: 't_customer_order_id',  width: 5, sorttype: 'number', hidden: true},
+				{label: 'receipt no',name: 'receipt_no', hidden: true ,width: 20, align: "left"},
+				{label: 'Status Bayar',width: 163,align: "center",
+                    formatter:function(cellvalue, options, rowObject) {
+                        var receipt_no = rowObject['receipt_no'];
+                        if(receipt_no == '' || receipt_no == null) return '<span class="red"><strong>Belum Bayar</strong></span>';
+						return '<span class="green"><strong>Sudah Bayar</strong></span>';
+                    }
+                },
                 {label: 'Merk Dagang',name: 'company_brand_name',width: 250, align: "left"},
                 {label: 'NPWPD',name: 'npwd',width: 170, align: "left"},
                 {label: 'Periode',name: 'code',width: 200, align: "left"},

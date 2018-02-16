@@ -56,6 +56,20 @@
                 {label: 'ID',name: 't_vat_setllement_id', hidden: true ,width: 180, align: "left"},
                 {label: 'ID',name: 't_customer_order_id', hidden: true ,width: 180, align: "left"},
                 {label: 'ID',name: 'p_vat_type_id', hidden: true ,width: 180, align: "left"},
+				{label: 'Submit',width: 163,align: "center",
+                    formatter:function(cellvalue, options, rowObject) {
+                        var t_customer_order_id = rowObject['t_customer_order_id'];
+                        var payment_key = rowObject['payment_key'];
+                        var p_vat_type_id = rowObject['p_vat_type_id'];
+                        var t_vat_setllement_id = rowObject['t_vat_setllement_id'];
+
+                        if(payment_key == null || payment_key == ""){
+                            return '<a class="btn btn-primary btn-xs" href="#" onclick="submit('+t_customer_order_id+','+payment_key+','+p_vat_type_id+','+t_vat_setllement_id+');">Submit</a>';
+                        }
+						return 'Telah Disubmit';
+
+                    }
+                },
 				{label: 'receipt no',name: 'receipt_no', hidden: true ,width: 20, align: "left"},
 				{label: 'Status Bayar',width: 163,align: "center",
                     formatter:function(cellvalue, options, rowObject) {
@@ -92,18 +106,14 @@
 
                     }
                 },
-                {label: 'Submit',width: 163,align: "center",
+				{label: 'CETAK STPD (TGL TAP)',width: 163,align: "center",
                     formatter:function(cellvalue, options, rowObject) {
-                        var t_customer_order_id = rowObject['t_customer_order_id'];
-                        var payment_key = rowObject['payment_key'];
-                        var p_vat_type_id = rowObject['p_vat_type_id'];
-                        var t_vat_setllement_id = rowObject['t_vat_setllement_id'];
-
-                        if(payment_key == null || payment_key == ""){
-                            return '<a class="btn btn-primary btn-xs" href="#" onclick="submit('+t_customer_order_id+','+payment_key+','+p_vat_type_id+','+t_vat_setllement_id+');">Submit</a>';
-                        }
-						return 'Telah Disubmit';
-
+                        return '<button class="btn btn-xs btn-danger"  type="button" id="btn-kem" onClick="cetakStpd('+rowObject['t_vat_setllement_id']+',\'tgl_tap\');">Cetak</button>';                        
+                    }
+                },
+                {label: 'CETAK STPD (TGL BAYAR)',width: 168,align: "center",
+                    formatter:function(cellvalue, options, rowObject) {
+                        return '<button class="btn btn-xs btn-danger"  type="button" id="btn-kem" onClick="cetakStpd('+rowObject['t_vat_setllement_id']+',\'tgl_bayar\');">Cetak</button>';
                     }
                 }
 
@@ -345,4 +355,12 @@
 
     }
 
+</script>
+
+
+<script>
+    function cetakStpd(t_vat_setllement_id,tgl_surat){
+        var url = "<?php echo base_url(); ?>"+"cetak_formulir_stpd_pdf/pageCetak?t_vat_setllement_id="+t_vat_setllement_id+"&tgl_surat="+tgl_surat;
+        openInNewTab(url);
+    }
 </script>

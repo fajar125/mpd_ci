@@ -12,6 +12,8 @@ class T_piutang_skpdkb_tambahan_controller {
         $limit = getVarClean('rows','int',5);
         $sidx = getVarClean('sidx','str','t_vat_setllement_id');
         $sord = getVarClean('sord','str','desc');
+		
+		$status_bayar = getVarClean('status_bayar','str','');
 
         $data = array('rows' => array(), 'page' => 1, 'records' => 0, 'total' => 1, 'success' => false, 'message' => '');
 
@@ -61,6 +63,14 @@ class T_piutang_skpdkb_tambahan_controller {
 
             $req_param['where'] = array();
             $req_param['where'][] = "x.p_settlement_type_id = 6";
+			
+			if($status_bayar != "") {
+                if($status_bayar == 'belum_bayar') {
+                    $req_param['where'][] = "c.receipt_no is null";
+                }else {
+                    $req_param['where'][] = "c.receipt_no is not null";
+                }
+            }
 
             $table->setJQGridParam($req_param);
             $count = $table->countAll();
