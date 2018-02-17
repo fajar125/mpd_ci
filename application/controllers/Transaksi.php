@@ -186,10 +186,9 @@ class Transaksi extends CI_Controller
             $query = $this->db->query($sql);
 
             $items = $query->result_array();
-            echo '<select id="kode_wilayah" name="kode_wilayah" class="FormElement form-control"> <option value="0" selected>--Pilih Wilayah WP--</option>';
-            echo '<option value="semua">Semua</option>';
+            echo '<select id="kode_wilayah" name="kode_wilayah" class="FormElement form-control"> <option value="0" selected>Semua</option>';
             foreach($items  as $item ){
-                echo '<option value="'.$item['business_area_name'].'">'.$item['business_area_name'].'</option>';
+                echo '<option value="'.$item['code'].'">'.$item['business_area_name'].'</option>';
             }
             echo '<option value="lainnya">Lainnya</option>';
             echo '</select>';

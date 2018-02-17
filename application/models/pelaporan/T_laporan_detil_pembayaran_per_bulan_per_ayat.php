@@ -31,7 +31,7 @@ class T_laporan_detil_pembayaran_per_bulan_per_ayat extends Abstract_model {
     function getData($kode_wilayah, $npwpd_jabatan, $tgl_penerimaan, $tgl_penerimaan_last){
         try {
             $sql=" select 
-                        f_get_wilayah(b.npwd) as wilayah,e.vat_code as jenis_pajak,
+                        f_get_wilayah2(b.npwd) as wilayah,e.vat_code as jenis_pajak,
                         f.vat_code as ayat_pajak,d.code as masa_pajak,
                         to_char(payment_date,'dd-mm-yyyy') as tanggal_bayar,*
                     from t_vat_setllement a
@@ -45,8 +45,8 @@ class T_laporan_detil_pembayaran_per_bulan_per_ayat extends Abstract_model {
                         and trunc(payment_date) between to_date('".$tgl_penerimaan."','dd-mm-yyyy') and to_date('".$tgl_penerimaan_last."','dd-mm-yyyy')
                         and case when ".$npwpd_jabatan." = 1 then true else npwpd_jabatan='Y' end
                         and case when '".$kode_wilayah."' = 'semua' then true 
-                            when '".$kode_wilayah."' = 'lainnya' then f_get_wilayah(b.npwd)='-' 
-                            else '".$kode_wilayah."' = f_get_wilayah(b.npwd) end
+                            when '".$kode_wilayah."' = 'lainnya' then f_get_wilayah2(b.npwd)='-' 
+                            else '".$kode_wilayah."' = f_get_wilayah2(b.npwd) end
                     order by wilayah, company_brand, b.npwd, d.start_date";
 
             $query = $this->db->query($sql);

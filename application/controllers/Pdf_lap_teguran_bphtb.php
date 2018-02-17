@@ -124,7 +124,7 @@ class Pdf_lap_teguran_bphtb extends CI_Controller{
             array("Nomor",
               ":",
               "",
-              "-"..getValByCode('INSTANSI_4')
+              "-".getValByCode('INSTANSI_4')
             ),
             array("",
               "",

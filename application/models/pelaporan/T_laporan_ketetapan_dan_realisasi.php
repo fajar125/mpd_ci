@@ -24,7 +24,7 @@ class T_laporan_ketetapan_dan_realisasi extends Abstract_model {
 
     function getData($p_vat_type_id, $p_year_period_id, $tgl_penerimaan, $tgl_penerimaan_last, $kode_wilayah){
         try {
-            $sql = "select to_char(active_date,'dd-mm-yyyy') as active_date2,*,
+            $sql = "select to_char(x.active_date,'dd-mm-yyyy') as active_date2,*,
                     case 
                         when payment_date is not null then to_char(payment_date,'dd-mm-yyyy')
                         else ''

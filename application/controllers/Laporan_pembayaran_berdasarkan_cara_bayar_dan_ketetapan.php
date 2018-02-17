@@ -8,7 +8,7 @@ class Laporan_pembayaran_berdasarkan_cara_bayar_dan_ketetapan extends CI_Control
     }
 
     function comboBoxPeriode(){
-        check_login();
+        //check_login();
         $sql = "select * 
                 from p_year_period 
                 where start_date > '2014-12-31'
@@ -33,7 +33,7 @@ class Laporan_pembayaran_berdasarkan_cara_bayar_dan_ketetapan extends CI_Control
     function comboBoxWilayah(){
         check_login();
         $sql = "select 
-                business_area_name, 
+                code, 
                 business_area_name
                 from p_business_area 
                 ";
@@ -41,9 +41,9 @@ class Laporan_pembayaran_berdasarkan_cara_bayar_dan_ketetapan extends CI_Control
         $items = $query->result_array();
         $html = "";
         $html.="<select name='business_area_name' id='business_area_name' class='form-control required'>";
-        $html.="<option value='semua' >Semua</option>";
+        $html.="<option value='0' >Semua</option>";
         foreach ($items as $data) {
-          $html .=" <option value='" . $data['business_area_name'] . "'>" . $data['business_area_name'] . "</option>";
+          $html .=" <option value='" . $data['code'] . "'>" . $data['business_area_name'] . "</option>";
         }
         $html .= "<option value='lainnya'>Lainnya</option>";
         $html .= "</select>";

@@ -84,6 +84,7 @@ class T_laporan_ketetapan_dan_realisasi_controller {
             $jumlah_xnov_per_ayat=0;
             $ketetapan_realisasi = 0; 
 
+						
             for ($i=0; $i < count($result) ; $i++) {        
                 $bln = substr($result[$i]["masa_pajak"],-7,2);
                 $thn = substr($result[$i]["masa_pajak"],-4,4);
