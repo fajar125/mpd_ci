@@ -88,13 +88,13 @@ class T_laporan_detil_pembayaran_per_bulan_per_ayat_controller {
             if($npwpd_jabatan == 2) {  
                 echo '<h2 style="color:black;" align="center">NPWPD JABATAN</h2>';
             }
-            if($kode_wilayah == 'semua') { 
+            if($kode_wilayah == '0') { 
                 echo '<h2 style="color:black;" align="center">KOTA BANDUNG</h2>';
             }
             if($kode_wilayah == 'lainnya') {   
                 echo '<h2 style="color:black;" align="center">WILAYAH LAINNYA</h2>';
             }
-            if($kode_wilayah != 'semua' && $kode_wilayah != 'lainnya' ) { 
+            if($kode_wilayah != '0' && $kode_wilayah != 'lainnya' ) { 
                 echo '<h2 style="color:black;" align="center">'.$kode_wilayah.'</h2>';
             }
             echo '<table id="table-piutang-detil" class="Grid" border="1" cellspacing="0" cellpadding="3px" width="100%">

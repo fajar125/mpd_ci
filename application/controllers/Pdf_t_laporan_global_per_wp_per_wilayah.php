@@ -144,7 +144,7 @@ class Pdf_t_laporan_global_per_wp_per_wilayah extends CI_Controller{
                   ";*/
 
         $sql = "SELECT a.*, 
-                        f_get_wilayah(b.npwd) as kode_wilayah , 
+                        f_get_wilayah2(b.npwd) as kode_wilayah , 
                         to_char(b.active_date,'dd-mm-yyyy') as active_date,
                         b.brand_address_name ||' '|| nvl(b.brand_address_no,'') as alamat_new
                 FROM    sikp.f_laporan_global_wp2(".
@@ -152,7 +152,9 @@ class Pdf_t_laporan_global_per_wp_per_wilayah extends CI_Controller{
                                                     $param['date_start']."', '".
                                                     $param['date_end']."') a
                 LEFT JOIN t_cust_account b on a.npwpd = b.npwd
-                WHERE b.kode_wilayah = '".$param['kode_wilayah']."'
+                WHERE case when '".$param['kode_wilayah']."' = '0' then true 
+                            when '".$param['kode_wilayah']."' = 'lainnya' then f_get_wilayah2(b.npwd)='-' 
+                            else '".$param['kode_wilayah']."' = f_get_wilayah2(b.npwd) end
                 ORDER BY jenis_pajak,TRIM(company_brand)
                   ";
 

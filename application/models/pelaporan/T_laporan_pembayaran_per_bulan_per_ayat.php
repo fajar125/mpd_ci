@@ -28,7 +28,7 @@ class T_laporan_pembayaran_per_bulan_per_ayat extends Abstract_model {
                 (select count(*) from t_cust_account where p_account_status_id = 1 
                 and trunc(last_satatus_date) <= (select end_date from p_finance_period where start_date = to_date('".$start_date."','dd-mm-yyyy'))
                 and p_vat_type_id = ".$p_vat_type_id."
-                and case when '".$kode_wilayah."' = 'semua' then true 
+                and case when '".$kode_wilayah."' = '0' then true 
                     when '".$kode_wilayah."' = 'lainnya' then f_get_wilayah2(npwd)='-' 
                     else '".$kode_wilayah."' = f_get_wilayah2(npwd) end
                 and case when ".$npwpd_jabatan." = 1 then true else npwpd_jabatan='Y' end) as aktif,
@@ -42,7 +42,7 @@ class T_laporan_pembayaran_per_bulan_per_ayat extends Abstract_model {
                     and c.t_payment_receipt_id is not null
                     and trunc(payment_date) between to_date('".$tgl_penerimaan."','dd-mm-yyyy') and to_date('".$tgl_penerimaan_last."','dd-mm-yyyy')
                     and case when ".$npwpd_jabatan." = 1 then true else npwpd_jabatan='Y' end
-                    and case when '".$kode_wilayah."' = 'semua' then true 
+                    and case when '".$kode_wilayah."' = '0' then true 
                         when '".$kode_wilayah."' = 'lainnya' then f_get_wilayah2(b.npwd)='-' 
                         else '".$kode_wilayah."' = f_get_wilayah2(b.npwd) end
                     and a.p_finance_period_id = (select p_finance_period_id from p_finance_period where start_date = to_date('".$start_date."','dd-mm-yyyy'))";
@@ -71,7 +71,7 @@ class T_laporan_pembayaran_per_bulan_per_ayat extends Abstract_model {
                         when ".$p_vat_type_dtl_id." = 31 then p_vat_type_dtl_id in (15,41,12,17,21,42,43,27,30,31) 
                         else p_vat_type_dtl_id = ".$p_vat_type_dtl_id."
                         end
-                    and case when '".$kode_wilayah."' = 'semua' then true 
+                    and case when '".$kode_wilayah."' = '0' then true 
                         when '".$kode_wilayah."' = 'lainnya' then f_get_wilayah2(npwd)='-' 
                         else '".$kode_wilayah."' = f_get_wilayah2(npwd) end
                     and case when ".$npwpd_jabatan." = 1 then true else npwpd_jabatan='Y' end) as aktif,
@@ -90,7 +90,7 @@ class T_laporan_pembayaran_per_bulan_per_ayat extends Abstract_model {
                     and c.t_payment_receipt_id is not null
                     and trunc(payment_date) between to_date('".$tgl_penerimaan."','dd-mm-yyyy') and to_date('".$tgl_penerimaan_last."','dd-mm-yyyy')
                     and case when ".$npwpd_jabatan." = 1 then true else npwpd_jabatan='Y' end
-                    and case when '".$kode_wilayah."' = 'semua' then true 
+                    and case when '".$kode_wilayah."' = '0' then true 
                         when '".$kode_wilayah."' = 'lainnya' then f_get_wilayah2(b.npwd)='-' 
                         else '".$kode_wilayah."' = f_get_wilayah2(b.npwd) end
                     and a.p_finance_period_id = (select p_finance_period_id from p_finance_period where start_date = to_date('".$start_date."','dd-mm-yyyy'))";

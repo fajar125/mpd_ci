@@ -44,7 +44,7 @@ class T_laporan_detil_pembayaran_per_bulan_per_ayat extends Abstract_model {
                         and c.t_payment_receipt_id is not null
                         and trunc(payment_date) between to_date('".$tgl_penerimaan."','dd-mm-yyyy') and to_date('".$tgl_penerimaan_last."','dd-mm-yyyy')
                         and case when ".$npwpd_jabatan." = 1 then true else npwpd_jabatan='Y' end
-                        and case when '".$kode_wilayah."' = 'semua' then true 
+                        and case when '".$kode_wilayah."' = '0' then true 
                             when '".$kode_wilayah."' = 'lainnya' then f_get_wilayah2(b.npwd)='-' 
                             else '".$kode_wilayah."' = f_get_wilayah2(b.npwd) end
                     order by wilayah, company_brand, b.npwd, d.start_date";

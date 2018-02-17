@@ -99,12 +99,11 @@
     });
 
     $.ajax({
-        url: "<?php echo WS_JQGRID."pelaporan.t_laporan_global_per_wp_per_wilayah_controller/readDataCombo"; ?>" ,
+        url: "<?php echo base_url()."transaksi/business_area_combo"; ?>" ,
         type: "POST",
-        dataType: "json",
         data: {},
         success: function (data) {
-            $("#comboWilayah").html(data.items);
+            $("#comboWilayah").html(data);
         },
         error: function (xhr, status, error) {
             swal({title: "Error!", text: xhr.responseText, html: true, type: "error"});
