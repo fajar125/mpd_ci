@@ -95,7 +95,7 @@ class T_vat_setllement_ro_modifikasi extends Abstract_model {
         } else if($i_mode == 4){  //Ubah Data Ketetapan
             $sql = "SELECT f_update_ketetapan($t_vat_setllement_id,$keyword,'$alasan','$uname') AS msg";
         } else if($i_mode == 5){  //Ubah Data Denda
-            $sql = "SELECT f_update_penalty_new($t_vat_setllement_id,$flag_piutang,$keyword,'$alasan','$uname') AS msg";
+            $sql = "SELECT f_update_penalty_new2($t_vat_setllement_id,$flag_piutang,$keyword,'$alasan','$uname') AS msg";
         } else if($i_mode == 6){ // Hapus Data Transaksi
             $sql = "SELECT f_del_payment_trans($t_vat_setllement_id,'$uname','$alasan', 0, '') AS msg";
             

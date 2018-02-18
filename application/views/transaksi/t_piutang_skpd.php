@@ -56,7 +56,7 @@
                 {label: 'ID',name: 't_vat_setllement_id', hidden: true ,width: 180, align: "left"},
                 {label: 'ID',name: 't_customer_order_id', hidden: true ,width: 180, align: "left"},
                 {label: 'ID',name: 'p_vat_type_id', hidden: true ,width: 180, align: "left"},
-				{label: 'Submit',width: 163,align: "center",
+				{label: 'Submit',width: 163,align: "center", hidden: true,
                     formatter:function(cellvalue, options, rowObject) {
                         var t_customer_order_id = rowObject['t_customer_order_id'];
                         var payment_key = rowObject['payment_key'];
@@ -346,6 +346,7 @@
                         return;
                     }else{
                         swal('Informasi', items.rows.o_result_msg, 'info');
+						$("#grid-table").trigger("reloadGrid");
                         return;
                     }
                 })
@@ -362,5 +363,9 @@
     function cetakStpd(t_vat_setllement_id,tgl_surat){
         var url = "<?php echo base_url(); ?>"+"cetak_formulir_stpd_pdf/pageCetak?t_vat_setllement_id="+t_vat_setllement_id+"&tgl_surat="+tgl_surat;
         openInNewTab(url);
+    }
+	
+	function openInNewTab(url) {
+        window.open(url, 'No Payment', 'left=0,top=0,width=500,height=500,toolbar=no,scrollbars=yes,resizable=yes');
     }
 </script>
