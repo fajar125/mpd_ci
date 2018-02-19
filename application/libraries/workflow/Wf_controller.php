@@ -1183,9 +1183,8 @@ class Wf_controller {
 		
         try {
 			
-			$sql = "SELECT COUNT(1) AS ada, wp_name FROM t_cust_account WHERE npwd = ?
-					GROUP BY wp_name";
-            $q = $table->db->query($sql, array($npwpd));
+			$sql = "SELECT COUNT(1) AS ada, wp_name FROM t_cust_account WHERE npwd = '".$npwpd."' GROUP BY wp_name";
+            $q = $table->db->query($sql);
 			$row = $q->row_array();
 			
 			if(isset($row['ada']) and $row['ada'] > 0) {
@@ -1195,14 +1194,26 @@ class Wf_controller {
 			}
 			
 			
-            $sql = "UPDATE t_vat_registration SET 
-                    npwpd = '".$npwpd."',
-                    reg_letter_no = '".$reg_letter_no."'
-                    WHERE  t_customer_order_id = ".$t_customer_order_id."
-                    AND t_vat_registration_id = ".$t_vat_registration_id;
+			//cek is data is from offline register, than rename uname
+			$sql_cek_sumber_data = "SELECT wp_user_pwd, request_from FROM t_vat_registration WHERE t_vat_registration_id = ".$t_vat_registration_id;
+			$q = $table->db->query($sql_cek_sumber_data);
+			$row = $q->row_array();
+			
+			if($row['request_from'] == 'online') {
+				//do not change username
+			}else {
+				$new_user_name = substr($row['wp_user_pwd'],0,3).'-'.$npwpd;
+				$sql = "UPDATE t_vat_registration SET 
+						npwpd = '".$npwpd."',
+						wp_user_name = '".$new_user_name."',
+						reg_letter_no = '".$reg_letter_no."'
+						WHERE  t_customer_order_id = ".$t_customer_order_id."
+						AND t_vat_registration_id = ".$t_vat_registration_id;
 
-            $table->db->query($sql);
+				$table->db->query($sql);
 
+			}
+			
             $result['success'] = true;
             $result['message'] = 'Data Berhasil Disimpan';
 

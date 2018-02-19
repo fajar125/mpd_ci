@@ -81,7 +81,12 @@ class T_vat_registration extends Abstract_model {
         $ci =& get_instance();
         $userdata = $ci->session->userdata;
         $uname = $userdata['app_user_name'];
-
+		
+		if($i_mode == 'I') {
+			$wpusername = generateRandomString(10);
+			$wpuserpwd = generateRandomString(10);
+		}
+	
         $sql = "SELECT * FROM f_crud_vat_reg_new('$icode' ,'$uname',$cusorderid,$regionidkel,$regionidkec,$regionid,$regionidkelown,$regionidkecown,$regionidown,'$companyname' ,'$addressname' ,$jobid,'$companybrand' ,'$addressno' ,'$addressrt' ,'$addressrw' ,'$addressnoown' ,'$addressrtown' ,'$addressrwown' ,'$phoneno' ,'$faxno' ,'$zipcode','$phonenoown','$companyown' ,'$mobilenoown' ,'$faxnoown' ,'$zipcodeown' ,'$mobileno' ,'$addressnameown' ,'$i_email' ,$vattypedtlid,'$wpusername' ,'$wpuserpwd' ,'$wpname' ,'$wpaddressname' ,'$wpaddressno' ,'$wprt' ,'$wprw' ,'$wpkel','$wpkec','$wpkota','$wpphoneno' ,'$wpmobileno' ,'$wpfaxno' ,'$wpzipcode' , '$wpemail' ,'$brandaddress' ,'$brandno' ,'$brandrt' ,'$brandrw' ,'$brandkel','$brandkec','$brandkota','$brandphoneno' ,'$brandmobileno' ,'$brandfaxno' ,'$brandzipcode' ,$idvat,$questionid,'$privateanswer' ,'$i_mode')";
         
         $query = $this->db->query($sql);

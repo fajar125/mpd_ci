@@ -231,14 +231,14 @@ $("#tab-1").on("click", function(event) {
                 <div class="row">
                     <label class="control-label col-md-3">Username</label>
                     <div class="input-group col-md-5">
-                            <input type="text" class="form-control required" name="wp_user_name" id="wp_user_name">
+                            <input type="text" class="form-control" readonly="" name="wp_user_name" id="wp_user_name" placeholder="Generate By System">
                         </div>
                 </div>
                 <div class="space-2"></div>
                 <div class="row">
                     <label class="control-label col-md-3">Password</label>
                         <div class="input-group col-md-5">
-                            <input type="password" class="form-control required" name="wp_user_pwd" id="wp_user_pwd">                            
+                            <input type="password" class="form-control" readonly="" name="wp_user_pwd" id="wp_user_pwd" placeholder="Generate By System">                            
                         </div>
                 </div>
             </div>
@@ -935,14 +935,16 @@ $("#tab-1").on("click", function(event) {
             swal('Informasi',"Nama Ayat harus diisi",'info'); 
             return;
         }
+		/*
         if (wp_user_name == "" || wp_user_name == 0 || wp_user_name == false || wp_user_name == undefined ||  wp_user_name == null){
-            swal('Informasi',"Nama Wajib Pajak harus diisi",'info'); 
+            swal('Informasi',"Username harus diisi",'info'); 
             return;
         }
         if (wp_user_pwd == "" || wp_user_pwd == 0 || wp_user_pwd == false || wp_user_pwd == undefined ||  wp_user_pwd == null){
-            swal('Informasi',"Nama Wajib Pajak harus diisi",'info'); 
+            swal('Informasi',"Password harus diisi",'info'); 
             return;
-        }
+        }*/
+		
         if (wp_name == "" || wp_name == 0 || wp_name == false || wp_name == undefined ||  wp_name == null){
             swal('Informasi',"Nama Wajib Pajak harus diisi",'info'); 
             return;
