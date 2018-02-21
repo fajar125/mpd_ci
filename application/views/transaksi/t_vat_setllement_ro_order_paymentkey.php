@@ -246,7 +246,7 @@ function showData(){
         
         $.getJSON(var_url, function( items ) {
             //swal('Informasi',items.rows.o_mess,'info'); 
-            
+            var totaltotal = parseFloat(items.rows[0].total_vat_amount)+ parseFloat(items.rows[0].total_penalty_amount); 
             $('#settlement_type_code').val(items.rows[0].settlement_type_code); 
             $('#order_no').val(items.rows[0].order_no); 
             $('#receipt_no').val(items.rows[0].receipt_no);  
@@ -261,7 +261,7 @@ function showData(){
             $('#total_trans_amount').val(items.rows[0].total_trans_amount);
             $('#total_vat_amount').val(items.rows[0].total_vat_amount); 
             $('#total_penalty_amount').val(items.rows[0].total_penalty_amount); 
-            
+            $('#total_total').val(totaltotal);  
             $('#due_date').val(items.rows[0].due_date);
             $('#payment_type').val(items.rows[0].p_payment_type_id); 
             $('#is_anomali').val(items.rows[0].is_anomali); 
@@ -269,9 +269,7 @@ function showData(){
 			
 			if(items.rows[0].is_settled == 'Y') $('#status_bayar').val('Lunas');
 			else $('#status_bayar').val('Belum Bayar');
-			
-			var totaltotal = items.rows[0].total_vat_amount+ items.rows[0].total_penalty_amount; 
-			$('#total_total').val(totaltotal);  
+
         })
 }
 
