@@ -129,11 +129,11 @@ class Reset_pass_wp_controller {
                 $output.='<th>JENIS PAJAK</th>';
             $output.='</tr>';
 
-
+            $no = 1;
 
             foreach ($results as $result) {
                 $output .= '<tr>';
-                    $output .= '<td valign="top">'.$result['no'].'</td>';
+                    $output .= '<td valign="top">'.$no++.'</td>';
                     $output .= '<td valign="top">'.$result['npwpd'].'</td>';
                     $output .= '<td valign="top">'.$result['nama_wp'].'</td>';
                     $output .= '<td valign="top">'.$result['username'].'</td>';
