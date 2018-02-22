@@ -42,7 +42,7 @@
                     <label class="control-label col-md-3">Periode Tahun</label>
                     <div class="col-md-5">
                         <div class="input-group">
-                            <input id="form_year_period_id" type="text"  style="display:none;">
+                            <input id="form_year_period_id" type="text"  style="display:none;" onchange="clearPeriod()">
                             <input id="form_year_code" readonly type="text" class="FormElement form-control" placeholder="Pilih Periode Tahun">
                             <span class="input-group-btn">
                                 <button class="btn btn-success" type="button"  onclick="showLOVYearPeriod('form_year_period_id','form_year_code')">
@@ -57,7 +57,7 @@
                     <label class="control-label col-md-3">Periode</label>
                     <div class="col-md-5">
                         <div class="input-group">
-                            <input id="form_finance_period_id" type="text"  style="display:none;" onchange="showPiutang($('#form_cust_account_id').val(), $('#form_finance_period_id').val())">
+                            <input id="form_finance_period_id" type="text"  style="display:none;" >
                             <input id="form_finance_code" readonly type="text" class="FormElement form-control" placeholder="Pilih Periode">
                             <span class="input-group-btn">
                                 <button class="btn btn-success" type="button" id="btn-lov-period" onclick="showLOVFinancePeriod('form_finance_period_id','form_finance_code', 'valid_from', 'valid_to')">
@@ -128,7 +128,7 @@
                     <label class="control-label col-md-3">Jumlah Omset</label>
                     <div class="col-md-5">
                         <div class="input-group">
-                            <input type="number" class="form-control" name="total_trans_amount" id="total_trans_amount">                 
+                            <input type="text" style="text-align: right;" class="form-control" name="total_trans_amount" id="total_trans_amount">                 
                         </div>
                     </div>
                 </div>
@@ -137,7 +137,7 @@
                     <label class="control-label col-md-3">Jumlah Kamar/Kursi Terjual</label>
                     <div class="col-md-5">
                         <div class="input-group">
-                            <input type="number" class="form-control" name="qty_room_sold" id="qty_room_sold">                 
+                            <input type="text" style="text-align: right;" class="form-control" name="qty_room_sold" id="qty_room_sold">                 
                         </div>
                     </div>
                 </div>
@@ -195,9 +195,22 @@
             multiboxonly: true,
             caption: "Informasi Pajak Belum Bayar"
         });
-        
-    });    
+p    });    
 </script> -->
+<script>
+    function clearPeriod(){
+         $('#valid_from').val('');
+         $('#valid_to').val('');
+         $('#form_finance_period_id').val('');
+         $('#form_finance_code').val('');
+    }
+    
+</script>
+
+<script>
+    $("#total_trans_amount").number(true,0,'.',',');
+    $("#qty_room_sold").number(true,0,'.',',');
+</script>
 
 <script> 
     $('#valid_from').datepicker({ // mengambil dari class datepicker
