@@ -297,7 +297,7 @@
     function setDaftar_customer(rowid){
         var p_app_user_id = $('#grid-table').jqGrid('getCell', rowid, 'p_app_user_id');
         var app_user_name = $('#grid-table').jqGrid('getCell', rowid, 'app_user_name');
-        var full_name = $('#grid-table').jqGrid('getCell', rowid, 'full_name');
+        var full_name = $('#grid-table').jqGrid('getCell', rowid, 'company_brand');
         var email_address = $('#grid-table').jqGrid('getCell', rowid, 'email_address');
         var p_user_status_id = $('#grid-table').jqGrid('getCell', rowid, 'p_user_status_id');
         var is_employee = $('#grid-table').jqGrid('getCell', rowid, 'is_employee');
