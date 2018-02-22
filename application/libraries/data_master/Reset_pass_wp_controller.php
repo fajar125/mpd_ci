@@ -112,9 +112,6 @@ class Reset_pass_wp_controller {
             startExcel("view_username_pass.xls");
         
             $output = '';
-            
-            $output .= '<h2 style="text-align: center;">DAFTAR USER</h2>';
-
             $output .='<table  border="1">';
 
             $output.='<tr>';
