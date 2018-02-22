@@ -76,6 +76,31 @@ class Reset_pass_wp extends Abstract_model {
         return $data['new_pass'];
     }
 
+    function get_pass(){
+        $ci =& get_instance();
+        $userdata = $ci->session->userdata;
+        $sql = "SELECT a.t_customer_user_id as NO,
+                        c.npwd as NPWPD,
+                        c.wp_name NAMA_WP,
+                        a.user_name USERNAME,
+                        a.origin_password as PASSWORD,
+                        b.company_owner as NAMA_PEMILIK,
+                        b.email_address as EMAIL,
+                        c.company_brand MEREK_DAGANG,
+                        e.vat_code as JENIS_PAJAK
+
+                        from sikp.t_customer_user a
+                        left join t_customer b on b.t_customer_id = a.t_customer_id
+                        left join t_cust_account c on c.t_customer_id = a.t_customer_id
+                        left join p_app_user d on a.p_app_user_id = d.p_app_user_id
+                        left join p_vat_type_dtl e on c.p_vat_type_dtl_id = e.p_vat_type_dtl_id
+                        where c.p_account_status_id = 1
+                        order by a.t_customer_user_id asc";
+        $query = $this->db->query($sql);
+        $data = $query->result_array();
+        return $data;
+    }
+
 }
 
 /* End of file Reset_pass_wp.php */

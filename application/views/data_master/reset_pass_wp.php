@@ -26,6 +26,7 @@
         </div>
         <input type="hidden" name="t_customer_id" id="t_customer_id">
         <input type="hidden" name="t_cust_account_id" id="t_cust_account_id">
+        <button class="btn btn-success" type="button" onclick="toExcel()" id="excel">Tampilkan Excel</button>
         <div class="tab-content no-border">
             <div class="row">
                 <div class="col-md-12">
@@ -38,6 +39,16 @@
     </div>
 </div>
 <script>
+
+    function toExcel() {
+
+        // alert("Convert to Excel");
+        var url = "<?php echo WS_JQGRID . "data_master.reset_pass_wp_controller/excel/?"; ?>";
+        url += "<?php echo $this->security->get_csrf_token_name(); ?>=<?php echo $this->security->get_csrf_hash(); ?>";
+
+
+        window.location = url;
+    }
 
     $.ajax({
             url: "<?php echo base_url().'reset_pass_wp/load_combo_status_readonly/'; ?>" ,

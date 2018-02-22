@@ -97,6 +97,86 @@ class Reset_pass_wp_controller {
         exit;
 
     }
+
+    function excel() {
+    
+        try{
+            
+            $ci = &get_instance();
+            $ci->load->model('data_master/reset_pass_wp');
+            $table = $ci->reset_pass_wp;
+
+            $results =  $table->get_pass();
+            //print_r($results); exit();
+
+            startExcel("view_username_pass.xls");
+        
+            $output = '';
+            
+            $output .= '<h2 style="text-align: center;">DAFTAR USER</h2>';
+
+            $output .='<table  border="1">';
+
+            $output.='<tr>';
+                $output.='<th>NO</th>';
+                $output.='<th>NPWPD</th>';
+                $output.='<th>NAMA WP</th>';
+                $output.='<th>USERNAME</th>';
+                $output.='<th>PASSWORD</th>';
+                $output.='<th>NAMA PEMILIK</th>';
+                $output.='<th>EMAIL</th>';
+                $output.='<th>MEREK DAGANG</th>';
+                $output.='<th>JENIS PAJAK</th>';
+            $output.='</tr>';
+
+
+
+            foreach ($results as $result) {
+                $output .= '<tr>';
+                    $output .= '<td>'.$result['no'].'</td>';
+                    $output .= '<td>'.$result['npwpd'].'</td>';
+                    $output .= '<td>'.$result['nama_wp'].'</td>';
+                    $output .= '<td>'.$result['username'].'</td>';
+                    $output .= '<td>'.$result['password'].'</td>';
+                    $output .= '<td>'.$result['nama_pemilik'].'</td>';
+                    $output .= '<td>'.$result['email'].'</td>';
+                    $output .= '<td>'.$result['merek_dagang'].'</td>';
+                    $output .= '<td>'.$result['jenis_pajak'].'</td>';
+                $output .='</tr>';
+            }
+            
+            /*for ($i=0; $i <count($result) ; $i++) { 
+                $output .= '<tr>';
+                
+                $output .= '<td>'.$result[$i]['no'].'</td>';
+                $output .= '<td>'.$result[$i]['npwpd'].'</td>';
+                $output .= '<td>'.$result[$i]['nama_wp'].'</td>';
+                $output .= '<td>'.$result[$i]['username'].'</td>';
+                $output .= '<td>'.$result[$i]['password'].'</td>';
+                $output .= '<td>'.$result[$i]['nama_pemilik'].'</td>';
+                $output .= '<td>'.$result[$i]['email'].'</td>';
+                $output .= '<td>'.$result[$i]['merek_dagang'].'</td>';
+                $output .= '<td>'.$result[$i]['jenis_pajak'].'</td>';
+                
+                
+                
+                $output.='</tr>';
+                # code...
+            }
+            */
+            $output.='</table>';
+
+            //print_r($item['avg_tap']); exit();
+            
+            echo $output;
+                exit;
+        } catch(Exception $e){
+            echo $e->getMessage();
+                exit;
+        }
+
+
+    }
 }
 
     
