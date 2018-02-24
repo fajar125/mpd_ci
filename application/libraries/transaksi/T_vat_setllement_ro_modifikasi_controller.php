@@ -14,17 +14,18 @@ class T_vat_setllement_ro_modifikasi_controller {
         $sord = getVarClean('sord','str','desc');
 
         $s_keyword = getVarClean('s_keyword','str','');
+        $status_bayar = getVarClean('status_bayar','str','');
 
         $data = array('rows' => array(), 'page' => 1, 'records' => 0, 'total' => 1, 'success' => true, 'message' => '');
 
-        
+
             try {
 
                 $ci = & get_instance();
                 $ci->load->model('transaksi/t_vat_setllement_ro_modifikasi');
                 $table = $ci->t_vat_setllement_ro_modifikasi;
 
-                
+
                 if( isset($_REQUEST['searchField'])){
                     if($_REQUEST['searchField']=='npwd') {
                         $_REQUEST['searchField']='x.npwd';
@@ -43,7 +44,7 @@ class T_vat_setllement_ro_modifikasi_controller {
                     }
                 }
 
-                
+
 
                 $req_param = array(
                     "sort_by" => $sidx,
@@ -62,11 +63,19 @@ class T_vat_setllement_ro_modifikasi_controller {
                 // Filter Table
 
                 $req_param['where'] = array();
-                $req_param['where'][] = "( upper(d.wp_name) LIKE upper('%".$s_keyword."%') OR 
+                $req_param['where'][] = "( upper(d.wp_name) LIKE upper('%".$s_keyword."%') OR
                       upper(a.npwd) LIKE upper('%".$s_keyword."%') OR
                       upper(a.no_kohir) LIKE upper('%".$s_keyword."%') OR
                       upper(a.payment_key) LIKE upper('%".$s_keyword."%')
                     )";
+
+                if($status_bayar != "") {
+                    if($status_bayar == 'belum_bayar') {
+                        $req_param['where'][] = "f.receipt_no is null";
+                    }else {
+                        $req_param['where'][] = "f.receipt_no is not null";
+                    }
+                }
 
                 $table->setJQGridParam($req_param);
                 $count = $table->countAll();
@@ -96,7 +105,7 @@ class T_vat_setllement_ro_modifikasi_controller {
             }catch (Exception $e) {
                 $data['message'] = $e->getMessage();
             }
-        
+
 
         return $data;
     }
@@ -104,10 +113,10 @@ class T_vat_setllement_ro_modifikasi_controller {
     function readData(){
         $t_vat_setllement_id = getVarClean('t_vat_setllement_id','int',0);
         $i_mode = getVarClean('i_mode','int',0);
-        
+
 
         $data = array('rows' => array(), 'page' => 1, 'records' => 0, 'total' => 1, 'success' => false, 'message' => '');
-        
+
         try {
 
             $ci = & get_instance();
@@ -115,7 +124,7 @@ class T_vat_setllement_ro_modifikasi_controller {
             $table = $ci->t_vat_setllement_ro_modifikasi;
 
             $result = $table->getData($t_vat_setllement_id, $i_mode) ;
-            
+
             $data['rows'] = $result;
             $data['success'] = true;
 
@@ -135,7 +144,7 @@ class T_vat_setllement_ro_modifikasi_controller {
         $i_mode = getVarClean('i_mode','int',0);
 
         $data = array('rows' => array(), 'page' => 1, 'records' => 0, 'total' => 1, 'success' => false, 'message' => '');
-        
+
         try {
 
             $ci = & get_instance();
@@ -143,7 +152,7 @@ class T_vat_setllement_ro_modifikasi_controller {
             $table = $ci->t_vat_setllement_ro_modifikasi;
 
             $result = $table->ubahData($t_vat_setllement_id, $keyword, $alasan, $flag_piutang, $i_mode);
-            
+
             $data['rows'] = $result;
             $data['success'] = true;
 
@@ -157,10 +166,10 @@ class T_vat_setllement_ro_modifikasi_controller {
 
     function readDataTgl(){
         $t_vat_setllement_id = getVarClean('t_vat_setllement_id','int',0);
-        
+
 
         $data = array('rows' => array(), 'page' => 1, 'records' => 0, 'total' => 1, 'success' => false, 'message' => '');
-        
+
         try {
 
             $ci = & get_instance();
@@ -168,7 +177,7 @@ class T_vat_setllement_ro_modifikasi_controller {
             $table = $ci->t_vat_setllement_ro_modifikasi;
 
             $result = $table->getDataTgl($t_vat_setllement_id) ;
-            
+
             $data['rows'] = $result;
             $data['success'] = true;
 
@@ -183,7 +192,7 @@ class T_vat_setllement_ro_modifikasi_controller {
     function updateTgl(){
         $t_vat_setllement_id = getVarClean('t_vat_setllement_id','int',0);
         $settlement_date_new = getVarClean('settlement_date_new','string',0);
-        $alasan = getVarClean('alasan','int',0); 
+        $alasan = getVarClean('alasan','int',0);
 
         $data = array('rows' => array(), 'page' => 1, 'records' => 0, 'total' => 1, 'success' => false, 'message' => '');
 
@@ -194,7 +203,7 @@ class T_vat_setllement_ro_modifikasi_controller {
             $table = $ci->t_vat_setllement_ro_modifikasi;
 
             $result = $table->ubahTgl($t_vat_setllement_id, $settlement_date_new,$alasan) ;
-            
+
             $data['rows'] = $result;
             $data['success'] = true;
 

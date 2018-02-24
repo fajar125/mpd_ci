@@ -14,14 +14,23 @@
 <div class="space-4"></div>
 <div class="row">
     <label class="control-label col-md-4">Nama WP/ NPWD / No Kohir / No.Pembayaran :</label>
-    <div class="col-md-3">   
+    <div class="col-md-3">
         <div class="input-group">
             <div class="input-group">
             <input id="s_keyword" type="text" class="FormElement form-control">
             <span class="input-group-btn">
                 <button class="btn btn-success" type="button" id="btn-search" onclick="showData()">Cari</button>
             </span>
-            </div>            
+            </div>
+        </div>
+    </div>
+    <div class="col-md-3">
+        <div class="input-group">
+            <select name="status_bayar" id="status_bayar" class="form-control">
+                <option value="">Status Bayar (Semua)</option>
+                <option value="belum_bayar">Belum Bayar</option>
+                <option value="sudah_bayar">Sudah Bayar</option>
+            </select>
         </div>
     </div>
 </div>
@@ -34,25 +43,26 @@
         <div class="col-xs-12">
             <div id="gbox_grid-table" class="ui-jqgrid">
                 <div id="gview_grid-table" class="ui-jqgrid-view table-responsive" role="grid">
-                    <table id="grid-table"></table>   
-                    <div id="grid-pager"></div>            
+                    <table id="grid-table"></table>
+                    <div id="grid-pager"></div>
                 </div>
-            </div>            
+            </div>
         </div>
     </div>
 </div>
 
-<script type="text/javascript">
-    /*var s_keyword = $('#s_keyword').val();
-    if (s_keyword == "" || s_keyword == 0 || s_keyword == false || s_keyword == undefined ||  s_keyword == null){
-        $ ("#tabel_id").hide();
-    }else{
-        $ ("#tabel_id").show();
-    }*/
-    
+<script>
+    $('#status_bayar').change(function() {
+
+        $("#grid-table").jqGrid('setGridParam', {
+            url: '<?php echo WS_JQGRID."transaksi.t_vat_setllement_ro_modifikasi_controller/read"; ?>',
+            postData: {status_bayar: $(this).val()}
+        });
+        $("#grid-table").trigger("reloadGrid");
+    });
 </script>
- 
-<?php $this->load->view('lov/lov_ubah_data'); ?> 
+
+<?php $this->load->view('lov/lov_ubah_data'); ?>
 
 <script>
 
@@ -69,13 +79,14 @@
                 {label: 'ID', name: 't_vat_setllement_id', key: true, width: 5, sorttype: 'number', editable: true, hidden: true},
                 {label: 'ID CUST', name: 't_customer_order_id',  width: 5, sorttype: 'number', hidden: true},
 				{label: 'receipt no',name: 'receipt_no', hidden: true ,width: 20, align: "left"},
-				{label: 'Status Bayar',width: 163,align: "center",
+				{label: 'Status Bayar',width: 120,align: "center",
                     formatter:function(cellvalue, options, rowObject) {
                         var receipt_no = rowObject['receipt_no'];
                         if(receipt_no == '' || receipt_no == null) return '<span class="red"><strong>Belum Bayar</strong></span>';
-						return '<span class="green"><strong>Sudah Bayar</strong></span>';                        
+						return '<span class="green"><strong>Sudah Bayar</strong></span>';
                     }
                 },
+                {label: 'Ayat Pajak',name: 'vat_code', hidden: false ,width: 120, align: "left"},
                 {label: 'Merk Dagang',name: 'company_brand',width: 200, align: "left"},
                 {label: 'NPWPD',name: 'npwd',width: 110, align: "left"},
                 {label: 'No Order',name: 'order_no',width: 80, align: "left"},
@@ -84,7 +95,8 @@
                 {label: 'Total Transaksi',name: 'total_trans_amount',width: 120, align: "right",formatter:'currency', formatoptions: {prefix:"", thousandsSeparator:'.'}},
                 {label: 'Total Pajak',name:'total_vat_amount',width: 120, align: "right",formatter:'currency', formatoptions: {prefix:"", thousandsSeparator:'.'}},
                 {label: 'Denda',name:'total_penalty_amount',width: 120, align: "right",formatter:'currency', formatoptions: {prefix:"", thousandsSeparator:'.'}},
-                {label: 'No. Kohir',name: 'no_kohir',width: 100, align: "left",editable: false},
+                {label: 'Tgl. Lapor',name: 'settlement_date',width: 130, align: "left",editable: false},
+                {label: 'Tgl. Bayar',name: 'payment_date',width: 130, align: "left",editable: false},
                 {label: 'No. Bayar',name: 'payment_key',width: 100, align: "left",editable: false},
                 {label: 'Dibuat Oleh',name: 'created_by',width: 100, align: "left",editable: false},
 				{name: 'Cetak No. Bayar',width: 150, align: "center",
@@ -99,14 +111,14 @@
                     formatter:function(cellvalue, options, rowObject) {
                         var val = rowObject['receipt_no'];
 						if(val == '' || val == null) return '';
-						
+
 						var payment_key = rowObject['payment_key'];
                         var url = '<?php echo base_url(); ?>'+'cetak_registrasi_payment_large_arial/pageCetak?payment_key='+payment_key;
                         return '<a class="btn btn-success btn-xs" href="#" onclick="PopupCenter(\''+url+'\',\'No. Kuitansi\',500,500);"><i class="fa fa-print"></i>Cetak Kuitansi</a>';
 
                     }
                 },
-				
+
                 {name: 'Hapus Transaksi',width: 160, align: "center",
                     formatter:function(cellvalue, options, rowObject) {
                         var val = rowObject['t_vat_setllement_id'];
@@ -138,7 +150,7 @@
 
                     }
                 },
-				
+
                 {name: 'Ubah Ketetapan',width: 160, align: "center",
                     formatter:function(cellvalue, options, rowObject) {
                         var val = rowObject['t_vat_setllement_id'];

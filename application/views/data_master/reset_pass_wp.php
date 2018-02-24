@@ -19,7 +19,7 @@
                 <li class="active">
                     <a href="javascript:;" data-toggle="tab" aria-expanded="true" id="tab-1">
                         <i class="blue"></i>
-                        <strong> ADMINISTRASI USER </strong>
+                        <strong> List Username &amp; Password </strong>
                     </a>
                 </li>
             </ul>
@@ -34,7 +34,7 @@
                     <div id="grid-pager"></div>
                 </div>
             </div>
-            <div class="space-4"></div>  
+            <div class="space-4"></div>
         </div>
     </div>
 </div>
@@ -52,7 +52,7 @@
 
     $.ajax({
             url: "<?php echo base_url().'reset_pass_wp/load_combo_status_readonly/'; ?>" ,
-            type: "POST",            
+            type: "POST",
             data: {},
             success: function (data) {
                 $( "#comboStatus" ).html( data );
@@ -72,16 +72,21 @@
             mtype: "POST",
             colModel: [
                 {label: 'ID', name: 'p_app_user_id', key: true, width: 5, sorttype: 'number', editable: true, hidden: true},
-                
-                {label: 'Nama User',name: 'app_user_name',width: 150, align: "left",editable: false,
+
+                {label: 'Username WP',name: 'app_user_name',width: 150, align: "left",editable: false,
                     editoptions: {
                         size: 30,
                         maxlength:32
                     },
                     editrules: {required: true}
                 },
-                
-
+                 {label: 'Password',name: 'origin_password',width: 150, align: "left",editable: false,
+                    editoptions: {
+                        size: 30,
+                        maxlength:32
+                    },
+                    editrules: {required: true}
+                },
                 {label: 'NPWPD',name: 'npwd',width: 200, align: "left",editable: false,
                     editoptions: {
                         size: 30,
@@ -89,13 +94,13 @@
                     }
                 },
 
-                {label: 'Nama Lengkap',name: 'company_brand',width: 200, align: "left",editable: false,
+                {label: 'Merek Dagang',name: 'company_brand',width: 200, align: "left",editable: false,
                     editoptions: {
                         size: 60,
                         maxlength:255
                     }
                 },
-                {label: 'Deskripsi',name: 'description',width: 200, align: "left",editable: false,
+                {label: 'Ayat Pajak',name: 'ayat_pajak',width: 200, align: "left",editable: false,
                     editoptions: {
                         size: 60,
                         maxlength:255
@@ -126,9 +131,9 @@
             onSelectRow: function (rowid) {
                 /*do something when selected*/
                 //alert(rowid);
-                
+
                 setDaftar_customer(rowid);
-                
+
 
             },
             sortorder:'',
@@ -149,7 +154,7 @@
             },
             //memanggil controller jqgrid yang ada di controller crud
             editurl: '<?php echo WS_JQGRID."data_master.reset_pass_wp_controller/read"; ?>',
-            caption: "ADMINISTRASI USER"
+            caption: "List Username WP"
 
         });
 
@@ -201,7 +206,7 @@
                 }
             },
             {
-                
+
                 editData : {
                     t_customer_id: function() {
                         return <?php echo $this->input->post('t_customer_id'); ?>;
@@ -307,7 +312,7 @@
         var expired_user = $('#grid-table').jqGrid('getCell', rowid, 'expired_user');
         var expired_pwd = $('#grid-table').jqGrid('getCell', rowid, 'expired_pwd');
         var last_login_time = $('#grid-table').jqGrid('getCell', rowid, 'last_login_time');
-        
+
         $('#p_app_user_id').val(p_app_user_id);
         $('#app_user_name').val(app_user_name);
         $('#full_name').val(full_name);
@@ -324,11 +329,16 @@
 
     function resetPass(){
         var p_app_user_id = $('#p_app_user_id').val();
+
+        var grid_table = $('#grid-table');
+        var selRowId = grid_table.jqGrid ('getGridParam', 'selrow');
+        var app_user_name = grid_table.jqGrid ('getCell', selRowId, 'app_user_name');
+
         swal({
             title: 'Apakah Anda Yakin?',
             type: 'info',
             html: true,
-            text: 'Anda Tidak Akan Bisa Mengembalikan Aksi Ini!',
+            text: 'Anda Tidak Akan Bisa Mengembalikan Aksi Ini. Apakah Anda yakin untuk mereset password untuk user : ' + app_user_name + ' ? ',
             showCancelButton: true,
             confirmButtonColor: "#DD6B55",
             confirmButtonText: "Ya",
@@ -348,7 +358,7 @@
                     }else{
                         swal({title: "Error!", text: data.message, html: true, type: "error"});
                     }
-                    
+
                 },
                 error: function (xhr, status, error) {
                     swal({title: "Error!", text: xhr.responseText, html: true, type: "error"});
@@ -367,15 +377,15 @@
                 <div class="col-md-3">
                     <div class="input-group">
                         <div class="input-group">
-                            <input type="hidden" class="form-control" name="p_app_user_id" id="p_app_user_id" readonly="true"> 
-                            <input type="text" class="form-control" name="app_user_name" id="app_user_name" readonly="true">                 
+                            <input type="hidden" class="form-control" name="p_app_user_id" id="p_app_user_id" readonly="true">
+                            <input type="text" class="form-control" name="app_user_name" id="app_user_name" readonly="true">
                         </div>
                     </div>
                 </div>
             </div>
             <div class="space-2"></div>
             <div class="row">
-                <label class="control-label col-md-3">Nama Lengkap</label>
+                <label class="control-label col-md-3">Merek Dagang</label>
                 <div class="col-md-7">
                     <div class="input-group col-md-7">
                         <input type="text" class="form-control" name="full_name" id="full_name"  readonly="true">
@@ -396,7 +406,7 @@
                 <label class="control-label col-md-3">Status</label>
                 <div class="col-md-3">
                     <div class="input-group">
-                        <div id="comboStatus"></div>                           
+                        <div id="comboStatus"></div>
                     </div>
                 </div>
             </div>
@@ -443,7 +453,7 @@
                     </div>
                 </div>
             </div>
-            
+
             <div class="space-2"></div>
             <div class="row">
                 <label class="control-label col-md-3">Expired User</label>
@@ -461,7 +471,7 @@
                     <div class="input-group">
                         <input type="text" class="form-control" name="expired_pwd" id="expired_pwd" readonly="true">
                     </div>
-                </div>   
+                </div>
             </div>
 
             <div class="space-2"></div>

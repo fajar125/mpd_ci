@@ -250,12 +250,50 @@ $(function() {
             swal('Informasi',"Tipe Ayat harus diisi",'info');
             return;
         }
-        
-		/*if (jml_omset == "" || jml_omset == false || jml_omset == undefined ||  jml_omset == null){
-            swal('Informasi',"Jumlah Omset harus diisi",'info');
-            return;
-        }*/
 
+		if (jml_omset == "" || jml_omset == false || jml_omset == undefined ||  jml_omset == null){
+            swal({
+                title: 'Apakah Anda Yakin?',
+                type: 'info',
+                html: true,
+                text: 'Jumlah Omzet yg diinputkan adalah 0 (Nihil). Apakah Anda yakin untuk melanjutkan dengan ketetapan SKPDN(Nihil) ?',
+                showCancelButton: true,
+                confirmButtonColor: "#DD6B55",
+                confirmButtonText: "Ya",
+                cancelButtonText: "Tidak",
+                confirmButtonClass: 'btn btn-success',
+                cancelButtonClass: 'btn btn-danger',
+                closeOnConfirm: false,
+                closeOnCancel:true
+            },
+            function(isConfirm){
+                if(isConfirm) submitPelaporanPajak();
+            });
+        }else {
+            submitPelaporanPajak();
+        }
+
+    }
+
+</script>
+
+
+<script>
+
+    function submitPelaporanPajak() {
+
+        var cust_acc_id = $('#form_cust_account_id').val();
+        var npwpd = $('#form_npwpd').val();
+        var nama = $('#company_brand').val();
+        var year_period = $('#form_year_period_id').val();
+        var finance_period = $('#form_finance_period_id').val();
+        var ayat = $('#form_vat_id').val();
+        var tipe_ayat = $('#form_vat_dtl_id').val();
+        var kelas = $('#form_class_id').val();
+        var jml_omset = $('#total_trans_amount').val();
+        var jml_kamar = $('#qty_room_sold').val();
+        var start_period = $('#valid_from').val();
+        var end_period = $('#valid_to').val();
 
         var var_url = "<?php echo WS_JQGRID . "transaksi.t_vat_setlement_manual_controller/insertUpdate/?"; ?>";
         var_url += "<?php echo $this->security->get_csrf_token_name(); ?>=<?php echo $this->security->get_csrf_hash(); ?>";

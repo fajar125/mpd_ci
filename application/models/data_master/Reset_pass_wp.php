@@ -12,29 +12,32 @@ class Reset_pass_wp extends Abstract_model {
 
     public $fields          = array();
 
-    public $selectClause    = " b.p_app_user_id, 
-                                app_user_name, 
-                                b.user_pwd, 
-                                c.company_brand, 
-                                email_address, 
-                                b.p_user_status_id, 
-                                b.description, 
-                                ip_address_v4, 
+    public $selectClause    = " b.p_app_user_id,
+                                app_user_name,
+                                a.origin_password,
+                                c.company_brand,
+                                c.wp_email as email_address,
+                                b.p_user_status_id,
+                                b.description,
+                                ip_address_v4,
                                 ip_address_v6,
-                                to_char(expired_user,'DD-MON-YYYY') AS expired_user, 
-                                to_char(expired_pwd,'DD-MON-YYYY') AS expired_pwd, 
+                                to_char(expired_user,'DD-MON-YYYY') AS expired_user,
+                                to_char(expired_pwd,'DD-MON-YYYY') AS expired_pwd,
                                 last_login_time,
-                                fail_login_trial, to_char(b.creation_date,'DD-MON-YYYY') AS creation_date, 
-                                b.created_by, 
+                                fail_login_trial, to_char(b.creation_date,'DD-MON-YYYY') AS creation_date,
+                                b.created_by,
                                 to_char(b.updated_date,'DD-MON-YYYY') AS updated_date,
-                                b.updated_by, 
-                                is_employee , 
-                                c.npwd";
+                                b.updated_by,
+                                is_employee ,
+                                c.npwd,
+                                d.vat_code ayat_pajak";
     public $fromClause      = "t_customer_user a
-                                left join p_app_user b 
+                                left join p_app_user b
                                     on a.p_app_user_id=b.p_app_user_id
-                                left join t_cust_account c 
-                                    on a.t_customer_id = c.t_customer_id";
+                                left join t_cust_account c
+                                    on a.t_customer_id = c.t_customer_id
+                                left join p_vat_type_dtl d
+                                    on c.p_vat_type_dtl_id = d.p_vat_type_dtl_id";
 
     public $refs            = array();
 
@@ -54,7 +57,7 @@ class Reset_pass_wp extends Abstract_model {
             $this->record['created_by'] = $userdata['app_user_name'];*/
             $this->record['updated_date'] = date('Y-m-d');
             $this->record['updated_by'] = $userdata['app_user_name'];
-            
+
             $this->record[$this->pkey] = $this->generate_id($this->table, $this->pkey);
 
         }else {

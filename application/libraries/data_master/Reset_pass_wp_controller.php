@@ -6,7 +6,7 @@ class Reset_pass_wp_controller {
 
         $page = getVarClean('page','int',1);
         $limit = getVarClean('rows','int',5);
-        $sidx = getVarClean('sidx','str','user_name');
+        $sidx = getVarClean('sidx','str','a.t_customer_user_id');
         $sord = getVarClean('sord','str','asc');
 
         $data = array('rows' => array(), 'page' => 1, 'records' => 0, 'total' => 1, 'success' => false, 'message' => '');
@@ -18,7 +18,7 @@ class Reset_pass_wp_controller {
             $table = $ci->reset_pass_wp;
 
             $req_param = array(
-                "sort_by" =>$sidx, // tidak di sort by 
+                "sort_by" =>$sidx, // tidak di sort by
                 "sord" => $sord,// tidak di sord
                 "limit" => null,
                 "field" => null,
@@ -99,9 +99,9 @@ class Reset_pass_wp_controller {
     }
 
     function excel() {
-    
+
         try{
-            
+
             $ci = &get_instance();
             $ci->load->model('data_master/reset_pass_wp');
             $table = $ci->reset_pass_wp;
@@ -110,7 +110,7 @@ class Reset_pass_wp_controller {
             //print_r($results); exit();
 
             startExcel("view_username_pass.xls");
-        
+
             $output = '';
             $output .='<table  border="1">';
 
@@ -141,10 +141,10 @@ class Reset_pass_wp_controller {
                     $output .= '<td valign="top">'.$result['jenis_pajak'].'</td>';
                 $output .='</tr>';
             }
-            
-            /*for ($i=0; $i <count($result) ; $i++) { 
+
+            /*for ($i=0; $i <count($result) ; $i++) {
                 $output .= '<tr>';
-                
+
                 $output .= '<td>'.$result[$i]['no'].'</td>';
                 $output .= '<td>'.$result[$i]['npwpd'].'</td>';
                 $output .= '<td>'.$result[$i]['nama_wp'].'</td>';
@@ -154,9 +154,9 @@ class Reset_pass_wp_controller {
                 $output .= '<td>'.$result[$i]['email'].'</td>';
                 $output .= '<td>'.$result[$i]['merek_dagang'].'</td>';
                 $output .= '<td>'.$result[$i]['jenis_pajak'].'</td>';
-                
-                
-                
+
+
+
                 $output.='</tr>';
                 # code...
             }
@@ -164,7 +164,7 @@ class Reset_pass_wp_controller {
             $output.='</table>';
 
             //print_r($item['avg_tap']); exit();
-            
+
             echo $output;
                 exit;
         } catch(Exception $e){
@@ -176,5 +176,5 @@ class Reset_pass_wp_controller {
     }
 }
 
-    
+
 
