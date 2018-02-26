@@ -67,6 +67,7 @@
                 },
                 {label: 'Merk Dagang',name: 'company_brand_name',width: 250, align: "left"},
                 {label: 'NPWPD',name: 'npwd',width: 170, align: "left"},
+                {label: 'Nomor Order',name: 'order_no',width: 170, align: "left"},
                 {label: 'Periode',name: 'code',width: 200, align: "left"},
                 {label: 'No. Kohir',name: 'no_kohir',width: 200, align: "left",editable: false},
                 {label: 'No. Bayar',name: 'payment_key',width: 200, align: "left",editable: false},

@@ -41,6 +41,9 @@ class T_piutang_skpdkb_controller {
                  if($_REQUEST['searchField']=='payment_key') {
                     $_REQUEST['searchField']='x.payment_key';
                 }
+                if($_REQUEST['searchField']=='order_no') {
+                    $_REQUEST['searchField']='c.order_no';
+                }
             }
 			
             
