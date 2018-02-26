@@ -191,6 +191,168 @@ class Target_realisasi_dash extends CI_Controller
         //echo base_url();exit;
         echo '[['.$result['target_amount'].','.$result['realisasi_amt'].',"'.$result['group_code'].'","'.$result['year_code'].'"]]';
         exit;
-    }    
+    } 
+
+    function target_realisasi() {
+
+        $sql = "select *, 0 as percentage, 0 as selisih, 0 as percentage_selisih from v_target_realisasi_updated
+                where (target_amt > 0) AND (realisasi_amt > 0) 
+                and rownum < 4
+                ";
+
+        $query = $this->db->query($sql);
+        $result = $query->result_array();
+
+
+
+        //echo base_url();exit;
+        $s_result ="{\"rows\":[";
+        for ($i=0;$i<count($result);$i++){
+            
+            if(!empty($result[$i]['target_amt'])){
+                $result[$i]['percentage'] = $result[$i]['realisasi_amt'] / $result[$i]['target_amt']*100;
+                $result[$i]['selisih'] = $result[$i]['realisasi_amt'] - $result[$i]['target_amt'];
+                if($result[$i]['percentage'] >= 100) {
+                    $result[$i]['percentage_selisih'] = $result[$i]['percentage'];
+                }else{
+                    $result[$i]['percentage_selisih'] = $result[$i]['percentage']-100;
+                }
+             }else {
+                $resultc[$i]['percentage'] = 0;
+                $result[$i]['selisih'] = 0;
+                $result[$i]['percentage_selisih'] = 0;
+             }
+
+             $p_year_period_id = $result[$i]['p_year_period_id'];
+             $year_code = $result[$i]['year_code'];
+             $target_amt = $result[$i]['target_amt'];
+             $realisasi_amt = $result[$i]['realisasi_amt'];
+             $percentage = $result[$i]['percentage'];
+             $selisih = $result[$i]['selisih'];
+             $percentage_selisih = $result[$i]['percentage_selisih'];
+
+            $s_result = $s_result . '{"p_year_period_id":"'.$p_year_period_id.'","year_code":"'.$year_code.'","target_amt":"'.$target_amt.'","realisasi_amt":"'.$realisasi_amt.'","percentage":"'.$percentage.'","selisih":"'.$selisih.'","percentage_selisih":"'.$percentage_selisih.'"},';
+        }
+
+        $s_result = substr($s_result, 0, -1)  ;      
+
+        $s_result = $s_result . "]}";
+
+        if(count($result) < 1){
+            $s_result ="[[0]]";
+        } 
+
+        echo $s_result;
+
+        exit;
+    }       
+
+    function target_realisasi_bulan() {
+
+        $sql = "select *, 0 as percentage, 0 as selisih, 0 as percentage_selisih from v_target_realisasi_updated
+                where (target_amt > 0) AND (realisasi_amt > 0) 
+                and rownum < 4
+                ";
+
+        $query = $this->db->query($sql);
+        $result = $query->result_array();
+
+
+
+        //echo base_url();exit;
+        $s_result ="{\"rows\":[";
+        for ($i=0;$i<count($result);$i++){
+            
+            if(!empty($result[$i]['target_amt'])){
+                $result[$i]['percentage'] = $result[$i]['realisasi_amt'] / $result[$i]['target_amt']*100;
+                $result[$i]['selisih'] = $result[$i]['realisasi_amt'] - $result[$i]['target_amt'];
+                if($result[$i]['percentage'] >= 100) {
+                    $result[$i]['percentage_selisih'] = $result[$i]['percentage'];
+                }else{
+                    $result[$i]['percentage_selisih'] = $result[$i]['percentage']-100;
+                }
+             }else {
+                $resultc[$i]['percentage'] = 0;
+                $result[$i]['selisih'] = 0;
+                $result[$i]['percentage_selisih'] = 0;
+             }
+
+             $p_year_period_id = $result[$i]['p_year_period_id'];
+             $year_code = $result[$i]['year_code'];
+             $target_amt = $result[$i]['target_amt'];
+             $realisasi_amt = $result[$i]['realisasi_amt'];
+             $percentage = $result[$i]['percentage'];
+             $selisih = $result[$i]['selisih'];
+             $percentage_selisih = $result[$i]['percentage_selisih'];
+
+            $s_result = $s_result . '{"p_year_period_id":"'.$p_year_period_id.'","year_code":"'.$year_code.'","target_amt":"'.$target_amt.'","realisasi_amt":"'.$realisasi_amt.'","percentage":"'.$percentage.'","selisih":"'.$selisih.'","percentage_selisih":"'.$percentage_selisih.'"},';
+        }
+
+        $s_result = substr($s_result, 0, -1)  ;      
+
+        $s_result = $s_result . "]}";
+
+        if(count($result) < 1){
+            $s_result ="[[0]]";
+        } 
+
+        echo $s_result;
+
+        exit;
+    }
+
+    function target_realisasi_bulan() {
+
+        $sql = "select *, 0 as percentage, 0 as selisih, 0 as percentage_selisih from v_target_realisasi_updated
+                where (target_amt > 0) AND (realisasi_amt > 0) 
+                and rownum < 4
+                ";
+
+        $query = $this->db->query($sql);
+        $result = $query->result_array();
+
+
+
+        //echo base_url();exit;
+        $s_result ="{\"rows\":[";
+        for ($i=0;$i<count($result);$i++){
+            
+            if(!empty($result[$i]['target_amt'])){
+                $result[$i]['percentage'] = $result[$i]['realisasi_amt'] / $result[$i]['target_amt']*100;
+                $result[$i]['selisih'] = $result[$i]['realisasi_amt'] - $result[$i]['target_amt'];
+                if($result[$i]['percentage'] >= 100) {
+                    $result[$i]['percentage_selisih'] = $result[$i]['percentage'];
+                }else{
+                    $result[$i]['percentage_selisih'] = $result[$i]['percentage']-100;
+                }
+             }else {
+                $resultc[$i]['percentage'] = 0;
+                $result[$i]['selisih'] = 0;
+                $result[$i]['percentage_selisih'] = 0;
+             }
+
+             $p_year_period_id = $result[$i]['p_year_period_id'];
+             $year_code = $result[$i]['year_code'];
+             $target_amt = $result[$i]['target_amt'];
+             $realisasi_amt = $result[$i]['realisasi_amt'];
+             $percentage = $result[$i]['percentage'];
+             $selisih = $result[$i]['selisih'];
+             $percentage_selisih = $result[$i]['percentage_selisih'];
+
+            $s_result = $s_result . '{"p_year_period_id":"'.$p_year_period_id.'","year_code":"'.$year_code.'","target_amt":"'.$target_amt.'","realisasi_amt":"'.$realisasi_amt.'","percentage":"'.$percentage.'","selisih":"'.$selisih.'","percentage_selisih":"'.$percentage_selisih.'"},';
+        }
+
+        $s_result = substr($s_result, 0, -1)  ;      
+
+        $s_result = $s_result . "]}";
+
+        if(count($result) < 1){
+            $s_result ="[[0]]";
+        } 
+
+        echo $s_result;
+
+        exit;
+    }
 
 }

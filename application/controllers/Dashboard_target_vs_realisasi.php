@@ -21,6 +21,8 @@ class Dashboard_target_vs_realisasi extends CI_Controller
             $this->load->view('pelaporan/dashboard_t_target_realisasi_jenis_bulan');
         }else if($mode=='target'){
             $this->load->view('pelaporan/dashboard_t_target_realisasi');
+        }else if($mode=='triwulan'){
+            $this->load->view('pelaporan/dashboard_t_target_realisasi_view_triwulan');
         }
         
     }
@@ -39,6 +41,10 @@ class Dashboard_target_vs_realisasi extends CI_Controller
 
     public function dash3(){
         $this->load->view('pelaporan/dashboard_t_target_realisasi_perjenis_bulanan_v2');
+    }
+
+    public function target_realisasi_triwulan(){
+        $this->load->view('pelaporan/dashboard_t_target_realisasi_view_triwulan');
     }
 
     public function target_realisasi_perjenis_pajak_perbulan(){
