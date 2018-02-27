@@ -177,12 +177,14 @@
                         name: items[3][1],
                         data: [parseInt(items[3][2])]
 
-                    }, 
+                    }
+					
+					/*, 
                     {
                         name: items[4][1],
                         data: [parseInt(items[4][2])]
 
-                    }
+                    }*/
                 ]
             });
         });

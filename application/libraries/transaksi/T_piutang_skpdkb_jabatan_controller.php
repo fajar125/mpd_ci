@@ -58,7 +58,7 @@ class T_piutang_skpdkb_jabatan_controller {
             // Filter Table
 
             $req_param['where'] = array();
-            $req_param['where'][] = "x.p_settlement_type_id IN (4,5,6,7)";
+            $req_param['where'][] = "x.p_settlement_type_id IN (4)";
 
             $table->setJQGridParam($req_param);
             $count = $table->countAll();
