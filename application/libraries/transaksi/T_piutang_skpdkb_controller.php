@@ -13,7 +13,7 @@ class T_piutang_skpdkb_controller {
         $sidx = getVarClean('sidx','str','t_vat_setllement_id');
         $sord = getVarClean('sord','str','desc');
 		
-		$status_bayar = getVarClean('status_bayar','str','');
+		$status_bayar = getVarClean('status_bayar','str','belum_bayar');
 
         $data = array('rows' => array(), 'page' => 1, 'records' => 0, 'total' => 1, 'success' => false, 'message' => '');
 
@@ -67,7 +67,7 @@ class T_piutang_skpdkb_controller {
             $req_param['where'] = array();
             $req_param['where'][] = "x.p_settlement_type_id = 2";
 			
-			if($status_bayar != "") {
+			if($status_bayar != "all") {
                 if($status_bayar == 'belum_bayar') {
                     $req_param['where'][] = "c.receipt_no is null";
                 }else {

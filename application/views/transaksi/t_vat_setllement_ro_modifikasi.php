@@ -27,7 +27,7 @@
     <div class="col-md-3">
         <div class="input-group">
             <select name="status_bayar" id="status_bayar" class="form-control">
-                <option value="">Status Bayar (Semua)</option>
+                <option value="all">Status Bayar (Semua)</option>
                 <option value="belum_bayar">Belum Bayar</option>
                 <option value="sudah_bayar">Sudah Bayar</option>
             </select>
@@ -56,7 +56,10 @@
 
         $("#grid-table").jqGrid('setGridParam', {
             url: '<?php echo WS_JQGRID."transaksi.t_vat_setllement_ro_modifikasi_controller/read"; ?>',
-            postData: {status_bayar: $(this).val()}
+            postData: {
+				status_bayar: $(this).val(),
+				s_keyword : $('#s_keyword').val()
+			}
         });
         $("#grid-table").trigger("reloadGrid");
     });
@@ -347,7 +350,7 @@
         }*/
 
         jQuery(function($) {
-            var grid_selector = "#grid-table-history";
+            
             jQuery("#grid-table").jqGrid('setGridParam',{
                 url: '<?php echo WS_JQGRID."transaksi.t_vat_setllement_ro_modifikasi_controller/read"; ?>',
                 postData: { s_keyword : $('#s_keyword').val()}

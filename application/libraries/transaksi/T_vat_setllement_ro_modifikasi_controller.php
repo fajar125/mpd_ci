@@ -14,7 +14,7 @@ class T_vat_setllement_ro_modifikasi_controller {
         $sord = getVarClean('sord','str','desc');
 
         $s_keyword = getVarClean('s_keyword','str','');
-        $status_bayar = getVarClean('status_bayar','str','');
+        $status_bayar = getVarClean('status_bayar','str','all');
 
         $data = array('rows' => array(), 'page' => 1, 'records' => 0, 'total' => 1, 'success' => true, 'message' => '');
 
@@ -64,12 +64,13 @@ class T_vat_setllement_ro_modifikasi_controller {
 
                 $req_param['where'] = array();
                 $req_param['where'][] = "( upper(d.wp_name) LIKE upper('%".$s_keyword."%') OR
+				      upper(d.company_brand) LIKE upper('%".$s_keyword."%') OR
                       upper(a.npwd) LIKE upper('%".$s_keyword."%') OR
                       upper(a.no_kohir) LIKE upper('%".$s_keyword."%') OR
                       upper(a.payment_key) LIKE upper('%".$s_keyword."%')
                     )";
 
-                if($status_bayar != "") {
+                if($status_bayar != "all") {
                     if($status_bayar == 'belum_bayar') {
                         $req_param['where'][] = "f.receipt_no is null";
                     }else {

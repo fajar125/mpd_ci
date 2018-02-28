@@ -12,7 +12,10 @@ class T_piutang_skpdkb_jabatan_controller {
         $limit = getVarClean('rows','int',5);
         $sidx = getVarClean('sidx','str','t_vat_setllement_id');
         $sord = getVarClean('sord','str','desc');
-
+		
+		$s_keyword = getVarClean('s_keyword','str','');
+		$status_bayar = getVarClean('status_bayar','str','belum_bayar');
+		
         $data = array('rows' => array(), 'page' => 1, 'records' => 0, 'total' => 1, 'success' => false, 'message' => '');
 
         try {
@@ -59,6 +62,21 @@ class T_piutang_skpdkb_jabatan_controller {
 
             $req_param['where'] = array();
             $req_param['where'][] = "x.p_settlement_type_id IN (4)";
+			$req_param['where'][] = "( upper(b.wp_name) LIKE upper('%".$s_keyword."%') OR
+				      upper(b.company_brand) LIKE upper('%".$s_keyword."%') OR
+                      upper(x.npwd) LIKE upper('%".$s_keyword."%') OR
+                      upper(x.no_kohir) LIKE upper('%".$s_keyword."%') OR
+                      upper(x.payment_key) LIKE upper('%".$s_keyword."%')
+                    )";
+
+			
+			if($status_bayar != "all") {
+                if($status_bayar == 'belum_bayar') {
+                    $req_param['where'][] = "c.receipt_no is null";
+                }else {
+                    $req_param['where'][] = "c.receipt_no is not null";
+                }
+            }
 
             $table->setJQGridParam($req_param);
             $count = $table->countAll();

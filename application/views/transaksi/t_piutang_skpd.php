@@ -13,15 +13,28 @@
 <!-- end breadcrumb -->
 <div class="space-4"></div>
 <div class="row">
-    <div class="col-md-1">Filter :</div>
+    <label class="control-label col-md-4">Nama WP/ NPWD / No Kohir / No.Pembayaran :</label>
     <div class="col-md-3">
-        <select name="status_bayar" id="status_bayar" class="form-control">
-            <option value="">Semua</option>
-            <option value="belum_bayar">Belum Bayar</option>
-            <option value="sudah_bayar">Sudah Bayar</option>
-        </select>
+        <div class="input-group">
+            <div class="input-group">
+            <input id="s_keyword" type="text" class="FormElement form-control">
+            <span class="input-group-btn">
+                <button class="btn btn-success" type="button" id="btn-search" onclick="showData()">Cari</button>
+            </span>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-3">
+        <div class="input-group">
+            <select name="status_bayar" id="status_bayar" class="form-control">
+                <option value="all">Status Bayar (Semua)</option>
+                <option value="belum_bayar" selected>Belum Bayar</option>
+                <option value="sudah_bayar">Sudah Bayar</option>
+            </select>
+        </div>
     </div>
 </div>
+
 
 <div class="space-4"></div>
 <div class="row">
@@ -36,10 +49,26 @@
 
         $("#grid-table").jqGrid('setGridParam', {
             url: '<?php echo WS_JQGRID."transaksi.t_piutang_skpd_controller/read"; ?>',
-            postData: {status_bayar: $(this).val()}
+            postData: {
+				status_bayar: $(this).val(),
+				s_keyword : $('#s_keyword').val()
+			}
         });
         $("#grid-table").trigger("reloadGrid");
     });
+	
+	function showData(){
+        var s_keyword = $('#s_keyword').val();
+		
+        jQuery(function($) {
+            
+            jQuery("#grid-table").jqGrid('setGridParam',{
+                url: '<?php echo WS_JQGRID."transaksi.t_piutang_skpd_controller/read"; ?>',
+                postData: { s_keyword : $('#s_keyword').val()}
+            });
+            $("#grid-table").trigger("reloadGrid");
+        });
+    }
 </script>
 
 <script>

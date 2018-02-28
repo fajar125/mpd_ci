@@ -17,8 +17,8 @@
     <div class="col-md-1">Filter :</div>
     <div class="col-md-3">
         <select name="status_bayar" id="status_bayar" class="form-control">
-            <option value="">Semua</option>
-            <option value="belum_bayar">Belum Bayar</option>
+            <option value="all">Semua</option>
+            <option value="belum_bayar" selected>Belum Bayar</option>
             <option value="sudah_bayar">Sudah Bayar</option>
         </select>
     </div>

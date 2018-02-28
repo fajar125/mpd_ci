@@ -22,7 +22,7 @@ class T_piutang_skpdkb_tambahan extends Abstract_model {
 
                             );
 
-    public $selectClause    = "x.t_customer_order_id, x.t_vat_setllement_id, x.npwd, a.code, x.no_kohir, x.payment_key, x.total_trans_amount, x.total_vat_amount, trim(b.company_brand) as company_brand_name";
+    public $selectClause    = "x.t_customer_order_id, x.t_vat_setllement_id, x.npwd, a.code, x.no_kohir, x.payment_key, x.total_trans_amount, x.total_vat_amount, trim(b.company_brand) as company_brand_name, c.receipt_no";
     public $fromClause      = "t_vat_setllement x 
 								left join p_finance_period a on a.p_finance_period_id = x.p_finance_period_id
 								left join t_cust_account b on b.t_cust_account_id = x.t_cust_account_id 

@@ -13,7 +13,8 @@ class T_piutang_skpd_controller {
         $sidx = getVarClean('sidx','str','t_vat_setllement_id');
         $sord = getVarClean('sord','str','desc');
 
-        $status_bayar = getVarClean('status_bayar','str','');
+		$s_keyword = getVarClean('s_keyword','str','');
+        $status_bayar = getVarClean('status_bayar','str','belum_bayar');
 
         $data = array('rows' => array(), 'page' => 1, 'records' => 0, 'total' => 1, 'success' => false, 'message' => '');
 
@@ -60,8 +61,14 @@ class T_piutang_skpd_controller {
 
             $req_param['where'] = array();
             $req_param['where'][] = "a.p_settlement_type_id = 7";
+			$req_param['where'][] = "( upper(a.wp_name) LIKE upper('%".$s_keyword."%') OR
+				      upper(a.npwd) LIKE upper('%".$s_keyword."%') OR
+                      upper(a.no_kohir) LIKE upper('%".$s_keyword."%') OR
+                      upper(a.payment_key) LIKE upper('%".$s_keyword."%')
+                    )";
 
-            if($status_bayar != "") {
+
+            if($status_bayar != "all") {
                 if($status_bayar == 'belum_bayar') {
                     $req_param['where'][] = "b.receipt_no is null";
                 }else {
