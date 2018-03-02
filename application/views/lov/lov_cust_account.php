@@ -1,5 +1,5 @@
 <div id="modal_cust_account" class="modal fade" tabindex="-1" style="overflow-y: scroll;">
-    <div class="modal-dialog" style="width:700px;">
+    <div class="modal-dialog" style="width:900px;">
         <div class="modal-content">
             <!-- modal title -->
             <div class="modal-header no-padding">
@@ -29,11 +29,11 @@
                      <th data-column-id="p_vat_type_id" data-sortable="false" data-visible="false">ID Status</th>
                      <th data-column-id="p_vat_type_dtl_id" data-sortable="false" data-visible="false">ID Status</th>
                      <th data-column-id="t_cust_account_id" data-sortable="false" data-visible="false">ID Status</th>
-                     <th data-header-align="center" data-align="center" data-formatter="opt-edit" data-sortable="false" data-width="75">Options</th>
-                     <th data-column-id="npwd">NPWPD</th>
+                     <th data-header-align="center" data-align="center" data-formatter="opt-edit" data-sortable="false" data-width="75">Pilih</th>
+                     <th data-column-id="npwd" data-width="120">NPWPD</th>
                      <th data-column-id="company_brand">Merk Dagang</th>
-                      <th data-column-id="vat_code">Jenis Pajak</th>
-                      <th data-column-id="brand_address">Alamat</th>
+                      <th data-column-id="vat_code" data-width="120">Jenis Pajak</th>
+                      <th data-column-id="brand_address" data-width="200">Alamat</th>
                       <th data-column-id="vat_dtl" data-sortable="false" data-visible="false">ID Status</th>
                   </tr>
                 </thead>
