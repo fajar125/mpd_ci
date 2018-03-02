@@ -1,6 +1,6 @@
 <!-- BEGIN GLOBAL MANDATORY STYLES -->
-<!-- <link href="assets/global/plugins/font-awesome/css/OpenSans.css" rel="stylesheet"
-      type="text/css"/> -->
+<link href="<?php echo base_url(); ?>assets/global/plugins/font-awesome/css/OpenSans.css" rel="stylesheet"
+      type="text/css"/>
 <link href="<?php echo base_url(); ?>assets/global/plugins/simple-line-icons/simple-line-icons.min.css" rel="stylesheet"
       type="text/css"/>
 <link href="<?php echo base_url(); ?>assets/global/plugins/bootstrap/css/bootstrap.min.css" rel="stylesheet"
