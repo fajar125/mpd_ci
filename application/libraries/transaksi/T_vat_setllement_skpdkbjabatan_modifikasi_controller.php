@@ -4,7 +4,7 @@
 * @class vats_controller
 * @version 07/05/2015 12:18:00
 */
-class T_vat_setllement_ro_modifikasi_controller {
+class T_vat_setllement_skpdkbjabatan_modifikasi_controller {
 
     function read() {
 
@@ -63,7 +63,7 @@ class T_vat_setllement_ro_modifikasi_controller {
                 // Filter Table
 
                 $req_param['where'] = array();
-                $req_param['where'][] = "a.p_settlement_type_id NOT IN (4)";
+                $req_param['where'][] = "a.p_settlement_type_id IN (4)";
                 $req_param['where'][] = "( upper(d.wp_name) LIKE upper('%".$s_keyword."%') OR
 				      upper(d.company_brand) LIKE upper('%".$s_keyword."%') OR
                       upper(a.npwd) LIKE upper('%".$s_keyword."%') OR
