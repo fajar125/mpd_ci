@@ -27,7 +27,7 @@
 0 7 * * * /home/mpdklu/scheduler/cek_payment_due_date.sh  >> /home/mpdklu/logs/cek_payment_due_date.log 2>&1
 
 #update denda skpdkb jabatan tiap jam 00:01
-1 0 * * * /home/mpdklu/scheduler/query_update_denda_skpdkb_jabatan.sql  >> /home/mpdklu/logs/query_update_denda_skpdkb_jabatan.log 2>&1
+1 0 * * * /home/mpdklu/scheduler/update_denda_skpdkb_jabatan.sh  >> /home/mpdklu/logs/query_update_denda_skpdkb_jabatan.log 2>&1
 
 #surat teguran 1 tiap jam 01:00
 0 1 * * * /home/mpdklu/scheduler/surat_teguran_1.sh  >> /home/mpdklu/logs/surat_teguran_1.log 2>&1
