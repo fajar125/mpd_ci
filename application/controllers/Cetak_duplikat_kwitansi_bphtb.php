@@ -109,18 +109,18 @@ class Cetak_duplikat_kwitansi_bphtb extends CI_Controller{
       $pdf->Cell(71, $this->height, "", "", 0, 'L');
       $pdf->Cell(90, $this->height, "Lombok Utara, ".date('d-m-Y'), "", 0, 'L');
       $pdf->Ln();
-      $pdf->Cell(60, $this->height, "", "", 0, 'L');
-      $pdf->Cell(71, $this->height, "", "", 0, 'L');
-      $pdf->Cell(90, $this->height, "Bendahara Penerimaan BPHTB", "", 0, 'L');
-      $pdf->Ln(20);
+      //$pdf->Cell(60, $this->height, "", "", 0, 'L');
+      //$pdf->Cell(71, $this->height, "", "", 0, 'L');
+      //$pdf->Cell(90, $this->height, "Bendahara Penerimaan BPHTB", "", 0, 'L');
+      //$pdf->Ln(20);
 
-      $pdf->Cell(60, $this->height, "", "", 0, 'L');
-      $pdf->Cell(71, $this->height, "", "", 0, 'L');
-      $pdf->Cell(90, $this->height, getValByCode('BENDAHARA_PENERIMAAN'), "", 0, 'L');
-      $pdf->Ln();
-      $pdf->Cell(60, $this->height, "", "", 0, 'L');
-      $pdf->Cell(71, $this->height, "", "", 0, 'L');
-      $pdf->Cell(90, $this->height, "NIP. ".getValByCode('NIP_BENDAHARA_PENERIMAAN'), "", 0, 'L');
+      //$pdf->Cell(60, $this->height, "", "", 0, 'L');
+      //$pdf->Cell(71, $this->height, "", "", 0, 'L');
+      //$pdf->Cell(90, $this->height, getValByCode('BENDAHARA_PENERIMAAN'), "", 0, 'L');
+      //$pdf->Ln();
+      //$pdf->Cell(60, $this->height, "", "", 0, 'L');
+      //$pdf->Cell(71, $this->height, "", "", 0, 'L');
+      //$pdf->Cell(90, $this->height, "NIP. ".getValByCode('NIP_BENDAHARA_PENERIMAAN'), "", 0, 'L');
 
     }
     

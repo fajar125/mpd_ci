@@ -41,7 +41,7 @@ class Cetak_formulir_surat_teguran_pdf extends CI_Controller{
             exit();
 		}
 
-		$ttd = "SELECT value as nama_kadin, value_2 as nip_kadin FROM p_global_param WHERE code = 'TTD KADIN'";
+		$ttd = "SELECT value as nama_kadin, value_2 as nip_kadin FROM p_global_param WHERE code = 'KABAN'";
 			
 		$query = $this->db->query($ttd);
 		$kadin = $query->row_array();
