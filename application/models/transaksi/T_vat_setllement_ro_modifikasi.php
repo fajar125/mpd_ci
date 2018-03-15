@@ -12,7 +12,7 @@ class T_vat_setllement_ro_modifikasi extends Abstract_model {
 
     public $fields          = array();
 
-    public $selectClause    = "d.company_brand,a.no_kohir,sett_type.code as sett_code,d.wp_name, a.t_vat_setllement_id, a.t_customer_order_id, a.total_penalty_amount, a.settlement_date, a.p_finance_period_id, a.t_cust_account_id, a.npwd, a.total_trans_amount, a.total_vat_amount, b.code as finance_period_code, c.order_no, c.p_rqst_type_id, e.code as rqst_type_code,
+    public $selectClause    = "d.company_brand,a.no_kohir,sett_type.code as sett_code,d.wp_name, a.t_vat_setllement_id, a.t_customer_order_id, nvl(a.total_penalty_amount,0) as total_penalty_amount, a.settlement_date, a.p_finance_period_id, a.t_cust_account_id, a.npwd, a.total_trans_amount, a.total_vat_amount, b.code as finance_period_code, c.order_no, c.p_rqst_type_id, e.code as rqst_type_code,
                                 d.p_vat_type_id,a.payment_key,a.created_by, f.receipt_no, f.payment_date,
                                 g.vat_code";
     public $fromClause      = "t_vat_setllement a
