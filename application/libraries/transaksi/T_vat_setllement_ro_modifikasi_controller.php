@@ -15,6 +15,7 @@ class T_vat_setllement_ro_modifikasi_controller {
 
         $s_keyword = getVarClean('s_keyword','str','');
         $status_bayar = getVarClean('status_bayar','str','all');
+        $jenis_ketetapan = getVarClean('jenis_ketetapan','str','all');
 
         $data = array('rows' => array(), 'page' => 1, 'records' => 0, 'total' => 1, 'success' => true, 'message' => '');
 
@@ -77,6 +78,10 @@ class T_vat_setllement_ro_modifikasi_controller {
                     }else {
                         $req_param['where'][] = "f.receipt_no is not null";
                     }
+                }
+
+                if($jenis_ketetapan != "all") {
+                    $req_param['where'][] = "a.p_settlement_type_id = ".$jenis_ketetapan;
                 }
 
                 $table->setJQGridParam($req_param);
@@ -215,5 +220,25 @@ class T_vat_setllement_ro_modifikasi_controller {
 
         return $data;
 
+    }
+
+    function readJenisKetetapan() {
+        $ci = & get_instance();
+        $ci->load->model('transaksi/t_vat_setllement_ro_modifikasi');
+        $table = $ci->t_vat_setllement_ro_modifikasi;
+
+        $sql = "SELECT * FROM p_settlement_type
+                    WHERE p_settlement_type_id NOT IN (5,9)";
+
+        $result = $table->db->query($sql);
+        $rows = $result->result_array();
+
+        $options = '<option value="all">Jenis Ketetapan(Semua)</option>';
+        foreach($rows as $row) {
+            $options.= '<option value="'.$row['p_settlement_type_id'].'">'.$row['code'].'</option>';
+        }
+
+        echo $options;
+        exit;
     }
 }

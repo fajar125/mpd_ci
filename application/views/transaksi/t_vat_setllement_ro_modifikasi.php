@@ -13,7 +13,7 @@
 <!-- end breadcrumb -->
 <div class="space-4"></div>
 <div class="row">
-    <label class="control-label col-md-4">Nama WP/ NPWD / No Kohir / No.Pembayaran :</label>
+    <label class="control-label col-md-3">Nama WP/ NPWD / No.Pembayaran :</label>
     <div class="col-md-3">
         <div class="input-group">
             <div class="input-group">
@@ -30,6 +30,13 @@
                 <option value="all">Status Bayar (Semua)</option>
                 <option value="belum_bayar">Belum Bayar</option>
                 <option value="sudah_bayar">Sudah Bayar</option>
+            </select>
+        </div>
+    </div>
+    <div class="col-md-3">
+        <div class="input-group">
+            <select name="jenis_ketetapan" id="jenis_ketetapan" class="form-control">
+
             </select>
         </div>
     </div>
@@ -53,16 +60,64 @@
 
 <script>
     $('#status_bayar').change(function() {
-
+        var jenis_ketetapan = $('#jenis_ketetapan').val();
         $("#grid-table").jqGrid('setGridParam', {
             url: '<?php echo WS_JQGRID."transaksi.t_vat_setllement_ro_modifikasi_controller/read"; ?>',
             postData: {
 				status_bayar: $(this).val(),
+                jenis_ketetapan : jenis_ketetapan,
 				s_keyword : $('#s_keyword').val()
 			}
         });
         $("#grid-table").trigger("reloadGrid");
     });
+</script>
+
+<script>
+    $(function() {
+        $.ajax({
+            type: 'POST',
+            url: '<?php echo WS_JQGRID."transaksi.t_vat_setllement_ro_modifikasi_controller/readJenisKetetapan"; ?>',
+            success: function(response) {
+                $('#jenis_ketetapan').html(response);
+            }
+        });
+    });
+
+    $('#jenis_ketetapan').change(function() {
+        var status_bayar = $('#status_bayar').val();
+        $("#grid-table").jqGrid('setGridParam', {
+            url: '<?php echo WS_JQGRID."transaksi.t_vat_setllement_ro_modifikasi_controller/read"; ?>',
+            postData: {
+				jenis_ketetapan: $(this).val(),
+                status_bayar: status_bayar,
+				s_keyword : $('#s_keyword').val()
+			}
+        });
+        $("#grid-table").trigger("reloadGrid");
+    });
+
+
+    function showData(){
+        var s_keyword = $('#s_keyword').val();
+        var status_bayar = $('#status_bayar').val();
+        var jenis_ketetapan = $('#jenis_ketetapan').val();
+
+        jQuery(function($) {
+
+            jQuery("#grid-table").jqGrid('setGridParam',{
+                url: '<?php echo WS_JQGRID."transaksi.t_vat_setllement_ro_modifikasi_controller/read"; ?>',
+                postData: {
+                    s_keyword : $('#s_keyword').val(),
+                    jenis_ketetapan: jenis_ketetapan,
+                    status_bayar : status_bayar
+
+                }
+            });
+            $("#grid-table").trigger("reloadGrid");
+        });
+    }
+
 </script>
 
 <?php $this->load->view('lov/lov_ubah_data'); ?>
@@ -198,7 +253,6 @@
 
             },
             //memanggil controller jqgrid yang ada di controller crud
-            editurl: '<?php echo WS_JQGRID."transaksi.t_piutang_skpdkb_controller/read"; ?>',
             caption: "MASTER UBAH SPTPD / SSPD"
 
         });
@@ -336,27 +390,6 @@
         $(grid_selector).jqGrid( 'setGridWidth', $(".page-content").width() );
         $(pager_selector).jqGrid( 'setGridWidth', parent_column.width() );
 
-    }
-
-    function showData(){
-        var s_keyword = $('#s_keyword').val();
-		/*
-        if (s_keyword==''){
-            swal('Informasi','Masukan Nama WP/ NPWD / No Kohir / No.Pembayaran','info');
-            $ ("#tabel_id").hide();
-            return;
-        }else{
-            $("#tabel_id").show();
-        }*/
-
-        jQuery(function($) {
-            
-            jQuery("#grid-table").jqGrid('setGridParam',{
-                url: '<?php echo WS_JQGRID."transaksi.t_vat_setllement_ro_modifikasi_controller/read"; ?>',
-                postData: { s_keyword : $('#s_keyword').val()}
-            });
-            $("#grid-table").trigger("reloadGrid");
-        });
     }
 
 </script>
