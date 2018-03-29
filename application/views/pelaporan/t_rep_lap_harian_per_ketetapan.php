@@ -27,7 +27,7 @@
                             <select id="kode_bank" name="kode_bank" class="FormElement form-control" >
                                 <option selected="" value="">Semua</option>
                                 <option value="0000">BENDAHARA PENERIMA</option>
-                                <option value="110">BJB</option>
+                                <option value="022210">Bank NTB</option>
                             </select>
                         </div>
                     </div>
