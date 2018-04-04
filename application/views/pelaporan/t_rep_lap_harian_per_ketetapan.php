@@ -218,7 +218,7 @@
     function toExcel(){
         var tgl_penerimaan  = $('#tgl_penerimaan').val();        
         var kode_bank       = $('#kode_bank').val();
-        alert(tgl_penerimaan+" "+ kode_bank);
+        
         
         if(tgl_penerimaan == ""){            
             swal ( "Oopss" ,  "Kolom Tanggal Tidak Boleh Kosong!" ,  "error" );

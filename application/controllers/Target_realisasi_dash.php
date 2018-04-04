@@ -247,7 +247,7 @@ class Target_realisasi_dash extends CI_Controller
         exit;
     }       
 
-    function target_realisasi_bulan() {
+    /*function target_realisasi_bulan() {
 
         $sql = "select *, 0 as percentage, 0 as selisih, 0 as percentage_selisih from v_target_realisasi_updated
                 where (target_amt > 0) AND (realisasi_amt > 0) 
@@ -299,7 +299,7 @@ class Target_realisasi_dash extends CI_Controller
         echo $s_result;
 
         exit;
-    }
+    }*/
 
     function target_realisasi_bulan() {
 
