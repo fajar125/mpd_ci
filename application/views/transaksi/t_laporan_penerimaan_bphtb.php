@@ -135,12 +135,8 @@
                         <div class="col-md-3">
                             <select id="verificated_by" class="form-control" name="verificated_by">
                                 <option  value="">Semua</option>
-                                <option  value="ACEP">ACEP</option>
-                                <option  value="ASEP">ASEP</option>
-                                <option  value="IWAN">IWAN</option>
-                                <option  value="RONI">RONI</option>
-                                <option  value="TATANG">TATANG</option>
-                                <option  value="ZAENAL">ZAENAL</option>
+                                <option  value="KRISTIN_SOFYAWATI">KRISTIN_SOFYAWATI</option>
+                                <option  value="BAIQ_HIDAYATI">BAIQ_HIDAYATI</option>
                           </select>
                         </div>
                     </div>
