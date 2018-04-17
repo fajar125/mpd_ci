@@ -50,7 +50,12 @@ class Cetak_formulir_skpdkb_tambahan extends CI_Controller{
 			$sql="SELECT *, to_char(settlement_date,'DD Month YYYY') AS tgl_setllement,
 				to_char(settlement_date+15,'DD Month YYYY') AS tgl_jatuh_tempo 
 				FROM v_vat_setllement WHERE t_vat_setllement_id = " . $t_vat_setllement_id;
-		} else{
+		} else if ($t_customer_order_id > 0){
+			$sql="SELECT *, to_char(settlement_date,'DD Month YYYY') AS tgl_setllement,
+				to_char(settlement_date+15,'DD Month YYYY') AS tgl_jatuh_tempo 
+				FROM v_vat_setllement WHERE t_customer_order_id = " . $t_customer_order_id;
+			
+		}else{
 			echo "DATA TIDAK ADA";
 			exit();
 		}
